@@ -13,7 +13,7 @@ namespace MCup
         {
             InitializeComponent();
 
-            MainPage = new MCup.MainPage();
+            MainPage = new NavigationPage(new MCup.MainPage());
         }
 
         protected override void OnStart()

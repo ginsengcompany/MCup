@@ -1,19 +1,20 @@
-﻿using MCup.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace MCup
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace MCup.Views
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Termini : ContentPage
     {
-        public MainPage()
+        public Termini()
         {
             InitializeComponent();
-            Navigation.PushAsync(new Termini());
         }
     }
 }
