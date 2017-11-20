@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
 using System.Net.Http;
 using MCup;
+
 namespace MCup.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
