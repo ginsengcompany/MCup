@@ -47,6 +47,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\MenuPrincipale.xaml.cs">
+      <DependentUpon>MenuPrincipale.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Termini.xaml.cs">
       <DependentUpon>Termini.xaml</DependentUpon>
     </Compile>
@@ -83,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Termini.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MenuPrincipale.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
