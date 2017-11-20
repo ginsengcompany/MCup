@@ -1,4 +1,6 @@
-﻿using MCup.Views;
+﻿using MCup.Database.Data;
+using MCup.Database.Models;
+using MCup.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,11 @@ namespace MCup
 {
     public partial class MainPage : ContentPage
     {
+        
+
         public MainPage()
         {
             InitializeComponent();
-            Navigation.PushAsync(new Termini());
         }
     }
 }

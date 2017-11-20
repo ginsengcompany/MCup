@@ -2,6 +2,8 @@
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
     "Newtonsoft.Json": "10.0.3",
+    "PCLStorage": "1.0.2",
+    "sqlite-net-pcl": "1.4.118",
     "Xamarin.Forms": "2.5.0.91635"
   },
   "frameworks": {
