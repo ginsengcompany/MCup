@@ -27,7 +27,7 @@ namespace MCup
             if (acceptTermini == false)
                 MainPage = new Termini();
             else
-                MainPage = new MainPage();
+                MainPage = new MenuPrincipale();
         }
 
         private bool checkTerminiServizio()
