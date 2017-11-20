@@ -12,12 +12,9 @@
             </ScrollView>
             <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="5" HeightRequest="50" VerticalOptions="End">
                 <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="StartAndExpand" Padding="20,0,0,0">
-<<<<<<< HEAD
                     <Button Text="Accetta" BackgroundColor="#2296f3" BorderRadius="15" TextColor="White"  BorderWidth="1" Clicked="Button_Clicked"/>
-=======
-                    <Button Text="Accetta" BackgroundColor="#2296f3" BorderRadius="20" TextColor="White"  BorderWidth="1" />
->>>>>>> 93d9e2b39c658a3f7fe9cc3d2183d7cb3adad66c
-            </StackLayout>
+                        <Button Text="Accetta" BackgroundColor="#2296f3" BorderRadius="20" TextColor="White"  BorderWidth="1" />
+                </StackLayout>
                 <StackLayout Spacing="0"  BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="EndAndExpand" Padding="0,0,20,0">
                     <Button Text="Declina" BackgroundColor="#2296f3" BorderRadius="20" TextColor="White"  BorderWidth="1"/>
             </StackLayout>

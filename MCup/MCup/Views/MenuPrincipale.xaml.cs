@@ -44,7 +44,7 @@ namespace MCup.Views
                 {
 
                     IsPresented = false;
-                    Detail = new NavigationPage(new );
+                    //Detail = new NavigationPage(new );
                 }
 
                 else if (menu.MenuTitle.Equals("Appuntamenti"))
@@ -52,7 +52,7 @@ namespace MCup.Views
                 {
 
                     IsPresented = false;
-                    Detail = new NavigationPage(new );
+                    //Detail = new NavigationPage(new );
 
 
                 }
