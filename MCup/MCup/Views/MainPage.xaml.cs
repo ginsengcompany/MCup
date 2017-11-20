@@ -13,7 +13,7 @@ namespace MCup
         public MainPage()
         {
             InitializeComponent();
-            Navigation.PushAsync(new Termini());
+            //Navigation.PushAsync(new MenuPrincipale());
         }
     }
 }

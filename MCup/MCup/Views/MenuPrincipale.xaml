@@ -2,32 +2,27 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.MenuPrincipale"
+                  NavigationPage.HasNavigationBar="False"
                   >
+    <MasterDetailPage.Detail>
+        
+    </MasterDetailPage.Detail>
     <MasterDetailPage.Master>
-        <ContentPage  Title="MyApp"
-            Icon="">
+        <ContentPage  Title="MyApp" Icon="">
             <ListView x:Name="ListaMenu" ItemSelected="ListaMenu_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal" Padding="20,10,0,10" Spacing="20">
                                 <Label Text="{Binding menuTitle}" TextColor="Black">
-
                                 </Label>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </ContentPage>
-        
-    </MasterDetailPage.Master>
-    <MasterDetailPage.Detail>
 
-        <NavigationPage>
-            <x:Arguments>
-                <ContentPage Title="Menu"></ContentPage>
-            </x:Arguments>
-        </NavigationPage>
-    </MasterDetailPage.Detail>
+        </ContentPage>
+    </MasterDetailPage.Master>
+   
 </MasterDetailPage>

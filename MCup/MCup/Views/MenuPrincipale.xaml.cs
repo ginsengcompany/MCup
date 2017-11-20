@@ -8,11 +8,11 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
 using System.Net.Http;
-
+using MCup;
 namespace MCup.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MenuPrincipale : MasterDetailPage
+	public partial class MenuPrincipale: MasterDetailPage
 	{
 		public MenuPrincipale ()
 		{
@@ -28,6 +28,7 @@ namespace MCup.Views
                 new Menu {MenuTitle = "Appuntamenti"}
             };
             ListaMenu.ItemsSource = menuPrincipale;
+            Detail = new NavigationPage(new MainPage());
         }
 
         private void ListaMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
