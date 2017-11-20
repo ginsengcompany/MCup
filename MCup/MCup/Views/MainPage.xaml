@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:MCup"
              x:Class="MCup.MainPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:Name="stackPrincipale">
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />

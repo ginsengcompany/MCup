@@ -13,7 +13,20 @@ namespace MCup
         public MainPage()
         {
             InitializeComponent();
-            //Navigation.PushAsync(new MenuPrincipale());
+            
+            var btnTermini = new Button
+            {
+                Text="accetta i termini",
+                HorizontalOptions= LayoutOptions.Center,
+                VerticalOptions= LayoutOptions.Center
+            };
+            stackPrincipale.Children.Add(btnTermini);
+            btnTermini.Clicked += ButtonTermini_Clicked;
+        }
+
+        private void ButtonTermini_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Termini());
         }
     }
 }

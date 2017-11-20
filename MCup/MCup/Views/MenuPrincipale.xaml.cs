@@ -33,7 +33,30 @@ namespace MCup.Views
 
         private void ListaMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            var menu = e.SelectedItem as Menu;
 
+            if (menu != null)
+
+            {
+
+                if (menu.MenuTitle.Equals("Prenotazioni"))
+
+                {
+
+                    IsPresented = false;
+                    Detail = new NavigationPage(new );
+                }
+
+                else if (menu.MenuTitle.Equals("Appuntamenti"))
+
+                {
+
+                    IsPresented = false;
+                    Detail = new NavigationPage(new );
+
+
+                }
+            }
         }
         public class Menu
         {
