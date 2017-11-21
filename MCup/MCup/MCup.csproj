@@ -39,7 +39,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Database\Database.cs" />
+    <Compile Include="Database\Data\StrutturaPreferitaQuery.cs" />
     <Compile Include="Database\Data\TerminiDiServizio.cs" />
+    <Compile Include="Database\Models\StrutturaPreferita.cs" />
     <Compile Include="Database\Models\TerminiServizio.cs" />
     <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
     <Compile Include="Model\Prenotazione.cs" />
