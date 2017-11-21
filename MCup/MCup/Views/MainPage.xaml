@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout x:Name="stackPrincipale" VerticalOptions="Start" HorizontalOptions="Center">
-                <Image Source="immagine2.png" />
+                <Image Source="eCUPT.png" />
             </StackLayout>
             <Grid>
                 <Grid RowSpacing="5">
@@ -20,9 +20,9 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                 </Grid>
-                <Image Source="icona1.png" Grid.Row="0" Grid.Column="0" />
+                <Image Source="iconaPrenotazioni.png" Grid.Row="0" Grid.Column="0" />
                 <Label Text="PRENOTAZIONI" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"/>
-                <Image Source="icona2.png" Grid.Row="0" Grid.Column="1" />
+                <Image Source="iconaAppuntamenti.png" Grid.Row="0" Grid.Column="1" />
                 <Label Text="APPUNTAMENTI" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
             </Grid>
         </StackLayout>
