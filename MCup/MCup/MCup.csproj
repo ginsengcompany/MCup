@@ -41,6 +41,7 @@
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\Data\TerminiDiServizio.cs" />
     <Compile Include="Database\Models\TerminiServizio.cs" />
+    <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
     <Compile Include="Model\Prenotazione.cs" />
     <Compile Include="Model\Ricetta.cs" />
     <Compile Include="Model\Struttura.cs" />
@@ -114,9 +115,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ModelView\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Views\Termini.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
