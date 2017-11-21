@@ -8,7 +8,7 @@ namespace MCup.Model
 {
     public class Struttura
     {
-        private string nome { get; set; }
-        private string codice { get; set; }
+        public string Nome { get; set; }
+        public string Codice { get; set; }//19216812514/servizitemporanei/strutturecup.php
     }
 }

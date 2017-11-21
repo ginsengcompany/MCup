@@ -46,6 +46,7 @@
     <Compile Include="Model\Ricetta.cs" />
     <Compile Include="Model\Struttura.cs" />
     <Compile Include="Model\UtenzaPrenotazione.cs" />
+    <Compile Include="Service\CreazioneGrigliaStrutture.cs" />
     <Compile Include="Service\REST.cs" />
     <Compile Include="Views\FormPrenotazione.xaml.cs">
       <DependentUpon>FormPrenotazione.xaml</DependentUpon>
@@ -115,9 +116,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ModelView\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Views\Termini.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -150,7 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Immagini\CardarelliLogo.jpg" />
-    <Content Include="Immagini\ospedaledelmareLogo.jpg" />
+    <Content Include="Immagini\ospedaledelmare.jpg" />
     <Content Include="Immagini\PinetaGrandeLogo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
