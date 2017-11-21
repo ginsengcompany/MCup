@@ -6,10 +6,35 @@ using System.Threading.Tasks;
 
 namespace MCup.Model
 {
+    //La seguente classe astra l'utenze per effettuare la prenotazione
     public class UtenzaPrenotazione
     {
-        private string nome { get; set; }
-        private string cognome { get; set; }
-        private string codice_fiscale { get; set; }
+        public string nome { get; set; } //nome dell'utente
+        public string cognome { get; set; } //cognome dell'utente
+        private string codice_fiscale { get; set; } //codice fiscale dell'utente
+
+        //Costruttore con parametri
+        public UtenzaPrenotazione(string name, string surname, string cod)
+        {
+            nome = name;
+            cognome = surname;
+            codice_fiscale = cod;
+        }
+
+        //Costruttore di default
+        public UtenzaPrenotazione()
+        {
+
+        }
+
+        public string getCodiceFiscale()
+        {
+            return this.codice_fiscale;
+        }
+
+        public void setCodiceFiscale(string codicefiscale)
+        {
+            this.codice_fiscale = codicefiscale;
+        }
     }
 }
