@@ -46,6 +46,7 @@
     <Compile Include="Model\Ricetta.cs" />
     <Compile Include="Model\Struttura.cs" />
     <Compile Include="Model\UtenzaPrenotazione.cs" />
+    <Compile Include="Service\CreazioneGrigliaStrutture.cs" />
     <Compile Include="Service\REST.cs" />
     <Compile Include="Views\FormPrenotazione.xaml.cs">
       <DependentUpon>FormPrenotazione.xaml</DependentUpon>

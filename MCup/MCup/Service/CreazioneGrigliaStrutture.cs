@@ -41,7 +41,7 @@ namespace MCup.Service
                 };
                 var labelCodiceStruttura = new Label
                 {
-                    Text = "codice struttura: "  +  i.Codice,
+                    Text = "codice: "  +  i.Codice,
                     TextColor = Color.Black,
                     FontAttributes=FontAttributes.Bold,
                     WidthRequest= 100,
