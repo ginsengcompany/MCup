@@ -46,6 +46,15 @@
     <Compile Include="Model\Struttura.cs" />
     <Compile Include="Model\UtenzaPrenotazione.cs" />
     <Compile Include="Service\REST.cs" />
+    <Compile Include="Views\FormPrenotazione.xaml.cs">
+      <DependentUpon>FormPrenotazione.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GestioneAppuntamenti.xaml.cs">
+      <DependentUpon>GestioneAppuntamenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListaStrutture.xaml.cs">
+      <DependentUpon>ListaStrutture.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -116,6 +125,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MenuPrincipale.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\FormPrenotazione.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\GestioneAppuntamenti.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ListaStrutture.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
