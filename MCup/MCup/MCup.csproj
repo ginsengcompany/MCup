@@ -44,6 +44,7 @@
     <Compile Include="Model\Prenotazione.cs" />
     <Compile Include="Model\Ricetta.cs" />
     <Compile Include="Model\Struttura.cs" />
+    <Compile Include="Model\Utente.cs" />
     <Compile Include="Model\UtenzaPrenotazione.cs" />
     <Compile Include="Service\REST.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
