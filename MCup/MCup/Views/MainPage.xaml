@@ -3,10 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.MainPage">
     <ContentPage.Content>
-        <StackLayout x:Name="stackPrincipale">
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout>
+            <StackLayout x:Name="stackPrincipale" VerticalOptions="Start" HorizontalOptions="Center">
+                <Image Source="eCUPT.png" />
+            </StackLayout>
+            <Grid>
+                <Grid RowSpacing="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                </Grid>
+                <Grid ColumnSpacing="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <Image Source="iconaPrenotazioni.png" Grid.Row="0" Grid.Column="0" />
+                <Label Text="PRENOTAZIONI" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"/>
+                <Image Source="iconaAppuntamenti.png" Grid.Row="0" Grid.Column="1" />
+                <Label Text="APPUNTAMENTI" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

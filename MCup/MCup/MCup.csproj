@@ -46,7 +46,6 @@
     <Compile Include="Model\Ricetta.cs" />
     <Compile Include="Model\Struttura.cs" />
     <Compile Include="Model\UtenzaPrenotazione.cs" />
-    <Compile Include="Service\CreazioneGrigliaStrutture.cs" />
     <Compile Include="Service\REST.cs" />
     <Compile Include="Views\FormPrenotazione.xaml.cs">
       <DependentUpon>FormPrenotazione.xaml</DependentUpon>
@@ -146,11 +145,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Immagini\CardarelliLogo.jpg" />
-    <Content Include="Immagini\ospedaledelmare.jpg" />
-    <Content Include="Immagini\PinetaGrandeLogo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MCup.ModelView;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace MCup.Views
 		public FormPrenotazione ()
 		{
 			InitializeComponent ();
+            BindingContext = new FormPrenotazioneModelView();
 		}
 	}
 }
