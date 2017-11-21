@@ -1,12 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MCup"
              x:Class="MCup.Views.FormPrenotazione">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Orientation="Vertical">
+            <Entry Text="{Binding nomeUtente}" Placeholder="Inserisci il nome" />
+            <Entry Text="{Binding cognomeUtente}" Placeholder="Inserisci il cognome" />
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding codicefiscaleUtente}" x:Name="entryCodiceFiscale" Placeholder="Inserisci il codice fiscale" />
+                <Button Text="Scan" Clicked="Button_Clicked" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding codiceUno}" x:Name="entryCodiceRicettaUno" Placeholder="Inserisci il 1° codice ricetta" />
+                <Button Text="Scan" Clicked="Button_Clicked_1" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding codiceDue}" x:Name="entryCodiceRicettaDue" Placeholder="Inserisci il 2° codice ricetta" />
+                <Button Text="Scan" Clicked="Button_Clicked_2" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+            <Button Text="Invia richiesta" Command="{Binding InviaRichiesta}" HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

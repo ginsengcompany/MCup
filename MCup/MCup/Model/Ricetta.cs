@@ -9,8 +9,8 @@ namespace MCup.Model
     public class Ricetta
     {
         private string regione { get; set; }
-        private string codice_uno { get; set; }
-        private string codice_due { get; set; }
+        public string codice_uno { get; set; }
+        public string codice_due { get; set; }
         private string indirizzo { get; set; }
         private string cap { get; set; }
         private string comune { get; set; }

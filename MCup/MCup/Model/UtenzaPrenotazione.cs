@@ -24,7 +24,6 @@ namespace MCup.Model
         //Costruttore di default
         public UtenzaPrenotazione()
         {
-
         }
 
         public string getCodiceFiscale()

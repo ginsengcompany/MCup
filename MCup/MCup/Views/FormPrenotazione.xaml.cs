@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ZXing.Mobile;
+using ZXing.Net.Mobile.Forms;
+
+//Questa pagina esegue il Binding con la ModelView FormPrenotazioneModelView.cs
 
 namespace MCup.Views
 {
@@ -18,5 +22,73 @@ namespace MCup.Views
 			InitializeComponent ();
             BindingContext = new FormPrenotazioneModelView();
 		}
-	}
+
+        //Funzione chiamata per scannerizzare il codice fiscale dell'utente
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            var options = new MobileBarcodeScanningOptions
+            {
+                UseFrontCameraIfAvailable = true,
+                TryHarder = true
+            };
+            var scanPage = new ZXingScannerPage();
+            scanPage.OnScanResult += (result) =>
+            {
+                scanPage.IsScanning = false;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Navigation.PopAsync();
+                    entryCodiceFiscale.Text = result.Text;
+                });
+            };
+            await Navigation.PushAsync(scanPage);
+        }
+
+        private void ScanPage_OnScanResult(ZXing.Result result)
+        {
+            throw new NotImplementedException();
+        }
+
+        //Funzione chiamata per scannerizzare il primo codice della ricetta
+        private async void Button_Clicked_1(object sender, EventArgs e)
+        {
+            var options = new MobileBarcodeScanningOptions
+            {
+                UseFrontCameraIfAvailable = true,
+                TryHarder = true
+            };
+            var scanPage = new ZXingScannerPage();
+            scanPage.OnScanResult += (result) =>
+            {
+                scanPage.IsScanning = false;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Navigation.PopAsync();
+                    entryCodiceRicettaUno.Text = result.Text;
+                });
+            };
+            await Navigation.PushAsync(scanPage);
+        }
+
+        //Funzione chiamata per scannerizzare il secondo codice della ricetta
+        private async void Button_Clicked_2(object sender, EventArgs e)
+        {
+            var options = new MobileBarcodeScanningOptions
+            {
+                UseFrontCameraIfAvailable = true,
+                TryHarder = true
+            };
+            var scanPage = new ZXingScannerPage();
+            scanPage.OnScanResult += (result) =>
+            {
+                scanPage.IsScanning = false;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Navigation.PopAsync();
+                    entryCodiceRicettaDue.Text = result.Text;
+                });
+            };
+            await Navigation.PushAsync(scanPage);
+        }
+    }
 }
