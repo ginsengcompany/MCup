@@ -115,9 +115,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ModelView\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Views\Termini.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -150,6 +148,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Immagini\CardarelliLogo.jpg" />
+    <Content Include="Immagini\icona1.png" />
+    <Content Include="Immagini\icona2.png" />
+    <Content Include="Immagini\immagine2.png" />
     <Content Include="Immagini\ospedaledelmareLogo.jpg" />
     <Content Include="Immagini\PinetaGrandeLogo.jpg" />
   </ItemGroup>
