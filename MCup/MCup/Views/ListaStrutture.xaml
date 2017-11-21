@@ -3,20 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.ListaStrutture">
     <ContentPage.Content>
-        <StackLayout>
-            <ListView x:Name="listViewStrutture" ItemSelected="listViewStrutture_ItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout VerticalOptions="Center" Orientation="Horizontal">
-                                <Image Source="{Binding ImageStruttura}"></Image>
-                                <Label Text="{Binding MenuTitle}" TextColor="Black" HorizontalTextAlignment="Center">
-                                </Label>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <StackLayout HorizontalOptions="FillAndExpand">
+            <Grid x:Name="grigliaStrutture" HorizontalOptions="FillAndExpand">
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

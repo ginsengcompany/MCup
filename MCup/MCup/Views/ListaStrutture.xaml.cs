@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MCup.Model;
+using MCup.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,15 +13,24 @@ namespace MCup.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ListaStrutture : ContentPage
-	{
-		public ListaStrutture ()
+	{   // Le cose commentate le ho messe perchè ora non sono implementabili dato che non abbiamo i servizi
+        // List<Struttura> listaStrutture = new List<Struttura>();
+        List<Struttura> listaDiProva = new List<Struttura>();
+        
+
+        public ListaStrutture ()
 		{
 			InitializeComponent ();
+            riempimentoStruttura();
+            
 		}
-
-        private void listViewStrutture_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        public async void riempimentoStruttura()
         {
-
+            CreazioneGrigliaStrutture grigliaStruttura1 = new CreazioneGrigliaStrutture();
+             grigliaStruttura1.CreazioneGriglia(grigliaStrutture);
         }
+
+        
+  
     }
 }
