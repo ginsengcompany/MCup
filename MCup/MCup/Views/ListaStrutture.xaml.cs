@@ -16,5 +16,10 @@ namespace MCup.Views
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void listViewStrutture_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
+        }
+    }
 }

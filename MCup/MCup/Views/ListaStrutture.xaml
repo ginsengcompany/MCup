@@ -4,9 +4,19 @@
              x:Class="MCup.Views.ListaStrutture">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="listViewStrutture" ItemSelected="listViewStrutture_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                                <Image Source="{Binding ImageStruttura}"></Image>
+                                <Label Text="{Binding MenuTitle}" TextColor="Black" HorizontalTextAlignment="Center">
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
