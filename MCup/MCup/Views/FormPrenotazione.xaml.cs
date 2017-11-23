@@ -1,4 +1,5 @@
-﻿using MCup.ModelView;
+﻿using Lamp.Plugin;
+using MCup.ModelView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ZXing;
 using ZXing.Mobile;
 using ZXing.Net.Mobile.Forms;
 
@@ -28,10 +30,19 @@ namespace MCup.Views
         {
             var options = new MobileBarcodeScanningOptions
             {
-                UseFrontCameraIfAvailable = true,
-                TryHarder = true
+                UseFrontCameraIfAvailable = false,
+                TryHarder = true,
+                AutoRotate = false,
+                DisableAutofocus = false
+                //PossibleFormats = new List < BarcodeFormat >(){ BarcodeFormat.CODE_39 }
             };
-            var scanPage = new ZXingScannerPage();
+            var overlay = new ZXingDefaultOverlay
+            {
+                ShowFlashButton = true,
+                
+            };
+            overlay.BindingContext = overlay;
+            var scanPage = new ZXingScannerPage(options, overlay);
             scanPage.OnScanResult += (result) =>
             {
                 scanPage.IsScanning = false;
@@ -54,10 +65,18 @@ namespace MCup.Views
         {
             var options = new MobileBarcodeScanningOptions
             {
-                UseFrontCameraIfAvailable = true,
-                TryHarder = true
+                UseFrontCameraIfAvailable = false,
+                TryHarder = true,
+                AutoRotate = false,
+                DisableAutofocus = false
+                //PossibleFormats = new List < BarcodeFormat >(){ BarcodeFormat.CODE_39 }
             };
-            var scanPage = new ZXingScannerPage();
+            var overlay = new ZXingDefaultOverlay
+            {
+                ShowFlashButton = true
+            };
+            overlay.BindingContext = overlay;
+            var scanPage = new ZXingScannerPage(options, overlay);
             scanPage.OnScanResult += (result) =>
             {
                 scanPage.IsScanning = false;
@@ -79,8 +98,13 @@ namespace MCup.Views
                 TryHarder = true,
                 AutoRotate = false,
                 DisableAutofocus = false
+                //PossibleFormats = new List < BarcodeFormat >(){ BarcodeFormat.CODE_39 }
             };
-            var scanPage = new ZXingScannerPage();
+            var overlay = new ZXingDefaultOverlay {
+                ShowFlashButton = true
+            };
+            overlay.BindingContext = overlay;
+            var scanPage = new ZXingScannerPage(options, overlay);
             scanPage.OnScanResult += (result) =>
             {
                 scanPage.IsScanning = false;

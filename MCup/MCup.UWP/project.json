@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "kphillpotts.Lamp.Plugin": "1.0.0.2-alpha",
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
     "Newtonsoft.Json": "10.0.3",
     "PCLStorage": "1.0.2",

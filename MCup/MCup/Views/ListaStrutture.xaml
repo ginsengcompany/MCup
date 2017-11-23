@@ -4,7 +4,7 @@
              x:Class="MCup.Views.ListaStrutture">
     <ContentPage.Content>
             <StackLayout HorizontalOptions="FillAndExpand" x:Name="immagine">
-                <ListView x:Name="ListaStruttura" RowHeight="120">
+                <ListView x:Name="ListaStruttura" RowHeight="120" ItemTapped="ListaStruttura_ItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell >

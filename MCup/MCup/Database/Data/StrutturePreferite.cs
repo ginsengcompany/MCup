@@ -26,9 +26,9 @@ namespace MCup.Database.Data
             return Database.Connection.Query<TbStrutturePreferite>("SELECT * FROM TbStrutturePreferite WHERE id = ?", id);
         }
 
-        public static IEnumerable<TbStrutturePreferite> UpdateStrutturaPreferita(string nomeStruttura, string DscrizioneStruttura, int id)
+        public static IEnumerable<TbStrutturePreferite> UpdateStrutturaPreferita(string nomeStruttura, string id)
         {
-            return Database.Connection.Query<TbStrutturePreferite>("UPDATE TbStrutturePreferite SET NomeStruttura = ?, DescrizioneStruttura = ? , id = ? WHERE id = ?; ", nomeStruttura, DscrizioneStruttura, id, id);
+            return Database.Connection.Query<TbStrutturePreferite>("UPDATE TbStrutturePreferite SET NomeStruttura = ?, id = ? WHERE id = ?; ", nomeStruttura, id, id);
         }
     }
 }

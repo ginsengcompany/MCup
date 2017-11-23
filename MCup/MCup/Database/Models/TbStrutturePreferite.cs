@@ -11,10 +11,11 @@ namespace MCup.Database.Models
         [NotNull, Column("NomeStruttura")]
         public string NomeStruttura { get; set; }
 
-        [NotNull, Column("DescrizioneStruttura")]
-        public string DescrizioneStruttura { get; set; }
-
-        public TbStrutturePreferite(int _id) { }
+        public TbStrutturePreferite(string id, string nome)
+        {
+            this.id = id;
+            this.NomeStruttura = nome;
+        }
 
         public TbStrutturePreferite() { }
     }

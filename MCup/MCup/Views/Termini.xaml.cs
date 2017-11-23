@@ -21,7 +21,7 @@ namespace MCup.Views
         private void Button_Clicked(object sender, EventArgs e)
         {
             var x =TerminiDiServizio.UpdateTermini();
-            Navigation.PushModalAsync(new MenuPrincipale());
+            Navigation.PushModalAsync(new ListaStrutture());
         }
     }
 }
