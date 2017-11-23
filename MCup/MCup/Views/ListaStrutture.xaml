@@ -4,8 +4,20 @@
              x:Class="MCup.Views.ListaStrutture">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand">
-            <Grid x:Name="grigliaStrutture" HorizontalOptions="FillAndExpand">
-            </Grid>
+            <ListView x:Name="ListaStruttura">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Nome_struttura}"/>
+                                <Label Text="{Binding Codice_struttura}"/>
+                                <Image Source="{Binding Logo_struttura}"/>
+                            </StackLayout>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
