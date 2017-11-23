@@ -23,12 +23,12 @@ namespace MCup.Database.Data
 
         public static List<TbStrutturePreferite> PrelevaIdStruttura(string id)
         {
-            return Database.Connection.Query<TbStrutturePreferite>("SELECT * FROM TbStrutturePreferite WHERE City = ?", id);
+            return Database.Connection.Query<TbStrutturePreferite>("SELECT * FROM TbStrutturePreferite WHERE id = ?", id);
         }
 
         public static IEnumerable<TbStrutturePreferite> UpdateStrutturaPreferita(string nomeStruttura, string DscrizioneStruttura, int id)
         {
-            return Database.Connection.Query<TbStrutturePreferite>("UPDATE TbStrutturePreferite SET NomeStruttura = ?, DescrizioneStruttura = ? WHERE id = ?; ", nomeStruttura, DscrizioneStruttura, id);
+            return Database.Connection.Query<TbStrutturePreferite>("UPDATE TbStrutturePreferite SET NomeStruttura = ?, DescrizioneStruttura = ? , id = ? WHERE id = ?; ", nomeStruttura, DscrizioneStruttura, id, id);
         }
     }
 }

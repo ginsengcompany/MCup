@@ -5,13 +5,13 @@ namespace MCup.Database.Models
     [Table("TbStrutturePreferite")]
     public class TbStrutturePreferite
     {
-        [PrimaryKey, NotNull, AutoIncrement, Column("id")]
-        public int id { get; set; }
+        [PrimaryKey, NotNull, Column("id")]
+        public string id { get; set; }
 
-        [NotNull]
+        [NotNull, Column("NomeStruttura")]
         public string NomeStruttura { get; set; }
 
-        [NotNull]
+        [NotNull, Column("DescrizioneStruttura")]
         public string DescrizioneStruttura { get; set; }
 
         public TbStrutturePreferite(int _id) { }
