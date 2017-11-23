@@ -2,24 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.ListaStrutture">
-
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout HorizontalOptions="FillAndExpand">
-                <ListView x:Name="ListaStruttura">
+            <StackLayout HorizontalOptions="FillAndExpand" x:Name="immagine">
+                <ListView x:Name="ListaStruttura" RowHeight="120">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell >
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Nome_struttura}"/>
-                                    <Label Text="{Binding Codice_struttura}"/>
-                                    <Image Source="{Binding ImageSourceLogoStrutture}"/>
-                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10" >
+                                <Image Source="{Binding imgStruttura}" HorizontalOptions="Start" HeightRequest="90" VerticalOptions="CenterAndExpand" WidthRequest="100"/>
+                                <Label Text="{Binding Nome_struttura}" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Label Text="Codice struttura: " HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding Codice_struttura}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

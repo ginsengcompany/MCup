@@ -13,7 +13,8 @@ namespace MCup.Model
         public string Codice_struttura { get; set; }
 
         public string Logo_struttura { get; set; }
-        public ImageSource ImageSourceLogoStrutture { get; set; }
+
+        public ImageSource imgStruttura { get; set; }
         
     }
 }

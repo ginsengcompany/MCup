@@ -2,7 +2,6 @@
 using MCup.Service;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,7 +17,7 @@ namespace MCup.Views
         // List<Struttura> listaStrutture = new List<Struttura>();
         List<Struttura> listaDiProva = new List<Struttura>();
         REST<Struttura> connessione = new REST<Struttura>();
-        string url ="http://192.168.125.39:3000/strutture";
+        string url =" http://192.168.125.39:3000/strutture";
         public ListaStrutture ()
 		{
 			InitializeComponent ();
@@ -27,17 +26,30 @@ namespace MCup.Views
 		}
         public async void riempimentoStruttura()
         {
-            //  CreazioneGrigliaStrutture grigliaStruttura1 = new CreazioneGrigliaStrutture();
-            //   grigliaStruttura1.CreazioneGriglia(grigliaStrutture);
-
-            listaDiProva = await connessione.GetJson(url);
-            Struttura ciao = new Struttura();
+          //  CreazioneGrigliaStrutture grigliaStruttura1 = new CreazioneGrigliaStrutture();
+          //   grigliaStruttura1.CreazioneGriglia(grigliaStrutture);
+                listaDiProva = await connessione.GetJson(url);
+                Struttura ciao = new Struttura();
+            ImageSource imgSrc="";
 
             foreach (var i in listaDiProva)
             {
-                i.ImageSourceLogoStrutture = Xamarin.Forms.ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(i.Logo_struttura)));
-             }
+                imgSrc = Xamarin.Forms.ImageSource.FromStream(
+           () => new MemoryStream(Convert.FromBase64String(i.Logo_struttura)));
+             
+                
+                i.imgStruttura = imgSrc;
+
+            }
+            ListaStruttura.SeparatorColor = Color.Black;
+
             ListaStruttura.ItemsSource = listaDiProva;
+
+
+
         }
+
+
+
     }
 }
