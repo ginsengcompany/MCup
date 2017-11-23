@@ -28,8 +28,10 @@ namespace MCup.Views
 		}
         public async void riempimentoStruttura()
         {
-          //  CreazioneGrigliaStrutture grigliaStruttura1 = new CreazioneGrigliaStrutture();
-          //   grigliaStruttura1.CreazioneGriglia(grigliaStrutture);
+            //  CreazioneGrigliaStrutture grigliaStruttura1 = new CreazioneGrigliaStrutture();
+            //   grigliaStruttura1.CreazioneGriglia(grigliaStrutture);
+            caricamentoPagina.IsRunning = true;
+            caricamentoPagina.IsVisible = true;
             listaDiProva = await connessione.GetJson(url);
             ImageSource imgSrc="";
 
@@ -43,7 +45,8 @@ namespace MCup.Views
 
             }
             ListaStruttura.SeparatorColor = Color.Black;
-
+            caricamentoPagina.IsRunning = false;
+            caricamentoPagina.IsVisible = false;
             ListaStruttura.ItemsSource = listaDiProva;
 
         }
