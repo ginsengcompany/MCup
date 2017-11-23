@@ -29,15 +29,24 @@ namespace MCup.Views
           //  CreazioneGrigliaStrutture grigliaStruttura1 = new CreazioneGrigliaStrutture();
           //   grigliaStruttura1.CreazioneGriglia(grigliaStrutture);
                 listaDiProva = await connessione.GetJson(url);
-            Struttura ciao = new Struttura();
+                Struttura ciao = new Struttura();
+            ImageSource imgSrc="";
 
-           /* foreach (var i in listaDiProva)
+            foreach (var i in listaDiProva)
             {
-                var imgSrc = Xamarin.Forms.ImageSource.FromStream(
-            () => new MemoryStream(Convert.FromBase64String(i.Logo_struttura)));
+                imgSrc = Xamarin.Forms.ImageSource.FromStream(
+           () => new MemoryStream(Convert.FromBase64String(i.Logo_struttura)));
+             
+                
+                i.imgStruttura = imgSrc;
 
-            }*/
+            }
+            ListaStruttura.SeparatorColor = Color.Black;
+
             ListaStruttura.ItemsSource = listaDiProva;
+
+
+
         }
 
 

@@ -27,7 +27,7 @@ namespace MCup
             if (acceptTermini == false)
                 MainPage = new Termini();
             else
-                MainPage = new NavigationPage(new ListaStrutture());
+                MainPage = new NavigationPage(new MenuPrincipale());
         }
 
         private bool checkTerminiServizio()
@@ -44,6 +44,7 @@ namespace MCup
                 return false;
             }
         }
+
 
         protected override void OnStart()
         {
