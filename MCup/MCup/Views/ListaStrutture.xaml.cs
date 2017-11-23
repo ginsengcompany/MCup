@@ -16,8 +16,8 @@ namespace MCup.Views
 	{   // Le cose commentate le ho messe perchè ora non sono implementabili dato che non abbiamo i servizi
         // List<Struttura> listaStrutture = new List<Struttura>();
         List<Struttura> listaDiProva = new List<Struttura>();
-        
-
+        REST<Struttura> connessione = new REST<Struttura>();
+        string url =" http://192.168.125.14/servizitemporanei/strutturecup.php";
         public ListaStrutture ()
 		{
 			InitializeComponent ();
@@ -26,8 +26,11 @@ namespace MCup.Views
 		}
         public async void riempimentoStruttura()
         {
-            CreazioneGrigliaStrutture grigliaStruttura1 = new CreazioneGrigliaStrutture();
-             grigliaStruttura1.CreazioneGriglia(grigliaStrutture);
+          //  CreazioneGrigliaStrutture grigliaStruttura1 = new CreazioneGrigliaStrutture();
+          //   grigliaStruttura1.CreazioneGriglia(grigliaStrutture);
+                listaDiProva = await connessione.GetJson(url);
+                ListaStruttura.ItemsSource = listaDiProva;
+            
         }
 
         
