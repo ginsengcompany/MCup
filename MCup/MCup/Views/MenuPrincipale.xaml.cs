@@ -25,8 +25,8 @@ namespace MCup.Views
         {
             List<Menu> menuPrincipale = new List<Menu>
             {
-                new Menu {MenuTitle = "Prenotazioni"},
-                new Menu {MenuTitle = "Appuntamenti"}
+                new Menu { MenuTitle = "Home" },
+                new Menu { MenuTitle = "Lista Strutture" }
             };
             ListaMenu.ItemsSource = menuPrincipale;
             Detail = new NavigationPage(new MainPage());
@@ -40,22 +40,17 @@ namespace MCup.Views
 
             {
 
-                if (menu.MenuTitle.Equals("Prenotazioni"))
-
+                if (menu.MenuTitle.Equals("Home"))
                 {
 
                     IsPresented = false;
-                    //Detail = new NavigationPage(new );
+                    Detail = new NavigationPage(new MainPage());
                 }
-
-                else if (menu.MenuTitle.Equals("Appuntamenti"))
+                else if (menu.MenuTitle.Equals("Lista Strutture"))
 
                 {
-
                     IsPresented = false;
-                    //Detail = new NavigationPage(new );
-
-
+                    Detail = new NavigationPage(new ListaStrutture());
                 }
             }
         }
