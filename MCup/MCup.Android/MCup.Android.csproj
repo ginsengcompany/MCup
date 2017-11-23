@@ -55,6 +55,12 @@
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.91635\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
     </Reference>
+    <Reference Include="Lamp.Plugin, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\kphillpotts.Lamp.Plugin.1.0.0.2-alpha\lib\MonoAndroid10\Lamp.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Lamp.Plugin.Abstractions, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\kphillpotts.Lamp.Plugin.1.0.0.2-alpha\lib\MonoAndroid10\Lamp.Plugin.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
