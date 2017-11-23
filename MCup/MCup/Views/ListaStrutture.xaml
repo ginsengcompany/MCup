@@ -3,21 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.ListaStrutture">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand">
-            <ListView x:Name="ListaStruttura">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Nome_struttura}"/>
-                                <Label Text="{Binding Codice_struttura}"/>
-                                <Image Source="{Binding Logo_struttura}"/>
-                            </StackLayout>
-                            
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout HorizontalOptions="FillAndExpand">
+                <ListView x:Name="ListaStruttura">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Nome_struttura}"/>
+                                    <Label Text="{Binding Codice_struttura}"/>
+                                    <Image Source="{Binding Logo_struttura}"/>
+                                </StackLayout>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
