@@ -1,4 +1,6 @@
-﻿using MCup.Model;
+﻿using MCup.Database.Data;
+using MCup.Database.Models;
+using MCup.Model;
 using MCup.Service;
 using System;
 using System.Collections.Generic;
@@ -28,8 +30,7 @@ namespace MCup.Views
         {
           //  CreazioneGrigliaStrutture grigliaStruttura1 = new CreazioneGrigliaStrutture();
           //   grigliaStruttura1.CreazioneGriglia(grigliaStrutture);
-                listaDiProva = await connessione.GetJson(url);
-                Struttura ciao = new Struttura();
+            listaDiProva = await connessione.GetJson(url);
             ImageSource imgSrc="";
 
             foreach (var i in listaDiProva)
@@ -45,11 +46,24 @@ namespace MCup.Views
 
             ListaStruttura.ItemsSource = listaDiProva;
 
-
-
         }
 
-
-
+        private void ListaStruttura_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            int count = StrutturePreferite.GetCountStrutturePreferite();
+            Struttura elemTapped = e.Item as Struttura;
+            if (count > 0)
+            {
+                TbStrutturePreferite struttura = new TbStrutturePreferite(elemTapped.Codice_struttura, elemTapped.Nome_struttura);
+                StrutturePreferite.UpdateStrutturaPreferita(elemTapped.Nome_struttura, elemTapped.Codice_struttura);
+                DisplayAlert("STRUTTURA PREFERITA", "Hai selezionato: " + struttura.NomeStruttura, "OK");
+            }
+            else
+            {
+                TbStrutturePreferite struttura = new TbStrutturePreferite(elemTapped.Codice_struttura, elemTapped.Nome_struttura);
+                StrutturePreferite.InserisciStrutturaPreferita(struttura);
+                Navigation.PushModalAsync(new MenuPrincipale());
+            }  
+        }
     }
 }
