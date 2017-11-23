@@ -75,8 +75,10 @@ namespace MCup.Views
         {
             var options = new MobileBarcodeScanningOptions
             {
-                UseFrontCameraIfAvailable = true,
-                TryHarder = true
+                UseFrontCameraIfAvailable = false,
+                TryHarder = true,
+                AutoRotate = false,
+                DisableAutofocus = false
             };
             var scanPage = new ZXingScannerPage();
             scanPage.OnScanResult += (result) =>
