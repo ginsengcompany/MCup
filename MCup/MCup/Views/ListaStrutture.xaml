@@ -3,21 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.ListaStrutture">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand">
-            <ListView x:Name="ListaStruttura">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Nome_struttura}"/>
-                                <Label Text="{Binding Codice_struttura}"/>
-                                <Image Source="{Binding Logo_struttura}"/>
+            <StackLayout HorizontalOptions="FillAndExpand" x:Name="immagine">
+                <ListView x:Name="ListaStruttura" RowHeight="120">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10" >
+                                <Image Source="{Binding imgStruttura}" HorizontalOptions="Start" HeightRequest="90" VerticalOptions="CenterAndExpand" WidthRequest="100"/>
+                                <Label Text="{Binding Nome_struttura}" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Label Text="Codice struttura: " HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Label Text="{Binding Codice_struttura}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             </StackLayout>
-                            
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
     </ContentPage.Content>
 </ContentPage>

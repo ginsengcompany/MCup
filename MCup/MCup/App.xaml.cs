@@ -45,6 +45,7 @@ namespace MCup
             }
         }
 
+
         protected override void OnStart()
         {
             // Handle when your app starts
