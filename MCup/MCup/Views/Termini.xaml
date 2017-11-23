@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout>
             <ScrollView>
-                <Label Text="Termini" TextColor="Black" 
+                <Label x:Name="labelTermini" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             </ScrollView>

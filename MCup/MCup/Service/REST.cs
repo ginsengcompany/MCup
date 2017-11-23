@@ -56,5 +56,13 @@ namespace MCup.Service
             }
         }
 
+
+        public async Task<string> getString(string url)
+        {
+            HttpClient client = new HttpClient();
+            var uri = new Uri(string.Format(url, string.Empty));
+            string response = await client.GetStringAsync(uri);
+            return response;
+        }
     }
 }
