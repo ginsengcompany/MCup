@@ -1,4 +1,5 @@
 ﻿using MCup.Model;
+using MCup.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,8 @@ namespace MCup.ModelView
         private UtenzaPrenotazione utenza;
 
         private Ricetta ricetta;
+
+        private const string url = "http://192.168.125.39:3000/ricetta";
 
         public string nomeUtente
         {
@@ -77,12 +80,27 @@ namespace MCup.ModelView
             utenza.nome = "";
             utenza.cognome = "";
             utenza.setCodiceFiscale("");
-            InviaRichiesta = new Command(() =>
+            InviaRichiesta = new Command(async () =>
             {
+                await InvioDatiAsync();
                 Debug.WriteLine(utenza.nome);
                 Debug.WriteLine(utenza.cognome);
                 Debug.WriteLine(utenza.getCodiceFiscale());
             });
+        }
+
+        private class sendRicetta
+        {
+            public string codice_nre;
+
+            public string prestazione { get; set; }
+
+            public Boolean erogato { get; set; }
+            
+            public sendRicetta(string nre)
+            {
+                this.codice_nre = nre;
+            }
         }
 
         public ICommand InviaRichiesta { protected set; get; }
@@ -90,6 +108,13 @@ namespace MCup.ModelView
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        public async Task InvioDatiAsync ()
+        {
+            REST<sendRicetta> connessione = new REST<sendRicetta>();
+            sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString() + ricetta.codice_due.ToString());
+            var x = await connessione.PostJson(url,nre);
+            Debug.WriteLine(x);
         }
     }
 }
