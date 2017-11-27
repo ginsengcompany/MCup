@@ -21,7 +21,7 @@ namespace MCup.ModelView
 
         private Ricetta ricetta;
 
-        private const string url = "http://192.168.125.39:3000/ricetta";
+        private const string url = "http://192.168.125.14:3000/ricetta";
 
         public string nomeUtente
         {
@@ -89,13 +89,20 @@ namespace MCup.ModelView
             });
         }
 
+        private class Prestazioni
+        {
+            public string prestazione { get; set; }
+
+            public bool erogato { get; set; }
+        }
+
         private class sendRicetta
         {
             public string codice_nre;
 
-            public string prestazione { get; set; }
+            public List<Prestazioni> prestazioni { get; set; }
 
-            public Boolean erogato { get; set; }
+            public string codice_fiscale_assistito { get; set; }
             
             public sendRicetta(string nre)
             {
@@ -111,10 +118,18 @@ namespace MCup.ModelView
         }
         public async Task InvioDatiAsync ()
         {
-            REST<sendRicetta> connessione = new REST<sendRicetta>();
-            sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString() + ricetta.codice_due.ToString());
-            var x = await connessione.PostJson(url,nre);
-            Debug.WriteLine(x);
+            if (utenza.getCodiceFiscale().Trim() != "")
+            {
+                REST<sendRicetta> connessione = new REST<sendRicetta>();
+                sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString() + ricetta.codice_due.ToString());
+                sendRicetta x = await connessione.PostJson(url,nre);
+                Debug.WriteLine(x.codice_fiscale_assistito);
+                for (int j = 0; j < x.prestazioni.Count; j++)
+                {
+                    Debug.WriteLine(x.prestazioni[j].prestazione);
+                    Debug.WriteLine(x.prestazioni[j].erogato);
+                }
+            }
         }
     }
 }

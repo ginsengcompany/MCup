@@ -32,15 +32,13 @@ namespace MCup.Service
         }
 
 
-        public async Task<List<E>> PostJson(string url, E dati)
+        public async Task<List<E>> PostJsonList(string url, E dati)
         {
             List<E> Items = new List<E>();
             HttpClient client = new HttpClient();
             string ContentType = "application/json"; // or application/xml
             string json = JsonConvert.SerializeObject(dati);
             var uri = new Uri(string.Format(url, String.Empty));
-            var values = new List<E>();
-            values.Add(dati);
             var result = await client.PostAsync(url, new StringContent(json.ToString(), Encoding.UTF8, ContentType));
             var response = await result.Content.ReadAsStringAsync();
             warning = response;
@@ -53,6 +51,28 @@ namespace MCup.Service
             catch (Exception a)
             {
                 return new List<E>();
+            }
+        }
+
+        public async Task<E> PostJson(string url, E dati)
+        {
+            E Item;
+            HttpClient client = new HttpClient();
+            string ContentType = "application/json"; // or application/xml
+            string json = JsonConvert.SerializeObject(dati);
+            var uri = new Uri(string.Format(url, String.Empty));
+            var result = await client.PostAsync(url, new StringContent(json.ToString(), Encoding.UTF8, ContentType));
+            var response = await result.Content.ReadAsStringAsync();
+            warning = response;
+            try
+            {
+                var isValid = JToken.Parse(response);
+                Item = JsonConvert.DeserializeObject<E>(response);
+                return Item;
+            }
+            catch (Exception a)
+            {
+                return default(E);
             }
         }
 
