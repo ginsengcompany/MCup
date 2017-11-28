@@ -1,5 +1,6 @@
 ﻿using MCup.Model;
 using MCup.Service;
+using MCup.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,8 @@ namespace MCup.ModelView
         private UtenzaPrenotazione utenza;
 
         private Ricetta ricetta;
+
+        private FormPrenotazione model;
 
         private const string url = "http://192.168.125.14:3000/ricetta";
 
@@ -71,10 +74,11 @@ namespace MCup.ModelView
             }
         }
 
-        public FormPrenotazioneModelView()
+        public FormPrenotazioneModelView(FormPrenotazione Model)
         {
             utenza = new UtenzaPrenotazione();
             ricetta = new Ricetta();
+            model = Model;
             ricetta.codice_uno = "";
             ricetta.codice_due = "";
             utenza.nome = "";
@@ -129,7 +133,9 @@ namespace MCup.ModelView
                     Debug.WriteLine(x.prestazioni[j].prestazione);
                     Debug.WriteLine(x.prestazioni[j].erogato);
                 }
+                model.metodoPush();
             }
+            
         }
     }
 }
