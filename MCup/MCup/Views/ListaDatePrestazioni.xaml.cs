@@ -1,5 +1,6 @@
 ﻿using MCup.Model;
 using MCup.ModelView;
+using MCup.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,12 @@ namespace MCup.Views
             BindingContext = new ListaDatePrenotazioniModelView();
         }
 
-        private void listDate_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void listDate_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var x = e.Item;
-
+            ListaDatePrenotazioni elemTapped = e.Item as ListaDatePrenotazioni;
+            REST<ListaDatePrenotazioni, String> conn = new REST<ListaDatePrenotazioni, String>();
+            string response = await conn.PostJson(URL.Calendario, elemTapped);
+            await DisplayAlert("Prenotazione", conn.warning, "OK");
         }
     }
 }
