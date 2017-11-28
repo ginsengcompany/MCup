@@ -2,6 +2,7 @@
 
 namespace MCup.Database.Models
 {
+    //Classe che astrae la tabella TbStrutturePreferite nel database locale
     [Table("TbStrutturePreferite")]
     public class TbStrutturePreferite
     {

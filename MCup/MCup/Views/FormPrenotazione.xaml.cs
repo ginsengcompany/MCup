@@ -16,14 +16,15 @@ using ZXing.Net.Mobile.Forms;
 
 namespace MCup.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class FormPrenotazione : ContentPage
-	{
-		public FormPrenotazione ()
-		{
-			InitializeComponent ();
-            BindingContext = new FormPrenotazioneModelView();
-		}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class FormPrenotazione : ContentPage
+    {
+        public FormPrenotazione()
+        {
+            InitializeComponent();
+            BindingContext = new FormPrenotazioneModelView(this);
+         
+        }
 
         //Funzione chiamata per scannerizzare il codice fiscale dell'utente
         private async void Button_Clicked(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace MCup.Views
             var overlay = new ZXingDefaultOverlay
             {
                 ShowFlashButton = true,
-                
+
             };
             overlay.BindingContext = overlay;
             var scanPage = new ZXingScannerPage(options, overlay);
@@ -100,7 +101,8 @@ namespace MCup.Views
                 DisableAutofocus = false
                 //PossibleFormats = new List < BarcodeFormat >(){ BarcodeFormat.CODE_39 }
             };
-            var overlay = new ZXingDefaultOverlay {
+            var overlay = new ZXingDefaultOverlay
+            {
                 ShowFlashButton = true
             };
             overlay.BindingContext = overlay;
@@ -115,6 +117,12 @@ namespace MCup.Views
                 });
             };
             await Navigation.PushAsync(scanPage);
+        }
+
+        //Funzione chiamata per passare alla pagina ListaDatePrestazioni per visualizzare la lista dei giorni e degli orari in cui effettuare la richiesta di prenotazione
+        public void metodoPush()
+        {
+            Navigation.PushAsync(new ListaDatePrestazioni());
         }
     }
 }

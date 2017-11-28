@@ -2,6 +2,7 @@
 
 namespace MCup.Database.Models
 {
+    //Classe che astrae la tabella TerminiServizio nel database locale
     [Table("TerminiServizio")]
     public class TerminiServizio
     {
