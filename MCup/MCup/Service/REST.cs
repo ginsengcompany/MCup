@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace MCup.Service
 {
-    public class REST<E>
+    public class REST<E,T>
     {
         public string warning;
-        public async Task<List<E>> GetJson(string url)
+        public async Task<List<T>> GetJson(string url)
         {
-            List<E> Items = new List<E>();
+            List<T> Items = new List<T>();
             HttpClient client = new HttpClient();
             var uri = new Uri(string.Format(url, string.Empty));
             var response = await client.GetStringAsync(uri);
@@ -22,19 +22,19 @@ namespace MCup.Service
             try
             {
                 var isValid = JToken.Parse(response);
-                Items = JsonConvert.DeserializeObject<List<E>>(response);
+                Items = JsonConvert.DeserializeObject<List<T>>(response);
                 return Items;
             }
             catch (Exception)
             {
-                return new List<E>();
+                return new List<T>();
             }
         }
 
 
-        public async Task<List<E>> PostJsonList(string url, E dati)
+        public async Task<List<T>> PostJsonList(string url, E dati)
         {
-            List<E> Items = new List<E>();
+            List<T> Items = new List<T>();
             HttpClient client = new HttpClient();
             string ContentType = "application/json"; // or application/xml
             string json = JsonConvert.SerializeObject(dati);
@@ -45,18 +45,18 @@ namespace MCup.Service
             try
             {
                 var isValid = JToken.Parse(response);
-                Items = JsonConvert.DeserializeObject<List<E>>(response);
+                Items = JsonConvert.DeserializeObject<List<T>>(response);
                 return Items;
             }
             catch (Exception a)
             {
-                return new List<E>();
+                return new List<T>();
             }
         }
 
-        public async Task<E> PostJson(string url, E dati)
+        public async Task<T> PostJson(string url, E dati)
         {
-            E Item;
+            T Item;
             HttpClient client = new HttpClient();
             string ContentType = "application/json"; // or application/xml
             string json = JsonConvert.SerializeObject(dati);
@@ -67,12 +67,12 @@ namespace MCup.Service
             try
             {
                 var isValid = JToken.Parse(response);
-                Item = JsonConvert.DeserializeObject<E>(response);
+                Item = JsonConvert.DeserializeObject<T>(response);
                 return Item;
             }
             catch (Exception a)
             {
-                return default(E);
+                return default(T);
             }
         }
 

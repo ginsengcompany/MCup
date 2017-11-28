@@ -25,7 +25,7 @@ namespace MCup.Views
          * @param url= stringa che contiene l'url a cui ci riferiremo nella get
          */
         List<Struttura> listaDiProva = new List<Struttura>();
-        REST<Struttura> connessione = new REST<Struttura>();
+        REST<Object,Struttura> connessione = new REST<Object,Struttura>();
         public ListaStrutture ()
 		{
 			InitializeComponent ();

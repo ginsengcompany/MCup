@@ -14,19 +14,19 @@ namespace MCup.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Termini : ContentPage
     {
-        private REST<String> rest;
+        private REST<Object,String> rest;
         
 
         public Termini()
         {
             InitializeComponent();
-            rest = new REST<String>();
+            rest = new REST<Object,String>();
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var x = await rest.getString(URL.TerminoServizio);
+            var x = await rest.getString(URL.TerminiServizio);
             labelTermini.Text = x.ToString();
         }
 

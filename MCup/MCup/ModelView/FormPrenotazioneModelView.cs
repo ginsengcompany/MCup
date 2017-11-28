@@ -111,16 +111,20 @@ namespace MCup.ModelView
             public string prestazione { get; set; }
 
             public bool erogato { get; set; }
+
+        }
+
+        private class RecvRicetta
+        {
+            public List<Prestazioni> prestazioni { get; set; }
+
+            public string codice_fiscale_assistito { get; set; }
         }
 
         //Classe che contiene l'informazione della ricetta il codice fiscale dell'assistito contenuto nella ricetta e le prestazioni
         private class sendRicetta
         {
             public string codice_nre;
-
-            public List<Prestazioni> prestazioni { get; set; }
-
-            public string codice_fiscale_assistito { get; set; }
             
             public sendRicetta(string nre)
             {
@@ -141,9 +145,9 @@ namespace MCup.ModelView
         {
             if (utenza.getCodiceFiscale().Trim() != "")
             {
-                REST<sendRicetta> connessione = new REST<sendRicetta>();
+                REST<sendRicetta,RecvRicetta> connessione = new REST<sendRicetta,RecvRicetta>();
                 sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString() + ricetta.codice_due.ToString());
-                sendRicetta x = await connessione.PostJson(URL.Ricetta,nre);
+                RecvRicetta x = await connessione.PostJson(URL.Ricetta,nre);
                 Debug.WriteLine(x.codice_fiscale_assistito);
                 for (int j = 0; j < x.prestazioni.Count; j++)
                 {
