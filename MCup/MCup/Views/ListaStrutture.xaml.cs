@@ -13,10 +13,17 @@ using Xamarin.Forms.Xaml;
 
 namespace MCup.Views
 {
+    /**
+     * Questa page implementa una list view di strutture prenotabili dall'utente, la lista di strutture è riempita dal risultato di una GET. 
+     */
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ListaStrutture : ContentPage
-	{   // Le cose commentate le ho messe perchè ora non sono implementabili dato che non abbiamo i servizi
-        // List<Struttura> listaStrutture = new List<Struttura>();
+	{   
+        /**
+         * @param: listaDiProva = lista che verrà riempita dal risultato della connessione
+         * @param connessione= oggetto di tipo REST
+         * @param url= stringa che contiene l'url a cui ci riferiremo nella get
+         */
         List<Struttura> listaDiProva = new List<Struttura>();
         REST<Struttura> connessione = new REST<Struttura>();
         string url ="http://192.168.125.39:3000/strutture";
@@ -26,10 +33,13 @@ namespace MCup.Views
             riempimentoStruttura();
             
 		}
+
+        /**
+         * Metodo riempimentoStruttura(), crea la connessione col server, 
+         * converte le immagini in 64 bit e le inserisce nella nostra listview
+         */
         public async void riempimentoStruttura()
         {
-            //  CreazioneGrigliaStrutture grigliaStruttura1 = new CreazioneGrigliaStrutture();
-            //   grigliaStruttura1.CreazioneGriglia(grigliaStrutture);
             caricamentoPagina.IsRunning = true;
             caricamentoPagina.IsVisible = true;
             listaDiProva = await connessione.GetJson(url);
@@ -47,6 +57,9 @@ namespace MCup.Views
             ListaStruttura.ItemsSource = listaDiProva;
 
         }
+        /**
+         * Metodo tapped, recupera l'informazione dal tap dell'utente nella nostra list view. Salva in locale l'elemento tappato. 
+         */
 
         private void ListaStruttura_ItemTapped(object sender, ItemTappedEventArgs e)
         {
