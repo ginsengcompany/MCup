@@ -23,7 +23,6 @@ namespace MCup.Views
         {
             InitializeComponent();
             BindingContext = new FormPrenotazioneModelView(this);
-         
         }
 
         //Funzione chiamata per scannerizzare il codice fiscale dell'utente

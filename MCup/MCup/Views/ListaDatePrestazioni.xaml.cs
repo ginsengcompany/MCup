@@ -24,6 +24,7 @@ namespace MCup.Views
         private void listDate_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var x = e.Item;
+
         }
     }
 }
