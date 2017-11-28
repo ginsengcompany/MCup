@@ -118,6 +118,8 @@ namespace MCup.Views
             };
             await Navigation.PushAsync(scanPage);
         }
+
+        //Funzione chiamata per passare alla pagina ListaDatePrestazioni per visualizzare la lista dei giorni e degli orari in cui effettuare la richiesta di prenotazione
         public void metodoPush()
         {
             Navigation.PushAsync(new ListaDatePrestazioni());

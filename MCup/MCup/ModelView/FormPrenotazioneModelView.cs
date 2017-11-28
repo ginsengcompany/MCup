@@ -14,18 +14,24 @@ using Xamarin.Forms;
 
 namespace MCup.ModelView
 {
+    //ModelView della pagina FormPrenotazione, tale classe è utilizzata per implementare il binding con la relativa pagina
     public class FormPrenotazioneModelView : INotifyPropertyChanged
     {
+        //Evento che prevede il cambiamento di proprietà all'interno della classe
         public event PropertyChangedEventHandler PropertyChanged;
 
+        //Oggetto che astrae l'utente che intende prenotare una o delle prestazioni
         private UtenzaPrenotazione utenza;
-
+        
+        //Oggetto che astrae la ricetta NRE
         private Ricetta ricetta;
 
+        //Oggetto che contiene tutte le informazioni della prenotazione che si vuole effettuare
         private FormPrenotazione model;
 
         private const string url = "http://192.168.125.14:3000/ricetta";
 
+        //Proprietà che definisce il nome dell'utente che sta effettuando la prenotazione
         public string nomeUtente
         {
             get { return utenza.nome; }
@@ -35,6 +41,8 @@ namespace MCup.ModelView
                 OnPropertyChanged();
             }
         }
+
+        //Proprietà che definisce il cognome dell'utente che sta effettuando la prenotazione
         public string cognomeUtente
         {
             get { return utenza.cognome; }
@@ -44,6 +52,8 @@ namespace MCup.ModelView
                 OnPropertyChanged();
             }
         }
+
+        //Proprietà che definisce il codice fiscale dell'utente che sta effettuando la prenotazione
         public string codicefiscaleUtente
         {
             get { return utenza.getCodiceFiscale(); }
@@ -54,6 +64,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà che definisce il primo codice della ricetta che sta effettuando la prenotazione
         public string codiceUno
         {
             get { return ricetta.codice_uno; }
@@ -64,6 +75,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà che definisce il secondo codice della ricetta che sta effettuando la prenotazione
         public string codiceDue
         {
             get { return ricetta.codice_due; }
@@ -74,6 +86,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Costruttore del ModelView, viene passato come parametro il riferimento alla pagina che lo richiama per poter effettuare una Navigation.pushAsync
         public FormPrenotazioneModelView(FormPrenotazione Model)
         {
             utenza = new UtenzaPrenotazione();
@@ -93,6 +106,7 @@ namespace MCup.ModelView
             });
         }
 
+        //Classe che identifica le prestazioni e se sono state erogate. Questa classe astrae dei possibili dati ricevuti da SOGEI
         private class Prestazioni
         {
             public string prestazione { get; set; }
@@ -100,6 +114,7 @@ namespace MCup.ModelView
             public bool erogato { get; set; }
         }
 
+        //Classe che contiene l'informazione della ricetta il codice fiscale dell'assistito contenuto nella ricetta e le prestazioni
         private class sendRicetta
         {
             public string codice_nre;
@@ -114,12 +129,15 @@ namespace MCup.ModelView
             }
         }
 
+        //Comando che chiama la funzione asincrona InvioDatiAsync()
         public ICommand InviaRichiesta { protected set; get; }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        //Funzione utilizzata per l'invio della richiesta di prenotazione al servizio
         public async Task InvioDatiAsync ()
         {
             if (utenza.getCodiceFiscale().Trim() != "")
