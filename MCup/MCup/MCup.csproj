@@ -51,6 +51,7 @@
     <Compile Include="Model\Struttura.cs" />
     <Compile Include="Model\UtenzaPrenotazione.cs" />
     <Compile Include="Service\REST.cs" />
+    <Compile Include="Service\URL.cs" />
     <Compile Include="Views\FormPrenotazione.xaml.cs">
       <DependentUpon>FormPrenotazione.xaml</DependentUpon>
     </Compile>

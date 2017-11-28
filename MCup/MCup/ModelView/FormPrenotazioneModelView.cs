@@ -28,8 +28,7 @@ namespace MCup.ModelView
 
         //Oggetto che contiene tutte le informazioni della prenotazione che si vuole effettuare
         private FormPrenotazione model;
-
-        private const string url = "http://192.168.125.14:3000/ricetta";
+        
 
         //Proprietà che definisce il nome dell'utente che sta effettuando la prenotazione
         public string nomeUtente
@@ -144,7 +143,7 @@ namespace MCup.ModelView
             {
                 REST<sendRicetta> connessione = new REST<sendRicetta>();
                 sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString() + ricetta.codice_due.ToString());
-                sendRicetta x = await connessione.PostJson(url,nre);
+                sendRicetta x = await connessione.PostJson(URL.Ricetta,nre);
                 Debug.WriteLine(x.codice_fiscale_assistito);
                 for (int j = 0; j < x.prestazioni.Count; j++)
                 {

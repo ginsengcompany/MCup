@@ -15,8 +15,7 @@ namespace MCup.Views
     public partial class Termini : ContentPage
     {
         private REST<String> rest;
-
-        private const string url = "http://192.168.125.39:3000/terminiservizio";
+        
 
         public Termini()
         {
@@ -27,7 +26,7 @@ namespace MCup.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var x = await rest.getString(url);
+            var x = await rest.getString(URL.TerminoServizio);
             labelTermini.Text = x.ToString();
         }
 

@@ -17,8 +17,6 @@ namespace MCup.ModelView
 
         private List<ListaDatePrenotazioni> listaDataPrenotazioni = new List<ListaDatePrenotazioni>();
 
-        private const string url = "http://192.168.125.14:3000/calendario";
-
         /* Setta la lista da visualizare nel Binding*/
         public List<ListaDatePrenotazioni> ListaDataPrenotazioni
         {
@@ -42,7 +40,7 @@ namespace MCup.ModelView
         public async void leggiDati()
         {
             REST<ListaDatePrenotazioni> connessione = new REST<ListaDatePrenotazioni>();
-            ListaDataPrenotazioni = await connessione.GetJson(url);
+            ListaDataPrenotazioni = await connessione.GetJson(URL.Calendario);
         }
         /*Costruttore del metodo, avvia la connessione*/
         public  ListaDatePrenotazioniModelView()

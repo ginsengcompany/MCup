@@ -19,7 +19,6 @@ namespace MCup.Views
         // List<Struttura> listaStrutture = new List<Struttura>();
         List<Struttura> listaDiProva = new List<Struttura>();
         REST<Struttura> connessione = new REST<Struttura>();
-        string url ="http://192.168.125.39:3000/strutture";
         public ListaStrutture ()
 		{
 			InitializeComponent ();
@@ -32,7 +31,7 @@ namespace MCup.Views
             //   grigliaStruttura1.CreazioneGriglia(grigliaStrutture);
             caricamentoPagina.IsRunning = true;
             caricamentoPagina.IsVisible = true;
-            listaDiProva = await connessione.GetJson(url);
+            listaDiProva = await connessione.GetJson(URL.Strutture);
             ImageSource imgSrc="";
 
             foreach (var i in listaDiProva)
