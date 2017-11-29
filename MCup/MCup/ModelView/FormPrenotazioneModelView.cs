@@ -1,4 +1,6 @@
-﻿using MCup.Model;
+﻿using MCup.Database.Data;
+using MCup.Database.Models;
+using MCup.Model;
 using MCup.Service;
 using MCup.Views;
 using System;
@@ -154,9 +156,9 @@ namespace MCup.ModelView
                     Debug.WriteLine(x.prestazioni[j].prestazione);
                     Debug.WriteLine(x.prestazioni[j].erogato);
                 }
-                model.metodoPush();
+                List<TbStrutturePreferite> struttura = StrutturePreferite.PrelevaIdStruttura();
+                model.metodoPush(this.utenza,nre.codice_nre,struttura[0].id,struttura[0].NomeStruttura);
             }
-            
         }
     }
 }

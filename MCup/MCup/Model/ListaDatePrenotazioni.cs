@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCup.Model
 {
-    class ListaDatePrenotazioni
+    public class ListaDatePrenotazioni
     {
         public string data { get; set; }
         public string ora { get; set; }

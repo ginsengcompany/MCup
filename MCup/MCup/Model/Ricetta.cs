@@ -21,7 +21,7 @@ namespace MCup.Model
         private string altro { get; set; }
         private string priorita_prescrizione { get; set; }
         private string disposizioni_regionali { get; set; }
-        private List<string> prestazione { get; set; }
+        private List<string> prestazioni { get; set; }
         private string quesito_diagnostico { get; set; }
         private int numero_prestazioni { get; set; }
         private string tipo { get; set; }

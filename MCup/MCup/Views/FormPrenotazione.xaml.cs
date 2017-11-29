@@ -1,4 +1,5 @@
 ﻿using Lamp.Plugin;
+using MCup.Model;
 using MCup.ModelView;
 using System;
 using System.Collections.Generic;
@@ -119,9 +120,9 @@ namespace MCup.Views
         }
 
         //Funzione chiamata per passare alla pagina ListaDatePrestazioni per visualizzare la lista dei giorni e degli orari in cui effettuare la richiesta di prenotazione
-        public void metodoPush()
+        public void metodoPush(UtenzaPrenotazione utenza, string codiceNRE, string idStruttura, string nomeStruttura)
         {
-            Navigation.PushAsync(new ListaDatePrestazioni());
+            Navigation.PushAsync(new ListaDatePrestazioni(utenza,codiceNRE,idStruttura,nomeStruttura));
         }
     }
 }

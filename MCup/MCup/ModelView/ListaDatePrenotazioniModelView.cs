@@ -27,11 +27,11 @@ namespace MCup.ModelView
             set
             {
                 listaDataPrenotazioni = new List<ListaDatePrenotazioni>(value);
-                OnPropertychanged();
+                OnPropertyChanged();
             }
         }
 
-        private void OnPropertychanged([CallerMemberName] string name = "")
+        private void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }

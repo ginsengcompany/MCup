@@ -33,6 +33,11 @@ namespace MCup.Database.Data
             return Database.Connection.Query<TbStrutturePreferite>("SELECT * FROM TbStrutturePreferite WHERE id = ?", id);
         }
 
+        public static List<TbStrutturePreferite> PrelevaIdStruttura()
+        {
+            return Database.Connection.Query<TbStrutturePreferite>("SELECT * FROM TbStrutturePreferite");
+        }
+
         //Il metodo aggiorna le informazioni nella tabella TbStrutturePreferite con i parametri passati per valore
         public static IEnumerable<TbStrutturePreferite> UpdateStrutturaPreferita(string nomeStruttura, string id)
         {

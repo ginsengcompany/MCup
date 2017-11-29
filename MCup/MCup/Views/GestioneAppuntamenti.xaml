@@ -4,9 +4,19 @@
              x:Class="MCup.Views.GestioneAppuntamenti">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding ListAppuntamenti}" RowHeight="200"  ItemTapped="ListView_ItemTapped" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding data}"/>
+                                <Label Text="{Binding ora}"/>
+                                <Label Text="{Binding nomeStruttura}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
