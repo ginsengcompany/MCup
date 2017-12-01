@@ -54,7 +54,8 @@ namespace MCup.Views
             caricamentoPagina.IsRunning = false;
             caricamentoPagina.IsVisible = false;
             ListaStruttura.ItemsSource = listaDiProva;
-            StrutturaPreferitascelta();
+            if (StrutturePreferite.GetCountStrutturePreferite() > 0)
+                StrutturaPreferitascelta();
         }
 
         private void StrutturaPreferitascelta()
@@ -70,7 +71,6 @@ namespace MCup.Views
         /**
          * Metodo tapped, recupera l'informazione dal tap dell'utente nella nostra list view. Salva in locale l'elemento tappato. 
          */
-
         private void ListaStruttura_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             int count = StrutturePreferite.GetCountStrutturePreferite();
