@@ -41,7 +41,13 @@ namespace MCup.Database.Data
         //Il metodo aggiorna le informazioni nella tabella TbStrutturePreferite con i parametri passati per valore
         public static IEnumerable<TbStrutturePreferite> UpdateStrutturaPreferita(string nomeStruttura, string id)
         {
-            return Database.Connection.Query<TbStrutturePreferite>("UPDATE TbStrutturePreferite SET NomeStruttura = ?, id = ? WHERE id = ?; ", nomeStruttura, id, id);
+            var x = getIdStruttura();
+            return Database.Connection.Query<TbStrutturePreferite>("UPDATE TbStrutturePreferite SET NomeStruttura = ?, id = ? WHERE id = ?", nomeStruttura, id, x);
+        }
+
+        public static string getIdStruttura()
+        {
+            return Database.Connection.ExecuteScalar<string>("SELECT id FROM TbStrutturePreferite");
         }
     }
 }

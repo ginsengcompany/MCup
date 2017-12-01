@@ -54,8 +54,19 @@ namespace MCup.Views
             caricamentoPagina.IsRunning = false;
             caricamentoPagina.IsVisible = false;
             ListaStruttura.ItemsSource = listaDiProva;
-
+            StrutturaPreferitascelta();
         }
+
+        private void StrutturaPreferitascelta()
+        {
+            string idStruttura = StrutturePreferite.getIdStruttura();
+            foreach (var i in listaDiProva)
+            {
+                if (idStruttura == i.Codice_struttura)
+                    ListaStruttura.SelectedItem = i;
+            }
+        }
+
         /**
          * Metodo tapped, recupera l'informazione dal tap dell'utente nella nostra list view. Salva in locale l'elemento tappato. 
          */
@@ -66,9 +77,8 @@ namespace MCup.Views
             Struttura elemTapped = e.Item as Struttura;
             if (count > 0)
             {
-                TbStrutturePreferite struttura = new TbStrutturePreferite(elemTapped.Codice_struttura, elemTapped.Nome_struttura);
                 StrutturePreferite.UpdateStrutturaPreferita(elemTapped.Nome_struttura, elemTapped.Codice_struttura);
-                DisplayAlert("STRUTTURA PREFERITA", "Hai selezionato: " + struttura.NomeStruttura, "OK");
+                DisplayAlert("STRUTTURA PREFERITA", "Hai selezionato: " + elemTapped.Nome_struttura, "OK");
             }
             else
             {
