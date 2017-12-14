@@ -26,11 +26,16 @@ namespace MCup.ModelView
         private UtenzaPrenotazione utenza;
         
         //Oggetto che astrae la ricetta NRE
-        private Ricetta ricetta;
+        private InvioRicettaPrenotazione ricetta;
 
         //Oggetto che contiene tutte le informazioni della prenotazione che si vuole effettuare
         private FormPrenotazione model;
         
+        private class InvioRicettaPrenotazione
+        {
+            public string codice_uno;
+            public string codice_due;
+        }
 
         //Proprietà che definisce il nome dell'utente che sta effettuando la prenotazione
         public string nomeUtente
@@ -91,7 +96,7 @@ namespace MCup.ModelView
         public FormPrenotazioneModelView(FormPrenotazione Model)
         {
             utenza = new UtenzaPrenotazione();
-            ricetta = new Ricetta();
+            ricetta = new InvioRicettaPrenotazione();
             model = Model;
             ricetta.codice_uno = "";
             ricetta.codice_due = "";
@@ -116,24 +121,6 @@ namespace MCup.ModelView
 
         }
 
-        private class RecvRicetta
-        {
-            public List<Prestazioni> prestazioni { get; set; }
-
-            public string codice_fiscale_assistito { get; set; }
-        }
-
-        //Classe che contiene l'informazione della ricetta il codice fiscale dell'assistito contenuto nella ricetta e le prestazioni
-        private class sendRicetta
-        {
-            public string codice_nre;
-            
-            public sendRicetta(string nre)
-            {
-                this.codice_nre = nre;
-            }
-        }
-
         //Comando che chiama la funzione asincrona InvioDatiAsync()
         public ICommand InviaRichiesta { protected set; get; }
 
@@ -142,22 +129,26 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        private class sendRicetta
+        {
+            public string codice_nre;
+
+            public sendRicetta(string codice_uno,string codice_due)
+            {
+                this.codice_nre = codice_uno + codice_due;
+            }
+        }
+
         //Funzione utilizzata per l'invio della richiesta di prenotazione al servizio
         public async Task InvioDatiAsync ()
         {
             if (utenza.getCodiceFiscale().Trim() != "")
             {
-                REST<sendRicetta,RecvRicetta> connessione = new REST<sendRicetta,RecvRicetta>();
-                sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString() + ricetta.codice_due.ToString());
-                RecvRicetta x = await connessione.PostJson(URL.Ricetta,nre);
-                Debug.WriteLine(x.codice_fiscale_assistito);
-                for (int j = 0; j < x.prestazioni.Count; j++)
-                {
-                    Debug.WriteLine(x.prestazioni[j].prestazione);
-                    Debug.WriteLine(x.prestazioni[j].erogato);
-                }
-                List<TbStrutturePreferite> struttura = StrutturePreferite.PrelevaIdStruttura();
-                model.metodoPush(this.utenza,nre.codice_nre,struttura[0].id,struttura[0].NomeStruttura);
+                REST<sendRicetta, Ricetta> connessione = new REST<sendRicetta,Ricetta>();
+                sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString(),ricetta.codice_due.ToString());
+                Ricetta response = await connessione.PostJson(URL.Ricetta,nre);
+                Debug.WriteLine(response.nome_assistito);
+                model.metodoPush(response);
             }
         }
     }

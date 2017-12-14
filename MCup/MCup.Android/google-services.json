@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "133615838217",
+    "firebase_url": "https://mcup-f7e81.firebaseio.com",
+    "project_id": "mcup-f7e81",
+    "storage_bucket": "mcup-f7e81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133615838217:android:7cf18ba76a6ec52e",
+        "android_client_info": {
+          "package_name": "com.companyname.MCup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133615838217-na3cb8u9k76mrattr19ovsklkh99i6ke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkjTwfoHen_IJr7vhGHeETji1IfxNHHdc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

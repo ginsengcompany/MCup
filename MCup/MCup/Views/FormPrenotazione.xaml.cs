@@ -120,9 +120,9 @@ namespace MCup.Views
         }
 
         //Funzione chiamata per passare alla pagina ListaDatePrestazioni per visualizzare la lista dei giorni e degli orari in cui effettuare la richiesta di prenotazione
-        public void metodoPush(UtenzaPrenotazione utenza, string codiceNRE, string idStruttura, string nomeStruttura)
+        public void metodoPush(Ricetta ricetta)
         {
-            Navigation.PushAsync(new ListaDatePrestazioni(utenza,codiceNRE,idStruttura,nomeStruttura));
+            Navigation.PushAsync(new VerificaRicetta(ricetta));
         }
     }
 }

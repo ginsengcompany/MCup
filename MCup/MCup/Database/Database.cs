@@ -32,7 +32,6 @@ namespace MCup.Database
             dbPath = Path.Combine(rootfolder.Path, dbname);
             connection = new SQLiteConnection(dbPath);
             connection.CreateTable<TerminiServizio>();
-            connection.CreateTable<TbStrutturePreferite>();
             connection.CreateTable<Appuntamento>();
             //await CreateDatabase(rootfolder);
         }

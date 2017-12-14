@@ -14,8 +14,6 @@ namespace MCup
     {
         private bool acceptTermini;
 
-        private bool strutturaScelta;
-
         public App()
         {
             InitializeComponent();
@@ -29,14 +27,7 @@ namespace MCup
             if (acceptTermini == false)
                 MainPage = new Termini();
             else
-            {
-                strutturaScelta = checkStrutturaScelta();
-                if (strutturaScelta)
-                    MainPage = new NavigationPage(new MenuPrincipale());
-                else
-                    MainPage = new NavigationPage(new ListaStrutture());
-            }
-                
+                MainPage = new NavigationPage(new MenuPrincipale());
         }
 
         private bool checkTerminiServizio()
@@ -52,15 +43,6 @@ namespace MCup
                 TerminiDiServizio.InsertTermini(termini);
                 return false;
             }
-        }
-
-        private bool checkStrutturaScelta()
-        {
-            int count = StrutturePreferite.GetCountStrutturePreferite();
-            if (count > 0)
-                return true;
-            else
-                return false;
         }
 
 

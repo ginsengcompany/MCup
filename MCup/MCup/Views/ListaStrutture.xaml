@@ -6,7 +6,7 @@
     <ContentPage.Content>
             <StackLayout HorizontalOptions="FillAndExpand" x:Name="immagine">
             <ActivityIndicator x:Name="caricamentoPagina" HorizontalOptions="Center" IsVisible="True"></ActivityIndicator>
-                <ListView x:Name="ListaStruttura" RowHeight="120" ItemTapped="ListaStruttura_ItemTapped" SeparatorColor="Azure">
+                <ListView x:Name="ListaStruttura" RowHeight="120" ItemTapped="ListaStruttura_ItemTapped"  SeparatorColor="Azure">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell >

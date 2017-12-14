@@ -17,7 +17,7 @@ namespace MCup.Views
 	{
 		public MenuPrincipale ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
             inizializzazioneMenu();
 
 		}
@@ -39,7 +39,6 @@ namespace MCup.Views
             if (menu != null)
 
             {
-
                 if (menu.MenuTitle.Equals("Home"))
                 {
 
