@@ -190,6 +190,14 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\accept.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\accept.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\accept.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\accept.png" />
+    <AndroidResource Include="Resources\drawable\decline.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\decline.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\decline.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\decline.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -201,7 +209,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MCup\MCup.csproj">
-      <Project>{8ce8ccfb-86d1-4f44-8b5c-c9b41e245e33}</Project>
+      <Project>{888FE798-E1C2-4187-9725-4529FE86894E}</Project>
       <Name>MCup</Name>
     </ProjectReference>
   </ItemGroup>

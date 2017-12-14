@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.ListaStrutture"
              Title="Scegli la tua struttura preferita">
     <ContentPage.Content>
-            <StackLayout HorizontalOptions="FillAndExpand" x:Name="immagine">
+            <StackLayout HorizontalOptions="FillAndExpand" x:Name="immagine" BackgroundColor="White">
             <ActivityIndicator x:Name="caricamentoPagina" HorizontalOptions="Center" IsVisible="True"></ActivityIndicator>
                 <ListView x:Name="ListaStruttura" RowHeight="120" ItemTapped="ListaStruttura_ItemTapped"  SeparatorColor="Azure">
                     <ListView.ItemTemplate>
