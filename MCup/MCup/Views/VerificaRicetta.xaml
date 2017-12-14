@@ -1,12 +1,39 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.VerificaRicetta">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="0,15,0,0">
+            <Label Text="RICETTA MEDICA DIGITALE" TextColor="#ff0000" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="35"/> 
+            <Image Source="ricetta.png"/>
+            <StackLayout BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Padding="0,10,0,0">
+                <Label Text="Codice ricetta:" TextColor="#ff0000" FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="1600A4000000422" TextColor="Black" FontAttributes="Italic" FontSize="Large"/>
+            </StackLayout>
+            <StackLayout BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Cognome assistito:" TextColor="#ff0000" FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="Rossi" TextColor="Black" FontAttributes="Italic" FontSize="Large"/>
+            </StackLayout>
+            <StackLayout BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Nome assistito:" TextColor="#ff0000" FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="Mario" TextColor="Black" FontAttributes="Italic" FontSize="Large"/>
+            </StackLayout>
+            <StackLayout BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Codice Fiscale Medico:" TextColor="#ff0000" FontAttributes="Bold" FontSize="Large"/>
+                <Label Text="DLLMNT76A01B354P" TextColor="Black" FontAttributes="Italic" FontSize="Large"/>
+            </StackLayout>   
+            <Label Text="Descrizione ricetta:" TextColor="#ff0000" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
+            <ListView x:Name="desprest" BackgroundColor="White" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Label Text="{Binding prestazione}" TextColor="Black" FontAttributes="Italic" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+               </ListView.ItemTemplate>
+           </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
