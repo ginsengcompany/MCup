@@ -198,6 +198,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\decline.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\decline.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\decline.png" />
+    <AndroidResource Include="Resources\drawable\ricetta.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

@@ -15,6 +15,12 @@ namespace MCup.Views
         public VerificaRicetta(Ricetta ricetta)
         {
             InitializeComponent();
+            List<prest> esempio = new List<prest>();
+            esempio.Add(new prest(){prestazione="ALTRA IRRIGAZIONE DI FERITA"});
+            desprest.ItemsSource = esempio;
+        }
+        private class prest{
+            public string prestazione { get; set; }
         }
     }
 }
