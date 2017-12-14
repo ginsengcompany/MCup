@@ -15,5 +15,17 @@ namespace MCup.Model
         public string desbprest { get; set; }
         public string desprest { get; set; }
         public string mnemo { get; set; }
+
+        public Prestazioni() { }
+        public Prestazioni(Prestazioni prestazioni)
+        {
+            this.codnazionale = prestazioni.codnazionale;
+            this.codprest = prestazioni.codprest;
+            this.codregionale = prestazioni.codregionale;
+            this.codstruttura = prestazioni.codstruttura;
+            this.desbprest = prestazioni.desbprest;
+            this.desprest = prestazioni.desprest;
+            this.mnemo = prestazioni.mnemo;
+        }
     }
 }
