@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MCup"
-             x:Class="MCup.Views.FormPrenotazione">
+             x:Class="MCup.Views.FormPrenotazione"
+    Title="Invio richiesta prenotazione">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Padding="20,50,20,0" BackgroundColor="White">
             <Label Text="NOME" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
@@ -17,8 +18,8 @@
                 <Entry Text="{Binding codicefiscaleUtente}" x:Name="entryCodiceFiscale" Placeholder="Inserisci il codice fiscale" WidthRequest="250" 
                        FontAttributes="Italic" HorizontalTextAlignment="Center"/>
                     </StackLayout>
-                <StackLayout BackgroundColor="White" Grid.Column="1">
-                <Image Source="scan.png">
+                <StackLayout BackgroundColor="White" Grid.Column="1" >
+                <Image Source="scan.png" WidthRequest="80">
                         <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
@@ -30,10 +31,10 @@
             <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
             <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
                     <Entry Text="{Binding codiceUno}" x:Name="entryCodiceRicettaUno" Placeholder="Inserisci il 1° codice ricetta" WidthRequest="250" 
-                       FontAttributes="Italic" />
+                       FontAttributes="Italic" HorizontalTextAlignment="Center"/>
                         </StackLayout>
                     <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
-                <Image Source="scan.png">
+                <Image Source="scan.png" WidthRequest="80">
                         <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
@@ -48,7 +49,7 @@
                        FontAttributes="Italic" HorizontalTextAlignment="Center"/>
                         </StackLayout>
                     <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
-                <Image Source="scan.png">
+                <Image Source="scan.png" WidthRequest="80">
                         <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
@@ -56,8 +57,8 @@
                         </StackLayout>
             </StackLayout>
                 </Grid>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="0,30,0,0" BackgroundColor="White">
-                <Image Source="send.png">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0" BackgroundColor="White">
+                <Image Source="send.png" WidthRequest="250">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
