@@ -4,22 +4,31 @@
              xmlns:local="clr-namespace:MCup"
              x:Class="MCup.Views.FormPrenotazione">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <Entry Text="{Binding nomeUtente}" Placeholder="Inserisci il nome" />
-            <Entry Text="{Binding cognomeUtente}" Placeholder="Inserisci il cognome" />
-            <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding codicefiscaleUtente}" x:Name="entryCodiceFiscale" Placeholder="Inserisci il codice fiscale" />
+        <StackLayout Orientation="Vertical" Padding="20,50,20,0">
+            <Entry Text="{Binding nomeUtente}" Placeholder="Inserisci il nome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center"/>
+            <Entry Text="{Binding cognomeUtente}" Placeholder="Inserisci il cognome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center"/>
+            <StackLayout Orientation="Horizontal" Padding="0,10,0,0">
+                <Entry Text="{Binding codicefiscaleUtente}" x:Name="entryCodiceFiscale" Placeholder="Inserisci il codice fiscale" WidthRequest="250" 
+                       FontAttributes="Italic" HorizontalTextAlignment="Center"/>
                 <Button Text="Scan" Clicked="Button_Clicked" HorizontalOptions="EndAndExpand" />
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding codiceUno}" x:Name="entryCodiceRicettaUno" Placeholder="Inserisci il 1° codice ricetta" />
+            <StackLayout Orientation="Horizontal" Padding="0,10,0,0">
+                <Entry Text="{Binding codiceUno}" x:Name="entryCodiceRicettaUno" Placeholder="Inserisci il 1° codice ricetta" WidthRequest="250" 
+                       FontAttributes="Italic" HorizontalTextAlignment="Center"/>
                 <Button Text="Scan" Clicked="Button_Clicked_1" HorizontalOptions="EndAndExpand" />
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding codiceDue}" x:Name="entryCodiceRicettaDue" Placeholder="Inserisci il 2° codice ricetta" />
+            <StackLayout Orientation="Horizontal" Padding="0,10,0,0">
+                <Entry Text="{Binding codiceDue}" x:Name="entryCodiceRicettaDue" Placeholder="Inserisci il 2° codice ricetta" WidthRequest="250"
+                       FontAttributes="Italic" HorizontalTextAlignment="Center"/>
                 <Button Text="Scan" Clicked="Button_Clicked_2" HorizontalOptions="EndAndExpand" />
             </StackLayout>
-            <Button Text="Invia richiesta" Command="{Binding InviaRichiesta}" HorizontalOptions="CenterAndExpand" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="0,30,0,0">
+                <Image Source="send.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
