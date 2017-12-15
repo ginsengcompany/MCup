@@ -15,6 +15,10 @@ namespace MCup.Views
         public VerificaRicetta(Ricetta ricetta)
         {
             InitializeComponent();
+            codice_ricetta.Text = ricetta.codice_nre;
+            cognome_assistito.Text = ricetta.cognome_assistito;
+            nome_assistito.Text = ricetta.nome_assistito;
+            codice_fiscale_medico.Text = ricetta.codice_fiscale_medico;
             List<Prestazioni> prestazioni = new List<Prestazioni>();
             foreach (var prest in ricetta.prestazioni){
                 prestazioni.Add(new Prestazioni(prest));
