@@ -202,10 +202,6 @@
     <AndroidResource Include="Resources\drawable-hdpi\ricetta.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ricetta.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ricetta.png" />
-    <AndroidResource Include="Resources\drawable\sendicon.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\sendicon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\sendicon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\sendicon.png" />
     <AndroidResource Include="Resources\drawable\send.png" />
     <AndroidResource Include="Resources\drawable-hdpi\send.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\send.png" />
