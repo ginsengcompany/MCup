@@ -24,7 +24,7 @@
                     <Label Text="DLLMNT76A01B354P" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
                 </StackLayout>
                 <Label Text="Descrizione ricetta:" TextColor="#ff0000" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
-                <ListView x:Name="lista_prestazioni" BackgroundColor="White" >
+                <ListView x:Name="lista_prestazioni" BackgroundColor="White">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
