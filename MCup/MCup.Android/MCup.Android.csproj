@@ -202,6 +202,18 @@
     <AndroidResource Include="Resources\drawable-hdpi\ricetta.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ricetta.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ricetta.png" />
+    <AndroidResource Include="Resources\drawable\sendicon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\sendicon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\sendicon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\sendicon.png" />
+    <AndroidResource Include="Resources\drawable\send.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\send.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\send.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\send.png" />
+    <AndroidResource Include="Resources\drawable\scan.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\scan.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\scan.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\scan.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -243,18 +255,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\CardarelliLogo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\send.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\send.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\send.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\send.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
