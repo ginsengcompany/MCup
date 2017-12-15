@@ -35,7 +35,7 @@
                     <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
                 <Image Source="scan.png">
                         <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1"/>
+                                <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
                     </Image>
                         </StackLayout>
@@ -50,7 +50,7 @@
                     <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
                 <Image Source="scan.png">
                         <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1"/>
+                                <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
                     </Image>
                         </StackLayout>

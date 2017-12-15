@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MCup.Views.VerificaRicetta">
+             x:Class="MCup.Views.VerificaRicetta"
+             Title="Verifica Contenuto Ricetta">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="0,15,0,0">
-                <Label Text="RICETTA MEDICA DIGITALE" TextColor="#ff0000" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
-                <Image Source="ricetta.png"/>
-                <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="0,10,0,0">
+
+        <StackLayout Orientation="Vertical" BackgroundColor="White">
+            <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Codice ricetta:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
                     <Label x:Name="codice_ricetta" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
                 </StackLayout>
@@ -22,20 +21,21 @@
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Codice Fiscale Medico:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
                     <Label x:Name="codice_fiscale_medico" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
-                </StackLayout>
                 <Label Text="Descrizione ricetta:" TextColor="#ff0000" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
-                <ListView x:Name="lista_prestazioni" BackgroundColor="White" >
+                <ListView x:Name="lista_prestazioni" BackgroundColor="White" HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.View>
-                                    <Label Text="{Binding desprest}" TextColor="Black" FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Center" />
+                                    <Label Text="{Binding desprest}" TextColor="Black" FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" />
                                 </ViewCell.View>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-        </ScrollView>
+                
+            </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>
