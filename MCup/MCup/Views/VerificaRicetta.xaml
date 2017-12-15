@@ -9,19 +9,19 @@
                 <Image Source="ricetta.png"/>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="0,10,0,0">
                     <Label Text="Codice ricetta:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="1600A4000000422" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
+                    <Label x:Name="codice_ricetta" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Cognome assistito:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="Rossi" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Large"/>
+                    <Label x:Name="cognome_assistito" Text="" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Large"/>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Nome assistito:" TextColor="#ff0000" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Large"/>
-                    <Label Text="Mario" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Large"/>
+                    <Label x:Name="nome_assistito" Text="" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Large"/>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Codice Fiscale Medico:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
-                    <Label Text="DLLMNT76A01B354P" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
+                    <Label x:Name="codice_fiscale_medico" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
                 </StackLayout>
                 <Label Text="Descrizione ricetta:" TextColor="#ff0000" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
                 <ListView x:Name="lista_prestazioni" BackgroundColor="White" >
