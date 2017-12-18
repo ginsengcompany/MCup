@@ -210,6 +210,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\scan.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\scan.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\scan.png" />
+    <AndroidResource Include="Resources\drawable\info.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\info.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\info.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\info.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

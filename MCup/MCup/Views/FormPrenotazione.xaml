@@ -5,11 +5,14 @@
              x:Class="MCup.Views.FormPrenotazione"
     Title="Invio richiesta prenotazione">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Padding="20,50,20,0" BackgroundColor="White">
-            <Label Text="NOME" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
-            <Entry Text="{Binding nomeUtente}" Placeholder="Inserisci il nome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center"/>
-            <Label Text="COGNOME" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
-            <Entry Text="{Binding cognomeUtente}" Placeholder="Inserisci il cognome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center"/>
+        <StackLayout Orientation="Vertical" Padding="20,20,20,0" BackgroundColor="White">
+            <Label Text="NOME:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
+            <Entry Text="{Binding nomeUtente}" Placeholder="Inserisci il nome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center" WidthRequest="300"/>
+            <Label Text="COGNOME:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
+            <Entry Text="{Binding cognomeUtente}" Placeholder="Inserisci il cognome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center" WidthRequest="300"/>
+            <StackLayout BackgroundColor="White" >
+            <Label Text="CODICE FISCALE:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
+            </StackLayout>
             <Grid>
                 
             <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
@@ -18,42 +21,63 @@
                 <Entry Text="{Binding codicefiscaleUtente}" x:Name="entryCodiceFiscale" Placeholder="Inserisci il codice fiscale" WidthRequest="250" 
                        FontAttributes="Italic" HorizontalTextAlignment="Center"/>
                     </StackLayout>
-                <StackLayout BackgroundColor="White" Grid.Column="1" >
+                <StackLayout BackgroundColor="White" Grid.Column="1" Orientation="Horizontal">
                 <Image Source="scan.png" WidthRequest="80">
                         <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
                     </Image>
+                        <Image Source="info.png">
+                        <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>        
+                        </Image>
                     </StackLayout>
             </StackLayout>
                 </Grid>
+                <StackLayout BackgroundColor="White" >
+            <Label Text="1° CODICE RICETTA:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
+            </StackLayout>
             <Grid>
             <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
             <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
                     <Entry Text="{Binding codiceUno}" x:Name="entryCodiceRicettaUno" Placeholder="Inserisci il 1° codice ricetta" WidthRequest="250" 
                        FontAttributes="Italic" HorizontalTextAlignment="Center"/>
                         </StackLayout>
-                    <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
+                    <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center" Orientation="Horizontal">
                 <Image Source="scan.png" WidthRequest="80">
                         <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
                     </Image>
+                        <Image Source="info.png">
+                        <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_1" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>        
+                        </Image>
                         </StackLayout>
             </StackLayout>
                 </Grid>
+            <StackLayout BackgroundColor="White" >
+            <Label Text="2° CODICE RICETTA:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
+            </StackLayout>
             <Grid>
             <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
                     <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
                 <Entry Text="{Binding codiceDue}" x:Name="entryCodiceRicettaDue" Placeholder="Inserisci il 2° codice ricetta" WidthRequest="250"
                        FontAttributes="Italic" HorizontalTextAlignment="Center"/>
                         </StackLayout>
-                    <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
+                    <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center" Orientation="Horizontal">
                 <Image Source="scan.png" WidthRequest="80">
                         <Image.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
                     </Image>
+                        <Image Source="info.png">
+                        <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_2" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>        
+                        </Image>
                         </StackLayout>
             </StackLayout>
                 </Grid>

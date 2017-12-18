@@ -245,6 +245,7 @@
     <BundleResource Include="Resources\decline.png" />
     <BundleResource Include="Resources\accept.png" />
     <BundleResource Include="Resources\ricetta.png" />
+    <BundleResource Include="Resources\info.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\iconaPrenotazioni%402x.png" />
