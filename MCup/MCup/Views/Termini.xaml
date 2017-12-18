@@ -1,23 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.Termini"
              Title="Termini e condizioni">
     <ContentPage.Content>
-        <StackLayout>
-            <ScrollView>
-                <Label x:Name="labelTermini" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            </ScrollView>
-            <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="5" HeightRequest="50" VerticalOptions="End">
-                <StackLayout Spacing="0" BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="StartAndExpand" Padding="20,0,0,0">
-                    <Button Text="Accetta" BackgroundColor="#2296f3" BorderRadius="15" TextColor="White"  BorderWidth="1" Clicked="Button_Clicked"/>
-                </StackLayout>
-                <StackLayout Spacing="0"  BackgroundColor="White" Orientation="Horizontal" HorizontalOptions="EndAndExpand" Padding="0,0,20,0">
-                    <Button Text="Declina" BackgroundColor="#2296f3" BorderRadius="20" TextColor="White"  BorderWidth="1"/>
+        <StackLayout BackgroundColor="White" Padding="0,20,0,0">
+                   <ScrollView Padding="20,0,20,0">
+                <Label x:Name="labelTermini" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"/>
+                </ScrollView>
+            <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="0,10,0,0" VerticalOptions="Center">
+                <StackLayout Spacing="0" BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Start" Padding="100,0,0,0">
+                    <Image Source="accept.png" WidthRequest="100">
+                        <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="ACCETTA" TextColor="Black" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        </StackLayout>
+            <StackLayout Spacing="0"  BackgroundColor="White" Orientation="Vertical" HorizontalOptions="End" Padding="0,0,100,0">
+                 <Image Source="decline.png" WidthRequest="100">
+                    <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="DECLINA" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center"/> 
+                    </StackLayout>
             </StackLayout>
-        </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

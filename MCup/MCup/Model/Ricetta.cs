@@ -8,27 +8,10 @@ namespace MCup.Model
 {
     public class Ricetta
     {
-        private string regione { get; set; }
-        public string codice_uno { get; set; }
-        public string codice_due { get; set; }
-        private string indirizzo { get; set; }
-        private string cap { get; set; }
-        private string comune { get; set; }
-        private string provincia { get; set; }
-        private string esenzione { get; set; }
-        private string codice_asl { get; set; }
-        private string tipologia_prescrizione { get; set; }
-        private string altro { get; set; }
-        private string priorita_prescrizione { get; set; }
-        private string disposizioni_regionali { get; set; }
-        private List<string> prestazioni { get; set; }
-        private string quesito_diagnostico { get; set; }
-        private int numero_prestazioni { get; set; }
-        private string tipo { get; set; }
-        private string data { get; set; }
-        private string cod_fisc_medico { get; set; }
-        private string codice_autenticazione { get; set; }
-        private string nome_medico { get; set; }
-        private string cognome_medico { get; set; }
+        public string codice_nre { get; set; }
+        public string cognome_assistito { get; set; }
+        public string nome_assistito { get; set; }
+        public string codice_fiscale_medico { get; set; }
+        public List<Prestazioni> prestazioni { get; set; }
     }
 }

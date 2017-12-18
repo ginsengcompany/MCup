@@ -8,7 +8,6 @@ namespace MCup.Database.Data
      */
     public static class StrutturePreferite
     {
-        //Il metodo restituisce il numero di righe nella tabella TbStrutturePreferite
         public static int GetCountStrutturePreferite()
         {
             int count = Database.Connection.ExecuteScalar<int>("SELECT COUNT(*) FROM TbStrutturePreferite");
@@ -51,7 +50,3 @@ namespace MCup.Database.Data
         }
     }
 }
-
-
-
-

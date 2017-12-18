@@ -35,8 +35,7 @@ namespace MCup
                     MainPage = new NavigationPage(new MenuPrincipale());
                 else
                     MainPage = new NavigationPage(new ListaStrutture());
-            }
-                
+            } 
         }
 
         private bool checkTerminiServizio()

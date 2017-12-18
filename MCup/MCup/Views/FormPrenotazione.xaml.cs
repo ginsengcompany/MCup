@@ -20,6 +20,21 @@ namespace MCup.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FormPrenotazione : ContentPage
     {
+        void Handle_Tapped(object sender, System.EventArgs e)
+        {
+            DisplayAlert("Info","L'icona qui di fianco serve a fare una scansione del codice a barre situato sul retro della Tessera Sanitaria", "OK");
+        }
+
+        void Handle_Tapped_1(object sender, System.EventArgs e)
+        {
+            DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del primo codice a barre situato sul fronte della Ricetta Medica", "OK");
+        }
+
+        void Handle_Tapped_2(object sender, System.EventArgs e)
+        {
+            DisplayAlert("Info","L'icona qui di fianco serve a fare una scansione del secondo codice a barre presente sul fronte della Ricetta Medica","OK");
+        }
+
         public FormPrenotazione()
         {
             InitializeComponent();
@@ -120,9 +135,9 @@ namespace MCup.Views
         }
 
         //Funzione chiamata per passare alla pagina ListaDatePrestazioni per visualizzare la lista dei giorni e degli orari in cui effettuare la richiesta di prenotazione
-        public void metodoPush(UtenzaPrenotazione utenza, string codiceNRE, string idStruttura, string nomeStruttura)
+        public void metodoPush(Ricetta ricetta)
         {
-            Navigation.PushAsync(new ListaDatePrestazioni(utenza,codiceNRE,idStruttura,nomeStruttura));
+            Navigation.PushAsync(new VerificaRicetta(ricetta));
         }
     }
 }

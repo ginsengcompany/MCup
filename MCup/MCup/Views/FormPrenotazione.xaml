@@ -1,25 +1,75 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MCup"
-             x:Class="MCup.Views.FormPrenotazione">
+             x:Class="MCup.Views.FormPrenotazione"
+    Title="Invio richiesta prenotazione">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <Entry Text="{Binding nomeUtente}" Placeholder="Inserisci il nome" />
-            <Entry Text="{Binding cognomeUtente}" Placeholder="Inserisci il cognome" />
-            <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding codicefiscaleUtente}" x:Name="entryCodiceFiscale" Placeholder="Inserisci il codice fiscale" />
-                <Button Text="Scan" Clicked="Button_Clicked" HorizontalOptions="EndAndExpand" />
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Padding="20,20,20,0" BackgroundColor="White">
+                <Label Text="NOME:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"/>
+                <Entry Text="{Binding nomeUtente}" Placeholder="Inserisci il nome" PlaceholderColor="Red" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Start" />
+                <Label Text="COGNOME:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"/>
+                <Entry Text="{Binding cognomeUtente}" Placeholder="Inserisci il cognome" PlaceholderColor="Red" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Start" />
+                <StackLayout BackgroundColor="White" >
+                    <Label Text="CODICE FISCALE:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Entry Text="{Binding codicefiscaleUtente}" x:Name="entryCodiceFiscale" Placeholder="Inserisci il codice fiscale" PlaceholderColor="Red" 
+                            FontAttributes="Italic" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                    <Image Source="scan.png" WidthRequest="80" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="info.png" VerticalOptions="Center" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Handle_Tapped" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <StackLayout BackgroundColor="White" >
+                    <Label Text="1° CODICE RICETTA:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Entry Text="{Binding codiceUno}" x:Name="entryCodiceRicettaUno" Placeholder="Inserisci il 1° codice ricetta" PlaceholderColor="Red"
+                       FontAttributes="Italic" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                    <Image Source="scan.png" WidthRequest="80" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="info.png" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Handle_Tapped_1" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <StackLayout BackgroundColor="White" >
+                    <Label Text="2° CODICE RICETTA:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Entry Text="{Binding codiceDue}" x:Name="entryCodiceRicettaDue" Placeholder="Inserisci il 2° codice ricetta" PlaceholderColor="Red"
+                       FontAttributes="Italic" HorizontalTextAlignment="Start"/>
+                    <Image Source="scan.png" WidthRequest="80">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="info.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Handle_Tapped_2" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0" BackgroundColor="White">
+                    <Image Source="send.png" WidthRequest="250">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding codiceUno}" x:Name="entryCodiceRicettaUno" Placeholder="Inserisci il 1° codice ricetta" />
-                <Button Text="Scan" Clicked="Button_Clicked_1" HorizontalOptions="EndAndExpand" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding codiceDue}" x:Name="entryCodiceRicettaDue" Placeholder="Inserisci il 2° codice ricetta" />
-                <Button Text="Scan" Clicked="Button_Clicked_2" HorizontalOptions="EndAndExpand" />
-            </StackLayout>
-            <Button Text="Invia richiesta" Command="{Binding InviaRichiesta}" HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
