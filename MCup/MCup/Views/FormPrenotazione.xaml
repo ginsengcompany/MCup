@@ -7,9 +7,9 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Padding="20,20,20,0" BackgroundColor="White">
             <Label Text="NOME:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
-            <Entry Text="{Binding nomeUtente}" Placeholder="Inserisci il nome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center" WidthRequest="300"/>
+            <Entry Text="{Binding nomeUtente}" Placeholder="Inserisci il nome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center" />
             <Label Text="COGNOME:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
-            <Entry Text="{Binding cognomeUtente}" Placeholder="Inserisci il cognome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center" WidthRequest="300"/>
+            <Entry Text="{Binding cognomeUtente}" Placeholder="Inserisci il cognome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center" />
             <StackLayout BackgroundColor="White" >
             <Label Text="CODICE FISCALE:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
             </StackLayout>
@@ -18,8 +18,8 @@
             <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
 
                     <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
-                <Entry Text="{Binding codicefiscaleUtente}" x:Name="entryCodiceFiscale" Placeholder="Inserisci il codice fiscale" WidthRequest="250" 
-                       FontAttributes="Italic" HorizontalTextAlignment="Center"/>
+                <Entry Text="{Binding codicefiscaleUtente}" x:Name="entryCodiceFiscale" Placeholder="Inserisci il codice fiscale"  
+                       FontAttributes="Italic" HorizontalTextAlignment="Center" />
                     </StackLayout>
                 <StackLayout BackgroundColor="White" Grid.Column="1" Orientation="Horizontal">
                 <Image Source="scan.png" WidthRequest="80">
@@ -41,7 +41,7 @@
             <Grid>
             <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
             <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
-                    <Entry Text="{Binding codiceUno}" x:Name="entryCodiceRicettaUno" Placeholder="Inserisci il 1° codice ricetta" WidthRequest="250" 
+                    <Entry Text="{Binding codiceUno}" x:Name="entryCodiceRicettaUno" Placeholder="Inserisci il 1° codice ricetta"
                        FontAttributes="Italic" HorizontalTextAlignment="Center"/>
                         </StackLayout>
                     <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center" Orientation="Horizontal">
@@ -64,7 +64,7 @@
             <Grid>
             <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
                     <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
-                <Entry Text="{Binding codiceDue}" x:Name="entryCodiceRicettaDue" Placeholder="Inserisci il 2° codice ricetta" WidthRequest="250"
+                <Entry Text="{Binding codiceDue}" x:Name="entryCodiceRicettaDue" Placeholder="Inserisci il 2° codice ricetta" 
                        FontAttributes="Italic" HorizontalTextAlignment="Center"/>
                         </StackLayout>
                     <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center" Orientation="Horizontal">
