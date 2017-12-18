@@ -214,6 +214,9 @@
     <AndroidResource Include="Resources\drawable-hdpi\info.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\info.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\info.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\iconaPrenotazioni.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\iconaPrenotazioni.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\iconaPrenotazioni.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
