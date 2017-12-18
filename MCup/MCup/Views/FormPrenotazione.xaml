@@ -5,89 +5,71 @@
              x:Class="MCup.Views.FormPrenotazione"
     Title="Invio richiesta prenotazione">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Padding="20,20,20,0" BackgroundColor="White">
-            <Label Text="NOME:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
-            <Entry Text="{Binding nomeUtente}" Placeholder="Inserisci il nome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center" />
-            <Label Text="COGNOME:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
-            <Entry Text="{Binding cognomeUtente}" Placeholder="Inserisci il cognome" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Center" />
-            <StackLayout BackgroundColor="White" >
-            <Label Text="CODICE FISCALE:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
-            </StackLayout>
-            <Grid>
-                
-            <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
-
-                    <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
-                <Entry Text="{Binding codicefiscaleUtente}" x:Name="entryCodiceFiscale" Placeholder="Inserisci il codice fiscale"  
-                       FontAttributes="Italic" HorizontalTextAlignment="Center" />
-                    </StackLayout>
-                <StackLayout BackgroundColor="White" Grid.Column="1" Orientation="Horizontal">
-                <Image Source="scan.png" WidthRequest="80">
-                        <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1"/>
-                            </Image.GestureRecognizers>
-                    </Image>
-                        <Image Source="info.png">
-                        <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Handle_Tapped" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>        
-                        </Image>
-                    </StackLayout>
-            </StackLayout>
-                </Grid>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Padding="20,20,20,0" BackgroundColor="White">
+                <Label Text="NOME:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"/>
+                <Entry Text="{Binding nomeUtente}" Placeholder="Inserisci il nome" PlaceholderColor="Red" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Start" />
+                <Label Text="COGNOME:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"/>
+                <Entry Text="{Binding cognomeUtente}" Placeholder="Inserisci il cognome" PlaceholderColor="Red" TextColor="Black" FontAttributes="Italic" HorizontalTextAlignment="Start" />
                 <StackLayout BackgroundColor="White" >
-            <Label Text="1° CODICE RICETTA:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
-            </StackLayout>
-            <Grid>
-            <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
-            <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
-                    <Entry Text="{Binding codiceUno}" x:Name="entryCodiceRicettaUno" Placeholder="Inserisci il 1° codice ricetta"
-                       FontAttributes="Italic" HorizontalTextAlignment="Center"/>
-                        </StackLayout>
-                    <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center" Orientation="Horizontal">
-                <Image Source="scan.png" WidthRequest="80">
+                    <Label Text="CODICE FISCALE:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Entry Text="{Binding codicefiscaleUtente}" x:Name="entryCodiceFiscale" Placeholder="Inserisci il codice fiscale" PlaceholderColor="Red" 
+                            FontAttributes="Italic" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                    <Image Source="scan.png" WidthRequest="80" VerticalOptions="Center">
                         <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
-                            </Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
                     </Image>
-                        <Image Source="info.png">
+                    <Image Source="info.png" VerticalOptions="Center" >
                         <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Handle_Tapped_1" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>        
-                        </Image>
-                        </StackLayout>
-            </StackLayout>
-                </Grid>
-            <StackLayout BackgroundColor="White" >
-            <Label Text="2° CODICE RICETTA:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold"/>
-            </StackLayout>
-            <Grid>
-            <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
-                    <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center">
-                <Entry Text="{Binding codiceDue}" x:Name="entryCodiceRicettaDue" Placeholder="Inserisci il 2° codice ricetta" 
-                       FontAttributes="Italic" HorizontalTextAlignment="Center"/>
-                        </StackLayout>
-                    <StackLayout BackgroundColor="White" Grid.Column="0" VerticalOptions="Center" Orientation="Horizontal">
-                <Image Source="scan.png" WidthRequest="80">
-                        <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
-                            </Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Handle_Tapped" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
                     </Image>
-                        <Image Source="info.png">
+                </StackLayout>
+                <StackLayout BackgroundColor="White" >
+                    <Label Text="1° CODICE RICETTA:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Entry Text="{Binding codiceUno}" x:Name="entryCodiceRicettaUno" Placeholder="Inserisci il 1° codice ricetta" PlaceholderColor="Red"
+                       FontAttributes="Italic" HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                    <Image Source="scan.png" WidthRequest="80" VerticalOptions="Center">
                         <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Handle_Tapped_2" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>        
-                        </Image>
-                        </StackLayout>
+                            <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="info.png" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Handle_Tapped_1" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <StackLayout BackgroundColor="White" >
+                    <Label Text="2° CODICE RICETTA:" BackgroundColor="White" TextColor="Black" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Entry Text="{Binding codiceDue}" x:Name="entryCodiceRicettaDue" Placeholder="Inserisci il 2° codice ricetta" PlaceholderColor="Red"
+                       FontAttributes="Italic" HorizontalTextAlignment="Start"/>
+                    <Image Source="scan.png" WidthRequest="80">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="info.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Handle_Tapped_2" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0" BackgroundColor="White">
+                    <Image Source="send.png" WidthRequest="250">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
             </StackLayout>
-                </Grid>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0" BackgroundColor="White">
-                <Image Source="send.png" WidthRequest="250">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-            </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
