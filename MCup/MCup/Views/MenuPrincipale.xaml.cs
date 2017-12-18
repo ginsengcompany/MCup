@@ -26,6 +26,7 @@ namespace MCup.Views
             List<Menu> menuPrincipale = new List<Menu>
             {
                 new Menu { MenuTitle = "Home" },
+                new Menu {MenuTitle = "Scegli Struttura Preferita"}
             };
             ListaMenu.ItemsSource = menuPrincipale;
             Detail = new NavigationPage(new MainPage());
@@ -43,6 +44,11 @@ namespace MCup.Views
 
                     IsPresented = false;
                     Detail = new NavigationPage(new MainPage());
+                }
+                else if (menu.MenuTitle.Equals("Scegli Struttura Preferita"))
+                {
+                    IsPresented = false;
+                    Detail = new NavigationPage(new ListaStrutture());
                 }
             }
         }

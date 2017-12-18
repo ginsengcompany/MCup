@@ -40,8 +40,10 @@
     </Compile>
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\Data\AppuntamentoData.cs" />
+    <Compile Include="Database\Data\StrutturePreferite.cs" />
     <Compile Include="Database\Data\TerminiDiServizio.cs" />
     <Compile Include="Database\Models\Appuntamento.cs" />
+    <Compile Include="Database\Models\TbStrutturePreferite.cs" />
     <Compile Include="Database\Models\TerminiServizio.cs" />
     <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
     <Compile Include="ModelView\GestioneAppuntamentiModelView.cs" />
