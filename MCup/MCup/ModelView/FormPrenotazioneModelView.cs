@@ -147,7 +147,6 @@ namespace MCup.ModelView
                 REST<sendRicetta, Ricetta> connessione = new REST<sendRicetta,Ricetta>();
                 sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString(),ricetta.codice_due.ToString());
                 Ricetta response = await connessione.PostJson(URL.Ricetta,nre);
-                Debug.WriteLine(response.nome_assistito);
                 model.metodoPush(response);
             }
         }
