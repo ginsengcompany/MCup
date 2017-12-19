@@ -48,6 +48,7 @@ namespace MCup.Views
                 Scroll.IsVisible = true;
                 stackTermini.IsVisible = true;
                 stackButton.IsVisible = true;
+                stackButtonDeclina.IsVisible = true;
                 labelErrore.IsVisible = false;
                 activityIndicator.IsVisible = false;
                 
@@ -58,6 +59,7 @@ namespace MCup.Views
             {
                 Scroll.IsVisible = false;
                 stackButton.IsVisible = false;
+                stackButtonDeclina.IsVisible = false;
                 labelErrore.IsVisible = true;
                 activityIndicator.IsVisible = true;
                 stackTermini.Children.Add(labelErrore);
