@@ -15,7 +15,23 @@ namespace MCup.Views
     public partial class Termini : ContentPage
     {
         private REST<Object,String> rest;
-        
+        // NavigationPage TerminiNuovo= new NavigationPage(new Termini());
+        Label labelErrore = new Label
+        {
+            HorizontalOptions = LayoutOptions.Center,
+            VerticalOptions = LayoutOptions.Start,
+            HorizontalTextAlignment = TextAlignment.Center,
+            FontSize = 25,
+            HeightRequest = 100,
+            FormattedText = "Attenzione connessione non attiva o in  errore, fra 10 secondi riproveremo a connetterci"
+        };
+        ActivityIndicator activityIndicator = new ActivityIndicator
+        {
+            IsRunning = true,
+            IsVisible = true
+
+        };
+
 
         public Termini()
         {
@@ -26,14 +42,49 @@ namespace MCup.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var x = await rest.getString(URL.TerminiServizio);
-            labelTermini.Text = x.ToString();
+
+            try
+            {
+                Scroll.IsVisible = true;
+                stackTermini.IsVisible = true;
+                stackButton.IsVisible = true;
+                labelErrore.IsVisible = false;
+                activityIndicator.IsVisible = false;
+                
+                var x = await rest.getString(URL.TerminiServizio);
+                labelTermini.Text = x.ToString();
+            }
+            catch (Exception)
+            {
+                Scroll.IsVisible = false;
+                stackButton.IsVisible = false;
+                labelErrore.IsVisible = true;
+                activityIndicator.IsVisible = true;
+                stackTermini.Children.Add(labelErrore);
+                stackTermini.Children.Add(activityIndicator);
+                
+                Device.StartTimer(TimeSpan.FromSeconds(10), () =>
+                {
+                    OnAppearing();
+                    return true;
+                });
+
+            }
+
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            var x =TerminiDiServizio.UpdateTermini();
-            Navigation.PushModalAsync(new ListaStrutture());
+            try
+            {
+                var x = TerminiDiServizio.UpdateTermini();
+                Navigation.PushModalAsync(new ListaStrutture());
+            }
+            catch (Exception)
+            {
+
+                DisplayAlert("Attenzione", "Errore di connessione", "riprova");
+            }
         }
     }
 }

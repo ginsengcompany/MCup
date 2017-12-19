@@ -53,6 +53,7 @@
     <Compile Include="Model\Prestazioni.cs" />
     <Compile Include="Model\Ricetta.cs" />
     <Compile Include="Model\Struttura.cs" />
+    <Compile Include="Model\StruttureErogatrici.cs" />
     <Compile Include="Model\UtenzaPrenotazione.cs" />
     <Compile Include="Service\REST.cs" />
     <Compile Include="Service\URL.cs" />

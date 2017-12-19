@@ -17,5 +17,6 @@ namespace MCup.Service
         public static string Strutture = "http://192.168.125.14:3000/strutture";
         public static string TerminiServizio = "http://192.168.125.14:3000/terminiservizio";
         public static string Ricetta = "http://192.168.125.14:3000/ricetta";
+        public static string StruttureErogatrici = "http://192.168.125.14:3000/controlloPrestazioni";
     }
 }

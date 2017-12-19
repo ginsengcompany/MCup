@@ -2,15 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.Termini"
-             Title="Termini e condizioni">
+             Title="Termini e condizioni"
+             NavigationPage.HasNavigationBar="False"
+             >
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White" Padding="0,20,0,0">
-                   <ScrollView Padding="20,0,20,0">
+        <StackLayout BackgroundColor="White" Padding="0,20,0,0" x:Name="stackTermini">
+            <ScrollView Padding="20,0,20,0" x:Name="Scroll">
                 <Label x:Name="labelTermini" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center"/>
                 </ScrollView>
-            <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="0,10,0,0" VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal" BackgroundColor="White" Padding="0,10,0,0" VerticalOptions="Center" x:Name="stackButton">
                 <StackLayout Spacing="0" BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Start" Padding="100,0,0,0">
                     <Image Source="accept.png" WidthRequest="100">
                         <Image.GestureRecognizers>

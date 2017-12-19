@@ -30,7 +30,6 @@ namespace MCup.Views
 		{
 			InitializeComponent ();
             riempimentoStruttura();
-            
 		}
 
         /**
@@ -41,21 +40,29 @@ namespace MCup.Views
         {
             caricamentoPagina.IsRunning = true;
             caricamentoPagina.IsVisible = true;
-            listaDiProva = await connessione.GetJson(URL.Strutture);
-            ImageSource imgSrc="";
-
-            foreach (var i in listaDiProva)
+            try
             {
-                imgSrc = Xamarin.Forms.ImageSource.FromStream(
-           () => new MemoryStream(Convert.FromBase64String(i.Logo_struttura)));
-                i.imgStruttura = imgSrc;
+                listaDiProva = await connessione.GetJson(URL.Strutture);
+                ImageSource imgSrc = "";
+
+                foreach (var i in listaDiProva)
+                {
+                    imgSrc = Xamarin.Forms.ImageSource.FromStream(
+               () => new MemoryStream(Convert.FromBase64String(i.Logo_struttura)));
+                    i.imgStruttura = imgSrc;
+                }
+                ListaStruttura.SeparatorColor = Color.Black;
+                caricamentoPagina.IsRunning = false;
+                caricamentoPagina.IsVisible = false;
+                ListaStruttura.ItemsSource = listaDiProva;
+                if (StrutturePreferite.GetCountStrutturePreferite() > 0)
+                    StrutturaPreferitaScelta();
             }
-            ListaStruttura.SeparatorColor = Color.Black;
-            caricamentoPagina.IsRunning = false;
-            caricamentoPagina.IsVisible = false;
-            ListaStruttura.ItemsSource = listaDiProva;
-            if (StrutturePreferite.GetCountStrutturePreferite() > 0)
-                StrutturaPreferitaScelta();
+            catch (Exception)
+            {
+                await DisplayAlert("Attenzione", "connessione non riuscita", "riprova");
+                riempimentoStruttura();
+            }
         }
 
         private void StrutturaPreferitaScelta()

@@ -5,7 +5,9 @@
              Title="Verifica Contenuto Ricetta">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Orientation="Vertical" BackgroundColor="White">
+            <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="15">
+               
+                <StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Codice ricetta:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
                     <Label x:Name="codice_ricetta" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
@@ -21,21 +23,28 @@
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Codice Fiscale Medico:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
                     <Label x:Name="codice_fiscale_medico" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
-                    <Label Text="Descrizione ricetta:" TextColor="#ff0000" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
-                    <ListView x:Name="lista_prestazioni" BackgroundColor="White" HasUnevenRows="True">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <ViewCell.View>
-                                        <Label Text="{Binding desprest}" TextColor="Black" FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" />
-                                    </ViewCell.View>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                   
                 </StackLayout>
-                <Button Text="Continua" BackgroundColor="Red" TextColor="Black" Clicked="Button_Clicked"/>
+            </StackLayout>
+                <StackLayout>
+                <Label Text="Descrizione ricetta:" TextColor="#ff0000" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
+            </StackLayout>
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center" >
+                <ListView x:Name="lista_prestazioni" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <Button Text="Continua" BackgroundColor="Red" TextColor="Black" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>
