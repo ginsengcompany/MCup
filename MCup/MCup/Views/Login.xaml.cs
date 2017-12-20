@@ -11,6 +11,6 @@ namespace MCup.Views
         {
             InitializeComponent();
             BindingContext = new LoginModelView();
-        }
+                  }
     }
 }
