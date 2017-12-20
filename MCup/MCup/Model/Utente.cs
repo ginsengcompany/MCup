@@ -31,5 +31,10 @@ namespace MCup.Model
             this.codice_fiscale = codice_fiscale;
             this.password = password;
         }
+
+        public bool verificaCampi()
+        {
+            return this.nome != string.Empty && this.cognome != string.Empty && this.codice_fiscale != string.Empty && this.password != string.Empty;
+        }
     }
 }

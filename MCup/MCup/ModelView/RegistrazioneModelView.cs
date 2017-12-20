@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 using MCup.Service;
+using MCup.Views;
 
 namespace MCup.ModelView
 {
@@ -70,9 +71,22 @@ namespace MCup.ModelView
             utente = new Utente();
             registrati = new Command(async () =>
             {
-                REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>();
-                ResponseRegistrazione response = await rest.PostJson(URL.Registrazione, utente);
-                await App.Current.MainPage.DisplayAlert("prova", response.token, "OK");
+                if (utente.verificaCampi())
+                {
+                    REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>();
+                    ResponseRegistrazione response = await rest.PostJson(URL.Registrazione, utente);
+                    if (response == default(ResponseRegistrazione))
+                        await App.Current.MainPage.DisplayAlert("Registrazione", rest.warning, "OK");
+                    else if (response.auth)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione effettuata con successo", "OK");
+                        App.Current.MainPage = new Login();
+                    }
+                    else
+                        await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
+                }
+                else
+                    await App.Current.MainPage.DisplayAlert("Registrazione", "Compilare tutti i campi", "OK");
             });
         }
 
