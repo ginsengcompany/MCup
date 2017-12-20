@@ -41,10 +41,8 @@
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\Data\AppuntamentoData.cs" />
     <Compile Include="Database\Data\StrutturePreferite.cs" />
-    <Compile Include="Database\Data\TerminiDiServizio.cs" />
     <Compile Include="Database\Models\Appuntamento.cs" />
     <Compile Include="Database\Models\TbStrutturePreferite.cs" />
-    <Compile Include="Database\Models\TerminiServizio.cs" />
     <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
     <Compile Include="ModelView\GestioneAppuntamentiModelView.cs" />
     <Compile Include="ModelView\ListaDatePrenotazioniModelView.cs" />
@@ -82,9 +80,6 @@
     </Compile>
     <Compile Include="Views\Registrazione.xaml.cs">
       <DependentUpon>Registrazione.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Termini.xaml.cs">
-      <DependentUpon>Termini.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VerificaRicetta.xaml.cs">
       <DependentUpon>VerificaRicetta.xaml</DependentUpon>
@@ -165,12 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Termini.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MenuPrincipale.xaml">
