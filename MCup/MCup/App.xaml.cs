@@ -19,7 +19,7 @@ namespace MCup
         public App()
         {
             InitializeComponent();
-            MainPage = new Login();
+            MainPage = new NavigationPage(new Login());
             /*
             Database.Database.Initialize();
             checkTermini();*/

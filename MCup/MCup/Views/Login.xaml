@@ -28,7 +28,7 @@
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>
-            <ActivityIndicator Color="Red" IsRunning="false" IsVisible="false" />
+            <ActivityIndicator Color="Red" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsVisible}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
