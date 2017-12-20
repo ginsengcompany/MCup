@@ -19,8 +19,10 @@ namespace MCup
         public App()
         {
             InitializeComponent();
+            MainPage = new Login();
+            /*
             Database.Database.Initialize();
-            checkTermini();
+            checkTermini();*/
         }
 
         private void checkTermini()
