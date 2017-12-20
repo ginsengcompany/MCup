@@ -261,7 +261,6 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni.png" />
     <BundleResource Include="Resources\send.png" />
     <BundleResource Include="Resources\scan.png" />
     <BundleResource Include="Resources\decline.png" />
@@ -269,105 +268,24 @@
     <BundleResource Include="Resources\ricetta.png" />
     <BundleResource Include="Resources\info.png" />
     <BundleResource Include="Resources\log.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-40%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-50%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-60.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-60%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-60%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-72.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-72%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-76.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-76%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-167.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-small%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-small%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-small%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-40%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-50%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-60.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-60%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-60%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-72.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-72%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-76.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-76%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-167.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-small%402x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-20x20%402x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-20x20%403x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-29x29%401x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-29x29%402x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-40x40%402x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-40x40%403x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-60x60%402x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-60x60%403x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-marketing-1024x1024.png" />
+    <BundleResource Include="Resources\iconaPrenotazioni-20x20%402x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-20x20%403x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-29x29%401x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-29x29%402x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-40x40%402x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-40x40%403x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-60x60%402x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-60x60%403x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-marketing-1024x1024.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen.png" />

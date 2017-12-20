@@ -5,7 +5,7 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(ExendedViewCell), typeof(ExtendedViewCellRenderer))]
+[assembly: ExportRenderer(typeof(ExtendedViewCell), typeof(ExtendedViewCellRenderer))]
 
 namespace MCup.iOS.CostomRenderers
 {
@@ -14,7 +14,7 @@ namespace MCup.iOS.CostomRenderers
     public override UITableViewCell GetCell(Cell item, UITableViewCell reusableCell, UITableView tv)
     {
         var cell = base.GetCell(item, reusableCell, tv);
-        var view = item as ExendedViewCell;
+        var view = item as ExtendedViewCell;
         cell.SelectedBackgroundView = new UIView
         {
             BackgroundColor = view.SelectedBackgroundColor.ToUIColor(),
