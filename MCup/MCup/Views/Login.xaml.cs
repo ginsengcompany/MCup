@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using MCup.ModelView;
 using Xamarin.Forms;
 
 namespace MCup.Views
@@ -10,6 +10,7 @@ namespace MCup.Views
         public Login()
         {
             InitializeComponent();
+            BindingContext = new LoginModelView();
         }
     }
 }
