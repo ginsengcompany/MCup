@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MCup.Views.Registrazione">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="5,5,5,5">
+            <Label Text="Nome:" TextColor="Black" HorizontalOptions="Start" FontSize="Medium"/>
+            <Entry Text="{Binding nome}" Placeholder="Inserisci il nome" PlaceholderColor="Red" TextColor="Black" HorizontalOptions="StartAndExpand" />
+            <Label Text="Cognome:" TextColor="Black" HorizontalOptions="Start" FontSize="Medium"/>
+            <Entry Text="{Binding cognome}" TextColor="Black" Placeholder="Inserisci il cognome" PlaceholderColor="Red" HorizontalOptions="StartAndExpand" />
+            <Label Text="Codice Fiscale:" TextColor="Black" HorizontalOptions="Start" FontSize="Medium"/>
+            <Entry Text="{Binding codiceFiscale}" TextColor="Black" Placeholder="Inserisci il codice fiscale" PlaceholderColor="Red" HorizontalOptions="StartAndExpand" />
+            <Label Text="Password:" TextColor="Black" HorizontalOptions="Start" FontSize="Medium"/>
+            <Entry Text="{Binding password}" TextColor="Black" Placeholder="Inserisci la password" PlaceholderColor="Red" HorizontalOptions="StartAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
