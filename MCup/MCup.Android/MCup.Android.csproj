@@ -222,6 +222,9 @@
     <AndroidResource Include="Resources\drawable-xhdpi\iconaAppuntamenti.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\iconaAppuntamenti.png" />
     <AndroidResource Include="Resources\drawable\log.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\log.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\log.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\log.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
