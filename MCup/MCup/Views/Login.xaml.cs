@@ -11,6 +11,12 @@ namespace MCup.Views
         {
             InitializeComponent();
             BindingContext = new LoginModelView();
+
+        }
+
+        private async void vaiRegistrazione(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new Registrazione());
         }
     }
 }

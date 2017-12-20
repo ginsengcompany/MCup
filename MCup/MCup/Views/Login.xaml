@@ -8,15 +8,27 @@
                 <Image Source="log.png" HorizontalOptions="Center"/>
             </StackLayout>
             <StackLayout Orientation="Vertical" Padding="0,20,0,0" BackgroundColor="White">
-                <Label Text="Codice Fiscale" TextColor="Black" FontAttributes="Italic" FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Codice Fiscale" TextColor="Black" FontAttributes="Bold" FontSize="Medium" 
+                HorizontalOptions="CenterAndExpand" />
                 <Entry Text="{Binding codiceFiscale}" Placeholder="Inserire Codice Fiscale" PlaceholderColor="Red" TextColor="Black"
-                FontAttributes="Italic" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                FontAttributes="Italic" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" WidthRequest="250"/>
             </StackLayout>
             <StackLayout Orientation="Vertical" BackgroundColor="White">
-                <Label Text="Password" TextColor="Black" FontAttributes="Italic" FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Password" TextColor="Black" FontAttributes="Bold" FontSize="Medium" 
+                HorizontalOptions="CenterAndExpand" />
                 <Entry Text="{Binding passWord}" Placeholder="Inserire Password" PlaceholderColor="Red" TextColor="Black"
-                FontAttributes="Italic" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                FontAttributes="Italic" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" WidthRequest="250"/>
             </StackLayout>
+            <StackLayout BackgroundColor="White">
+            <Button Text="Login" TextColor="White" BackgroundColor="Red" BorderRadius="5" HorizontalOptions="Center"/>
+               
+                <Label Text="Crea un Account" TextColor="Red" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <ActivityIndicator Color="Red" IsRunning="false" IsVisible="false" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
