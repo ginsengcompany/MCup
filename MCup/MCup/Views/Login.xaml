@@ -4,18 +4,19 @@
     x:Class="MCup.Views.Login">
 	<ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White">
-            <Image Source="log.png" HorizontalOptions="Center"/>
+            <StackLayout Orientation="Vertical" BackgroundColor="White">
+                <Image Source="log.png" HorizontalOptions="Center"/>
             </StackLayout>
-        <StackLayout Orientation="Vertical">
-            <Label Text="Codice Fiscale" TextColor="Black" FontAttributes="Italic" FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
-            <Entry Text="{Binding codiceFiscale}" Placeholder="Inserire Codice Fiscale" PlaceholderColor="Red" TextColor="Black"
+            <StackLayout Orientation="Vertical" BackgroundColor="White">
+                <Label Text="Codice Fiscale" TextColor="Black" FontAttributes="Italic" FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
+                <Entry Text="{Binding codiceFiscale}" Placeholder="Inserire Codice Fiscale" PlaceholderColor="Red" TextColor="Black"
                 FontAttributes="Italic" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
             </StackLayout>
-        <StackLayout Orientation="Vertical">
-            <Label Text="Password" TextColor="Black" FontAttributes="Italic" FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
-            <Entry Text="{Binding passWord}" Placeholder="Inserire Password" PlaceholderColor="Red" TextColor="Black"
+            <StackLayout Orientation="Vertical" BackgroundColor="White">
+                <Label Text="Password" TextColor="Black" FontAttributes="Italic" FontSize="Medium" HorizontalOptions="CenterAndExpand"/>
+                <Entry Text="{Binding passWord}" Placeholder="Inserire Password" PlaceholderColor="Red" TextColor="Black"
                 FontAttributes="Italic" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
         </StackLayout>
-           
-	</ContentPage.Content>
+    </ContentPage.Content>
 </ContentPage>

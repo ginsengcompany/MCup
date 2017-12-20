@@ -19,7 +19,7 @@ namespace MCup
         public App()
         {
             InitializeComponent();
-            MainPage = new Registrazione();
+            MainPage = new Login();
             /*
             Database.Database.Initialize();
             checkTermini();*/
