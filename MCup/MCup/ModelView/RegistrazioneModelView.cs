@@ -80,7 +80,7 @@ namespace MCup.ModelView
                     else if (response.auth)
                     {
                         await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione effettuata con successo", "OK");
-                        App.Current.MainPage = new Login();
+                        await App.Current.MainPage.Navigation.PopAsync();
                     }
                     else
                         await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
