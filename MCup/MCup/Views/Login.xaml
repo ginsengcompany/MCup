@@ -20,8 +20,7 @@
                 FontAttributes="Italic" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" WidthRequest="250"/>
             </StackLayout>
             <StackLayout BackgroundColor="White">
-            <Button Text="Login" TextColor="White" BackgroundColor="Red" BorderRadius="5" HorizontalOptions="Center"/>
-               
+                <Button Text="Login" TextColor="White" BackgroundColor="Red" BorderRadius="5" HorizontalOptions="Center" Command="{Binding effettuaLogin}"/>
                 <Label Text="Crea un Account" TextColor="Red" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>
