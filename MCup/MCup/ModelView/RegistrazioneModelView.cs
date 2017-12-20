@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using MCup.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using Xamarin.Forms;
+using MCup.Service;
 
 namespace MCup.ModelView
 {
@@ -14,6 +17,8 @@ namespace MCup.ModelView
         public event PropertyChangedEventHandler PropertyChanged;
 
         private Utente utente;
+
+        public ICommand registrati { protected set; get; }
 
         public string codiceFiscale
         {
@@ -63,6 +68,18 @@ namespace MCup.ModelView
         public RegistrazioneModelView()
         {
             utente = new Utente();
+            registrati = new Command(async () =>
+            {
+                REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>();
+                ResponseRegistrazione response = await rest.PostJson(URL.Registrazione, utente);
+                await App.Current.MainPage.DisplayAlert("prova", response.token, "OK");
+            });
+        }
+
+        public class ResponseRegistrazione
+        {
+            public bool auth;
+            public string token;
         }
     }
 }

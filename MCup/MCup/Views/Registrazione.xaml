@@ -12,6 +12,7 @@
             <Entry Text="{Binding codiceFiscale}" TextColor="Black" Placeholder="Inserisci il codice fiscale" PlaceholderColor="Red" HorizontalOptions="StartAndExpand" />
             <Label Text="Password:" TextColor="Black" HorizontalOptions="Start" FontSize="Medium"/>
             <Entry Text="{Binding password}" TextColor="Black" Placeholder="Inserisci la password" PlaceholderColor="Red" HorizontalOptions="StartAndExpand" />
+            <Button Text="Registrati" Command="{Binding registrati}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
