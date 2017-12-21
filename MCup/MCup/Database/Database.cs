@@ -35,15 +35,5 @@ namespace MCup.Database
             connection.CreateTable<TbStrutturePreferite>();
             //await CreateDatabase(rootfolder);
         }
-
-        private static async Task CreateDatabase(IFolder folder)
-        {
-            exist = await folder.CheckExistsAsync(dbname);
-            if (exist == ExistenceCheckResult.NotFound)
-                using (connection)
-                {
-                    connection.CreateTable<TerminiServizio>();
-                }
-        }
     }
 }

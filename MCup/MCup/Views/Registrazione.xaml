@@ -17,7 +17,7 @@
             <Entry Text="{Binding password}" TextColor="Black" Placeholder="Inserisci la password" PlaceholderColor="Red" HorizontalOptions="Center" />
             <StackLayout BackgroundColor="White" Padding="0,20,0,0">
             <Button Text="Registrati" Command="{Binding registrati}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red" TextColor="White"/>
-        </StackLayout>
             </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

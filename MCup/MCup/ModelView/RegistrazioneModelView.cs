@@ -73,17 +73,25 @@ namespace MCup.ModelView
             {
                 if (utente.verificaCampi())
                 {
-                    REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>();
-                    ResponseRegistrazione response = await rest.PostJson(URL.Registrazione, utente);
-                    if (response == default(ResponseRegistrazione))
-                        await App.Current.MainPage.DisplayAlert("Registrazione", rest.warning, "OK");
-                    else if (response.auth)
+                    REST<object, string> restTermini = new REST<object, string>();
+                    var termini = await restTermini.getString(URL.TerminiServizio);
+                    var accetaODeclina = await App.Current.MainPage.DisplayAlert("Termini di servizio", termini, "ACCETTA","DECLINA");
+                    if (accetaODeclina)
                     {
-                        await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione effettuata con successo", "OK");
-                        await App.Current.MainPage.Navigation.PopAsync();
+                        REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>();
+                        ResponseRegistrazione response = await rest.PostJson(URL.Registrazione, utente);
+                        if (response == default(ResponseRegistrazione))
+                            await App.Current.MainPage.DisplayAlert("Registrazione", rest.warning, "OK");
+                        else if (response.auth)
+                        {
+                            await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione effettuata con successo", "OK");
+                            await App.Current.MainPage.Navigation.PopAsync();
+                        }
+                        else
+                            await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
                     }
                     else
-                        await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
+                        await App.Current.MainPage.DisplayAlert("Registrazione", "Devi accettare i termini di servizio per poter proseguire", "OK");
                 }
                 else
                     await App.Current.MainPage.DisplayAlert("Registrazione", "Compilare tutti i campi", "OK");
