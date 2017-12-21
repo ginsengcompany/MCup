@@ -34,11 +34,10 @@ namespace MCup.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            var listStruttura = StrutturePreferite.VisualizzaStrutturePreferite();
-            string struttura = listStruttura[0].id.ToString();
-
+            REST<object, ResponseStrutturaPreferita> connessioneGetStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>();
+            ResponseStrutturaPreferita strutturaPreferita = await connessioneGetStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita);
+            string struttura = strutturaPreferita.struttura;
             InvioDati invio = new InvioDati(prestazioni, struttura);
-            ;
             REST<object, StruttureErogatrici> connessione = new REST<object, StruttureErogatrici>();
             List<StruttureErogatrici> listaStruttureErogatrici = new List<StruttureErogatrici>();
             listaStruttureErogatrici = await connessione.PostJsonList(URL.StruttureErogatrici, invio);
@@ -46,7 +45,7 @@ namespace MCup.Views
             {
                await DisplayAlert("Attenzione", "nessuna struttura può erogare il servizio", "ritenta");
             }
-            else if(listaStruttureErogatrici[0].codice_struttura == listStruttura[0].id)
+            else if(listaStruttureErogatrici[0].codice_struttura == strutturaPreferita.struttura)
             {
                 await DisplayAlert("ora", "faccio un pushasync", "a");
             }
@@ -67,8 +66,13 @@ namespace MCup.Views
             {
                 this.prestazioni = prestazioni;
                 this.strutturaPreferita = strutturaPreferita;
-                 
             }
+        }
+
+        private class ResponseStrutturaPreferita
+        {
+            public bool scelta;
+            public string struttura;
         }
     }
 }

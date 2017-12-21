@@ -24,11 +24,15 @@ namespace MCup.Views
          * @param connessione= oggetto di tipo REST
          * @param url= stringa che contiene l'url a cui ci riferiremo nella get
          */
-        List<Struttura> listaDiProva = new List<Struttura>();
-        REST<Object,Struttura> connessione = new REST<Object,Struttura>();
-        public ListaStrutture ()
+        List<Struttura> listaStrutture = new List<Struttura>();
+        REST<Object,Struttura> connessioneListaStrutture = new REST<Object,Struttura>();
+        ResponseStrutturaPreferita StrutturaPreferita;
+        private string provenienza;
+
+        public ListaStrutture (string provenienza)
 		{
 			InitializeComponent ();
+            this.provenienza = provenienza;
             riempimentoStruttura();
 		}
 
@@ -42,10 +46,9 @@ namespace MCup.Views
             caricamentoPagina.IsVisible = true;
             try
             {
-                listaDiProva = await connessione.GetJson(URL.Strutture);
+                listaStrutture = await connessioneListaStrutture.GetJson(URL.Strutture);
                 ImageSource imgSrc = "";
-
-                foreach (var i in listaDiProva)
+                foreach (var i in listaStrutture)
                 {
                     imgSrc = Xamarin.Forms.ImageSource.FromStream(
                () => new MemoryStream(Convert.FromBase64String(i.Logo_struttura)));
@@ -54,8 +57,10 @@ namespace MCup.Views
                 ListaStruttura.SeparatorColor = Color.Black;
                 caricamentoPagina.IsRunning = false;
                 caricamentoPagina.IsVisible = false;
-                ListaStruttura.ItemsSource = listaDiProva;
-                if (StrutturePreferite.GetCountStrutturePreferite() > 0)
+                ListaStruttura.ItemsSource = listaStrutture;
+                REST<object, ResponseStrutturaPreferita> connessioneStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>();
+                StrutturaPreferita = await connessioneStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, App.Current.Properties["tokenLogin"].ToString());
+                if (StrutturaPreferita.scelta)
                     StrutturaPreferitaScelta();
             }
             catch (Exception)
@@ -67,8 +72,8 @@ namespace MCup.Views
 
         private void StrutturaPreferitaScelta()
         {
-            string idStruttura = StrutturePreferite.getIdStruttura();
-            foreach(var i in listaDiProva)
+            string idStruttura = StrutturaPreferita.struttura;
+            foreach(var i in listaStrutture)
             {
                 if (idStruttura == i.Codice_struttura)
                     ListaStruttura.SelectedItem = i;
@@ -78,21 +83,32 @@ namespace MCup.Views
         /**
          * Metodo tapped, recupera l'informazione dal tap dell'utente nella nostra list view. Salva in locale l'elemento tappato.
          */
-        private void ListaStruttura_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void ListaStruttura_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            int count = StrutturePreferite.GetCountStrutturePreferite();
-            Struttura elemTapped = e.Item as Struttura;
-            if (count > 0)
+            try
             {
-                StrutturePreferite.UpdateStrutturaPreferita(elemTapped.Nome_struttura, elemTapped.Codice_struttura);
-                DisplayAlert("STRUTTURA PREFERITA", "Hai selezionato: " + elemTapped.Nome_struttura, "OK");
+                Struttura elemTapped = e.Item as Struttura;
+                REST <ResponseStrutturaPreferita, Utente> connessioneSceltaStruttura = new REST<ResponseStrutturaPreferita, Utente>();
+                ResponseStrutturaPreferita responseStrutturaPreferita = new ResponseStrutturaPreferita();
+                responseStrutturaPreferita.struttura = elemTapped.Codice_struttura;
+                Utente response = await connessioneSceltaStruttura.PostJson(URL.StrutturaPreferita, responseStrutturaPreferita,App.Current.Properties["tokenLogin"].ToString());
+                await DisplayAlert("Struttura preferita", connessioneSceltaStruttura.warning, "OK");
+                StrutturaPreferita.struttura = elemTapped.Codice_struttura;
+                ListaStruttura.SelectedItem = null;
+                StrutturaPreferitaScelta();
+                if (provenienza == "Login")
+                    App.Current.MainPage = new NavigationPage(new MenuPrincipale());
             }
-            else
+            catch (Exception)
             {
-                TbStrutturePreferite struttura = new TbStrutturePreferite(elemTapped.Codice_struttura, elemTapped.Nome_struttura);
-                StrutturePreferite.InserisciStrutturaPreferita(struttura);
-                Navigation.PushModalAsync(new MenuPrincipale());
+                await DisplayAlert("Attenzione", "connessione non riuscita", "riprova");
             }
+        }
+
+        private class ResponseStrutturaPreferita
+        {
+            public bool scelta;
+            public string struttura;
         }
     }
 }

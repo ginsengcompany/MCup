@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +32,45 @@ namespace MCup.Service
             }
         }
 
+        public async Task<T> GetSingleJson(string url)
+        {
+            T Item;
+            HttpClient client = new HttpClient();
+            var uri = new Uri(string.Format(url, String.Empty));
+            var response = await client.GetStringAsync(uri);
+            warning = response;
+            try
+            {
+                var isValid = JToken.Parse(response);
+                Item = JsonConvert.DeserializeObject<T>(response);
+                return Item;
+            }
+            catch (Exception)
+            {
+                return default(T);
+            }
+        }
+
+        public async Task<T> GetSingleJson(string url, string header)
+        {
+            T Item;
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("x-access-token",header);
+            var uri = new Uri(string.Format(url, String.Empty));
+            var response = await client.GetStringAsync(uri);
+            warning = response;
+            try
+            {
+                var isValid = JToken.Parse(response);
+                Item = JsonConvert.DeserializeObject<T>(response);
+                return Item;
+            }
+            catch (Exception)
+            {
+                return default(T);
+            }
+        }
+
 
         public async Task<List<T>> PostJsonList(string url, E dati)
         {
@@ -48,7 +88,7 @@ namespace MCup.Service
                 Items = JsonConvert.DeserializeObject<List<T>>(response);
                 return Items;
             }
-            catch (Exception a)
+            catch (Exception)
             {
                 return new List<T>();
             }
@@ -70,7 +110,32 @@ namespace MCup.Service
                 Item = JsonConvert.DeserializeObject<T>(response);
                 return Item;
             }
-            catch (Exception a)
+            catch (Exception)
+            {
+                return default(T);
+            }
+        }
+
+        public async Task<T> PostJson(string url, E dati, string header)
+        {
+            T Item;
+            HttpClient client = new HttpClient();
+            string ContentType = "application/json"; // or application/xml
+            string json = JsonConvert.SerializeObject(dati);
+            var uri = new Uri(string.Format(url, String.Empty));
+            HttpContent httpContent = new StringContent(json.ToString());
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+            httpContent.Headers.Add("x-access-token", header);
+            var result = await client.PostAsync(url,httpContent);
+            var response = await result.Content.ReadAsStringAsync();
+            warning = response;
+            try
+            {
+                var isValid = JToken.Parse(response);
+                Item = JsonConvert.DeserializeObject<T>(response);
+                return Item;
+            }
+            catch (Exception)
             {
                 return default(T);
             }
