@@ -71,7 +71,7 @@ namespace MCup.ModelView
             utente = new Utente();
             registrati = new Command(async () =>
             {
-                if (utente.verificaCampi())
+                if (utente.verificaCampiRegistrazione())
                 {
                     REST<object, string> restTermini = new REST<object, string>();
                     var termini = await restTermini.getString(URL.TerminiServizio);

@@ -13,15 +13,15 @@
                 <ListView x:Name="ListaStruttura" RowHeight="120" ItemTapped="ListaStruttura_ItemTapped"  SeparatorColor="Azure">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                       <customControls:ExtendedViewCell SelectedBackgroundColor="White">
+                        <customControls:ExtendedViewCell SelectedBackgroundColor="Red">
                             <ViewCell.View >
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10" >
-                                <Image Source="{Binding imgStruttura}" HorizontalOptions="Start" HeightRequest="90" VerticalOptions="CenterAndExpand" WidthRequest="100"/>
-                                <Label Text="{Binding Nome_struttura}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="Large" Margin="10" TextColor="Black"/>
-                            </StackLayout>
-                        </ViewCell.View>
-                          </customControls:ExtendedViewCell>  
-                        </DataTemplate>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10" >
+                                    <Image Source="{Binding imgStruttura}" HorizontalOptions="Start" HeightRequest="90" VerticalOptions="CenterAndExpand" WidthRequest="100"/>
+                                    <Label Text="{Binding Nome_struttura}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="Large" Margin="10" TextColor="Black"/>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </customControls:ExtendedViewCell>
+                    </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>

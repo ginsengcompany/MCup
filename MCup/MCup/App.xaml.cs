@@ -12,25 +12,12 @@ namespace MCup
 {
     public partial class App : Application
     {
-
-        private bool strutturaScelta;
-
         public App()
         {
             InitializeComponent();
             MainPage = new NavigationPage(new Login());
             Database.Database.Initialize();
         }
-
-        private bool checkStrutturaScelta()
-        {
-            int count = StrutturePreferite.GetCountStrutturePreferite();
-            if (count > 0)
-                return true;
-            else
-                return false;
-        }
-
 
         protected override void OnStart()
         {
