@@ -98,6 +98,7 @@
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
     <Compile Include="CostomRenderers\ExtendedViewCellRenderer.cs" />
+    <Compile Include="CostomRenderers\CustomEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -297,6 +298,8 @@
     <BundleResource Include="Resources\iconaPrenotazioni-60x60%403x.png" />
     <BundleResource Include="Resources\iconaPrenotazioni-marketing-1024x1024.png" />
     <BundleResource Include="Resources\iconaPrenotazioni-20x20%402x.png" />
+    <BundleResource Include="Resources\sfondoAppIOS.png" />
+    <BundleResource Include="Resources\sfondoIOS.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen.png" />

@@ -48,7 +48,7 @@ namespace MCup.Views
             }
             else if(listaStruttureErogatrici[0].codice_struttura == listStruttura[0].id)
             {
-                await DisplayAlert("ora", "faccio un pushasync", "ricchio");
+                await DisplayAlert("ora", "faccio un pushasync", "a");
             }
             else
             {

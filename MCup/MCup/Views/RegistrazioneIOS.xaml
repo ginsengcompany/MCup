@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MCup.Views.RegistrazioneIOS" Title="Registrazione" BackgroundImage="sfondoIOS.png">
+    <ContentPage.Content>
+        <Frame BackgroundColor="#EBEBEB"  HorizontalOptions="CenterAndExpand" VerticalOptions="Center" CornerRadius="20" Grid.Column="0"  >
+         
+        <StackLayout Orientation="Vertical" Padding="5,5,5,5" Grid.Column="1"  >
+                <Image Source="log.png" HorizontalOptions="Center" HeightRequest="50" />
+                <Label Text="REGISTRAZIONE" HorizontalOptions="Center" TextColor="Red" Margin="5"/>
+
+                <customControls:CustomEntry Text="{Binding nome}" Grid.Column="1" Placeholder="Nome" Opacity="0.7" BackgroundColor="White"/>
+                <customControls:CustomEntry Text="{Binding cognome}" Grid.Column="1" Placeholder="Cognome" Opacity="0.5"/>
+                <customControls:CustomEntry Text="{Binding codiceFiscale}" Grid.Column="1" Placeholder="codice fiscale" Opacity="0.5"  />
+                <customControls:CustomEntry Text="{Binding password}" Grid.Column="1"  Placeholder="Password" Opacity="0.5" />
+                
+                <StackLayout Padding="0,20,0,0">
+            <Button Text="REGISTRATI" BorderWidth="2" BorderRadius="10" BorderColor="Black" Command="{Binding registrati}" FontSize="20"  HorizontalOptions="Center"  BackgroundColor="#ab2929" TextColor="White" FontAttributes="Bold                                                                     " HeightRequest="90" WidthRequest="200" />
+            </StackLayout>
+             
+        </StackLayout>
+            </Frame>
+    </ContentPage.Content>
+</ContentPage>
