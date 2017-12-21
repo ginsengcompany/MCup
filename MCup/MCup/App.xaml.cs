@@ -12,7 +12,6 @@ namespace MCup
 {
     public partial class App : Application
     {
-        private bool acceptTermini;
 
         private bool strutturaScelta;
 
@@ -20,39 +19,7 @@ namespace MCup
         {
             InitializeComponent();
             MainPage = new NavigationPage(new Login());
-            /*
             Database.Database.Initialize();
-            checkTermini();*/
-        }
-
-        private void checkTermini()
-        {
-            acceptTermini = checkTerminiServizio();
-            if (acceptTermini == false)
-                MainPage = new Termini();
-            else
-            {
-                strutturaScelta = checkStrutturaScelta();
-                if (strutturaScelta)
-                    MainPage = new NavigationPage(new MenuPrincipale());
-                else
-                    MainPage = new NavigationPage(new ListaStrutture());
-            } 
-        }
-
-        private bool checkTerminiServizio()
-        {
-            int count = TerminiDiServizio.GetCountTermini();
-            if (count > 0)
-            {
-                return TerminiDiServizio.GetTermini();
-            }
-            else
-            {
-                TerminiServizio termini = new TerminiServizio();
-                TerminiDiServizio.InsertTermini(termini);
-                return false;
-            }
         }
 
         private bool checkStrutturaScelta()
