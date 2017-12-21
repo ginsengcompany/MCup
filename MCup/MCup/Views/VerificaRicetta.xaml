@@ -2,6 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.VerificaRicetta"
+             xmlns:local="clr-namespace:MCup"
+             xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
+             BackgroundColor="White"
              Title="Verifica Contenuto Ricetta">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="15">
@@ -32,11 +35,15 @@
                 <ListView x:Name="lista_prestazioni" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
+                                <customControls:ExtendedViewCell SelectedBackgroundColor="White">
+                            
+                                     
                                 <ViewCell.View>
                                     <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
                                 </ViewCell.View>
-                            </ViewCell>
+                                        
+                            
+                                    </customControls:ExtendedViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

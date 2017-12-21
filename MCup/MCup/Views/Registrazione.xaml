@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MCup.Views.Registrazione"
+    Title="Registrazione"
+    BackgroundColor="White"
+    >
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="5,50,5,5" BackgroundColor="White" >
+            <Label Text="Nome:" TextColor="Black" HorizontalOptions="Center" FontSize="Medium" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            <Entry Text="{Binding nome}" Placeholder="Inserisci il nome" PlaceholderColor="Red" TextColor="Black" HorizontalOptions="Center" />
+            <Label Text="Cognome:" TextColor="Black" HorizontalOptions="Center" FontSize="Medium" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            <Entry Text="{Binding cognome}" TextColor="Black" Placeholder="Inserisci il cognome" PlaceholderColor="Red" HorizontalOptions="Center" />
+            <Label Text="Codice Fiscale:" TextColor="Black" HorizontalOptions="Center" FontSize="Medium" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            <Entry Text="{Binding codiceFiscale}" TextColor="Black" Placeholder="Inserisci il codice fiscale" PlaceholderColor="Red" HorizontalOptions="Center" />
+            <Label Text="Password:" TextColor="Black" HorizontalOptions="Center" FontSize="Medium" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            <Entry Text="{Binding password}" TextColor="Black" Placeholder="Inserisci la password" PlaceholderColor="Red" HorizontalOptions="Center" />
+            <StackLayout BackgroundColor="White" Padding="0,20,0,0">
+            <Button Text="Registrati" Command="{Binding registrati}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red" TextColor="White"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

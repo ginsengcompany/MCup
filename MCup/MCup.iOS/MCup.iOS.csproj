@@ -103,6 +103,9 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ExifLib, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ExifLib.PCL.1.0.2-pre01\lib\netstandard1.0\ExifLib.dll</HintPath>
+    </Reference>
     <Reference Include="Lamp.Plugin, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\kphillpotts.Lamp.Plugin.1.0.0.2-alpha\lib\Xamarin.iOS10\Lamp.Plugin.dll</HintPath>
     </Reference>
@@ -152,6 +155,15 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.91635\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="XLabs.Core, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XLabs.Core.2.3.0-pre05\lib\portable-net45+win8+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac\XLabs.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.IOC, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XLabs.IoC.2.3.0-pre05\lib\portable-net45+win8+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac\XLabs.IOC.dll</HintPath>
+    </Reference>
+    <Reference Include="XLabs.Serialization, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XLabs.Serialization.2.3.0-pre05\lib\portable-net45+netcore45+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac\XLabs.Serialization.dll</HintPath>
+    </Reference>
     <Reference Include="ZXing.Net.Mobile.Core, Version=2.3.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ZXing.Net.Mobile.2.3.2\lib\Xamarin.iOS10\ZXing.Net.Mobile.Core.dll</HintPath>
     </Reference>
@@ -177,175 +189,115 @@
   <ItemGroup>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\1024x1024.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\120x120.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\152x152.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\167x167.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\180x180.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\20x20.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\29x29.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\40x40.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\58x58.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\60x60.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\76x76.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\80x80.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\87x87.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1024x768.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1536x2048.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\2048x1536.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\640x1136.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\640x960.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\768x1024.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni.png" />
     <BundleResource Include="Resources\send.png" />
     <BundleResource Include="Resources\scan.png" />
     <BundleResource Include="Resources\decline.png" />
     <BundleResource Include="Resources\accept.png" />
     <BundleResource Include="Resources\ricetta.png" />
     <BundleResource Include="Resources\info.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-40%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-50%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-60.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-60%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-60%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-72.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-72%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-76.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-76%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-167.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-small%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioni-small%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-small%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-40%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-50%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-60.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-60%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-60%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-72.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-72%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-76.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-76%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-167.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaAppuntamenti-small%402x.png" />
+    <BundleResource Include="Resources\log.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-20x20%402x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-20x20%403x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-29x29%401x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-29x29%402x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-40x40%402x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-40x40%403x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-60x60%402x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-60x60%403x.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti-marketing-1024x1024.png" />
+    <BundleResource Include="Resources\iconaPrenotazioni-20x20%402x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-20x20%403x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-29x29%401x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-29x29%402x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-40x40%402x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-40x40%403x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-60x60%402x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-60x60%403x.png" />
+    <BundleResource Include="Resources\iconaPrenotazione-marketing-1024x1024.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen.png" />
@@ -395,9 +347,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen-Portrait~ipad_768x1024.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CostomRenderers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
