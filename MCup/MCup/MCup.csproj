@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CostomControls\XfxEntry.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\Data\AppuntamentoData.cs" />
     <Compile Include="Database\Models\Appuntamento.cs" />
@@ -68,6 +69,9 @@
     </Compile>
     <Compile Include="Views\ListaStrutture.xaml.cs">
       <DependentUpon>ListaStrutture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginIoS.xaml.cs">
+      <DependentUpon>LoginIoS.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -154,6 +158,9 @@
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.91635\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="Xfx.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xfx.Controls.1.1.2\lib\portable-net45+win8+wpa81+wp8\Xfx.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="XLabs.Core, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\XLabs.Core.2.3.0-pre05\lib\portable-net45+win8+wpa81+wp8+monoandroid+monotouch+xamarinios10+xamarinmac\XLabs.Core.dll</HintPath>
     </Reference>
@@ -223,6 +230,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Registrazione.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\LoginIoS.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

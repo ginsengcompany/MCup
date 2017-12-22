@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Xfx;
 using static MCup.Droid.MainActivity;
 
 namespace MCup.Droid
@@ -18,7 +19,7 @@ namespace MCup.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
+            XfxControls.Init();
             global::Xamarin.Forms.Forms.Init(this, bundle);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
             LoadApplication(new App());
