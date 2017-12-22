@@ -5,6 +5,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xfx;
 
 namespace MCup.iOS
 {
@@ -23,6 +24,11 @@ namespace MCup.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+
+
+            XfxControls.Init();
+
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

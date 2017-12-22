@@ -8,13 +8,13 @@
             
            
             <Label Text="REGISTRAZIONE" HorizontalOptions="Center" TextColor="Red" Margin="5" FontAttributes="Bold" FontFamily="Arial" BackgroundColor="Transparent"/>
-                <TableView Intent="Form" BackgroundColor="Transparent">
+                <TableView Intent="Form" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
                     <TableView.Root >
-                        <TableSection >
-                            <EntryCell Label="Nome:" HorizontalTextAlignment="Start" LabelColor="Red" Placeholder="Nome" Text="{Binding nome}" />
-                            <EntryCell Label="Cognome:" HorizontalTextAlignment="Start" LabelColor="Red" Placeholder="Cognome" Text="{Binding cognome}" />
-                            <EntryCell Label="Codice Fiscale:" HorizontalTextAlignment="Start" LabelColor="Red"  Placeholder="Codice Fiscale" Text="{Binding codiceFiscale}"/>
-                            <EntryCell Label="Password:" HorizontalTextAlignment="Start" LabelColor="Red" Placeholder="Password" Text="{Binding password}" />
+                        <TableSection>
+                            <EntryCell Label="Nome:"  HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding nome}" />
+                            <EntryCell Label="Cognome:" HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding cognome}" />
+                            <EntryCell Label="Codice Fiscale:" HorizontalTextAlignment="Start" LabelColor="Red"   Text="{Binding codiceFiscale}"/>
+                            <EntryCell Label="Password:" HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding password}" />
                         </TableSection>
                     </TableView.Root>
                 </TableView>

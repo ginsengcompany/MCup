@@ -243,6 +243,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\log.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\log.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\log.png" />
+    <AndroidResource Include="Resources\drawable\sfondo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
