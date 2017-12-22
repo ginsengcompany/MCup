@@ -4,57 +4,49 @@
              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              x:Class="MCup.Views.Registrazione"
     Title="Registrazione"
-    BackgroundImage="sfondo.png"
-    >
+    BackgroundImage="sfondo.png">
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout Orientation="Vertical" Padding="5,50,5,5" >
-            <xfx:XfxEntry 
+        <StackLayout Orientation="Vertical" Padding="30" >
+            <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Registrazione" TextColor="Red"></Label>
+
+                <xfx:XfxEntry 
                 Placeholder="Inserire nome"     
                 PlaceholderColor="Red"   
                 Text="{Binding nome}" 
-                ErrorText="{Binding NameErrorText}"
+                ErrorText="{Binding NameErrorTextNome}"
                 ErrorDisplay="Underline"
-                WidthRequest="250"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center"/>
+                WidthRequest="250"/>
             <xfx:XfxEntry 
                 Placeholder="Inserire cognome"     
                 PlaceholderColor="Red"   
                 Text="{Binding cognome}" 
-                ErrorText="{Binding NameErrorText}"
+                ErrorText="{Binding NameErrorTextCognome}"
                 ErrorDisplay="Underline"
-                WidthRequest="250"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center"/>
+                WidthRequest="250"/>
             <xfx:XfxEntry 
                 Placeholder="Inserire Codice Fiscale"     
                 PlaceholderColor="Red"   
                 Text="{Binding codiceFiscale}" 
-                ErrorText="{Binding NameErrorText}"
+                ErrorText="{Binding NameErrorTextCodice}"
                 ErrorDisplay="Underline"
-                WidthRequest="250"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center"/>
+                WidthRequest="250"/>
             <xfx:XfxEntry 
                 Placeholder="Inserire password"     
                 PlaceholderColor="Red"   
                 Text="{Binding password}" 
-                ErrorText="{Binding NameErrorText}"
+                ErrorText="{Binding NameErrorTextPassword}"
                 ErrorDisplay="Underline"
                 IsPassword="True"
-                WidthRequest="250"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center"/>
+                WidthRequest="250"/>
             <xfx:XfxEntry 
                 Placeholder="Reinserire password"     
                 PlaceholderColor="Red"   
-                Text="{Binding confermaPassword}" 
-                ErrorText="{Binding NameErrorText}"
+                Text="{Binding ConfermaPassword}" 
+                ErrorText="{Binding NameErrorTextConfermaPassword}"
                 ErrorDisplay="Underline"
-                WidthRequest="250"
-                HorizontalOptions="Center" 
-                VerticalOptions="Center"/>
+                IsPassword="True"
+                WidthRequest="250"/>
             
             <Button Text="Registrati" Command="{Binding registrati}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red" TextColor="White" Margin="15"/>
         </StackLayout>
