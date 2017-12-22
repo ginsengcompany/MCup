@@ -4,11 +4,11 @@
     xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
     x:Class="MCup.Views.Login"
     Title="Login"
-    BackgroundColor="White">
+    BackgroundImage="sfondo.png">
 	<ContentPage.Content>
         <ScrollView>
-        <StackLayout Orientation="Vertical" BackgroundColor="White">
-            <StackLayout Orientation="Vertical" Padding="0,50,0,0" BackgroundColor="White">
+        <StackLayout Orientation="Vertical" >
+            <StackLayout Orientation="Vertical" Padding="0,50,0,0" >
                 <Image Source="log.png" HorizontalOptions="Center"/>
             </StackLayout>
           
@@ -44,7 +44,7 @@
                         WidthRequest="250"/>
             </StackLayout>
         </StackLayout>
-                <StackLayout BackgroundColor="White">
+                <StackLayout >
                 <Button Text="Login" TextColor="White" BackgroundColor="Red" BorderRadius="5" HorizontalOptions="Center" Command="{Binding effettuaLogin}"/>
                 <Label Text="Crea un Account" TextColor="Red" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center">
                     <Label.GestureRecognizers>
