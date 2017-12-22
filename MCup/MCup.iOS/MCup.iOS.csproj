@@ -300,6 +300,8 @@
     <BundleResource Include="Resources\iconaPrenotazioni-20x20%402x.png" />
     <BundleResource Include="Resources\sfondoAppIOS.png" />
     <BundleResource Include="Resources\sfondoIOS.png" />
+    <BundleResource Include="Resources\sfondo.png" />
+    <BundleResource Include="Resources\registrati.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen.png" />
