@@ -4,7 +4,7 @@
              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              x:Class="MCup.Views.Registrazione"
     Title="Registrazione"
-    BackgroundImage="sfondo.png">
+    BackgroundImage="sfondo3.png">
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Orientation="Vertical" Padding="30" >
