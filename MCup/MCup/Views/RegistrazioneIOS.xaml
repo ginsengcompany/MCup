@@ -14,17 +14,14 @@
                             <EntryCell Label="Nome:"  HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding nome}" />
                             <EntryCell Label="Cognome:" HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding cognome}" />
                             <EntryCell Label="Codice Fiscale:" HorizontalTextAlignment="Start" LabelColor="Red"   Text="{Binding codiceFiscale}"/>
-                            <EntryCell Label="Password:" HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding password}" />
+                            <EntryCell Label="Password:"  HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding password}" />
                         </TableSection>
                     </TableView.Root>
                 </TableView>
             
-        <StackLayout BackgroundColor="Transparent" Padding="0,0,0,40">
-                <Image Source="registrati.png" VerticalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer  Command="{Binding registrati}" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
+        <StackLayout BackgroundColor="Transparent" Padding="75,0,75,50">
+               
+                <Button Text="REGISTRATI" TextColor="Red" FontSize="Medium" FontAttributes="Bold" BackgroundColor="White"  BorderRadius="20" BorderColor="Red" BorderWidth="3"  Command="{Binding registrati}" />
             
             </StackLayout>
              

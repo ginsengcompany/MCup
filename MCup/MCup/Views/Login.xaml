@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
-    x:Class="MCup.Views.LoginIoS"
+    x:Class="MCup.Views.Login"
     Title="Login"
     BackgroundImage="sfondo.png">
-    <ContentPage.Content>
+	<ContentPage.Content>
         <ScrollView>
-        <StackLayout Orientation="Vertical" BackgroundColor="Transparent">
-            <StackLayout Orientation="Vertical" Padding="0,50,0,0" BackgroundColor="White">
+        <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Vertical" Padding="0,50,0,0" >
                 <Image Source="log.png" HorizontalOptions="Center" HeightRequest="200"/>
             </StackLayout>
           
@@ -40,7 +40,7 @@
                         WidthRequest="250"/>
             </StackLayout>
         </StackLayout>
-                <StackLayout BackgroundColor="Transparent">
+                <StackLayout Padding="75,0,75,0">
                 <Button Text="LOGIN" TextColor="Red" FontSize="Medium" FontAttributes="Bold" BackgroundColor="White"  BorderRadius="20" BorderColor="Red" BorderWidth="3" Command="{Binding effettuaLogin}"/>
                 <Label Text="Crea un Account" TextColor="Red" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center">
                     <Label.GestureRecognizers>
