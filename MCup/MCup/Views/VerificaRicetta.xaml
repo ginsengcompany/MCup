@@ -7,10 +7,9 @@
              BackgroundColor="White"
              Title="Verifica Contenuto Ricetta">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="15">
-               
-                <StackLayout>
+        <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="15">
+
+            <StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Codice ricetta:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
                     <Label x:Name="codice_ricetta" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
@@ -26,13 +25,13 @@
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Codice Fiscale Medico:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
                     <Label x:Name="codice_fiscale_medico" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
-                   
+
                 </StackLayout>
             </StackLayout>
-                <StackLayout>
+            <StackLayout>
                 <Label Text="Descrizione ricetta:" TextColor="#ff0000" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
             </StackLayout>
-            <StackLayout VerticalOptions="Center" HorizontalOptions="Center" >
+           
                 <ListView x:Name="lista_prestazioni" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -48,10 +47,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </StackLayout>
             <Button Text="Continua" BackgroundColor="Red" TextColor="Black" Clicked="Button_Clicked"/>
-            </StackLayout>
-        </ScrollView>
-
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
-    x:Class="MCup.Views.Login"
+    x:Class="MCup.Views.LoginIoS"
     Title="Login"
     BackgroundColor="White">
-	<ContentPage.Content>
+    <ContentPage.Content>
         <ScrollView>
-        <StackLayout Orientation="Vertical" BackgroundColor="White">
-            <StackLayout Orientation="Vertical" Padding="0,50,0,0" BackgroundColor="White">
-                <Image Source="log.png" HorizontalOptions="Center"/>
-            </StackLayout>
-          
-        <StackLayout Orientation="Vertical" 
+            <StackLayout Orientation="Vertical" BackgroundColor="White">
+                <StackLayout Orientation="Vertical" Padding="0,50,0,0" BackgroundColor="White">
+                    <Image Source="log.png" HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" 
                      Padding="40">
                     <StackLayout Orientation="Horizontal"
                                  HorizontalOptions="Center">
@@ -26,10 +26,10 @@
                             HorizontalOptions="Center" 
                             VerticalOptions="Center"/>
                     </StackLayout>
-                <StackLayout  Orientation="Horizontal"
+                    <StackLayout  Orientation="Horizontal"
                               HorizontalOptions="Center">
-                    <Image Source="password.png"/>
-                    <xfx:XfxEntry  
+                        <Image Source="password.png"/>
+                        <xfx:XfxEntry  
                         Text="{Binding passWord}" 
                         Placeholder="Inserire Password" 
                         PlaceholderColor="Red" 
@@ -38,19 +38,19 @@
                         FontAttributes="Italic" 
                         HorizontalOptions="Center" 
                         WidthRequest="250"/>
-            </StackLayout>
-        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
                 <StackLayout BackgroundColor="White">
-                <Button Text="Login" TextColor="White" BackgroundColor="Red" BorderRadius="5" HorizontalOptions="Center" Command="{Binding effettuaLogin}"/>
-                <Label Text="Crea un Account" TextColor="Red" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>
-                    </Label.GestureRecognizers>
-                </Label>
+                    <Button Text="Login" TextColor="White" BackgroundColor="Red" BorderRadius="5" HorizontalOptions="Center" Command="{Binding effettuaLogin}"/>
+                    <Label Text="Crea un Account" TextColor="Red" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+                <ActivityIndicator Color="Red" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsVisible}" />
             </StackLayout>
-            
-            <ActivityIndicator Color="Red" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsVisible}" />
-        </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
