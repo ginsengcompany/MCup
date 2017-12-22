@@ -24,11 +24,15 @@ namespace MCup.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+<<<<<<< HEAD
 
 
             XfxControls.Init();
 
 
+=======
+            XfxControls.Init();
+>>>>>>> 269e0e531fa2b519e984241b3a281a8d37c82088
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

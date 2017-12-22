@@ -16,6 +16,7 @@ namespace MCup.Views
 
         private async void vaiRegistrazione(object sender, System.EventArgs e)
         {
+           
             if(Device.RuntimePlatform==Device.iOS)
             {
                 await Navigation.PushAsync(new RegistrazioneIOS());

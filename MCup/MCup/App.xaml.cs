@@ -15,6 +15,10 @@ namespace MCup
         public App()
         {
             InitializeComponent();
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                MainPage = new NavigationPage(new LoginIoS());
+            }else
             MainPage = new NavigationPage(new Login());
             Database.Database.Initialize();
         }
