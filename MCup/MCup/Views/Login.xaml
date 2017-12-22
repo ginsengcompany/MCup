@@ -7,15 +7,11 @@
     BackgroundImage="sfondo.png">
 	<ContentPage.Content>
         <ScrollView>
-<<<<<<< HEAD
+
         <StackLayout Orientation="Vertical">
             <StackLayout Orientation="Vertical" Padding="0,50,0,0" >
                 <Image Source="log.png" HorizontalOptions="Center" HeightRequest="200"/>
-=======
-        <StackLayout Orientation="Vertical" >
-            <StackLayout Orientation="Vertical" Padding="0,50,0,0" >
-                <Image Source="log.png" HorizontalOptions="Center"/>
->>>>>>> 269e0e531fa2b519e984241b3a281a8d37c82088
+
             </StackLayout>
           
         <StackLayout Orientation="Vertical" 
@@ -50,13 +46,10 @@
                         WidthRequest="250"/>
             </StackLayout>
         </StackLayout>
-<<<<<<< HEAD
+
                 <StackLayout Padding="75,0,75,0">
                 <Button Text="LOGIN" TextColor="Red" FontSize="Medium" FontAttributes="Bold" BackgroundColor="White"  BorderRadius="20" BorderColor="Red" BorderWidth="3" Command="{Binding effettuaLogin}"/>
-=======
-                <StackLayout >
-                <Button Text="Login" TextColor="White" BackgroundColor="Red" BorderRadius="5" HorizontalOptions="Center" Command="{Binding effettuaLogin}"/>
->>>>>>> 269e0e531fa2b519e984241b3a281a8d37c82088
+
                 <Label Text="Crea un Account" TextColor="Red" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>

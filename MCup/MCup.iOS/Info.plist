@@ -52,5 +52,7 @@
 	<string>Resources/Media.xcassets/Icone dell&apos;app.appiconset</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
+	<key>CFBundleName</key>
+	<string>MCup</string>
 </dict>
 </plist>

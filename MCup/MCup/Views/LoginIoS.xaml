@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Orientation="Vertical" BackgroundColor="Transparent">
-            <StackLayout Orientation="Vertical" Padding="0,50,0,0" BackgroundColor="White">
+            <StackLayout Orientation="Vertical" Padding="0,50,0,0" BackgroundColor="Transparent">
                 <Image Source="log.png" HorizontalOptions="Center" HeightRequest="200"/>
             </StackLayout>
           
@@ -40,7 +40,7 @@
                         WidthRequest="250"/>
             </StackLayout>
         </StackLayout>
-                <StackLayout BackgroundColor="Transparent">
+                <StackLayout BackgroundColor="Transparent" Padding="75,0,75,0">
                 <Button Text="LOGIN" TextColor="Red" FontSize="Medium" FontAttributes="Bold" BackgroundColor="White"  BorderRadius="20" BorderColor="Red" BorderWidth="3" Command="{Binding effettuaLogin}"/>
                 <Label Text="Crea un Account" TextColor="Red" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center">
                     <Label.GestureRecognizers>
