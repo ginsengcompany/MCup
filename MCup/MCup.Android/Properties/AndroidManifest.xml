@@ -8,5 +8,5 @@
   <uses-feature android:name="android.hardware.camera" />
   <uses-feature android:name="android.hardware.camera.autofocus" />
   <uses-feature android:name="android.hardware.camera.flash" />
-	<application android:label="MCup.Android"></application>
+	<application android:label="MCup.Android" android:largeHeap="true"></application>
 </manifest>

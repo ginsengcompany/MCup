@@ -9,6 +9,7 @@
         <ScrollView>
             
             <StackLayout Orientation="Vertical" Padding="20,20,20,0" BackgroundColor="White">
+                <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"></Label>
                 <xfx:XfxEntry 
                     Placeholder="Inserire nome"     
                     PlaceholderColor="Red"   
@@ -16,7 +17,6 @@
                     ErrorText="{Binding NameErrorText}" 
                     ErrorDisplay="Underline"
                     WidthRequest="250"
-                    HorizontalOptions="Center" 
                     VerticalOptions="Center"
                     TextColor="Black" 
                     FontAttributes="Italic"/>
@@ -24,10 +24,9 @@
                     Placeholder="Inserire cognome"     
                     PlaceholderColor="Red"   
                     Text="{Binding cognomeUtente}" 
-                    ErrorText="{Binding NameErrorText}" 
+                    ErrorText="{Binding SurnameErrorText}" 
                     ErrorDisplay="Underline"
-                    WidthRequest="250"
-                    HorizontalOptions="Center" 
+                    WidthRequest="250" 
                     VerticalOptions="Center"
                     TextColor="Black" 
                     FontAttributes="Italic"/>
@@ -38,7 +37,7 @@
                         Placeholder="Inserire Codice Fiscale"     
                         PlaceholderColor="Red"   
                         Text="{Binding codicefiscaleUtente}" 
-                        ErrorText="{Binding NameErrorText}" 
+                        ErrorText="{Binding CodeErrorText}" 
                         ErrorDisplay="Underline"
                         WidthRequest="250"
                         HorizontalOptions="Center" 
@@ -46,12 +45,12 @@
                         TextColor="Black" 
                         FontAttributes="Italic"/>
                    
-                    <Image Source="scan.png" WidthRequest="80" VerticalOptions="Center">
+                    <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
                     </Image>
-                    <Image Source="info.png" VerticalOptions="Center" >
+                    <Image Source="info.png" VerticalOptions="Center" WidthRequest="15" >
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Handle_Tapped" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
@@ -64,14 +63,14 @@
                         Placeholder="Inserisci il 1° codice ricetta"     
                         PlaceholderColor="Red"   
                         Text="{Binding codiceUno}" 
-                        ErrorText="{Binding NameErrorText}" 
+                        ErrorText="{Binding CodeOneErrorText}" 
                         ErrorDisplay="Underline"
                         WidthRequest="250"
                         HorizontalOptions="Center" 
                         VerticalOptions="Center"
                         TextColor="Black" 
                         FontAttributes="Italic"/>
-                    <Image Source="scan.png" WidthRequest="80" VerticalOptions="Center">
+                    <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
@@ -89,14 +88,14 @@
                         Placeholder="Inserisci il 1° codice ricetta"     
                         PlaceholderColor="Red"   
                         Text="{Binding codiceDue}" 
-                        ErrorText="{Binding NameErrorText}" 
+                        ErrorText="{Binding CodeTwoErrorText}" 
                         ErrorDisplay="Underline"
                         WidthRequest="250"
                         HorizontalOptions="Center" 
                         VerticalOptions="Center"
                         TextColor="Black" 
                         FontAttributes="Italic"/>
-                    <Image Source="scan.png" WidthRequest="80">
+                    <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
