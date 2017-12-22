@@ -12,8 +12,9 @@ namespace MCup.ModelView
     public class LoginModelView : INotifyPropertyChanged
     {
         private Utente utente;
-
+        private string nameErrorTextPassword;
         private bool isbusy;
+        private string nameErrorText;
 
         private bool isvisible;
 
@@ -47,27 +48,55 @@ namespace MCup.ModelView
             IsBusy = false;
             effettuaLogin = new Command(async () =>
             {
-                IsVisible = true;
-                IsBusy = true;
-                REST<Utente, ResponseLogin> rest = new REST<Utente, ResponseLogin>();
-                ResponseLogin response = await rest.PostJson(URL.Login, utente);
-                IsBusy = false;
-                IsVisible = false;
-                if (response == default(ResponseLogin))
-                    await App.Current.MainPage.DisplayAlert("Login", rest.warning, "OK");
-                else if (!response.auth)
-                    await App.Current.MainPage.DisplayAlert("Login", "Login non riuscita", "OK");
-                else
+                if (string.IsNullOrEmpty(codiceFiscale))
                 {
-                    App.Current.Properties["tokenLogin"] = response.token;
-                    REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>();
-                    ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita,response.token);
-                    if (responseStruttura.scelta)
-                        App.Current.MainPage = new MenuPrincipale();
+                    NameErrorText = "Attenzione codice fiscale non inserito correttamente";
+                    IsBusy = false;
+                }
+                if (string.IsNullOrEmpty(passWord))
+                {
+                    NameErrorTextPassword = "Attenzione password non inserita correttamente";
+                    IsBusy = false;
+                }
+                if (!string.IsNullOrEmpty(codiceFiscale) && !string.IsNullOrEmpty(passWord))
+                {
+                    IsVisible = true;
+                    IsBusy = true;
+                    REST<Utente, ResponseLogin> rest = new REST<Utente, ResponseLogin>();
+                    ResponseLogin response = await rest.PostJson(URL.Login, utente);
+                    IsBusy = false;
+                    IsVisible = false;
+                    if (response == default(ResponseLogin))
+                    {
+                        await App.Current.MainPage.DisplayAlert("Login", rest.warning, "OK");
+
+                    }
+                    else if (!response.auth)
+                        await App.Current.MainPage.DisplayAlert("Login", "Login non riuscita", "OK");
                     else
-                        App.Current.MainPage = new ListaStrutture("Login");
+                    {
+                        App.Current.Properties["tokenLogin"] = response.token;
+                        REST<object, ResponseStrutturaPreferita> restStrutturaPreferita =
+                            new REST<object, ResponseStrutturaPreferita>();
+                        ResponseStrutturaPreferita responseStruttura =
+                            await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token);
+                        if (responseStruttura.scelta)
+                            App.Current.MainPage = new MenuPrincipale();
+                        else
+                            App.Current.MainPage = new ListaStrutture("Login");
+                    }
                 }
             });
+        }
+
+        public string NameErrorTextPassword
+        {
+            get { return nameErrorTextPassword; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextPassword = value;
+            }
         }
         //Proprietà che definisce l' Username di chi effettua l'accesso
         public string codiceFiscale
@@ -90,6 +119,15 @@ namespace MCup.ModelView
             }
         }
 
+        public string NameErrorText
+        {
+            get { return nameErrorText; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorText = value;
+            }
+        }
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

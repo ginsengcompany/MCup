@@ -18,10 +18,12 @@
                                  HorizontalOptions="Center">
                         <Image Source="profilo.png"/>
                         <xfx:XfxEntry 
+                            x:Name="entryCodFis"
                             Placeholder="Inserire Codice Fiscale"     
                             PlaceholderColor="Red"   
                             Text="{Binding codiceFiscale}" 
                             ErrorText="{Binding NameErrorText}" 
+                            ErrorDisplay="Underline"
                             WidthRequest="250"
                             HorizontalOptions="Center" 
                             VerticalOptions="Center"/>
@@ -34,6 +36,8 @@
                         Placeholder="Inserire Password" 
                         PlaceholderColor="Red" 
                         TextColor="Black"
+                        ErrorText="{Binding NameErrorTextPassword}" 
+                        ErrorDisplay="Underline"
                         IsPassword="True"
                         FontAttributes="Italic" 
                         HorizontalOptions="Center" 
