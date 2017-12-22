@@ -244,7 +244,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\log.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\log.png" />
     <AndroidResource Include="Resources\drawable\sfondo.png" />
-    <AndroidResource Include="Resources\drawable\sfondo3.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -304,9 +303,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxhdpi\password.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\sfondo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
