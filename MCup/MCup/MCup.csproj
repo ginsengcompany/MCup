@@ -40,9 +40,7 @@
     </Compile>
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\Data\AppuntamentoData.cs" />
-    <Compile Include="Database\Data\StrutturePreferite.cs" />
     <Compile Include="Database\Models\Appuntamento.cs" />
-    <Compile Include="Database\Models\TbStrutturePreferite.cs" />
     <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
     <Compile Include="ModelView\GestioneAppuntamentiModelView.cs" />
     <Compile Include="ModelView\ListaDatePrenotazioniModelView.cs" />
@@ -90,6 +88,10 @@
     </Compile>
     <Compile Include="ModelView\LoginModelView.cs" />
     <Compile Include="Model\Utente.cs" />
+    <Compile Include="Views\RegistrazioneIOS.xaml.cs">
+      <DependentUpon>RegistrazioneIOS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CostomControls\CustomEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MainPage.xaml">
@@ -101,6 +103,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Login.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RegistrazioneIOS.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

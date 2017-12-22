@@ -98,6 +98,7 @@
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
     <Compile Include="CostomRenderers\ExtendedViewCellRenderer.cs" />
+    <Compile Include="CostomRenderers\CustomEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -254,11 +255,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\send.png" />
     <BundleResource Include="Resources\scan.png" />
-    <BundleResource Include="Resources\decline.png" />
-    <BundleResource Include="Resources\accept.png" />
-    <BundleResource Include="Resources\ricetta.png" />
     <BundleResource Include="Resources\info.png" />
     <BundleResource Include="Resources\log.png" />
+    <BundleResource Include="Resources\iconaAppuntamenti.png" />
+    <BundleResource Include="Resources\iconaPrenotazioni.png" />
     <BundleResource Include="Resources\iconaAppuntamenti-20x20%402x.png" />
     <BundleResource Include="Resources\iconaAppuntamenti-20x20%403x.png" />
     <BundleResource Include="Resources\iconaAppuntamenti-29x29%401x.png" />
@@ -268,15 +268,17 @@
     <BundleResource Include="Resources\iconaAppuntamenti-60x60%402x.png" />
     <BundleResource Include="Resources\iconaAppuntamenti-60x60%403x.png" />
     <BundleResource Include="Resources\iconaAppuntamenti-marketing-1024x1024.png" />
+    <BundleResource Include="Resources\iconaPrenotazioni-20x20%403x.png" />
+    <BundleResource Include="Resources\iconaPrenotazioni-29x29%401x.png" />
+    <BundleResource Include="Resources\iconaPrenotazioni-29x29%402x.png" />
+    <BundleResource Include="Resources\iconaPrenotazioni-40x40%402x.png" />
+    <BundleResource Include="Resources\iconaPrenotazioni-40x40%403x.png" />
+    <BundleResource Include="Resources\iconaPrenotazioni-60x60%402x.png" />
+    <BundleResource Include="Resources\iconaPrenotazioni-60x60%403x.png" />
+    <BundleResource Include="Resources\iconaPrenotazioni-marketing-1024x1024.png" />
     <BundleResource Include="Resources\iconaPrenotazioni-20x20%402x.png" />
-    <BundleResource Include="Resources\iconaPrenotazione-20x20%403x.png" />
-    <BundleResource Include="Resources\iconaPrenotazione-29x29%401x.png" />
-    <BundleResource Include="Resources\iconaPrenotazione-29x29%402x.png" />
-    <BundleResource Include="Resources\iconaPrenotazione-40x40%402x.png" />
-    <BundleResource Include="Resources\iconaPrenotazione-40x40%403x.png" />
-    <BundleResource Include="Resources\iconaPrenotazione-60x60%402x.png" />
-    <BundleResource Include="Resources\iconaPrenotazione-60x60%403x.png" />
-    <BundleResource Include="Resources\iconaPrenotazione-marketing-1024x1024.png" />
+    <BundleResource Include="Resources\sfondoAppIOS.png" />
+    <BundleResource Include="Resources\sfondoIOS.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen.png" />

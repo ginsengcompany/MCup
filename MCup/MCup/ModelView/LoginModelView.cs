@@ -58,7 +58,15 @@ namespace MCup.ModelView
                 else if (!response.auth)
                     await App.Current.MainPage.DisplayAlert("Login", "Login non riuscita", "OK");
                 else
-                    App.Current.MainPage = new MenuPrincipale();
+                {
+                    App.Current.Properties["tokenLogin"] = response.token;
+                    REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>();
+                    ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita,response.token);
+                    if (responseStruttura.scelta)
+                        App.Current.MainPage = new MenuPrincipale();
+                    else
+                        App.Current.MainPage = new ListaStrutture("Login");
+                }
             });
         }
         //Proprietà che definisce l' Username di chi effettua l'accesso
@@ -91,6 +99,12 @@ namespace MCup.ModelView
         {
             public string token;
             public bool auth;
+        }
+
+        private class ResponseStrutturaPreferita
+        {
+            public bool scelta;
+            public string struttura;
         }
 
     }

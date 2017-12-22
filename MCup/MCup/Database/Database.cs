@@ -15,7 +15,6 @@ namespace MCup.Database
     {
         private static string dbname = "dbCup.db";
         private static string dbPath;
-        private static ExistenceCheckResult exist;
         private static SQLiteConnection connection {get;set;}
         public static SQLiteConnection Connection
         {
@@ -32,7 +31,6 @@ namespace MCup.Database
             dbPath = Path.Combine(rootfolder.Path, dbname);
             connection = new SQLiteConnection(dbPath);
             connection.CreateTable<Appuntamento>();
-            connection.CreateTable<TbStrutturePreferite>();
             //await CreateDatabase(rootfolder);
         }
     }

@@ -48,7 +48,7 @@ namespace MCup.Views
                 else if (menu.MenuTitle.Equals("Scegli Struttura Preferita"))
                 {
                     IsPresented = false;
-                    Detail = new NavigationPage(new ListaStrutture());
+                    Detail = new NavigationPage(new ListaStrutture("Menu"));
                 }
             }
         }
