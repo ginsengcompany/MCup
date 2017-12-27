@@ -66,6 +66,11 @@ namespace MCup.ModelView
                     ResponseLogin response = await rest.PostJson(URL.Login, utente);
                     IsBusy = false;
                     IsVisible = false;
+                    if (response == null)
+                    {
+                       await App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita", "riprova");
+                    }
+
                     if (response == default(ResponseLogin))
                     {
                         await App.Current.MainPage.DisplayAlert("Login", rest.warning, "OK");

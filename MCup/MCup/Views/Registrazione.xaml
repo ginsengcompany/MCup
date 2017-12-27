@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              x:Class="MCup.Views.Registrazione"
-    Title="Registrazione"
-    BackgroundImage="sfondo.png">
+    Title="Registrazione">
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Orientation="Vertical" Padding="30" >
@@ -12,28 +11,24 @@
 
                 <xfx:XfxEntry 
                 Placeholder="Inserire nome"     
-                PlaceholderColor="Red"   
                 Text="{Binding nome}" 
                 ErrorText="{Binding NameErrorTextNome}"
                 ErrorDisplay="Underline"
                 WidthRequest="250"/>
             <xfx:XfxEntry 
                 Placeholder="Inserire cognome"     
-                PlaceholderColor="Red"   
                 Text="{Binding cognome}" 
                 ErrorText="{Binding NameErrorTextCognome}"
                 ErrorDisplay="Underline"
                 WidthRequest="250"/>
             <xfx:XfxEntry 
                 Placeholder="Inserire Codice Fiscale"     
-                PlaceholderColor="Red"   
                 Text="{Binding codiceFiscale}" 
                 ErrorText="{Binding NameErrorTextCodice}"
                 ErrorDisplay="Underline"
                 WidthRequest="250"/>
             <xfx:XfxEntry 
                 Placeholder="Inserire password"     
-                PlaceholderColor="Red"   
                 Text="{Binding password}" 
                 ErrorText="{Binding NameErrorTextPassword}"
                 ErrorDisplay="Underline"
@@ -41,7 +36,6 @@
                 WidthRequest="250"/>
             <xfx:XfxEntry 
                 Placeholder="Reinserire password"     
-                PlaceholderColor="Red"   
                 Text="{Binding ConfermaPassword}" 
                 ErrorText="{Binding NameErrorTextConfermaPassword}"
                 ErrorDisplay="Underline"

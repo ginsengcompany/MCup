@@ -7,43 +7,34 @@
     Title="Invio richiesta prenotazione">
     <ContentPage.Content>
         <ScrollView>
-            
-            <StackLayout Orientation="Vertical" Padding="20,20,20,0" BackgroundColor="White">
+            <StackLayout Orientation="Vertical" Padding="20,20,20,0" >
                 <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"></Label>
+                
                 <xfx:XfxEntry 
                     Placeholder="Inserire nome"     
-                    PlaceholderColor="Red"   
                     Text="{Binding nomeUtente}" 
                     ErrorText="{Binding NameErrorText}" 
                     ErrorDisplay="Underline"
                     WidthRequest="250"
-                    VerticalOptions="Center"
-                    TextColor="Black" 
-                    FontAttributes="Italic"/>
+                    VerticalOptions="Center"/>
                 <xfx:XfxEntry 
                     Placeholder="Inserire cognome"     
-                    PlaceholderColor="Red"   
                     Text="{Binding cognomeUtente}" 
                     ErrorText="{Binding SurnameErrorText}" 
                     ErrorDisplay="Underline"
                     WidthRequest="250" 
-                    VerticalOptions="Center"
-                    TextColor="Black" 
-                    FontAttributes="Italic"/>
+                    VerticalOptions="Center"/>
                
-                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                <StackLayout Orientation="Horizontal" Padding="0,10,0,0"  VerticalOptions="Center" HorizontalOptions="Center">
                     <xfx:XfxEntry 
                         x:Name="entryCodiceFiscale"
                         Placeholder="Inserire Codice Fiscale"     
-                        PlaceholderColor="Red"   
                         Text="{Binding codicefiscaleUtente}" 
                         ErrorText="{Binding CodeErrorText}" 
                         ErrorDisplay="Underline"
                         WidthRequest="250"
                         HorizontalOptions="Center" 
-                        VerticalOptions="Center"
-                        TextColor="Black" 
-                        FontAttributes="Italic"/>
+                        VerticalOptions="Center"/>
                    
                     <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
                         <Image.GestureRecognizers>
@@ -57,19 +48,16 @@
                     </Image>
                 </StackLayout>
               
-                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                <StackLayout Orientation="Horizontal" Padding="0,10,0,0"  VerticalOptions="Center" HorizontalOptions="Center">
                     <xfx:XfxEntry 
                         x:Name="entryCodiceRicettaUno"
                         Placeholder="Inserisci il 1° codice ricetta"     
-                        PlaceholderColor="Red"   
                         Text="{Binding codiceUno}" 
                         ErrorText="{Binding CodeOneErrorText}" 
                         ErrorDisplay="Underline"
                         WidthRequest="250"
                         HorizontalOptions="Center" 
-                        VerticalOptions="Center"
-                        TextColor="Black" 
-                        FontAttributes="Italic"/>
+                        VerticalOptions="Center"/>
                     <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
@@ -82,19 +70,16 @@
                     </Image>
                 </StackLayout>
          
-                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" VerticalOptions="Center" HorizontalOptions="Center">
                     <xfx:XfxEntry 
                         x:Name="entryCodiceRicettaDue"
                         Placeholder="Inserisci il 1° codice ricetta"     
-                        PlaceholderColor="Red"   
                         Text="{Binding codiceDue}" 
                         ErrorText="{Binding CodeTwoErrorText}" 
                         ErrorDisplay="Underline"
                         WidthRequest="250"
                         HorizontalOptions="Center" 
-                        VerticalOptions="Center"
-                        TextColor="Black" 
-                        FontAttributes="Italic"/>
+                        VerticalOptions="Center"/>
                     <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
@@ -106,7 +91,7 @@
                         </Image.GestureRecognizers>
                     </Image>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0" BackgroundColor="White">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0">
                     <Image Source="send.png" WidthRequest="250">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>
