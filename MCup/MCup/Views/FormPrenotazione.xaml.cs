@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ZXing;
@@ -22,11 +21,12 @@ namespace MCup.Views
     {
         void Handle_Tapped(object sender, System.EventArgs e)
         {
-            DisplayAlert("Info","L'icona qui di fianco serve a fare una scansione del codice a barre situato sul retro della Tessera Sanitaria", "OK");
+            DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del codice a barre situato sul retro della Tessera Sanitaria", "OK");
         }
 
         void Handle_Tapped_1(object sender, System.EventArgs e)
         {
+            
             DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del primo codice a barre situato sul fronte della Ricetta Medica", "OK");
         }
 
