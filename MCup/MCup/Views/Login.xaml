@@ -27,7 +27,7 @@
                     <StackLayout  Orientation="Horizontal"
                               HorizontalOptions="Center">
                         <Image Source="password.png"/>
-                        <xfx:XfxEntry  
+                        <xfx:XfxEntry 
                         Text="{Binding passWord}" 
                         Placeholder="Inserire Password" 
                         PlaceholderColor="Red" 
