@@ -250,6 +250,9 @@
     <AndroidResource Include="Resources\drawable-xhdpi\log.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\log.png" />
     <AndroidResource Include="Resources\drawable\sfondo.png" />
+    <AndroidResource Include="Resources\drawable\cod-uno.png" />
+    <AndroidResource Include="Resources\drawable\cod-due.png" />
+    <AndroidResource Include="Resources\drawable\cod-tre.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

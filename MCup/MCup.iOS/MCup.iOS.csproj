@@ -322,6 +322,9 @@
     <BundleResource Include="Resources\sfondoIOS.png" />
     <BundleResource Include="Resources\registrati.png" />
     <BundleResource Include="Resources\sfondo.png" />
+    <BundleResource Include="Resources\cod-uno.png" />
+    <BundleResource Include="Resources\cod-due.png" />
+    <BundleResource Include="Resources\cod-tre.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen.png" />
