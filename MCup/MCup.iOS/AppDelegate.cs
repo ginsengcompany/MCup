@@ -24,7 +24,7 @@ namespace MCup.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-
+            Rg.Plugins.Popup.Popup.Init();
             XfxControls.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
