@@ -16,12 +16,19 @@
     <AbsoluteLayout>
         <Frame
             x:Name="FrameContainer"
-            Margin="15"
             OutlineColor="Transparent"
+            HasShadow="False"
             BackgroundColor="Transparent">
-            <StackLayout
+            <StackLayout 
                 IsClippedToBounds="True">
-                <Image x:Name="imgInfo" Source="coduno.png"/>
+                <Image  x:Name="imgInfo">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_Tapped"/>
+                      <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"></PanGestureRecognizer>
+
+                      <PinchGestureRecognizer PinchUpdated="OnPinchUpdated" />
+                    </Image.GestureRecognizers>
+                </Image>
             </StackLayout>
         </Frame>
     </AbsoluteLayout>

@@ -35,7 +35,7 @@ namespace MCup.Views
         private async void Button_Clicked(object sender, EventArgs e)
         {
             REST<object, ResponseStrutturaPreferita> connessioneGetStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>();
-            ResponseStrutturaPreferita strutturaPreferita = await connessioneGetStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita);
+            ResponseStrutturaPreferita strutturaPreferita = await connessioneGetStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, App.Current.Properties["tokenLogin"].ToString());
             string struttura = strutturaPreferita.struttura;
             InvioDati invio = new InvioDati(prestazioni, struttura);
             REST<object, StruttureErogatrici> connessione = new REST<object, StruttureErogatrici>();
@@ -68,6 +68,7 @@ namespace MCup.Views
                 this.strutturaPreferita = strutturaPreferita;
             }
         }
+
 
         private class ResponseStrutturaPreferita
         {

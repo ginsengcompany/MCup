@@ -21,22 +21,28 @@ namespace MCup.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FormPrenotazione : ContentPage
     {
+        public string imgCodFiscale = "coduno.png";
+        public string imgCodUno = "coddue.png";
+        public string imgCodDue = "codtre.png";
 
         private async void Handle_Tapped(object sender, System.EventArgs e)
         {
-            await Navigation.PushPopupAsync(new PopupInfoScan());
+            await Navigation.PushPopupAsync(new PopupInfoScan(imgCodFiscale));
             //DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del codice a barre situato sul retro della Tessera Sanitaria", "OK");
         }
 
-        void Handle_Tapped_1(object sender, System.EventArgs e)
+        private async void Handle_Tapped_1(object sender, System.EventArgs e)
         {
-            
+            await Navigation.PushPopupAsync(new PopupInfoScan(imgCodUno));
+
             //DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del primo codice a barre situato sul fronte della Ricetta Medica", "OK");
         }
 
-        void Handle_Tapped_2(object sender, System.EventArgs e)
+        private async void Handle_Tapped_2(object sender, System.EventArgs e)
         {
-            DisplayAlert("Info","L'icona qui di fianco serve a fare una scansione del secondo codice a barre presente sul fronte della Ricetta Medica","OK");
+            await Navigation.PushPopupAsync(new PopupInfoScan(imgCodDue));
+
+           // DisplayAlert("Info","L'icona qui di fianco serve a fare una scansione del secondo codice a barre presente sul fronte della Ricetta Medica","OK");
         }
 
         public FormPrenotazione()
