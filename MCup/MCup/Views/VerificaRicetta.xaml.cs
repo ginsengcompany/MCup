@@ -41,14 +41,17 @@ namespace MCup.Views
             REST<object, StruttureErogatrici> connessione = new REST<object, StruttureErogatrici>();
             List<StruttureErogatrici> listaStruttureErogatrici = new List<StruttureErogatrici>();
             listaStruttureErogatrici = await connessione.PostJsonList(URL.StruttureErogatrici, invio);
+            //Se non ci sono strutture erogatrici
             if (listaStruttureErogatrici.Count == 0)
             {
-               await DisplayAlert("Attenzione", "nessuna struttura può erogare il servizio", "ritenta");
+               await DisplayAlert("Attenzione", "nessuna struttura può erogare le prestazioni contenute nella ricetta", "OK");
             }
-            else if(listaStruttureErogatrici[0].codice_struttura == strutturaPreferita.struttura)
+            //Se la struttura preferita eroga la/le prestazione/prestazioni
+            else if(listaStruttureErogatrici[0].esito == true)
             {
                 await DisplayAlert("ora", "faccio un pushasync", "a");
             }
+            //Se la struttura preferita non eroga la/le prestazione/prestazioni
             else
             {
                 await DisplayAlert("aldo", "ci sono piu strutture", "aaaaaaaa");
