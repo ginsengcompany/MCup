@@ -22,13 +22,15 @@ namespace MCup.CustomPopUp
         double yOffset = 0;
         double x, y;
         private const double MIN_SCALE = 1;
-        private const double MAX_SCALE = 8;
+        private const double MAX_SCALE = 1.2;
         private const double OVERSHOOT = 0.15;
 
 
         public PopupInfoScan(string codRicetta)
         {
             InitializeComponent();
+
+            
             this.codiceRicetta = codRicetta;
             var imagecontainer = new ContentView();
             Content = imgInfo;
@@ -45,6 +47,9 @@ namespace MCup.CustomPopUp
             base.OnAppearing();
             imgInfo.Source = codiceRicetta;
             FrameContainer.HeightRequest = -1;
+            CloseImage.Rotation = 30;
+            CloseImage.Scale = 0.3;
+            CloseImage.Opacity = 0;
         }
 
         protected async override Task OnDisappearingAnimationBegin()
@@ -61,13 +66,17 @@ namespace MCup.CustomPopUp
             });
             await TaskSource.Task;
         }
+     
 
         protected override bool OnBackgroundClicked()
         {
             closeAllPopup();
             return false;
         }
-
+        private void OnCloseButtonTapped(object sender, EventArgs e)
+        {
+            closeAllPopup();
+        }
         private async void closeAllPopup()
         {
             await Navigation.PopAllPopupAsync();
@@ -108,16 +117,16 @@ namespace MCup.CustomPopUp
 
         private void Handle_Tapped(object sender, EventArgs e)
         {
-            if (Scale > MIN_SCALE)
+           /* if (Scale > MIN_SCALE)
             {
-                this.ScaleTo(MIN_SCALE, 250, Easing.Linear);
-                this.TranslateTo(0, 0, 250, Easing.Linear);
+                this.ScaleTo(MIN_SCALE, 250, Easing.CubicInOut);
+                this.TranslateTo(0, 0, 250, Easing.CubicInOut);
             }
             else
             {
                 AnchorX = AnchorY = 0.5;
-                this.ScaleTo(MAX_SCALE, 250, Easing.Linear);
-            }
+                this.ScaleTo(MAX_SCALE, 250, Easing.CubicInOut);
+            }*/
         }
 
       
@@ -129,8 +138,8 @@ namespace MCup.CustomPopUp
 
                 case GestureStatus.Running:
                     // Translate and ensure we don't pan beyond the wrapped user interface element bounds.
-                    Content.TranslationX = Math.Max(Math.Min(0, x + e.TotalX), -Math.Abs(Content.Width - 1000));
-                    Content.TranslationY = Math.Max(Math.Min(0, y + e.TotalY), -Math.Abs(Content.Height - 1000));
+                    Content.TranslationX = Math.Max(Math.Min(0, x + e.TotalX), -Math.Abs(Content.Width - 0));
+                    Content.TranslationY = Math.Max(Math.Min(0, y + e.TotalY), -Math.Abs(Content.Height - 0));
                     break;
 
                 case GestureStatus.Completed:
@@ -140,5 +149,7 @@ namespace MCup.CustomPopUp
                     break;
             }
         }
+
+      
     }
 }
