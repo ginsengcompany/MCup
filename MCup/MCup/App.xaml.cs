@@ -19,7 +19,7 @@ namespace MCup
             {
                 MainPage = new NavigationPage(new LoginIoS());
             }else
-            MainPage = new NavigationPage(new FormPrenotazione());
+            MainPage = new NavigationPage(new Login());
             Database.Database.Initialize();
         }
 
