@@ -35,10 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Animations\UserAnimation.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="CostomControls\XfxEntry.cs" />
+    <Compile Include="CustomPopUp\PopupInfoScan.xaml.cs">
+      <DependentUpon>PopupInfoScan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\Data\AppuntamentoData.cs" />
     <Compile Include="Database\Models\Appuntamento.cs" />
@@ -79,9 +83,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\MenuPrincipale.xaml.cs">
       <DependentUpon>MenuPrincipale.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PopUpImage.xaml.cs">
-      <DependentUpon>PopUpImage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Registrazione.xaml.cs">
       <DependentUpon>Registrazione.xaml</DependentUpon>
@@ -154,6 +155,9 @@
     </Reference>
     <Reference Include="SQLitePCLRaw.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SQLitePCLRaw.core.1.1.5\lib\portable-net45+netcore45+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="Windows.Foundation.UniversalApiContract">
+      <HintPath>C:\Program Files (x86)\Windows Kits\10\References\10.0.16299.0\Windows.Foundation.UniversalApiContract\5.0.0.0\Windows.Foundation.UniversalApiContract.winmd</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.121934\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Core.dll</HintPath>
@@ -247,7 +251,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\PopUpImage.xaml">
+    <EmbeddedResource Include="CustomPopUp\PopupInfoScan.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

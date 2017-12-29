@@ -11,6 +11,8 @@ using Xamarin.Forms.Xaml;
 using ZXing;
 using ZXing.Mobile;
 using ZXing.Net.Mobile.Forms;
+using MCup.CustomPopUp;
+using Rg.Plugins.Popup.Extensions;
 
 //Questa pagina esegue il Binding con la ModelView FormPrenotazioneModelView.cs
 
@@ -19,15 +21,17 @@ namespace MCup.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FormPrenotazione : ContentPage
     {
-        void Handle_Tapped(object sender, System.EventArgs e)
+
+        private async void Handle_Tapped(object sender, System.EventArgs e)
         {
-            DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del codice a barre situato sul retro della Tessera Sanitaria", "OK");
+            await Navigation.PushPopupAsync(new PopupInfoScan());
+            //DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del codice a barre situato sul retro della Tessera Sanitaria", "OK");
         }
 
         void Handle_Tapped_1(object sender, System.EventArgs e)
         {
             
-            DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del primo codice a barre situato sul fronte della Ricetta Medica", "OK");
+            //DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del primo codice a barre situato sul fronte della Ricetta Medica", "OK");
         }
 
         void Handle_Tapped_2(object sender, System.EventArgs e)
