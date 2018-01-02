@@ -10,6 +10,11 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using MCup;
 
+/*
+ * Questa è la pagina principale che permette all'utente di navigare tra i servizi offerti dall'app e dal sistema informatico messo a sua disposizione.
+ * La pagina contiene una MasterDetailPage che visualizza all'utente, tramite un menu a tendina laterale, le possibili opzioni messe a disposizione per l'utente.
+ */
+
 namespace MCup.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -19,39 +24,41 @@ namespace MCup.Views
 		{
 			InitializeComponent();
             inizializzazioneMenu();
-
 		}
+        //Metodo che inizializza la MasterDetailPage e che inserisce in essa le pagine a cui è possibile accedere dal menu
         private void inizializzazioneMenu()
         {
-            List<Menu> menuPrincipale = new List<Menu>
+            List<Menu> menuPrincipale = new List<Menu> //Lista contenente le pagine a cui si può accedere dalla MasterDetailPage
             {
                 new Menu { MenuTitle = "Home" },
-                new Menu {MenuTitle = "Scegli Struttura Preferita"}
+                new Menu { MenuTitle = "Scegli Struttura Preferita" }
             };
-            ListaMenu.ItemsSource = menuPrincipale;
-            Detail = new NavigationPage(new MainPage());
+            ListaMenu.ItemsSource = menuPrincipale; //Assegna all'oggetto ListaMenu dello xaml della pagina la lista precedentemente inizializzata
+            Detail = new NavigationPage(new MainPage()); //Avvia la pagina principale
         }
 
+        //Metodo utilizzato come event handler per il tap sul menu da parte dell'utente
         private void ListaMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var menu = e.SelectedItem as Menu;
-
-            if (menu != null)
-
+            var menu = e.SelectedItem as Menu; //La variabile menu contiene l'elemento selezionato
+            if (menu != null) //Controlla se l'elemento non è null
             {
+                /*
+                 * In base all'elemento che l'utente ha tappato si avvia la relativa pagina
+                 */
                 if (menu.MenuTitle.Equals("Home"))
                 {
-
                     IsPresented = false;
-                    Detail = new NavigationPage(new MainPage());
+                    Detail = new NavigationPage(new MainPage()); //Avvia la pagina principale
                 }
                 else if (menu.MenuTitle.Equals("Scegli Struttura Preferita"))
                 {
                     IsPresented = false;
-                    Detail = new NavigationPage(new ListaStrutture("Menu"));
+                    Detail = new NavigationPage(new ListaStrutture("Menu")); //Avvia la pagina per la scelta della struttura preferita
                 }
             }
         }
+
         public class Menu
         {
             public string MenuTitle
