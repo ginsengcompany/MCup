@@ -51,9 +51,11 @@
     <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
     <Compile Include="ModelView\GestioneAppuntamentiModelView.cs" />
     <Compile Include="ModelView\ListaDatePrenotazioniModelView.cs" />
+    <Compile Include="ModelView\PropostaRichiestaModelView.cs" />
     <Compile Include="ModelView\RegistrazioneModelView.cs" />
     <Compile Include="Model\ListaDatePrenotazioni.cs" />
     <Compile Include="Model\Prenotazione.cs" />
+    <Compile Include="Model\PrenotazioneProposta.cs" />
     <Compile Include="Model\Prestazioni.cs" />
     <Compile Include="Model\Ricetta.cs" />
     <Compile Include="Model\Struttura.cs" />

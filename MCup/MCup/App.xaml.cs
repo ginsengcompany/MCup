@@ -1,5 +1,6 @@
 ﻿using MCup.Database.Data;
 using MCup.Database.Models;
+using MCup.Model;
 using MCup.Views;
 using System;
 using System.Collections.Generic;

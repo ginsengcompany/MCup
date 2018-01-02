@@ -22,17 +22,14 @@
                 Padding="10, 5"
                 Spacing="3"
                 IsClippedToBounds="True">
-<<<<<<< HEAD
-                <Image x:Name="imgInfo"/>
-=======
+               <!-- <Image x:Name="imgInfo"/> -->
                 <Image  x:Name="imgInfo" HeightRequest="150" WidthRequest="150">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Handle_Tapped"/>
-                      <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"></PanGestureRecognizer>
-                      <PinchGestureRecognizer PinchUpdated="OnPinchUpdated" />
+                        <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"></PanGestureRecognizer>
+                        <PinchGestureRecognizer PinchUpdated="OnPinchUpdated" />
                     </Image.GestureRecognizers>
                 </Image>
->>>>>>> 5ee4aeb390de8f8e64cc9f43557626c8b8cd63a0
             </StackLayout>
         </Frame>
         <ContentView

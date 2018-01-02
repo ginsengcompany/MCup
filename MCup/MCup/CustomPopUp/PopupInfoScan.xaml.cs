@@ -15,9 +15,6 @@ namespace MCup.CustomPopUp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupInfoScan : PopupPage
     {
-<<<<<<< HEAD
-        public PopupInfoScan(string imgName)
-=======
         private string codiceRicetta;
         double currentScale = 1;
         double startScale = 1;
@@ -29,14 +26,10 @@ namespace MCup.CustomPopUp
         private const double OVERSHOOT = 0.15;
 
 
-        public PopupInfoScan(string codRicetta)
->>>>>>> 5ee4aeb390de8f8e64cc9f43557626c8b8cd63a0
+        public PopupInfoScan(string imgName)
         {
             imgInfo.Source = imgName;
             InitializeComponent();
-
-            
-            this.codiceRicetta = codRicetta;
             var imagecontainer = new ContentView();
             Content = imgInfo;
             var pinchGesture = new PinchGestureRecognizer();

@@ -49,7 +49,7 @@ namespace MCup.Views
             //Se la struttura preferita eroga la/le prestazione/prestazioni
             else if(listaStruttureErogatrici[0].esito == true)
             {
-                await DisplayAlert("ora", "faccio un pushasync", "a");
+                await Navigation.PushAsync(new PropostaRichiesta(prestazioni));
             }
             //Se la struttura preferita non eroga la/le prestazione/prestazioni
             else
