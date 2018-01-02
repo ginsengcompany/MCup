@@ -73,7 +73,7 @@
                 <StackLayout Orientation="Horizontal" Padding="0,10,0,0" VerticalOptions="Center" HorizontalOptions="Center">
                     <xfx:XfxEntry 
                         x:Name="entryCodiceRicettaDue"
-                        Placeholder="Inserisci il 1° codice ricetta"     
+                        Placeholder="Inserisci il 2° codice ricetta"     
                         Text="{Binding codiceDue}" 
                         ErrorText="{Binding CodeTwoErrorText}" 
                         ErrorDisplay="Underline"

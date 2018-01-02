@@ -13,16 +13,41 @@
             DurationIn="700"
             EasingIn="BounceOut"/>
     </pages:PopupPage.Animation>
-    <AbsoluteLayout>
+    <StackLayout BackgroundColor="Red">
         <Frame
             x:Name="FrameContainer"
-            Margin="15"
             OutlineColor="Transparent"
-            BackgroundColor="Transparent">
+            HasShadow="False">
             <StackLayout
+                Padding="10, 5"
+                Spacing="3"
                 IsClippedToBounds="True">
+<<<<<<< HEAD
                 <Image x:Name="imgInfo"/>
+=======
+                <Image  x:Name="imgInfo" HeightRequest="150" WidthRequest="150">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_Tapped"/>
+                      <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"></PanGestureRecognizer>
+                      <PinchGestureRecognizer PinchUpdated="OnPinchUpdated" />
+                    </Image.GestureRecognizers>
+                </Image>
+>>>>>>> 5ee4aeb390de8f8e64cc9f43557626c8b8cd63a0
             </StackLayout>
         </Frame>
-    </AbsoluteLayout>
+        <ContentView
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="1, 0, -1, -1">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCloseButtonTapped"/>
+            </ContentView.GestureRecognizers>
+            <Image
+                x:Name="CloseImage"
+                Source="close_circle_button.png"
+                HeightRequest="50"
+                WidthRequest="50">
+              
+            </Image>
+        </ContentView>
+    </StackLayout>
 </pages:PopupPage>
