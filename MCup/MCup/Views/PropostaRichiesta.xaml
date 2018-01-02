@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="MCup.Views.PropostaRichiesta"
+    xmlns:local="clr-namespace:MCup"
+    xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
+    BackgroundColor="White"
+    Title="Richiesta proposta">
+	<ContentPage.Content>
+        <StackLayout BackgroundColor="White" Orientation="Vertical">
+        <ListView BackgroundColor="White" HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="Fill">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <customControls:ExtendedViewCell SelectedBackgroundColor="White">
+                        <ViewCell.View >
+                        <Label Text="Prestazione:" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                        </ViewCell.View>
+                            
+                    </customControls:ExtendedViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+            <StackLayout BackgroundColor="white">
+            <Button Text="Conferma" BackgroundColor="Red" TextColor="White" WidthRequest="100"  Clicked="Button_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

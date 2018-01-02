@@ -38,6 +38,7 @@
                 </Image>
                 <Label Text="APPUNTAMENTI" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
             </Grid>
+            <controls:FloatingActionButton x:Name="FAB" HorizontalOptions="End" WidthRequest="50" HeightRequest="50"  VerticalOptions="End" Image="utente.png"  Clicked="Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

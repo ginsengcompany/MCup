@@ -14,8 +14,9 @@ namespace MCup.CustomPopUp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupInfoScan : PopupPage
     {
-        public PopupInfoScan()
+        public PopupInfoScan(string imgName)
         {
+            imgInfo.Source = imgName;
             InitializeComponent();
         }
 

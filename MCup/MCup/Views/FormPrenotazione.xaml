@@ -63,7 +63,7 @@
                             <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
                     </Image>
-                    <Image Source="info.png" VerticalOptions="Center">
+                    <Image Source="info.png" VerticalOptions="Center" WidthRequest="15">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Handle_Tapped_1" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
@@ -85,7 +85,7 @@
                             <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
                     </Image>
-                    <Image Source="info.png">
+                    <Image Source="info.png" VerticalOptions="Center" WidthRequest="15">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Handle_Tapped_2" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>

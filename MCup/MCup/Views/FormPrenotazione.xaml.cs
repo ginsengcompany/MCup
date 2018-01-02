@@ -24,19 +24,20 @@ namespace MCup.Views
 
         private async void Handle_Tapped(object sender, System.EventArgs e)
         {
-            await Navigation.PushPopupAsync(new PopupInfoScan());
-            //DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del codice a barre situato sul retro della Tessera Sanitaria", "OK");
+            await Navigation.PushPopupAsync(new PopupInfoScan("coduno.png"));
+
         }
 
-        void Handle_Tapped_1(object sender, System.EventArgs e)
+        private async void Handle_Tapped_1(object sender, System.EventArgs e)
         {
-            
-            //DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del primo codice a barre situato sul fronte della Ricetta Medica", "OK");
+            await Navigation.PushPopupAsync(new PopupInfoScan("coddue.png"));
+
         }
 
-        void Handle_Tapped_2(object sender, System.EventArgs e)
+        private async void Handle_Tapped_2(object sender, System.EventArgs e)
         {
-            DisplayAlert("Info","L'icona qui di fianco serve a fare una scansione del secondo codice a barre presente sul fronte della Ricetta Medica","OK");
+            await Navigation.PushPopupAsync(new PopupInfoScan("codtre.png"));
+
         }
 
         public FormPrenotazione()
