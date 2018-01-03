@@ -33,6 +33,7 @@ namespace MCup.Views
                 new Menu { MenuTitle = "Home" },
                 new Menu { MenuTitle = "Scegli Struttura Preferita" },
                 new Menu { MenuTitle ="Contatti"}
+
             };
             ListaMenu.ItemsSource = menuPrincipale; //Assegna all'oggetto ListaMenu dello xaml della pagina la lista precedentemente inizializzata
             Detail = new NavigationPage(new MainPage()); //Avvia la pagina principale
@@ -45,7 +46,7 @@ namespace MCup.Views
             if (menu != null) //Controlla se l'elemento non è null
             {
                 /*
-                 * In base all'elemento che l'utente ha tappato si avvia la relativa pagina
+                 * In base all'elemento che l'utente ha tappato si avvia la relativa pagina o si effettua il logout
                  */
                 if (menu.MenuTitle.Equals("Home"))
                 {

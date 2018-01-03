@@ -5,7 +5,7 @@
     x:Class="MCup.Views.Login"
     Title="Login"
     BackgroundImage="sfondo.png">
-	<ContentPage.Content>
+    <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical" Margin="10">
                 <StackLayout Orientation="Vertical" >

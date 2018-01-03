@@ -152,12 +152,6 @@
     <Reference Include="SQLitePCLRaw.provider.sqlite3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=62684c7b4f184e3f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SQLitePCLRaw.provider.sqlite3.ios_unified.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
     </Reference>
-    <Reference Include="SuaveControls.FloatingActionButton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SuaveControls.FloatingActionButton.2017.10.17\lib\xamarinios10\SuaveControls.FloatingActionButton.dll</HintPath>
-    </Reference>
-    <Reference Include="SuaveControls.FloatingActionButton.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SuaveControls.FloatingActionButton.2017.10.17\lib\xamarinios10\SuaveControls.FloatingActionButton.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
@@ -216,66 +210,87 @@
   <ItemGroup>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\1024x1024.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\120x120.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\152x152.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\167x167.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\180x180.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\20x20.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\29x29.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\40x40.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\58x58.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\60x60.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\76x76.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\80x80.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\87x87.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1024x768.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1536x2048.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\2048x1536.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\640x1136.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\640x960.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\768x1024.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
@@ -384,7 +399,19 @@
     <BundleResource Include="Resources\close_circle_button.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\utente.png" />
+    <BundleResource Include="Resources\logout-150x150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout-20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout-30x30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout-40x40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout-50x50.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets')" />
