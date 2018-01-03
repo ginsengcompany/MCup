@@ -11,18 +11,23 @@ using Xamarin.Forms;
 using MCup.Service;
 using MCup.Views;
 
+/*
+ * Questa classe gestisce le informazioni, tramite il binding con le pagine Registrazione e Registrazione IOS, relative alla fase di registrazione dell'utenza. 
+ */
+
 namespace MCup.ModelView
 {
     public class RegistrazioneModelView : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
 
-        private Utente utente;
+        private Utente utente; //Oggetto che astrae l'utenza del cliente
+
         private string confermaPassword, nameErrorTextNome, nameErrorTextCognome, nameErrorTextCodice, nameErrorTextPassword, nameErrorTextConfermaPassword;
 
-        public ICommand registrati { protected set; get; }
+        public ICommand registrati { protected set; get; } //Command per il tentativo di registrazione dell'utenza
 
-        public string codiceFiscale
+        public string codiceFiscale //Proprietà relativa al campo codice fiscale
         {
             get { return utente.codice_fiscale; }
             set
@@ -32,7 +37,7 @@ namespace MCup.ModelView
             }
         }
 
-        public string password
+        public string password //Proprietà relativa al campo password
         {
             get { return utente.password; }
             set
@@ -42,7 +47,7 @@ namespace MCup.ModelView
             }
         }
 
-        public string nome
+        public string nome //Proprietà relativa al campo nome
         {
             get { return utente.nome; }
             set
@@ -52,7 +57,7 @@ namespace MCup.ModelView
             }
         }
 
-        public string cognome
+        public string cognome //Proprietà relativa al campo cognome
         {
             get { return utente.cognome; }
             set
@@ -62,7 +67,7 @@ namespace MCup.ModelView
             }
         }
 
-        public string ConfermaPassword
+        public string ConfermaPassword //Proprietà relativa al campo password
         {
             get { return confermaPassword; }
             set
@@ -124,79 +129,78 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        //Costruttore che inizializza un utenza vuota e definisce il metodo a cui il Command registrati fa riferimento
         public RegistrazioneModelView()
         {
-            utente = new Utente();
+            utente = new Utente(); //Crea un utenza vuota
 
             registrati = new Command(async () =>
             {
+                //Imposta gli errori ad una stringa vuota
                 NameErrorTextNome=String.Empty;
                 NameErrorTextCognome = String.Empty;
                 NameErrorTextCodice = String.Empty;
                 NameErrorTextPassword = String.Empty;
                 NameErrorTextConfermaPassword = String.Empty;
-
-                if (string.IsNullOrEmpty(nome))
+                /*
+                 * variabile locale utilizzata per verificare se l'utente ha inserito i campi obbligatori per effettuare il tentativo di registrazione.
+                 * Questa viene inizializzata a true supponendo a priori che l'utente abbia inserito tutti i campi correttamente.
+                 * Ogni qualvota che uno dei seguenti controlli non andasse a buon fine viene assegnata a questa variabile il valore false
+                 */
+                bool controllPass = true;
+                if (string.IsNullOrEmpty(nome)) //Controlla se il campo nome è vuoto o null
                 {
                     NameErrorTextNome = "Attenzione campo non riempito";
-
+                    controllPass = false;
                 }
-                if (string.IsNullOrEmpty(cognome))
+                if (string.IsNullOrEmpty(cognome)) //Controlla se il campo cognome è vuoto o null
                 {
                     NameErrorTextCognome = "Attenzione campo non riempito";
-
+                    controllPass = false;
                 }
-                if (string.IsNullOrEmpty(codiceFiscale))
+                if (string.IsNullOrEmpty(codiceFiscale)) //Controlla se il campo codice fiscale è vuoto o null
                 {
                     NameErrorTextCodice = "Attenzione campo non riempito";
-
+                    controllPass = false;
                 }
-                if (string.IsNullOrEmpty(password))
+                if (string.IsNullOrEmpty(password)) //Controlla se il campo password è vuoto o null
                 {
                     NameErrorTextPassword = "Attenzione campo non riempito";
-
+                    controllPass = false;
                 }
-                if (string.IsNullOrEmpty(ConfermaPassword))
+                if (string.IsNullOrEmpty(ConfermaPassword)) //Controlla se il campo conferma password è vuoto o null
                 {
                     NameErrorTextConfermaPassword = "Attenzione campo non riempito";
-
+                    controllPass = false;
                 }
-                if (password != ConfermaPassword)
+                else if (password != ConfermaPassword) //Controlla se la password inserita dall'utente è uguale alla stringa inserita dall'utente nel campo conferma password
                 {
                     NameErrorTextConfermaPassword = "Attenzione la password non corrisponde";
+                    controllPass = false;
                 }
-                if (!string.IsNullOrEmpty(nome) && !string.IsNullOrEmpty(cognome) &&
-                    !string.IsNullOrEmpty(codiceFiscale) && !string.IsNullOrEmpty(password) &&
-                    !string.IsNullOrEmpty(confermaPassword)&&(password.Equals(confermaPassword)))
+                if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
                 {
-                    if (utente.verificaCampiRegistrazione())
+                    REST<object, string> restTermini = new REST<object, string>(); //Crea un oggetto REST per i termini di servizio remoti
+                    var termini = await restTermini.getString(URL.TerminiServizio); //Recupera i termini di servizio attraverso una GET
+                    //Mostra il display alert contenente i termini di servizio recuperati dalla rest restTermini e salva la risposta dell'utente nella variabile accetaODeclina
+                    var accetaODeclina = await App.Current.MainPage.DisplayAlert("Termini di servizio", termini, "ACCETTA", "DECLINA");
+                    if (accetaODeclina) //Controlla che l'utente abbia accettato i termini di servizio
                     {
-                        REST<object, string> restTermini = new REST<object, string>();
-                        var termini = await restTermini.getString(URL.TerminiServizio);
-                        var accetaODeclina =
-                            await App.Current.MainPage.DisplayAlert("Termini di servizio", termini, "ACCETTA",
-                                "DECLINA");
-                        if (accetaODeclina)
+                        REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>(); //Crea un oggetto rest per effettuare la registrazione da remoto
+                        ResponseRegistrazione response = await rest.PostJson(URL.Registrazione, utente); //Effettua una POST che restituisce nella variabile response se la registrazione ha avuto successo
+                        if (response == default(ResponseRegistrazione)) //Se la variabile response contiene il valore di default della classe Response Registrazione allora la registrazione non è avvenuta
+                            await App.Current.MainPage.DisplayAlert("Registrazione", rest.warning, "OK"); //Visualizza un display alert che indica all'utente che la registrazione non è stata effettuata
+                        else if (response.auth) //Controlla se response contiene un oggetto e che indica che la registrazione è avvenuta con successo
                         {
-                            REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>();
-                            ResponseRegistrazione response = await rest.PostJson(URL.Registrazione, utente);
-                            if (response == default(ResponseRegistrazione))
-                                await App.Current.MainPage.DisplayAlert("Registrazione", rest.warning, "OK");
-                            else if (response.auth)
-                            {
-                                await App.Current.MainPage.DisplayAlert("Registrazione",
-                                    "Registrazione effettuata con successo", "OK");
-                                await App.Current.MainPage.Navigation.PopAsync();
-                            }
-                            else
-                                await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
+                            //Visualizza un display alert che indica all'utente che la registrazione è avvenuta con successo
+                            await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione effettuata con successo", "OK");
+                            await App.Current.MainPage.Navigation.PopAsync(); //Ritorna alla pagina di login
                         }
-                        else
-                            await App.Current.MainPage.DisplayAlert("Registrazione",
-                                "Devi accettare i termini di servizio per poter proseguire", "OK");
+                        else //Errore imprevisto durante la registrazione
+                            await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
                     }
-                    else
-                        await App.Current.MainPage.DisplayAlert("Registrazione", "Compilare tutti i campi", "OK");
+                    else //L'utente non ha accettato i termini di servizio
+                        await App.Current.MainPage.DisplayAlert("Registrazione", "Devi accettare i termini di servizio per poter proseguire", "OK");
                 }
             });
         }

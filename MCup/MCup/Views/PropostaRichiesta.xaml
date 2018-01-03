@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="MCup.Views.PropostaRichiesta"
+    xmlns:local="clr-namespace:MCup"
+    xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
+    BackgroundColor="White"
+    Title="Richiesta proposta">
+	<ContentPage.Content>
+        <StackLayout BackgroundColor="White" Orientation="Vertical">
+            <ListView BackgroundColor="White" HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="Fill" ItemsSource="{Binding list}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <customControls:ExtendedViewCell SelectedBackgroundColor="White">
+                            <ViewCell.View>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="Prestazione:" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding descPrestazione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="Reparto" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding descReparto}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="Data dell'appuntamento" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding dataAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="Orario dell'appuntamento" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding oraAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="Posizione in coda" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding posizione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                            </ViewCell.View>
+                        </customControls:ExtendedViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout BackgroundColor="white">
+                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White" WidthRequest="100"  Clicked="Button_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

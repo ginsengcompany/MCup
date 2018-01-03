@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
@@ -22,11 +22,12 @@
                 Padding="10, 5"
                 Spacing="3"
                 IsClippedToBounds="True">
+               <!-- <Image x:Name="imgInfo"/> -->
                 <Image  x:Name="imgInfo" HeightRequest="150" WidthRequest="150">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Handle_Tapped"/>
-                      <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"></PanGestureRecognizer>
-                      <PinchGestureRecognizer PinchUpdated="OnPinchUpdated" />
+                        <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"></PanGestureRecognizer>
+                        <PinchGestureRecognizer PinchUpdated="OnPinchUpdated" />
                     </Image.GestureRecognizers>
                 </Image>
             </StackLayout>

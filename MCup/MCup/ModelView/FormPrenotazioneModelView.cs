@@ -129,16 +129,6 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private class sendRicetta
-        {
-            public string codice_nre;
-
-            public sendRicetta(string codice_uno,string codice_due)
-            {
-                this.codice_nre = codice_uno + codice_due;
-            }
-        }
-
         //Funzione utilizzata per l'invio della richiesta di prenotazione al servizio
         public async Task InvioDatiAsync ()
         {
@@ -148,6 +138,17 @@ namespace MCup.ModelView
                 sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString(),ricetta.codice_due.ToString());
                 Ricetta response = await connessione.PostJson(URL.Ricetta,nre);
                 model.metodoPush(response);
+            }
+        }
+
+        //Classe utilizzata per astrarre il json da inviare al servizio per ottenere le informazioni della ricetta
+        private class sendRicetta
+        {
+            public string codice_nre;
+
+            public sendRicetta(string codice_uno, string codice_due)
+            {
+                this.codice_nre = codice_uno + codice_due;
             }
         }
     }

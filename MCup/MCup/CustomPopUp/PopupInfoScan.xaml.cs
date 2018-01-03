@@ -26,12 +26,10 @@ namespace MCup.CustomPopUp
         private const double OVERSHOOT = 0.15;
 
 
-        public PopupInfoScan(string codRicetta)
+        public PopupInfoScan(string imgName)
         {
+            imgInfo.Source = imgName;
             InitializeComponent();
-
-            
-            this.codiceRicetta = codRicetta;
             var imagecontainer = new ContentView();
             Content = imgInfo;
             var pinchGesture = new PinchGestureRecognizer();

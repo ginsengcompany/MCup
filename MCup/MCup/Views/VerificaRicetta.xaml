@@ -25,25 +25,19 @@
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Codice Fiscale Medico:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
                     <Label x:Name="codice_fiscale_medico" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
-
                 </StackLayout>
             </StackLayout>
             <StackLayout>
                 <Label Text="Descrizione ricetta:" TextColor="#ff0000" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
             </StackLayout>
-           
-                <ListView x:Name="lista_prestazioni" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
+            <ListView x:Name="lista_prestazioni" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                                <customControls:ExtendedViewCell SelectedBackgroundColor="White">
-                            
-                                     
-                                <ViewCell.View>
-                                    <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
-                                </ViewCell.View>
-                                        
-                            
-                                    </customControls:ExtendedViewCell>
+                        <customControls:ExtendedViewCell SelectedBackgroundColor="White">
+                            <ViewCell.View>
+                                <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
+                            </ViewCell.View>
+                        </customControls:ExtendedViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

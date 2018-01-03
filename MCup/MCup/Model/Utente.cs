@@ -43,10 +43,5 @@ namespace MCup.Model
             this.password = password;
             this.struttura_preferita = struttura_preferita;
         }
-
-        public bool verificaCampiRegistrazione()
-        {
-            return this.nome != string.Empty && this.cognome != string.Empty && this.codice_fiscale != string.Empty && this.password != string.Empty;
-        }
     }
 }

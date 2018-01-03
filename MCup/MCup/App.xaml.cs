@@ -1,5 +1,6 @@
 ﻿using MCup.Database.Data;
 using MCup.Database.Models;
+using MCup.Model;
 using MCup.Views;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,12 @@ namespace MCup
         public App()
         {
             InitializeComponent();
-            if (Device.RuntimePlatform == Device.iOS)
+            if (Device.RuntimePlatform == Device.iOS) //controlla se il device su cui l'app viene avviata è IOS o Android
             {
-                MainPage = new NavigationPage(new LoginIoS());
+                MainPage = new NavigationPage(new LoginIoS()); //Avvia la pagina di login per i dispositivi IOS
             }else
-            MainPage = new NavigationPage(new Login());
-            Database.Database.Initialize();
+                MainPage = new NavigationPage(new Login()); //Avvia la pagina di login per i dispositivi Android
+            Database.Database.Initialize(); //Inizializza il database al primo avvio dell'app, altrimenti crea i riferimenti per la sua gestione
         }
 
         protected override void OnStart()

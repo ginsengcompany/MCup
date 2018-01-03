@@ -51,9 +51,11 @@
     <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
     <Compile Include="ModelView\GestioneAppuntamentiModelView.cs" />
     <Compile Include="ModelView\ListaDatePrenotazioniModelView.cs" />
+    <Compile Include="ModelView\PropostaRichiestaModelView.cs" />
     <Compile Include="ModelView\RegistrazioneModelView.cs" />
     <Compile Include="Model\ListaDatePrenotazioni.cs" />
     <Compile Include="Model\Prenotazione.cs" />
+    <Compile Include="Model\PrenotazioneProposta.cs" />
     <Compile Include="Model\Prestazioni.cs" />
     <Compile Include="Model\Ricetta.cs" />
     <Compile Include="Model\Struttura.cs" />
@@ -102,6 +104,9 @@
       <DependentUpon>RegistrazioneIOS.xaml</DependentUpon>
     </Compile>
     <Compile Include="CostomControls\CustomEntry.cs" />
+    <Compile Include="Views\PropostaRichiesta.xaml.cs">
+      <DependentUpon>PropostaRichiesta.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MainPage.xaml">
@@ -119,6 +124,10 @@
     <EmbeddedResource Include="Views\RegistrazioneIOS.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PropostaRichiesta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

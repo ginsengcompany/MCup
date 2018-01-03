@@ -14,41 +14,42 @@ using ZXing.Net.Mobile.Forms;
 using MCup.CustomPopUp;
 using Rg.Plugins.Popup.Extensions;
 
-//Questa pagina esegue il Binding con la ModelView FormPrenotazioneModelView.cs
+/*
+ * Questa pagina presenta all'utente una form da compilare con le informazioni riguardanti la ricetta e con quale nominativo utilizzarla.
+ * La pagina prevede l'inserimento dei dati anagrafici relativi alla persona che intende utilizzare la ricetta e i codici relativi ad essa.
+ */
 
 namespace MCup.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FormPrenotazione : ContentPage
     {
-        public string imgCodFiscale = "coduno.png";
-        public string imgCodUno = "coddue.png";
-        public string imgCodDue = "codtre.png";
+        public string imgCodFiscale = "coduno.png"; //Variabile contenente il nome dell'immagine di esempio del codice fiscale
+        public string imgCodUno = "coddue.png"; //Variabile contenente il nome dell'immagine di esempio del codice 1 della ricetta
+        public string imgCodDue = "codtre.png"; //Variabile contenente il nome dell'immagine di esempio del codice 2 della ricetta
 
+        //Metodo che visualizza il popup contenente l'immagine di esempio del codice fiscale
         private async void Handle_Tapped(object sender, System.EventArgs e)
         {
             await Navigation.PushPopupAsync(new PopupInfoScan(imgCodFiscale));
-            //DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del codice a barre situato sul retro della Tessera Sanitaria", "OK");
         }
 
+        //Metodo che visualizza il popup contenente l'immagine di esempio del codice 1 della ricetta
         private async void Handle_Tapped_1(object sender, System.EventArgs e)
         {
             await Navigation.PushPopupAsync(new PopupInfoScan(imgCodUno));
-
-            //DisplayAlert("Info", "L'icona qui di fianco serve a fare una scansione del primo codice a barre situato sul fronte della Ricetta Medica", "OK");
         }
 
+        //Metodo che visualizza il popup contenente l'immagine di esempio del codice 2 della ricetta
         private async void Handle_Tapped_2(object sender, System.EventArgs e)
         {
             await Navigation.PushPopupAsync(new PopupInfoScan(imgCodDue));
-
-           // DisplayAlert("Info","L'icona qui di fianco serve a fare una scansione del secondo codice a barre presente sul fronte della Ricetta Medica","OK");
         }
 
         public FormPrenotazione()
         {
             InitializeComponent();
-            BindingContext = new FormPrenotazioneModelView(this);
+            BindingContext = new FormPrenotazioneModelView(this); //Questa pagina esegue il Binding con la classe FormPrenotazioneModelView
         }
 
         //Funzione chiamata per scannerizzare il codice fiscale dell'utente
@@ -64,7 +65,7 @@ namespace MCup.Views
             };
             var overlay = new ZXingDefaultOverlay
             {
-                ShowFlashButton = true,
+                ShowFlashButton = false,
 
             };
             overlay.BindingContext = overlay;
@@ -99,7 +100,7 @@ namespace MCup.Views
             };
             var overlay = new ZXingDefaultOverlay
             {
-                ShowFlashButton = true
+                ShowFlashButton = false
             };
             overlay.BindingContext = overlay;
             var scanPage = new ZXingScannerPage(options, overlay);
@@ -128,7 +129,7 @@ namespace MCup.Views
             };
             var overlay = new ZXingDefaultOverlay
             {
-                ShowFlashButton = true
+                ShowFlashButton = false
             };
             overlay.BindingContext = overlay;
             var scanPage = new ZXingScannerPage(options, overlay);
@@ -144,7 +145,7 @@ namespace MCup.Views
             await Navigation.PushAsync(scanPage);
         }
 
-        //Funzione chiamata per passare alla pagina ListaDatePrestazioni per visualizzare la lista dei giorni e degli orari in cui effettuare la richiesta di prenotazione
+        //Funzione chiamata per passare alla pagina VerificaRicetta per visualizzare il contenuto della ricetta all'utente
         public void metodoPush(Ricetta ricetta)
         {
             Navigation.PushAsync(new VerificaRicetta(ricetta));
