@@ -50,6 +50,7 @@
     <Compile Include="Extentions\DoubleExtentions.cs" />
     <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
     <Compile Include="ModelView\GestioneAppuntamentiModelView.cs" />
+    <Compile Include="ModelView\ListaContattiModelView.cs" />
     <Compile Include="ModelView\ListaDatePrenotazioniModelView.cs" />
     <Compile Include="ModelView\PropostaRichiestaModelView.cs" />
     <Compile Include="ModelView\RegistrazioneModelView.cs" />
@@ -68,6 +69,9 @@
     </Compile>
     <Compile Include="Views\GestioneAppuntamenti.xaml.cs">
       <DependentUpon>GestioneAppuntamenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListaContatti.xaml.cs">
+      <DependentUpon>ListaContatti.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ListaDatePrestazioni.xaml.cs">
       <DependentUpon>ListaDatePrestazioni.xaml</DependentUpon>
@@ -263,6 +267,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CustomPopUp\PopupInfoScan.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ListaContatti.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

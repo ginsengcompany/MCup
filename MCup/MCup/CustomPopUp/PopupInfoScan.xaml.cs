@@ -28,8 +28,8 @@ namespace MCup.CustomPopUp
 
         public PopupInfoScan(string imgName)
         {
-            imgInfo.Source = imgName;
             InitializeComponent();
+            imgInfo.Source = imgName;
             var imagecontainer = new ContentView();
             Content = imgInfo;
             var pinchGesture = new PinchGestureRecognizer();
@@ -43,7 +43,6 @@ namespace MCup.CustomPopUp
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            imgInfo.Source = codiceRicetta;
             FrameContainer.HeightRequest = -1;
             CloseImage.Rotation = 30;
             CloseImage.Scale = 0.3;

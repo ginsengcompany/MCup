@@ -43,7 +43,6 @@
                 Source="close_circle_button.png"
                 HeightRequest="50"
                 WidthRequest="50">
-              
             </Image>
         </ContentView>
     </StackLayout>

@@ -250,9 +250,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\log.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\log.png" />
     <AndroidResource Include="Resources\drawable\sfondo.png" />
-    <AndroidResource Include="Resources\drawable\coduno.png" />
-    <AndroidResource Include="Resources\drawable\coddue.png" />
-    <AndroidResource Include="Resources\drawable\codtre.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -327,6 +324,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\close_circle_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\coddue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\codtre.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\coduno.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
