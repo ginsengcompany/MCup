@@ -14,24 +14,24 @@
                         <customControls:ExtendedViewCell SelectedBackgroundColor="White">
                             <ViewCell.View>
                                 <StackLayout Orientation="Vertical">
-                                    <Label Text="Prestazione:" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                                    <Label Text="{Binding descPrestazione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                                    <Label Text="Reparto" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding descReparto}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                    <Label Text="Data dell'appuntamento" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding dataAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                    <Label Text="Orario dell'appuntamento" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding oraAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                    <Label Text="Posizione in coda" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding posizione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="Prestazione:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding descPrestazione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                    <Label Text="Reparto:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding descReparto}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                    <Label Text="Data dell'appuntamento:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding dataAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                    <Label Text="Orario dell'appuntamento:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding oraAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                    <Label Text="Posizione in coda:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding posizione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
                                 </StackLayout>
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout BackgroundColor="white">
-                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White" WidthRequest="100"  Clicked="Button_Clicked"/>
+            <StackLayout BackgroundColor="White" Padding="150,50,150,0">
+                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White"  Clicked="Button_Clicked"/>
             </StackLayout>
         </StackLayout>
 	</ContentPage.Content>
