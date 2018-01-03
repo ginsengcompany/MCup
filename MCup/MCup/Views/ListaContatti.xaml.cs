@@ -15,6 +15,8 @@ namespace MCup.Views
         public ListaContatti()
         {
             InitializeComponent();
+            
         }
-    }
+       
+}
 }

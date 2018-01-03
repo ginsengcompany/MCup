@@ -152,6 +152,12 @@
     <Reference Include="SQLitePCLRaw.provider.sqlite3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=62684c7b4f184e3f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SQLitePCLRaw.provider.sqlite3.ios_unified.1.1.5\lib\Xamarin.iOS10\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
     </Reference>
+    <Reference Include="SuaveControls.FloatingActionButton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SuaveControls.FloatingActionButton.2017.10.17\lib\xamarinios10\SuaveControls.FloatingActionButton.dll</HintPath>
+    </Reference>
+    <Reference Include="SuaveControls.FloatingActionButton.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SuaveControls.FloatingActionButton.2017.10.17\lib\xamarinios10\SuaveControls.FloatingActionButton.iOS.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
@@ -376,6 +382,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\close_circle_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\utente.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets')" />
