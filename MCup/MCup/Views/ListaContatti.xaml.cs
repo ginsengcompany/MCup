@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MCup.ModelView;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,7 +15,8 @@ namespace MCup.Views
         public ListaContatti()
         {
             InitializeComponent();
-            
+            BindingContext = new ListaContattiModelView();
+
         }
        
 }
