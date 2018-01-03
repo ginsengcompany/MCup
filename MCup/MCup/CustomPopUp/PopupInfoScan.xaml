@@ -27,7 +27,6 @@
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Handle_Tapped"/>
                         <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"></PanGestureRecognizer>
-                        <PinchGestureRecognizer PinchUpdated="OnPinchUpdated" />
                     </Image.GestureRecognizers>
                 </Image>
             </StackLayout>

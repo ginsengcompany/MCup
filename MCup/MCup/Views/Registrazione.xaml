@@ -6,44 +6,26 @@
     Title="Registrazione">
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout Orientation="Vertical" Padding="30" >
-            <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Registrazione" TextColor="Red"></Label>
-
-                <xfx:XfxEntry 
-                Placeholder="Inserire nome"     
-                Text="{Binding nome}" 
-                ErrorText="{Binding NameErrorTextNome}"
-                ErrorDisplay="Underline"
-                WidthRequest="250"/>
-            <xfx:XfxEntry 
-                Placeholder="Inserire cognome"     
-                Text="{Binding cognome}" 
-                ErrorText="{Binding NameErrorTextCognome}"
-                ErrorDisplay="Underline"
-                WidthRequest="250"/>
-            <xfx:XfxEntry 
-                Placeholder="Inserire Codice Fiscale"     
-                Text="{Binding codiceFiscale}" 
-                ErrorText="{Binding NameErrorTextCodice}"
-                ErrorDisplay="Underline"
-                WidthRequest="250"/>
-            <xfx:XfxEntry 
-                Placeholder="Inserire password"     
-                Text="{Binding password}" 
-                ErrorText="{Binding NameErrorTextPassword}"
-                ErrorDisplay="Underline"
-                IsPassword="True"
-                WidthRequest="250"/>
-            <xfx:XfxEntry 
-                Placeholder="Reinserire password"     
-                Text="{Binding ConfermaPassword}" 
-                ErrorText="{Binding NameErrorTextConfermaPassword}"
-                ErrorDisplay="Underline"
-                IsPassword="True"
-                WidthRequest="250"/>
-            
-            <Button Text="Registrati" Command="{Binding registrati}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red" TextColor="White" Margin="15"/>
-        </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="30" >
+                <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Registrazione" TextColor="Red"></Label>
+                <xfx:XfxEntry Placeholder="Inserire nome" Text="{Binding nome}" ErrorText="{Binding NameErrorTextNome}" ErrorDisplay="Underline" WidthRequest="250"/>
+                <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding cognome}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
+                <xfx:XfxEntry Placeholder="Inserire la data di nascita" Text="{Binding data_nascita}" ErrorText="{Binding NameErrorTextDataNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+                <xfx:XfxEntry Placeholder="Inserire il luogo di nascita" Text="{Binding luogo_nascita}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+                <xfx:XfxEntry Placeholder="Inserire la provincia" Text="{Binding provincia}" ErrorText="{Binding NameErrorTextProvincia}" ErrorDisplay="Underline" WidthRequest="250" />
+                <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:Char}">
+                            <x:Char>F</x:Char>
+                            <x:Char>M</x:Char>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <xfx:XfxEntry Placeholder="Inserire codice fiscale" Text="{Binding codiceFiscale}" ErrorText="{Binding NameErrorTextCodice}" ErrorDisplay="Underline" WidthRequest="250"/>
+                <xfx:XfxEntry Placeholder="Inserire password" Text="{Binding password}" ErrorText="{Binding NameErrorTextPassword}" ErrorDisplay="Underline" IsPassword="True" WidthRequest="250"/>
+                <xfx:XfxEntry Placeholder="Reinserire password" Text="{Binding ConfermaPassword}" ErrorText="{Binding NameErrorTextConfermaPassword}" ErrorDisplay="Underline" IsPassword="True" WidthRequest="250"/>
+                <Button Text="Registrati" Command="{Binding registrati}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red" TextColor="White" Margin="15"/>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

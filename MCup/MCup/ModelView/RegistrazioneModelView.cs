@@ -25,6 +25,8 @@ namespace MCup.ModelView
 
         private string confermaPassword, nameErrorTextNome, nameErrorTextCognome, nameErrorTextCodice, nameErrorTextPassword, nameErrorTextConfermaPassword;
 
+        public string nameerrortextdatanascita, nameErrorTextLuogoNascita, nameErrorTextProvincia;
+
         public ICommand registrati { protected set; get; } //Command per il tentativo di registrazione dell'utenza
 
         public string codiceFiscale //Proprietà relativa al campo codice fiscale
@@ -64,6 +66,46 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 utente.cognome = value;
+            }
+        }
+
+        public Char sceltaSesso //Proprietà relativa al campo sesso
+        {
+            get { return utente.sesso; }
+            set
+            {
+                OnPropertyChanged();
+                utente.sesso = value;
+            }
+        }
+
+        public string data_nascita //Proprietà relativa al campo data di nascita
+        {
+            get { return utente.data_nascita; }
+            set
+            {
+                OnPropertyChanged();
+                utente.data_nascita = value;
+            }
+        }
+
+        public string luogo_nascita //Proprietà relativa al campo luogo di nascita
+        {
+            get { return utente.luogo_nascita; }
+            set
+            {
+                OnPropertyChanged();
+                utente.luogo_nascita = value;
+            }
+        }
+
+        public string provincia
+        {
+            get { return utente.provincia; }
+            set
+            {
+                OnPropertyChanged();
+                utente.provincia = value;
             }
         }
 
@@ -122,7 +164,33 @@ namespace MCup.ModelView
                 nameErrorTextConfermaPassword = value;
             }
         }
-
+        public string NameErrorTextDataNascita
+        {
+            get { return nameerrortextdatanascita; }
+            set
+            {
+                OnPropertyChanged();
+                nameerrortextdatanascita = value;
+            }
+        }
+        public string NameErrorTextLuogoNascita
+        {
+            get { return nameErrorTextLuogoNascita; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextLuogoNascita = value;
+            }
+        }
+        public string NameErrorTextProvincia
+        {
+            get { return nameErrorTextProvincia; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextProvincia = value;
+            }
+        }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
@@ -150,32 +218,51 @@ namespace MCup.ModelView
                 bool controllPass = true;
                 if (string.IsNullOrEmpty(nome)) //Controlla se il campo nome è vuoto o null
                 {
-                    NameErrorTextNome = "Attenzione campo non riempito";
+                    NameErrorTextNome = "Attenzione, campo obbligatorio";
                     controllPass = false;
                 }
                 if (string.IsNullOrEmpty(cognome)) //Controlla se il campo cognome è vuoto o null
                 {
-                    NameErrorTextCognome = "Attenzione campo non riempito";
+                    NameErrorTextCognome = "Attenzione, campo obbligatorio";
                     controllPass = false;
                 }
                 if (string.IsNullOrEmpty(codiceFiscale)) //Controlla se il campo codice fiscale è vuoto o null
                 {
-                    NameErrorTextCodice = "Attenzione campo non riempito";
+                    NameErrorTextCodice = "Attenzione, campo obbligatorio";
                     controllPass = false;
                 }
                 if (string.IsNullOrEmpty(password)) //Controlla se il campo password è vuoto o null
                 {
-                    NameErrorTextPassword = "Attenzione campo non riempito";
+                    NameErrorTextPassword = "Attenzione, campo obbligatorio";
+                    controllPass = false;
+                }
+                if (string.IsNullOrEmpty(data_nascita)) //Controlla se il campo data di nascita è vuoto o null
+                {
+                    NameErrorTextDataNascita = "Attenzione, campo obbligatorio";
+                    controllPass = false;
+                }
+                if (string.IsNullOrEmpty(luogo_nascita)) //Controlla se il campo luogo di nascita è vuoto o null
+                {
+                    NameErrorTextLuogoNascita = "Attenzione, campo obbligatorio";
+                    controllPass = false;
+                }
+                if (utente.sesso.Equals(' ')) //Controlla se il campo sesso è vuoto
+                {
+                    controllPass = false;
+                }
+                if (string.IsNullOrEmpty(provincia) || provincia.Length != 2) //Controlla se il campo provincia è vuoto, null o length è diverso da due
+                {
+                    NameErrorTextProvincia = "Attenzione, campo obbligatorio";
                     controllPass = false;
                 }
                 if (string.IsNullOrEmpty(ConfermaPassword)) //Controlla se il campo conferma password è vuoto o null
                 {
-                    NameErrorTextConfermaPassword = "Attenzione campo non riempito";
+                    NameErrorTextConfermaPassword = "Attenzione, campo obbligatorio";
                     controllPass = false;
                 }
                 else if (password != ConfermaPassword) //Controlla se la password inserita dall'utente è uguale alla stringa inserita dall'utente nel campo conferma password
                 {
-                    NameErrorTextConfermaPassword = "Attenzione la password non corrisponde";
+                    NameErrorTextConfermaPassword = "Attenzione, la password non corrisponde";
                     controllPass = false;
                 }
                 if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
