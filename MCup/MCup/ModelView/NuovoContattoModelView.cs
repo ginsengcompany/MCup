@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MCup.ModelView
 {
-    class NuovoContattoModelView
+    public class NuovoContattoModelView
     {
+
     }
 }

@@ -4,29 +4,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MCup.Views.RegistrazioneIOS" Title="Registrazione" BackgroundImage="sfondo.png">
     <ContentPage.Content>
         <StackLayout BackgroundColor="Transparent" Padding="0,30,0,0" >
-        <Image Source="log.png" HorizontalOptions="Center" HeightRequest="200"/>
-            
-           
+            <Image Source="log.png" HorizontalOptions="Center" HeightRequest="200"/>
             <Label Text="REGISTRAZIONE" HorizontalOptions="Center" TextColor="Red" Margin="5" FontAttributes="Bold" FontFamily="Arial" BackgroundColor="Transparent"/>
-                <TableView Intent="Form" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
-                    <TableView.Root >
-                        <TableSection>
-                            <EntryCell Label="Nome:"  HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding nome}" />
-                            <EntryCell Label="Cognome:" HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding cognome}" />
-                            <EntryCell Label="Codice Fiscale:" HorizontalTextAlignment="Start" LabelColor="Red"   Text="{Binding codiceFiscale}"/>
-                            <EntryCell Label="Password:"  HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding password}" />
-                        </TableSection>
-                    </TableView.Root>
-                </TableView>
-            
-        <StackLayout BackgroundColor="Transparent" Padding="75,0,75,50">
-               
+            <TableView Intent="Form" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+                <TableView.Root >
+                    <TableSection>
+                        <EntryCell Label="Nome:"  HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding nome}" />
+                        <EntryCell Label="Cognome:" HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding cognome}" />
+                        <EntryCell Label="Data Di Nascita" HorizontalTextAlignment="Start" LabelColor="Red" Text="{Binding data_nascita}" />
+                        <EntryCell Label="Luogo Di Nascita" HorizontalTextAlignment="Start" LabelColor="Red" Text="{Binding luogo_nascita}" />
+                        <EntryCell Label="Provincia" HorizontalTextAlignment="Start" LabelColor="Red" Text="{Binding provincia}" />
+                        <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:Char}">
+                                    <x:Char>F</x:Char>
+                                    <x:Char>M</x:Char>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                        <EntryCell Label="Codice Fiscale:" HorizontalTextAlignment="Start" LabelColor="Red"   Text="{Binding codiceFiscale}"/>
+                        <EntryCell Label="Password:"  HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding password}" />
+                        <EntryCell Label="Conferma Password" HorizontalTextAlignment="Start" LabelColor="Red" Text="{Binding ConfermaPassword}" />
+                    </TableSection>
+                </TableView.Root>
+            </TableView>
+            <StackLayout BackgroundColor="Transparent" Padding="75,0,75,50">
                 <Button Text="REGISTRATI" TextColor="Red" FontSize="Medium" FontAttributes="Bold" BackgroundColor="White"  BorderRadius="20" BorderColor="Red" BorderWidth="3"  Command="{Binding registrati}" />
-            
             </StackLayout>
-             
-    
-           </StackLayout>
-        
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
