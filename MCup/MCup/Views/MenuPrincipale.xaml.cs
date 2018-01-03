@@ -31,7 +31,8 @@ namespace MCup.Views
             List<Menu> menuPrincipale = new List<Menu> //Lista contenente le pagine a cui si può accedere dalla MasterDetailPage
             {
                 new Menu { MenuTitle = "Home" },
-                new Menu { MenuTitle = "Scegli Struttura Preferita" }
+                new Menu { MenuTitle = "Scegli Struttura Preferita" },
+                new Menu { MenuTitle ="Contatti"}
             };
             ListaMenu.ItemsSource = menuPrincipale; //Assegna all'oggetto ListaMenu dello xaml della pagina la lista precedentemente inizializzata
             Detail = new NavigationPage(new MainPage()); //Avvia la pagina principale
@@ -55,6 +56,11 @@ namespace MCup.Views
                 {
                     IsPresented = false;
                     Detail = new NavigationPage(new ListaStrutture("Menu")); //Avvia la pagina per la scelta della struttura preferita
+                }
+                else if (menu.MenuTitle.Equals("Contatti"))
+                {
+                    IsPresented = false;
+                    Detail = new NavigationPage(new ListaContatti()); //Avvia la pagina per la scelta della struttura preferita
                 }
             }
         }
