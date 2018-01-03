@@ -11,24 +11,24 @@
 
             <StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="Codice ricetta:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
-                    <Label x:Name="codice_ricetta" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
+                    <Label Text="Codice ricetta:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label x:Name="codice_ricetta" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Medium"/>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="Cognome assistito:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
-                    <Label x:Name="cognome_assistito" Text="" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Large"/>
+                    <Label Text="Cognome assistito:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label x:Name="cognome_assistito" Text="" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Medium"/>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="Nome assistito:" TextColor="#ff0000" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Large"/>
-                    <Label x:Name="nome_assistito" Text="" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Large"/>
+                    <Label Text="Nome assistito:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Medium"/>
+                    <Label x:Name="nome_assistito" Text="" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Medium"/>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="Codice Fiscale Medico:" TextColor="#ff0000" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
-                    <Label x:Name="codice_fiscale_medico" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Large"/>
+                    <Label Text="Codice Fiscale Medico:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label x:Name="codice_fiscale_medico" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Medium"/>
                 </StackLayout>
             </StackLayout>
             <StackLayout>
-                <Label Text="Descrizione ricetta:" TextColor="#ff0000" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"/>
+                <Label Text="Descrizione ricetta:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
             </StackLayout>
             <ListView x:Name="lista_prestazioni" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
                     <ListView.ItemTemplate>
@@ -41,7 +41,9 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            <Button Text="Continua" BackgroundColor="Red" TextColor="Black" Clicked="Button_Clicked"/>
+            <StackLayout BackgroundColor="White" Padding="150,0,150,0">
+            <Button Text="Continua" BackgroundColor="Red" TextColor="White" Clicked="Button_Clicked"/>
+                </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
