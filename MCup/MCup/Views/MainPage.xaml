@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.MainPage" 
              Title="Mcup">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="logout" Order="Primary" Text="Logout" Priority="0" Clicked="logout_Clicked" Icon="logout.png" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="0, 40, 0, 0">
             <StackLayout x:Name="stackPrincipale" VerticalOptions="Start" HorizontalOptions="Center">

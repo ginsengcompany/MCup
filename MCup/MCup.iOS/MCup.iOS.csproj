@@ -398,6 +398,21 @@
   <ItemGroup>
     <BundleResource Include="Resources\close_circle_button.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout-150x150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout-20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout-30x30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout-40x40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout-50x50.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

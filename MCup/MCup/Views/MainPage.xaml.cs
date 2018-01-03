@@ -28,5 +28,13 @@ namespace MCup.Views
         {
             Navigation.PushAsync(new GestioneAppuntamenti());
         }
+
+        private void logout_Clicked(object sender, EventArgs e)
+        {
+            if (Device.RuntimePlatform == Device.Android)
+                App.Current.MainPage = new NavigationPage(new Login());
+            else
+                App.Current.MainPage = new NavigationPage(new LoginIoS());
+        }
     }
 }
