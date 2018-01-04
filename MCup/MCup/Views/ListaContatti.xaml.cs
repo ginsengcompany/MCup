@@ -16,8 +16,6 @@ namespace MCup.Views
         {
             InitializeComponent();
             BindingContext = new ListaContattiModelView();
-
         }
-       
-}
+    }
 }
