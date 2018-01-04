@@ -1,12 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MCup.Views.NuovoContatto">
+             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+             x:Class="MCup.Views.NuovoContatto" 
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="#ff0000" Padding="15,0,15,0" >
+                <Button Command="{Binding annullaRegistrazioneNuovoContatto}" Text="Annulla" BorderWidth="1" BorderRadius="0" TextColor="White" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="StartAndExpand"></Button>
+                <Button Text="Conferma" Command="{Binding registraNuovoContatto}" BorderColor="Transparent" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"  TextColor="White" />
+        </StackLayout>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Padding="30" >
+                <xfx:XfxEntry Placeholder="Inserire nome" Text="{Binding NomeNuovoContatto}" ErrorText="{Binding NameErrorTextNome}" ErrorDisplay="Underline" WidthRequest="250"/>
+                <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding CognomeNuovoContatto}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
+                <xfx:XfxEntry Placeholder="Inserire la data di nascita" Text="{Binding Data_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextDataNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+                <xfx:XfxEntry Placeholder="Inserire il luogo di nascita" Text="{Binding Luogo_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+                <xfx:XfxEntry Placeholder="Inserire la provincia"  Text="{Binding ProvinciaNuovoContatto}" ErrorText="{Binding NameErrorTextProvincia}" ErrorDisplay="Underline" WidthRequest="250">
+                </xfx:XfxEntry>
+                <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:Char}">
+                            <x:Char>F</x:Char>
+                            <x:Char>M</x:Char>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <xfx:XfxEntry Placeholder="Inserire codice fiscale" Text="{Binding CodiceFiscaleNuovoContatto}" ErrorText="{Binding NameErrorTextCodice}" ErrorDisplay="Underline" WidthRequest="250"/>
+            </StackLayout>
+        </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

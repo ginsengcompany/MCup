@@ -17,6 +17,7 @@ namespace MCup.Model
         public string provincia { get; set; }
         public char sesso { get; set; }
 
+
         public Contatto()
         {
             this.nome = "";
