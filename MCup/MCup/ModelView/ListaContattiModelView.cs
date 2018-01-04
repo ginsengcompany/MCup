@@ -7,6 +7,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using MCup.Views;
+using Xamarin.Forms;
 
 namespace MCup.ModelView
 {
@@ -14,7 +17,7 @@ namespace MCup.ModelView
     {
 
         private List<Contatto> contatti = new List<Contatto>();
-
+        public ICommand AggiungereContatto { protected set; get; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public List<Contatto> Contatti
@@ -35,14 +38,20 @@ namespace MCup.ModelView
         public ListaContattiModelView()
         {
             leggiContatti();
+            AggiungereContatto = new Command(() =>
+            {
+                App.Current.MainPage = new NuovoContatto();
+            });
         }
 
         private async void leggiContatti()
         {
-            REST<object,Contacts> rest = new REST<object,Contacts>();
-            Contacts contacts = await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
+            REST<object, Contacts> rest = new REST<object, Contacts>();
+            Contacts contacts =
+                await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
             List<Contatto> temp = new List<Contatto>();
-            temp.Add(new Contatto {
+            temp.Add(new Contatto
+            {
                 nome = contacts.nome,
                 cognome = contacts.cognome,
                 codice_fiscale = contacts.codice_fiscale,
@@ -51,7 +60,7 @@ namespace MCup.ModelView
                 sesso = contacts.sesso,
                 provincia = contacts.provincia
             });
-            for (int i=0;i < contacts.contatti.Count; i++)
+            for (int i = 0; i < contacts.contatti.Count; i++)
             {
                 temp.Add(contacts.contatti[i]);
             }
@@ -79,6 +88,7 @@ namespace MCup.ModelView
                 this.sesso = ' ';
                 this.provincia = "";
                 contatti = new List<Contatto>();
+
             }
         }
     }
