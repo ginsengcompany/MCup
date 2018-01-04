@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MCup"
-             xmlns:controls = " clr-namespace:MCup.Views;assembly=SuaveControls.FloatingActionButton "
-             xmlns:views="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              x:Class="MCup.Views.ListaContatti"
              Title="Rubrica Contatti"
              BackgroundColor="White">
     <ContentPage.Content>
-       
-        <StackLayout BackgroundColor="White" Padding="50,150,50,0" HeightRequest="100">
-            <views:FloatingActionButton x:Name = "Fab" HorizontalOptions = "CenterAndExpand"  VerticalOptions = "CenterAndExpand" ButtonColor = "Red" Image="utente.png"/>
-        </StackLayout>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <ListView ItemsSource="{Binding Contatti}" SeparatorColor="Red" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding nome}"/>
+                                <Label Text="{Binding cognome}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Image Source="utente.png" WidthRequest="60" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize">
+            </Image>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
