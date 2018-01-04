@@ -1,16 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MCup"
-             xmlns:controls = " clr-namespace:MCup.Views;assembly=SuaveControls.FloatingActionButton "
-             xmlns:views="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
-             x:Class="MCup.Views.ListaContatti">
-    <ContentPage.Content>
-        <ListView x:Name="rubrica" >
-            
-        </ListView>
-        <StackLayout BackgroundColor="White" Padding="50,150,50,0" HeightRequest="100">
-            <views:FloatingActionButton x:Name = "Fab" HorizontalOptions = "CenterAndExpand" WidthRequest = "55" HeightRequest = "55" VerticalOptions = "CenterAndExpand" ButtonColor = "Red" Image="utente.png"/>
-        </StackLayout>
+             x:Class="MCup.Views.ListaContatti"
+             xmlns:fab="clr-namespace:Refractored.FabControl;assembly=Refractored.FabControl"
+             Title="Rubrica Contatti"
+             BackgroundColor="White">
+     <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <ListView 
+                          AbsoluteLayout.LayoutFlags="All"
+                          AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+            </ListView>
+            <fab:FloatingActionButtonView
+                ImageName="utente.png"
+                ColorNormal="{StaticResource Primary}"
+                ColorPressed="{StaticResource PrimaryDark}"
+                ColorRipple="{StaticResource PrimaryDark}"
+                x:Name="FloatingActionButtonAdd"
+                IsVisible="False"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"/>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
