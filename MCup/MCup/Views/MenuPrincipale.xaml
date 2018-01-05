@@ -14,7 +14,7 @@
                 <StackLayout  BackgroundColor="Red" HeightRequest="200" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                     <Image Source="ico.png"  WidthRequest="240" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Image>
                 </StackLayout>
-                    <ListView x:Name="ListaMenu" ItemSelected="ListaMenu_ItemSelected" RowHeight="50">
+                    <ListView x:Name="ListaMenu" ItemSelected="ListaMenu_ItemSelected">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

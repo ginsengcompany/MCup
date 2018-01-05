@@ -6,12 +6,12 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="#ff0000" Padding="15,0,15,0" >
+            <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="#ff0000" Padding="15,0,15,0" >
                 <Button Command="{Binding annullaRegistrazioneNuovoContatto}" Text="Annulla" BorderWidth="1" BorderRadius="0" TextColor="White" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="StartAndExpand"></Button>
                 <Button Text="Conferma" Command="{Binding registraNuovoContatto}" BorderColor="Transparent" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"  TextColor="White" />
         </StackLayout>
-        <ScrollView>
-            <StackLayout Orientation="Vertical" Padding="30" >
+        <ScrollView >
+            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="20">
                 <xfx:XfxEntry Placeholder="Inserire nome" Text="{Binding NomeNuovoContatto}" ErrorText="{Binding NameErrorTextNome}" ErrorDisplay="Underline" WidthRequest="250"/>
                 <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding CognomeNuovoContatto}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
                 <xfx:XfxEntry Placeholder="Inserire la data di nascita" Text="{Binding Data_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextDataNascita}" ErrorDisplay="Underline" WidthRequest="250" />
