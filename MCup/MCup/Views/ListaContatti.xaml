@@ -5,8 +5,11 @@
              Title="Rubrica Contatti"
              BackgroundColor="White">
     <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Tuo contatto"></Label>
+            <Label HorizontalOptions="Center" TextColor="Black" Text="{Binding PrimoNome}"></Label>
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <ListView ItemsSource="{Binding Contatti}" SeparatorColor="Red" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <ListView ItemsSource="{Binding Contatti}"  SeparatorColor="Red" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -25,5 +28,7 @@
                 </Image.GestureRecognizers>
             </Image>
         </AbsoluteLayout>
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>
