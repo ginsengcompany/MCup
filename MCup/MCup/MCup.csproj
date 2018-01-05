@@ -40,14 +40,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="CostomControls\XfxEntry.cs" />
-    <Compile Include="CustomPopUp\PinchToZoomContainer.cs" />
     <Compile Include="CustomPopUp\PopupInfoScan.xaml.cs">
       <DependentUpon>PopupInfoScan.xaml</DependentUpon>
     </Compile>
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\Data\AppuntamentoData.cs" />
     <Compile Include="Database\Models\Appuntamento.cs" />
-    <Compile Include="Extentions\DoubleExtentions.cs" />
     <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
     <Compile Include="ModelView\GestioneAppuntamentiModelView.cs" />
     <Compile Include="ModelView\InfoContattoModelView.cs" />

@@ -1,6 +1,5 @@
 ﻿using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
-using MCup.Extentions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
