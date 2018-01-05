@@ -4,6 +4,7 @@
              x:Class="MCup.Views.ListaContatti"
              Title="Rubrica Contatti"
              BackgroundColor="White">
+    
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Tuo contatto"></Label>
@@ -14,7 +15,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Image Source="contacttre.png" WidthRequest="30"></Image>
+                                <Image Source="contacttre.png" WidthRequest="35"></Image>
                                 <Label Text="{Binding nome}" VerticalOptions="Center"/>
                                 <Label Text="{Binding cognome}" VerticalOptions="Center"/>
                             </StackLayout>

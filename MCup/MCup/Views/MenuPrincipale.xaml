@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.MenuPrincipale"
@@ -14,12 +14,12 @@
                 <StackLayout  BackgroundColor="Red" HeightRequest="200" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                     <Image Source="ico.png"  WidthRequest="240" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Image>
                 </StackLayout>
-                    <ListView x:Name="ListaMenu" ItemSelected="ListaMenu_ItemSelected">
+                    <ListView x:Name="ListaMenu" ItemSelected="ListaMenu_ItemSelected" VerticalOptions="Center">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <StackLayout HorizontalOptions="Center" >
-                                        <Label Text="{Binding MenuTitle}" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Label Text="{Binding MenuTitle}" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
