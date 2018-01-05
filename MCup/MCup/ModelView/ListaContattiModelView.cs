@@ -2,21 +2,25 @@
 using MCup.Service;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MCup.Views;
+using MvvmHelpers;
 using Xamarin.Forms;
 
 namespace MCup.ModelView
 {
     public class ListaContattiModelView : INotifyPropertyChanged
     {
-
+      
         private List<Contatto> contatti = new List<Contatto>();
+        public string primoNome;
         public ICommand AggiungereContatto { protected set; get; }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -30,6 +34,15 @@ namespace MCup.ModelView
             }
         }
 
+        public string PrimoNome
+        {
+            get { return primoNome; }
+            set
+            {
+                OnPropertyChanged();
+                primoNome = value;
+            }
+        }
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -50,6 +63,7 @@ namespace MCup.ModelView
             Contacts contacts =
                 await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
             List<Contatto> temp = new List<Contatto>();
+            char a = 'a';
             temp.Add(new Contatto
             {
                 nome = contacts.nome,
@@ -62,8 +76,12 @@ namespace MCup.ModelView
             });
             for (int i = 0; i < contacts.contatti.Count; i++)
             {
+                
                 temp.Add(contacts.contatti[i]);
             }
+
+            PrimoNome = temp[0].nome + " " + temp[0].cognome;
+
             Contatti = temp;
         }
     }
