@@ -50,6 +50,7 @@
     <Compile Include="Extentions\DoubleExtentions.cs" />
     <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
     <Compile Include="ModelView\GestioneAppuntamentiModelView.cs" />
+    <Compile Include="ModelView\InfoContattoModelView.cs" />
     <Compile Include="ModelView\ListaContattiModelView.cs" />
     <Compile Include="ModelView\ListaDatePrenotazioniModelView.cs" />
     <Compile Include="ModelView\NuovoContattoModelView.cs" />

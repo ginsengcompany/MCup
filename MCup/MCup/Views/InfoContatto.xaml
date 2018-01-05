@@ -1,12 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MCup.Views.InfoContatto">
+             x:Class="MCup.Views.InfoContatto"
+             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+             Title="{Binding NomeCognome}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <xfx:XfxEntry Placeholder="Inserire codice fiscale" Text="{Binding codiceFiscale}" ErrorText="{Binding NameErrorTextCodice}" ErrorDisplay="Underline" WidthRequest="250"/>
+            <xfx:XfxEntry Placeholder="Nome" Text="{Binding nome}" ErrorText="{Binding NameErrorTextNome}" ErrorDisplay="Underline" WidthRequest="250"/>
+            <xfx:XfxEntry Placeholder="Cognome" Text="{Binding cognome}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
+            <xfx:XfxEntry Placeholder="Data di nascita" Text="{Binding data_nascita}" ErrorText="{Binding NameErrorTextDataNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+            <xfx:XfxEntry Placeholder="Luogo di nascita" Text="{Binding luogo_nascita}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+            <xfx:XfxEntry Placeholder="Provincia" Text="{Binding provincia}" ErrorText="{Binding NameErrorTextProvincia}" ErrorDisplay="Underline" WidthRequest="250" />
+            <xfx:XfxEntry Placeholder="Sesso" Text="{Binding Sesso}" ErrorText="{Binding NameErrorTextPassword}" ErrorDisplay="Underline" IsPassword="True" WidthRequest="250"/>
+            <Button Text="Elimina" Command="{Binding Elimina}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red" TextColor="White" Margin="15"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
