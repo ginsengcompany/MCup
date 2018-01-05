@@ -5,24 +5,30 @@
              Title="Rubrica Contatti"
              BackgroundColor="White">
     <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Tuo contatto"></Label>
+            <Label HorizontalOptions="Center" TextColor="Black" Text="{Binding PrimoNome}"></Label>
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <ListView ItemsSource="{Binding Contatti}" SeparatorColor="Red" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <ListView ItemsSource="{Binding Contatti}"  SeparatorColor="Red" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding nome}"/>
-                                <Label Text="{Binding cognome}"/>
+                                <Image Source="contacttre.png" WidthRequest="30"></Image>
+                                <Label Text="{Binding nome}" VerticalOptions="Center"/>
+                                <Label Text="{Binding cognome}" VerticalOptions="Center"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Image Source="utente.png" WidthRequest="60" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize" >
+            <Image Source="utente.png" WidthRequest="60" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9, 0.9, AutoSize, AutoSize" >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding AggiungereContatto}"></TapGestureRecognizer>
                 </Image.GestureRecognizers>
             </Image>
         </AbsoluteLayout>
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>
