@@ -15,6 +15,7 @@
                 <xfx:XfxEntry Placeholder="Inserire nome" Text="{Binding NomeNuovoContatto}" ErrorText="{Binding NameErrorTextNome}" ErrorDisplay="Underline" WidthRequest="250"/>
                 <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding CognomeNuovoContatto}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
                 <xfx:XfxEntry Placeholder="Inserire la data di nascita" Text="{Binding Data_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextDataNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+                    <DatePicker TextColor="Black" x:Name="picker"></DatePicker>
                 <xfx:XfxEntry Placeholder="Inserire il luogo di nascita" Text="{Binding Luogo_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
                 <xfx:XfxEntry Placeholder="Inserire la provincia"  Text="{Binding ProvinciaNuovoContatto}" ErrorText="{Binding NameErrorTextProvincia}" ErrorDisplay="Underline" WidthRequest="250">
                 </xfx:XfxEntry>
