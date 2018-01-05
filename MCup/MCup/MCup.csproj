@@ -55,6 +55,7 @@
     <Compile Include="ModelView\NuovoContattoModelView.cs" />
     <Compile Include="ModelView\PropostaRichiestaModelView.cs" />
     <Compile Include="ModelView\RegistrazioneModelView.cs" />
+    <Compile Include="Model\Contacts.cs" />
     <Compile Include="Model\Contatto.cs" />
     <Compile Include="Model\ListaDatePrenotazioni.cs" />
     <Compile Include="Model\Prenotazione.cs" />
