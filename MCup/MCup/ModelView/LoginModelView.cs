@@ -17,6 +17,7 @@ namespace MCup.ModelView
     public class LoginModelView : INotifyPropertyChanged
     {
         private Utente utente; //Oggetto che astrae l'utenza del cliente e che nel caso in cui la login vada a buon fine conterrà le informazioni relative all'utente
+        
         private string nameErrorTextPassword; 
         private bool isbusy; //variabile booleana utilizzata per gestire la proprietà IsRunning dell'activity indicator
         private string nameErrorText;
@@ -111,6 +112,7 @@ namespace MCup.ModelView
         public LoginModelView()
         {
             utente = new Utente(); //Crea un oggetto Utente vuoto
+            codiceFiscale = utente.codice_fiscale = utente.recuperaUserName();
             IsVisible = false; //L'activity indicator non è visibile
             IsBusy = false; //L'activity indicator non si trova nello stato IsRunning
             effettuaLogin = new Command(async () => //Definisce il metodo del Command effettuaLogin che gestisce il tentativo di login da parte dell'utente
@@ -131,6 +133,7 @@ namespace MCup.ModelView
                     IsBusy = true; //L'activity indicator è in stato IsRunning
                     REST<Utente, ResponseLogin> rest = new REST<Utente, ResponseLogin>(); //Crea l'oggetto per eseguire la chiamata REST per la login
                     ResponseLogin response = await rest.PostJson(URL.Login, utente); //Chiamata POST per la richiesta di autenticazione delle informazioni inserite dall'utente (codice fiscale e password)
+
                     IsBusy = false; //L'activity indicator non è in stato IsRunning
                     IsVisible = false; //L'activity indicator non è visibile
                     if (response == null) //Controlla se si è verificato un errore di connessione
@@ -146,6 +149,7 @@ namespace MCup.ModelView
                         await App.Current.MainPage.DisplayAlert("Login", "Login non riuscita", "OK");
                     else //Le informazioni dell'utenza sono corrette
                     {
+                        utente.cancellaEdAggiornaUsername(utente.codice_fiscale);
                         App.Current.Properties["tokenLogin"] = response.token; //Salva nel dictionary dell'app il token dell'utente per accedere alle sue informazioni private
                         REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto per la chiamata REST
                         ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token); //Chiamata GET che ritorna se l'utente ha già scelto la sua struttura preferita o meno
