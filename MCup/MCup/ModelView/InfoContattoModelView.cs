@@ -9,6 +9,7 @@ using System.ComponentModel;
 using MCup.Service;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
+using MCup.Views;
 
 namespace MCup.ModelView
 {
@@ -118,10 +119,11 @@ namespace MCup.ModelView
             NomeCognome = info.nome + " " + info.cognome;
             Elimina = new Command(async () =>
             {
-                REST<string, string> restElimina = new REST<string, string>();
-                string response = await restElimina.PostJson(URL.EliminaContatto, utente.codice_fiscale, App.Current.Properties["tokenLogin"].ToString());
-                await App.Current.MainPage.DisplayAlert("Eliminazione", response, "OK");
-                await App.Current.MainPage.Navigation.PopAsync();
+                REST<Contatto, string> restElimina = new REST<Contatto, string>();
+                string response = await restElimina.PostJson(URL.EliminaContatto, utente, App.Current.Properties["tokenLogin"].ToString());
+                await App.Current.MainPage.DisplayAlert("Eliminazione", restElimina.warning, "OK");
+                App.Current.MainPage = new MenuPrincipale();
+                // await App.Current.MainPage.Navigation.PopAsync();
             });
          }
 

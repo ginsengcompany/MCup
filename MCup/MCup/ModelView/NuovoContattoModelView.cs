@@ -261,6 +261,7 @@ namespace MCup.ModelView
                 {
                     await connessioneNuovoContatto.PostJson(URL.AggiungiNuovoContatto, contatto, token);
                     await App.Current.MainPage.DisplayAlert("Evvai", "utente inserito con successo", "ok");
+                    App.Current.MainPage = new MenuPrincipale();
                 }
                 catch (Exception)
                 {
