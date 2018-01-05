@@ -292,10 +292,6 @@ namespace MCup.ModelView
             });
         }
 
-        public class ResponseRegistrazione
-        {
-            public bool auth;
-            public string token;
-        }
+      
     }
 }

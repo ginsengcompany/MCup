@@ -10,12 +10,12 @@ namespace MCup.Model
     {
         public string nome { get; set; }
         public string cognome { get; set; }
-
         public string codice_fiscale{ get; set;}
         public string data_nascita { get; set; }
         public string luogo_nascita { get; set; }
         public string provincia { get; set; }
         public char sesso { get; set; }
+
 
         public Contatto()
         {

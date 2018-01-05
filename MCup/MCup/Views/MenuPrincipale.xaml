@@ -9,19 +9,23 @@
     </MasterDetailPage.Detail>
     <MasterDetailPage.Master>
         <ContentPage  Title="MyApp" Icon="">
-            <ListView x:Name="ListaMenu" ItemSelected="ListaMenu_ItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout VerticalOptions="Center" Orientation="Horizontal">
-                                <Label Text="{Binding MenuTitle}" TextColor="Black" HorizontalTextAlignment="Center">
-                                </Label>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
 
+            <StackLayout >
+                <StackLayout  BackgroundColor="Red" HeightRequest="200" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <Image Source="ico.png"  WidthRequest="240" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Image>
+                </StackLayout>
+                    <ListView x:Name="ListaMenu" ItemSelected="ListaMenu_ItemSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout HorizontalOptions="Center" >
+                                        <Label Text="{Binding MenuTitle}" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
    

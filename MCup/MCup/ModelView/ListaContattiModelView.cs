@@ -7,14 +7,17 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using MCup.Views;
+using Xamarin.Forms;
 
 namespace MCup.ModelView
 {
     public class ListaContattiModelView : INotifyPropertyChanged
     {
 
-        private List<Contatto> contatti;
-
+        private List<Contatto> contatti = new List<Contatto>();
+        public ICommand AggiungereContatto { protected set; get; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public List<Contatto> Contatti
@@ -34,44 +37,58 @@ namespace MCup.ModelView
 
         public ListaContattiModelView()
         {
-            contatti = new List<Contatto>();
             leggiContatti();
+            AggiungereContatto = new Command(() =>
+            {
+                App.Current.MainPage = new NuovoContatto();
+            });
         }
 
         private async void leggiContatti()
         {
-            REST<object,Contacts> rest = new REST<object,Contacts>();
-            Contacts contacts = await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
-            Contatti.Add(convertiUtenteInContatto(contacts.utente));
-            for (int i=0;i < contacts.contatti.Count; i++)
+            REST<object, Contacts> rest = new REST<object, Contacts>();
+            Contacts contacts =
+                await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
+            List<Contatto> temp = new List<Contatto>();
+            temp.Add(new Contatto
             {
-                Contatti.Add(contacts.contatti[i]);
+                nome = contacts.nome,
+                cognome = contacts.cognome,
+                codice_fiscale = contacts.codice_fiscale,
+                data_nascita = contacts.data_nascita,
+                luogo_nascita = contacts.luogo_nascita,
+                sesso = contacts.sesso,
+                provincia = contacts.provincia
+            });
+            for (int i = 0; i < contacts.contatti.Count; i++)
+            {
+                temp.Add(contacts.contatti[i]);
             }
-        }
-
-        private Contatto convertiUtenteInContatto(Utente utente)
-        {
-            Contatto contatto = new Contatto();
-            contatto.nome = utente.nome;
-            contatto.cognome = utente.cognome;
-            contatto.codice_fiscale = utente.codice_fiscale;
-            contatto.data_nascita = utente.data_nascita;
-            contatto.luogo_nascita = utente.luogo_nascita;
-            contatto.sesso = utente.sesso;
-            contatto.provincia = utente.provincia;
-            return contatto;
+            Contatti = temp;
         }
 
         private class Contacts
         {
-            public Utente utente;
             public List<Contatto> contatti;
-
+            public string nome { get; set; }
+            public string cognome { get; set; }
+            public string codice_fiscale { get; set; }
+            public string data_nascita { get; set; }
+            public string luogo_nascita { get; set; }
+            public char sesso { get; set; }
+            public string provincia { get; set; }
 
             public Contacts()
             {
-                utente = new Utente();
+                this.nome = "";
+                this.cognome = "";
+                this.codice_fiscale = "";
+                this.data_nascita = "";
+                this.luogo_nascita = "";
+                this.sesso = ' ';
+                this.provincia = "";
                 contatti = new List<Contatto>();
+
             }
         }
     }
