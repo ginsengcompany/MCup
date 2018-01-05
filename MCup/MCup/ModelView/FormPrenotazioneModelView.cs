@@ -5,6 +5,7 @@ using MCup.Service;
 using MCup.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -30,7 +31,21 @@ namespace MCup.ModelView
 
         //Oggetto che contiene tutte le informazioni della prenotazione che si vuole effettuare
         private FormPrenotazione model;
-        
+
+        private ObservableCollection<string> contatti = new ObservableCollection<string>();
+
+        private Contacts contacts;
+
+        public ObservableCollection<string> Contatti
+        {
+            get { return contatti; }
+            set
+            {
+                OnPropertyChanged();
+                contatti = new ObservableCollection<string>(value);
+            }
+        }
+
         private class InvioRicettaPrenotazione
         {
             public string codice_uno;
@@ -106,19 +121,21 @@ namespace MCup.ModelView
             InviaRichiesta = new Command(async () =>
             {
                 await InvioDatiAsync();
-                Debug.WriteLine(utenza.nome);
-                Debug.WriteLine(utenza.cognome);
-                Debug.WriteLine(utenza.getCodiceFiscale());
             });
+            leggiContatti();
         }
 
-        //Classe che identifica le prestazioni e se sono state erogate. Questa classe astrae dei possibili dati ricevuti da SOGEI
-        private class Prestazioni
+        private async void leggiContatti()
         {
-            public string prestazione { get; set; }
-
-            public bool erogato { get; set; }
-
+            REST<object, Contacts> rest = new REST<object, Contacts>();
+            contacts = await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
+            ObservableCollection<string> temp = new ObservableCollection<string>();
+            temp.Add(contacts.nome + ", " + contacts.cognome + ", " + contacts.codice_fiscale);
+            for (int i = 0; i < contacts.contatti.Count; i++)
+            {
+                temp.Add(contacts.contatti[i].nome + ", " + contacts.contatti[i].cognome + ", " + contacts.contatti[i].codice_fiscale);
+            }
+            Contatti = temp;
         }
 
         //Comando che chiama la funzione asincrona InvioDatiAsync()
@@ -139,6 +156,43 @@ namespace MCup.ModelView
                 Ricetta response = await connessione.PostJson(URL.Ricetta,nre);
                 model.metodoPush(response);
             }
+        }
+
+        //Ordina la lista della combo box
+        public Func<string, ICollection<string>, ICollection<string>> SortingAlgorithm { get; } = (text, values) => values
+        .Where(x => x.ToLower().StartsWith(text.ToLower()))
+        .OrderBy(x => x)
+        .ToList();
+
+        public void autoCompila(string elementSelected)
+        {
+            int indexEndName = elementSelected.IndexOf(',');
+            int indexEndSurname = elementSelected.IndexOf(',', indexEndName + 1);
+            string name = elementSelected.Substring(0, indexEndName);
+            string surname = elementSelected.Substring(indexEndName + 2, elementSelected.Length - (indexEndName + 2) - 18);
+            string codFisc = elementSelected.Substring(indexEndSurname + 2);
+            int inContacts = contacts.searchContact(name, surname, codFisc);
+            if(inContacts == -1) //L'utente ha cliccato su se stesso nella lista della checkbox
+            {
+                nomeUtente = contacts.nome;
+                cognomeUtente = contacts.cognome;
+                codicefiscaleUtente = contacts.codice_fiscale;
+            }
+            else if(inContacts >= 0)
+            {
+                nomeUtente = contacts.contatti[inContacts].nome;
+                cognomeUtente = contacts.contatti[inContacts].cognome;
+                codicefiscaleUtente = contacts.contatti[inContacts].codice_fiscale;
+            }
+        }
+
+        //Classe che identifica le prestazioni e se sono state erogate. Questa classe astrae dei possibili dati ricevuti da SOGEI
+        private class Prestazioni
+        {
+            public string prestazione { get; set; }
+
+            public bool erogato { get; set; }
+
         }
 
         //Classe utilizzata per astrarre il json da inviare al servizio per ottenere le informazioni della ricetta

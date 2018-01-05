@@ -8,15 +8,15 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical" Padding="20,20,20,0" >
-                <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"></Label>
-                
-                <xfx:XfxEntry 
+                <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
+                <xfx:XfxComboBox x:Name="ComboNome" Placeholder="Inserire il nome" SortingAlgorithm="{Binding SortingAlgorithm}" ItemsSource="{Binding Contatti}" ItemSelected="XfxComboBox_ItemSelected" Text="{Binding nomeUtente}" WidthRequest="250" VerticalOptions="Center" />
+               <!-- <xfx:XfxEntry 
                     Placeholder="Inserire nome"     
                     Text="{Binding nomeUtente}" 
                     ErrorText="{Binding NameErrorText}" 
                     ErrorDisplay="Underline"
                     WidthRequest="250"
-                    VerticalOptions="Center"/>
+                    VerticalOptions="Center"/> -->
                 <xfx:XfxEntry 
                     Placeholder="Inserire cognome"     
                     Text="{Binding cognomeUtente}" 

@@ -66,30 +66,5 @@ namespace MCup.ModelView
             }
             Contatti = temp;
         }
-
-        private class Contacts
-        {
-            public List<Contatto> contatti;
-            public string nome { get; set; }
-            public string cognome { get; set; }
-            public string codice_fiscale { get; set; }
-            public string data_nascita { get; set; }
-            public string luogo_nascita { get; set; }
-            public char sesso { get; set; }
-            public string provincia { get; set; }
-
-            public Contacts()
-            {
-                this.nome = "";
-                this.cognome = "";
-                this.codice_fiscale = "";
-                this.data_nascita = "";
-                this.luogo_nascita = "";
-                this.sesso = ' ';
-                this.provincia = "";
-                contatti = new List<Contatto>();
-
-            }
-        }
     }
 }

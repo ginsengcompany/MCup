@@ -27,6 +27,7 @@ namespace MCup.Views
         public string imgCodFiscale = "coduno.png"; //Variabile contenente il nome dell'immagine di esempio del codice fiscale
         public string imgCodUno = "coddue.png"; //Variabile contenente il nome dell'immagine di esempio del codice 1 della ricetta
         public string imgCodDue = "codtre.png"; //Variabile contenente il nome dell'immagine di esempio del codice 2 della ricetta
+        private FormPrenotazioneModelView form;
 
         //Metodo che visualizza il popup contenente l'immagine di esempio del codice fiscale
         private async void Handle_Tapped(object sender, System.EventArgs e)
@@ -49,7 +50,8 @@ namespace MCup.Views
         public FormPrenotazione()
         {
             InitializeComponent();
-            BindingContext = new FormPrenotazioneModelView(this); //Questa pagina esegue il Binding con la classe FormPrenotazioneModelView
+            form = new FormPrenotazioneModelView(this);
+            BindingContext = form; //Questa pagina esegue il Binding con la classe FormPrenotazioneModelView
         }
 
         //Funzione chiamata per scannerizzare il codice fiscale dell'utente
@@ -149,6 +151,13 @@ namespace MCup.Views
         public void metodoPush(Ricetta ricetta)
         {
             Navigation.PushAsync(new VerificaRicetta(ricetta));
+        }
+
+        private void XfxComboBox_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            string x = e.SelectedItem as string;
+            form.autoCompila(x);
+            ComboNome.Unfocus();
         }
     }
 }
