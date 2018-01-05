@@ -28,7 +28,8 @@ namespace MCup.iOS
             XfxControls.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
+            UINavigationBar.Appearance.BarTintColor = UIColor.Red;
+            UINavigationBar.Appearance.TintColor = UIColor.White;
             return base.FinishedLaunching(app, options);
         }
       
