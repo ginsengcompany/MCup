@@ -41,7 +41,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            <StackLayout BackgroundColor="White" Padding="150,0,150,0">
+            <StackLayout BackgroundColor="White">
             <Button Text="Continua" BackgroundColor="Red" TextColor="White" Clicked="Button_Clicked"/>
                 </StackLayout>
         </StackLayout>
