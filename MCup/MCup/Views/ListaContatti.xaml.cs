@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using MCup.Model;
 using MCup.ModelView;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
-
+using Platform = Xamarin.Forms.PlatformConfiguration;
 namespace MCup.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -17,6 +18,8 @@ namespace MCup.Views
         {
             InitializeComponent();
             BindingContext = new ListaContattiModelView();
+           
+            listacontatti.On<Platform::Android>().SetIsFastScrollEnabled(true);
         }
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)

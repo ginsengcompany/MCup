@@ -1,6 +1,4 @@
-﻿using MCup.Database.Data;
-using MCup.Database.Models;
-using MCup.Model;
+﻿using MCup.Model;
 using MCup.Service;
 using MCup.Views;
 using System;
