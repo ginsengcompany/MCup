@@ -37,11 +37,11 @@
                             HorizontalOptions="Center" 
                             WidthRequest="250">
                     </xfx:XfxEntry>
-                    <Image Source="{Binding ImgPass}" HorizontalOptions="End" VerticalOptions="Center">
+                    <!-- <Image Source="{Binding ImgPass}" HorizontalOptions="End" VerticalOptions="Center">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding showPass}"></TapGestureRecognizer>
                         </Image.GestureRecognizers>
-                    </Image>
+                    </Image> -->
                 </StackLayout>
                 <StackLayout Padding="75,0,75,0">
                     <Button Text="LOGIN" IsVisible="{Binding LoginIsVisible}" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="Red"  BorderRadius="20" BorderColor="Red" BorderWidth="3" Command="{Binding effettuaLogin}"/>
