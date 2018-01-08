@@ -98,41 +98,32 @@ namespace MCup.ModelView
         private void ImplementaRubrica()
         {
             List<Rubrica> listGroup = new List<Rubrica>();
-            listGroup.Add(new Rubrica("A", "A"));
-            listGroup.Add(new Rubrica("B", "B"));
-            listGroup.Add(new Rubrica("C", "C"));
-            listGroup.Add(new Rubrica("D", "D"));
-            listGroup.Add(new Rubrica("E", "E"));
-            listGroup.Add(new Rubrica("F", "F"));
-            listGroup.Add(new Rubrica("G", "G"));
-            listGroup.Add(new Rubrica("H", "H"));
-            listGroup.Add(new Rubrica("I", "I"));
-            listGroup.Add(new Rubrica("J", "J"));
-            listGroup.Add(new Rubrica("K", "K"));
-            listGroup.Add(new Rubrica("L", "L"));
-            listGroup.Add(new Rubrica("M", "M"));
-            listGroup.Add(new Rubrica("N", "N"));
-            listGroup.Add(new Rubrica("O", "O"));
-            listGroup.Add(new Rubrica("P", "P"));
-            listGroup.Add(new Rubrica("Q", "Q"));
-            listGroup.Add(new Rubrica("R", "R"));
-            listGroup.Add(new Rubrica("S", "S"));
-            listGroup.Add(new Rubrica("T", "T"));
-            listGroup.Add(new Rubrica("U", "U"));
-            listGroup.Add(new Rubrica("V", "V"));
-            listGroup.Add(new Rubrica("W", "W"));
-            listGroup.Add(new Rubrica("X", "X"));
-            listGroup.Add(new Rubrica("Y", "Y"));
-            listGroup.Add(new Rubrica("Z", "Z"));
+            bool x;
             for(int i = 0; i < contatti.Count; i++)
             {
-                for(int j = 0; j < listGroup.Count; j++)
+                x = false;
+                if (listGroup.Count > 0)
                 {
-                    if(listGroup[j].ShortName.ToLower()[0] == contatti[i].nome.ToLower()[0])
+                    int j;
+                    for (j = 0; j < listGroup.Count; j++)
                     {
-                        listGroup[j].Add(contatti[i]);
-                        break;
+                        if(listGroup[j].ShortName.ToLower()[0] == contatti[i].nome.ToLower()[0])
+                        {
+                            x = true;
+                            listGroup[j].Add(contatti[i]);
+                            break;
+                        }
                     }
+                    if (!x)
+                    {
+                        listGroup.Add(new Rubrica(contatti[i].nome.ToUpper()[0].ToString(), contatti[i].nome.ToUpper()[0].ToString()));
+                        listGroup[j].Add(contatti[i]);
+                    }
+                }
+                else
+                {
+                    listGroup.Add(new Rubrica(contatti[i].nome.ToUpper()[0].ToString(), contatti[i].nome.ToUpper()[0].ToString()));
+                    listGroup[0].Add(contatti[i]);
                 }
             }
             for(int i = 0; i < listGroup.Count; i++)
