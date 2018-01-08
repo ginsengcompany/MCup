@@ -24,12 +24,35 @@ namespace MCup.ModelView
         private string imgPass= "showPass.png";
         private bool showPassword = true;
         private bool isvisible; //variabile booleana utilizzata per gestire la proprietà IsVisible dell'activity indicator
+        private bool loginisvisible;
+        private bool signupisvisible;
 
         //Command utilizzato per il tentativo di accesso ai servizi da parte dell'utente
         public ICommand effettuaLogin { protected set; get; }
         public ICommand showPass { protected set; get; }
 
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
+
+        public bool LoginIsVisible
+        {
+            get { return loginisvisible; }
+            set
+            {
+                OnPropertyChanged();
+                loginisvisible = value;
+            }
+        }
+
+        public bool SignupIsVisible
+        {
+            get { return signupisvisible; }
+            set
+            {
+                OnPropertyChanged();
+                signupisvisible = value;
+            }
+        }
+
         public bool ShowPassword
         {
             get { return showPassword; }
@@ -134,6 +157,8 @@ namespace MCup.ModelView
         {
             utente = new Utente(); //Crea un oggetto Utente vuoto
             codiceFiscale = utente.codice_fiscale = utente.recuperaUserName();
+            LoginIsVisible = true;
+            SignupIsVisible = true;
             IsVisible = false; //L'activity indicator non è visibile
             IsBusy = false; //L'activity indicator non si trova nello stato IsRunning
             effettuaLogin = new Command(async () => //Definisce il metodo del Command effettuaLogin che gestisce il tentativo di login da parte dell'utente
@@ -150,16 +175,19 @@ namespace MCup.ModelView
                 }
                 if (!string.IsNullOrEmpty(codiceFiscale) && !string.IsNullOrEmpty(passWord)) //se i campi codice fiscale e password non sono vuoti o null
                 {
+                    LoginIsVisible = false;
+                    SignupIsVisible = false;
                     IsVisible = true; //L'activity indicator è visibile
                     IsBusy = true; //L'activity indicator è in stato IsRunning
                     REST<Utente, ResponseLogin> rest = new REST<Utente, ResponseLogin>(); //Crea l'oggetto per eseguire la chiamata REST per la login
                     ResponseLogin response = await rest.PostJson(URL.Login, utente); //Chiamata POST per la richiesta di autenticazione delle informazioni inserite dall'utente (codice fiscale e password)
-
                     IsBusy = false; //L'activity indicator non è in stato IsRunning
                     IsVisible = false; //L'activity indicator non è visibile
+                    LoginIsVisible = true;
+                    SignupIsVisible = true;
                     if (response == null) //Controlla se si è verificato un errore di connessione
                     {
-                       await App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita", "riprova");
+                       await App.Current.MainPage.DisplayAlert("Attenzione", rest.warning, "riprova");
                     }
                     else if (response == default(ResponseLogin)) //Controlla se la login non ha avuto successo
                     {

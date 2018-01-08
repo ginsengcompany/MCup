@@ -101,19 +101,21 @@ namespace MCup.Service
             string ContentType = "application/json"; // or application/xml
             string json = JsonConvert.SerializeObject(dati);
             var uri = new Uri(string.Format(url, String.Empty));
-            var result = await client.PostAsync(url, new StringContent(json.ToString(), Encoding.UTF8, ContentType));
-            var response = await result.Content.ReadAsStringAsync();
-            warning = response;
             try
             {
+                client.Timeout = TimeSpan.FromSeconds(10.0);
+                var result = await client.PostAsync(url, new StringContent(json.ToString(), Encoding.UTF8, ContentType));
+                var response = await result.Content.ReadAsStringAsync();
+                warning = response;
                 var isValid = JToken.Parse(response);
                 Item = JsonConvert.DeserializeObject<T>(response);
                 return Item;
             }
             catch (Exception)
             {
-                return default(T);
+                warning = "Il servizio è momentaneamente fuori servizio";
             }
+            return default(T);
         }
 
         public async Task<T> PostJson(string url, E dati, string header)
