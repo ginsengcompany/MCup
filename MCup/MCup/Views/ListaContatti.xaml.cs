@@ -18,8 +18,7 @@ namespace MCup.Views
         {
             InitializeComponent();
             BindingContext = new ListaContattiModelView();
-           
-            listacontatti.On<Platform::Android>().SetIsFastScrollEnabled(true);
+            
         }
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)

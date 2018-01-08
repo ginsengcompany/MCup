@@ -29,7 +29,9 @@ namespace MCup.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
             UINavigationBar.Appearance.BarTintColor = UIColor.Red;
-            UINavigationBar.Appearance.TintColor = UIColor.White;
+            UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes {TextColor = UIColor.White});
+            UIBarButtonItem.Appearance.TintColor = UIColor.White;
+
             return base.FinishedLaunching(app, options);
         }
       
