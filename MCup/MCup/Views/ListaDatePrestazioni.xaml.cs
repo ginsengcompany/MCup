@@ -1,6 +1,4 @@
-﻿using MCup.Database.Data;
-using MCup.Database.Models;
-using MCup.Model;
+﻿using MCup.Model;
 using MCup.ModelView;
 using MCup.Service;
 using System;
@@ -38,8 +36,7 @@ namespace MCup.Views
             if (conn.warning == "Prenotazione effettuata")
             {
                 Prenotazione prenotazione = new Prenotazione(this.utenza, elemTapped, this.codiceStruttura, this.nomeStruttura, this.codiceNRE);
-                Appuntamento appuntamento = new Appuntamento(prenotazione);
-                AppuntamentoData.InsertAppuntamento(appuntamento);
+                
             }
             await DisplayAlert("Prenotazione", conn.warning, "OK");
         }
