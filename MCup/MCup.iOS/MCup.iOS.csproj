@@ -327,6 +327,7 @@
     <BundleResource Include="Resources\codtre.png" />
     <BundleResource Include="Resources\ico.png" />
     <BundleResource Include="Resources\contacttre.png" />
+    <BundleResource Include="Resources\menu.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen.png" />
@@ -399,21 +400,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\close_circle_button.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\logout.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\logout-20x20.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\logout-30x30.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\logout-40x40.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\logout-50x50.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\utente.png" />
