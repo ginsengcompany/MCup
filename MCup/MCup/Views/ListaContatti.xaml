@@ -9,8 +9,8 @@
             <Label Text="Tuo contatto"></Label>
             <Label HorizontalOptions="Center" TextColor="Black" Text="{Binding PrimoNome}"></Label>
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <ListView Header="{Binding LongName}" ItemsSource="{Binding Grouped}" IsGroupingEnabled="True" GroupShortNameBinding="{Binding ShortName}"  GroupDisplayBinding="{Binding LongName}"   ItemTapped="ListView_ItemTapped" 
-                          SeparatorColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <ListView x:Name="listacontatti" HeaderTemplate="{Binding LongName}" ItemsSource="{Binding Grouped}" IsGroupingEnabled="True" GroupShortNameBinding="{Binding ShortName}"  GroupDisplayBinding="{Binding LongName}"   ItemTapped="ListView_ItemTapped" 
+                          SeparatorColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

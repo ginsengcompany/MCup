@@ -16,6 +16,7 @@
   <!-- Base theme applied no matter what API -->
   <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
     <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
+
     <item name="windowNoTitle">true</item>
     <item name="android:buttonStyle">@style/NoShadowButton</item>
     <!--We will be using the toolbar so no need to show ActionBar-->
