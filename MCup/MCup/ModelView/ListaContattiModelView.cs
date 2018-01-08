@@ -5,13 +5,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MCup.Views;
-using MvvmHelpers;
 using Xamarin.Forms;
 
 namespace MCup.ModelView
@@ -23,6 +21,16 @@ namespace MCup.ModelView
         public string primoNome;
         public ICommand AggiungereContatto { protected set; get; }
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<Rubrica> Grouped
+        {
+            get { return grouped; }
+            set
+            {
+                OnPropertyChanged();
+                grouped = value;
+            }
+        }
 
         public List<Contatto> Contatti
         {
@@ -48,8 +56,11 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        private ObservableCollection<Rubrica> grouped { get; set; }
+
         public ListaContattiModelView()
         {
+            Grouped = new ObservableCollection<Rubrica>();
             leggiContatti();
             AggiungereContatto = new Command(() =>
             {
@@ -79,10 +90,46 @@ namespace MCup.ModelView
                 
                 temp.Add(contacts.contatti[i]);
             }
-
             PrimoNome = temp[0].nome + " " + temp[0].cognome;
-
             Contatti = temp;
+            ImplementaRubrica();
+        }
+
+        private void ImplementaRubrica()
+        {
+            List<Rubrica> listGroup = new List<Rubrica>();
+            bool x;
+            for(int i = 0; i < contatti.Count; i++)
+            {
+                x = false;
+                if (listGroup.Count > 0)
+                {
+                    int j;
+                    for (j = 0; j < listGroup.Count; j++)
+                    {
+                        if(listGroup[j].ShortName.ToLower()[0] == contatti[i].nome.ToLower()[0])
+                        {
+                            x = true;
+                            listGroup[j].Add(contatti[i]);
+                            break;
+                        }
+                    }
+                    if (!x)
+                    {
+                        listGroup.Add(new Rubrica(contatti[i].nome.ToUpper()[0].ToString(), contatti[i].nome.ToUpper()[0].ToString()));
+                        listGroup[j].Add(contatti[i]);
+                    }
+                }
+                else
+                {
+                    listGroup.Add(new Rubrica(contatti[i].nome.ToUpper()[0].ToString(), contatti[i].nome.ToUpper()[0].ToString()));
+                    listGroup[0].Add(contatti[i]);
+                }
+            }
+            for(int i = 0; i < listGroup.Count; i++)
+            {
+                Grouped.Add(listGroup[i]);
+            }
         }
     }
 }

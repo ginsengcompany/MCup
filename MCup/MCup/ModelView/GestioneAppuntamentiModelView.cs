@@ -1,6 +1,4 @@
-﻿using MCup.Database.Data;
-using MCup.Database.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,24 +12,11 @@ namespace MCup.ModelView
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private List<Appuntamento> listAppuntamenti = new List<Appuntamento>();
-
-        public List<Appuntamento> ListAppuntamenti
-        {
-            get
-            {
-                return listAppuntamenti;
-            }
-            set
-            {
-                listAppuntamenti = value;
-                OnPropertyChanged();
-            }
-        }
+        
 
         public GestioneAppuntamentiModelView()
         {
-            ListAppuntamenti = AppuntamentoData.GetAppuntamenti();
+            
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")

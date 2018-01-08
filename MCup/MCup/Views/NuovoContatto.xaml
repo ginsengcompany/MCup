@@ -1,9 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              x:Class="MCup.Views.NuovoContatto" 
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="0,30,0,0"/>
+    </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout>
             <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="#ff0000" Padding="15,0,15,0" >
