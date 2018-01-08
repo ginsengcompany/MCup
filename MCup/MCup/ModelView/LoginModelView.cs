@@ -21,13 +21,34 @@ namespace MCup.ModelView
         private string nameErrorTextPassword; 
         private bool isbusy; //variabile booleana utilizzata per gestire la proprietà IsRunning dell'activity indicator
         private string nameErrorText;
+        private string imgPass= "showPass.png";
+        private bool showPassword = true;
         private bool isvisible; //variabile booleana utilizzata per gestire la proprietà IsVisible dell'activity indicator
-        
+
         //Command utilizzato per il tentativo di accesso ai servizi da parte dell'utente
         public ICommand effettuaLogin { protected set; get; }
+        public ICommand showPass { protected set; get; }
 
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
+        public bool ShowPassword
+        {
+            get { return showPassword; }
+            set
+            {
+                OnPropertyChanged();
+                showPassword = value;
+            }
+        }
 
+        public string ImgPass
+        {
+            get { return imgPass; }
+            set
+            {
+                OnPropertyChanged();
+                imgPass = value;
+            }
+        }
         //Proprietà relativa alla variabile isvisible
         public bool IsVisible
         {
@@ -158,6 +179,19 @@ namespace MCup.ModelView
                         else //Se l'utente non ha ancora scelto la sua struttura preferita
                             App.Current.MainPage = new ListaStrutture("Login"); //Avvia la pagina per la scelta di essa
                     }
+                }
+            });
+            showPass = new Command(() =>
+            {
+                if (ShowPassword == true)
+                {
+                ImgPass = "showPassHide.png";
+                ShowPassword = false;
+                }
+                else
+                {
+                    ImgPass = "showPass.png";
+                    ShowPassword = true;
                 }
             });
         }
