@@ -21,7 +21,6 @@ namespace MCup.ModelView
         private string nameErrorTextPassword; 
         private bool isbusy; //variabile booleana utilizzata per gestire la proprietà IsRunning dell'activity indicator
         private string nameErrorText;
-        private string imgPass= "showPass.png";
         private bool showPassword = true;
         private bool isvisible; //variabile booleana utilizzata per gestire la proprietà IsVisible dell'activity indicator
         private bool loginisvisible;
@@ -60,16 +59,6 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 showPassword = value;
-            }
-        }
-
-        public string ImgPass
-        {
-            get { return imgPass; }
-            set
-            {
-                OnPropertyChanged();
-                imgPass = value;
             }
         }
         //Proprietà relativa alla variabile isvisible
@@ -212,15 +201,9 @@ namespace MCup.ModelView
             showPass = new Command(() =>
             {
                 if (ShowPassword == true)
-                {
-                ImgPass = "showPassHide.png";
-                ShowPassword = false;
-                }
+                    ShowPassword = false;
                 else
-                {
-                    ImgPass = "showPass.png";
                     ShowPassword = true;
-                }
             });
         }
 

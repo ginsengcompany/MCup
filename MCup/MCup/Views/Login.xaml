@@ -12,7 +12,7 @@
                 <StackLayout Orientation="Horizontal"
                                  HorizontalOptions="Center">
                     <Image Source="profilo.png" HorizontalOptions="Start"/>
-                    <xfx:XfxEntry 
+                        <xfx:XfxEntry 
                             x:Name="entryCodFis"
                             Placeholder="Inserire Codice Fiscale"     
                             PlaceholderColor="Red"   
@@ -26,7 +26,7 @@
                 <StackLayout  Orientation="Horizontal"
                                   HorizontalOptions="Center">
                     <Image Source="password.png" HorizontalOptions="Start"/>
-                    <xfx:XfxEntry 
+                        <xfx:XfxEntry 
                             Text="{Binding passWord}" 
                             Placeholder="Inserire Password" 
                             PlaceholderColor="Red" 
@@ -36,12 +36,12 @@
                             IsPassword="{Binding ShowPassword}"
                             HorizontalOptions="Center" 
                             WidthRequest="250">
-                    </xfx:XfxEntry>
-                    <!-- <Image Source="{Binding ImgPass}" HorizontalOptions="End" VerticalOptions="Center">
+                        </xfx:XfxEntry>
+                    <Image Source="eye.png" VerticalOptions="Center">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding showPass}"></TapGestureRecognizer>
                         </Image.GestureRecognizers>
-                    </Image> -->
+                    </Image>
                 </StackLayout>
                 <StackLayout Padding="75,0,75,0">
                     <Button Text="LOGIN" IsVisible="{Binding LoginIsVisible}" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="Red"  BorderRadius="20" BorderColor="Red" BorderWidth="3" Command="{Binding effettuaLogin}"/>
