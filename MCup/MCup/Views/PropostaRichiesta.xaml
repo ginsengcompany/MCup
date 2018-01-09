@@ -7,32 +7,34 @@
     BackgroundColor="White"
     Title="Richiesta proposta">
 	<ContentPage.Content>
-        <StackLayout BackgroundColor="White" Orientation="Vertical">
-            <ListView BackgroundColor="White" HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="Fill" ItemsSource="{Binding list}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <customControls:ExtendedViewCell SelectedBackgroundColor="White">
-                            <ViewCell.View>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="Prestazione:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                                    <Label Text="{Binding descPrestazione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                    <Label Text="Reparto:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding descReparto}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                    <Label Text="Data dell'appuntamento:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding dataAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                    <Label Text="Orario dell'appuntamento:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding oraAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                    <Label Text="Posizione in coda:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding posizione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                </StackLayout>
-                            </ViewCell.View>
-                        </customControls:ExtendedViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <StackLayout BackgroundColor="White">
+        <StackLayout Orientation="Vertical" BackgroundColor="white">
+            <StackLayout BackgroundColor="White" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                <ListView BackgroundColor="White" HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="FillAndExpand" ItemsSource="{Binding list}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <customControls:ExtendedViewCell SelectedBackgroundColor="White">
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="Prestazione:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                        <Label Text="{Binding descPrestazione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                        <Label Text="Reparto:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                        <Label Text="{Binding descReparto}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                        <Label Text="Data dell'appuntamento:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                        <Label Text="{Binding dataAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                        <Label Text="Orario dell'appuntamento:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                        <Label Text="{Binding oraAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                        <Label Text="Posizione in coda:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                        <Label Text="{Binding posizione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </customControls:ExtendedViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout BackgroundColor="White" VerticalOptions="End">
                 <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White"  Clicked="Button_Clicked"/>
             </StackLayout>
         </StackLayout>
-	</ContentPage.Content>
+    </ContentPage.Content>
 </ContentPage>
