@@ -101,6 +101,7 @@ namespace MCup.ModelView
             {
                 
                 temp.Add(contacts.contatti[i]);
+               
             }
             PrimoNome = temp[0].nome + " " + temp[0].cognome;
             contattoPrimo.nome = temp[0].nome;
@@ -111,6 +112,7 @@ namespace MCup.ModelView
             contattoPrimo.provincia = temp[0].provincia;
             contattoPrimo.sesso = temp[0].sesso;
             contattoPrimo.AccountPrimario = true;
+            temp.Remove(temp[0]);
             Contatti = temp;
             ImplementaRubrica();
         }
