@@ -7,12 +7,15 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Tuo contatto"></Label>
-            <Label x:Name="MioContatto" HorizontalOptions="Center" TextColor="Black" Text="{Binding PrimoNome}">
-                <Label.GestureRecognizers>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Tuo contatto" VerticalOptions="Start"></Label>
+            <Label x:Name="MioContatto" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" Text="{Binding PrimoNome}" FontSize="Large" FontAttributes="Bold"/>
+                <Image Source="rightArrow.png" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="40" HeightRequest="40"></Image>
+                <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding MioContattoPersonale}" NumberOfTapsRequired="1"></TapGestureRecognizer>
-                </Label.GestureRecognizers>
-            </Label>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <ListView x:Name="listacontatti" HeaderTemplate="{Binding LongName}" ItemsSource="{Binding Grouped}" IsGroupingEnabled="True" GroupShortNameBinding="{Binding ShortName}"  GroupDisplayBinding="{Binding LongName}"   ItemTapped="ListView_ItemTapped" 
                           SeparatorColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >

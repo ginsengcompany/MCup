@@ -336,6 +336,11 @@
     <BundleResource Include="Resources\logout50x50.png" />
     <BundleResource Include="Resources\logout150x150.png" />
     <BundleResource Include="Resources\logout.png" />
+    <BundleResource Include="Resources\contact.png" />
+    <BundleResource Include="Resources\contact57x57.png" />
+    <BundleResource Include="Resources\contact20x20.png" />
+    <BundleResource Include="Resources\contact29x29.png" />
+    <BundleResource Include="Resources\contact40x40.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen.png" />
@@ -438,6 +443,15 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\rubrica_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rightArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rightArrow_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rightArrow_3x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets')" />
