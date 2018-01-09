@@ -315,6 +315,11 @@
     <BundleResource Include="Resources\logout50x50.png" />
     <BundleResource Include="Resources\logout150x150.png" />
     <BundleResource Include="Resources\logout.png" />
+    <BundleResource Include="Resources\contact.png" />
+    <BundleResource Include="Resources\contact57x57.png" />
+    <BundleResource Include="Resources\contact20x20.png" />
+    <BundleResource Include="Resources\contact29x29.png" />
+    <BundleResource Include="Resources\contact40x40.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen.png" />

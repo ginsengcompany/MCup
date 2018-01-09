@@ -32,7 +32,7 @@ namespace MCup.Views
             {
                 new Menu { MenuTitle = "Home", ImageIcon = "home.png"},
                 new Menu { MenuTitle = "Scegli Struttura Preferita", ImageIcon = "modify.png"},
-                new Menu { MenuTitle ="Contatti", ImageIcon = "rubrica.png"}
+                new Menu { MenuTitle ="Contatti", ImageIcon = "contact.png"}
 
             };
             ListaMenu.ItemsSource = menuPrincipale; //Assegna all'oggetto ListaMenu dello xaml della pagina la lista precedentemente inizializzata

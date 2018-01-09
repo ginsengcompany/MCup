@@ -250,6 +250,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\utente.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\utente.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\utente.png" />
+    <AndroidResource Include="Resources\drawable\contact.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\contact.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\contact.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\contact.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -282,15 +286,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\iconaPrenotazioni.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ospedaledelmare.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\PinetaGrandeLogo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\CardarelliLogo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\profilo.png" />
