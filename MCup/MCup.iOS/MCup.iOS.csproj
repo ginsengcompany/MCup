@@ -207,87 +207,66 @@
   <ItemGroup>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\1024x1024.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\120x120.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\152x152.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\167x167.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\180x180.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\20x20.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\29x29.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\40x40.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\58x58.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\60x60.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\76x76.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\80x80.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\87x87.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\Contents.json">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1024x768.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1536x2048.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\2048x1536.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\640x1136.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\640x960.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\768x1024.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\Contents.json">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
@@ -405,6 +384,33 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\utente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\modify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\modify_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\modify_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\home_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\home_3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rubrica.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rubrica_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rubrica_3x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets')" />
