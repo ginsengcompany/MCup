@@ -16,6 +16,7 @@ namespace MCup.ModelView
     public class InfoContattoModelView : INotifyPropertyChanged
     {
         private Contatto utente = new Contatto();
+        private string visibile="true";
         public string NomeCognome="";
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -28,6 +29,15 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 utente.codice_fiscale = value;
+            }
+        }
+        public string Visibile //Proprietà relativa al campo codice fiscale
+        {
+            get { return visibile; }
+            set
+            {
+                OnPropertyChanged();
+                visibile = value;
             }
         }
 
@@ -96,27 +106,19 @@ namespace MCup.ModelView
                 utente.provincia = value;
             }
         }
-
-
-
-
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-
-
-
-
-
-
-
-
         public InfoContattoModelView(Contatto info)
         {
             utente = info;
             NomeCognome = info.nome + " " + info.cognome;
+            if (info.AccountPrimario)
+            {
+                Visibile = "false";
+            }
             Elimina = new Command(async () =>
             {
                 REST<Contatto, string> restElimina = new REST<Contatto, string>();

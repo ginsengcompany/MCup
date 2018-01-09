@@ -19,5 +19,6 @@ namespace MCup.Views
             BindingContext = new InfoContattoModelView(infoContatto);
 
         }
+
     }
 }

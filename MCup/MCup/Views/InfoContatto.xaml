@@ -8,14 +8,14 @@
         <ScrollView>
             <StackLayout>
                 <Image Source="contacttre.png" WidthRequest="120" VerticalOptions="Center" HorizontalOptions="Center"/>
-                <xfx:XfxEntry Placeholder="Inserire codice fiscale" Text="{Binding codiceFiscale}" PlaceholderColor="Red" ErrorText="{Binding NameErrorTextCodice}"  IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black"/>
+                <xfx:XfxEntry Placeholder="Codice fiscale" Text="{Binding codiceFiscale}" PlaceholderColor="Red" ErrorText="{Binding NameErrorTextCodice}"  IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black"/>
                 <xfx:XfxEntry Placeholder="Nome" Text="{Binding nome}" ErrorText="{Binding NameErrorTextNome}" PlaceholderColor="Red" ErrorDisplay="Underline"  IsEnabled="false" WidthRequest="250" TextColor="Black" />
                 <xfx:XfxEntry Placeholder="Cognome" Text="{Binding cognome}" ErrorText="{Binding NameErrorTextCognome}" PlaceholderColor="Red" ErrorDisplay="Underline"  IsEnabled="false" WidthRequest="250" TextColor="Black" />
                 <xfx:XfxEntry Placeholder="Data di nascita" Text="{Binding data_nascita}" ErrorText="{Binding NameErrorTextDataNascita}" PlaceholderColor="Red"  IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black" />
                 <xfx:XfxEntry Placeholder="Luogo di nascita" Text="{Binding luogo_nascita}" ErrorText="{Binding NameErrorTextLuogoNascita}" PlaceholderColor="Red"  IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black" />
                 <xfx:XfxEntry Placeholder="Provincia" Text="{Binding provincia}" ErrorText="{Binding NameErrorTextProvincia}" PlaceholderColor="Red" ErrorDisplay="Underline"  IsEnabled="false" WidthRequest="250" TextColor="Black" />
                 <xfx:XfxEntry Placeholder="Sesso" Text="{Binding Sesso}" ErrorText="{Binding NameErrorTextPassword}" PlaceholderColor="Red" ErrorDisplay="Underline"  IsEnabled="false"  WidthRequest="250" TextColor="Black" />
-                <Button Text="Elimina" Command="{Binding Elimina}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red"  IsEnabled="false" TextColor="White" Margin="15"/>
+                <Button Text="Elimina" Command="{Binding Elimina}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red"  IsEnabled="false" TextColor="White" Margin="15" IsVisible="{Binding Visibile}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

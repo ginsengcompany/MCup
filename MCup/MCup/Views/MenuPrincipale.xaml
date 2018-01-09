@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:costomControls="clr-namespace:MCup.CostomControls;assembly=MCup"
              x:Class="MCup.Views.MenuPrincipale"
              NavigationPage.HasNavigationBar="False"
                   >
@@ -17,11 +18,13 @@
                     <ListView x:Name="ListaMenu" ItemSelected="ListaMenu_ItemSelected" VerticalOptions="Center">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
+                            <costomControls:ExtendedViewCell SelectedBackgroundColor="Red">
+                            <ViewCell.View>
                                     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
                                         <Label Text="{Binding MenuTitle}" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
                                     </StackLayout>
-                                </ViewCell>
+                                </ViewCell.View>
+                               </costomControls:ExtendedViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

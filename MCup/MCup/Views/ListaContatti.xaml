@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:costomControls="clr-namespace:MCup.CostomControls;assembly=MCup"
              x:Class="MCup.Views.ListaContatti"
              Title="Rubrica Contatti"
              BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Tuo contatto"></Label>
-            <Label HorizontalOptions="Center" TextColor="Black" Text="{Binding PrimoNome}"></Label>
+            <Label x:Name="MioContatto" HorizontalOptions="Center" TextColor="Black" Text="{Binding PrimoNome}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding MioContattoPersonale}" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <ListView x:Name="listacontatti" HeaderTemplate="{Binding LongName}" ItemsSource="{Binding Grouped}" IsGroupingEnabled="True" GroupShortNameBinding="{Binding ShortName}"  GroupDisplayBinding="{Binding LongName}"   ItemTapped="ListView_ItemTapped" 
                           SeparatorColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
+                        <costomControls:ExtendedViewCell SelectedBackgroundColor="White">
+                            <ViewCell.View>
                             <StackLayout Orientation="Horizontal">
                                 <Image Source="contacttre.png" WidthRequest="35"></Image>
                                 <Label Text="{Binding nome}" VerticalOptions="Center" FontSize="Medium" TextColor="LightGray"/>
                                 <Label Text="{Binding cognome}" VerticalOptions="Center"/>
                             </StackLayout>
-                        </ViewCell>
+                        </ViewCell.View>
+                            </costomControls:ExtendedViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
                     <ListView.GroupHeaderTemplate>

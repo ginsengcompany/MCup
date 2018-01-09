@@ -16,10 +16,15 @@ namespace MCup.ModelView
 {
     public class ListaContattiModelView : INotifyPropertyChanged
     {
-      
         private List<Contatto> contatti = new List<Contatto>();
         public string primoNome;
+        private NavigationPage pagina = new  NavigationPage();
+        private InfoContatto paginaInfoContatto;
+        public  Contatto contattoPrimo = new Contatto();
         public ICommand AggiungereContatto { protected set; get; }
+        public ICommand MioContattoPersonale { protected set; get; }
+        private ListaContatti paginaListaContatti;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<Rubrica> Grouped
@@ -58,15 +63,22 @@ namespace MCup.ModelView
 
         private ObservableCollection<Rubrica> grouped { get; set; }
 
-        public ListaContattiModelView()
+        public ListaContattiModelView(ListaContatti pagina)
         {
+            paginaListaContatti = pagina;
             Grouped = new ObservableCollection<Rubrica>();
             leggiContatti();
             AggiungereContatto = new Command(() =>
             {
                 App.Current.MainPage = new NuovoContatto();
             });
+            MioContattoPersonale = new Command(async () =>
+            {
+                await paginaListaContatti.Navigation.PushAsync(new InfoContatto(contattoPrimo));
+            });
         }
+  
+
 
         private async void leggiContatti()
         {
@@ -91,6 +103,14 @@ namespace MCup.ModelView
                 temp.Add(contacts.contatti[i]);
             }
             PrimoNome = temp[0].nome + " " + temp[0].cognome;
+            contattoPrimo.nome = temp[0].nome;
+            contattoPrimo.cognome= temp[0].cognome;
+            contattoPrimo.codice_fiscale= temp[0].codice_fiscale;
+            contattoPrimo.data_nascita = temp[0].data_nascita;
+            contattoPrimo.luogo_nascita = temp[0].luogo_nascita;
+            contattoPrimo.provincia = temp[0].provincia;
+            contattoPrimo.sesso = temp[0].sesso;
+            contattoPrimo.AccountPrimario = true;
             Contatti = temp;
             ImplementaRubrica();
         }
@@ -131,5 +151,7 @@ namespace MCup.ModelView
                 Grouped.Add(listGroup[i]);
             }
         }
+
+      
     }
 }

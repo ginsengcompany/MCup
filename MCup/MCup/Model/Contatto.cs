@@ -15,6 +15,7 @@ namespace MCup.Model
         public string luogo_nascita { get; set; }
         public string provincia { get; set; }
         public char sesso { get; set; }
+        public bool AccountPrimario { get; set; }
 
 
         public Contatto()
@@ -26,6 +27,7 @@ namespace MCup.Model
             this.luogo_nascita = "";
             this.provincia = "";
             this.sesso = ' ';
+            this.AccountPrimario =false;
         }
 
         public Contatto(Contatto contatto)
@@ -37,6 +39,7 @@ namespace MCup.Model
             this.luogo_nascita = contatto.luogo_nascita;
             this.provincia = contatto.provincia;
             this.sesso = contatto.sesso;
+            this.AccountPrimario = contatto.AccountPrimario;
         }
     }
 }

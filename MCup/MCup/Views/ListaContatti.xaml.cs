@@ -14,17 +14,25 @@ namespace MCup.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListaContatti : ContentPage
     {
+        private Contatto contattoPrimo;
         public ListaContatti()
         {
             InitializeComponent();
-            BindingContext = new ListaContattiModelView();
+            BindingContext = new ListaContattiModelView(this);
             
         }
+    
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             Contatto x = e.Item as Contatto;
             Navigation.PushAsync(new InfoContatto(x)); //Avvia la pagina di registrazione dedicata ai dispositivi Android
+        }
+
+
+        private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new InfoContatto(contattoPrimo));
         }
     }
 }
