@@ -24,13 +24,9 @@
                             <DataTemplate>
                             <costomControls:ExtendedViewCell SelectedBackgroundColor="Red">
                             <ViewCell.View>
-                                    <StackLayout  VerticalOptions="Center" Orientation="Horizontal" Spacing="10">
-                                        <StackLayout HorizontalOptions="Start">
-                                            <Image Source="{Binding ImageIcon}" WidthRequest="30" HeightRequest="30"/>
-                                        </StackLayout>
-                                        <StackLayout HorizontalOptions="Center">
-                                            <Label Text="{Binding MenuTitle}" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" FontAttributes="Bold"/>
-                                        </StackLayout>
+                                    <StackLayout  VerticalOptions="Center" Orientation="Horizontal" Spacing="10" HorizontalOptions="Start">
+                                            <Image Source="{Binding ImageIcon}" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
+                                            <Label Text="{Binding MenuTitle}" Margin="10,0,0,0" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
                                     </StackLayout>
                                 </ViewCell.View>
                                </costomControls:ExtendedViewCell>

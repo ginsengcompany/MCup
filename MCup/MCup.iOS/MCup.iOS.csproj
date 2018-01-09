@@ -309,6 +309,12 @@
     <BundleResource Include="Resources\menu50x50.png" />
     <BundleResource Include="Resources\menu150x150.png" />
     <BundleResource Include="Resources\menu.png" />
+    <BundleResource Include="Resources\logout20x20.png" />
+    <BundleResource Include="Resources\logout30x30.png" />
+    <BundleResource Include="Resources\logout40x40.png" />
+    <BundleResource Include="Resources\logout50x50.png" />
+    <BundleResource Include="Resources\logout150x150.png" />
+    <BundleResource Include="Resources\logout.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen.png" />
