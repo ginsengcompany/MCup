@@ -30,9 +30,9 @@ namespace MCup.Views
         {
             List<Menu> menuPrincipale = new List<Menu> //Lista contenente le pagine a cui si può accedere dalla MasterDetailPage
             {
-                new Menu { MenuTitle = "Home" },
-                new Menu { MenuTitle = "Scegli Struttura Preferita" },
-                new Menu { MenuTitle ="Contatti"}
+                new Menu { MenuTitle = "Home", ImageIcon = "home.png"},
+                new Menu { MenuTitle = "Scegli Struttura Preferita", ImageIcon = "modify.png"},
+                new Menu { MenuTitle ="Contatti", ImageIcon = "rubrica.png"}
 
             };
             ListaMenu.ItemsSource = menuPrincipale; //Assegna all'oggetto ListaMenu dello xaml della pagina la lista precedentemente inizializzata
@@ -69,6 +69,12 @@ namespace MCup.Views
         public class Menu
         {
             public string MenuTitle
+            {
+                get;
+                set;
+            }
+
+            public string ImageIcon
             {
                 get;
                 set;

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              x:Class="MCup.Views.NuovoContatto" 
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             Title="Nuovo contatto">
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness"
                     iOS="0,30,0,0"/>
@@ -12,14 +13,14 @@
         <StackLayout>
             <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="#ff0000" Padding="15,0,15,0" >
                 <Button Command="{Binding annullaRegistrazioneNuovoContatto}" Text="Annulla" BorderWidth="1" BorderRadius="0" TextColor="White" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="StartAndExpand"></Button>
+                <Label Text="Nuovo contatto" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" FontSize="Medium"></Label>
                 <Button Text="Conferma" Command="{Binding registraNuovoContatto}" BorderColor="Transparent" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"  TextColor="White" />
         </StackLayout>
         <ScrollView >
             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="20">
                 <xfx:XfxEntry Placeholder="Inserire nome" Text="{Binding NomeNuovoContatto}" ErrorText="{Binding NameErrorTextNome}" ErrorDisplay="Underline" WidthRequest="250"/>
                 <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding CognomeNuovoContatto}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
-                <xfx:XfxEntry Placeholder="Inserire la data di nascita" Text="{Binding Data_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextDataNascita}" ErrorDisplay="Underline" WidthRequest="250" />
-                    <DatePicker TextColor="Black" x:Name="picker"></DatePicker>
+                <xfx:XfxEntry Keyboard="Numeric" Placeholder="Data di nascita GG/MM/AAAA" Text="{Binding Data_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextDataNascita}" ErrorDisplay="Underline" WidthRequest="250" />
                 <xfx:XfxEntry Placeholder="Inserire il luogo di nascita" Text="{Binding Luogo_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
                 <xfx:XfxEntry Placeholder="Inserire la provincia"  Text="{Binding ProvinciaNuovoContatto}" ErrorText="{Binding NameErrorTextProvincia}" ErrorDisplay="Underline" WidthRequest="250">
                 </xfx:XfxEntry>

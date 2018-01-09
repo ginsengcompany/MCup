@@ -188,6 +188,7 @@ namespace MCup.ModelView
             NameErrorTextNome = String.Empty;
             NameErrorTextCognome = String.Empty;
             NameErrorTextCodice = String.Empty;
+            
             /*
              * variabile locale utilizzata per verificare se l'utente ha inserito i campi obbligatori per effettuare il tentativo di registrazione.
              * Questa viene inizializzata a true supponendo a priori che l'utente abbia inserito tutti i campi correttamente.
