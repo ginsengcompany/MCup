@@ -9,7 +9,7 @@
         <ScrollView>
             <StackLayout Orientation="Vertical" Padding="20,20,20,0" >
                 <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
-                <xfx:XfxComboBox x:Name="ComboNome" Placeholder="Inserire il nome" SortingAlgorithm="{Binding SortingAlgorithm}" ItemsSource="{Binding Contatti}" ItemSelected="XfxComboBox_ItemSelected" Text="{Binding nomeUtente}" WidthRequest="250" VerticalOptions="Center" />
+                <xfx:XfxComboBox x:Name="ComboNome" ErrorText="{Binding NameTextErrorNome}" ErrorDisplay="Underline" Placeholder="Inserire il nome" SortingAlgorithm="{Binding SortingAlgorithm}" ItemsSource="{Binding Contatti}" ItemSelected="XfxComboBox_ItemSelected" Text="{Binding nomeUtente}" WidthRequest="250" VerticalOptions="Center" />
                <!-- <xfx:XfxEntry 
                     Placeholder="Inserire nome"     
                     Text="{Binding nomeUtente}" 
@@ -20,7 +20,7 @@
                 <xfx:XfxEntry 
                     Placeholder="Inserire cognome"     
                     Text="{Binding cognomeUtente}" 
-                    ErrorText="{Binding SurnameErrorText}" 
+                    ErrorText="{Binding NameTextErrorCognome}" 
                     ErrorDisplay="Underline"
                     WidthRequest="250" 
                     VerticalOptions="Center"/>
@@ -30,7 +30,7 @@
                         x:Name="entryCodiceFiscale"
                         Placeholder="Inserire Codice Fiscale"     
                         Text="{Binding codicefiscaleUtente}" 
-                        ErrorText="{Binding CodeErrorText}" 
+                        ErrorText="{Binding NameTextErrorCodFisc}" 
                         ErrorDisplay="Underline"
                         WidthRequest="250"
                         HorizontalOptions="Center" 
@@ -53,7 +53,7 @@
                         x:Name="entryCodiceRicettaUno"
                         Placeholder="Inserisci il 1° codice ricetta"     
                         Text="{Binding codiceUno}" 
-                        ErrorText="{Binding CodeOneErrorText}" 
+                        ErrorText="{Binding NameTextErrorCodUno}" 
                         ErrorDisplay="Underline"
                         WidthRequest="250"
                         HorizontalOptions="Center" 
@@ -75,7 +75,7 @@
                         x:Name="entryCodiceRicettaDue"
                         Placeholder="Inserisci il 2° codice ricetta"     
                         Text="{Binding codiceDue}" 
-                        ErrorText="{Binding CodeTwoErrorText}" 
+                        ErrorText="{Binding NameTextErrorCodDue}" 
                         ErrorDisplay="Underline"
                         WidthRequest="250"
                         HorizontalOptions="Center" 

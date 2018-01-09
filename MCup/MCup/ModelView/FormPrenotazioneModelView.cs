@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -21,11 +22,65 @@ namespace MCup.ModelView
         //Evento che prevede il cambiamento di proprietà all'interno della classe
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private Regex regexNomeCognome = new Regex(@"^[A-Za-zèùàòé][a-zA-Z'èùàòé ]*$");
+
         //Oggetto che astrae l'utente che intende prenotare una o delle prestazioni
         private UtenzaPrenotazione utenza;
         
         //Oggetto che astrae la ricetta NRE
         private InvioRicettaPrenotazione ricetta;
+
+        private string nameTextErrorNome, nameTextErrorCognome, nameTextErrorCodFisc, nameTextErrorCodUno, nameTextErrorCodDue;
+
+        public string NameTextErrorNome
+        {
+            get { return nameTextErrorNome; }
+            set
+            {
+                OnPropertyChanged();
+                nameTextErrorNome = value;
+            }
+        }
+
+        public string NameTextErrorCognome
+        {
+            get { return nameTextErrorCognome; }
+            set
+            {
+                OnPropertyChanged();
+                nameTextErrorCognome = value;
+            }
+        }
+
+        public string NameTextErrorCodFisc
+        {
+            get { return nameTextErrorCodFisc; }
+            set
+            {
+                OnPropertyChanged();
+                nameTextErrorCodFisc = value;
+            }
+        }
+
+        public string NameTextErrorCodUno
+        {
+            get { return nameTextErrorCodUno; }
+            set
+            {
+                OnPropertyChanged();
+                nameTextErrorCodUno = value;
+            }
+        }
+
+        public string NameTextErrorCodDue
+        {
+            get { return nameTextErrorCodDue; }
+            set
+            {
+                OnPropertyChanged();
+                nameTextErrorCodDue = value;
+            }
+        }
 
         //Oggetto che contiene tutte le informazioni della prenotazione che si vuole effettuare
         private FormPrenotazione model;
@@ -147,7 +202,58 @@ namespace MCup.ModelView
         //Funzione utilizzata per l'invio della richiesta di prenotazione al servizio
         public async Task InvioDatiAsync ()
         {
-            if (utenza.getCodiceFiscale().Trim() != "")
+            bool passControl = true;
+            if (string.IsNullOrEmpty(utenza.nome))
+            {
+                NameTextErrorNome = "Il campo nome è obbligatorio";
+                passControl = false;
+            }
+            else if (!regexNomeCognome.IsMatch(utenza.nome))
+            {
+                NameTextErrorNome = "Il campo nome contiene caratteri non validi";
+                passControl = false;
+            }
+            else
+                NameTextErrorNome = "";
+            if (string.IsNullOrEmpty(utenza.cognome))
+            {
+                NameTextErrorCognome = "Il campo cognome è obbligatorio";
+                passControl = false;
+            }
+            else if (!regexNomeCognome.IsMatch(utenza.cognome))
+            {
+                NameTextErrorCognome = "Il campo cognome contiene caratteri non validi";
+                passControl = false;
+            }
+            else
+                NameTextErrorCognome = "";
+            if (string.IsNullOrEmpty(utenza.getCodiceFiscale()))
+            {
+                NameTextErrorCodFisc = "Il campo codice fiscale è obbligatorio";
+                passControl = false;
+            }
+            else if (!utenza.checkCodiceFiscale())
+            {
+                NameTextErrorCodFisc = "Il campo codice fiscale non è corretto";
+                passControl = false;
+            }
+            else
+                NameTextErrorCodFisc = "";
+            if (string.IsNullOrEmpty(ricetta.codice_uno) || ricetta.codice_uno.Length != 5)
+            {
+                NameTextErrorCodUno = "Il campo è obbligatorio";
+                passControl = false;
+            }
+            else
+                NameTextErrorCodUno = "";
+            if (string.IsNullOrEmpty(ricetta.codice_due) || ricetta.codice_due.Length != 10)
+            {
+                NameTextErrorCodDue = "Il campo è obbligatorio";
+                passControl = false;
+            }
+            else
+                NameTextErrorCodDue = "";
+            if (passControl)
             {
                 REST<sendRicetta, Ricetta> connessione = new REST<sendRicetta,Ricetta>();
                 sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString(),ricetta.codice_due.ToString());
