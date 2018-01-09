@@ -6,8 +6,7 @@
              Title="{Binding NomeCognome}">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <Image Source="contacttre.png" WidthRequest="120" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <StackLayout Padding="20">
                 <xfx:XfxEntry Placeholder="Codice fiscale" Text="{Binding codiceFiscale}" PlaceholderColor="Red" ErrorText="{Binding NameErrorTextCodice}"  IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black"/>
                 <xfx:XfxEntry Placeholder="Nome" Text="{Binding nome}" ErrorText="{Binding NameErrorTextNome}" PlaceholderColor="Red" ErrorDisplay="Underline"  IsEnabled="false" WidthRequest="250" TextColor="Black" />
                 <xfx:XfxEntry Placeholder="Cognome" Text="{Binding cognome}" ErrorText="{Binding NameErrorTextCognome}" PlaceholderColor="Red" ErrorDisplay="Underline"  IsEnabled="false" WidthRequest="250" TextColor="Black" />

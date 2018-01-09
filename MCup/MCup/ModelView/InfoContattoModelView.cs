@@ -17,7 +17,7 @@ namespace MCup.ModelView
     {
         private Contatto utente = new Contatto();
         private string visibile="true";
-        public string NomeCognome="";
+        public string nomeCognome="";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -104,6 +104,16 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 utente.provincia = value;
+            }
+        }
+
+        public string NomeCognome
+        {
+            get { return nomeCognome; }
+            set
+            {
+                nomeCognome = value;
+                OnPropertyChanged();
             }
         }
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
