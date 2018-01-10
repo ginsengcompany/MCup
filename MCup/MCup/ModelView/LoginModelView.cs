@@ -170,10 +170,6 @@ namespace MCup.ModelView
                     IsBusy = true; //L'activity indicator è in stato IsRunning
                     REST<Utente, ResponseLogin> rest = new REST<Utente, ResponseLogin>(); //Crea l'oggetto per eseguire la chiamata REST per la login
                     ResponseLogin response = await rest.PostJson(URL.Login, utente); //Chiamata POST per la richiesta di autenticazione delle informazioni inserite dall'utente (codice fiscale e password)
-                    IsBusy = false; //L'activity indicator non è in stato IsRunning
-                    IsVisible = false; //L'activity indicator non è visibile
-                    LoginIsVisible = true;
-                    SignupIsVisible = true;
                     if (response == null) //Controlla se si è verificato un errore di connessione
                     {
                        await App.Current.MainPage.DisplayAlert("Attenzione", rest.warning, "riprova");
@@ -196,6 +192,10 @@ namespace MCup.ModelView
                         else //Se l'utente non ha ancora scelto la sua struttura preferita
                             App.Current.MainPage = new ListaStrutture("Login"); //Avvia la pagina per la scelta di essa
                     }
+                    IsBusy = false; //L'activity indicator non è in stato IsRunning
+                    IsVisible = false; //L'activity indicator non è visibile
+                    LoginIsVisible = true;
+                    SignupIsVisible = true;
                 }
             });
             showPass = new Command(() =>

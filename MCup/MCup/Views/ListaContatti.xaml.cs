@@ -34,5 +34,12 @@ namespace MCup.Views
         {
             Navigation.PushAsync(new InfoContatto(contattoPrimo));
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            App.Current.MainPage = new MenuPrincipale();
+            return true;
+        }
     }
 }

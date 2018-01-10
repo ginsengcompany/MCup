@@ -323,7 +323,6 @@
     <BundleResource Include="Resources\coddue.png" />
     <BundleResource Include="Resources\codtre.png" />
     <BundleResource Include="Resources\ico.png" />
-    <BundleResource Include="Resources\contacttre.png" />
     <BundleResource Include="Resources\menu20x20.png" />
     <BundleResource Include="Resources\menu30x30.png" />
     <BundleResource Include="Resources\menu40x40.png" />

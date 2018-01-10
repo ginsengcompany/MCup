@@ -8,6 +8,7 @@
     Title="Richiesta proposta">
 	<ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="white">
+            <ActivityIndicator IsVisible="{Binding IsVisible}" IsRunning="{Binding IsBusy}"/>
             <StackLayout BackgroundColor="White" Orientation="Vertical" VerticalOptions="FillAndExpand">
                 <ListView BackgroundColor="White" HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="FillAndExpand" ItemsSource="{Binding list}">
                     <ListView.ItemTemplate>
@@ -33,7 +34,7 @@
                 </ListView>
             </StackLayout>
             <StackLayout BackgroundColor="White" VerticalOptions="End">
-                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White"  Clicked="Button_Clicked"/>
+                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White"  Clicked="Button_Clicked" IsVisible="{Binding IsVisibleButton}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

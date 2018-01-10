@@ -13,6 +13,37 @@ namespace MCup.ModelView
     public class PropostaRichiestaModelView : INotifyPropertyChanged
     {
         private List<PrenotazioneProposta> listPrenotazioni = new List<PrenotazioneProposta>();
+        private bool isvisible, isbusy,isvisibleButton;
+
+        public bool IsVisible
+        {
+            get { return isvisible; }
+            set
+            {
+                OnPropertyChanged();
+                isvisible = value;
+            }
+        }
+
+        public bool IsBusy
+        {
+            get { return isbusy; }
+            set
+            {
+                OnPropertyChanged();
+                isbusy = value;
+            }
+        }
+
+        public bool IsVisibleButton
+        {
+            get { return isvisibleButton; }
+            set
+            {
+                OnPropertyChanged();
+                isvisibleButton = value;
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -35,6 +66,9 @@ namespace MCup.ModelView
 
         public PropostaRichiestaModelView(List<Prestazioni> prestazioni)
         {
+            IsVisibleButton = false;
+            IsVisible = true;
+            IsBusy = true;
             this.prestazioni = prestazioni;
             recuperoInformazioni();
         }
@@ -43,6 +77,9 @@ namespace MCup.ModelView
         {
             REST<List<Prestazioni>, PrenotazioneProposta> recuperoDatiLista = new REST<List<Prestazioni>, PrenotazioneProposta>();
             list = await recuperoDatiLista.PostJsonList(URL.Ricercadisponibilitaprestazioni,prestazioni);
+            IsVisible = false;
+            IsBusy = false;
+            IsVisibleButton = true;
         }
     }
 }

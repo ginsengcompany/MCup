@@ -103,6 +103,13 @@ namespace MCup.Views
             }
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            App.Current.MainPage = new MenuPrincipale();
+            return true;
+        }
+
         private class ResponseStrutturaPreferita
         {
             public bool scelta;

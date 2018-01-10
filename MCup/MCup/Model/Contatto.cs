@@ -41,5 +41,10 @@ namespace MCup.Model
             this.sesso = contatto.sesso;
             this.AccountPrimario = contatto.AccountPrimario;
         }
+
+        public string longName()
+        {
+            return this.nome + " " + cognome;
+        }
     }
 }

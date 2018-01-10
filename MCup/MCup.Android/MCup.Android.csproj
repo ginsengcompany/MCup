@@ -351,9 +351,6 @@
     <AndroidResource Include="Resources\drawable\ico.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\contacttre.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\showPass.png" />
   </ItemGroup>
   <ItemGroup>

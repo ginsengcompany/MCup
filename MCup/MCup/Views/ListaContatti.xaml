@@ -7,31 +7,36 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Tuo contatto" VerticalOptions="Start"></Label>
-            <Label x:Name="MioContatto" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" Text="{Binding PrimoNome}" FontSize="Large" FontAttributes="Bold"/>
-                <Image Source="rightArrow.png" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="40" HeightRequest="40"></Image>
+            <SearchBar SearchCommand="{Binding searchContacts}" Text="{Binding TextSearch}" Placeholder="Cerca" TextColor="Red" HorizontalOptions="FillAndExpand" />
+                <StackLayout BackgroundColor="#BF0000" Orientation="Vertical">
+                <Label Text="Profilo Personale" TextColor="White"  FontSize="Large" HorizontalOptions="Center" />
+            </StackLayout>
+            <StackLayout BackgroundColor="White" Orientation="Horizontal">
+                <Label x:Name="MioContatto" Margin="10,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black" Text="{Binding PrimoNome}" FontSize="Large" FontAttributes="Italic"/>
+                <Image Source="rightArrow.png" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="40" HeightRequest="40"/>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding MioContattoPersonale}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            
-        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <ListView x:Name="listacontatti" HeaderTemplate="{Binding LongName}" ItemsSource="{Binding Grouped}" IsGroupingEnabled="True" GroupShortNameBinding="{Binding ShortName}"  GroupDisplayBinding="{Binding LongName}"   ItemTapped="ListView_ItemTapped" 
+            <StackLayout BackgroundColor="#BF0000" Orientation="Vertical">
+                <Label Text="Contatti" TextColor="White" FontSize="Large" HorizontalOptions="Center" />
+            </StackLayout>
+            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <ListView x:Name="listacontatti" HeaderTemplate="{Binding LongName}" ItemsSource="{Binding CollectionView}" IsGroupingEnabled="True" GroupShortNameBinding="{Binding ShortName}"  GroupDisplayBinding="{Binding LongName}"   ItemTapped="ListView_ItemTapped" 
                           SeparatorColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <costomControls:ExtendedViewCell SelectedBackgroundColor="White">
-                            <ViewCell.View>
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="contacttre.png" WidthRequest="35"></Image>
-                                <Label Text="{Binding nome}" VerticalOptions="Center" FontSize="Medium" TextColor="LightGray"/>
-                                <Label Text="{Binding cognome}" VerticalOptions="Center"/>
-                            </StackLayout>
-                        </ViewCell.View>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <costomControls:ExtendedViewCell SelectedBackgroundColor="White">
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding nome}" Margin="10,0,0,0" VerticalOptions="Center" FontSize="Medium" TextColor="#CC0000" FontAttributes="Italic"/>
+                                        <Label Text="{Binding cognome}" VerticalOptions="Center" FontSize="Small" TextColor="Black"/>
+                                        <Image Source="rightArrow.png" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="40" HeightRequest="40"/>
+                                    </StackLayout>
+                                </ViewCell.View>
                             </costomControls:ExtendedViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell Height="23">
@@ -46,13 +51,12 @@
                         </DataTemplate>
                     </ListView.GroupHeaderTemplate>
                 </ListView>
-            <Image Source="utente.png" WidthRequest="60" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9, 0.9, AutoSize, AutoSize" >
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding AggiungereContatto}"></TapGestureRecognizer>
-                </Image.GestureRecognizers>
-            </Image>
-        </AbsoluteLayout>
+                <Image Source="utente.png" WidthRequest="60" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9, 0.9, AutoSize, AutoSize" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AggiungereContatto}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </AbsoluteLayout>
         </StackLayout>
-
     </ContentPage.Content>
 </ContentPage>

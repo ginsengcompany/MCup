@@ -23,19 +23,34 @@ namespace MCup.ModelView
         public  Contatto contattoPrimo = new Contatto();
         public ICommand AggiungereContatto { protected set; get; }
         public ICommand MioContattoPersonale { protected set; get; }
+        public ICommand searchContacts { protected set; get; }
         private ListaContatti paginaListaContatti;
+        private string textSearch = "";
+        private ObservableCollection<Rubrica> grouped { get; set; }
+        private ObservableCollection<Rubrica> collectionView;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public ObservableCollection<Rubrica> Grouped
+        public string TextSearch
         {
-            get { return grouped; }
+            get { return textSearch; }
             set
             {
                 OnPropertyChanged();
-                grouped = value;
+                textSearch = value;
+                aggiornaRubrica();
             }
         }
+
+        public ObservableCollection<Rubrica> CollectionView
+        {
+            get { return collectionView; }
+            set
+            {
+                OnPropertyChanged();
+                collectionView = value;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public List<Contatto> Contatti
         {
@@ -61,12 +76,13 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private ObservableCollection<Rubrica> grouped { get; set; }
+        
 
         public ListaContattiModelView(ListaContatti pagina)
         {
             paginaListaContatti = pagina;
-            Grouped = new ObservableCollection<Rubrica>();
+            collectionView = new ObservableCollection<Rubrica>();
+            grouped = new ObservableCollection<Rubrica>();
             leggiContatti();
             AggiungereContatto = new Command(() =>
             {
@@ -76,9 +92,39 @@ namespace MCup.ModelView
             {
                 await paginaListaContatti.Navigation.PushAsync(new InfoContatto(contattoPrimo));
             });
+            searchContacts = new Command(() =>
+            {
+                aggiornaRubrica();
+            });
         }
   
-
+        private void aggiornaRubrica()
+        {
+            string keyword = textSearch;
+            if (string.IsNullOrWhiteSpace(textSearch))
+                CollectionView = grouped;
+            else
+            {
+                ObservableCollection<Rubrica> temp = new ObservableCollection<Rubrica>();
+                for (int i = 0; i < grouped.Count; i++)
+                {
+                    ObservableCollection<Contatto> tempContatto = new ObservableCollection<Contatto>();
+                    for (int j = 0; j < grouped[i].Count; j++)
+                    {
+                        if (grouped[i][j].longName().ToLower().Contains(keyword.ToLower()))
+                            tempContatto.Add(grouped[i][j]);
+                    }
+                    if (tempContatto.Count != 0)
+                    {
+                        Rubrica rubrica = new Rubrica(tempContatto[0].nome.ToUpper()[0].ToString(), tempContatto[0].nome.ToUpper()[0].ToString());
+                        temp.Add(rubrica);
+                        for (int k = 0; k < tempContatto.Count; k++)
+                            temp[temp.IndexOf(rubrica)].Add(tempContatto[k]);
+                    }
+                }
+                CollectionView = temp;
+            }
+        }
 
         private async void leggiContatti()
         {
@@ -150,10 +196,10 @@ namespace MCup.ModelView
             }
             for(int i = 0; i < listGroup.Count; i++)
             {
-                Grouped.Add(listGroup[i]);
+                grouped.Add(listGroup[i]);
             }
+            CollectionView = grouped;
         }
 
-      
     }
 }

@@ -30,7 +30,7 @@
             <StackLayout>
                 <Label Text="Descrizione ricetta:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
             </StackLayout>
-            <ListView x:Name="lista_prestazioni" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
+            <ListView x:Name="lista_prestazioni" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill" IsEnabled="False">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                         <customControls:ExtendedViewCell SelectedBackgroundColor="White">
