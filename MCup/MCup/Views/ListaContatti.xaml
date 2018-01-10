@@ -7,9 +7,9 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar SearchCommand="{Binding searchContacts}" Text="{Binding TextSearch}" Placeholder="Cerca" TextColor="Red" HorizontalOptions="FillAndExpand" />
-                <StackLayout BackgroundColor="#BF0000" Orientation="Vertical">
-                <Label Text="Profilo Personale" TextColor="White"  FontSize="Large" HorizontalOptions="Center" />
+            <SearchBar SearchCommand="{Binding searchContacts}" TextColor="Black" Text="{Binding TextSearch}" Placeholder="Cerca" HorizontalOptions="FillAndExpand" BackgroundColor="LightGray" />
+                <StackLayout BackgroundColor="LightGray" Orientation="Vertical">
+                <Label Text="Profilo Personale" TextColor="Black"  FontSize="Large" HorizontalOptions="Center" />
             </StackLayout>
             <StackLayout BackgroundColor="White" Orientation="Horizontal">
                 <Label x:Name="MioContatto" Margin="10,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black" Text="{Binding PrimoNome}" FontSize="Large" FontAttributes="Italic"/>
@@ -18,8 +18,8 @@
                     <TapGestureRecognizer Command="{Binding MioContattoPersonale}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout BackgroundColor="#BF0000" Orientation="Vertical">
-                <Label Text="Contatti" TextColor="White" FontSize="Large" HorizontalOptions="Center" />
+            <StackLayout BackgroundColor="LightGray" Orientation="Vertical">
+                <Label Text="Contatti" TextColor="Black" FontSize="Large" HorizontalOptions="Center" />
             </StackLayout>
             <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <ListView x:Name="listacontatti" HeaderTemplate="{Binding LongName}" ItemsSource="{Binding CollectionView}" IsGroupingEnabled="True" GroupShortNameBinding="{Binding ShortName}"  GroupDisplayBinding="{Binding LongName}"   ItemTapped="ListView_ItemTapped" 
