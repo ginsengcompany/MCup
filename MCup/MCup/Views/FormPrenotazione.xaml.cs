@@ -55,34 +55,7 @@ namespace MCup.Views
         }
 
         //Funzione chiamata per scannerizzare il codice fiscale dell'utente
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            var options = new MobileBarcodeScanningOptions
-            {
-                UseFrontCameraIfAvailable = false,
-                TryHarder = true,
-                AutoRotate = false,
-                DisableAutofocus = false
-                //PossibleFormats = new List < BarcodeFormat >(){ BarcodeFormat.CODE_39 }
-            };
-            var overlay = new ZXingDefaultOverlay
-            {
-                ShowFlashButton = false,
-
-            };
-            overlay.BindingContext = overlay;
-            var scanPage = new ZXingScannerPage(options, overlay);
-            scanPage.OnScanResult += (result) =>
-            {
-                scanPage.IsScanning = false;
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    Navigation.PopAsync();
-                    entryCodiceFiscale.Text = result.Text;
-                });
-            };
-            await Navigation.PushAsync(scanPage);
-        }
+     
 
         private void ScanPage_OnScanResult(ZXing.Result result)
         {

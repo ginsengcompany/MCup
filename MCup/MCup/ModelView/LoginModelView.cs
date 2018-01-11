@@ -185,12 +185,13 @@ namespace MCup.ModelView
                     {
                         utente.cancellaEdAggiornaUsername(utente.codice_fiscale);
                         App.Current.Properties["tokenLogin"] = response.token; //Salva nel dictionary dell'app il token dell'utente per accedere alle sue informazioni private
-                        REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto per la chiamata REST
-                        ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token); //Chiamata GET che ritorna se l'utente ha già scelto la sua struttura preferita o meno
-                        if (responseStruttura.scelta) //Se l'utente ha già scelto la sua struttura preferita
-                            App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
-                        else //Se l'utente non ha ancora scelto la sua struttura preferita
-                            App.Current.MainPage = new ListaStrutture("Login"); //Avvia la pagina per la scelta di essa
+                      //  REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto per la chiamata REST
+                       // ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token); //Chiamata GET che ritorna se l'utente ha già scelto la sua struttura preferita o meno
+                         /*   if (responseStruttura.scelta) //Se l'utente ha già scelto la sua struttura preferita
+                              App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
+                              else //Se l'utente non ha ancora scelto la sua struttura preferita
+                              App.Current.MainPage = new ListaStrutture("Login"); //Avvia la pagina per la scelta di essa*/
+                        App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
                     }
                     IsBusy = false; //L'activity indicator non è in stato IsRunning
                     IsVisible = false; //L'activity indicator non è visibile

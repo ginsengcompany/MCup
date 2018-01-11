@@ -32,8 +32,21 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
-                <xfx:XfxEntry Placeholder="Inserire codice fiscale" Text="{Binding CodiceFiscaleNuovoContatto}" ErrorText="{Binding NameErrorTextCodice}" ErrorDisplay="Underline" WidthRequest="250"/>
-            </StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                        <xfx:XfxEntry x:Name="entryCodiceFiscale" HorizontalOptions="StartAndExpand" Placeholder="Inserire codice fiscale" Text="{Binding CodiceFiscaleNuovoContatto}" ErrorText="{Binding NameErrorTextCodice}" ErrorDisplay="Underline" WidthRequest="600" Grid.Row="0"/>
+                        <Image Source="iconaScan.png" WidthRequest="40" HorizontalOptions="End" Grid.Row="0">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                    </Grid>
+                </StackLayout>
         </ScrollView>
         </StackLayout>
     </ContentPage.Content>

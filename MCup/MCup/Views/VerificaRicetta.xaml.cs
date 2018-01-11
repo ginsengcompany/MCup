@@ -39,6 +39,7 @@ namespace MCup.Views
         }
 
         /*
+         * UTILIZZIAMO UNA STRUTTURA STANDARD STATICA
          * Questo metodo invia i dati della ricetta al servizio competente che elabora tali informazioni per controllare se la struttura preferita, scelta dall'utente 
          * durante il suo primo accesso o nella relativa pagina di scelta della struttura preferita in un secondo momento, o le strutture che utilizzano il sistema informatico
          * su cui l'app si basa erogano le prestazioni contenute nella ricetta. Il metodo quindi, gestisce tre casi:
@@ -48,11 +49,12 @@ namespace MCup.Views
          */
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            REST<object, ResponseStrutturaPreferita> connessioneGetStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto REST
+           /* REST<object, ResponseStrutturaPreferita> connessioneGetStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto REST
             //La comunicazione GET restituisce la struttura preferita scelta dall'utente
             ResponseStrutturaPreferita strutturaPreferita = await connessioneGetStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, App.Current.Properties["tokenLogin"].ToString());
             //Salva il codice della struttura preferita nella variabile, di tipo string, struttura
-            string struttura = strutturaPreferita.struttura;
+            string struttura = strutturaPreferita.struttura;*/
+            string struttura = "030001";
             InvioDati invio = new InvioDati(prestazioni, struttura); //Crea un oggetto di tipo InvioDati che contiene le informazioni da inviare come json alla rotta controlloPrestazioni 
             REST<object, StruttureErogatrici> connessione = new REST<object, StruttureErogatrici>(); //Crea un oggetto REST
             //Crea un oggetto di tipo StruttureErogatrici che conterrà la lista delle strutture che erogano o meno le prestazioni a cui si fa riferimento

@@ -21,7 +21,20 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
-                <xfx:XfxEntry Placeholder="Inserire codice fiscale" Text="{Binding codiceFiscale}" ErrorText="{Binding NameErrorTextCodice}" ErrorDisplay="Underline" WidthRequest="250"/>
+                <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <xfx:XfxEntry x:Name="entryCodiceFiscale" HorizontalOptions="StartAndExpand" Placeholder="Inserire codice fiscale" Text="{Binding CodiceFiscaleNuovoContatto}" ErrorText="{Binding NameErrorTextCodice}" ErrorDisplay="Underline" WidthRequest="600" Grid.Row="0"/>
+                <Image Source="iconaScan.png" WidthRequest="40" HorizontalOptions="End" Grid.Row="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                </Grid>
                 <xfx:XfxEntry Placeholder="Inserire password" Text="{Binding password}" ErrorText="{Binding NameErrorTextPassword}" ErrorDisplay="Underline" IsPassword="True" WidthRequest="250"/>
                 <xfx:XfxEntry Placeholder="Reinserire password" Text="{Binding ConfermaPassword}" ErrorText="{Binding NameErrorTextConfermaPassword}" ErrorDisplay="Underline" IsPassword="True" WidthRequest="250"/>
                 <Button Text="Registrati" Command="{Binding registrati}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red" TextColor="White" Margin="15"/>

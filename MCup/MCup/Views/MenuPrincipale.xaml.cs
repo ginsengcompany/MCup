@@ -31,7 +31,7 @@ namespace MCup.Views
             List<Menu> menuPrincipale = new List<Menu> //Lista contenente le pagine a cui si può accedere dalla MasterDetailPage
             {
                 new Menu { MenuTitle = "Home", ImageIcon = "home.png"},
-                new Menu { MenuTitle = "Scegli Struttura Preferita", ImageIcon = "modify.png"},
+              //  new Menu { MenuTitle = "Scegli Struttura Preferita", ImageIcon = "modify.png"},
                 new Menu { MenuTitle ="Contatti", ImageIcon = "contact.png"}
 
             };
@@ -53,11 +53,11 @@ namespace MCup.Views
                     IsPresented = false;
                     Detail = new NavigationPage(new MainPage()); //Avvia la pagina principale
                 }
-                else if (menu.MenuTitle.Equals("Scegli Struttura Preferita"))
+              /*  else if (menu.MenuTitle.Equals("Scegli Struttura Preferita"))
                 {
                     IsPresented = false;
                     Detail = new NavigationPage(new ListaStrutture("Menu")); //Avvia la pagina per la scelta della struttura preferita
-                }
+                }*/
                 else if (menu.MenuTitle.Equals("Contatti"))
                 {
                     IsPresented = false;
