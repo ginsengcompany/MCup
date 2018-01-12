@@ -10,7 +10,7 @@
                 <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Registrazione" TextColor="Red"></Label>
                 <xfx:XfxEntry Placeholder="Inserire nome" Text="{Binding nome}" ErrorText="{Binding NameErrorTextNome}" ErrorDisplay="Underline" WidthRequest="250"/>
                 <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding cognome}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
-                <xfx:XfxEntry Placeholder="Inserire la data di nascita" Text="{Binding data_nascita}" ErrorText="{Binding NameErrorTextDataNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+                <DatePicker x:Name="pickerNascita" Date="{Binding data_nascita}" Format="dd/MM/yyyy" ></DatePicker>
                 <xfx:XfxEntry Placeholder="Inserire il luogo di nascita" Text="{Binding luogo_nascita}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
                 <xfx:XfxEntry Placeholder="Inserire la provincia" Text="{Binding provincia}" ErrorText="{Binding NameErrorTextProvincia}" ErrorDisplay="Underline" WidthRequest="250" />
                 <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
@@ -28,7 +28,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <xfx:XfxEntry x:Name="entryCodiceFiscale" HorizontalOptions="StartAndExpand" Placeholder="Inserire codice fiscale" Text="{Binding CodiceFiscaleNuovoContatto}" ErrorText="{Binding NameErrorTextCodice}" ErrorDisplay="Underline" WidthRequest="600" Grid.Row="0"/>
+                    <xfx:XfxEntry x:Name="entryCodiceFiscale" HorizontalOptions="StartAndExpand" Placeholder="Inserire codice fiscale" Text="{Binding codiceFiscale}" ErrorText="{Binding NameErrorTextCodice}" ErrorDisplay="Underline" WidthRequest="600" Grid.Row="0"/>
                 <Image Source="iconaScan.png" WidthRequest="40" HorizontalOptions="End" Grid.Row="0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1" />

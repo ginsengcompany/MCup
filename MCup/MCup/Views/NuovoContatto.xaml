@@ -20,8 +20,8 @@
             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="20">
                 <xfx:XfxEntry Placeholder="Inserire nome" Text="{Binding NomeNuovoContatto}" ErrorText="{Binding NameErrorTextNome}" ErrorDisplay="Underline" WidthRequest="250"/>
                 <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding CognomeNuovoContatto}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
-                <xfx:XfxEntry Keyboard="Numeric" Placeholder="Data di nascita GG/MM/AAAA" Text="{Binding Data_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextDataNascita}" ErrorDisplay="Underline" WidthRequest="250" />
                 <xfx:XfxEntry Placeholder="Inserire il luogo di nascita" Text="{Binding Luogo_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+                    <DatePicker x:Name="pickerNascita" Date="{Binding Data_nascitaNuovoContatto}" Format="dd/MM/yyyy" ></DatePicker>
                 <xfx:XfxEntry Placeholder="Inserire la provincia"  Text="{Binding ProvinciaNuovoContatto}" ErrorText="{Binding NameErrorTextProvincia}" ErrorDisplay="Underline" WidthRequest="250">
                 </xfx:XfxEntry>
                 <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">

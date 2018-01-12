@@ -21,6 +21,7 @@ namespace MCup.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Registrazione : ContentPage
     {
+        public string dataDiNascita;
         public Registrazione()
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace MCup.Views
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {
+
             var options = new MobileBarcodeScanningOptions
             {
                 UseFrontCameraIfAvailable = false,

@@ -9,7 +9,7 @@
         <ScrollView>
             <StackLayout Orientation="Vertical" Padding="20,20,20,0" >
                 <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
-                <xfx:XfxComboBox x:Name="ComboNome" ErrorText="{Binding NameTextErrorNome}" ErrorDisplay="Underline" Placeholder="Inserire il nome" SortingAlgorithm="{Binding SortingAlgorithm}" ItemsSource="{Binding Contatti}" ItemSelected="XfxComboBox_ItemSelected" Text="{Binding nomeUtente}" WidthRequest="250" VerticalOptions="Center" />
+                <xfx:XfxComboBox x:Name="ComboNome" ErrorText="{Binding NameTextErrorNome}" ErrorDisplay="Underline" Placeholder="Inserire nome" SortingAlgorithm="{Binding SortingAlgorithm}" ItemsSource="{Binding Contatti}" ItemSelected="XfxComboBox_ItemSelected" Text="{Binding nomeUtente}" WidthRequest="250" VerticalOptions="Center" />
                <!-- <xfx:XfxEntry 
                     Placeholder="Inserire nome"     
                     Text="{Binding nomeUtente}" 
@@ -18,30 +18,32 @@
                     WidthRequest="250"
                     VerticalOptions="Center"/> -->
                 <xfx:XfxEntry 
-                    Placeholder="Inserire cognome"     
+                    Placeholder="Cognome"     
                     Text="{Binding cognomeUtente}" 
                     ErrorText="{Binding NameTextErrorCognome}" 
                     ErrorDisplay="Underline"
+                    PlaceholderColor="Black"
+                    IsVisible="{Binding Visible}"
+                    IsEnabled="False"
                     WidthRequest="250" 
                     VerticalOptions="Center"/>
 
                     <xfx:XfxEntry 
                         x:Name="entryCodiceFiscale"
-                        Placeholder="Inserire Codice Fiscale"     
+                        Placeholder="Codice Fiscale"     
                         Text="{Binding codicefiscaleUtente}" 
                         ErrorText="{Binding NameTextErrorCodFisc}" 
                         ErrorDisplay="Underline"
+                        PlaceholderColor="Black"
                         WidthRequest="250"
                         IsVisible="{Binding Visible}"
                         IsEnabled="False"
-                        HorizontalOptions="Center" 
                         VerticalOptions="Center"/>
       
-              
                 <StackLayout Orientation="Horizontal" Padding="0,10,0,0"  VerticalOptions="Center" HorizontalOptions="Center">
                     <xfx:XfxEntry 
                         x:Name="entryCodiceRicettaUno"
-                        Placeholder="Inserisci il 1° codice ricetta"     
+                        Placeholder="Inserisci il 1° dell'impegnativa"     
                         Text="{Binding codiceUno}" 
                         ErrorText="{Binding NameTextErrorCodUno}" 
                         ErrorDisplay="Underline"
@@ -63,7 +65,7 @@
                 <StackLayout Orientation="Horizontal" Padding="0,10,0,0" VerticalOptions="Center" HorizontalOptions="Center">
                     <xfx:XfxEntry 
                         x:Name="entryCodiceRicettaDue"
-                        Placeholder="Inserisci il 2° codice ricetta"     
+                        Placeholder="Inserisci il 2° codice dell'impegnativa"     
                         Text="{Binding codiceDue}" 
                         ErrorText="{Binding NameTextErrorCodDue}" 
                         ErrorDisplay="Underline"

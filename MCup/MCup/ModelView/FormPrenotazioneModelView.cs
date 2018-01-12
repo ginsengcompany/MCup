@@ -33,6 +33,7 @@ namespace MCup.ModelView
         //Oggetto che astrae la ricetta NRE
         private InvioRicettaPrenotazione ricetta;
 
+
         private string nameTextErrorNome, nameTextErrorCognome, nameTextErrorCodFisc, nameTextErrorCodUno, nameTextErrorCodDue;
 
         public string NameTextErrorNome

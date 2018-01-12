@@ -16,6 +16,7 @@ namespace MCup.Views
         {
             InitializeComponent();
             BindingContext = new LoginModelView(); //Questa pagina utilizza l'MWWM ed effettua il binding con la classe LoginModelView
+
         }
 
         /*

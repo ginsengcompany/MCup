@@ -85,7 +85,8 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.data_nascita = value;
+                
+                utente.data_nascita= value;
             }
         }
 
@@ -201,11 +202,11 @@ namespace MCup.ModelView
         public RegistrazioneModelView()
         {
             utente = new Utente(); //Crea un utenza vuota
-
             registrati = new Command(async () =>
             {
+
                 //Imposta gli errori ad una stringa vuota
-                NameErrorTextNome=String.Empty;
+                NameErrorTextNome = String.Empty;
                 NameErrorTextCognome = String.Empty;
                 NameErrorTextCodice = String.Empty;
                 NameErrorTextPassword = String.Empty;
@@ -267,6 +268,12 @@ namespace MCup.ModelView
                 }
                 if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
                 {
+                    utente.data_nascita = utente.data_nascita.Substring(0, 10);
+                    string giorno, mese, anno;
+                    giorno = utente.data_nascita.Substring(3, 2);
+                    mese = utente.data_nascita.Substring(0, 2);
+                    anno= utente.data_nascita.Substring(6);
+                    utente.data_nascita = giorno + "/" + mese + "/" + anno;
                     REST<object, string> restTermini = new REST<object, string>(); //Crea un oggetto REST per i termini di servizio remoti
                     var termini = await restTermini.getString(URL.TerminiServizio); //Recupera i termini di servizio attraverso una GET
                     //Mostra il display alert contenente i termini di servizio recuperati dalla rest restTermini e salva la risposta dell'utente nella variabile accetaODeclina

@@ -5,44 +5,48 @@
              xmlns:local="clr-namespace:MCup"
              xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
              BackgroundColor="White"
-             Title="Verifica Contenuto Ricetta">
+             Title="Verifica Contenuto Impegnativa">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="15">
 
             <StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="Codice ricetta:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
-                    <Label x:Name="codice_ricetta" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Medium"/>
+                    <Label Text="Codice impegnativa:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label x:Name="codice_ricetta" Text="{Binding CodiceRicetta}" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Medium"/>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Cognome assistito:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
-                    <Label x:Name="cognome_assistito" Text="" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Medium"/>
+                    <Label x:Name="cognome_assistito" Text="{Binding CognomeAssistito}" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Medium"/>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Nome assistito:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Medium"/>
-                    <Label x:Name="nome_assistito" Text="" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Medium"/>
-                </StackLayout>
-                <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="Codice Fiscale Medico:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
-                    <Label x:Name="codice_fiscale_medico" Text="" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Medium"/>
+                    <Label x:Name="nome_assistito" Text="{Binding NomeAssistito}" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Medium"/>
                 </StackLayout>
             </StackLayout>
             <StackLayout>
-                <Label Text="Descrizione ricetta:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
+                <Label Text="Descrizione impegnativa:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
             </StackLayout>
-            <ListView x:Name="lista_prestazioni" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill" IsEnabled="False">
+            <ListView ItemsSource="{Binding ListaPrestazioni}" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                         <customControls:ExtendedViewCell SelectedBackgroundColor="White">
                             <ViewCell.View>
-                                <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
+                                <StackLayout>
+                                    <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <DatePicker ></DatePicker>
+                                        <Picker Title="seleziona reparto"></Picker>
+                                    </StackLayout>
+                                    
+                                </StackLayout>
+                                
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             <StackLayout BackgroundColor="White">
-            <Button Text="Continua" BackgroundColor="Red" TextColor="White" Clicked="Button_Clicked"/>
+            <Button Text="Continua" BackgroundColor="Red" TextColor="White" IsVisible="{Binding ButtonIsVisible}"/>
                 </StackLayout>
         </StackLayout>
     </ContentPage.Content>

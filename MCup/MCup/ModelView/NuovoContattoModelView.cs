@@ -17,8 +17,7 @@ namespace MCup.ModelView
     public class NuovoContattoModelView:INotifyPropertyChanged
 
     {
-    public event PropertyChangedEventHandler PropertyChanged
-        ; //evento che implementa l'interfaccia INotifyPropertyChanged
+    public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
 
     private Contatto contatto; //Oggetto che astrae l'utenza del cliente
 
@@ -244,19 +243,35 @@ namespace MCup.ModelView
             {
                 controllPass = false;
             }
-           
-            if (string.IsNullOrEmpty(ProvinciaNuovoContatto) || ProvinciaNuovoContatto.Length != 2
-            ) //Controlla se il campo provincia è vuoto, null o length è diverso da due
+
+            if (string.IsNullOrEmpty(ProvinciaNuovoContatto)) //Controlla se il campo provincia è vuoto, null o length è diverso da due
             {
-                NameErrorTextProvincia = "Attenzione, campo obbligatorio";
+                NameErrorTextProvincia = "Attenzione, campo obbligatorio ";
                 controllPass = false;
             }
+          
+                else if (ProvinciaNuovoContatto.Length<2)
+                {
+                    NameErrorTextProvincia = "Attenzione, provincia non valida ";
+                    controllPass = false;
+
+                }
+                else if(ProvinciaNuovoContatto.Length > 2)
+                {
+                    ProvinciaNuovoContatto = ProvinciaNuovoContatto.Substring(0, 2);
+                    controllPass = true;
+                }
             else
             {
                 NameErrorTextProvincia = string.Empty;
             }
             if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
             {
+                string giorno, mese, anno;
+                giorno = contatto.data_nascita.Substring(3, 2);
+                mese = contatto.data_nascita.Substring(0, 2);
+                anno = contatto.data_nascita.Substring(6,4);
+                contatto.data_nascita = giorno + "/" + mese + "/" + anno;
                 REST<Contatto, ResponseRegistrazione> connessioneNuovoContatto = new REST<Contatto, ResponseRegistrazione>();
                 try
                 {
