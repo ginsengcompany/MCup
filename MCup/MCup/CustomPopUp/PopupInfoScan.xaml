@@ -13,36 +13,13 @@
             DurationIn="700"
             EasingIn="BounceOut"/>
     </pages:PopupPage.Animation>
-    <StackLayout BackgroundColor="Red">
-        <Frame
-            x:Name="FrameContainer"
-            OutlineColor="Transparent"
-            HasShadow="False">
-            <StackLayout
-                Padding="10, 5"
-                Spacing="3"
-                IsClippedToBounds="True">
-               <!-- <Image x:Name="imgInfo"/> -->
-                <Image  x:Name="imgInfo" HeightRequest="150" WidthRequest="150">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Handle_Tapped"/>
-                        <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"></PanGestureRecognizer>
-                    </Image.GestureRecognizers>
-                </Image>
-            </StackLayout>
-        </Frame>
-        <ContentView
-            AbsoluteLayout.LayoutFlags="PositionProportional"
-            AbsoluteLayout.LayoutBounds="1, 0, -1, -1">
-            <ContentView.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnCloseButtonTapped"/>
-            </ContentView.GestureRecognizers>
-            <Image
-                x:Name="CloseImage"
-                Source="close_circle_button.png"
-                HeightRequest="50"
-                WidthRequest="50">
-            </Image>
-        </ContentView>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" IsClippedToBounds="True" HeightRequest="50"
+            x:Name="FrameContainer">
+        <Image x:Name="imgInfo">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Handle_Tapped"/>
+                <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"></PanGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
     </StackLayout>
 </pages:PopupPage>
