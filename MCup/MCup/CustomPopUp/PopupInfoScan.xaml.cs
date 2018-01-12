@@ -37,8 +37,10 @@ namespace MCup.CustomPopUp
             var panGesture = new PanGestureRecognizer();
             panGesture.PanUpdated += PanGestureRecognizer_OnPanUpdated;
             imagecontainer.GestureRecognizers.Add(panGesture);
+            CloseWhenBackgroundIsClicked = true;
         }
 
+        /*
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -46,7 +48,7 @@ namespace MCup.CustomPopUp
             CloseImage.Rotation = 30;
             CloseImage.Scale = 0.3;
             CloseImage.Opacity = 0;
-        }
+        } */
 
         protected async override Task OnDisappearingAnimationBegin()
         {
@@ -62,23 +64,16 @@ namespace MCup.CustomPopUp
             });
             await TaskSource.Task;
         }
-     
 
         protected override bool OnBackgroundClicked()
         {
-            closeAllPopup();
-            return false;
+            return base.OnBackgroundClicked();
         }
-        private void OnCloseButtonTapped(object sender, EventArgs e)
-        {
-            closeAllPopup();
-        }
+
         private async void closeAllPopup()
         {
             await Navigation.PopAllPopupAsync();
         }
-
-       
 
         private void Handle_Tapped(object sender, EventArgs e)
         {
@@ -93,8 +88,6 @@ namespace MCup.CustomPopUp
                 this.ScaleTo(MAX_SCALE, 250, Easing.CubicInOut);
             }
         }
-
-      
 
         private void PanGestureRecognizer_OnPanUpdated(object sender, PanUpdatedEventArgs e)
         {
