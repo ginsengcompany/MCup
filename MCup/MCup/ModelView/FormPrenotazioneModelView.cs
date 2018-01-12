@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml.Controls.Maps;
 using Xamarin.Forms;
 
 namespace MCup.ModelView
@@ -21,6 +22,8 @@ namespace MCup.ModelView
     {
         //Evento che prevede il cambiamento di proprietà all'interno della classe
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private string visible="false";
 
         private Regex regexNomeCognome = new Regex(@"^[A-Za-zèùàòé][a-zA-Z'èùàòé ]*$");
 
@@ -281,12 +284,14 @@ namespace MCup.ModelView
                 nomeUtente = contacts.nome;
                 cognomeUtente = contacts.cognome;
                 codicefiscaleUtente = contacts.codice_fiscale;
+                Visible = "true";
             }
             else if(inContacts >= 0)
             {
                 nomeUtente = contacts.contatti[inContacts].nome;
                 cognomeUtente = contacts.contatti[inContacts].cognome;
                 codicefiscaleUtente = contacts.contatti[inContacts].codice_fiscale;
+                Visible = "true";
             }
         }
 
@@ -307,6 +312,16 @@ namespace MCup.ModelView
             public sendRicetta(string codice_uno, string codice_due)
             {
                 this.codice_nre = codice_uno + codice_due;
+            }
+        }
+
+        public string Visible
+        {
+            get { return visible; }
+            set
+            {
+                visible = value;
+                OnPropertyChanged();
             }
         }
     }

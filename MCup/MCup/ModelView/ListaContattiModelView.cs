@@ -86,7 +86,7 @@ namespace MCup.ModelView
             leggiContatti();
             AggiungereContatto = new Command(() =>
             {
-                App.Current.MainPage = new NuovoContatto();
+                App.Current.MainPage = new NavigationPage(new NuovoContatto()); 
             });
             MioContattoPersonale = new Command(async () =>
             {

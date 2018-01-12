@@ -24,8 +24,7 @@
                     ErrorDisplay="Underline"
                     WidthRequest="250" 
                     VerticalOptions="Center"/>
-               
-                <StackLayout Orientation="Horizontal" Padding="0,10,0,0"  VerticalOptions="Center" HorizontalOptions="Center">
+
                     <xfx:XfxEntry 
                         x:Name="entryCodiceFiscale"
                         Placeholder="Inserire Codice Fiscale"     
@@ -33,20 +32,11 @@
                         ErrorText="{Binding NameTextErrorCodFisc}" 
                         ErrorDisplay="Underline"
                         WidthRequest="250"
+                        IsVisible="{Binding Visible}"
+                        IsEnabled="False"
                         HorizontalOptions="Center" 
                         VerticalOptions="Center"/>
-                   
-                    <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Image Source="info.png" VerticalOptions="Center" WidthRequest="30" >
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Handle_Tapped" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
+      
               
                 <StackLayout Orientation="Horizontal" Padding="0,10,0,0"  VerticalOptions="Center" HorizontalOptions="Center">
                     <xfx:XfxEntry 
