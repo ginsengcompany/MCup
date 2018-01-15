@@ -68,6 +68,7 @@ namespace MCup.ModelView
             CognomeAssistito = ricetta.cognome_assistito;
             CodiceRicetta = ricetta.codice_nre;
             ButtonIsVisible = true;
+            MinimumDate = DateTime.Now.AddHours(-24);
             ingressoPagina();
         }
 
