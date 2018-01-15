@@ -34,8 +34,8 @@
                                 <StackLayout>
                                     <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
                                     <StackLayout Orientation="Horizontal">
-                                        <DatePicker ></DatePicker>
-                                        <Picker Title="seleziona reparto"></Picker>
+                                        <DatePicker MinimumDate="{Binding MinData}" ></DatePicker>
+                                        <Picker Title="seleziona reparto" ItemsSource="{Binding Reparti}"></Picker>
                                     </StackLayout>
                                     
                                 </StackLayout>
