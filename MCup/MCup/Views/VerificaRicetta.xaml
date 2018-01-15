@@ -4,6 +4,7 @@
              x:Class="MCup.Views.VerificaRicetta"
              xmlns:local="clr-namespace:MCup"
              xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              BackgroundColor="White"
              Title="Verifica Contenuto Impegnativa">
     <ContentPage.Content>
@@ -34,8 +35,8 @@
                                 <StackLayout>
                                     <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
                                     <StackLayout Orientation="Horizontal">
-                                        <DatePicker MinimumDate="{Binding MinData}" ></DatePicker>
-                                        <Picker Title="seleziona reparto" ItemsSource="{Binding Reparti}"></Picker>
+                                        <DatePicker MinimumDate="{x:Static sys:DateTime.Now}" ></DatePicker>
+                                        <Picker Title="seleziona reparto"></Picker>
                                     </StackLayout>
                                     
                                 </StackLayout>
