@@ -9,7 +9,7 @@ namespace MCup.Model
     public class Reparto
     {
         public string unitaOperativa { get; set; }
-        public int codReparto { get; set; }
+        public string codReparto { get; set; }
         public string descrizione { get; set; }
         public string nomeStruttura { get; set; }
         public string dataDisponibile { get; set; }
@@ -23,5 +23,7 @@ namespace MCup.Model
             this.nomeStruttura = reparto.nomeStruttura;
             this.unitaOperativa = reparto.unitaOperativa;
         }
+
+        public Reparto() { }
     }
 }

@@ -76,7 +76,7 @@ namespace MCup.ModelView
         private async void recuperoInformazioni()
         {
             REST<List<Prestazioni>, PrenotazioneProposta> recuperoDatiLista = new REST<List<Prestazioni>, PrenotazioneProposta>();
-            list = await recuperoDatiLista.PostJsonList(URL.Ricercadisponibilitaprestazioni,prestazioni);
+            list = await recuperoDatiLista.PostJsonList(URL.RicercadisponibilitaReparti,prestazioni);
             IsVisible = false;
             IsBusy = false;
             IsVisibleButton = true;

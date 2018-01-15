@@ -22,11 +22,28 @@ namespace MCup.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VerificaRicetta : ContentPage
     {
+
+        private VerificaRicettaModelView ModelViewVerifica;
+
         //Costruttore della pagina che inizializza e visualizza le informazioni descritte nel commento della pagina
         public VerificaRicetta(Ricetta ricetta)
         {
             InitializeComponent();
-            BindingContext = new VerificaRicettaModelView(ricetta);
+            ModelViewVerifica = new VerificaRicettaModelView(ricetta);
+            BindingContext = ModelViewVerifica;
         }
+
+        private async void DatePicker_OnDateSelected(object sender, DateChangedEventArgs e)
+        {
+            var a = e.NewDate;
+            await ModelViewVerifica.ricezioneReparti(a);
+        }
+
+        private void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var b = sender as Reparto;
+        }
+
+
     }
 }

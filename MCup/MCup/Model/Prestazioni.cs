@@ -12,17 +12,18 @@ namespace MCup.Model
         public string desbprest { get; set; }
         public string desprest { get; set; }
         public string data_inizio { get; set; }
-       // public List<Reparto> reparti { get; set; }
+        public Reparto reparti { get; set; }
         public bool erogabile { get; set; }
 
 
         public Prestazioni() { }
+
         public Prestazioni(Prestazioni prestazioni)
         {
             this.codprest = prestazioni.codprest;
             this.desbprest = prestazioni.desbprest;
             this.desprest = prestazioni.desprest;
-           // this.reparti = prestazioni.reparti;
+            this.reparti = prestazioni.reparti;
             this.data_inizio = prestazioni.data_inizio;
         }
     }

@@ -27,7 +27,7 @@
             <StackLayout>
                 <Label Text="Descrizione impegnativa:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
             </StackLayout>
-            <ListView ItemsSource="{Binding ListaPrestazioni}" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
+            <ListView ItemsSource="{Binding ListaPrestazioni}" x:Name="View" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                         <customControls:ExtendedViewCell SelectedBackgroundColor="White">
@@ -35,19 +35,17 @@
                                 <StackLayout>
                                     <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
                                     <StackLayout Orientation="Horizontal">
-                                        <DatePicker MinimumDate="{x:Static sys:DateTime.Now}" ></DatePicker>
-                                        <Picker Title="seleziona reparto"></Picker>
+                                        <DatePicker MinimumDate="{x:Static sys:DateTime.Now}" DateSelected="DatePicker_OnDateSelected"></DatePicker>
+                                        <Picker Title="seleziona reparto" ItemsSource="{Binding reparti}" ItemDisplayBinding="{Binding descrizione}" SelectedItem=""></Picker>
                                     </StackLayout>
-                                    
                                 </StackLayout>
-                                
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             <StackLayout BackgroundColor="White">
-            <Button Text="Continua" BackgroundColor="Red" TextColor="White" IsVisible="{Binding ButtonIsVisible}"/>
+            <Button Text="Continua" Command="{Binding ContinuaPrenotazione}" BackgroundColor="Red" TextColor="White" IsVisible="{Binding ButtonIsVisible}"/>
                 </StackLayout>
         </StackLayout>
     </ContentPage.Content>

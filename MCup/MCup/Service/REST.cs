@@ -88,7 +88,7 @@ namespace MCup.Service
                 Items = JsonConvert.DeserializeObject<List<T>>(response);
                 return Items;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return new List<T>();
             }

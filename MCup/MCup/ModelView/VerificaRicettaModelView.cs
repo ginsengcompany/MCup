@@ -5,13 +5,16 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MCup.Annotations;
 using MCup.Model;
 using MCup.Service;
+using MCup.Views;
+using Xamarin.Forms;
 
 namespace MCup.ModelView
 {
-  public  class VerificaRicettaModelView : INotifyPropertyChanged
+    public class VerificaRicettaModelView : INotifyPropertyChanged
     {
         private List<Prestazioni> listaPrestazioni = new List<Prestazioni>();
         private string nomeAssistito, cognomeAssistito, codiceRicetta;
@@ -20,6 +23,8 @@ namespace MCup.ModelView
         private Erogazione eroga;
         private List<Prestazioni> prestazioniErogabili;
         private bool buttonIsVisible;
+        private List<Reparto> reparto = new List<Reparto>();
+        public ICommand ContinuaPrenotazione { protected set; get; }
 
         public bool ButtonIsVisible
         {
@@ -30,6 +35,7 @@ namespace MCup.ModelView
                 buttonIsVisible = value;
             }
         }
+
 
         public string NomeAssistito
         {
@@ -68,8 +74,15 @@ namespace MCup.ModelView
             CognomeAssistito = ricetta.cognome_assistito;
             CodiceRicetta = ricetta.codice_nre;
             ButtonIsVisible = true;
-            MinimumDate = DateTime.Now.AddHours(-24);
             ingressoPagina();
+            ContinuaPrenotazione = new Command(async () =>
+            {
+                foreach (var indice in listaPrestazioni)
+                {
+                    bool controllo = true;
+                    if()
+                }
+            });
         }
 
         public List<Prestazioni> ListaPrestazioni
@@ -80,6 +93,7 @@ namespace MCup.ModelView
                 OnPropertyChanged();
                 listaPrestazioni = new List<Prestazioni>(value);
             }
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -88,6 +102,18 @@ namespace MCup.ModelView
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public async Task ricezioneReparti(DateTime data)
+        {
+            List<Prestazioni> temp = ListaPrestazioni;
+            REST<Prestazioni,Reparto> connessione = new REST<Prestazioni,Reparto>();
+            for (var i = 0; i < temp.Count; i++)
+            {
+                ListaPrestazioni[i].data_inizio = data.ToString();
+                temp[i].reparti = await connessione.PostJsonList(URL.RicercadisponibilitaReparti, ListaPrestazioni[i]);
+            }
+            ListaPrestazioni = temp;
         }
 
         private async void ingressoPagina()
@@ -119,8 +145,11 @@ namespace MCup.ModelView
                 }
                 ListaPrestazioni = prestazioniErogabili;
                 if (prestazioniErogabili.Count > 0)
+                {
                     await App.Current.MainPage.DisplayAlert("Attenzione",
                         "La struttura non eroga i seguenti servizi: " + "\n" + messaggio, "OK");
+                    await ricezioneReparti(DateTime.Today);
+                }
                 else
                 {
                     ButtonIsVisible = false;
@@ -129,7 +158,16 @@ namespace MCup.ModelView
                 }
             }
             else
+            {
                 ListaPrestazioni = ricetta.prestazioni;
+                await ricezioneReparti(DateTime.Today);
+            }
         }
+
+        private class PrestazioniTemp
+        {
+            
+        }
+
     }
 }
