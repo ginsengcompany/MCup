@@ -33,7 +33,7 @@
                             <ViewCell.View>
                                 <StackLayout>
                                     <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
-                                    <Picker Title="seleziona reparto" ItemsSource="{Binding reparti}" ItemDisplayBinding="{Binding descrizione}" SelectedIndexChanged="Picker_OnSelectedIndexChanged" Title="Scegli il reparto"/>
+                                    <Picker Title="seleziona reparto" ItemsSource="{Binding reparti}" ItemDisplayBinding="{Binding descrizione}" SelectedIndexChanged="Picker_OnSelectedIndexChanged"/>
                                 </StackLayout>
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>

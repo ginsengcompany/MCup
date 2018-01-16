@@ -11,16 +11,13 @@ namespace MCup.Views
     public partial class PropostaRichiesta : ContentPage
     {
 
+        private PropostaRichiestaModelView modelView;
 
         public PropostaRichiesta(List<Prestazioni> prestazioni)
         {
             InitializeComponent();
-            BindingContext = new PropostaRichiestaModelView(prestazioni);
-        }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            
+            modelView = new PropostaRichiestaModelView(prestazioni);
+            BindingContext = modelView;
         }
     }
 }

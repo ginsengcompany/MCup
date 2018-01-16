@@ -17,6 +17,7 @@ namespace MCup.Service
         //public static string Login = "http://192.168.125.69:3000/auth/login";
         //public static string StrutturaPreferita = "http://192.168.125.69:3000/auth/strutturaPreferita";
         //public static string RicercadisponibilitaReparti = "http://192.168.125.69:3000/ricercareparti";
+        //public static string PrimaDisponibilita = "http://192.168.125.69:3000/ricercaprimadisponibilita";
         //public static string InfoPersonali = "http://192.168.125.69:3000/auth/me";
         // public static string AggiungiNuovoContatto = "http://192.168.125.69:3000/auth/aggiungiContatto";
         //public static string EliminaContatto = "http://192.168.125.69:3000/auth/eliminaContatto";
@@ -32,6 +33,7 @@ namespace MCup.Service
         public static string Login = "http://192.168.125.14:3000/auth/login";
         public static string StrutturaPreferita = "http://192.168.125.14:3000/auth/strutturaPreferita";
         public static string RicercadisponibilitaReparti = "http://192.168.125.14:3000/ricercareparti";
+        public static string PrimaDisponibilita = "http://192.168.125.14:3000/ricercaprimadisponibilita";
         public static string InfoPersonali = "http://192.168.125.14:3000/auth/me";
         public static string AggiungiNuovoContatto = "http://192.168.125.14:3000/auth/aggiungiContatto";
         public static string EliminaContatto = "http://192.168.125.14:3000/auth/eliminaContatto";

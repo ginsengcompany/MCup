@@ -9,13 +9,12 @@
 	<ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="white">
             <ActivityIndicator IsVisible="{Binding IsVisible}" IsRunning="{Binding IsBusy}"/>
-            <StackLayout BackgroundColor="White" Orientation="Vertical" VerticalOptions="FillAndExpand">
-                <ListView BackgroundColor="White" HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="FillAndExpand" ItemsSource="{Binding list}">
+            <ListView BackgroundColor="White" HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="FillAndExpand" x:Name="lst" ItemsSource="{Binding ListPrenotazioni}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <customControls:ExtendedViewCell SelectedBackgroundColor="White">
                                 <ViewCell.View>
-                                    <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Vertical" x:Name="Item">
                                         <Label Text="Prestazione:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                                         <Label Text="{Binding descPrestazione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
                                         <Label Text="Reparto:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
@@ -26,15 +25,15 @@
                                         <Label Text="{Binding oraAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
                                         <Label Text="Posizione in coda:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
                                         <Label Text="{Binding posizione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                    <Button Text="Cambia data" HorizontalOptions="Center" BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" Command="{Binding cambiaData}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                                     </StackLayout>
                                 </ViewCell.View>
                             </customControls:ExtendedViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </StackLayout>
-            <StackLayout BackgroundColor="White" VerticalOptions="End">
-                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White"  Clicked="Button_Clicked" IsVisible="{Binding IsVisibleButton}"/>
+                <StackLayout BackgroundColor="White" VerticalOptions="End">
+                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White" IsVisible="{Binding IsVisibleButton}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

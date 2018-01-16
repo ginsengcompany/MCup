@@ -3,17 +3,31 @@ using MCup.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace MCup.ModelView
 {
     public class PropostaRichiestaModelView : INotifyPropertyChanged
     {
-        private List<PrenotazioneProposta> listPrenotazioni = new List<PrenotazioneProposta>();
+        private List<PrenotazioneProposta> listPrenotazioni;
         private bool isvisible, isbusy,isvisibleButton;
+        public ICommand cambiaData
+        {
+            get
+            {
+                return new Command((e) =>
+                {
+                    var item = (e as PrenotazioneProposta);
+                    
+                });
+            }
+        }
 
         public bool IsVisible
         {
@@ -49,13 +63,13 @@ namespace MCup.ModelView
 
         private List<Prestazioni> prestazioni;
 
-        public List<PrenotazioneProposta> list
+        public List<PrenotazioneProposta> ListPrenotazioni
         {
             get { return listPrenotazioni; }
             set
             {
                 OnPropertyChanged();
-                listPrenotazioni = new List<PrenotazioneProposta>(value);
+                listPrenotazioni = value;
             }
         }
 
@@ -66,6 +80,7 @@ namespace MCup.ModelView
 
         public PropostaRichiestaModelView(List<Prestazioni> prestazioni)
         {
+            listPrenotazioni = new List<PrenotazioneProposta>();
             IsVisibleButton = false;
             IsVisible = true;
             IsBusy = true;
@@ -75,11 +90,22 @@ namespace MCup.ModelView
 
         private async void recuperoInformazioni()
         {
-            REST<List<Prestazioni>, PrenotazioneProposta> recuperoDatiLista = new REST<List<Prestazioni>, PrenotazioneProposta>();
-            list = await recuperoDatiLista.PostJsonList(URL.RicercadisponibilitaReparti,prestazioni);
+            await info();
+        }
+
+        private async Task info()
+        {
+            REST<Prestazioni, PrenotazioneProposta> recuperoDatiLista = new REST<Prestazioni, PrenotazioneProposta>();
+            List<PrenotazioneProposta> temp = new List<PrenotazioneProposta>();
+            for (int i = 0; i < prestazioni.Count; i++)
+            {
+                temp.Add(await recuperoDatiLista.PostJson(URL.PrimaDisponibilita, prestazioni[i]));
+            }
+            ListPrenotazioni = temp;
             IsVisible = false;
             IsBusy = false;
             IsVisibleButton = true;
         }
+
     }
 }

@@ -29,7 +29,7 @@ namespace MCup.Views
         public VerificaRicetta(Ricetta ricetta)
         {
             InitializeComponent();
-            ModelViewVerifica = new VerificaRicettaModelView(ricetta);
+            ModelViewVerifica = new VerificaRicettaModelView(ricetta, this);
             BindingContext = ModelViewVerifica;
         }
 

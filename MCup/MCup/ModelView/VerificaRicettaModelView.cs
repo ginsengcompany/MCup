@@ -24,6 +24,7 @@ namespace MCup.ModelView
         private List<PrestazioniTemp> prestazioniErogabili;
         private bool buttonIsVisible;
         private List<Reparto> reparto = new List<Reparto>();
+        private VerificaRicetta verifica;
         public ICommand ContinuaPrenotazione { protected set; get; }
         private List<Prestazioni> prestazioniDaInviare;
 
@@ -68,8 +69,9 @@ namespace MCup.ModelView
             }
         }
 
-        public VerificaRicettaModelView(Ricetta impegnativa)
+        public VerificaRicettaModelView(Ricetta impegnativa, VerificaRicetta verifica)
         {
+            this.verifica = verifica;
             ricetta = impegnativa;
             NomeAssistito = ricetta.nome_assistito;
             CognomeAssistito = ricetta.cognome_assistito;
@@ -84,9 +86,10 @@ namespace MCup.ModelView
                     if (i.reparti == null)
                         verificaPrestazioni = false;
                 if (verificaPrestazioni == true)
-                    await App.Current.MainPage.Navigation.PushAsync(new PropostaRichiesta(prestazioniDaInviare));
+                    await this.verifica.Navigation.PushAsync(new PropostaRichiesta(prestazioniDaInviare));
                 else
-                    await App.Current.MainPage.DisplayAlert("Attenzione", "Seleziona un reparto per ogni prestazione", "OK");
+                    await App.Current.MainPage.DisplayAlert("Attenzione", "Seleziona un reparto per ogni prestazione",
+                        "OK");
             });
         }
 
