@@ -21,7 +21,6 @@ namespace MCup.ModelView
         private string nomeAssistito, cognomeAssistito, codiceRicetta;
         private Ricetta ricetta;
         private List<PrestazioniTemp> prestazioni; //Lista delle prestazioni contenute nella ricetta
-        private Erogazione eroga;
         private List<PrestazioniTemp> prestazioniErogabili;
         private bool buttonIsVisible;
         private List<Reparto> reparto = new List<Reparto>();
@@ -157,6 +156,15 @@ namespace MCup.ModelView
                     await App.Current.MainPage.DisplayAlert("Attenzione",
                         "La struttura non eroga i seguenti servizi: " + "\n" + messaggio, "OK");
                     await ricezioneReparti(DateTime.Today);
+                    bool piuReparti = false;
+                    foreach (var i in listaPrestazioni)
+                        if (i.reparti.Count > 1)
+                        {
+                            piuReparti = true;
+                            break;
+                        }
+                    if (piuReparti)
+                        await App.Current.MainPage.DisplayAlert("Attenzione", "Alcune prestazioni vengono erogate da più reparti, se non si conosce il reparto per cui prenotare chiamare il Call Center", "OK");
                 }
                 else
                 {
@@ -171,6 +179,15 @@ namespace MCup.ModelView
                 for (var i = 0; i < prestazioniErogabili.Count; i++)
                     prestazioniDaInviare.Add(prestazioniErogabili[i].estraiPrestazione());
                 await ricezioneReparti(DateTime.Today);
+                bool piuReparti = false;
+                foreach (var i in listaPrestazioni)
+                    if (i.reparti.Count > 1)
+                    {
+                        piuReparti = true;
+                        break;
+                    }
+                if (piuReparti)
+                    await App.Current.MainPage.DisplayAlert("Attenzione", "Alcune prestazioni vengono erogate da più reparti, se non si conosce il reparto per cui prenotare chiamare il Call Center", "OK");
             }
         }
 
