@@ -9,7 +9,6 @@
              Title="Verifica Contenuto Impegnativa">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="15">
-
             <StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label Text="Codice impegnativa:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
@@ -34,10 +33,7 @@
                             <ViewCell.View>
                                 <StackLayout>
                                     <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
-                                    <StackLayout Orientation="Horizontal">
-                                        <DatePicker MinimumDate="{x:Static sys:DateTime.Now}" DateSelected="DatePicker_OnDateSelected"></DatePicker>
-                                        <Picker Title="seleziona reparto" ItemsSource="{Binding reparti}" ItemDisplayBinding="{Binding descrizione}" SelectedItem=""></Picker>
-                                    </StackLayout>
+                                    <Picker Title="seleziona reparto" ItemsSource="{Binding reparti}" ItemDisplayBinding="{Binding descrizione}" SelectedIndexChanged="Picker_OnSelectedIndexChanged"></Picker>
                                 </StackLayout>
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>

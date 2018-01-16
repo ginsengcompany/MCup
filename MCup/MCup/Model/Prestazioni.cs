@@ -26,5 +26,14 @@ namespace MCup.Model
             this.reparti = prestazioni.reparti;
             this.data_inizio = prestazioni.data_inizio;
         }
+
+        public Prestazioni(string codprest, string desbprest, string desprest, bool erogabile)
+        {
+            this.codprest = codprest;
+            this.desbprest = desbprest;
+            this.desprest = desprest;
+            this.erogabile = erogabile;
+            this.reparti = new Reparto();
+        }
     }
 }

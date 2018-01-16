@@ -33,17 +33,12 @@ namespace MCup.Views
             BindingContext = ModelViewVerifica;
         }
 
-        private async void DatePicker_OnDateSelected(object sender, DateChangedEventArgs e)
-        {
-            var a = e.NewDate;
-            await ModelViewVerifica.ricezioneReparti(a);
-        }
-
         private void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            var b = sender as Reparto;
+            var a = sender as Picker;
+            var b = a.SelectedItem as Reparto;
+            ModelViewVerifica.selectedReparto(b);
         }
-
 
     }
 }

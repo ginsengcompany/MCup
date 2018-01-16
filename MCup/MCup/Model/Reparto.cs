@@ -13,6 +13,7 @@ namespace MCup.Model
         public string descrizione { get; set; }
         public string nomeStruttura { get; set; }
         public string dataDisponibile { get; set; }
+        public string codprest { get; set; }
 
         public Reparto(Reparto reparto)
 
@@ -22,6 +23,7 @@ namespace MCup.Model
             this.descrizione = reparto.descrizione;
             this.nomeStruttura = reparto.nomeStruttura;
             this.unitaOperativa = reparto.unitaOperativa;
+            this.codprest = reparto.codprest;
         }
 
         public Reparto() { }
