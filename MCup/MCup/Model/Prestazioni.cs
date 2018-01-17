@@ -16,7 +16,7 @@ namespace MCup.Model
         public bool erogabile { get; set; }
 
 
-        public Prestazioni() { }
+        public Prestazioni() { reparti = new Reparto(); }
 
         public Prestazioni(Prestazioni prestazioni)
         {

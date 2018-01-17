@@ -21,10 +21,10 @@ namespace MCup.ModelView
         {
             get
             {
-                return new Command((e) =>
+                return new Command(async (e) =>
                 {
                     var item = (e as PrenotazioneProposta);
-                    
+                    await info(item);
                 });
             }
         }
@@ -105,6 +105,28 @@ namespace MCup.ModelView
             IsVisible = false;
             IsBusy = false;
             IsVisibleButton = true;
+        }
+
+        private async Task info(PrenotazioneProposta prenotazione)
+        {
+            REST<Prestazioni, PrenotazioneProposta> connessione = new REST<Prestazioni, PrenotazioneProposta>();
+            PrenotazioneProposta nuovaproposta = new PrenotazioneProposta();
+            Prestazioni prestazione = new Prestazioni();
+            prestazione.codprest = prenotazione.codPrestazione;
+            prestazione.data_inizio = prenotazione.dataAppuntamento;
+            prestazione.reparti.codReparto = prenotazione.codReparto;
+            prestazione.reparti.unitaOperativa = prenotazione.unitaOperativa;
+            nuovaproposta = await connessione.PostJson(URL.PrimaDisponibilita, prestazione);
+            List<PrenotazioneProposta> temp = new List<PrenotazioneProposta>(ListPrenotazioni);
+            for (int i=0; i < temp.Count; i++)
+            {
+                if (temp[i].codPrestazione == nuovaproposta.codPrestazione)
+                {
+                    temp[i] = nuovaproposta;
+                    break;
+                }
+            }
+            ListPrenotazioni = temp;
         }
 
     }

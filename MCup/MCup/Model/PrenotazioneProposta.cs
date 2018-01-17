@@ -18,6 +18,8 @@ namespace MCup.Model
         public string posizione { get; set; }
         public string orarioApertura { get; set; }
         public string orarioChiusura { get; set; }
+        public string codReparto { get; set; }
+        public string unitaOperativa { get; set; }
 
         public PrenotazioneProposta(){ }
     }

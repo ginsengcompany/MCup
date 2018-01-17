@@ -25,7 +25,7 @@
                                         <Label Text="{Binding oraAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
                                         <Label Text="Posizione in coda:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
                                         <Label Text="{Binding posizione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                    <Button Text="Cambia data" HorizontalOptions="Center" BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" Command="{Binding cambiaData}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                                    <Button Text="Prossima data disponibile" HorizontalOptions="Center" BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" Command="{Binding cambiaData}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                                     </StackLayout>
                                 </ViewCell.View>
                             </customControls:ExtendedViewCell>
