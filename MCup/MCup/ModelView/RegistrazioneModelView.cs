@@ -23,12 +23,20 @@ namespace MCup.ModelView
 
         private Utente utente; //Oggetto che astrae l'utenza del cliente
 
-        private string confermaPassword, nameErrorTextNome, nameErrorTextCognome, nameErrorTextCodice, nameErrorTextPassword, nameErrorTextConfermaPassword;
+        private string confermaPassword, nameErrorTextUsername, nameErrorTextNome, nameErrorTextCognome, nameErrorTextCodice, nameErrorTextPassword, nameErrorTextConfermaPassword;
 
         public string nameerrortextdatanascita, nameErrorTextLuogoNascita, nameErrorTextProvincia;
 
         public ICommand registrati { protected set; get; } //Command per il tentativo di registrazione dell'utenza
-
+        public string Username //Proprietà relativa al campo Username
+        {
+            get { return utente.username; }
+            set
+            {
+                OnPropertyChanged();
+                utente.username = value;
+            }
+        }
         public string codiceFiscale //Proprietà relativa al campo codice fiscale
         {
             get { return utente.codice_fiscale; }
@@ -206,6 +214,7 @@ namespace MCup.ModelView
             {
 
                 //Imposta gli errori ad una stringa vuota
+                nameErrorTextUsername = String.Empty;
                 NameErrorTextNome = String.Empty;
                 NameErrorTextCognome = String.Empty;
                 NameErrorTextCodice = String.Empty;
@@ -217,6 +226,11 @@ namespace MCup.ModelView
                  * Ogni qualvota che uno dei seguenti controlli non andasse a buon fine viene assegnata a questa variabile il valore false
                  */
                 bool controllPass = true;
+                if (string.IsNullOrEmpty(Username)) //Controlla se il campo nome è vuoto o null
+                {
+                    nameErrorTextUsername = "Attenzione, campo obbligatorio";
+                    controllPass = false;
+                }
                 if (string.IsNullOrEmpty(nome)) //Controlla se il campo nome è vuoto o null
                 {
                     NameErrorTextNome = "Attenzione, campo obbligatorio";

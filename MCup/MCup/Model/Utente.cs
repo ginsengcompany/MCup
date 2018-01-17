@@ -5,6 +5,7 @@ namespace MCup.Model
 {
     public class Utente
     {
+        public string username { get; set; }
         public string nome { get; set; }
         public string cognome { get; set; }
         public string codice_fiscale { get; set; }
@@ -17,6 +18,7 @@ namespace MCup.Model
 
         public Utente()
         {
+            username = "";
             nome = "";
             cognome = "";
             codice_fiscale = "";
@@ -30,6 +32,7 @@ namespace MCup.Model
 
         public Utente(Utente utente)
         {
+            this.username = utente.username;
             this.nome = utente.nome;
             this.cognome = utente.cognome;
             this.codice_fiscale = utente.codice_fiscale;
@@ -41,8 +44,9 @@ namespace MCup.Model
             this.provincia = utente.provincia;
         }
 
-        public Utente(string nome, string cognome, string codice_fiscale, string password, string data_nascita, string luogo_nascita, char sesso, string provincia)
+        public Utente(string username, string nome, string cognome, string codice_fiscale, string password, string data_nascita, string luogo_nascita, char sesso, string provincia)
         {
+            this.username = username;
             this.nome = nome;
             this.cognome = cognome;
             this.codice_fiscale = codice_fiscale;
@@ -53,8 +57,9 @@ namespace MCup.Model
             this.provincia = provincia;
         }
 
-        public Utente(string nome, string cognome, string codice_fiscale, string password, string data_nascita, string luogo_nascita, char sesso, string provincia, string struttura_preferita)
+        public Utente(string username, string nome, string cognome, string codice_fiscale, string password, string data_nascita, string luogo_nascita, char sesso, string provincia, string struttura_preferita)
         {
+            this.username = username;
             this.nome = nome;
             this.cognome = cognome;
             this.codice_fiscale = codice_fiscale;
@@ -75,8 +80,8 @@ namespace MCup.Model
         {
             if (!string.IsNullOrWhiteSpace(user))
             {
-                this.codice_fiscale = user;
-                Application.Current.Properties.Add("codice_fiscale", user);
+                this.username = user;
+                Application.Current.Properties.Add("username", user);
                 Application.Current.SavePropertiesAsync();
             }
         }
@@ -94,9 +99,9 @@ namespace MCup.Model
              * Tale dizionario (Application.Current.Properties) viene usato per memorizzare i dati
              * sul dispositivo.
              * */
-            if (Application.Current.Properties.ContainsKey("codice_fiscale"))
+            if (Application.Current.Properties.ContainsKey("username"))
             {
-                u = Application.Current.Properties["codice_fiscale"].ToString();
+                u = Application.Current.Properties["username"].ToString();
             }
             else
             {
@@ -112,9 +117,9 @@ namespace MCup.Model
          * */
         public void cancellaEdAggiornaUsername(string nuovo)
         {
-            this.codice_fiscale = nuovo;
+            this.username = nuovo;
             Application.Current.Properties.Clear();
-            Application.Current.Properties.Add("codice_fiscale", nuovo);
+            Application.Current.Properties.Add("username", nuovo);
             Application.Current.SavePropertiesAsync();
         }
     }

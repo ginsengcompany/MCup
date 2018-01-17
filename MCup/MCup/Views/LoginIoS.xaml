@@ -18,9 +18,9 @@
                                  HorizontalOptions="Center">
                         <Image Source="profilo.png"/>
                         <xfx:XfxEntry 
-                            Placeholder="Inserire Codice Fiscale"     
+                            Placeholder="Inserire Username"     
                             PlaceholderColor="Red"   
-                            Text="{Binding codiceFiscale}" 
+                            Text="{Binding Username}" 
                             ErrorText="{Binding NameErrorText}" 
                             WidthRequest="250"
                             HorizontalOptions="Center" 

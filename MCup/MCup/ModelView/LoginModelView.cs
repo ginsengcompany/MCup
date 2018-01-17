@@ -84,13 +84,13 @@ namespace MCup.ModelView
         }
 
         //Proprietà che definisce l' Username di chi effettua l'accesso
-        public string codiceFiscale
+        public string Username
         {
-            get { return utente.codice_fiscale; }
+            get { return utente.username; }
             set
             {
                 OnPropertyChanged();
-                utente.codice_fiscale = value;
+                utente.username = value;
             }
         }
         //Proprietà che definisce la password di chi effettua il login
@@ -145,16 +145,16 @@ namespace MCup.ModelView
         public LoginModelView()
         {
             utente = new Utente(); //Crea un oggetto Utente vuoto
-            codiceFiscale = utente.codice_fiscale = utente.recuperaUserName();
+            Username = utente.username = utente.recuperaUserName();
             LoginIsVisible = true;
             SignupIsVisible = true;
             IsVisible = false; //L'activity indicator non è visibile
             IsBusy = false; //L'activity indicator non si trova nello stato IsRunning
             effettuaLogin = new Command(async () => //Definisce il metodo del Command effettuaLogin che gestisce il tentativo di login da parte dell'utente
             {
-                if (string.IsNullOrEmpty(codiceFiscale)) //Controlla che il campo codice fiscale non sia nullo o vuoto
+                if (string.IsNullOrEmpty(Username)) //Controlla che il campo codice fiscale non sia nullo o vuoto
                 {
-                    NameErrorText = "Attenzione codice fiscale non inserito correttamente";
+                    NameErrorText = "Attenzione Username non inserito correttamente";
                     IsBusy = false;
                 }
                 if (string.IsNullOrEmpty(passWord)) //Controlla che il campo password non sia nullo o vuoto
@@ -162,7 +162,7 @@ namespace MCup.ModelView
                     NameErrorTextPassword = "Attenzione password non inserita correttamente";
                     IsBusy = false;
                 }
-                if (!string.IsNullOrEmpty(codiceFiscale) && !string.IsNullOrEmpty(passWord)) //se i campi codice fiscale e password non sono vuoti o null
+                if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(passWord)) //se i campi codice fiscale e password non sono vuoti o null
                 {
                     LoginIsVisible = false;
                     SignupIsVisible = false;
@@ -183,7 +183,7 @@ namespace MCup.ModelView
                         await App.Current.MainPage.DisplayAlert("Login", "Login non riuscita", "OK");
                     else //Le informazioni dell'utenza sono corrette
                     {
-                        utente.cancellaEdAggiornaUsername(utente.codice_fiscale);
+                        utente.cancellaEdAggiornaUsername(utente.username);
                         App.Current.Properties["tokenLogin"] = response.token; //Salva nel dictionary dell'app il token dell'utente per accedere alle sue informazioni private
                       //  REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto per la chiamata REST
                        // ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token); //Chiamata GET che ritorna se l'utente ha già scelto la sua struttura preferita o meno

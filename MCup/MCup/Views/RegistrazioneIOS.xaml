@@ -25,6 +25,7 @@
             <TableView Intent="Form" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
                 <TableView.Root >
                     <TableSection>
+                        <EntryCell Label="Username:"  HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding Username}" />
                         <EntryCell Label="Nome:"  HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding nome}" />
                         <EntryCell Label="Cognome:" HorizontalTextAlignment="Start" LabelColor="Red"  Text="{Binding cognome}" />
                         <EntryCell Label="Data Di Nascita" HorizontalTextAlignment="Start" LabelColor="Red" Text="{Binding data_nascita}" />

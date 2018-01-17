@@ -31,7 +31,7 @@
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="PRENOTAZIONI" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"/>
+                <Label Text="Prenota" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"/>
                 <Image Source="iconaAppuntamenti.png" Grid.Row="0" Grid.Column="1" WidthRequest="60">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
@@ -39,7 +39,7 @@
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="APPUNTAMENTI" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
+                <Label Text="Visualizza i tuoi Appuntamenti" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
             </Grid>
 
         </StackLayout>

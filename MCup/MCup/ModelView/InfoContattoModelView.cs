@@ -131,6 +131,9 @@ namespace MCup.ModelView
             }
             Elimina = new Command(async () =>
             {
+                var risposta = await App.Current.MainPage.DisplayAlert("ATTENZIONE", "Sei sicuro di voler eliminare questo contatto?", "SI", "NO");
+                if (risposta == false)
+                    return;
                 REST<Contatto, string> restElimina = new REST<Contatto, string>();
                 string response = await restElimina.PostJson(URL.EliminaContatto, utente, App.Current.Properties["tokenLogin"].ToString());
                 await App.Current.MainPage.DisplayAlert("Eliminazione", restElimina.warning, "OK");
