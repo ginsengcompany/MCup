@@ -113,7 +113,7 @@ namespace MCup.Service
             }
             catch (Exception)
             {
-                warning = "Il servizio è momentaneamente fuori servizio";
+                
             }
             return default(T);
         }
@@ -128,11 +128,12 @@ namespace MCup.Service
             HttpContent httpContent = new StringContent(json.ToString());
             httpContent.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
             httpContent.Headers.Add("x-access-token", header);
-            var result = await client.PostAsync(url,httpContent);
-            var response = await result.Content.ReadAsStringAsync();
-            warning = response;
+            
             try
             {
+                var result = await client.PostAsync(url,httpContent);
+                var response = await result.Content.ReadAsStringAsync();
+                warning = response;
                 var isValid = JToken.Parse(response);
                 Item = JsonConvert.DeserializeObject<T>(response);
                 return Item;
