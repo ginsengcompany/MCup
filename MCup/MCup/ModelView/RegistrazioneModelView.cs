@@ -241,7 +241,7 @@ namespace MCup.ModelView
                     NameErrorTextCognome = "Attenzione, campo obbligatorio";
                     controllPass = false;
                 }
-                if (string.IsNullOrEmpty(codiceFiscale)) //Controlla se il campo codice fiscale è vuoto o null
+                if (string.IsNullOrEmpty(codiceFiscale) || codiceFiscale.Length != 16) //Controlla se il campo codice fiscale è vuoto o null
                 {
                     NameErrorTextCodice = "Attenzione, campo obbligatorio";
                     controllPass = false;

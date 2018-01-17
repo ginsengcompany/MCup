@@ -236,7 +236,7 @@ namespace MCup.ModelView
                 NameTextErrorCodFisc = "Il campo codice fiscale è obbligatorio";
                 passControl = false;
             }
-            else if (!utenza.checkCodiceFiscale())
+            else if (utenza.getCodiceFiscale().Length != 16)
             {
                 NameTextErrorCodFisc = "Il campo codice fiscale non è corretto";
                 passControl = false;

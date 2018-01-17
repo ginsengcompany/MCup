@@ -34,5 +34,10 @@ namespace MCup.Views
             else
                 App.Current.MainPage = new NavigationPage(new LoginIoS());
         }
+
+        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+
+        }
     }
 }

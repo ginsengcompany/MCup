@@ -16,6 +16,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                 </Grid>
                 <Grid ColumnSpacing="2">
@@ -39,9 +41,16 @@
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Visualizza i tuoi Appuntamenti" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
+                <Label Text="Visualizza i tuoi appuntamenti" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
+                <Image Source="ic_contatti.png" Grid.Row="2" Grid.Column="0" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="TapGestureRecognizer_Tapped_2"
+                            NumberOfTapsRequired="1"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Visualizza la tua lista contatti" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center"/>
             </Grid>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
