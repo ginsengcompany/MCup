@@ -209,6 +209,7 @@ namespace MCup.ModelView
             public string data_inizio { get; set; }
             public List<Reparto> reparti { get; set; }
             public bool erogabile { get; set; }
+            public string struttura { get; set; } = "030001";
 
             public PrestazioniTemp() { }
 

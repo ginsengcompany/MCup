@@ -14,6 +14,7 @@ namespace MCup.Model
         public string data_inizio { get; set; }
         public Reparto reparti { get; set; }
         public bool erogabile { get; set; }
+        public string struttura { get; set; } = "030001";
 
 
         public Prestazioni() { reparti = new Reparto(); }
