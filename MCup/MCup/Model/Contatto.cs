@@ -16,6 +16,7 @@ namespace MCup.Model
         public string provincia { get; set; }
         public char sesso { get; set; }
         public bool AccountPrimario { get; set; }
+        public string nomeCompletoConCodiceFiscale { get; set; }
 
 
         public Contatto()
@@ -28,6 +29,7 @@ namespace MCup.Model
             this.provincia = "";
             this.sesso = ' ';
             this.AccountPrimario =false;
+            this.nomeCompletoConCodiceFiscale = "";
         }
 
         public Contatto(Contatto contatto)
@@ -40,11 +42,7 @@ namespace MCup.Model
             this.provincia = contatto.provincia;
             this.sesso = contatto.sesso;
             this.AccountPrimario = contatto.AccountPrimario;
-        }
-
-        public string longName()
-        {
-            return this.nome + " " + cognome;
+            this.nomeCompletoConCodiceFiscale = this.nome + " " + this.cognome + " " + this.codice_fiscale;
         }
     }
 }

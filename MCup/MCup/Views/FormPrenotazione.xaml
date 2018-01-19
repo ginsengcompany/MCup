@@ -9,14 +9,20 @@
         <ScrollView>
             <StackLayout Orientation="Vertical" Padding="20,20,20,0" >
                 <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
-                <xfx:XfxComboBox x:Name="ComboNome" ErrorText="{Binding NameTextErrorNome}" ErrorDisplay="Underline" Placeholder="Inserire nome" SortingAlgorithm="{Binding SortingAlgorithm}" ItemsSource="{Binding Contatti}" ItemSelected="XfxComboBox_ItemSelected" Text="{Binding nomeUtente}" WidthRequest="250" VerticalOptions="Center" />
-               <!-- <xfx:XfxEntry 
+                <!-- <xfx:XfxComboBox x:Name="ComboNome" ErrorText="{Binding NameTextErrorNome}" ErrorDisplay="Underline" Placeholder="Inserire nome" SortingAlgorithm="{Binding SortingAlgorithm}" ItemsSource="{Binding Contatti}" ItemSelected="XfxComboBox_ItemSelected" Text="{Binding nomeUtente}" WidthRequest="250" VerticalOptions="Center" /> -->
+
+                <Picker TextColor="Red" Title="Seleziona il contatto per cui vuoi prenotare" HorizontalOptions="CenterAndExpand" ItemsSource="{Binding Contatti}" ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" VerticalOptions="Center" SelectedIndexChanged="Picker_SelectedIndexChanged" />
+
+                <xfx:XfxEntry 
                     Placeholder="Inserire nome"     
                     Text="{Binding nomeUtente}" 
                     ErrorText="{Binding NameErrorText}" 
                     ErrorDisplay="Underline"
                     WidthRequest="250"
-                    VerticalOptions="Center"/> -->
+                    IsEnabled="False"
+                    IsVisible="{Binding Visible}"
+                    VerticalOptions="Center"/>
+                
                 <xfx:XfxEntry 
                     Placeholder="Cognome"     
                     Text="{Binding cognomeUtente}" 

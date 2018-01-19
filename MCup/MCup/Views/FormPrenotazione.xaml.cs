@@ -126,11 +126,18 @@ namespace MCup.Views
             Navigation.PushAsync(new VerificaRicetta(ricetta));
         }
 
-        private void XfxComboBox_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string x = e.SelectedItem as string;
-            form.autoCompila(x);
-            ComboNome.Unfocus();
+            var a = sender as Picker;
+            var b = a.SelectedItem as Contatto;
+            form.autoCompila(b);
         }
+        /*
+private void XfxComboBox_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+{
+   string x = e.SelectedItem as string;
+   form.autoCompila(x);
+   ComboNome.Unfocus();
+} */
     }
 }

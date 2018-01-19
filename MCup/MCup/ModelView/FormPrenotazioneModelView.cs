@@ -89,17 +89,17 @@ namespace MCup.ModelView
         //Oggetto che contiene tutte le informazioni della prenotazione che si vuole effettuare
         private FormPrenotazione model;
 
-        private ObservableCollection<string> contatti = new ObservableCollection<string>();
+        private List<Contatto> contatti = new List<Contatto>();
 
         private Contacts contacts;
 
-        public ObservableCollection<string> Contatti
+        public List<Contatto> Contatti
         {
             get { return contatti; }
             set
             {
                 OnPropertyChanged();
-                contatti = new ObservableCollection<string>(value);
+                contatti = new List<Contatto>(value);
             }
         }
 
@@ -186,11 +186,16 @@ namespace MCup.ModelView
         {
             REST<object, Contacts> rest = new REST<object, Contacts>();
             contacts = await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
-            ObservableCollection<string> temp = new ObservableCollection<string>();
-            temp.Add(contacts.nome + ", " + contacts.cognome + ", " + contacts.codice_fiscale);
+            List<Contatto> temp = new List<Contatto>();
+            temp.Add(new Contatto {
+                nome = contacts.nome, cognome = contacts.cognome, codice_fiscale = contacts.codice_fiscale, data_nascita = contacts.data_nascita,
+                luogo_nascita = contacts.luogo_nascita, provincia = contacts.provincia, sesso = contacts.sesso, AccountPrimario = true,
+                nomeCompletoConCodiceFiscale = contacts.nome + " " + contacts.cognome + " " + contacts.codice_fiscale
+            });
             for (int i = 0; i < contacts.contatti.Count; i++)
             {
-                temp.Add(contacts.contatti[i].nome + ", " + contacts.contatti[i].cognome + ", " + contacts.contatti[i].codice_fiscale);
+                contacts.contatti[i].nomeCompletoConCodiceFiscale = contacts.contatti[i].nome + " " + contacts.contatti[i].cognome + " " + contacts.contatti[i].codice_fiscale;
+                temp.Add(contacts.contatti[i]);
             }
             Contatti = temp;
         }
@@ -279,34 +284,18 @@ namespace MCup.ModelView
             }
         }
 
-        //Ordina la lista della combo box
+        /* Ordina la lista della combo box
         public Func<string, ICollection<string>, ICollection<string>> SortingAlgorithm { get; } = (text, values) => values
         .Where(x => x.ToLower().StartsWith(text.ToLower()))
         .OrderBy(x => x)
-        .ToList();
+        .ToList(); */
 
-        public void autoCompila(string elementSelected)
+        public void autoCompila(Contatto elementSelected)
         {
-            int indexEndName = elementSelected.IndexOf(',');
-            int indexEndSurname = elementSelected.IndexOf(',', indexEndName + 1);
-            string name = elementSelected.Substring(0, indexEndName);
-            string surname = elementSelected.Substring(indexEndName + 2, elementSelected.Length - (indexEndName + 2) - 18);
-            string codFisc = elementSelected.Substring(indexEndSurname + 2);
-            int inContacts = contacts.searchContact(name, surname, codFisc);
-            if(inContacts == -1) //L'utente ha cliccato su se stesso nella lista della checkbox
-            {
-                nomeUtente = contacts.nome;
-                cognomeUtente = contacts.cognome;
-                codicefiscaleUtente = contacts.codice_fiscale;
-                Visible = "true";
-            }
-            else if(inContacts >= 0)
-            {
-                nomeUtente = contacts.contatti[inContacts].nome;
-                cognomeUtente = contacts.contatti[inContacts].cognome;
-                codicefiscaleUtente = contacts.contatti[inContacts].codice_fiscale;
-                Visible = "true";
-            }
+            nomeUtente = elementSelected.nome;
+            cognomeUtente = elementSelected.cognome;
+            codicefiscaleUtente = elementSelected.codice_fiscale;
+            Visible = "true";
         }
 
         //Classe che identifica le prestazioni e se sono state erogate. Questa classe astrae dei possibili dati ricevuti da SOGEI

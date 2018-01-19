@@ -111,7 +111,7 @@ namespace MCup.ModelView
                     ObservableCollection<Contatto> tempContatto = new ObservableCollection<Contatto>();
                     for (int j = 0; j < grouped[i].Count; j++)
                     {
-                        if (grouped[i][j].longName().ToLower().Contains(keyword.ToLower()))
+                        if (grouped[i][j].nomeCompletoConCodiceFiscale.ToLower().Contains(keyword.ToLower()))
                             tempContatto.Add(grouped[i][j]);
                     }
                     if (tempContatto.Count != 0)
