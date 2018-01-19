@@ -26,7 +26,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                 </Grid>
-                <Image Source="iconaPrenotazioni.png" Grid.Row="0" Grid.Column="0" WidthRequest="60">
+                <Image Source="iconaPrenotazioni.png" Grid.Row="0" Grid.Column="0" WidthRequest="60" HorizontalOptions="Center">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                             Tapped="TapGestureRecognizer_Tapped"
@@ -42,7 +42,7 @@
                     </Image.GestureRecognizers>
                 </Image>
                 <Label Text="Tuoi appuntamenti" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
-                <Image Source="ic_contatti.png" Grid.Row="2" Grid.Column="0">
+                <Image Source="ic_contatti.png" Grid.Row="2" Grid.Column="0" WidthRequest="60" HorizontalOptions="Center">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                             Tapped="TapGestureRecognizer_Tapped_2"

@@ -319,6 +319,16 @@
     <BundleResource Include="Resources\contact20x20.png" />
     <BundleResource Include="Resources\contact29x29.png" />
     <BundleResource Include="Resources\contact40x40.png" />
+    <BundleResource Include="Resources\ic_contatti copia-marketing-1024x1024.png" />
+    <BundleResource Include="Resources\ic_contatti-20x20%402x.png" />
+    <BundleResource Include="Resources\ic_contatti-20x20%403x.png" />
+    <BundleResource Include="Resources\ic_contatti-29x29%401x.png" />
+    <BundleResource Include="Resources\ic_contatti-29x29%402x.png" />
+    <BundleResource Include="Resources\ic_contatti-40x40%402x.png" />
+    <BundleResource Include="Resources\ic_contatti-40x40%403x.png" />
+    <BundleResource Include="Resources\ic_contatti-60x60%402x.png" />
+    <BundleResource Include="Resources\ic_contatti-60x60%403x.png" />
+    <BundleResource Include="Resources\ic_contatti.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\splashscreen.png" />
