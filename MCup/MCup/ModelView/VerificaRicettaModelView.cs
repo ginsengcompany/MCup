@@ -121,6 +121,24 @@ namespace MCup.ModelView
                 ListaPrestazioni[i].data_inizio = dataSub;
                 prestazioniDaInviare[i].data_inizio = dataSub;
                 temp[i].reparti = await connessione.PostJsonList(URL.RicercadisponibilitaReparti, ListaPrestazioni[i]);
+                for (int p=0;p < temp[i].reparti.Count; p++)
+                {
+                    if (temp[i].reparti.Count == 1)
+                        temp[i].reparti[p].defaultReparto = 0;
+                    else
+                        temp[i].reparti[p].defaultReparto = -1;
+                }
+                if (temp[i].reparti.Count == 1)
+                {
+                    temp[i].title = temp[i].reparti[0].descrizione;
+                    temp[i].enabled = false;
+                }
+                else
+                {
+                    temp[i].title = "Scegli il reparto";
+                    temp[i].enabled = true;
+                }
+                    
             }
             ListaPrestazioni = temp;
         }
@@ -211,8 +229,13 @@ namespace MCup.ModelView
             public List<Reparto> reparti { get; set; }
             public bool erogabile { get; set; }
             public string struttura { get; set; } = "030001";
+            public string title { get; set; }
+            public bool enabled { get; set; }
 
-            public PrestazioniTemp() { }
+
+            public PrestazioniTemp()
+            {
+            }
 
             public PrestazioniTemp(PrestazioniTemp prestazioni)
             {

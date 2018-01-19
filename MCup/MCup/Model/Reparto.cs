@@ -14,6 +14,8 @@ namespace MCup.Model
         public string nomeStruttura { get; set; }
         public string dataDisponibile { get; set; }
         public string codprest { get; set; }
+        public int defaultReparto { get; set; }
+        
 
         public Reparto(Reparto reparto)
 
@@ -26,6 +28,9 @@ namespace MCup.Model
             this.codprest = reparto.codprest;
         }
 
-        public Reparto() { }
+        public Reparto()
+        {
+
+        }
     }
 }

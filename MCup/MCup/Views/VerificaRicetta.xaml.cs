@@ -25,6 +25,8 @@ namespace MCup.Views
 
         private VerificaRicettaModelView ModelViewVerifica;
 
+        private ListView listView = new ListView();
+
         //Costruttore della pagina che inizializza e visualizza le informazioni descritte nel commento della pagina
         public VerificaRicetta(Ricetta ricetta)
         {
@@ -38,6 +40,35 @@ namespace MCup.Views
             var a = sender as Picker;
             var b = a.SelectedItem as Reparto;
             ModelViewVerifica.selectedReparto(b);
+        }
+
+        public class PrestazioniTemp
+        {
+            public string codprest { get; set; }
+            public string desbprest { get; set; }
+            public string desprest { get; set; }
+            public string data_inizio { get; set; }
+            public List<Reparto> reparti { get; set; }
+            public bool erogabile { get; set; }
+            public string struttura { get; set; } = "030001";
+
+            public PrestazioniTemp() { }
+
+            public PrestazioniTemp(PrestazioniTemp prestazioni)
+            {
+                this.codprest = prestazioni.codprest;
+                this.desbprest = prestazioni.desbprest;
+                this.desprest = prestazioni.desprest;
+                this.reparti = prestazioni.reparti;
+                this.data_inizio = prestazioni.data_inizio;
+            }
+
+            public Prestazioni estraiPrestazione()
+            {
+                Prestazioni prestazioni = new Prestazioni(this.codprest, this.desbprest, this.desprest, this.erogabile);
+                return prestazioni;
+            }
+
         }
 
     }
