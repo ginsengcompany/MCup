@@ -259,10 +259,23 @@ namespace MCup.ModelView
                 NameTextErrorCodDue = "";
             if (passControl)
             {
-                REST<sendRicetta, Ricetta> connessione = new REST<sendRicetta,Ricetta>();
-                sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString(),ricetta.codice_due.ToString());
-                Ricetta response = await connessione.PostJson(URL.Ricetta,nre);
-                model.metodoPush(response);
+                try
+                {
+                    REST<sendRicetta, Ricetta> connessione = new REST<sendRicetta, Ricetta>();
+                    sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString(), ricetta.codice_due.ToString());
+                    Ricetta response = await connessione.PostJson(URL.Ricetta, nre);
+                    if ((response == null) || (response == default(Ricetta)))
+                    {
+                       await App.Current.MainPage.DisplayAlert("Attenzione", response.ToString(), "ok");
+                    }
+                    else
+                    model.metodoPush(response);
+                }
+                catch (Exception e)
+                {
+                   await App.Current.MainPage.DisplayAlert("Attenzione","connessione non riuscita o codici impegnativa errati" , "riprova");
+                }
+                
             }
         }
 

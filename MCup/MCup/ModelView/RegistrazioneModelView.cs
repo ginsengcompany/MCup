@@ -43,7 +43,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.codice_fiscale = value;
+                utente.codice_fiscale = value.ToUpper();
             }
         }
 
@@ -63,7 +63,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.nome = value;
+                utente.nome = value.ToUpper();
             }
         }
 
@@ -73,7 +73,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.cognome = value;
+                utente.cognome = value.ToUpper();
             }
         }
 
@@ -104,7 +104,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.luogo_nascita = value;
+                utente.luogo_nascita = value.ToUpper();
             }
         }
 
@@ -114,7 +114,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.provincia = value;
+                utente.provincia = value.ToUpper();
             }
         }
 

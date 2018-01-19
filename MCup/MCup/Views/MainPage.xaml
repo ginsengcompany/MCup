@@ -34,22 +34,22 @@
                     </Image.GestureRecognizers>
                 </Image>
                 <Label Text="Prenota" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"/>
-                <Image Source="iconaAppuntamenti.png" Grid.Row="0" Grid.Column="1" WidthRequest="60">
+                <Image Source="iconaAppuntamenti.png" Grid.Row="0" Grid.Column="1" WidthRequest="60" HorizontalOptions="Center">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                             Tapped="TapGestureRecognizer_Tapped_1"
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Visualizza i tuoi appuntamenti" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
-                <Image Source="ic_contatti.png" Grid.Row="2" Grid.Column="0" >
+                <Label Text="Tuoi appuntamenti" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
+                <Image Source="ic_contatti.png" Grid.Row="2" Grid.Column="0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
                             Tapped="TapGestureRecognizer_Tapped_2"
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Visualizza la tua lista contatti" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center"/>
+                <Label Text="Lista contatti" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

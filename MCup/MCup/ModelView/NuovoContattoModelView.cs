@@ -39,7 +39,7 @@ namespace MCup.ModelView
         set
         {
             OnPropertyChanged();
-            contatto.codice_fiscale = value;
+            contatto.codice_fiscale = value.ToUpper();
         }
     }
 
@@ -49,7 +49,7 @@ namespace MCup.ModelView
         set
         {
             OnPropertyChanged();
-            contatto.nome = value;
+            contatto.nome = value.ToUpper();
         }
     }
 
@@ -59,7 +59,7 @@ namespace MCup.ModelView
         set
         {
             OnPropertyChanged();
-            contatto.cognome = value;
+            contatto.cognome = value.ToUpper();
         }
     }
 
@@ -89,7 +89,7 @@ namespace MCup.ModelView
         set
         {
             OnPropertyChanged();
-            contatto.luogo_nascita = value;
+            contatto.luogo_nascita = value.ToUpper();
         }
     }
 
@@ -99,7 +99,7 @@ namespace MCup.ModelView
         set
         {
             OnPropertyChanged();
-            contatto.provincia = value;
+            contatto.provincia = value.ToUpper();
         }
     }
 
@@ -249,18 +249,6 @@ namespace MCup.ModelView
                 NameErrorTextProvincia = "Attenzione, campo obbligatorio ";
                 controllPass = false;
             }
-          
-                else if (ProvinciaNuovoContatto.Length<2)
-                {
-                    NameErrorTextProvincia = "Attenzione, provincia non valida ";
-                    controllPass = false;
-
-                }
-                else if(ProvinciaNuovoContatto.Length > 2)
-                {
-                    ProvinciaNuovoContatto = ProvinciaNuovoContatto.Substring(0, 2);
-                    controllPass = true;
-                }
             else
             {
                 NameErrorTextProvincia = string.Empty;
@@ -275,9 +263,17 @@ namespace MCup.ModelView
                 REST<Contatto, ResponseRegistrazione> connessioneNuovoContatto = new REST<Contatto, ResponseRegistrazione>();
                 try
                 {
-                    await connessioneNuovoContatto.PostJson(URL.AggiungiNuovoContatto, contatto, token);
-                    await App.Current.MainPage.DisplayAlert("Evvai", "utente inserito con successo", "ok");
-                    App.Current.MainPage = new MenuPrincipale();
+                    ResponseRegistrazione response = await connessioneNuovoContatto.PostJson(URL.AggiungiNuovoContatto, contatto, token);
+                    if ((response == null) || (response == default(ResponseRegistrazione)))
+                    {
+                        await App.Current.MainPage.DisplayAlert("Registrazione contatto", connessioneNuovoContatto.warning, "ok");
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Nuovo contatto", "Il contatto è stato aggiunto correttamente", "OK");
+                        App.Current.MainPage = new MenuPrincipale();
+                    }
+                    
                 }
                 catch (Exception)
                 {

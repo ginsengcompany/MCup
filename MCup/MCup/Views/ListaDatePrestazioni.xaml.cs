@@ -32,7 +32,7 @@ namespace MCup.Views
         {
             ListaDatePrenotazioni elemTapped = e.Item as ListaDatePrenotazioni;
             REST<ListaDatePrenotazioni, String> conn = new REST<ListaDatePrenotazioni, String>();
-            string response = await conn.PostJson(URL.Calendario, elemTapped);
+          //  string response = await conn.PostJson(URL.Calendario, elemTapped);
             if (conn.warning == "Prenotazione effettuata")
             {
                 Prenotazione prenotazione = new Prenotazione(this.utenza, elemTapped, this.codiceStruttura, this.nomeStruttura, this.codiceNRE);

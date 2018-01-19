@@ -170,14 +170,9 @@ namespace MCup.ModelView
                     IsBusy = true; //L'activity indicator è in stato IsRunning
                     REST<Utente, ResponseLogin> rest = new REST<Utente, ResponseLogin>(); //Crea l'oggetto per eseguire la chiamata REST per la login
                     ResponseLogin response = await rest.PostJson(URL.Login, utente); //Chiamata POST per la richiesta di autenticazione delle informazioni inserite dall'utente (codice fiscale e password)
-                    if (response == null) //Controlla se si è verificato un errore di connessione
+                    if ((response == null)|| (response == default(ResponseLogin))) //Controlla se si è verificato un errore di connessione
                     {
                        await App.Current.MainPage.DisplayAlert("Attenzione", rest.warning, "riprova");
-                    }
-                    else if (response == default(ResponseLogin)) //Controlla se la login non ha avuto successo
-                    {
-                        await App.Current.MainPage.DisplayAlert("Login", rest.warning, "OK");
-
                     }
                     else if (!response.auth) //Controlla se la login ha dato unn response negativo alle informazioni inserite dall'utente
                         await App.Current.MainPage.DisplayAlert("Login", "Login non riuscita", "OK");

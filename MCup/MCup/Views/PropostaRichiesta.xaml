@@ -15,18 +15,40 @@
                             <customControls:ExtendedViewCell SelectedBackgroundColor="White">
                                 <ViewCell.View>
                                     <StackLayout Orientation="Vertical" x:Name="Item">
-                                        <Label Text="Prestazione:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                                        <Label Text="{Binding descPrestazione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                        <Label Text="Reparto:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                        <Label Text="{Binding descReparto}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                        <Label Text="Data dell'appuntamento:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                        <Label Text="{Binding dataAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                        <Label Text="Orario dell'appuntamento:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                        <Label Text="{Binding oraAppuntamento}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                        <Label Text="Posizione in coda:" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
-                                        <Label Text="{Binding posizione}" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                    <Button Text="Prossima data disponibile" HorizontalOptions="Center" BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" Command="{Binding cambiaData}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                     <StackLayout Grid.Column="0">
+                                        <StackLayout Orientation="Vertical" >
+                                        <Label Text="Prestazione" TextColor="Red" VerticalOptions="Start"></Label>
+                                        <Label Text="{Binding descPrestazione}" TextColor="Black" VerticalOptions="End" FontSize="Medium"  FontAttributes="Italic"/>
                                     </StackLayout>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="Reparto:" TextColor="Red"  VerticalOptions="Start" />
+                                        <Label Text="{Binding descReparto}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Data dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
+                                        <Label Text="{Binding dataAppuntamento}" TextColor="Black" VerticalOptions="End" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                    </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                        <Label Text="Orario dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
+                                        <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                    </StackLayout>
+                                        </StackLayout>
+                                        <Button Text="Prossima data" 
+                                                TextColor="White" 
+                                                BackgroundColor="#ff0000" 
+                                                Grid.Column="1" 
+                                                HeightRequest="80" 
+                                                VerticalOptions="Center" 
+                                                BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
+                                                Command="{Binding cambiaData}" 
+                                                CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                                        </Grid>
+                                        </StackLayout>
                                 </ViewCell.View>
                             </customControls:ExtendedViewCell>
                         </DataTemplate>
