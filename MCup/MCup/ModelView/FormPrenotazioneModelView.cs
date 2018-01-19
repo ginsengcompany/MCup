@@ -12,7 +12,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.UI.Xaml.Controls.Maps;
 using Xamarin.Forms;
 
 namespace MCup.ModelView
