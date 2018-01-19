@@ -40,7 +40,7 @@ namespace MCup.ModelView
         public async void leggiDati()
         {
             REST<Object,ListaDatePrenotazioni> connessione = new REST<Object,ListaDatePrenotazioni>();
-            ListaDataPrenotazioni = await connessione.GetJson(URL.Calendario);
+          //  ListaDataPrenotazioni = await connessione.GetJson(URL.Calendario);
         }
         /*Costruttore del metodo, avvia la connessione*/
         public  ListaDatePrenotazioniModelView()

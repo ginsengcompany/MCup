@@ -117,8 +117,9 @@ namespace MCup.ModelView
             REST<PrestazioniTemp,Reparto> connessione = new REST<PrestazioniTemp,Reparto>();
             for (var i = 0; i < temp.Count; i++)
             {
-                ListaPrestazioni[i].data_inizio = data.ToString();
-                prestazioniDaInviare[i].data_inizio = data.ToString();
+                string dataSub = data.ToString().Substring(0, 10);
+                ListaPrestazioni[i].data_inizio = dataSub;
+                prestazioniDaInviare[i].data_inizio = dataSub;
                 temp[i].reparti = await connessione.PostJsonList(URL.RicercadisponibilitaReparti, ListaPrestazioni[i]);
             }
             ListaPrestazioni = temp;
