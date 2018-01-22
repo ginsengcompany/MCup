@@ -26,14 +26,14 @@
             <StackLayout>
                 <Label Text="Descrizione impegnativa:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
             </StackLayout>
-            <ListView ItemsSource="{Binding ListaPrestazioni}" x:Name="View" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
+            <ListView ItemsSource="{Binding ListaPrestazioni}" SeparatorColor="Red" IsEnabled="False" x:Name="lst" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                         <customControls:ExtendedViewCell SelectedBackgroundColor="White">
                             <ViewCell.View>
-                                <StackLayout>
+                                <StackLayout x:Name="stk">
                                     <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
-                                    <Picker Title="seleziona reparto" ItemsSource="{Binding reparti}" ItemDisplayBinding="{Binding descrizione}" SelectedIndexChanged="Picker_OnSelectedIndexChanged"/>
+                                    <Picker Title="{Binding title}" TextColor="Black" IsEnabled="{Binding enabled}" SelectedIndex="{Binding defaultReparto}" ItemsSource="{Binding reparti}" ItemDisplayBinding="{Binding descrizione}" SelectedIndexChanged="Picker_OnSelectedIndexChanged"/>
                                 </StackLayout>
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>
@@ -41,8 +41,8 @@
                     </ListView.ItemTemplate>
                 </ListView>
             <StackLayout BackgroundColor="White">
-            <Button Text="Continua" Command="{Binding ContinuaPrenotazione}" BackgroundColor="Red" TextColor="White" IsVisible="{Binding ButtonIsVisible}"/>
-                </StackLayout>
+                <Button Text="Continua" Command="{Binding ContinuaPrenotazione}" BackgroundColor="Red" TextColor="White" IsVisible="{Binding ButtonIsVisible}"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
