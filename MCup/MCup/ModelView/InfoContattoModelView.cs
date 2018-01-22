@@ -31,6 +31,24 @@ namespace MCup.ModelView
                 utente.codice_fiscale = value;
             }
         }
+        public string comune_residenza //Proprietà relativa al campo codice fiscale
+        {
+            get { return utente.comune_residenza; }
+            set
+            {
+                OnPropertyChanged();
+                utente.comune_residenza = value;
+            }
+        }
+        public string telefono //Proprietà relativa al campo codice fiscale
+        {
+            get { return utente.telefono; }
+            set
+            {
+                OnPropertyChanged();
+                utente.telefono = value;
+            }
+        }
         public string Visibile //Proprietà relativa al campo codice fiscale
         {
             get { return visibile; }

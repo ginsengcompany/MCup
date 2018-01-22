@@ -141,7 +141,9 @@ namespace MCup.ModelView
                 data_nascita = contacts.data_nascita,
                 luogo_nascita = contacts.luogo_nascita,
                 sesso = contacts.sesso,
-                provincia = contacts.provincia
+                provincia = contacts.provincia,
+                comune_residenza = contacts.comune_residenza,
+                telefono = contacts.telefono
             });
             for (int i = 0; i < contacts.contatti.Count; i++)
             {
@@ -158,6 +160,8 @@ namespace MCup.ModelView
             contattoPrimo.provincia = temp[0].provincia;
             contattoPrimo.sesso = temp[0].sesso;
             contattoPrimo.AccountPrimario = true;
+            contattoPrimo.comune_residenza = temp[0].comune_residenza;
+            contattoPrimo.telefono = temp[0].telefono;
             temp.Remove(temp[0]);
             Contatti = temp;
             ImplementaRubrica();

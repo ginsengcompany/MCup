@@ -13,8 +13,10 @@
                 <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding cognome}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
                 <Label Text="Data di nascita" TextColor="Gray" FontSize="Small"/>
                 <DatePicker x:Name="pickerNascita" Date="{Binding data_nascita}" Format="dd/MM/yyyy"/>
-                <xfx:XfxEntry Placeholder="Inserire il luogo di nascita" Text="{Binding luogo_nascita}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+                <xfx:XfxEntry Placeholder="Inserire il comune di nascita" Text="{Binding luogo_nascita}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
                 <xfx:XfxEntry Placeholder="Inserire la provincia" Text="{Binding provincia}" ErrorText="{Binding NameErrorTextProvincia}" ErrorDisplay="Underline" WidthRequest="250" />
+                <xfx:XfxEntry Placeholder="Inserire comune di residenza" Text="{Binding comune_residenza}" ErrorText="{Binding NameErrorTextComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250"/>
+                <xfx:XfxEntry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" Keyboard="Numeric" ErrorText="{Binding NameErrorTextNumeroTelefono}" ErrorDisplay="Underline"  WidthRequest="250"/>
                 <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:Char}">
@@ -39,6 +41,7 @@
                 </Grid>
                 <xfx:XfxEntry Placeholder="Inserire password" Text="{Binding password}" ErrorText="{Binding NameErrorTextPassword}" ErrorDisplay="Underline" IsPassword="True" WidthRequest="250"/>
                 <xfx:XfxEntry Placeholder="Reinserire password" Text="{Binding ConfermaPassword}" ErrorText="{Binding NameErrorTextConfermaPassword}" ErrorDisplay="Underline" IsPassword="True" WidthRequest="250"/>
+              
                 <Button Text="Registrati" Command="{Binding registrati}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red" TextColor="White" Margin="15"/>
             </StackLayout>
         </ScrollView>

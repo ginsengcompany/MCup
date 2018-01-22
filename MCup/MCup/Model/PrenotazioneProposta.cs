@@ -20,6 +20,7 @@ namespace MCup.Model
         public string orarioChiusura { get; set; }
         public string codReparto { get; set; }
         public string unitaOperativa { get; set; }
+        public string termid { get; set; }
 
         public PrenotazioneProposta(){ }
     }

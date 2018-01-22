@@ -20,11 +20,13 @@
             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="20">
                 <xfx:XfxEntry Placeholder="Inserire nome" Text="{Binding NomeNuovoContatto}" ErrorText="{Binding NameErrorTextNome}" ErrorDisplay="Underline" WidthRequest="250"/>
                 <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding CognomeNuovoContatto}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
-                <xfx:XfxEntry Placeholder="Inserire il luogo di nascita" Text="{Binding Luogo_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+                <xfx:XfxEntry Placeholder="Inserire il comune di nascita" Text="{Binding Luogo_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
                     <DatePicker x:Name="pickerNascita" Date="{Binding Data_nascitaNuovoContatto}" Format="dd/MM/yyyy" ></DatePicker>
                 <xfx:XfxEntry Placeholder="Inserire la provincia"  Text="{Binding ProvinciaNuovoContatto}" ErrorText="{Binding NameErrorTextProvincia}" ErrorDisplay="Underline" WidthRequest="250">
                 </xfx:XfxEntry>
-                <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
+                    <xfx:XfxEntry Placeholder="Inserire comune di residenza" Text="{Binding comune_residenza}" ErrorText="{Binding NameTextErrorComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250"/>
+                    <xfx:XfxEntry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" Keyboard="Numeric" ErrorText="{Binding NameTextErrorTelefono}" ErrorDisplay="Underline"  WidthRequest="250"/>
+                    <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:Char}">
                             <x:Char>F</x:Char>

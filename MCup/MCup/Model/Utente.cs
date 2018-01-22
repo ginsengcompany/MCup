@@ -15,6 +15,8 @@ namespace MCup.Model
         public char sesso { get; set; }
         public string provincia { get; set; }
         public string struttura_preferita { get; set; }
+        public string comune_residenza { get; set; }
+        public string telefono { get; set; }
 
         public Utente()
         {
@@ -28,6 +30,8 @@ namespace MCup.Model
             this.luogo_nascita = "";
             this.sesso = ' ';
             this.provincia = "";
+            this.comune_residenza = "";
+            this.telefono = "";
         }
 
         public Utente(Utente utente)
@@ -42,9 +46,11 @@ namespace MCup.Model
             this.luogo_nascita = utente.luogo_nascita;
             this.sesso = utente.sesso;
             this.provincia = utente.provincia;
+            this.comune_residenza = utente.comune_residenza;
+            this.telefono = utente.telefono;
         }
 
-        public Utente(string username, string nome, string cognome, string codice_fiscale, string password, string data_nascita, string luogo_nascita, char sesso, string provincia)
+        public Utente(string username, string nome, string cognome, string codice_fiscale, string password, string data_nascita, string luogo_nascita, char sesso, string provincia, string telefono, string comuneResidenza)
         {
             this.username = username;
             this.nome = nome;
@@ -55,9 +61,11 @@ namespace MCup.Model
             this.luogo_nascita = luogo_nascita;
             this.sesso = sesso;
             this.provincia = provincia;
+            this.comune_residenza = comuneResidenza;
+            this.telefono = telefono;
         }
 
-        public Utente(string username, string nome, string cognome, string codice_fiscale, string password, string data_nascita, string luogo_nascita, char sesso, string provincia, string struttura_preferita)
+        public Utente(string username, string nome, string cognome, string codice_fiscale, string password, string data_nascita, string luogo_nascita, char sesso, string provincia,string telefono,string comuneResidenza, string struttura_preferita)
         {
             this.username = username;
             this.nome = nome;
@@ -69,6 +77,8 @@ namespace MCup.Model
             this.luogo_nascita = luogo_nascita;
             this.sesso = sesso;
             this.provincia = provincia;
+            this.comune_residenza = comuneResidenza;
+            this.telefono = telefono;
         }
 
 

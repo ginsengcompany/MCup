@@ -17,6 +17,8 @@ namespace MCup.Model
         public char sesso { get; set; }
         public bool AccountPrimario { get; set; }
         public string nomeCompletoConCodiceFiscale { get; set; }
+        public string comune_residenza { get; set; }
+        public string telefono { get; set; }
 
 
         public Contatto()
@@ -30,6 +32,8 @@ namespace MCup.Model
             this.sesso = ' ';
             this.AccountPrimario =false;
             this.nomeCompletoConCodiceFiscale = "";
+            this.comune_residenza = "";
+            this.telefono = "";
         }
 
         public Contatto(Contatto contatto)
@@ -42,6 +46,8 @@ namespace MCup.Model
             this.provincia = contatto.provincia;
             this.sesso = contatto.sesso;
             this.AccountPrimario = contatto.AccountPrimario;
+            this.telefono = contatto.telefono;
+            this.comune_residenza = contatto.comune_residenza;
             this.nomeCompletoConCodiceFiscale = this.nome + " " + this.cognome + " " + this.codice_fiscale;
         }
     }

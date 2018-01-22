@@ -14,6 +14,8 @@
                 <xfx:XfxEntry Placeholder="Luogo di nascita" Text="{Binding luogo_nascita}" ErrorText="{Binding NameErrorTextLuogoNascita}" PlaceholderColor="Red"  IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black" />
                 <xfx:XfxEntry Placeholder="Provincia" Text="{Binding provincia}" ErrorText="{Binding NameErrorTextProvincia}" PlaceholderColor="Red" ErrorDisplay="Underline"  IsEnabled="false" WidthRequest="250" TextColor="Black" />
                 <xfx:XfxEntry Placeholder="Sesso" Text="{Binding Sesso}" ErrorText="{Binding NameErrorTextPassword}" PlaceholderColor="Red" ErrorDisplay="Underline"  IsEnabled="false"  WidthRequest="250" TextColor="Black" />
+                <xfx:XfxEntry Placeholder="comune di residenza" Text="{Binding comune_residenza}" PlaceholderColor="Red" TextColor="Black" ErrorText="{Binding NameTextErrorComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250" IsEnabled="False"/>
+                <xfx:XfxEntry Placeholder="numero di telefono mobile" Text="{Binding telefono}" PlaceholderColor="Red" TextColor="Black" Keyboard="Numeric" ErrorText="{Binding NameTextErrorTelefono}" ErrorDisplay="Underline"  WidthRequest="250" IsEnabled="False"/>
                 <Button Text="Elimina" Command="{Binding Elimina}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red"  IsEnabled="false" TextColor="White" Margin="15" IsVisible="{Binding Visibile}"/>
             </StackLayout>
         </ScrollView>

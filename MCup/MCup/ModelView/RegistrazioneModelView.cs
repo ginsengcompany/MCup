@@ -23,9 +23,15 @@ namespace MCup.ModelView
 
         private Utente utente; //Oggetto che astrae l'utenza del cliente
 
-        private string confermaPassword, nameErrorTextUsername, nameErrorTextNome, nameErrorTextCognome, nameErrorTextCodice, nameErrorTextPassword, nameErrorTextConfermaPassword;
+        private string confermaPassword,
+            nameErrorTextUsername,
+            nameErrorTextNome,
+            nameErrorTextCognome,
+            nameErrorTextCodice,
+            nameErrorTextPassword,
+            nameErrorTextConfermaPassword;
 
-        public string nameerrortextdatanascita, nameErrorTextLuogoNascita, nameErrorTextProvincia;
+        public string nameerrortextdatanascita, nameErrorTextLuogoNascita, nameErrorTextProvincia, nameErrorTextComuneResidenza, nameErrorTextNumeroTelefono;
 
         public ICommand registrati { protected set; get; } //Command per il tentativo di registrazione dell'utenza
         public string Username //Proprietà relativa al campo Username
@@ -44,6 +50,46 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 utente.codice_fiscale = value.ToUpper();
+            }
+        }
+
+        public string comune_residenza
+        {
+            get { return utente.comune_residenza; }
+            set
+            {
+                OnPropertyChanged();
+                utente.comune_residenza = value.ToUpper();
+            }
+        }
+
+        public string telefono
+        {
+            get { return utente.telefono; }
+            set
+            {
+                OnPropertyChanged();
+                utente.telefono = value;
+            }
+        }
+
+        public string NameErrorTextNumeroTelefono
+        {
+            get { return nameErrorTextNumeroTelefono; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextNumeroTelefono = value;
+            }
+        }
+
+        public string NameErrorTextComuneResidenza
+        {
+            get { return nameErrorTextComuneResidenza; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextComuneResidenza = value;
             }
         }
 
@@ -220,6 +266,8 @@ namespace MCup.ModelView
                 NameErrorTextCodice = String.Empty;
                 NameErrorTextPassword = String.Empty;
                 NameErrorTextConfermaPassword = String.Empty;
+                NameErrorTextComuneResidenza=String.Empty;
+                NameErrorTextNumeroTelefono=String.Empty;
                 /*
                  * variabile locale utilizzata per verificare se l'utente ha inserito i campi obbligatori per effettuare il tentativo di registrazione.
                  * Questa viene inizializzata a true supponendo a priori che l'utente abbia inserito tutti i campi correttamente.
@@ -234,6 +282,16 @@ namespace MCup.ModelView
                 if (string.IsNullOrEmpty(nome)) //Controlla se il campo nome è vuoto o null
                 {
                     NameErrorTextNome = "Attenzione, campo obbligatorio";
+                    controllPass = false;
+                }
+                if (string.IsNullOrEmpty(nome)) //Controlla se il campo nome è vuoto o null
+                {
+                    NameErrorTextComuneResidenza = "Attenzione, campo obbligatorio";
+                    controllPass = false;
+                }
+                if (string.IsNullOrEmpty(nome)) //Controlla se il campo nome è vuoto o null
+                {
+                    NameErrorTextNumeroTelefono = "Attenzione, campo obbligatorio";
                     controllPass = false;
                 }
                 if (string.IsNullOrEmpty(cognome)) //Controlla se il campo cognome è vuoto o null

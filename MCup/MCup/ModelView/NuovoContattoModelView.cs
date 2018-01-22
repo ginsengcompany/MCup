@@ -28,7 +28,7 @@ namespace MCup.ModelView
         nameErrorTextPassword,
         nameErrorTextConfermaPassword;
 
-    public string nameerrortextdatanascita, nameErrorTextLuogoNascita, nameErrorTextProvincia;
+    public string nameerrortextdatanascita, nameErrorTextLuogoNascita, nameErrorTextProvincia, nameErrorTextComuneResidenza, nameErrorTextTelefono;
 
     public ICommand registraNuovoContatto { protected set; get; } //Command per il tentativo di registrazione dell'utenza
         public ICommand annullaRegistrazioneNuovoContatto { protected set; get; }
@@ -43,7 +43,45 @@ namespace MCup.ModelView
         }
     }
 
-    public string NomeNuovoContatto //Proprietà relativa al campo nome
+        public string comune_residenza
+        {
+            get { return contatto.comune_residenza; }
+            set
+            {
+                OnPropertyChanged();
+                contatto.comune_residenza = value.ToUpper();
+            }
+        }
+
+        public string telefono
+        {
+            get { return contatto.telefono; }
+            set
+            {
+                OnPropertyChanged();
+                contatto.telefono = value.ToUpper();
+            }
+        }
+
+        public string NameTextErrorComuneResidenza
+        {
+            get { return nameErrorTextComuneResidenza; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextComuneResidenza = value;
+            }
+        }
+        public string NameTextErrorTelefono
+        {
+            get { return nameErrorTextTelefono; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextTelefono = value;
+            }
+        }
+        public string NomeNuovoContatto //Proprietà relativa al campo nome
     {
         get { return contatto.nome; }
         set
@@ -155,6 +193,25 @@ namespace MCup.ModelView
         }
     }
 
+        public string NameErrorTextComuneResidenza
+        {
+            get { return nameErrorTextComuneResidenza; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextComuneResidenza = value;
+            }
+        }
+
+        public string NameErrorTextTelefono
+        {
+            get { return nameErrorTextTelefono; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextTelefono = value;
+            }
+        }
     public string NameErrorTextProvincia
     {
         get { return nameErrorTextProvincia; }
@@ -194,6 +251,24 @@ namespace MCup.ModelView
              * Ogni qualvota che uno dei seguenti controlli non andasse a buon fine viene assegnata a questa variabile il valore false
              */
             bool controllPass = true;
+            if (string.IsNullOrEmpty(comune_residenza))
+            {
+                NameTextErrorComuneResidenza = "Attenzione, campo obbligatorio";
+                controllPass = false;
+            }
+            else
+            {
+                nameErrorTextComuneResidenza = string.Empty;
+            }
+            if (string.IsNullOrEmpty(telefono))
+            {
+                NameErrorTextTelefono = "Attenzione, campo obbligatorio";
+                controllPass = false;
+            }
+            else
+            {
+                nameErrorTextTelefono = string.Empty;
+            }
             if (string.IsNullOrEmpty(NomeNuovoContatto)) //Controlla se il campo nome è vuoto o null
             {
                 NameErrorTextNome = "Attenzione, campo obbligatorio";
@@ -211,6 +286,24 @@ namespace MCup.ModelView
             else
             {
                 NameErrorTextCognome = string.Empty;
+            }
+            if (string.IsNullOrEmpty(CognomeNuovoContatto)) //Controlla se il campo cognome è vuoto o null
+            {
+                NameTextErrorComuneResidenza = "Attenzione, campo obbligatorio";
+                controllPass = false;
+            }
+            else
+            {
+                NameTextErrorComuneResidenza = string.Empty;
+            }
+            if (string.IsNullOrEmpty(CognomeNuovoContatto)) //Controlla se il campo cognome è vuoto o null
+            {
+                NameTextErrorTelefono = "Attenzione, campo obbligatorio";
+                controllPass = false;
+            }
+            else
+            {
+                NameTextErrorTelefono = string.Empty;
             }
             if (string.IsNullOrEmpty(CodiceFiscaleNuovoContatto)) //Controlla se il campo codice fiscale è vuoto o null
             {

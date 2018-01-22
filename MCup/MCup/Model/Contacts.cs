@@ -16,6 +16,8 @@ namespace MCup.Model
         public string luogo_nascita { get; set; }
         public char sesso { get; set; }
         public string provincia { get; set; }
+        public string comune_residenza { get; set; }
+        public string telefono { get; set; }
 
         public Contacts()
         {
@@ -26,10 +28,12 @@ namespace MCup.Model
             this.luogo_nascita = "";
             this.sesso = ' ';
             this.provincia = "";
+            this.comune_residenza = "";
+            this.telefono = "";
             contatti = new List<Contatto>();
         }
 
-        public Contacts(string nome, string cognome, string codice_fiscale, string data_nascita, string luogo_nascita, char sesso, string provincia)
+        public Contacts(string nome, string cognome, string codice_fiscale, string data_nascita, string luogo_nascita, char sesso, string provincia, string telefono, string comuneResidenza)
         {
             this.nome = nome;
             this.cognome = cognome;
@@ -38,9 +42,11 @@ namespace MCup.Model
             this.luogo_nascita = luogo_nascita;
             this.sesso = sesso;
             this.provincia = provincia;
+            this.comune_residenza = comuneResidenza;
+            this.telefono = telefono;
         }
 
-        public Contacts(string nome, string cognome, string codice_fiscale, string data_nascita, string luogo_nascita, char sesso, string provincia, List<Contatto> contatti)
+        public Contacts(string nome, string cognome, string codice_fiscale, string data_nascita, string luogo_nascita, char sesso, string provincia, List<Contatto> contatti, string telefono, string comuneResidenza)
         {
             this.nome = nome;
             this.cognome = cognome;
@@ -50,6 +56,8 @@ namespace MCup.Model
             this.sesso = sesso;
             this.provincia = provincia;
             this.contatti = contatti;
+            this.comune_residenza = comuneResidenza;
+            this.telefono = telefono;
         }
 
         public int searchContact(string nome, string cognome, string codice_fiscale)

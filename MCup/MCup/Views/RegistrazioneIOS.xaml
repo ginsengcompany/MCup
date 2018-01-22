@@ -44,6 +44,8 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
+            <xfx:XfxEntry Placeholder="Inserire comune di residenza" Text="{Binding comune_residenza}" ErrorText="{Binding NameErrorTextComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250"/>
+            <xfx:XfxEntry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" ErrorText="{Binding NameErrorTextNumeroTelefono}" ErrorDisplay="Underline"  WidthRequest="250"/>
             <StackLayout BackgroundColor="Transparent" Padding="75,0,75,50">
                 <Button Text="REGISTRATI" TextColor="Red" FontSize="Medium" FontAttributes="Bold" BackgroundColor="White"  BorderRadius="20" BorderColor="Red" BorderWidth="3"  Command="{Binding registrati}" />
             </StackLayout>
