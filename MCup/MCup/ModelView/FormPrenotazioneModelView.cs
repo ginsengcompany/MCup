@@ -18,6 +18,7 @@ namespace MCup.ModelView
         //Evento che prevede il cambiamento di proprietà all'interno della classe
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private sendRicetta invioContatto;
         private string visible="false";
 
         private Regex regexNomeCognome = new Regex(@"^[A-Za-zèùàòé][a-zA-Z'èùàòé ]*$");
@@ -164,6 +165,7 @@ namespace MCup.ModelView
         {
             utenza = new UtenzaPrenotazione();
             ricetta = new InvioRicettaPrenotazione();
+            invioContatto= new sendRicetta();
             model = Model;
             ricetta.codice_uno = "";
             ricetta.codice_due = "";
@@ -185,7 +187,7 @@ namespace MCup.ModelView
             temp.Add(new Contatto {
                 nome = contacts.nome, cognome = contacts.cognome, codice_fiscale = contacts.codice_fiscale, data_nascita = contacts.data_nascita,
                 luogo_nascita = contacts.luogo_nascita, provincia = contacts.provincia, sesso = contacts.sesso, AccountPrimario = true,
-                nomeCompletoConCodiceFiscale = contacts.nome + " " + contacts.cognome + " " + contacts.codice_fiscale
+                nomeCompletoConCodiceFiscale = contacts.nome + " " + contacts.cognome + " " + contacts.codice_fiscale, comune_residenza = contacts.comune_residenza, telefono = contacts.telefono
             });
             for (int i = 0; i < contacts.contatti.Count; i++)
             {
@@ -262,14 +264,14 @@ namespace MCup.ModelView
                 try
                 {
                     REST<sendRicetta, Ricetta> connessione = new REST<sendRicetta, Ricetta>();
-                    sendRicetta nre = new sendRicetta(ricetta.codice_uno.ToString(), ricetta.codice_due.ToString());
-                    Ricetta response = await connessione.PostJson(URL.Ricetta, nre);
+                    invioContatto.codice_nre = codiceUno+codiceDue;
+                    Ricetta response = await connessione.PostJson(URL.Ricetta, invioContatto);
                     if ((response == null) || (response == default(Ricetta)))
                     {
                        await App.Current.MainPage.DisplayAlert("Attenzione", response.ToString(), "ok");
                     }
                     else
-                    model.metodoPush(response);
+                    model.metodoPush(response, invioContatto);
                 }
                 catch (Exception e)
                 {
@@ -290,6 +292,7 @@ namespace MCup.ModelView
             nomeUtente = elementSelected.nome;
             cognomeUtente = elementSelected.cognome;
             codicefiscaleUtente = elementSelected.codice_fiscale;
+            invioContatto.contattoDaInviare = elementSelected;
             Visible = "true";
         }
 
@@ -303,10 +306,14 @@ namespace MCup.ModelView
         }
 
         //Classe utilizzata per astrarre il json da inviare al servizio per ottenere le informazioni della ricetta
-        private class sendRicetta
+        public class sendRicetta
         {
             public string codice_nre;
 
+            public Contatto contattoDaInviare;
+
+            public  sendRicetta()
+            { }
             public sendRicetta(string codice_uno, string codice_due)
             {
                 this.codice_nre = codice_uno + codice_due;

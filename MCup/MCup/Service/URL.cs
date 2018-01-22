@@ -21,8 +21,13 @@ namespace MCup.Service
         //public static string RicercadisponibilitaReparti = "http://192.168.125.69:3000/ricercareparti";
         //public static string PrimaDisponibilita = "http://192.168.125.69:3000/ricercaprimadisponibilita";
         //public static string InfoPersonali = "http://192.168.125.69:3000/auth/me";
-        // public static string AggiungiNuovoContatto = "http://192.168.125.69:3000/auth/aggiungiContatto";
+        //public static string AggiungiNuovoContatto = "http://192.168.125.69:3000/auth/aggiungiContatto";
         //public static string EliminaContatto = "http://192.168.125.69:3000/auth/eliminaContatto";
+        //public static string ListaComuni = "http://192.168.125.69:3000/comuni/listacomuni";
+        //public static string ListaComuni = "http://192.168.125.69:3000/comuni/listaprovince";
+        //public static string ListaStatoCivile = "http://192.168.125.69:3000/statocivile";
+
+
 
         // rotte PC Aldo
 
@@ -38,6 +43,11 @@ namespace MCup.Service
         public static string InfoPersonali = "http://192.168.125.14:3000/auth/me";
         public static string AggiungiNuovoContatto = "http://192.168.125.14:3000/auth/aggiungiContatto";
         public static string EliminaContatto = "http://192.168.125.14:3000/auth/eliminaContatto";
+        public static string ListaComuni = "http://192.168.125.14:3000/comuni/listacomuni";
+        public static string ListaProvince = "http://192.168.125.14:3000/comuni/listaprovince";
+        public static string ListaStatoCivile = "http://192.168.125.14:3000/statocivile";
+
+
 
     }
 }

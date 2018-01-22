@@ -121,9 +121,9 @@ namespace MCup.Views
         }
 
         //Funzione chiamata per passare alla pagina VerificaRicetta per visualizzare il contenuto della ricetta all'utente
-        public void metodoPush(Ricetta ricetta)
+        public void metodoPush(Ricetta ricetta, FormPrenotazioneModelView.sendRicetta contatto)
         {
-            Navigation.PushAsync(new VerificaRicetta(ricetta));
+            Navigation.PushAsync(new VerificaRicetta(ricetta, contatto));
         }
 
         private void Picker_SelectedIndexChanged(object sender, EventArgs e)

@@ -69,7 +69,7 @@ namespace MCup.ModelView
             }
         }
 
-        public VerificaRicettaModelView(Ricetta impegnativa, VerificaRicetta verifica)
+        public VerificaRicettaModelView(Ricetta impegnativa, VerificaRicetta verifica, FormPrenotazioneModelView.sendRicetta contatto)
         {
             this.verifica = verifica;
             ricetta = impegnativa;
@@ -86,7 +86,7 @@ namespace MCup.ModelView
                     if (i.reparti == null)
                         verificaPrestazioni = false;
                 if (verificaPrestazioni == true)
-                    await this.verifica.Navigation.PushAsync(new PropostaRichiesta(prestazioniDaInviare));
+                    await this.verifica.Navigation.PushAsync(new PropostaRichiesta(prestazioniDaInviare, contatto));
                 else
                     await App.Current.MainPage.DisplayAlert("Attenzione", "Seleziona un reparto per ogni prestazione",
                         "OK");

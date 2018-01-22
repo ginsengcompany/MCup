@@ -20,7 +20,6 @@ namespace MCup.Model
         public string comune_residenza { get; set; }
         public string telefono { get; set; }
 
-
         public Contatto()
         {
             this.nome = "";

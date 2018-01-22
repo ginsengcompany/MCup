@@ -13,7 +13,7 @@ namespace MCup.Views
 
         private PropostaRichiestaModelView modelView;
 
-        public PropostaRichiesta(List<Prestazioni> prestazioni)
+        public PropostaRichiesta(List<Prestazioni> prestazioni, FormPrenotazioneModelView.sendRicetta contatto)
         {
             InitializeComponent();
             modelView = new PropostaRichiestaModelView(prestazioni);

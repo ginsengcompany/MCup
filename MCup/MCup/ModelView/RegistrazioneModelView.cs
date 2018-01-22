@@ -20,8 +20,42 @@ namespace MCup.ModelView
     public class RegistrazioneModelView : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
+        private List<Comune> listacomuni = new List<Comune>();
+        private List<string> listaprovince = new List<string>();
+        private List<Comune> listacomuniresidenza = new List<Comune>();
+        private List<StatoCivile> listaStatoCivile = new List<StatoCivile>();
+        
+
 
         private Utente utente; //Oggetto che astrae l'utenza del cliente
+
+        public class StatoCivile
+        {
+            public string id { get; set; }
+            public string descrizione { get; set; }
+        }
+
+
+        public List<StatoCivile> ListaStatoCivile
+        {
+            get { return listaStatoCivile; }
+            set
+            {
+                OnPropertyChanged();
+                listaStatoCivile = value;
+            }
+        }
+
+        public async void LeggiStatoCivile()
+        {
+            REST<object, StatoCivile> connessioneStatoCivile = new REST<object, StatoCivile>();
+            ListaStatoCivile = await connessioneStatoCivile.GetJson(URL.ListaStatoCivile);
+        }
+
+        public void StatoCivileScelto(string id)
+        {
+            utente.codStatoCivile = id;
+        }
 
         private string confermaPassword,
             nameErrorTextUsername,
@@ -31,7 +65,11 @@ namespace MCup.ModelView
             nameErrorTextPassword,
             nameErrorTextConfermaPassword;
 
-        public string nameerrortextdatanascita, nameErrorTextLuogoNascita, nameErrorTextProvincia, nameErrorTextComuneResidenza, nameErrorTextNumeroTelefono;
+        public string nameerrortextdatanascita, 
+            nameErrorTextLuogoNascita, 
+            nameErrorTextProvincia, 
+            nameErrorTextComuneResidenza, 
+            nameErrorTextNumeroTelefono;
 
         public ICommand registrati { protected set; get; } //Command per il tentativo di registrazione dell'utenza
         public string Username //Proprietà relativa al campo Username
@@ -41,6 +79,36 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 utente.username = value;
+            }
+        }
+
+        public List<string> listaProvince
+        {
+            get { return listaprovince; }
+            set
+            {
+                OnPropertyChanged();
+                listaprovince = value;
+            }
+        }
+
+        public List<Comune> listaComuniResidenza
+        {
+            get { return listacomuniresidenza; }
+            set
+            {
+                OnPropertyChanged();
+                listacomuniresidenza = value;
+            }
+        }
+
+        public List<Comune> listaComuni
+        {
+            get { return listacomuni; }
+            set
+            {
+                OnPropertyChanged();
+                listacomuni = value;
             }
         }
         public string codiceFiscale //Proprietà relativa al campo codice fiscale
@@ -154,15 +222,7 @@ namespace MCup.ModelView
             }
         }
 
-        public string provincia
-        {
-            get { return utente.provincia; }
-            set
-            {
-                OnPropertyChanged();
-                utente.provincia = value.ToUpper();
-            }
-        }
+
 
         public string ConfermaPassword //Proprietà relativa al campo password
         {
@@ -252,10 +312,67 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        private async void LeggiComuni(string provincia)
+        {
+            Provincia provinciaSelezionata = new Provincia();
+            provinciaSelezionata.provincia = provincia;
+            REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
+            listaComuni = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
+        }
+        private async void LeggiComuniResidenza(string provincia)
+        {
+            Provincia provinciaSelezionata = new Provincia();
+            provinciaSelezionata.provincia = provincia;
+            REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
+            listaComuniResidenza = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
+        }
+
+        private class Provincia
+        {
+            public string provincia { get; set; }
+        }
+
+        public class Comune
+        {
+            public string nome { get; set; }
+            public string codice { get; set; }
+        }
+
+        private async void LeggiProvince()
+        {
+            REST<object, string> connessioneProvince = new REST<object, string>();
+            listaProvince = await connessioneProvince.GetJson(URL.ListaProvince);
+
+        }
+
+        public void provinciaDiNascitaSelezionato(string provincia)
+        {
+            LeggiComuni(provincia);
+        }
+
+        public void provinciaDiResidenzaSelezionato(string provincia)
+        {
+            LeggiComuniResidenza(provincia);
+        }
+
+        public void comuneNascitaSelezionato( Comune comune)
+        {
+            utente.luogo_nascita = comune.nome;
+            utente.istatComuneNascita = comune.codice;
+        }
+
+        public void comuneResidenzaSelezionato(Comune comune)
+        {
+            utente.comune_residenza = comune.nome;
+            utente.istatComuneResidenza = comune.codice;
+        }
         //Costruttore che inizializza un utenza vuota e definisce il metodo a cui il Command registrati fa riferimento
         public RegistrazioneModelView()
         {
+
             utente = new Utente(); //Crea un utenza vuota
+            LeggiProvince();
+            LeggiStatoCivile();
             registrati = new Command(async () =>
             {
 
@@ -321,11 +438,6 @@ namespace MCup.ModelView
                 }
                 if (utente.sesso.Equals(' ')) //Controlla se il campo sesso è vuoto
                 {
-                    controllPass = false;
-                }
-                if (string.IsNullOrEmpty(provincia) || provincia.Length != 2) //Controlla se il campo provincia è vuoto, null o length è diverso da due
-                {
-                    NameErrorTextProvincia = "Attenzione, campo obbligatorio";
                     controllPass = false;
                 }
                 if (string.IsNullOrEmpty(ConfermaPassword)) //Controlla se il campo conferma password è vuoto o null

@@ -28,10 +28,10 @@ namespace MCup.Views
         private ListView listView = new ListView();
 
         //Costruttore della pagina che inizializza e visualizza le informazioni descritte nel commento della pagina
-        public VerificaRicetta(Ricetta ricetta)
+        public VerificaRicetta(Ricetta ricetta, FormPrenotazioneModelView.sendRicetta contatto)
         {
             InitializeComponent();
-            ModelViewVerifica = new VerificaRicettaModelView(ricetta, this);
+            ModelViewVerifica = new VerificaRicettaModelView(ricetta, this, contatto);
             BindingContext = ModelViewVerifica;
         }
 

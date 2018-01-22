@@ -21,11 +21,15 @@ namespace MCup.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Registrazione : ContentPage
     {
+        private RegistrazioneModelView modelView;
         public string dataDiNascita;
         public Registrazione()
         {
             InitializeComponent();
-            BindingContext = new RegistrazioneModelView(); //Questa pagina utilizza l'MWWM, ed effettua il binding delle informazioni con la classe RegistrazioneModelView.
+            modelView = new RegistrazioneModelView();
+            BindingContext = modelView; //Questa pagina utilizza l'MWWM, ed effettua il binding delle informazioni con la classe RegistrazioneModelView.
+            PickerComuneNascita.IsEnabled = false;
+            PickerComuneResidenza.IsEnabled = false;
         }
         private async void Button_Clicked(object sender, EventArgs e)
         {
@@ -55,6 +59,50 @@ namespace MCup.Views
                 });
             };
             await Navigation.PushAsync(scanPage);
+        }
+
+        private void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var a = sender as Picker;
+            if (a.SelectedIndex > -1)
+            {
+                var b = a.SelectedItem as RegistrazioneModelView.Comune;
+                modelView.comuneNascitaSelezionato(b);
+            }
+        }
+
+        private void Picker_OnSelectedIndexChanged1(object sender, EventArgs e)
+        {
+            var a = sender as Picker;
+            if (a.SelectedIndex > -1)
+            {
+                var b = a.SelectedItem as RegistrazioneModelView.Comune;
+                modelView.comuneResidenzaSelezionato(b);
+            }
+            
+        }
+
+        private void Picker_OnSelectedIndexChangedProvinciaNascita(object sender, EventArgs e)
+        {
+            var a = sender as Picker;
+            var b = a.SelectedItem as string;
+            modelView.provinciaDiNascitaSelezionato(b);
+            PickerComuneNascita.IsEnabled = true;
+        }
+
+        private void Picker_OnSelectedIndexChangedProvinciaResidenza(object sender, EventArgs e)
+        {
+            var a = sender as Picker;
+            var b = a.SelectedItem as string;
+            modelView.provinciaDiResidenzaSelezionato(b);
+            PickerComuneResidenza.IsEnabled = true;
+        }
+
+        private void Picker_OnSelectedIndexChangedSceltaUnione(object sender, EventArgs e)
+        {
+            var a = sender as Picker;
+            var b = a.SelectedItem as RegistrazioneModelView.StatoCivile;
+            modelView.StatoCivileScelto(b.id);
         }
     }
 }

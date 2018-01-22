@@ -11,9 +11,11 @@ namespace MCup.Model
         public string codice_fiscale { get; set; }
         public string password { get; set; }
         public string data_nascita { get; set; }
+        public string istatComuneNascita { get; set; }
+        public string istatComuneResidenza { get; set; }
         public string luogo_nascita { get; set; }
         public char sesso { get; set; }
-        public string provincia { get; set; }
+        public string codStatoCivile { get; set; }
         public string struttura_preferita { get; set; }
         public string comune_residenza { get; set; }
         public string telefono { get; set; }
@@ -29,7 +31,6 @@ namespace MCup.Model
             this.data_nascita = "";
             this.luogo_nascita = "";
             this.sesso = ' ';
-            this.provincia = "";
             this.comune_residenza = "";
             this.telefono = "";
         }
@@ -45,7 +46,6 @@ namespace MCup.Model
             this.data_nascita = utente.data_nascita;
             this.luogo_nascita = utente.luogo_nascita;
             this.sesso = utente.sesso;
-            this.provincia = utente.provincia;
             this.comune_residenza = utente.comune_residenza;
             this.telefono = utente.telefono;
         }
@@ -60,7 +60,6 @@ namespace MCup.Model
             this.data_nascita = data_nascita;
             this.luogo_nascita = luogo_nascita;
             this.sesso = sesso;
-            this.provincia = provincia;
             this.comune_residenza = comuneResidenza;
             this.telefono = telefono;
         }
@@ -76,7 +75,6 @@ namespace MCup.Model
             this.data_nascita = data_nascita;
             this.luogo_nascita = luogo_nascita;
             this.sesso = sesso;
-            this.provincia = provincia;
             this.comune_residenza = comuneResidenza;
             this.telefono = telefono;
         }

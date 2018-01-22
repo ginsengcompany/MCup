@@ -13,10 +13,12 @@
                 <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding cognome}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
                 <Label Text="Data di nascita" TextColor="Gray" FontSize="Small"/>
                 <DatePicker x:Name="pickerNascita" Date="{Binding data_nascita}" Format="dd/MM/yyyy"/>
-                <xfx:XfxEntry Placeholder="Inserire il comune di nascita" Text="{Binding luogo_nascita}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
-                <xfx:XfxEntry Placeholder="Inserire la provincia" Text="{Binding provincia}" ErrorText="{Binding NameErrorTextProvincia}" ErrorDisplay="Underline" WidthRequest="250" />
-                <xfx:XfxEntry Placeholder="Inserire comune di residenza" Text="{Binding comune_residenza}" ErrorText="{Binding NameErrorTextComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250"/>
+                <Picker Title="Scegli la provincia di nascita" ItemsSource="{Binding listaProvince}" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaNascita" ></Picker>
+                <Picker x:Name="PickerComuneNascita" Title="Scegli il comune di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChanged" ItemsSource="{Binding listaComuni}" ItemDisplayBinding="{Binding nome}" ></Picker>
+                <Picker Title="Scegli la provincia di residenza" ItemsSource="{Binding listaProvince}" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaResidenza" ></Picker>
+                <Picker x:Name="PickerComuneResidenza" Title="Scegli il comune di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChanged1" ItemsSource="{Binding listaComuniResidenza}" ItemDisplayBinding="{Binding nome}"></Picker>
                 <xfx:XfxEntry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" Keyboard="Numeric" ErrorText="{Binding NameErrorTextNumeroTelefono}" ErrorDisplay="Underline"  WidthRequest="250"/>
+                <Picker Title="Scegli stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"></Picker>
                 <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:Char}">
