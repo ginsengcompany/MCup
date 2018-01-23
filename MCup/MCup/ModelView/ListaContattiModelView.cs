@@ -141,9 +141,10 @@ namespace MCup.ModelView
                 data_nascita = contacts.data_nascita,
                 luogo_nascita = contacts.luogo_nascita,
                 sesso = contacts.sesso,
-                provincia = contacts.provincia,
                 comune_residenza = contacts.comune_residenza,
-                telefono = contacts.telefono
+                telefono = contacts.telefono,
+                codStatoCivile = contacts.codStatoCivile,
+                statocivile = contacts.statocivile
             });
             for (int i = 0; i < contacts.contatti.Count; i++)
             {
@@ -157,11 +158,12 @@ namespace MCup.ModelView
             contattoPrimo.codice_fiscale= temp[0].codice_fiscale;
             contattoPrimo.data_nascita = temp[0].data_nascita;
             contattoPrimo.luogo_nascita = temp[0].luogo_nascita;
-            contattoPrimo.provincia = temp[0].provincia;
             contattoPrimo.sesso = temp[0].sesso;
             contattoPrimo.AccountPrimario = true;
             contattoPrimo.comune_residenza = temp[0].comune_residenza;
             contattoPrimo.telefono = temp[0].telefono;
+            contattoPrimo.statocivile = temp[0].statocivile;
+            contattoPrimo.codStatoCivile = temp[0].codStatoCivile;
             temp.Remove(temp[0]);
             Contatti = temp;
             ImplementaRubrica();

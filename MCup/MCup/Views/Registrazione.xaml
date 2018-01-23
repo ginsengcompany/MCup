@@ -18,7 +18,7 @@
                 <Picker Title="Scegli la provincia di residenza" ItemsSource="{Binding listaProvince}" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaResidenza" ></Picker>
                 <Picker x:Name="PickerComuneResidenza" Title="Scegli il comune di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChanged1" ItemsSource="{Binding listaComuniResidenza}" ItemDisplayBinding="{Binding nome}"></Picker>
                 <xfx:XfxEntry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" Keyboard="Numeric" ErrorText="{Binding NameErrorTextNumeroTelefono}" ErrorDisplay="Underline"  WidthRequest="250"/>
-                <Picker Title="Scegli stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"></Picker>
+                <Picker Title="Scegli stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"/>
                 <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:Char}">

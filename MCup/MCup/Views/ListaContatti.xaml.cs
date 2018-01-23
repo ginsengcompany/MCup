@@ -29,12 +29,6 @@ namespace MCup.Views
             Navigation.PushAsync(new InfoContatto(x)); //Avvia la pagina di registrazione dedicata ai dispositivi Android
         }
 
-
-        private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new InfoContatto(contattoPrimo));
-        }
-
         protected override bool OnBackButtonPressed()
         {
             base.OnBackButtonPressed();

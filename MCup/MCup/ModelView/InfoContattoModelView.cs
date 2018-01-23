@@ -80,6 +80,16 @@ namespace MCup.ModelView
             }
         }
 
+        public string statocivile
+        {
+            get { return utente.statocivile; }
+            set
+            {
+                OnPropertyChanged();
+                utente.statocivile = value;
+            }
+        }
+
         public string Sesso //Proprietà relativa al campo sesso
         {
             get {
@@ -112,16 +122,6 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 utente.luogo_nascita = value;
-            }
-        }
-
-        public string provincia
-        {
-            get { return utente.provincia; }
-            set
-            {
-                OnPropertyChanged();
-                utente.provincia = value;
             }
         }
 

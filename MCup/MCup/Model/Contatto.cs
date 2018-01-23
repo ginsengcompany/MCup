@@ -13,12 +13,15 @@ namespace MCup.Model
         public string codice_fiscale{ get; set;}
         public string data_nascita { get; set; }
         public string luogo_nascita { get; set; }
-        public string provincia { get; set; }
         public char sesso { get; set; }
+        public string istatComuneNascita { get; set; }
+        public string istatComuneResidenza { get; set; }
         public bool AccountPrimario { get; set; }
         public string nomeCompletoConCodiceFiscale { get; set; }
         public string comune_residenza { get; set; }
         public string telefono { get; set; }
+        public string codStatoCivile { get; set; }
+        public string statocivile { get; set; }
 
         public Contatto()
         {
@@ -27,12 +30,15 @@ namespace MCup.Model
             this.codice_fiscale = "";
             this.data_nascita = "";
             this.luogo_nascita = "";
-            this.provincia = "";
             this.sesso = ' ';
             this.AccountPrimario =false;
             this.nomeCompletoConCodiceFiscale = "";
             this.comune_residenza = "";
             this.telefono = "";
+            this.codStatoCivile = "";
+            this.istatComuneNascita = "";
+            this.istatComuneResidenza = "";
+            this.statocivile = "";
         }
 
         public Contatto(Contatto contatto)
@@ -42,12 +48,15 @@ namespace MCup.Model
             this.codice_fiscale = contatto.codice_fiscale;
             this.data_nascita = contatto.data_nascita;
             this.luogo_nascita = contatto.luogo_nascita;
-            this.provincia = contatto.provincia;
             this.sesso = contatto.sesso;
             this.AccountPrimario = contatto.AccountPrimario;
             this.telefono = contatto.telefono;
             this.comune_residenza = contatto.comune_residenza;
             this.nomeCompletoConCodiceFiscale = this.nome + " " + this.cognome + " " + this.codice_fiscale;
+            this.codStatoCivile = contatto.codStatoCivile;
+            this.istatComuneNascita = contatto.istatComuneNascita;
+            this.istatComuneResidenza = contatto.istatComuneResidenza;
+            this.statocivile = contatto.statocivile;
         }
     }
 }

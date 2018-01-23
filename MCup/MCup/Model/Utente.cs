@@ -16,6 +16,7 @@ namespace MCup.Model
         public string luogo_nascita { get; set; }
         public char sesso { get; set; }
         public string codStatoCivile { get; set; }
+        public string statocivile { get; set; }
         public string struttura_preferita { get; set; }
         public string comune_residenza { get; set; }
         public string telefono { get; set; }
@@ -33,6 +34,10 @@ namespace MCup.Model
             this.sesso = ' ';
             this.comune_residenza = "";
             this.telefono = "";
+            this.codStatoCivile = "";
+            this.istatComuneNascita = "";
+            this.istatComuneResidenza = "";
+            this.statocivile = "";
         }
 
         public Utente(Utente utente)
@@ -48,35 +53,10 @@ namespace MCup.Model
             this.sesso = utente.sesso;
             this.comune_residenza = utente.comune_residenza;
             this.telefono = utente.telefono;
-        }
-
-        public Utente(string username, string nome, string cognome, string codice_fiscale, string password, string data_nascita, string luogo_nascita, char sesso, string provincia, string telefono, string comuneResidenza)
-        {
-            this.username = username;
-            this.nome = nome;
-            this.cognome = cognome;
-            this.codice_fiscale = codice_fiscale;
-            this.password = password;
-            this.data_nascita = data_nascita;
-            this.luogo_nascita = luogo_nascita;
-            this.sesso = sesso;
-            this.comune_residenza = comuneResidenza;
-            this.telefono = telefono;
-        }
-
-        public Utente(string username, string nome, string cognome, string codice_fiscale, string password, string data_nascita, string luogo_nascita, char sesso, string provincia,string telefono,string comuneResidenza, string struttura_preferita)
-        {
-            this.username = username;
-            this.nome = nome;
-            this.cognome = cognome;
-            this.codice_fiscale = codice_fiscale;
-            this.password = password;
-            this.struttura_preferita = struttura_preferita;
-            this.data_nascita = data_nascita;
-            this.luogo_nascita = luogo_nascita;
-            this.sesso = sesso;
-            this.comune_residenza = comuneResidenza;
-            this.telefono = telefono;
+            this.istatComuneResidenza = utente.istatComuneResidenza;
+            this.istatComuneNascita = utente.istatComuneNascita;
+            this.codStatoCivile = utente.codStatoCivile;
+            this.statocivile = utente.statocivile;
         }
 
 

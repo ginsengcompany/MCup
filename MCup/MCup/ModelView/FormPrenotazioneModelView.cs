@@ -186,7 +186,7 @@ namespace MCup.ModelView
             List<Contatto> temp = new List<Contatto>();
             temp.Add(new Contatto {
                 nome = contacts.nome, cognome = contacts.cognome, codice_fiscale = contacts.codice_fiscale, data_nascita = contacts.data_nascita,
-                luogo_nascita = contacts.luogo_nascita, provincia = contacts.provincia, sesso = contacts.sesso, AccountPrimario = true,
+                luogo_nascita = contacts.luogo_nascita, sesso = contacts.sesso, AccountPrimario = true, istatComuneNascita = contacts.istatComuneNascita, istatComuneResidenza = contacts.istatComuneResidenza,
                 nomeCompletoConCodiceFiscale = contacts.nome + " " + contacts.cognome + " " + contacts.codice_fiscale, comune_residenza = contacts.comune_residenza, telefono = contacts.telefono
             });
             for (int i = 0; i < contacts.contatti.Count; i++)

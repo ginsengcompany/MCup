@@ -24,17 +24,8 @@ namespace MCup.ModelView
         private List<string> listaprovince = new List<string>();
         private List<Comune> listacomuniresidenza = new List<Comune>();
         private List<StatoCivile> listaStatoCivile = new List<StatoCivile>();
-        
-
 
         private Utente utente; //Oggetto che astrae l'utenza del cliente
-
-        public class StatoCivile
-        {
-            public string id { get; set; }
-            public string descrizione { get; set; }
-        }
-
 
         public List<StatoCivile> ListaStatoCivile
         {
@@ -52,9 +43,10 @@ namespace MCup.ModelView
             ListaStatoCivile = await connessioneStatoCivile.GetJson(URL.ListaStatoCivile);
         }
 
-        public void StatoCivileScelto(string id)
+        public void StatoCivileScelto(StatoCivile stato)
         {
-            utente.codStatoCivile = id;
+            utente.codStatoCivile = stato.id;
+            utente.statocivile = stato.descrizione;
         }
 
         private string confermaPassword,
@@ -222,8 +214,6 @@ namespace MCup.ModelView
             }
         }
 
-
-
         public string ConfermaPassword //Proprietà relativa al campo password
         {
             get { return confermaPassword; }
@@ -325,17 +315,6 @@ namespace MCup.ModelView
             provinciaSelezionata.provincia = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
             listaComuniResidenza = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
-        }
-
-        private class Provincia
-        {
-            public string provincia { get; set; }
-        }
-
-        public class Comune
-        {
-            public string nome { get; set; }
-            public string codice { get; set; }
         }
 
         private async void LeggiProvince()
@@ -448,6 +427,10 @@ namespace MCup.ModelView
                 else if (password != ConfermaPassword) //Controlla se la password inserita dall'utente è uguale alla stringa inserita dall'utente nel campo conferma password
                 {
                     NameErrorTextConfermaPassword = "Attenzione, la password non corrisponde";
+                    controllPass = false;
+                }
+                if (string.IsNullOrEmpty(utente.codStatoCivile)) //Controlla se il campo stato civile è vuoto o null
+                {
                     controllPass = false;
                 }
                 if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori

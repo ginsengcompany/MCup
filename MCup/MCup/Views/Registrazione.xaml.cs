@@ -1,4 +1,5 @@
-﻿using MCup.ModelView;
+﻿using MCup.Model;
+using MCup.ModelView;
 using MCup.Service;
 using System;
 using System.Collections.Generic;
@@ -66,7 +67,7 @@ namespace MCup.Views
             var a = sender as Picker;
             if (a.SelectedIndex > -1)
             {
-                var b = a.SelectedItem as RegistrazioneModelView.Comune;
+                var b = a.SelectedItem as Comune;
                 modelView.comuneNascitaSelezionato(b);
             }
         }
@@ -76,7 +77,7 @@ namespace MCup.Views
             var a = sender as Picker;
             if (a.SelectedIndex > -1)
             {
-                var b = a.SelectedItem as RegistrazioneModelView.Comune;
+                var b = a.SelectedItem as Comune;
                 modelView.comuneResidenzaSelezionato(b);
             }
             
@@ -101,8 +102,8 @@ namespace MCup.Views
         private void Picker_OnSelectedIndexChangedSceltaUnione(object sender, EventArgs e)
         {
             var a = sender as Picker;
-            var b = a.SelectedItem as RegistrazioneModelView.StatoCivile;
-            modelView.StatoCivileScelto(b.id);
+            var b = a.SelectedItem as StatoCivile;
+            modelView.StatoCivileScelto(b);
         }
     }
 }

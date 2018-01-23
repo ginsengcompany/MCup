@@ -52,6 +52,7 @@
     <Compile Include="ModelView\PropostaRichiestaModelView.cs" />
     <Compile Include="ModelView\RegistrazioneModelView.cs" />
     <Compile Include="ModelView\VerificaRicettaModelView.cs" />
+    <Compile Include="Model\Comune.cs" />
     <Compile Include="Model\Contacts.cs" />
     <Compile Include="Model\Contatto.cs" />
     <Compile Include="Model\Erogazione.cs" />
@@ -59,11 +60,12 @@
     <Compile Include="Model\Prenotazione.cs" />
     <Compile Include="Model\PrenotazioneProposta.cs" />
     <Compile Include="Model\Prestazioni.cs" />
-    <Compile Include="Model\Province.cs" />
+    <Compile Include="Model\Provincia.cs" />
     <Compile Include="Model\Reparto.cs" />
     <Compile Include="Model\ResponseRegistrazione.cs" />
     <Compile Include="Model\Ricetta.cs" />
     <Compile Include="Model\Rubrica.cs" />
+    <Compile Include="Model\StatoCivile.cs" />
     <Compile Include="Model\Struttura.cs" />
     <Compile Include="Model\UtenzaPrenotazione.cs" />
     <Compile Include="Properties\Annotations.cs" />

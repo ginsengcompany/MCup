@@ -15,41 +15,44 @@
                 <Button Command="{Binding annullaRegistrazioneNuovoContatto}" Text="Annulla" BorderWidth="1" BorderRadius="0" TextColor="White" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="StartAndExpand"></Button>
                 <Label Text="Nuovo contatto" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" FontSize="Medium"></Label>
                 <Button Text="Conferma" Command="{Binding registraNuovoContatto}" BorderColor="Transparent" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"  TextColor="White" />
-        </StackLayout>
-        <ScrollView >
-            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="20">
-                <xfx:XfxEntry Placeholder="Inserire nome" Text="{Binding NomeNuovoContatto}" ErrorText="{Binding NameErrorTextNome}" ErrorDisplay="Underline" WidthRequest="250"/>
-                <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding CognomeNuovoContatto}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
-                <xfx:XfxEntry Placeholder="Inserire il comune di nascita" Text="{Binding Luogo_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" />
+            </StackLayout>
+            <ScrollView >
+                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="20">
+                    <xfx:XfxEntry Placeholder="Inserire nome" Text="{Binding NomeNuovoContatto}" ErrorText="{Binding NameErrorTextNome}" ErrorDisplay="Underline" WidthRequest="250"/>
+                    <xfx:XfxEntry Placeholder="Inserire cognome" Text="{Binding CognomeNuovoContatto}" ErrorText="{Binding NameErrorTextCognome}" ErrorDisplay="Underline" WidthRequest="250"/>
                     <DatePicker x:Name="pickerNascita" Date="{Binding Data_nascitaNuovoContatto}" Format="dd/MM/yyyy" ></DatePicker>
-                <xfx:XfxEntry Placeholder="Inserire la provincia"  Text="{Binding ProvinciaNuovoContatto}" ErrorText="{Binding NameErrorTextProvincia}" ErrorDisplay="Underline" WidthRequest="250">
-                </xfx:XfxEntry>
-                    <xfx:XfxEntry Placeholder="Inserire comune di residenza" Text="{Binding comune_residenza}" ErrorText="{Binding NameTextErrorComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250"/>
+                    <Picker Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_SelectedIndexChangedProvinciaNascita" ItemsSource="{Binding Province}" />
+                    <Picker x:Name="PickerComuneNascita" Title="Seleziona il comune di nascita" SelectedIndexChanged="Picker_SelectedIndexChangedComuneNascita" ItemsSource="{Binding ListaComuniNascita}" ItemDisplayBinding="{Binding nome}"/>
+                    <!-- <xfx:XfxEntry Placeholder="Inserire il comune di nascita" Text="{Binding Luogo_nascitaNuovoContatto}" ErrorText="{Binding NameErrorTextLuogoNascita}" ErrorDisplay="Underline" WidthRequest="250" /> -->
+                    <Picker Title="Seleziona la provincia di residenza" SelectedIndexChanged="Picker_SelectedIndexChangedProvinciaResidenza" ItemsSource="{Binding Province}" />
+                    <Picker x:Name="PickerComuneResidenza" Title="Seleziona il comune di residenza" SelectedIndexChanged="Picker_SelectedIndexChangedComuneResidenza" ItemsSource="{Binding ListaComuniResidenza}" ItemDisplayBinding="{Binding nome}"/>
+                    <Picker Title="Seleziona lo stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"/>
+                    <!-- <xfx:XfxEntry Placeholder="Inserire comune di residenza" Text="{Binding comune_residenza}" ErrorText="{Binding NameTextErrorComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250"/> -->
                     <xfx:XfxEntry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" Keyboard="Numeric" ErrorText="{Binding NameTextErrorTelefono}" ErrorDisplay="Underline"  WidthRequest="250"/>
                     <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:Char}">
-                            <x:Char>F</x:Char>
-                            <x:Char>M</x:Char>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:Char}">
+                                <x:Char>F</x:Char>
+                                <x:Char>M</x:Char>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
                         <xfx:XfxEntry x:Name="entryCodiceFiscale" HorizontalOptions="StartAndExpand" Placeholder="Inserire codice fiscale" Text="{Binding CodiceFiscaleNuovoContatto}" ErrorText="{Binding NameErrorTextCodice}" ErrorDisplay="Underline" WidthRequest="600" Grid.Row="0"/>
                         <Image Source="iconaScan.png" WidthRequest="40" HorizontalOptions="End" Grid.Row="0">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1" />
-                                </Image.GestureRecognizers>
-                            </Image>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
                     </Grid>
                 </StackLayout>
-        </ScrollView>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
