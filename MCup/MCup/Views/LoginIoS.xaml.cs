@@ -24,7 +24,7 @@ namespace MCup.Views
         }
         private async void vaiRegistrazione(object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new RegistrazioneIOS()); //Avvia la pagina di registrazione dedicata ai dispositivi IOS
+            await Navigation.PushAsync(new Registrazione()); //Avvia la pagina di registrazione dedicata ai dispositivi IOS
         }
     }
 }

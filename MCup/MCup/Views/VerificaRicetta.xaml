@@ -26,7 +26,7 @@
             <StackLayout>
                 <Label Text="Descrizione impegnativa:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
             </StackLayout>
-            <ListView ItemsSource="{Binding ListaPrestazioni}" SeparatorColor="Red" IsEnabled="False" x:Name="lst" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
+            <ListView ItemsSource="{Binding ListaPrestazioni}" SeparatorColor="Red" x:Name="lst" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                         <customControls:ExtendedViewCell SelectedBackgroundColor="White">

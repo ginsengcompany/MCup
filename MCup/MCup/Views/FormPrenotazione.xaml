@@ -14,7 +14,7 @@
                 <Picker TextColor="Red" Title="Seleziona il contatto per cui vuoi prenotare" HorizontalOptions="CenterAndExpand" ItemsSource="{Binding Contatti}" ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" VerticalOptions="Center" SelectedIndexChanged="Picker_SelectedIndexChanged" />
 
                 <xfx:XfxEntry 
-                    Placeholder="Inserire nome"     
+                    Placeholder="Nome"     
                     Text="{Binding nomeUtente}" 
                     ErrorText="{Binding NameErrorText}" 
                     ErrorDisplay="Underline"

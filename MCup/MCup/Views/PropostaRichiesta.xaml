@@ -5,7 +5,8 @@
     xmlns:local="clr-namespace:MCup"
     xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
     BackgroundColor="White"
-    Title="Richiesta proposta">
+    Title="Richiesta proposta"
+    NavigationPage.HasNavigationBar="{Binding Visible}">
 	<ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="white">
             <ActivityIndicator IsVisible="{Binding IsVisible}" IsRunning="{Binding IsBusy}"/>
@@ -38,24 +39,48 @@
                                         <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
                                     </StackLayout>
                                         </StackLayout>
-                                        <Button Text="Prossima data" 
-                                                TextColor="White" 
-                                                BackgroundColor="#ff0000" 
-                                                Grid.Column="1" 
-                                                HeightRequest="80" 
-                                                VerticalOptions="Center" 
-                                                BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
-                                                Command="{Binding cambiaData}" 
-                                                CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
-                                        </Grid>
+                                        <StackLayout Grid.Column="1" IsVisible="{Binding VisibleButton}">
+                                            <Button 
+                                                    Text="Prossima ora" 
+                                                    TextColor="White" 
+                                                    BackgroundColor="#ff0000" 
+                                                    HeightRequest="80" 
+                                                    VerticalOptions="Start" 
+                                                    BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
+                                                    Command="{Binding cambiaData}" 
+                                                    CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
+                                                    
+                                                />
+                                                <Button Text="Prossima data" 
+                                                        TextColor="White" 
+                                                        BackgroundColor="#ff0000" 
+                                                        HeightRequest="80" 
+                                                        VerticalOptions="End" 
+                                                        BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
+                                                        Command="{Binding cambiaData}" 
+                                                        CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
+                                                        />
+                                            
+                                        </StackLayout>
+                                        <Label Text="{Binding EsitoPrenotazione}"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="End"
+                                               TextColor="{Binding Color}"
+                                               IsVisible="{Binding VisibleEsito}" 
+                                               Grid.Column="1"
+                                        />
+                                    </Grid>
                                         </StackLayout>
                                 </ViewCell.View>
                             </customControls:ExtendedViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <StackLayout BackgroundColor="White" VerticalOptions="End">
-                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White" IsVisible="{Binding IsVisibleButton}"/>
+            <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding Visible}">
+                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White" Command="{Binding InvioDatiPerPrenotazione}"/>
+            </StackLayout>
+            <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding VisibleHome}">
+                <Button Text="torna alla home" BackgroundColor="Red" TextColor="White" Command="{Binding TornaAllaHome}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -185,7 +185,7 @@ namespace MCup.ModelView
             contacts = await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
             List<Contatto> temp = new List<Contatto>();
             temp.Add(new Contatto {
-                nome = contacts.nome, cognome = contacts.cognome, codice_fiscale = contacts.codice_fiscale, data_nascita = contacts.data_nascita,
+                nome = contacts.nome, cognome = contacts.cognome, codice_fiscale = contacts.codice_fiscale, data_nascita = contacts.data_nascita, statocivile = contacts.statocivile, codStatoCivile = contacts.codStatoCivile,
                 luogo_nascita = contacts.luogo_nascita, sesso = contacts.sesso, AccountPrimario = true, istatComuneNascita = contacts.istatComuneNascita, istatComuneResidenza = contacts.istatComuneResidenza,
                 nomeCompletoConCodiceFiscale = contacts.nome + " " + contacts.cognome + " " + contacts.codice_fiscale, comune_residenza = contacts.comune_residenza, telefono = contacts.telefono
             });

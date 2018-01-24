@@ -82,11 +82,18 @@ namespace MCup.ModelView
             ContinuaPrenotazione = new Command(async () =>
             {
                 bool verificaPrestazioni = true;
+                for (int i = 0; i < ListaPrestazioni.Count; i++)
+                {
+                    if (!ListaPrestazioni[i].enabled)
+                    {
+                        prestazioniDaInviare[i].reparti = ListaPrestazioni[i].reparti[0];
+                    }
+                }
                 foreach (var i in prestazioniDaInviare)
                     if (i.reparti == null)
                         verificaPrestazioni = false;
                 if (verificaPrestazioni == true)
-                    await this.verifica.Navigation.PushAsync(new PropostaRichiesta(prestazioniDaInviare, contatto));
+                    await this.verifica.Navigation.PushAsync(new PropostaRichiesta(prestazioniDaInviare, contatto.contattoDaInviare));
                 else
                     await App.Current.MainPage.DisplayAlert("Attenzione", "Seleziona un reparto per ogni prestazione",
                         "OK");

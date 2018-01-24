@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MCup.Views;
 using Xamarin.Forms;
 
 namespace MCup.ModelView
@@ -17,6 +18,51 @@ namespace MCup.ModelView
     {
         private List<PrenotazioneProposta> listPrenotazioni;
         private bool isvisible, isbusy,isvisibleButton;
+        private string esito;
+        private Contatto contatto;
+        private List<ResponsePrenotazione> listaResponsePrenotazioni = new List<ResponsePrenotazione>();
+        private string visible = "true";
+        private string visibleHome = "false";
+        public string Visible
+        {
+            get { return visible; }
+            set
+            {
+                OnPropertyChanged();
+                visible = value;
+            } 
+        }
+        public string VisibleHome
+        {
+            get { return visibleHome; }
+            set
+            {
+                OnPropertyChanged();
+                visibleHome = value;
+            }
+        }
+
+        public ICommand InvioDatiPerPrenotazione
+        {
+            get
+            {
+                return  new Command(async () =>
+                {
+                   await invioDatiPrenotazione();
+                });
+            }
+        }
+
+        public ICommand TornaAllaHome
+        {
+            get
+            {
+                return  new Command(async () =>
+                {
+                 App.Current.MainPage= new NavigationPage(new MenuPrincipale());   
+                });
+            }
+        }
         public ICommand cambiaData
         {
             get
@@ -78,19 +124,84 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public PropostaRichiestaModelView(List<Prestazioni> prestazioni)
+        public PropostaRichiestaModelView(List<Prestazioni> prestazioni, Contatto contatto)
         {
+            this.contatto = contatto;
             listPrenotazioni = new List<PrenotazioneProposta>();
             IsVisibleButton = false;
             IsVisible = true;
             IsBusy = true;
             this.prestazioni = prestazioni;
             recuperoInformazioni();
+           
         }
 
         private async void recuperoInformazioni()
         {
             await info();
+          
+        }
+
+        public async Task invioDatiPrenotazione()
+        {
+            REST<PrenotazioniContatto, ResponsePrenotazione> invioDati = new REST<PrenotazioniContatto, ResponsePrenotazione>();
+            PrenotazioniContatto prenotazioni;
+            List<ResponsePrenotazione> listaPrenotazioniNonAndateABuonFine = new List<ResponsePrenotazione>();
+            List<ResponsePrenotazione> listaPrenotazioniAndateABuonFine = new List<ResponsePrenotazione>();
+            List<PrenotazioneProposta> temp = new List<PrenotazioneProposta>();
+            PrenotazioneProposta pren= new PrenotazioneProposta();
+            
+            try
+            {
+                for (int i = 0; i < ListPrenotazioni.Count; i++)
+                {
+                    prenotazioni = new PrenotazioniContatto();
+                    prenotazioni.contatto = contatto;
+                    prenotazioni.prestazione = ListPrenotazioni[i];
+                    listaResponsePrenotazioni.Add(await invioDati.PostJson(URL.ConfermaPrenotazione, prenotazioni, App.Current.Properties["tokenLogin"].ToString()));
+                }
+                for (int j = 0; j < listaResponsePrenotazioni.Count; j++)
+                {
+                    if (listaResponsePrenotazioni[j].esito == 0)
+                    {
+                        listaPrenotazioniNonAndateABuonFine.Add(listaResponsePrenotazioni[j]);
+                        pren = listPrenotazioni[j];
+                        pren.VisibleEsito = "true";
+                        pren.VisibleButton = "false";
+                        pren.EsitoPrenotazione = listaResponsePrenotazioni[j].messaggio;
+                        pren.Color = Color.Red;
+                    }
+                    else if (listaResponsePrenotazioni[j].esito == 1)
+                    {
+                        listaPrenotazioniAndateABuonFine.Add(listaResponsePrenotazioni[j]);
+                        pren = listPrenotazioni[j];
+                        pren.VisibleEsito = "true";
+                        pren.VisibleButton = "false";
+                        pren.EsitoPrenotazione = listaResponsePrenotazioni[j].messaggio;
+                        pren.Color = Color.Green;
+                    }
+                    else if (listaResponsePrenotazioni[j].esito == 2)
+                    {
+                        listaPrenotazioniAndateABuonFine.Add(listaResponsePrenotazioni[j]);
+                        pren = listPrenotazioni[j];
+                        pren.VisibleEsito = "true";
+                        pren.VisibleButton = "false";
+                        pren.EsitoPrenotazione = listaResponsePrenotazioni[j].messaggio;
+                        pren.Color = Color.Orange;
+                    }
+                    temp.Add(pren);
+
+                }
+                Visible = "false";
+                VisibleHome = "true";
+                ListPrenotazioni = temp;
+            }
+            catch (Exception)
+            {
+
+              await  App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita", "ok");
+            }
+                
         }
 
         private async Task info()
@@ -127,6 +238,20 @@ namespace MCup.ModelView
                 }
             }
             ListPrenotazioni = temp;
+        }
+
+        private class PrenotazioniContatto
+        {
+            public Contatto contatto { get; set; }
+            public PrenotazioneProposta prestazione { get; set; }
+            public string struttura { get; set; } = "030001";
+        }
+
+        private class ResponsePrenotazione
+        {
+            public string messaggio { get; set; }
+            public int esito { get; set; }
+   
         }
 
     }

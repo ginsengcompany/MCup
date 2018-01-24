@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MCup.Service
 {
-    public class REST<E,T>
+    public class REST<E, T>
     {
         public string warning;
         public async Task<List<T>> GetJson(string url)
@@ -55,7 +55,7 @@ namespace MCup.Service
         {
             T Item;
             HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Add("x-access-token",header);
+            client.DefaultRequestHeaders.Add("x-access-token", header);
             var uri = new Uri(string.Format(url, String.Empty));
             var response = await client.GetStringAsync(uri);
             warning = response;
@@ -113,9 +113,35 @@ namespace MCup.Service
             }
             catch (Exception)
             {
-                
+
             }
             return default(T);
+        }
+
+        public async Task<List<T>> PostJsonList(string url, E dati, string header)
+        {
+            List<T> Items = new List<T>();
+            HttpClient client = new HttpClient();
+            string ContentType = "application/json"; // or application/xml
+            string json = JsonConvert.SerializeObject(dati);
+            var uri = new Uri(string.Format(url, String.Empty));
+            HttpContent httpContent = new StringContent(json.ToString());
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+            httpContent.Headers.Add("x-access-token", header);
+
+            try
+            {
+                var result = await client.PostAsync(url, httpContent);
+                var response = await result.Content.ReadAsStringAsync();
+                warning = response;
+                var isValid = JToken.Parse(response);
+                Items = JsonConvert.DeserializeObject<List<T>>(response);
+                return Items;
+            }
+            catch (Exception e)
+            {
+                return new List<T>();
+            }
         }
 
         public async Task<T> PostJson(string url, E dati, string header)
@@ -128,10 +154,10 @@ namespace MCup.Service
             HttpContent httpContent = new StringContent(json.ToString());
             httpContent.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
             httpContent.Headers.Add("x-access-token", header);
-            
+
             try
             {
-                var result = await client.PostAsync(url,httpContent);
+                var result = await client.PostAsync(url, httpContent);
                 var response = await result.Content.ReadAsStringAsync();
                 warning = response;
                 var isValid = JToken.Parse(response);
