@@ -17,7 +17,7 @@ namespace MCup.ModelView
     public class PropostaRichiestaModelView : INotifyPropertyChanged
     {
         private List<PrenotazioneProposta> listPrenotazioni;
-        private bool isvisible, isbusy,isvisibleButton;
+        private bool isvisible, isbusy, isvisibleButton;
         private string esito;
         private Contatto contatto;
         private List<ResponsePrenotazione> listaResponsePrenotazioni = new List<ResponsePrenotazione>();
@@ -30,7 +30,7 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 visible = value;
-            } 
+            }
         }
         public string VisibleHome
         {
@@ -46,10 +46,10 @@ namespace MCup.ModelView
         {
             get
             {
-                return  new Command(async () =>
-                {
+                return new Command(async () =>
+               {
                    await invioDatiPrenotazione();
-                });
+               });
             }
         }
 
@@ -57,13 +57,26 @@ namespace MCup.ModelView
         {
             get
             {
-                return  new Command(async () =>
+                return new Command(async () =>
+               {
+                   App.Current.MainPage = new NavigationPage(new MenuPrincipale());
+               });
+            }
+        }
+
+        public ICommand cambiaData
+        {
+            get
+            {
+                return new Command(async (e) =>
                 {
-                 App.Current.MainPage= new NavigationPage(new MenuPrincipale());   
+                    var item = (e as PrenotazioneProposta);
+                    await infoProssimaData(item);
                 });
             }
         }
-        public ICommand cambiaData
+
+        public ICommand cambiaOra
         {
             get
             {
@@ -133,13 +146,13 @@ namespace MCup.ModelView
             IsBusy = true;
             this.prestazioni = prestazioni;
             recuperoInformazioni();
-           
+
         }
 
         private async void recuperoInformazioni()
         {
             await info();
-          
+
         }
 
         public async Task invioDatiPrenotazione()
@@ -149,8 +162,8 @@ namespace MCup.ModelView
             List<ResponsePrenotazione> listaPrenotazioniNonAndateABuonFine = new List<ResponsePrenotazione>();
             List<ResponsePrenotazione> listaPrenotazioniAndateABuonFine = new List<ResponsePrenotazione>();
             List<PrenotazioneProposta> temp = new List<PrenotazioneProposta>();
-            PrenotazioneProposta pren= new PrenotazioneProposta();
-            
+            PrenotazioneProposta pren = new PrenotazioneProposta();
+
             try
             {
                 for (int i = 0; i < ListPrenotazioni.Count; i++)
@@ -199,9 +212,9 @@ namespace MCup.ModelView
             catch (Exception)
             {
 
-              await  App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita", "ok");
+                await App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita", "ok");
             }
-                
+
         }
 
         private async Task info()
@@ -229,7 +242,7 @@ namespace MCup.ModelView
             prestazione.reparti.unitaOperativa = prenotazione.unitaOperativa;
             nuovaproposta = await connessione.PostJson(URL.PrimaDisponibilita, prestazione);
             List<PrenotazioneProposta> temp = new List<PrenotazioneProposta>(ListPrenotazioni);
-            for (int i=0; i < temp.Count; i++)
+            for (int i = 0; i < temp.Count; i++)
             {
                 if (temp[i].codPrestazione == nuovaproposta.codPrestazione)
                 {
@@ -238,6 +251,55 @@ namespace MCup.ModelView
                 }
             }
             ListPrenotazioni = temp;
+        }
+
+        private async Task infoProssimaData(PrenotazioneProposta prenotazione)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                REST<Prestazioni, PrenotazioneProposta> connessione = new REST<Prestazioni, PrenotazioneProposta>();
+                PrenotazioneProposta nuovaproposta = new PrenotazioneProposta();
+                Prestazioni prestazione = new Prestazioni();
+                prestazione.codprest = prenotazione.codPrestazione;
+                prestazione.data_inizio = prenotazione.dataAppuntamento;
+                prestazione.reparti.codReparto = prenotazione.codReparto;
+                prestazione.reparti.unitaOperativa = prenotazione.unitaOperativa;
+                nuovaproposta = await connessione.PostJson(URL.PrimaDisponibilita, prestazione);
+                List<PrenotazioneProposta> temp = new List<PrenotazioneProposta>(ListPrenotazioni);
+                for (int i = 0; i < temp.Count; i++)
+                {
+                    if (temp[i].codPrestazione == nuovaproposta.codPrestazione)
+                    {
+                        temp[i] = nuovaproposta;
+                        break;
+                    }
+                }
+                ListPrenotazioni = temp;
+            }
+
+
+
+
+
+
+            /* REST<Prestazioni, PrenotazioneProposta> connessione = new REST<Prestazioni, PrenotazioneProposta>();
+             PrenotazioneProposta nuovaproposta = new PrenotazioneProposta();
+             Prestazioni prestazione = new Prestazioni();
+             prestazione.codprest = prenotazione.codPrestazione;
+             prestazione.data_inizio = prenotazione.dataAppuntamento;
+             prestazione.reparti.codReparto = prenotazione.codReparto;
+             prestazione.reparti.unitaOperativa = prenotazione.unitaOperativa;
+             nuovaproposta = await connessione.PostJson(URL.prossimaDataDisponibile, prestazione);
+             List<PrenotazioneProposta> temp = new List<PrenotazioneProposta>(ListPrenotazioni);
+             for (int i = 0; i < temp.Count; i++)
+             {
+                 if (temp[i].codPrestazione == nuovaproposta.codPrestazione)
+                 {
+                     temp[i] = nuovaproposta;
+                     break;
+                 }
+             }
+             ListPrenotazioni = temp; */
         }
 
         private class PrenotazioniContatto
@@ -251,7 +313,7 @@ namespace MCup.ModelView
         {
             public string messaggio { get; set; }
             public int esito { get; set; }
-   
+
         }
 
     }

@@ -27,12 +27,11 @@ namespace MCup.Service
         //public static string ListaComuni = "http://192.168.125.71:3000/comuni/listaprovince";
         //public static string ListaStatoCivile = "http://192.168.125.71:3000/statocivile";
         //public static string ConfermaPrenotazione = "http://192.168.125.71:3000/auth/confermaappuntamento";
-
+        //public static string prossimaDataDisponibile = "http://192.168.125.71:3000/ricercaprimadisponibilita/prossimadatadisponibile";
 
 
 
         // rotte PC Aldo
-
         public static string Strutture = "http://192.168.125.14:3000/strutture";
         public static string TerminiServizio = "http://192.168.125.14:3000/terminiservizio";
         public static string Ricetta = "http://192.168.125.14:3000/ricetta";
@@ -50,6 +49,7 @@ namespace MCup.Service
         public static string ListaStatoCivile = "http://192.168.125.14:3000/statocivile";
         public static string ConfermaPrenotazione = "http://192.168.125.14:3000/auth/confermaappuntamento";
         public static string appuntamenti = "http://192.168.125.14:3000/auth/listaappuntamenti";
+        public static string prossimaDataDisponibile = "http://192.168.125.14:3000/ricercaprimadisponibilita/prossimadatadisponibile";
 
 
 

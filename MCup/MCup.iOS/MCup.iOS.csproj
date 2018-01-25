@@ -211,26 +211,66 @@
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\40x40.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\60x60.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\58x58.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\87x87.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\80x80.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\120x120.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\180x180.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\20x20.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\29x29.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\76x76.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\152x152.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\167x167.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\1024x1024.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\640x960.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\640x1136.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\768x1024.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1536x2048.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1024x768.png" />
-    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\2048x1536.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\40x40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\60x60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\58x58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\87x87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\80x80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\120x120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\180x180.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\20x20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\29x29.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\76x76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\152x152.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\167x167.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Icone dell%27app.appiconset\1024x1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\640x960.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\640x1136.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\768x1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1536x2048.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1024x768.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\2048x1536.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\send.png" />
