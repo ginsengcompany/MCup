@@ -45,7 +45,12 @@ namespace MCup.Views
             if (dataCambiata)
             {
                 await modelView.infoProssimaData(itemDatePicker);
+                modelView.IsEnabled = true;
                 dataCambiata = false;
+            }
+            else
+            {
+                modelView.IsEnabled = true;
             }
         }
     }

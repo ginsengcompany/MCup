@@ -46,7 +46,8 @@
                                                     BackgroundColor="#ff0000" 
                                                     HeightRequest="80" 
                                                     VerticalOptions="Start" 
-                                                    BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
+                                                    BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}"
+                                                    IsEnabled="{Binding IsEnabled}"
                                                     Command="{Binding cambiaOra}" 
                                                     CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                     
@@ -57,6 +58,7 @@
                                                         HeightRequest="80" 
                                                         VerticalOptions="End" 
                                                         BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
+                                                        IsEnabled="{Binding IsEnabled}"
                                                         Command="{Binding cambiaData}" 
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                         />
@@ -77,10 +79,10 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding Visible}">
-                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White" Command="{Binding InvioDatiPerPrenotazione}"/>
+                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White" Command="{Binding InvioDatiPerPrenotazione}" IsEnabled="{Binding IsEnabled}" />
             </StackLayout>
             <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding VisibleHome}">
-                <Button Text="torna alla home" BackgroundColor="Red" TextColor="White" Command="{Binding TornaAllaHome}"/>
+                <Button Text="torna alla home" BackgroundColor="Red" TextColor="White" Command="{Binding TornaAllaHome}" IsEnabled="{Binding IsEnabled}"/>
             </StackLayout>
             <DatePicker IsVisible="False" DateSelected="DatePicker_DateSelected" x:Name="data" Unfocused="data_Unfocused" Format="dd/MM/yyyy" />
         </StackLayout>

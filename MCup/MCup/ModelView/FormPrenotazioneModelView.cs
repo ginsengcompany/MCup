@@ -29,6 +29,8 @@ namespace MCup.ModelView
         //Oggetto che astrae la ricetta NRE
         private InvioRicettaPrenotazione ricetta;
 
+        private bool isenabled;
+
 
         private string nameTextErrorNome, nameTextErrorCognome, nameTextErrorCodFisc, nameTextErrorCodUno, nameTextErrorCodDue;
 
@@ -160,9 +162,20 @@ namespace MCup.ModelView
             }
         }
 
+        public bool IsEnabled
+        {
+            get { return isenabled; }
+            set
+            {
+                OnPropertyChanged();
+                isenabled = value;
+            }
+        }
+
         //Costruttore del ModelView, viene passato come parametro il riferimento alla pagina che lo richiama per poter effettuare una Navigation.pushAsync
         public FormPrenotazioneModelView(FormPrenotazione Model)
         {
+            IsEnabled = true;
             utenza = new UtenzaPrenotazione();
             ricetta = new InvioRicettaPrenotazione();
             invioContatto= new sendRicetta();
@@ -174,7 +187,9 @@ namespace MCup.ModelView
             utenza.setCodiceFiscale("");
             InviaRichiesta = new Command(async () =>
             {
+                IsEnabled = false;
                 await InvioDatiAsync();
+                IsEnabled = true;
             });
             leggiContatti();
         }

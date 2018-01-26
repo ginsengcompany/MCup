@@ -17,7 +17,7 @@ namespace MCup.ModelView
     public class PropostaRichiestaModelView : INotifyPropertyChanged
     {
         private List<PrenotazioneProposta> listPrenotazioni;
-        private bool isvisible, isbusy, isvisibleButton;
+        private bool isvisible, isbusy, isvisibleButton, isenabled;
         private string esito;
         private Contatto contatto;
         private List<ResponsePrenotazione> listaResponsePrenotazioni = new List<ResponsePrenotazione>();
@@ -49,7 +49,9 @@ namespace MCup.ModelView
             {
                 return new Command(async () =>
                {
+                   IsEnabled = false;
                    await invioDatiPrenotazione();
+                   IsEnabled = true;
                });
             }
         }
@@ -60,7 +62,9 @@ namespace MCup.ModelView
             {
                 return new Command(async () =>
                {
+                   IsEnabled = false;
                    App.Current.MainPage = new NavigationPage(new MenuPrincipale());
+                   IsEnabled = true;
                });
             }
         }
@@ -71,9 +75,20 @@ namespace MCup.ModelView
             {
                 return new Command(async (e) =>
                 {
+                    IsEnabled = false;
                     var item = (e as PrenotazioneProposta);
                     propostaRichiesta.visualizzaDatePicker(item);
                 });
+            }
+        }
+
+        public bool IsEnabled
+        {
+            get { return isenabled; }
+            set
+            {
+                OnPropertyChanged();
+                isenabled = value;
             }
         }
 
@@ -83,8 +98,10 @@ namespace MCup.ModelView
             {
                 return new Command(async (e) =>
                 {
+                    IsEnabled = false;
                     var item = (e as PrenotazioneProposta);
                     await info(item);
+                    IsEnabled = true;
                 });
             }
         }
@@ -140,6 +157,7 @@ namespace MCup.ModelView
 
         public PropostaRichiestaModelView(List<Prestazioni> prestazioni, Contatto contatto, PropostaRichiesta proposta)
         {
+            IsEnabled = true;
             propostaRichiesta = proposta;
             this.contatto = contatto;
             listPrenotazioni = new List<PrenotazioneProposta>();
@@ -148,7 +166,6 @@ namespace MCup.ModelView
             IsBusy = true;
             this.prestazioni = prestazioni;
             recuperoInformazioni();
-
         }
 
         private async void recuperoInformazioni()
