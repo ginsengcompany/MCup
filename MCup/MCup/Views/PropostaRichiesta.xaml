@@ -41,7 +41,7 @@
                                         </StackLayout>
                                         <StackLayout Grid.Column="1" IsVisible="{Binding VisibleButton}">
                                             <Button 
-                                                    Text="Prossima ora" 
+                                                    Text="Disponibilità successiva oraria" 
                                                     TextColor="White" 
                                                     BackgroundColor="#ff0000" 
                                                     HeightRequest="80" 
@@ -51,12 +51,11 @@
                                                     CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                     
                                                 />
-                                            <Button Text="Prossima data" 
+                                            <Button Text="Disponibilità successiva data" 
                                                         TextColor="White" 
                                                         BackgroundColor="#ff0000" 
                                                         HeightRequest="80" 
                                                         VerticalOptions="End" 
-                                                    IsVisible="False"
                                                         BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
                                                         Command="{Binding cambiaData}" 
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
@@ -83,6 +82,7 @@
             <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding VisibleHome}">
                 <Button Text="torna alla home" BackgroundColor="Red" TextColor="White" Command="{Binding TornaAllaHome}"/>
             </StackLayout>
+            <DatePicker IsVisible="False" DateSelected="DatePicker_DateSelected" x:Name="data" Unfocused="data_Unfocused" Format="dd/MM/yyyy" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
