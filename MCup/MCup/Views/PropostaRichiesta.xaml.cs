@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using Xamarin.Forms;
 using MCup.Model;
 using MCup.Service;
@@ -28,7 +29,21 @@ namespace MCup.Views
         public void visualizzaDatePicker(PrenotazioneProposta item)
         {
             itemDatePicker = item;
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                /*
+                string temp = item.dataAppuntamento.Substring(0, 10);
+                string giorno = temp.Substring(0, 2);
+                string mese = temp.Substring(3, 2);
+                string anno = temp.Substring(6);
+                temp = mese + "/" + giorno + "/" + anno;*/
+
+                data.Date = Convert.ToDateTime(item.dataAppuntamento, new CultureInfo("it-IT"));
+            }
+            else
+            {
             data.Date = DateTime.Parse(item.dataAppuntamento);
+            }
             data.Focus();
         }
 

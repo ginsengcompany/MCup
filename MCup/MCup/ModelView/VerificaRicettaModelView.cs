@@ -124,7 +124,7 @@ namespace MCup.ModelView
             REST<PrestazioniTemp,Reparto> connessione = new REST<PrestazioniTemp,Reparto>();
             for (var i = 0; i < temp.Count; i++)
             {
-                string dataSub = data.ToString().Substring(0, 10);
+                string dataSub = string.Format("{0:dd/MM/yyyy}", data);
                 ListaPrestazioni[i].data_inizio = dataSub;
                 prestazioniDaInviare[i].data_inizio = dataSub;
                 temp[i].reparti = await connessione.PostJsonList(URL.RicercadisponibilitaReparti, ListaPrestazioni[i]);
