@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Com.OneSignal;
 
 namespace MCup
 {
@@ -19,6 +20,7 @@ namespace MCup
                 MainPage = new NavigationPage(new Login()); //Avvia la pagina di login per i dispositivi IOS
             }else
                 MainPage = new NavigationPage(new Login()); //Avvia la pagina di login per i dispositivi Android
+            OneSignal.Current.StartInit("821d395a-09ed-48a4-81b8-4a79971452eb").EndInit();
         }
 
         protected override void OnStart()
