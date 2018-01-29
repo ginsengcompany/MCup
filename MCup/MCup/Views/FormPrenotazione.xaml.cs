@@ -46,7 +46,8 @@ namespace MCup.Views
         {
             await Navigation.PushPopupAsync(new PopupInfoScan(imgCodDue));
         }
-
+      
+       
         public FormPrenotazione()
         {
             InitializeComponent();

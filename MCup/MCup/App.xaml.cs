@@ -16,7 +16,7 @@ namespace MCup
             InitializeComponent();
             if (Device.RuntimePlatform == Device.iOS) //controlla se il device su cui l'app viene avviata è IOS o Android
             {
-                MainPage = new NavigationPage(new LoginIoS()); //Avvia la pagina di login per i dispositivi IOS
+                MainPage = new NavigationPage(new Login()); //Avvia la pagina di login per i dispositivi IOS
             }else
                 MainPage = new NavigationPage(new Login()); //Avvia la pagina di login per i dispositivi Android
         }

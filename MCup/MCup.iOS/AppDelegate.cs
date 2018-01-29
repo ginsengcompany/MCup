@@ -5,6 +5,8 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms.Platform.iOS;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xfx;
 
 namespace MCup.iOS
@@ -30,8 +32,8 @@ namespace MCup.iOS
             LoadApplication(new App());
             UINavigationBar.Appearance.BarTintColor = UIColor.Red;
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes {TextColor = UIColor.White});
-            UIBarButtonItem.Appearance.TintColor = UIColor.White;
-
+            UIBarButtonItem.Appearance.TintColor = UIColor.LightTextColor;
+            DatePickerRenderer.Appearance.TintColor= UIColor.Black; 
             return base.FinishedLaunching(app, options);
         }
       
