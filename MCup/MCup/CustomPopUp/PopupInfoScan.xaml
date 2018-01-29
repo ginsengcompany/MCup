@@ -2,24 +2,21 @@
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:animations1="clr-namespace:MCup.Animations;assembly=MCup"
              x:Class="MCup.CustomPopUp.PopupInfoScan">
-    <pages:PopupPage.Animation>
-        <animations:ScaleAnimation
-            PositionIn="Bottom"
-            PositionOut="Bottom"
-            ScaleIn="1"
-            ScaleOut="0.7"
-            DurationIn="700"
-            EasingIn="BounceOut"/>
-    </pages:PopupPage.Animation>
-    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" IsClippedToBounds="True" HeightRequest="50"
-            x:Name="FrameContainer">
-        <Image x:Name="imgInfo">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Tapped="Handle_Tapped"/>
-                <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated"></PanGestureRecognizer>
-            </Image.GestureRecognizers>
-        </Image>
-    </StackLayout>
+      <pages:PopupPage.Animation>
+          <animations1:UserAnimation/>
+      </pages:PopupPage.Animation>
+    <AbsoluteLayout >
+      <Frame HorizontalOptions="Center"
+             Margin="15"
+             x:Name="FrameContainer"
+             BackgroundColor="White" VerticalOptions="Center">
+        <StackLayout IsClippedToBounds="True"
+                     Spacing="3">
+          <Image x:Name="imgInfo"
+                 HeightRequest="250"/>
+        </StackLayout>
+      </Frame>
+    </AbsoluteLayout>
 </pages:PopupPage>
