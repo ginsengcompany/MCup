@@ -17,6 +17,27 @@ namespace MCup.ModelView
         private List<Contatto> contatti = new List<Contatto>();
         private List<Appuntamento> appuntamenti = new List<Appuntamento>();
         private Appuntamento date = new Appuntamento();
+        private Boolean visibileLabel = false;
+        private Boolean visibile = true;
+
+        public Boolean Visibile
+        {
+            get { return visibile; }
+            set
+            {
+                OnPropertyChanged();
+                visibile = value;
+            }
+        }
+        public Boolean VisibileLabel
+        {
+            get { return visibileLabel; }
+            set
+            {
+                OnPropertyChanged();
+                visibileLabel = value;
+            }
+        }
 
         public List<Appuntamento> Appuntamenti
         {
@@ -91,6 +112,16 @@ namespace MCup.ModelView
                 var invioContatto = date.assistito;
                 REST<Contatto, Appuntamento> connessione = new REST<Contatto, Appuntamento>();
                 Appuntamenti = await connessione.PostJsonList(URL.appuntamenti, invioContatto,App.Current.Properties["tokenLogin"].ToString());
+                if(Appuntamenti.Count==0)
+                {
+                    Visibile = false;
+                    VisibileLabel = true;
+                }
+                else
+                {
+                    Visibile = true;
+                    VisibileLabel = false;
+                }
             }
             catch (Exception e)
             {

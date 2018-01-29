@@ -265,7 +265,8 @@ namespace MCup.ModelView
             LeggiStatoCivile();
             annullaRegistrazioneNuovoContatto = new Command(() =>
             {
-                App.Current.MainPage = new MenuPrincipale();
+                App.Current.MainPage = new MenuPrincipale("Contatti");
+
             });
             registraNuovoContatto = new Command(async () =>
             {
@@ -385,7 +386,7 @@ namespace MCup.ModelView
                         else
                         {
                             await App.Current.MainPage.DisplayAlert("Nuovo contatto", "Il contatto è stato aggiunto correttamente", "OK");
-                            App.Current.MainPage = new MenuPrincipale();
+                            App.Current.MainPage = new MenuPrincipale("Contatti");
                         }
 
                     }

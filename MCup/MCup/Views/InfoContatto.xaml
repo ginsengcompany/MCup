@@ -16,7 +16,7 @@
                 <xfx:XfxEntry Placeholder="comune di residenza" Text="{Binding comune_residenza}" PlaceholderColor="Red" TextColor="Black" ErrorText="{Binding NameTextErrorComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250" IsEnabled="False"/>
                 <xfx:XfxEntry Placeholder="stato civile" Text="{Binding statocivile}" PlaceholderColor="Red" TextColor="Black" ErrorDisplay="Underline"  WidthRequest="250" IsEnabled="False"/>
                 <xfx:XfxEntry Placeholder="numero di telefono mobile" Text="{Binding telefono}" PlaceholderColor="Red" TextColor="Black" Keyboard="Numeric" ErrorText="{Binding NameTextErrorTelefono}" ErrorDisplay="Underline"  WidthRequest="250" IsEnabled="False"/>
-                <Button Text="Elimina" Command="{Binding Elimina}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red"  IsEnabled="false" TextColor="White" Margin="15" IsVisible="{Binding Visibile}"/>
+                <Button Text="Elimina" Command="{Binding Elimina}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" BackgroundColor="Transparent" BorderColor="Red"  IsEnabled="false" TextColor="Red"  Margin="10" IsVisible="{Binding Visibile}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -25,6 +25,13 @@ namespace MCup.Views
 			InitializeComponent();
             inizializzazioneMenu();
 		}
+        public MenuPrincipale(string scelta)
+        {
+            InitializeComponent();
+            inizializzazioneMenu();
+            if(scelta.Equals("Contatti"))
+                Detail = new NavigationPage(new ListaContatti());
+        }
         //Metodo che inizializza la MasterDetailPage e che inserisce in essa le pagine a cui è possibile accedere dal menu
         private void inizializzazioneMenu()
         {

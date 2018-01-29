@@ -7,8 +7,8 @@
     <ContentPage.Content>
         <StackLayout>
             <Picker TextColor="Red" Title="Seleziona il contatto di cui vuoi vedere gli appuntamenti" HorizontalOptions="CenterAndExpand" ItemsSource="{Binding Contatti}" ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" VerticalOptions="Center" SelectedIndexChanged="Picker_OnSelectedIndexChanged" />
-
-            <ListView ItemsSource="{Binding Appuntamenti}" HasUnevenRows="True"  ItemTapped="ListView_ItemTapped"  SeparatorVisibility="Default" SeparatorColor="Black">
+            <Label Text="Nessuna prestazione disponibile" IsVisible="{Binding VisibileLabel}" HorizontalOptions="Center" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+            <ListView ItemsSource="{Binding Appuntamenti}" HasUnevenRows="True"  ItemTapped="ListView_ItemTapped" IsVisible="{Binding Visible}" SeparatorVisibility="Default" SeparatorColor="Black">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <costomControls:ExtendedViewCell SelectedBackgroundColor="White" >
