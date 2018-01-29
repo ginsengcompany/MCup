@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MCup.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,8 +36,12 @@ namespace MCup.Views
             Navigation.PushAsync(new GestioneAppuntamenti());
         }
 
-        private void logout_Clicked(object sender, EventArgs e)
+        private async void logout_Clicked(object sender, EventArgs e)
         {
+            TokenNotification tokNot = new TokenNotification();
+            tokNot.tokenNotification = "";
+            REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
+            bool res = await connessione.PostJson(URL.updateTokenNotifiche, tokNot, App.Current.Properties["tokenLogin"].ToString());
             if (Device.RuntimePlatform == Device.Android)
                 App.Current.MainPage = new NavigationPage(new Login());
             else
@@ -53,6 +58,10 @@ namespace MCup.Views
             tapIconaPrenotazioni.IsEnabled = false;
             tapIconaAppuntamenti.IsEnabled = false;
             tapIconaContatti.IsEnabled = false;
+        }
+        private class TokenNotification
+        {
+            public string tokenNotification;
         }
     }
 }

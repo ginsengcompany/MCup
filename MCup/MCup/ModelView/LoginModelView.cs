@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using MCup.Service;
 using MCup.Views;
+using Com.OneSignal;
 
 /*
  * Questa classe è il ModelView delle pagine Login e LoginIOS. La classe gestisce tutte le informazioni inserite e prelevate da remoto riguardanti l'utenza del cliente.
@@ -193,6 +194,13 @@ namespace MCup.ModelView
                     {
                         utente.cancellaEdAggiornaUsername(utente.username);
                         App.Current.Properties["tokenLogin"] = response.token; //Salva nel dictionary dell'app il token dell'utente per accedere alle sue informazioni private
+                        OneSignal.Current.IdsAvailable(async (string userId, string token) =>
+                        {
+                            TokenNotification tokNot = new TokenNotification();
+                            tokNot.tokenNotification = userId;
+                            REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
+                            bool res = await connessione.PostJson(URL.updateTokenNotifiche, tokNot, App.Current.Properties["tokenLogin"].ToString());
+                        });
                       //  REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto per la chiamata REST
                        // ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token); //Chiamata GET che ritorna se l'utente ha già scelto la sua struttura preferita o meno
                          /*   if (responseStruttura.scelta) //Se l'utente ha già scelto la sua struttura preferita
@@ -215,6 +223,11 @@ namespace MCup.ModelView
                 else
                     ShowPassword = true;
             });
+        }
+
+        private class TokenNotification
+        {
+            public string tokenNotification;
         }
 
     }

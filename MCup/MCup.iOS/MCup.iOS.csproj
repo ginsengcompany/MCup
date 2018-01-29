@@ -30,6 +30,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>VS: com.Ak12.MCup Development</CodesignProvision>
     <CodesignKey>iPhone Developer: Pasquale Russo (BY955K9SHU)</CodesignKey>
+    <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
