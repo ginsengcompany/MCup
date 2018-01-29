@@ -28,6 +28,7 @@ namespace MCup.Model
         public string EsitoPrenotazione { get; set; } = "";
         public Color Color { get; set; }=Color.Green;
 
-        public PrenotazioneProposta(){ }
+        public PrenotazioneProposta(){
+        }
     }
 }

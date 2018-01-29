@@ -7,51 +7,51 @@
     BackgroundColor="White"
     Title="Richiesta proposta"
     NavigationPage.HasNavigationBar="{Binding Visible}">
-	<ContentPage.Content>
+    <ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="white">
             <ActivityIndicator IsVisible="{Binding IsVisible}" IsRunning="{Binding IsBusy}"/>
             <ListView BackgroundColor="White" HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="FillAndExpand" x:Name="lst" ItemsSource="{Binding ListPrenotazioni}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <customControls:ExtendedViewCell SelectedBackgroundColor="White">
-                                <ViewCell.View>
-                                    <StackLayout Orientation="Vertical" x:Name="Item">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="2.5*"></ColumnDefinition>
-                                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                     <StackLayout Grid.Column="0">
-                                        <StackLayout Orientation="Vertical" >
-                                        <Label Text="Prestazione" TextColor="Red" VerticalOptions="Start"></Label>
-                                        <Label Text="{Binding descPrestazione}" TextColor="Black" VerticalOptions="End" FontSize="Medium"  FontAttributes="Italic"/>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Vertical">
-                                        <Label Text="Reparto:" TextColor="Red"  VerticalOptions="Start" />
-                                        <Label Text="{Binding descReparto}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="Data dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
-                                        <Label Text="{Binding dataAppuntamento}" TextColor="Black" VerticalOptions="End" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                    </StackLayout>
-                                        <StackLayout Orientation="Horizontal">
-                                        <Label Text="Orario dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
-                                        <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
-                                    </StackLayout>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <customControls:ExtendedViewCell SelectedBackgroundColor="White">
+                            <ViewCell.View>
+                                <StackLayout Orientation="Vertical" x:Name="Item">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0">
+                                            <StackLayout Orientation="Vertical" >
+                                                <Label Text="Prestazione" TextColor="Red" VerticalOptions="Start"></Label>
+                                                <Label Text="{Binding descPrestazione}" TextColor="Black" VerticalOptions="End" FontSize="Medium"  FontAttributes="Italic"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Vertical">
+                                                <Label Text="Reparto:" TextColor="Red"  VerticalOptions="Start" />
+                                                <Label Text="{Binding descReparto}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Data dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
+                                                <Label Text="{Binding dataAppuntamento}" TextColor="Black" VerticalOptions="End" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Orario dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
+                                                <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                            </StackLayout>
                                         </StackLayout>
                                         <StackLayout Grid.Column="1" IsVisible="{Binding VisibleButton}">
                                             <Button 
-                                                    Text="Prossima ora" 
+                                                    Text="Disponibilità successiva oraria" 
                                                     TextColor="White" 
                                                     BackgroundColor="#ff0000" 
                                                     HeightRequest="80" 
                                                     VerticalOptions="Start" 
                                                     BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
-                                                    Command="{Binding cambiaData}" 
+                                                    Command="{Binding cambiaOra}" 
                                                     CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                     
                                                 />
-                                                <Button Text="Prossima data" 
+                                            <Button Text="Disponibilità successiva data" 
                                                         TextColor="White" 
                                                         BackgroundColor="#ff0000" 
                                                         HeightRequest="80" 
@@ -60,7 +60,7 @@
                                                         Command="{Binding cambiaData}" 
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                         />
-                                            
+
                                         </StackLayout>
                                         <Label Text="{Binding EsitoPrenotazione}"
                                                VerticalOptions="Center"
@@ -70,18 +70,19 @@
                                                Grid.Column="1"
                                         />
                                     </Grid>
-                                        </StackLayout>
-                                </ViewCell.View>
-                            </customControls:ExtendedViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </customControls:ExtendedViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding Visible}">
                 <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White" Command="{Binding InvioDatiPerPrenotazione}"/>
             </StackLayout>
             <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding VisibleHome}">
                 <Button Text="torna alla home" BackgroundColor="Red" TextColor="White" Command="{Binding TornaAllaHome}"/>
             </StackLayout>
+            <DatePicker IsVisible="False" DateSelected="DatePicker_DateSelected" x:Name="data" Unfocused="data_Unfocused" Format="dd/MM/yyyy" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
