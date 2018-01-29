@@ -90,7 +90,7 @@
                     </Image>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0">
-                    <Image Source="send.png" WidthRequest="250">
+                    <Image IsEnabled="{Binding IsEnabled}" Source="send.png" WidthRequest="250">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>

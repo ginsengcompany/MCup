@@ -27,6 +27,7 @@ namespace MCup.ModelView
         private VerificaRicetta verifica;
         public ICommand ContinuaPrenotazione { protected set; get; }
         private List<Prestazioni> prestazioniDaInviare;
+        private bool isenabled;
 
         public bool ButtonIsVisible
         {
@@ -38,6 +39,15 @@ namespace MCup.ModelView
             }
         }
 
+        public bool IsEnabled
+        {
+            get { return isenabled; }
+            set
+            {
+                OnPropertyChanged();
+                isenabled = value;
+            }
+        }
 
         public string NomeAssistito
         {
@@ -71,6 +81,7 @@ namespace MCup.ModelView
 
         public VerificaRicettaModelView(Ricetta impegnativa, VerificaRicetta verifica, FormPrenotazioneModelView.sendRicetta contatto)
         {
+            IsEnabled = true;
             this.verifica = verifica;
             ricetta = impegnativa;
             NomeAssistito = ricetta.nome_assistito;
@@ -81,6 +92,7 @@ namespace MCup.ModelView
             ingressoPagina();
             ContinuaPrenotazione = new Command(async () =>
             {
+                IsEnabled = false;
                 bool verificaPrestazioni = true;
                 for (int i = 0; i < ListaPrestazioni.Count; i++)
                 {
@@ -97,6 +109,7 @@ namespace MCup.ModelView
                 else
                     await App.Current.MainPage.DisplayAlert("Attenzione", "Seleziona un reparto per ogni prestazione",
                         "OK");
+                IsEnabled = true;
             });
         }
 

@@ -14,16 +14,24 @@ namespace MCup.Views
         {
             InitializeComponent();
         }
-        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            tapIconaPrenotazioni.IsEnabled = true;
+            tapIconaAppuntamenti.IsEnabled = true;
+            tapIconaContatti.IsEnabled = true;
+        }
         //Metodo per avviare la page dell'icona Prenotazioni
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            disableMultiTouch();
             Navigation.PushAsync(new FormPrenotazione());
         }
 
         //Metodo per avviare la page dell'icona Appuntamenti
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
+            disableMultiTouch();
             Navigation.PushAsync(new GestioneAppuntamenti());
         }
 
@@ -37,7 +45,14 @@ namespace MCup.Views
 
         private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
+            disableMultiTouch();
             Navigation.PushAsync(new ListaContatti());
+        }
+        private void disableMultiTouch()
+        {
+            tapIconaPrenotazioni.IsEnabled = false;
+            tapIconaAppuntamenti.IsEnabled = false;
+            tapIconaContatti.IsEnabled = false;
         }
     }
 }

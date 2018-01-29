@@ -25,6 +25,7 @@ namespace MCup.ModelView
         private bool isvisible; //variabile booleana utilizzata per gestire la proprietà IsVisible dell'activity indicator
         private bool loginisvisible;
         private bool signupisvisible;
+        private bool isenabled;
 
         //Command utilizzato per il tentativo di accesso ai servizi da parte dell'utente
         public ICommand effettuaLogin { protected set; get; }
@@ -69,6 +70,16 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 isvisible = value;
+            }
+        }
+
+        public bool IsEnabled
+        {
+            get { return isenabled; }
+            set
+            {
+                OnPropertyChanged();
+                isenabled = value;
             }
         }
 
@@ -148,10 +159,12 @@ namespace MCup.ModelView
             Username = utente.username = utente.recuperaUserName();
             LoginIsVisible = true;
             SignupIsVisible = true;
+            IsEnabled = true;
             IsVisible = false; //L'activity indicator non è visibile
             IsBusy = false; //L'activity indicator non si trova nello stato IsRunning
             effettuaLogin = new Command(async () => //Definisce il metodo del Command effettuaLogin che gestisce il tentativo di login da parte dell'utente
             {
+                IsEnabled = false;
                 if (string.IsNullOrEmpty(Username)) //Controlla che il campo codice fiscale non sia nullo o vuoto
                 {
                     NameErrorText = "Attenzione Username non inserito correttamente";
@@ -192,6 +205,7 @@ namespace MCup.ModelView
                     IsVisible = false; //L'activity indicator non è visibile
                     LoginIsVisible = true;
                     SignupIsVisible = true;
+                    IsEnabled = true;
                 }
             });
             showPass = new Command(() =>

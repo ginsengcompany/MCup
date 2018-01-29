@@ -41,7 +41,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             <StackLayout BackgroundColor="White">
-                <Button Text="Continua" Command="{Binding ContinuaPrenotazione}" BackgroundColor="Red" TextColor="White" IsVisible="{Binding ButtonIsVisible}"/>
+                <Button Text="Continua" Command="{Binding ContinuaPrenotazione}" BackgroundColor="Red" TextColor="White" IsVisible="{Binding ButtonIsVisible}" IsEnabled="{Binding IsEnabled}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

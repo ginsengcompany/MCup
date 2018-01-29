@@ -148,7 +148,7 @@ namespace MCup.ModelView
             });
             for (int i = 0; i < contacts.contatti.Count; i++)
             {
-                
+                contacts.contatti[i].nomeCompletoConCodiceFiscale = contacts.contatti[i].nome + " " + contacts.contatti[i].cognome + " " + contacts.contatti[i].codice_fiscale;
                 temp.Add(contacts.contatti[i]);
                
             }
