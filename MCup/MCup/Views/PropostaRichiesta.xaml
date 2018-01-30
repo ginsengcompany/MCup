@@ -8,12 +8,12 @@
     Title="Richiesta proposta"
     NavigationPage.HasNavigationBar="{Binding Visible}">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" BackgroundColor="white">
+        <StackLayout Orientation="Vertical" BackgroundColor="white" Padding="0,25,0,0">
             <ActivityIndicator IsVisible="{Binding IsVisible}" IsRunning="{Binding IsBusy}"/>
-            <ListView BackgroundColor="White" HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="FillAndExpand" x:Name="lst" ItemsSource="{Binding ListPrenotazioni}">
+            <ListView  HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="FillAndExpand" x:Name="lst" ItemsSource="{Binding ListPrenotazioni}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <customControls:ExtendedViewCell SelectedBackgroundColor="Transparent">
+                        <customControls:ExtendedViewCell SelectedBackgroundColor="White">
                             <ViewCell.View>
                                 <StackLayout Orientation="Vertical" x:Name="Item">
                                     <Grid>
@@ -30,31 +30,31 @@
                                                 <Label Text="Reparto:" TextColor="Red"  VerticalOptions="Start" />
                                                 <Label Text="{Binding descReparto}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
                                             </StackLayout>
-                                            <StackLayout Orientation="Horizontal">
+                                            <StackLayout Orientation="Vertical">
                                                 <Label Text="Data dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
-                                                <Label Text="{Binding dataAppuntamento}" TextColor="Black" VerticalOptions="End" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                                <Label Text="{Binding dataAppuntamento}" TextColor="Black" VerticalOptions="End" FontSize="Medium"  FontAttributes="Italic"/>
                                             </StackLayout>
-                                            <StackLayout Orientation="Horizontal">
+                                            <StackLayout Orientation="Vertical">
                                                 <Label Text="Orario dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
-                                                <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Italic"/>
+                                                <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium"  FontAttributes="Italic"/>
                                             </StackLayout>
                                         </StackLayout>
                                         <StackLayout Grid.Column="1" IsVisible="{Binding VisibleButton}">
+                                            
                                             <Button 
-                                                    Text="Disponibilità successiva oraria" 
-                                                    TextColor="White" 
-                                                    BackgroundColor="#ff0000" 
-                                                    HeightRequest="80" 
+                                                    Text="Orario Successivo" 
+                                                    TextColor="Red" 
+                                                    HeightRequest="80"
                                                     VerticalOptions="Start" 
+                                                   
                                                     BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}"
                                                     IsEnabled="{Binding IsEnabled}"
                                                     Command="{Binding cambiaOra}" 
                                                     CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                     
                                                 />
-                                            <Button Text="Disponibilità successiva data" 
-                                                        TextColor="White" 
-                                                        BackgroundColor="#ff0000" 
+                                            <Button Text="Data successiva" 
+                                                        TextColor="Red" 
                                                         HeightRequest="80" 
                                                         VerticalOptions="End" 
                                                         BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
@@ -62,6 +62,7 @@
                                                         Command="{Binding cambiaData}" 
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                         />
+                                          
 
                                         </StackLayout>
                                         <Label Text="{Binding EsitoPrenotazione}"
