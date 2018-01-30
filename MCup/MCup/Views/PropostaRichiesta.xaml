@@ -13,7 +13,7 @@
             <ListView BackgroundColor="White" HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="FillAndExpand" x:Name="lst" ItemsSource="{Binding ListPrenotazioni}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <customControls:ExtendedViewCell SelectedBackgroundColor="White">
+                        <customControls:ExtendedViewCell SelectedBackgroundColor="Transparent">
                             <ViewCell.View>
                                 <StackLayout Orientation="Vertical" x:Name="Item">
                                     <Grid>

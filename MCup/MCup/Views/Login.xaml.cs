@@ -27,5 +27,18 @@ namespace MCup.Views
             await Navigation.PushAsync(new Registrazione()); //Avvia la pagina di registrazione dedicata ai dispositivi Android
         }
 
+        private async void Switch_OnToggled(object sender, ToggledEventArgs e)
+        {
+            if (e.Value)
+            {
+                App.Current.Properties.Add("flagRimaniLoggato", "true");
+               await Application.Current.SavePropertiesAsync();
+
+            }
+            else
+            {
+                App.Current.Properties["flagRimaniLoggato"] = "false";
+            }
+        }
     }
 }

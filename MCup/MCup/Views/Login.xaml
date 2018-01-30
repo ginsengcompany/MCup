@@ -45,6 +45,10 @@
                 </StackLayout>
                 <StackLayout Padding="75,0,75,0">
                     <Button Text="LOGIN" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding LoginIsVisible}" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="Red"  BorderRadius="20" BorderColor="Red" BorderWidth="3" Command="{Binding effettuaLogin}"/>
+                    <StackLayout Orientation="Horizontal">
+                       <Label Text="Resta connesso" FontSize="Small" HorizontalOptions="Center" TextColor="LightGray"/>
+                        <Switch Toggled="Switch_OnToggled"></Switch>
+                    </StackLayout>
                     <Label Text="Registrati" IsVisible="{Binding SignupIsVisible}" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" Margin="10">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>

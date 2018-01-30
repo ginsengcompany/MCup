@@ -208,6 +208,7 @@ namespace MCup.ModelView
                               else //Se l'utente non ha ancora scelto la sua struttura preferita
                               App.Current.MainPage = new ListaStrutture("Login"); //Avvia la pagina per la scelta di essa*/
                         App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
+                        App.flag = "true";
                     }
                     IsBusy = false; //L'activity indicator non è in stato IsRunning
                     IsVisible = false; //L'activity indicator non è visibile

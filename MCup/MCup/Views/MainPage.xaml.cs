@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MCup.Model;
 using Xamarin.Forms;
 
 namespace MCup.Views
@@ -42,10 +43,8 @@ namespace MCup.Views
             tokNot.tokenNotification = "";
             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
             bool res = await connessione.PostJson(URL.updateTokenNotifiche, tokNot, App.Current.Properties["tokenLogin"].ToString());
-            if (Device.RuntimePlatform == Device.Android)
-                App.Current.MainPage = new NavigationPage(new Login());
-            else
-                App.Current.MainPage = new NavigationPage(new LoginIoS());
+            App.Current.MainPage = new NavigationPage(new Login());
+            App.flag = "false";
         }
 
         private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
