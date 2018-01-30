@@ -43,6 +43,7 @@ namespace MCup.Views
             tokNot.tokenNotification = "";
             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
             bool res = await connessione.PostJson(URL.updateTokenNotifiche, tokNot, App.Current.Properties["tokenLogin"].ToString());
+            Application.Current.Properties["flagRimaniLoggato"]= "False";
             App.Current.MainPage = new NavigationPage(new Login());
         }
 

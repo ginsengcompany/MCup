@@ -20,7 +20,7 @@ namespace MCup.Views
         public LoginIoS()
         {
             InitializeComponent();
-            BindingContext = new LoginModelView(); //Questa pagina utilizza l'MWWM ed effettua il binding con la classe LoginModelView
+            //BindingContext = new LoginModelView(true); //Questa pagina utilizza l'MWWM ed effettua il binding con la classe LoginModelView
         }
         private async void vaiRegistrazione(object sender, System.EventArgs e)
         {
