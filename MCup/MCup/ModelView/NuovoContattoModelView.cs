@@ -21,15 +21,127 @@ namespace MCup.ModelView
 
         private Contatto contatto; //Oggetto che astrae l'utenza del cliente
 
-        private string nameErrorTextNome, nameErrorTextCognome, nameErrorTextCodice;
-
         private List<Comune> listaComuniResidenza, listaComuniNascita;
 
         private List<StatoCivile> listaStatoCivile = new List<StatoCivile>();
 
         private List<string> province;
 
-        public string nameerrortextdatanascita, nameErrorTextLuogoNascita, nameErrorTextProvincia, nameErrorTextComuneResidenza, nameErrorTextTelefono;
+        #region Boolean_di_Controllo
+        ///<summary>Boolean per controllo errore</summary> 
+        //variabili private
+        private Boolean nameErrorNome = false,
+                        nameErrorCognome = false,
+                        nameErrorDataNascita = false,
+                        nameErrorProvinciaNascita = false,
+                        nameErrorComuneNascita = false,
+                        nameErrorProvinciaResidenza = false,
+                        nameErrorComuneResidenza = false,
+                        nameErrorStatoCivile=false,
+                        nameErrorTelefono = false,
+                        nameErrorSesso = false,
+                        nameErrorCodFiscale = false;
+        //variabili publiche per Binding
+        public Boolean NameErrorNome //proprietà per il NameErrorNome
+        {
+            get { return nameErrorNome; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorNome = value;
+            }
+        }
+        public Boolean NameErrorCognome //proprietà per il NameErrorCognome
+        {
+            get { return nameErrorCognome; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorCognome = value;
+            }
+        }
+        public Boolean NameErrorDataNascita //proprietà per il NameErrorDataNascita
+        {
+            get { return nameErrorDataNascita; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorDataNascita = value;
+            }
+        }
+        public Boolean NameErrorProvinciaNascita //proprietà per il NameErrorProvinciaNascita
+        {
+            get { return nameErrorProvinciaNascita; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorProvinciaNascita = value;
+            }
+        }
+        public Boolean NameErrorComuneNascita //proprietà per il NameErrorComuneNascita
+        {
+            get { return nameErrorComuneNascita; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorComuneNascita = value;
+            }
+        }
+        public Boolean NameErrorProvinciaResidenza //proprietà per il NameErrorProvinciaResidenza
+        {
+            get { return nameErrorProvinciaResidenza; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorProvinciaResidenza = value;
+            }
+        }
+        public Boolean NameErrorComuneResidenza //proprietà per il NameErrorComuneResidenza
+        {
+            get { return nameErrorComuneResidenza; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorComuneResidenza = value;
+            }
+        }
+        public Boolean NameErrorTelefono //proprietà per il NameErrorTelefono
+        {
+            get { return nameErrorTelefono; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTelefono = value;
+            }
+        }
+        public Boolean NameErrorSesso //proprietà per il NameErrorSesso
+        {
+            get { return nameErrorSesso; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorSesso = value;
+            }
+        }
+        public Boolean NameErrorStatoCivile //proprietà per il NameErrorStatoCivile
+        {
+            get { return nameErrorStatoCivile; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorStatoCivile = value;
+            }
+        }
+        public Boolean NameErrorCodFiscale //proprietà per il NameErrorCodFiscale
+        {
+            get { return nameErrorCodFiscale; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorCodFiscale = value;
+            }
+        }
+        #endregion
 
         public ICommand registraNuovoContatto { protected set; get; } //Command per il tentativo di registrazione dell'utenza
         public ICommand annullaRegistrazioneNuovoContatto { protected set; get; }
@@ -74,24 +186,6 @@ namespace MCup.ModelView
             }
         }
 
-        public string NameTextErrorComuneResidenza
-        {
-            get { return nameErrorTextComuneResidenza; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorTextComuneResidenza = value;
-            }
-        }
-        public string NameTextErrorTelefono
-        {
-            get { return nameErrorTextTelefono; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorTextTelefono = value;
-            }
-        }
         public string NomeNuovoContatto //Proprietà relativa al campo nome
         {
             get { return contatto.nome; }
@@ -151,86 +245,7 @@ namespace MCup.ModelView
                 province = value;
             }
         }
-
-        public string NameErrorTextNome
-        {
-            get { return nameErrorTextNome; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorTextNome = value;
-            }
-        }
-
-        public string NameErrorTextCognome
-        {
-            get { return nameErrorTextCognome; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorTextCognome = value;
-            }
-        }
-
-        public string NameErrorTextCodice
-        {
-            get { return nameErrorTextCodice; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorTextCodice = value;
-            }
-        }
-
-        public string NameErrorTextDataNascita
-        {
-            get { return nameerrortextdatanascita; }
-            set
-            {
-                OnPropertyChanged();
-                nameerrortextdatanascita = value;
-            }
-        }
-
-        public string NameErrorTextLuogoNascita
-        {
-            get { return nameErrorTextLuogoNascita; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorTextLuogoNascita = value;
-            }
-        }
-
-        public string NameErrorTextComuneResidenza
-        {
-            get { return nameErrorTextComuneResidenza; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorTextComuneResidenza = value;
-            }
-        }
-
-        public string NameErrorTextTelefono
-        {
-            get { return nameErrorTextTelefono; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorTextTelefono = value;
-            }
-        }
-        public string NameErrorTextProvincia
-        {
-            get { return nameErrorTextProvincia; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorTextProvincia = value;
-            }
-        }
-
+        
         public List<Comune> ListaComuniResidenza
         {
             get { return listaComuniResidenza; }
@@ -270,10 +285,19 @@ namespace MCup.ModelView
             });
             registraNuovoContatto = new Command(async () =>
             {
+                #region controlloErrori
                 //Imposta gli errori ad una stringa vuota
-                NameErrorTextNome = String.Empty;
-                NameErrorTextCognome = String.Empty;
-                NameErrorTextCodice = String.Empty;
+                NameErrorNome = 
+                NameErrorCognome = 
+                NameErrorDataNascita = 
+                NameErrorProvinciaNascita =
+                NameErrorComuneNascita = 
+                NameErrorProvinciaResidenza = 
+                NameErrorComuneResidenza =
+                NameErrorStatoCivile =
+                NameErrorTelefono = 
+                NameErrorSesso = 
+                NameErrorCodFiscale = false;
 
                 /*
                 * variabile locale utilizzata per verificare se l'utente ha inserito i campi obbligatori per effettuare il tentativo di registrazione.
@@ -281,93 +305,117 @@ namespace MCup.ModelView
                 * Ogni qualvota che uno dei seguenti controlli non andasse a buon fine viene assegnata a questa variabile il valore false
                 */
                 bool controllPass = true;
-                if (string.IsNullOrEmpty(comune_residenza))
+                ///<summary>
+                ///Controllo se i capi sono nulli, se uno è nulla la registrazione non verrà effettuata e il campo o i campi vuoi verragno segnalati
+                ///grazie alla label di errore.
+                /// </summary>
+                
+                if (string.IsNullOrEmpty(NomeNuovoContatto))
                 {
-                    NameTextErrorComuneResidenza = "Attenzione, campo obbligatorio";
+                    NameErrorNome = true;
                     controllPass = false;
                 }
                 else
                 {
-                    nameErrorTextComuneResidenza = string.Empty;
+                    NameErrorNome = false;
+                }
+                if (string.IsNullOrEmpty(CognomeNuovoContatto))
+                {
+                    NameErrorCognome = true;
+                    controllPass = false;
+                }
+                else
+                {
+                    NameErrorCognome = false;
+                }
+                if (string.IsNullOrEmpty(contatto.data_nascita))
+                {
+                    NameErrorDataNascita = true;
+                    controllPass = false;
+                }
+                else
+                {
+                    NameErrorDataNascita = false;
+                }
+                //non so dove trovare la provincia
+               /* if (string.IsNullOrEmpty())
+                {
+                    NameErrorProvinciaNascita = true;
+                    controllPass = false;
+                }
+                else
+                {
+                    NameErrorProvinciaNascita = false;
+                }*/
+                if (string.IsNullOrEmpty(contatto.luogo_nascita))
+                {
+                    NameErrorComuneNascita = true;
+                    controllPass = false;
+                }
+                else
+                {
+                    NameErrorComuneNascita = false;
+                }
+                /*
+                if (string.IsNullOrEmpty(provinciaSelezionata.provincia))
+                {
+                    NameErrorProvinciaResidenza = true;
+                    controllPass = false;
+                }
+                else
+                {
+                    NameErrorProvinciaResidenza = false;
+                }*/
+                if (string.IsNullOrEmpty(contatto.comune_residenza))
+                {
+                    NameErrorComuneResidenza = true;
+                    controllPass = false;
+                }
+                else
+                {
+                    NameErrorComuneResidenza = false;
+                }
+                if (string.IsNullOrEmpty(contatto.statocivile))
+                {
+                    NameErrorStatoCivile = true;
+                    controllPass = false;
+                }
+                else
+                {
+                    NameErrorStatoCivile = false;
                 }
                 if (string.IsNullOrEmpty(telefono))
                 {
-                    NameErrorTextTelefono = "Attenzione, campo obbligatorio";
+                    NameErrorTelefono = true;
                     controllPass = false;
                 }
                 else
                 {
-                    nameErrorTextTelefono = string.Empty;
+                    NameErrorTelefono = false;
                 }
-                if (string.IsNullOrEmpty(NomeNuovoContatto)) //Controlla se il campo nome è vuoto o null
+                if (sceltaSesso.Equals(' '))
                 {
-                    NameErrorTextNome = "Attenzione, campo obbligatorio";
+                    NameErrorSesso = true;
                     controllPass = false;
                 }
                 else
                 {
-                    NameErrorTextNome = string.Empty;
+                    NameErrorSesso = false;
                 }
-                if (string.IsNullOrEmpty(CognomeNuovoContatto)) //Controlla se il campo cognome è vuoto o null
+                if (string.IsNullOrEmpty(CodiceFiscaleNuovoContatto))
                 {
-                    NameErrorTextCognome = "Attenzione, campo obbligatorio";
+                    NameErrorCodFiscale = true;
                     controllPass = false;
                 }
                 else
                 {
-                    NameErrorTextCognome = string.Empty;
+                    NameErrorCodFiscale = false;
                 }
-                if (string.IsNullOrEmpty(CognomeNuovoContatto)) //Controlla se il campo cognome è vuoto o null
-                {
-                    NameTextErrorComuneResidenza = "Attenzione, campo obbligatorio";
-                    controllPass = false;
-                }
-                else
-                {
-                    NameTextErrorComuneResidenza = string.Empty;
-                }
-                if (string.IsNullOrEmpty(CognomeNuovoContatto)) //Controlla se il campo cognome è vuoto o null
-                {
-                    NameTextErrorTelefono = "Attenzione, campo obbligatorio";
-                    controllPass = false;
-                }
-                else
-                {
-                    NameTextErrorTelefono = string.Empty;
-                }
-                if (string.IsNullOrEmpty(CodiceFiscaleNuovoContatto)) //Controlla se il campo codice fiscale è vuoto o null
-                {
-                    NameErrorTextCodice = "Attenzione, campo obbligatorio";
-                    controllPass = false;
-                }
-                else
-                {
-                    NameErrorTextCodice = string.Empty;
-                }
-                if (string.IsNullOrEmpty(Data_nascitaNuovoContatto)) //Controlla se il campo data di nascita è vuoto o null
-                {
-                    NameErrorTextDataNascita = "Attenzione, campo obbligatorio";
-                    controllPass = false;
-                }
-                else
-                {
-                    NameErrorTextDataNascita = string.Empty;
-                }
-                if (string.IsNullOrEmpty(Luogo_nascitaNuovoContatto)) //Controlla se il campo luogo di nascita è vuoto o null
-                {
-                    NameErrorTextLuogoNascita = "Attenzione, campo obbligatorio";
-                    controllPass = false;
-                }
-                else
-                {
-                    NameErrorTextLuogoNascita = string.Empty;
-                }
-                if (contatto.sesso.Equals(' ')) //Controlla se il campo sesso è vuoto
-                {
-                    controllPass = false;
-                }
-                if (string.IsNullOrEmpty(contatto.codStatoCivile))
-                    controllPass = false;
+
+                #endregion
+
+                //Se controllPass è rimasto True dopo il controllo errori allora effettuo la procedura di registrazione
+
                 if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
                 {
                     string giorno, mese, anno;

@@ -18,32 +18,44 @@
             </StackLayout>
             <ScrollView >
                 <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="20">
+                    
                     <Label Text="Nome" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Entry Placeholder="Inserire nome" Text="{Binding NomeNuovoContatto}" WidthRequest="250"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorNome}" TextColor="Red" FontSize="Small"/>
+
                     <Label Text="Cognome" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Entry Placeholder="Inserire cognome" Text="{Binding CognomeNuovoContatto}" WidthRequest="250"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCognome}" TextColor="Red" FontSize="Small"/>
 
                     <Label Text="Data di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <DatePicker x:Name="pickerNascita" Date="{Binding Data_nascitaNuovoContatto}" />
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorDataNascita}" TextColor="Red" FontSize="Small"/>
 
 
                     <Label Text="Provincia di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Picker Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_SelectedIndexChangedProvinciaNascita" ItemsSource="{Binding Province}"/>
-
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaNascita}" TextColor="Red" FontSize="Small"/>
+                    
                     <Label Text="Comune di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
                     <Picker x:Name="PickerComuneNascita" Title="Seleziona il comune di nascita" SelectedIndexChanged="Picker_SelectedIndexChangedComuneNascita" ItemsSource="{Binding ListaComuniNascita}" ItemDisplayBinding="{Binding nome}"/>
-                   
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneNascita}" TextColor="Red" FontSize="Small"/>
+
                     <Label Text="Provincia di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Picker Title="Seleziona la provincia di residenza" SelectedIndexChanged="Picker_SelectedIndexChangedProvinciaResidenza" ItemsSource="{Binding Province}" />
-
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaResidenza}" TextColor="Red" FontSize="Small"/>
+                    
                     <Label Text="comune di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Picker x:Name="PickerComuneResidenza" Title="Seleziona il comune di residenza" SelectedIndexChanged="Picker_SelectedIndexChangedComuneResidenza" ItemsSource="{Binding ListaComuniResidenza}" ItemDisplayBinding="{Binding nome}"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneResidenza}" TextColor="Red" FontSize="Small"/>
 
-                    <Label Text="comune di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Label Text="StatoCivile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Picker Title="Seleziona lo stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"/>
-
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorStatoCivile}" TextColor="Red" FontSize="Small"/>
+                    
                     <Label Text="Numero Telefonia mobile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Entry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" Keyboard="Numeric" WidthRequest="250"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorTelefono}" TextColor="Red" FontSize="Small"/>
+                    
 
                     <Label Text="Sesso" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
@@ -54,6 +66,8 @@
                             </x:Array>
                         </Picker.ItemsSource>
                     </Picker>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorSesso}" TextColor="Red" FontSize="Small"/>
+                    
                     <Label Text="Codice Fiscale" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -70,6 +84,8 @@
                             </Image.GestureRecognizers>
                         </Image>
                     </Grid>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCodFiscale}" TextColor="Red" FontSize="Small"/>
+                    
                 </StackLayout>
             </ScrollView>
         </StackLayout>
