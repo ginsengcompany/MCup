@@ -19,7 +19,7 @@
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="2.5*"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <StackLayout Grid.Column="0">
                                             <StackLayout Orientation="Vertical" >
@@ -39,22 +39,22 @@
                                                 <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium"  FontAttributes="Italic"/>
                                             </StackLayout>
                                         </StackLayout>
-                                        <StackLayout Grid.Column="1" IsVisible="{Binding VisibleButton}">
-                                            
+                                        <StackLayout Grid.Column="1" IsVisible="{Binding VisibleButton}" Padding="0,15,0,0">
                                             <Button 
                                                     Text="Orario Successivo" 
-                                                    TextColor="Red" 
+                                                    TextColor="White" 
+                                                BackgroundColor="Red"
                                                     HeightRequest="80"
+                                                WidthRequest="100"
                                                     VerticalOptions="Start" 
-                                                   
                                                     BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}"
                                                     IsEnabled="{Binding IsEnabled}"
                                                     Command="{Binding cambiaOra}" 
                                                     CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                                    
                                                 />
                                             <Button Text="Data successiva" 
-                                                        TextColor="Red" 
+                                                        TextColor="White" 
+                                                    BackgroundColor="Red"
                                                         HeightRequest="80" 
                                                         VerticalOptions="End" 
                                                         BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
@@ -62,8 +62,6 @@
                                                         Command="{Binding cambiaData}" 
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                         />
-                                          
-
                                         </StackLayout>
                                         <Label Text="{Binding EsitoPrenotazione}"
                                                VerticalOptions="Center"
