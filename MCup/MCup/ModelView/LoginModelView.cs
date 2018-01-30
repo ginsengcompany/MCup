@@ -18,7 +18,7 @@ namespace MCup.ModelView
     public class LoginModelView : INotifyPropertyChanged
     {
         private Utente utente; //Oggetto che astrae l'utenza del cliente e che nel caso in cui la login vada a buon fine conterrà le informazioni relative all'utente
-        
+        private bool flagLogin = false;
         private string nameErrorTextPassword; 
         private bool isbusy; //variabile booleana utilizzata per gestire la proprietà IsRunning dell'activity indicator
         private string nameErrorText;
@@ -208,15 +208,22 @@ namespace MCup.ModelView
                               else //Se l'utente non ha ancora scelto la sua struttura preferita
                               App.Current.MainPage = new ListaStrutture("Login"); //Avvia la pagina per la scelta di essa*/
                         App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
-                        App.flag = "true";
+                        Application.Current.Properties["flagRimaniLoggato"] = flagLogin.ToString();
+                        await Application.Current.SavePropertiesAsync();
+
                     }
+                   
+
                     IsBusy = false; //L'activity indicator non è in stato IsRunning
                     IsVisible = false; //L'activity indicator non è visibile
                     LoginIsVisible = true;
                     SignupIsVisible = true;
                     IsEnabled = true;
                 }
-            });
+                else
+                IsEnabled = true;
+            } 
+            );
             showPass = new Command(() =>
             {
                 if (ShowPassword == true)
@@ -229,6 +236,10 @@ namespace MCup.ModelView
         private class TokenNotification
         {
             public string tokenNotification;
+        }
+        public void modificaFlag(bool flag)
+        {
+            flagLogin = flag;
         }
 
     }

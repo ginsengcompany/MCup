@@ -60,7 +60,7 @@ namespace MCup.Model
         }
 
 
-        /**
+ /**
  * Questo metodo permette di salvare le credenziali (in particolare l'username) dell'utente
  * all'interno del dizionario gestito dal metodo statico Application.Current.Properties.Add
  * */
@@ -106,8 +106,8 @@ namespace MCup.Model
         public void cancellaEdAggiornaUsername(string nuovo)
         {
             this.username = nuovo;
-            Application.Current.Properties.Clear();
-            Application.Current.Properties.Add("username", nuovo);
+            //Application.Current.Properties.Clear();
+            Application.Current.Properties["username"]= nuovo;
             Application.Current.SavePropertiesAsync();
         }
     }

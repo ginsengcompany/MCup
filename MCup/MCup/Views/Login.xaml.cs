@@ -12,10 +12,13 @@ namespace MCup.Views
 {
     public partial class Login : ContentPage
     {
+        private Boolean flaglogin = false;
+        private LoginModelView z = new LoginModelView();
         public Login()
         {
             InitializeComponent();
-            BindingContext = new LoginModelView(); //Questa pagina utilizza l'MWWM ed effettua il binding con la classe LoginModelView
+            
+            BindingContext = z; //Questa pagina utilizza l'MWWM ed effettua il binding con la classe LoginModelView
 
         }
 
@@ -31,14 +34,14 @@ namespace MCup.Views
         {
             if (e.Value)
             {
-                App.Current.Properties.Add("flagRimaniLoggato", "true");
-               await Application.Current.SavePropertiesAsync();
-
+                flaglogin = true;
+               
             }
             else
             {
-                App.Current.Properties["flagRimaniLoggato"] = "false";
+                flaglogin = false;
             }
+            z.modificaFlag(flaglogin);
         }
     }
 }
