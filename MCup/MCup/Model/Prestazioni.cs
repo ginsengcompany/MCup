@@ -14,6 +14,7 @@ namespace MCup.Model
         public string data_inizio { get; set; }
         public Reparto reparti { get; set; }
         public bool erogabile { get; set; }
+        public string codnazionale { get; set; }
         public string struttura { get; set; } = "030001";
 
 
@@ -26,6 +27,7 @@ namespace MCup.Model
             this.desprest = prestazioni.desprest;
             this.reparti = prestazioni.reparti;
             this.data_inizio = prestazioni.data_inizio;
+            this.codnazionale = prestazioni.codnazionale;
         }
 
         public Prestazioni(string codprest, string desbprest, string desprest, bool erogabile)
@@ -34,6 +36,7 @@ namespace MCup.Model
             this.desbprest = desbprest;
             this.desprest = desprest;
             this.erogabile = erogabile;
+            this.codnazionale = codnazionale;
             this.reparti = new Reparto();
         }
     }

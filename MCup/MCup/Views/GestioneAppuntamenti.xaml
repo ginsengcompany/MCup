@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:costomControls="clr-namespace:MCup.CostomControls;assembly=MCup"
              x:Class="MCup.Views.GestioneAppuntamenti" 
+             BackgroundColor="White"
              Title="Appuntamenti">
     <ContentPage.Content>
         <StackLayout>
             <Picker TextColor="Red" Title="Seleziona il contatto di cui vuoi vedere gli appuntamenti" HorizontalOptions="CenterAndExpand" ItemsSource="{Binding Contatti}" ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" VerticalOptions="Center" SelectedIndexChanged="Picker_OnSelectedIndexChanged" />
             <Label Text="Nessuna prestazione disponibile" IsVisible="{Binding VisibileLabel}" HorizontalOptions="Center" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
-            <ListView ItemsSource="{Binding Appuntamenti}" HasUnevenRows="True"  ItemTapped="ListView_ItemTapped" IsVisible="{Binding Visible}" SeparatorVisibility="Default" SeparatorColor="Black">
+            <ListView ItemsSource="{Binding Appuntamenti}" BackgroundColor="White" HasUnevenRows="True"  ItemTapped="ListView_ItemTapped" IsVisible="{Binding Visible}" SeparatorVisibility="Default" SeparatorColor="Black">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <costomControls:ExtendedViewCell SelectedBackgroundColor="White" >

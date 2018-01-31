@@ -18,6 +18,7 @@ namespace MCup.ModelView
     public class VerificaRicettaModelView : INotifyPropertyChanged
     {
         private List<PrestazioniTemp> listaPrestazioni = new List<PrestazioniTemp>();
+        private bool isBusy;
         private string nomeAssistito, cognomeAssistito, codiceRicetta;
         private Ricetta ricetta;
         private List<PrestazioniTemp> prestazioni; //Lista delle prestazioni contenute nella ricetta
@@ -59,6 +60,16 @@ namespace MCup.ModelView
             }
         }
 
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                OnPropertyChanged();
+                isBusy = value;
+            }
+
+        }
         public string CognomeAssistito
         {
             get { return cognomeAssistito; }
@@ -140,7 +151,11 @@ namespace MCup.ModelView
                 string dataSub = string.Format("{0:dd/MM/yyyy}", data);
                 ListaPrestazioni[i].data_inizio = dataSub;
                 prestazioniDaInviare[i].data_inizio = dataSub;
+                IsBusy = true;
+                IsEnabled = false;
                 temp[i].reparti = await connessione.PostJsonList(URL.RicercadisponibilitaReparti, ListaPrestazioni[i]);
+                IsEnabled = true;
+                IsBusy = false;
                 for (int p=0;p < temp[i].reparti.Count; p++)
                 {
                     if (temp[i].reparti.Count == 1)
@@ -248,6 +263,7 @@ namespace MCup.ModelView
             public string data_inizio { get; set; }
             public List<Reparto> reparti { get; set; }
             public bool erogabile { get; set; }
+            public string codnazionale { get; set; }
             public string struttura { get; set; } = "030001";
             public string title { get; set; }
             public bool enabled { get; set; }
@@ -264,6 +280,7 @@ namespace MCup.ModelView
                 this.desprest = prestazioni.desprest;
                 this.reparti = prestazioni.reparti;
                 this.data_inizio = prestazioni.data_inizio;
+                this.codnazionale = prestazioni.codnazionale;
             }
 
             public Prestazioni estraiPrestazione()

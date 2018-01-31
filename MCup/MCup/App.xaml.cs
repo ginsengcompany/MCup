@@ -15,8 +15,8 @@ namespace MCup
         public App()
         {
             InitializeComponent();
-
-            try
+            MainPage = new NavigationPage(new Login());
+          /*  try
             {
                 if (Application.Current.Properties["flagRimaniLoggato"].ToString().Equals("True")) //controlla se il device su cui l'app viene avviata è IOS o Android
                 {
@@ -29,7 +29,7 @@ namespace MCup
             {
                 Application.Current.Properties.Add("flagRimaniLoggato", "False");
                 MainPage = new NavigationPage(new Login());
-            }
+            }*/
             OneSignal.Current.StartInit("821d395a-09ed-48a4-81b8-4a79971452eb").EndInit();
         }
 

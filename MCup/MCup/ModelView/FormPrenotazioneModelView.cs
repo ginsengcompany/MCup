@@ -260,16 +260,26 @@ namespace MCup.ModelView
             }
             else
                 NameTextErrorCodFisc = "";
-            if (string.IsNullOrEmpty(ricetta.codice_uno) || ricetta.codice_uno.Length != 5)
+            if (string.IsNullOrEmpty(ricetta.codice_uno))
             {
                 NameTextErrorCodUno = "Il campo è obbligatorio";
                 passControl = false;
             }
+            else if (ricetta.codice_uno.Length != 5)
+            {
+                NameTextErrorCodUno = "Il campo deve contentere un codice impegnativa valido";
+                passControl = false;
+            }
             else
                 NameTextErrorCodUno = "";
-            if (string.IsNullOrEmpty(ricetta.codice_due) || ricetta.codice_due.Length != 10)
+            if (string.IsNullOrEmpty(ricetta.codice_due))
             {
                 NameTextErrorCodDue = "Il campo è obbligatorio";
+                passControl = false;
+            }
+            else if (ricetta.codice_due.Length != 10)
+            {
+                NameTextErrorCodDue = "Il campo deve contentere un codice impegnativa valido";
                 passControl = false;
             }
             else

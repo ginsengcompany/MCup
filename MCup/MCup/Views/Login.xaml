@@ -9,46 +9,63 @@
         <StackLayout Orientation="Vertical" Margin="10" Padding="0,0,0,20">
             <StackLayout Orientation="Vertical" >
                 <Image Source="log.png" HorizontalOptions="Center" HeightRequest="200"/>
-                <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Center">
-                    <Image Source="profilo.png" HorizontalOptions="Start"/>
+                <Grid HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+               
+                        <Image Source="profilo.png" VerticalOptions="Center" Grid.Column="0" Grid.Row="0" HeightRequest="50"/>
                         <xfx:XfxEntry 
                             x:Name="entryCodFis"
+                            Grid.Column="1" Grid.Row="0"
                             Placeholder="Inserire Username"     
                             PlaceholderColor="Red"   
                             Text="{Binding Username}" 
                             ErrorText="{Binding NameErrorText}" 
                             ErrorDisplay="Underline"
                             WidthRequest="250"
-                            HorizontalOptions="Center" 
                             VerticalOptions="Center"/>
-                </StackLayout>
-                <StackLayout  Orientation="Horizontal"
-                                  HorizontalOptions="Center">
-                    <Image Source="password.png" HorizontalOptions="Start"/>
+
+                    <Image Source="password.png" VerticalOptions="Center" Grid.Column="0" Grid.Row="1" HeightRequest="50"/>
                         <xfx:XfxEntry 
                             Text="{Binding passWord}" 
                             Placeholder="Inserire Password" 
+                            Grid.Column="1" Grid.Row="1"
                             PlaceholderColor="Red" 
                             TextColor="Black"
                             ErrorText="{Binding NameErrorTextPassword}" 
                             ErrorDisplay="Underline"
                             IsPassword="{Binding ShowPassword}"
-                            HorizontalOptions="Center" 
+                            VerticalOptions="Center"
                             WidthRequest="250">
                         </xfx:XfxEntry>
-                    <Image Source="eye.png" VerticalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding showPass}"></TapGestureRecognizer>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
+                    <Image Source="eye.png" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="2" Grid.Row="1">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding showPass}"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                </Grid>
+               
                 <StackLayout Padding="75,0,75,0">
                     <Button Text="LOGIN" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding LoginIsVisible}" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="Red"  BorderRadius="20" BorderColor="Red" BorderWidth="3" Command="{Binding effettuaLogin}"/>
-                    <StackLayout Orientation="Horizontal">
-                       <Label Text="Resta connesso"  FontSize="Small" HorizontalOptions="Center" TextColor="Black"/>
-                        <Switch Toggled="Switch_OnToggled" HorizontalOptions="Center"></Switch>
-                    </StackLayout>
+                   <!-- <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Resta connesso"  FontSize="Small" HorizontalOptions="Center" Grid.Column="0" TextColor="Black"/>
+                            <Switch Toggled="Switch_OnToggled" HorizontalOptions="Center" Grid.Column="1"></Switch>
+                        </Grid>
+                      
+                    </StackLayout>-->
                     <Label Text="Registrati" IsVisible="{Binding SignupIsVisible}" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" Margin="10">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>

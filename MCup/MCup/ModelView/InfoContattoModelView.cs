@@ -156,7 +156,6 @@ namespace MCup.ModelView
                 string response = await restElimina.PostJson(URL.EliminaContatto, utente, App.Current.Properties["tokenLogin"].ToString());
                 await App.Current.MainPage.DisplayAlert("Eliminazione", restElimina.warning, "OK");
                 App.Current.MainPage = new MenuPrincipale();
-                // await App.Current.MainPage.Navigation.PopAsync();
             });
          }
 

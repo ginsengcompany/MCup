@@ -26,6 +26,11 @@ namespace MCup.Views
             BindingContext = modelView;
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
         public void visualizzaDatePicker(PrenotazioneProposta item)
         {
             itemDatePicker = item;

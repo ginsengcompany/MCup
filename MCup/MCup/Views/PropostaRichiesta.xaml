@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="white" Padding="0,25,0,0">
             <ActivityIndicator IsVisible="{Binding IsVisible}" IsRunning="{Binding IsBusy}"/>
-            <ListView  HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="FillAndExpand" x:Name="lst" ItemsSource="{Binding ListPrenotazioni}">
+            <ListView IsEnabled="{Binding IsEnabled}" HasUnevenRows="true" HorizontalOptions="Center" VerticalOptions="FillAndExpand" x:Name="lst" ItemsSource="{Binding ListPrenotazioni}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <customControls:ExtendedViewCell SelectedBackgroundColor="White">
@@ -39,7 +39,7 @@
                                                 <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium"  FontAttributes="Italic"/>
                                             </StackLayout>
                                         </StackLayout>
-                                        <StackLayout Grid.Column="1" IsVisible="{Binding VisibleButton}" Padding="0,15,0,0">
+                                        <StackLayout Grid.Column="1" IsVisible="{Binding VisibleButton}" IsEnabled="{Binding IsEnabled}" Padding="0,15,0,0">
                                             <Button 
                                                     Text="Orario Successivo" 
                                                     TextColor="White" 
@@ -77,6 +77,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <StackLayout VerticalOptions="Center">
+                <ActivityIndicator IsVisible="{Binding IsBusyV}" IsRunning="{Binding IsBusyV}"></ActivityIndicator>
+            </StackLayout>
             <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding Visible}">
                 <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White" Command="{Binding InvioDatiPerPrenotazione}" IsEnabled="{Binding IsEnabled}" />
             </StackLayout>

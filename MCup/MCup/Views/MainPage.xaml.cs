@@ -44,7 +44,8 @@ namespace MCup.Views
             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
             bool res = await connessione.PostJson(URL.updateTokenNotifiche, tokNot, App.Current.Properties["tokenLogin"].ToString());
             Application.Current.Properties["flagRimaniLoggato"]= "False";
-            App.Current.MainPage = new NavigationPage(new Login());
+            Application.Current.MainPage=new NavigationPage(new Login());
+        
         }
 
         private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
