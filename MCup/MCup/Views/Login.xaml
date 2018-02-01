@@ -45,7 +45,7 @@
                             VerticalOptions="Center"
                             WidthRequest="250">
                         </xfx:XfxEntry>
-                    <Image Source="eye.png" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="2" Grid.Row="1">
+                    <Image Source="{Binding ShowPasswordImage}" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="2" Grid.Row="1">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding showPass}"></TapGestureRecognizer>
                             </Image.GestureRecognizers>

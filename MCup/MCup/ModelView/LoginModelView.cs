@@ -28,6 +28,16 @@ namespace MCup.ModelView
         private bool signupisvisible;
         private bool isenabled;
 
+        private ImageSource showPasswordImage = "eye_hide.png";
+        public ImageSource ShowPasswordImage
+        {
+            get { return showPasswordImage; }
+            set
+            {
+                OnPropertyChanged();
+                showPasswordImage = value;
+            }
+        }
         //Command utilizzato per il tentativo di accesso ai servizi da parte dell'utente
         public ICommand effettuaLogin { protected set; get; }
         public ICommand showPass { protected set; get; }
@@ -227,9 +237,17 @@ namespace MCup.ModelView
             showPass = new Command(() =>
             {
                 if (ShowPassword == true)
+                {
+                    ShowPasswordImage = "eye.png";
                     ShowPassword = false;
+                }
+
                 else
+                {
                     ShowPassword = true;
+                    ShowPasswordImage = "eye_hide.png";
+                }
+                   
             });
         }
 
