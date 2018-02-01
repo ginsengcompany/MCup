@@ -10,7 +10,7 @@ namespace MCup.Model
     {
         public string nome { get; set; }
         public string cognome { get; set; }
-        public string codice_fiscale{ get; set;}
+        public string codice_fiscale { get; set; }
         public string data_nascita { get; set; }
         public string luogo_nascita { get; set; }
         public char sesso { get; set; }
@@ -22,6 +22,9 @@ namespace MCup.Model
         public string telefono { get; set; }
         public string codStatoCivile { get; set; }
         public string statocivile { get; set; }
+        public string email { get; set; }
+        public string indirizzores { get; set; }
+
 
         public Contatto()
         {
@@ -39,6 +42,8 @@ namespace MCup.Model
             this.istatComuneNascita = "";
             this.istatComuneResidenza = "";
             this.statocivile = "";
+            this.email = "";
+            this.indirizzores = "";
         }
 
         public Contatto(Contatto contatto)
@@ -57,6 +62,8 @@ namespace MCup.Model
             this.istatComuneNascita = contatto.istatComuneNascita;
             this.istatComuneResidenza = contatto.istatComuneResidenza;
             this.statocivile = contatto.statocivile;
+            this.email = contatto.email;
+            this.email = contatto.indirizzores;
         }
     }
 }

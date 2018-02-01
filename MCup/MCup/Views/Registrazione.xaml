@@ -21,12 +21,12 @@
                         HorizontalOptions="Center"
                         FontSize="Large"/>
                     <Entry 
-                        Placeholder="Inserire nome" 
+                        Placeholder="Inserire Username" 
                         Text="{Binding Username}" 
                         WidthRequest="250"/>
                     <Label 
                         Text="Attenzione, campo obbligatorio" 
-                        IsVisible="{Binding NameErrorTextUsername}" 
+                        IsVisible="{Binding nameErrorUsername}" 
                         TextColor="Red" 
                         FontSize="Small"/>
                 </StackLayout>
@@ -108,41 +108,35 @@
                 </StackLayout>
 
 
-                <Label Text="Data di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                <DatePicker x:Name="pickerNascita" Date="{Binding data_nascita}" Format="dd/MM/yyyy" />
-                <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorDataNascita}" TextColor="Red" FontSize="Small"/>
+                    <Label Text="Data di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <DatePicker x:Name="pickerNascita" Date="{Binding data_nascita}" Format="dd/MM/yyyy" />
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorDataNascita}" TextColor="Red" FontSize="Small"/>
+                
+                    <Label Text="Provincia di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Picker Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaNascita" ItemsSource="{Binding listaProvince}"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaNascita}" TextColor="Red" FontSize="Small"/>
 
 
-
-                <Label Text="Provincia di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                <Picker Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaNascita" ItemsSource="{Binding listaProvince}"/>
-                <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaNascita}" TextColor="Red" FontSize="Small"/>
-
-
-                <Label Text="Comune di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                <Picker x:Name="PickerComuneNascita" Title="Seleziona il comune di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChanged" ItemsSource="{Binding listaComuni}" ItemDisplayBinding="{Binding nome}"/>
-                <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneNascita}" TextColor="Red" FontSize="Small"/>
-
-
-
-              
-            </StackLayout>
+                    <Label Text="Comune di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                    <Picker x:Name="PickerComuneNascita" Title="Seleziona il comune di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChanged" ItemsSource="{Binding listaComuni}" ItemDisplayBinding="{Binding nome}"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneNascita}" TextColor="Red" FontSize="Small"/>
+                </StackLayout>
             </ScrollView>
 
 
-            <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="End" >
+            <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="End" HorizontalOptions="End" >
             <StackLayout.GestureRecognizers>
                 <TapGestureRecognizer Tapped="AvantiSecondaPagina"></TapGestureRecognizer>
             </StackLayout.GestureRecognizers>
             <Label Text="AVANTI"/>
             <Image Source="frecciadx.png"/>
         </StackLayout>
-            <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="Start" >
+            <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="End" HorizontalOptions="Start" >
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="IndietroPrimaPagina"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
-                <Label Text="INDIETRO"/>
                 <Image Source="frecciadx.png" Rotation="180"/>
+                <Label Text="INDIETRO"/>
             </StackLayout>
         </StackLayout>
 
@@ -163,13 +157,17 @@
                 <Picker x:Name="PickerComuneResidenza" Title="Seleziona il comune di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChanged1" ItemsSource="{Binding listaComuniResidenza}" ItemDisplayBinding="{Binding nome}"/>
                 <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneResidenza}" TextColor="Red" FontSize="Small"/>
 
+                <Label Text="Indirizzo" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                <Entry Placeholder="Inserire cognome" Text="{Binding Indirizzo}" WidthRequest="250"/>
+                <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorIndirizzo}" TextColor="Red" FontSize="Small"/>
 
 
                 <Label Text="Numero Telefonia mobile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                 <Entry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" Keyboard="Numeric" WidthRequest="250"/>
                 <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorTelefono}" TextColor="Red" FontSize="Small"/>
 
-
+                <Label Text="Inserisci la tua E-mail" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                <Entry Placeholder="Inserire cognome" Text="{Binding Email}" WidthRequest="250"/>
 
                 <Label Text="StatoCivile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                 <Picker Title="Seleziona lo stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"/>
@@ -197,8 +195,8 @@
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="IndietroSecondaPagina"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
-                <Label Text="INDIETRO"/>
                 <Image Source="frecciadx.png" Rotation="180"/>
+                <Label Text="INDIETRO"/>
             </StackLayout>
         </StackLayout>
         
