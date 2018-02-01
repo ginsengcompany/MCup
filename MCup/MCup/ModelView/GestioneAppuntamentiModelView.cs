@@ -21,7 +21,19 @@ namespace MCup.ModelView
         private Appuntamento date = new Appuntamento();
         private Boolean visibileLabel = false;
         private Boolean visibile = true;
+        private string visi;
 
+
+
+        public string VisibileL
+        {
+            get { return visi; }
+            set
+            {
+                OnPropertyChanged();
+                visi = value;
+            }
+        }
         public Boolean Visibile
         {
             get { return visibile; }
@@ -38,16 +50,6 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 visibileLabel = value;
-            }
-        }
-
-        public Color Colore
-        {
-            get { return colore; }
-            set
-            {
-                OnPropertyChanged();
-                colore = value;
             }
         }
 
@@ -104,6 +106,7 @@ namespace MCup.ModelView
 
         public GestioneAppuntamentiModelView()
         {
+            VisibileL = "false";
             leggiContatti();
         }
 
@@ -133,6 +136,7 @@ namespace MCup.ModelView
                 else
                 {
                     Visibile = true;
+                    VisibileL = "true";
                     VisibileLabel = false;
                 }
             }

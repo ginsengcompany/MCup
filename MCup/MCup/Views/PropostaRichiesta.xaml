@@ -81,10 +81,10 @@
                 <ActivityIndicator IsVisible="{Binding IsBusyV}" IsRunning="{Binding IsBusyV}"></ActivityIndicator>
             </StackLayout>
             <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding Visible}">
-                <Button Text="Conferma Prenotazione" BackgroundColor="Red" TextColor="White" Command="{Binding InvioDatiPerPrenotazione}" IsEnabled="{Binding IsEnabled}" />
+                <Button Text="Conferma Prenotazione" FontSize="Medium" FontAttributes="Bold"  TextColor="Red" Command="{Binding InvioDatiPerPrenotazione}" IsEnabled="{Binding IsEnabled}" />
             </StackLayout>
             <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding VisibleHome}">
-                <Button Text="torna alla home" BackgroundColor="Red" TextColor="White" Command="{Binding TornaAllaHome}" IsEnabled="{Binding IsEnabled}"/>
+                <Button Text="torna alla home" FontSize="Medium" FontAttributes="Bold" TextColor="Red" Command="{Binding TornaAllaHome}" IsEnabled="{Binding IsEnabled}"/>
             </StackLayout>
             <DatePicker IsVisible="False" DateSelected="DatePicker_DateSelected" x:Name="data" Unfocused="data_Unfocused" />
         </StackLayout>
