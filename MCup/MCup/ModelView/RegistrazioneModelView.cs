@@ -41,19 +41,10 @@ namespace MCup.ModelView
             nameErrorComuneResidenza = false,
             nameErrorStatoCivile = false,
             nameErrorTelefono = false,
+            nameErrorIndirizzo = false,
             nameErrorSesso = false,
             nameErrorCodFiscale = false,
             nameErrorUsername=false;
-
-        public Boolean NameErrorTextUsername
-        {
-            get { return nameErrorUsername; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorUsername = value;
-            }
-        }
 
         //variabili publiche per Binding
         public Boolean NameErrorNome //proprietà per il NameErrorNome
@@ -63,6 +54,17 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 nameErrorNome = value;
+            }
+        }
+
+
+        public Boolean NameErrorUsername //proprietà per il NameErrorUsername
+        {
+            get { return nameErrorUsername; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorUsername = value;
             }
         }
         public Boolean NameErrorCognome //proprietà per il NameErrorCognome
@@ -119,6 +121,15 @@ namespace MCup.ModelView
                 nameErrorComuneResidenza = value;
             }
         }
+        public Boolean NameErrorIndirizzo //proprietà per il NameErrorIndirizzo
+        {
+            get { return nameErrorIndirizzo; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorIndirizzo = value;
+            }
+        }
         public Boolean NameErrorTelefono //proprietà per il NameErrorTelefono
         {
             get { return nameErrorTelefono; }
@@ -156,9 +167,7 @@ namespace MCup.ModelView
             }
         }
         #endregion
-
-
-
+        
         public List<StatoCivile> ListaStatoCivile
         {
             get { return listaStatoCivile; }
@@ -181,19 +190,19 @@ namespace MCup.ModelView
             utente.statocivile = stato.descrizione;
         }
 
-        private string confermaPassword,
-            nameErrorTextUsername,
-            nameErrorTextNome,
-            nameErrorTextCognome,
-            nameErrorTextCodice,
-            nameErrorTextPassword,
-            nameErrorTextConfermaPassword;
-
-        public string nameerrortextdatanascita, 
-            nameErrorTextLuogoNascita, 
-            nameErrorTextProvincia, 
-            nameErrorTextComuneResidenza, 
-            nameErrorTextNumeroTelefono;
+        private string  confermaPassword,
+                        nameErrorTextUsername,
+                        nameErrorTextNome,
+                        nameErrorTextCognome,
+                        nameErrorTextCodice,
+                        nameErrorTextPassword,
+                        nameErrorTextConfermaPassword,
+                        nameerrortextdatanascita, 
+                        nameErrorTextLuogoNascita, 
+                        nameErrorTextProvincia, 
+                        nameErrorTextComuneResidenza,
+                        nameErrorTextIndirizzo,
+                        nameErrorTextNumeroTelefono;
 
         public ICommand registrati { protected set; get; } //Command per il tentativo di registrazione dell'utenza
         public ICommand Avanti { protected set; get; }
@@ -275,6 +284,15 @@ namespace MCup.ModelView
                 nameErrorTextNumeroTelefono = value;
             }
         }
+        public string NameErrorTextIndirizzo
+        {
+            get { return nameErrorTextIndirizzo; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextIndirizzo = value;
+            }
+        }
 
         public string NameErrorTextComuneResidenza
         {
@@ -303,6 +321,25 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 utente.nome = value.ToUpper();
+            }
+        }
+
+        public string Indirizzo //Proprietà relativa al campo nome
+        {
+            get { return utente.indirizzores; }
+            set
+            {
+                OnPropertyChanged();
+                utente.indirizzores = value.ToUpper();
+            }
+        }
+        public string Email //Proprietà relativa al campo nome
+        {
+            get { return utente.email; }
+            set
+            {
+                OnPropertyChanged();
+                utente.email = value.ToUpper();
             }
         }
 
@@ -417,6 +454,7 @@ namespace MCup.ModelView
             {
                 NameErrorDataNascita = false;
             }
+
             //non so dove trovare la provincia
             /* if (string.IsNullOrEmpty())
              {
@@ -457,12 +495,12 @@ namespace MCup.ModelView
             bool control = true;
             if (string.IsNullOrEmpty(Username))
             {
-                NameErrorTextUsername = true;
+                NameErrorUsername = true;
                 control = false;
             }
             else
             {
-                NameErrorTextUsername = false;
+                NameErrorUsername = false;
             }
 
             if (string.IsNullOrEmpty(password))
@@ -573,6 +611,7 @@ namespace MCup.ModelView
                 NameErrorStatoCivile =
                 NameErrorTelefono =
                 NameErrorSesso =
+                NameErrorIndirizzo =
                 NameErrorCodFiscale = false;
 
                 /*
@@ -586,14 +625,23 @@ namespace MCup.ModelView
                 /// </summary>
                 bool controllPass = true;
 
+                if (string.IsNullOrEmpty(Indirizzo))
+                {
+                    NameErrorIndirizzo = true;
+                    controllPass = false;
+                }
+                else
+                {
+                    NameErrorIndirizzo = false;
+                }
                 if (string.IsNullOrEmpty(Username))
                 {
-                    NameErrorTextUsername = true;
+                    NameErrorUsername = true;
                     controllPass = true;
                 }
                 else
                 {
-                    NameErrorTextUsername = false;
+                    NameErrorUsername = false;
                 }
 
                 if (string.IsNullOrEmpty(nome))

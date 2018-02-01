@@ -28,6 +28,8 @@ namespace MCup.Views
         {
             InitializeComponent();
             modelView = new RegistrazioneModelView();
+            this.Children.Clear();
+            this.Children.Add(page0);
             BindingContext = modelView; //Questa pagina utilizza l'MWWM, ed effettua il binding delle informazioni con la classe RegistrazioneModelView.
             PickerComuneNascita.IsEnabled = false;
             PickerComuneResidenza.IsEnabled = false;
@@ -104,14 +106,6 @@ namespace MCup.Views
             var a = sender as Picker;
             var b = a.SelectedItem as StatoCivile;
             modelView.StatoCivileScelto(b);
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            this.Children.Clear();
-            this.Children.Add(page0);
-
         }
 
         private async void AvantiPrimaPagina(object sender, EventArgs e)

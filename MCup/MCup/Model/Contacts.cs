@@ -22,6 +22,8 @@ namespace MCup.Model
         public string istatComuneNascita { get; set; }
         public string istatComuneResidenza { get; set; }
         public string statocivile { get; set; }
+        public string email { get; set; }
+        public string indirizzores { get; set; }
 
         public Contacts()
         {
@@ -35,6 +37,8 @@ namespace MCup.Model
             this.comune_residenza = "";
             this.telefono = "";
             this.statocivile = "";
+            this.email = "";
+            this.indirizzores = "";
             contatti = new List<Contatto>();
         }
 
