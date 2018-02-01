@@ -280,6 +280,7 @@ namespace MCup.ModelView
             prestazione.data_inizio = prenotazione.dataAppuntamento;
             prestazione.reparti.codReparto = prenotazione.codReparto;
             prestazione.reparti.unitaOperativa = prenotazione.unitaOperativa;
+            prestazione.reparti.nomeStruttura = prenotazione.nomeStruttura;
             IsBusyV = true;
             nuovaproposta = await connessione.PostJson(URL.PrimaDisponibilita, prestazione);
             IsBusyV = false;
@@ -304,6 +305,7 @@ namespace MCup.ModelView
             prestazione.data_inizio = prenotazione.dataAppuntamento;
             prestazione.reparti.codReparto = prenotazione.codReparto;
             prestazione.reparti.unitaOperativa = prenotazione.unitaOperativa;
+            prestazione.reparti.nomeStruttura = prenotazione.nomeStruttura;
             IsBusyV = true;
             nuovaproposta = await connessione.PostJson(URL.PrimaDisponibilita, prestazione);
             IsBusyV = false;

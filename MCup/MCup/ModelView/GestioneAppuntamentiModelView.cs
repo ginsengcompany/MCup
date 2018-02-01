@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MCup.Model;
 using MCup.Service;
+using Xamarin.Forms;
 
 namespace MCup.ModelView
 {
@@ -14,6 +15,7 @@ namespace MCup.ModelView
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private Contacts contacts;
+        private Color colore;
         private List<Contatto> contatti = new List<Contatto>();
         private List<Appuntamento> appuntamenti = new List<Appuntamento>();
         private Appuntamento date = new Appuntamento();
@@ -39,6 +41,16 @@ namespace MCup.ModelView
             }
         }
 
+        public Color Colore
+        {
+            get { return colore; }
+            set
+            {
+                OnPropertyChanged();
+                colore = value;
+            }
+        }
+
         public List<Appuntamento> Appuntamenti
         {
             get { return appuntamenti; }
@@ -58,6 +70,7 @@ namespace MCup.ModelView
                 contatti = new List<Contatto>(value);
             }
         }
+
 
         private async void leggiContatti()
         {
@@ -112,7 +125,7 @@ namespace MCup.ModelView
                 var invioContatto = date.assistito;
                 REST<Contatto, Appuntamento> connessione = new REST<Contatto, Appuntamento>();
                 Appuntamenti = await connessione.PostJsonList(URL.appuntamenti, invioContatto,App.Current.Properties["tokenLogin"].ToString());
-                if(Appuntamenti.Count==0)
+                if (Appuntamenti.Count==0)
                 {
                     Visibile = false;
                     VisibileLabel = true;
