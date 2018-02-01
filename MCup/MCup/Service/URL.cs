@@ -55,6 +55,6 @@ namespace MCup.Service
         public static string appuntamenti = "http://192.168.125.14:3000/auth/listaappuntamenti";
         public static string prossimaDataDisponibile = "http://192.168.125.14:3000/ricercaprimadisponibilita/prossimadatadisponibile";
         public static string updateTokenNotifiche = "http://192.168.125.14:3000/auth/updatetokennotifiche";
-        
+       
     }
 }

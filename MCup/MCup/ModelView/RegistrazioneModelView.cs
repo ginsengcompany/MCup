@@ -196,6 +196,7 @@ namespace MCup.ModelView
             nameErrorTextNumeroTelefono;
 
         public ICommand registrati { protected set; get; } //Command per il tentativo di registrazione dell'utenza
+        public ICommand Avanti { protected set; get; }
         public string Username //Proprietà relativa al campo Username
         {
             get { return utente.username; }
@@ -381,6 +382,120 @@ namespace MCup.ModelView
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+
+        public async Task<bool> AvantiSecondaPagina()
+        {
+            bool control = true;
+
+            if (string.IsNullOrEmpty(nome))
+            {
+                NameErrorNome = true;
+                control = false;
+            }
+            else
+            {
+                NameErrorNome = false;
+            }
+          
+          
+            if (string.IsNullOrEmpty(cognome))
+            {
+                NameErrorCognome = true;
+                control = false;
+            }
+            else
+            {
+                NameErrorCognome = false;
+            }
+            if (string.IsNullOrEmpty(data_nascita))
+            {
+                NameErrorDataNascita = true;
+                control = false;
+            }
+            else
+            {
+                NameErrorDataNascita = false;
+            }
+            //non so dove trovare la provincia
+            /* if (string.IsNullOrEmpty())
+             {
+                 NameErrorProvinciaNascita = true;
+                 controllPass = false;
+             }
+             else
+             {
+                 NameErrorProvinciaNascita = false;
+             }*/
+            if (string.IsNullOrEmpty(luogo_nascita))
+            {
+                NameErrorComuneNascita = true;
+                control = false;
+            }
+            else
+            {
+                NameErrorComuneNascita = false;
+            }
+          
+            if (string.IsNullOrEmpty(codiceFiscale))
+            {
+                NameErrorCodFiscale = true;
+                control = false;
+            }
+            else
+            {
+                NameErrorCodFiscale = false;
+            }
+
+            return control;
+        }
+
+
+
+        public async Task<bool> VaiAvanti()
+        {
+            bool control = true;
+            if (string.IsNullOrEmpty(Username))
+            {
+                NameErrorTextUsername = true;
+                control = false;
+            }
+            else
+            {
+                NameErrorTextUsername = false;
+            }
+
+            if (string.IsNullOrEmpty(password))
+            {
+                NameErrorTextPassword = "attenzione, campo obbligatorio";
+                control = false;
+            }
+            else
+            {
+                NameErrorTextPassword = "";
+            }
+            if (string.IsNullOrEmpty(ConfermaPassword))
+            {
+                NameErrorTextConfermaPassword = "attenzione, campo obbligatorio";
+                control = false;
+            }
+            else
+            {
+                NameErrorTextConfermaPassword = "";
+            }
+            if (password != ConfermaPassword)
+            {
+                NameErrorTextPassword = "attenzione password non corrispondenti";
+                control = false;
+            }
+            else
+            {
+                NameErrorTextPassword = "";
+            }
+
+            return control;
+        }
+
 
         private async void LeggiComuni(string provincia)
         {

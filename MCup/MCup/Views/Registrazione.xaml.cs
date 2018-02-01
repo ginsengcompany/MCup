@@ -20,7 +20,7 @@ using ZXing.Net.Mobile.Forms;
 namespace MCup.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Registrazione : ContentPage
+    public partial class Registrazione : CarouselPage
     {
         private RegistrazioneModelView modelView;
         public string dataDiNascita;
@@ -104,6 +104,48 @@ namespace MCup.Views
             var a = sender as Picker;
             var b = a.SelectedItem as StatoCivile;
             modelView.StatoCivileScelto(b);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            this.Children.Clear();
+            this.Children.Add(page0);
+
+        }
+
+        private async void AvantiPrimaPagina(object sender, EventArgs e)
+        {
+            if (await modelView.VaiAvanti())
+            {
+                this.Children.Clear();
+                this.Children.Add(page1);
+                CurrentPage = page1;
+            }
+        }
+
+        private void IndietroPrimaPagina(object sender, EventArgs e)
+        {
+            this.Children.Clear();
+            this.Children.Add(page0);
+            CurrentPage = page0;
+        }
+
+        private void IndietroSecondaPagina(object sender, EventArgs e)
+        {
+            this.Children.Clear();
+            this.Children.Add(page1);
+            CurrentPage = page1;
+        }
+
+        private async void AvantiSecondaPagina(object sender, EventArgs e)
+        {
+            if (await modelView.AvantiSecondaPagina())
+            {
+                this.Children.Clear();
+                this.Children.Add(page3);
+                CurrentPage = page3;
+            }
         }
     }
 }

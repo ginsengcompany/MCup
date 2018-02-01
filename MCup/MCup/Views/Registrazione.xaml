@@ -1,20 +1,83 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              x:Class="MCup.Views.Registrazione"
-    Title="Registrazione">
-    <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Orientation="Vertical" Padding="30" >
-                <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Registrazione" TextColor="Red"></Label>
+            Title="Registrazione"
+              x:Name="caro" >
+    
+    <ContentPage Padding="20" x:Name="page0">
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="StartAndExpand">
+                <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati utente" TextColor="Red"></Label>
 
-                <Label Text="Username" FontAttributes="Bold" TextColor="Black" FontSize="Medium"></Label>
-                <Entry Placeholder="Inserire nome" Text="{Binding Username}" WidthRequest="250"/>
-                <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorTextUsername}" TextColor="Red" FontSize="Small"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="15" >
+                <StackLayout>
+                    <Label 
+                        Text="Username" 
+                        FontAttributes="Bold" 
+                        TextColor="Black" 
+                        HorizontalOptions="Center"
+                        FontSize="Large"/>
+                    <Entry 
+                        Placeholder="Inserire nome" 
+                        Text="{Binding Username}" 
+                        WidthRequest="250"/>
+                    <Label 
+                        Text="Attenzione, campo obbligatorio" 
+                        IsVisible="{Binding NameErrorTextUsername}" 
+                        TextColor="Red" 
+                        FontSize="Small"/>
+                </StackLayout>
+               <StackLayout>
+                   <Label Text="Password"
+                          FontAttributes="Bold" 
+                          HorizontalOptions="Center"
+                          TextColor="Black" 
+                          FontSize="Large"/>
+                   <xfx:XfxEntry 
+                       Placeholder="Inserire password" 
+                       Text="{Binding password}" 
+                       ErrorText="{Binding NameErrorTextPassword}" 
+                       ErrorDisplay="Underline" 
+                       IsPassword="True" 
+                       WidthRequest="250"/>
+                   <xfx:XfxEntry 
+                       Placeholder="Reinserire password" 
+                       Text="{Binding ConfermaPassword}" 
+                       ErrorText="{Binding NameErrorTextConfermaPassword}" 
+                       ErrorDisplay="Underline" 
+                       IsPassword="True" 
+                       WidthRequest="250"/>
+                </StackLayout>
+                
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="End" >
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AvantiPrimaPagina"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Label Text="AVANTI"/>
+                <Image Source="frecciadx.png"/>
+            </StackLayout>
+        </StackLayout>
+       
+    </ContentPage>
 
 
 
+
+    <ContentPage Padding="20" x:Name="page1" InputTransparent="False">
+        
+        <StackLayout>
+            
+            <StackLayout VerticalOptions="Start">
+                <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati anagrafici" TextColor="Red"></Label>
+
+            </StackLayout> 
+            <ScrollView>
+            <StackLayout>
+               
                 <Label Text="Nome" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                 <Entry Placeholder="Inserire nome" Text="{Binding nome}" WidthRequest="250"/>
                 <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorNome}" TextColor="Red" FontSize="Small"/>
@@ -22,6 +85,27 @@
                 <Label Text="Cognome" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                 <Entry Placeholder="Inserire cognome" Text="{Binding cognome}" WidthRequest="250"/>
                 <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCognome}" TextColor="Red" FontSize="Small"/>
+
+                <StackLayout Margin="5">
+                    <Label Text="Codice Fiscale" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Entry x:Name="entryCodiceFiscale" HorizontalOptions="StartAndExpand" Placeholder="Inserire codice fiscale" Text="{Binding codiceFiscale}"  WidthRequest="600" Grid.Row="0"/>
+                        <Image Source="iconaScan.png" WidthRequest="40" HorizontalOptions="End" Grid.Row="0" Grid.Column="1">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCodFiscale}" TextColor="Red" FontSize="Small"/>
+
+                </StackLayout>
 
 
                 <Label Text="Data di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
@@ -41,6 +125,35 @@
 
 
 
+              
+            </StackLayout>
+            </ScrollView>
+
+
+            <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="End" >
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="AvantiSecondaPagina"></TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
+            <Label Text="AVANTI"/>
+            <Image Source="frecciadx.png"/>
+        </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="Start" >
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="IndietroPrimaPagina"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Label Text="INDIETRO"/>
+                <Image Source="frecciadx.png" Rotation="180"/>
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage>
+
+    <ContentPage Padding="20"  x:Name="page3">
+        <StackLayout>
+            <StackLayout VerticalOptions="StartAndExpand">
+                <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati Utente" TextColor="Red"></Label>
+            </StackLayout>
+            <StackLayout VerticalOptions="Center">
                 <Label Text="Provincia di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                 <Picker Title="Seleziona la provincia di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaResidenza" ItemsSource="{Binding listaProvince}" />
                 <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaResidenza}" TextColor="Red" FontSize="Small"/>
@@ -49,6 +162,7 @@
                 <Label Text="comune di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                 <Picker x:Name="PickerComuneResidenza" Title="Seleziona il comune di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChanged1" ItemsSource="{Binding listaComuniResidenza}" ItemDisplayBinding="{Binding nome}"/>
                 <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneResidenza}" TextColor="Red" FontSize="Small"/>
+
 
 
                 <Label Text="Numero Telefonia mobile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
@@ -75,34 +189,18 @@
                 <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorSesso}" TextColor="Red" FontSize="Small"/>
 
 
-                <Label Text="Codice Fiscale" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Entry x:Name="entryCodiceFiscale" HorizontalOptions="StartAndExpand" Placeholder="Inserire codice fiscale" Text="{Binding codiceFiscale}"  WidthRequest="600" Grid.Row="0"/>
-                    <Image Source="iconaScan.png" WidthRequest="40" HorizontalOptions="End" Grid.Row="0" Grid.Column="1">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </Grid>
-                <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCodFiscale}" TextColor="Red" FontSize="Small"/>
-
-
-
-
-
-                <xfx:XfxEntry Placeholder="Inserire password" Text="{Binding password}" ErrorText="{Binding NameErrorTextPassword}" ErrorDisplay="Underline" IsPassword="True" WidthRequest="250"/>
-                <xfx:XfxEntry Placeholder="Reinserire password" Text="{Binding ConfermaPassword}" ErrorText="{Binding NameErrorTextConfermaPassword}" ErrorDisplay="Underline" IsPassword="True" WidthRequest="250"/>
-
-
                 <Button Text="Registrati" Command="{Binding registrati}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red" TextColor="White" Margin="15"/>
+
             </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
-</ContentPage>
+        
+            <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="Start" >
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="IndietroSecondaPagina"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Label Text="INDIETRO"/>
+                <Image Source="frecciadx.png" Rotation="180"/>
+            </StackLayout>
+        </StackLayout>
+        
+    </ContentPage>
+</CarouselPage>
