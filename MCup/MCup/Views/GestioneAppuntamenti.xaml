@@ -7,7 +7,9 @@
              Title="Appuntamenti">
     <ContentPage.Content>
         <StackLayout Padding="15">
-            <StackLayout  VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+            <StackLayout  
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand">
                 <Label FormattedText="Seleziona il contatto di cui vuoi visualizzare gli appuntamenti" 
                        HorizontalOptions="Center" 
                        FontSize="Medium"/>
@@ -28,14 +30,8 @@
                     FontAttributes="Bold"/>
             </StackLayout>
             <ScrollView>
-                <StackLayout 
-                VerticalOptions="Center" 
-                HorizontalOptions="FillAndExpand" 
-                IsVisible="{Binding VisibileL}" 
-                BackgroundColor="Black"
-                    Margin="0,10,0,10">
-                    <ListView 
-                Margin="3"
+                <ListView 
+                Margin="1"
                 ItemsSource="{Binding Appuntamenti}" 
                 BackgroundColor="White" 
                 HasUnevenRows="True"  
@@ -48,11 +44,25 @@
                             <DataTemplate>
                                 <costomControls:ExtendedViewCell SelectedBackgroundColor="White" >
                                     <ViewCell.View>
-                                        <StackLayout>
-                                            <StackLayout HorizontalOptions="Center" Margin="0,15,0,10">
-                                                <Label Text="{Binding prestazione.descPrestazione}" HorizontalOptions="Center" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
+                                    <StackLayout>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <StackLayout HorizontalOptions="FillAndExpand"  
+                                                         BackgroundColor="Red"
+                                                         Grid.Row="0" 
+                                                         Margin="0,10,0,0">
+                                                <Label 
+                                                       Text="{Binding prestazione.descPrestazione}" 
+                                                       HorizontalOptions="CenterAndExpand" 
+                                                       HorizontalTextAlignment="Center" 
+                                                       TextColor="White" 
+                                                       FontSize="Medium"
+                                                       FontAttributes="Bold"/>
                                             </StackLayout>
-                                            <StackLayout>
+                                            <StackLayout Grid.Row="1">
                                                 <Grid>
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"></RowDefinition>
@@ -63,30 +73,71 @@
                                                     </Grid.ColumnDefinitions>
 
 
-                                                    <StackLayout Orientation="Vertical"  Grid.Column="0" VerticalOptions="Center">
-                                                        <Label TextColor="Red" Text="Struttura" Margin="9,0,0,0" FontAttributes="Bold" HorizontalOptions="Center" FontSize="Medium"/>
-                                                        <Label Text="{Binding prestazione.nomeStruttura}" HorizontalOptions="Center" TextColor="Black" FontSize="Medium" FontAttributes="Bold"/>
-                                                        <Label Margin="9,0,0,0" TextColor="Red" FontAttributes="Bold" Text="Data Appuntamento" HorizontalOptions="Center" FontSize="Medium"/>
-                                                        <Label  Text="{Binding prestazione.dataAppuntamento}" HorizontalOptions="Center" TextColor="Black" FontSize="Medium"/>
-                                                        <Label Margin="9,0,0,0" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" Text="Ora Appuntamento" FontSize="Medium"/>
-                                                        <Label Text="{Binding prestazione.oraAppuntamento}" HorizontalOptions="Center" TextColor="Black" FontSize="Medium"/>
+                                                    <StackLayout 
+                                                        Orientation="Vertical"  
+                                                        Grid.Column="0" 
+                                                        VerticalOptions="Center">
+                                                        <Label 
+                                                            TextColor="Red" 
+                                                            Text="Struttura" 
+                                                            Margin="9,0,0,0" 
+                                                            FontAttributes="Bold" 
+                                                            HorizontalOptions="Center" 
+                                                            FontSize="Medium"/>
+                                                        <Label 
+                                                            Text="{Binding prestazione.nomeStruttura}" 
+                                                            HorizontalOptions="Center" 
+                                                            TextColor="Black" 
+                                                            FontSize="Medium" 
+                                                            FontAttributes="Bold"/>
+                                                        <Label Margin="9,0,0,0" 
+                                                               TextColor="Red" 
+                                                               FontAttributes="Bold" 
+                                                               HorizontalTextAlignment="Center" 
+                                                               Text="Data Appuntamento" 
+                                                               HorizontalOptions="Center" 
+                                                               FontSize="Medium"/>
+                                                        <Label  
+                                                            Text="{Binding prestazione.dataAppuntamento}" 
+                                                            HorizontalOptions="Center" 
+                                                            TextColor="Black" 
+                                                            FontAttributes="Bold"
+                                                            FontSize="Medium"/>
+                                                        <Label Margin="9,0,0,0" 
+                                                               TextColor="Red" 
+                                                               FontAttributes="Bold"
+                                                               HorizontalTextAlignment="Center" 
+                                                               HorizontalOptions="Center" 
+                                                               Text="Ora Appuntamento" 
+                                                               FontSize="Medium"/>
+                                                        <Label 
+                                                            Text="{Binding prestazione.oraAppuntamento}" 
+                                                            HorizontalOptions="Center" 
+                                                            TextColor="Black" 
+                                                            FontAttributes="Bold"
+                                                            FontSize="Medium"/>
 
                                                     </StackLayout>
-                                                    <StackLayout Padding="10" Grid.Column="1" VerticalOptions="Center">
-                                                        <Button Text="Sposta Appuntamento" TextColor="Red"/>
-                                                        <Button Text="Elimina Appuntamento" TextColor="Red"/>
+                                                    <StackLayout 
+                                                        Padding="10" 
+                                                        Grid.Column="1"
+                                                        VerticalOptions="Center">
+                                                        <Button
+                                                            Text="Sposta Appuntamento" 
+                                                            TextColor="Red"/>
+                                                        <Button 
+                                                            Text="Elimina Appuntamento" 
+                                                            TextColor="Red"/>
                                                     </StackLayout>
                                                 </Grid>
                                             </StackLayout>
-
-                                        </StackLayout>
-
-                                    </ViewCell.View>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell.View>
                                 </costomControls:ExtendedViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </StackLayout>
             </ScrollView>
         </StackLayout>
     </ContentPage.Content>

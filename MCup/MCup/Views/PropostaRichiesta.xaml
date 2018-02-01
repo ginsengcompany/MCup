@@ -42,8 +42,7 @@
                                         <StackLayout Grid.Column="1" IsVisible="{Binding VisibleButton}" IsEnabled="{Binding IsEnabled}" Padding="0,15,0,0">
                                             <Button 
                                                     Text="Orario Successivo" 
-                                                    TextColor="White" 
-                                                BackgroundColor="Red"
+                                                    TextColor="Red" 
                                                     HeightRequest="80"
                                                 WidthRequest="100"
                                                     VerticalOptions="Start" 
@@ -53,8 +52,7 @@
                                                     CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                 />
                                             <Button Text="Data successiva" 
-                                                        TextColor="White" 
-                                                    BackgroundColor="Red"
+                                                        TextColor="Red" 
                                                         HeightRequest="80" 
                                                         VerticalOptions="End" 
                                                         BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
