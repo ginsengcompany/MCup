@@ -145,18 +145,44 @@ namespace MCup.ModelView
             NomeCognome = info.nome + " " + info.cognome;
             if (info.AccountPrimario)
             {
-                Visibile = "false";
+                Elimina = new Command(async () =>
+                {
+                    REST<object,string> connessioneElimina = new REST<object, string>();
+                    
+                  var risposta=  await App.Current.MainPage.DisplayAlert("Eliminazione", "sei sicuro di voler eliminare l'account? Se confermi allora dovrai effettuare una nuova registrazione", "si","no");
+                    if (risposta)
+                    {
+                        try
+                        {
+                            var response = await connessioneElimina.getStringHeader(URL.eliminaContattoPersonale,
+                                                App.Current.Properties["tokenLogin"].ToString());
+                        }
+                        catch (Exception)
+                        {
+                            await App.Current.MainPage.DisplayAlert("Attenzione", connessioneElimina.warning, "ok");
+
+                        }
+                        await  App.Current.MainPage.DisplayAlert("Complimenti", "l'account è stato eliminato con successo", "ok");
+                        App.Current.MainPage = new NavigationPage(new Login());
+                    }
+                    
+                    
+                });
             }
-            Elimina = new Command(async () =>
+            else
             {
-                var risposta = await App.Current.MainPage.DisplayAlert("ATTENZIONE", "Sei sicuro di voler eliminare questo contatto?", "SI", "NO");
-                if (risposta == false)
-                    return;
-                REST<Contatto, string> restElimina = new REST<Contatto, string>();
-                string response = await restElimina.PostJson(URL.EliminaContatto, utente, App.Current.Properties["tokenLogin"].ToString());
-                await App.Current.MainPage.DisplayAlert("Eliminazione", restElimina.warning, "OK");
-                App.Current.MainPage = new MenuPrincipale();
-            });
+                Elimina = new Command(async () =>
+                {
+                    var risposta = await App.Current.MainPage.DisplayAlert("ATTENZIONE", "Sei sicuro di voler eliminare questo contatto?", "SI", "NO");
+                    if (risposta == false)
+                        return;
+                    REST<Contatto, string> restElimina = new REST<Contatto, string>();
+                    string response = await restElimina.PostJson(URL.EliminaContatto, utente, App.Current.Properties["tokenLogin"].ToString());
+                    await App.Current.MainPage.DisplayAlert("Eliminazione", restElimina.warning, "OK");
+                    App.Current.MainPage = new MenuPrincipale();
+                });
+            }
+          
          }
 
 

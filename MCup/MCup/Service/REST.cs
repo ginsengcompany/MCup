@@ -72,6 +72,16 @@ namespace MCup.Service
         }
 
 
+        public async Task<string> getStringHeader(string url, string header)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("x-access-token", header);
+
+            var uri = new Uri(string.Format(url, string.Empty));
+            string response = await client.GetStringAsync(uri);
+            return response;
+        }
+
         public async Task<List<T>> PostJsonList(string url, E dati)
         {
             List<T> Items = new List<T>();
