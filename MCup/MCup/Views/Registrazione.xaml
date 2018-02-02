@@ -26,7 +26,7 @@
                         WidthRequest="250"/>
                     <Label 
                         Text="Attenzione, campo obbligatorio" 
-                        IsVisible="{Binding nameErrorUsername}" 
+                        IsVisible="{Binding NameErrorUsername}" 
                         TextColor="Red" 
                         FontSize="Small"/>
                 </StackLayout>
@@ -122,23 +122,34 @@
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneNascita}" TextColor="Red" FontSize="Small"/>
                 </StackLayout>
             </ScrollView>
+            <StackLayout Margin="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
 
-
-            <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="End" HorizontalOptions="End" >
-            <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Tapped="AvantiSecondaPagina"></TapGestureRecognizer>
-            </StackLayout.GestureRecognizers>
-            <Label Text="AVANTI"/>
-            <Image Source="frecciadx.png"/>
-        </StackLayout>
-            <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="End" HorizontalOptions="Start" >
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="IndietroPrimaPagina"></TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-                <Image Source="frecciadx.png" Rotation="180"/>
-                <Label Text="INDIETRO"/>
+                    <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="End" HorizontalOptions="End" Grid.Column="1" Grid.Row="0" >
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AvantiSecondaPagina"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="AVANTI"/>
+                        <Image Source="frecciadx.png"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="End" HorizontalOptions="Start"  Grid.Column="0" Grid.Row="0" >
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="IndietroPrimaPagina"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="frecciadx.png" Rotation="180"/>
+                        <Label Text="INDIETRO"/>
+                    </StackLayout>
+                </Grid>
             </StackLayout>
         </StackLayout>
+                
 
     </ContentPage>
 
@@ -147,6 +158,7 @@
             <StackLayout VerticalOptions="StartAndExpand">
                 <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati Utente" TextColor="Red"></Label>
             </StackLayout>
+            <ScrollView>
             <StackLayout VerticalOptions="Center">
                 <Label Text="Provincia di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                 <Picker Title="Seleziona la provincia di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaResidenza" ItemsSource="{Binding listaProvince}" />
@@ -187,16 +199,31 @@
                 <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorSesso}" TextColor="Red" FontSize="Small"/>
 
 
-                <Button Text="Registrati" Command="{Binding registrati}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red" TextColor="White" Margin="15"/>
+               
 
             </StackLayout>
-        
-            <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="Start" >
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="IndietroSecondaPagina"></TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-                <Image Source="frecciadx.png" Rotation="180"/>
-                <Label Text="INDIETRO"/>
+            </ScrollView>
+
+            <StackLayout Margin="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Spacing="5" Grid.Column="1" Grid.Row="0" VerticalOptions="End" HorizontalOptions="End" >
+                        <Button Text="Registrati" Command="{Binding registrati}" HorizontalOptions="Center" BackgroundColor="Red" BorderColor="Red" TextColor="White" Margin="15"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="5"  VerticalOptions="End" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="IndietroSecondaPagina"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="frecciadx.png"  Rotation="180"/>
+                        <Label Text="INDIETRO"/>
+                    </StackLayout>
+                </Grid>
             </StackLayout>
         </StackLayout>
         
