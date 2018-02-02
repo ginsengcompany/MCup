@@ -18,7 +18,7 @@
                         HorizontalOptions="CenterAndExpand" 
                         ItemsSource="{Binding Contatti}" 
                         WidthRequest="300"
-                        ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" 
+                        ItemDisplayBinding="{Binding nomeCognome}" 
                         VerticalOptions="Center" 
                         SelectedIndexChanged="Picker_OnSelectedIndexChanged" />
                 <Label 
@@ -29,7 +29,7 @@
                     FontSize="Medium" 
                     FontAttributes="Bold"/>
             </StackLayout>
-            <ScrollView>
+            <StackLayout VerticalOptions="FillAndExpand">
                 <ListView 
                 Margin="1"
                 ItemsSource="{Binding Appuntamenti}" 
@@ -40,14 +40,13 @@
                 SeparatorVisibility="Default"  
                 SeparatorColor="Black">
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <costomControls:ExtendedViewCell SelectedBackgroundColor="White" >
-                                    <ViewCell.View>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <costomControls:ExtendedViewCell SelectedBackgroundColor="White" >
+                                <ViewCell.View>
                                     <StackLayout>
                                         <Grid>
                                             <Grid.RowDefinitions>
-
                                                 <RowDefinition Height="Auto"></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <StackLayout HorizontalOptions="FillAndExpand"  
@@ -134,11 +133,12 @@
                                         </Grid>
                                     </StackLayout>
                                 </ViewCell.View>
-                                </costomControls:ExtendedViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-            </ScrollView>
+                            </costomControls:ExtendedViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+               
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -18,6 +18,7 @@ namespace MCup.Model
         public string istatComuneResidenza { get; set; }
         public bool AccountPrimario { get; set; }
         public string nomeCompletoConCodiceFiscale { get; set; }
+        public string nomeCognome { get; set; }
         public string comune_residenza { get; set; }
         public string telefono { get; set; }
         public string codStatoCivile { get; set; }
@@ -43,6 +44,7 @@ namespace MCup.Model
             this.istatComuneResidenza = "";
             this.statocivile = "";
             this.email = "";
+            this.nomeCognome = "";
             this.indirizzores = "";
         }
 
@@ -62,6 +64,7 @@ namespace MCup.Model
             this.istatComuneNascita = contatto.istatComuneNascita;
             this.istatComuneResidenza = contatto.istatComuneResidenza;
             this.statocivile = contatto.statocivile;
+            this.nomeCognome = contatto.nomeCognome;
             this.email = contatto.email;
             this.email = contatto.indirizzores;
         }

@@ -14,12 +14,20 @@
             </StackLayout>
             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="15" >
                 <StackLayout>
-                    <Label 
-                        Text="Username" 
-                        FontAttributes="Bold" 
-                        TextColor="Black" 
-                        HorizontalOptions="Center"
-                        FontSize="Large"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label 
+                            Text="Username" 
+                            FontAttributes="Bold" 
+                            TextColor="Black" 
+                            HorizontalOptions="Center"
+                            FontSize="Large"/>
+                        <Image Source="info.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="infoUsername"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                   
                     <Entry 
                         Placeholder="Inserire Username" 
                         Text="{Binding Username}" 
@@ -30,10 +38,9 @@
                         TextColor="Red" 
                         FontSize="Small"/>
                 </StackLayout>
-               <StackLayout>
+               <StackLayout Margin="0,10,0,0">
                    <Label Text="Password"
-                          FontAttributes="Bold" 
-                          HorizontalOptions="Center"
+                          FontAttributes="Bold"
                           TextColor="Black" 
                           FontSize="Large"/>
                    <xfx:XfxEntry 

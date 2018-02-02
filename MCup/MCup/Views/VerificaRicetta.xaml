@@ -18,25 +18,59 @@
                     <Label Text="Nome e cognome assistito:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
                     <Label x:Name="cognome_assistito" Text="{Binding CognomeAssistito}" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Medium"/>
                 </StackLayout>
-               
+
             </StackLayout>
             <StackLayout>
                 <Label Text="Descrizione impegnativa:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
             </StackLayout>
             <ListView ItemsSource="{Binding ListaPrestazioni}" SeparatorColor="Red" x:Name="lst" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                        <customControls:ExtendedViewCell SelectedBackgroundColor="White">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <customControls:ExtendedViewCell 
+                            SelectedBackgroundColor="White">
                             <ViewCell.View>
-                                <StackLayout x:Name="stk">
-                                    <Label Text="{Binding desprest}" TextColor="Black"  FontAttributes="Italic" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="End"  HorizontalTextAlignment="Center" />
-                                    <Picker Title="{Binding title}" TextColor="Black" IsEnabled="{Binding enabled}" SelectedIndex="{Binding defaultReparto}" ItemsSource="{Binding reparti}" ItemDisplayBinding="{Binding descrizione}" SelectedIndexChanged="Picker_OnSelectedIndexChanged"/>
-                                </StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Column="0" VerticalOptions="Center">
+                                        <Label 
+                                            Text="{Binding desprest}" 
+                                            TextColor="Black"  
+                                            FontAttributes="Italic"
+                                            VerticalOptions="Center"
+                                            FontSize="Medium"
+                                            HorizontalTextAlignment="Center" />
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1" 
+                                                 x:Name="stk"
+                                                 Orientation="Horizontal"
+                                                 VerticalOptions="Center">
+                                        <Label 
+                                            Text="Reparto" 
+                                            FontAttributes="Bold" 
+                                            FontSize="Medium" 
+                                            VerticalOptions="Center"
+                                            TextColor="Black"></Label>
+                                        <Picker 
+                                            Title="{Binding title}" 
+                                            TextColor="Black" 
+                                            VerticalOptions="Center"
+                                            IsEnabled="{Binding enabled}"
+                                            SelectedIndex="{Binding defaultReparto}"
+                                            ItemsSource="{Binding reparti}" 
+                                            ItemDisplayBinding="{Binding descrizione}"
+                                            SelectedIndexChanged="Picker_OnSelectedIndexChanged"/>
+                                    </StackLayout>
+                                </Grid>
+
+
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <StackLayout BackgroundColor="White">
                 <Button Text="Continua" Command="{Binding ContinuaPrenotazione}" BackgroundColor="Red" TextColor="White" IsVisible="{Binding ButtonIsVisible}" IsEnabled="{Binding IsEnabled}"/>
             </StackLayout>

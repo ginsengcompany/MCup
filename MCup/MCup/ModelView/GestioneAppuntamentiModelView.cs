@@ -92,6 +92,7 @@ namespace MCup.ModelView
                 AccountPrimario = true,
                 istatComuneNascita = contacts.istatComuneNascita,
                 istatComuneResidenza = contacts.istatComuneResidenza,
+                nomeCognome = contacts.nome+" "+contacts.cognome,
                 nomeCompletoConCodiceFiscale = contacts.nome + " " + contacts.cognome + " " + contacts.codice_fiscale,
                 comune_residenza = contacts.comune_residenza,
                 telefono = contacts.telefono
@@ -99,6 +100,7 @@ namespace MCup.ModelView
             for (int i = 0; i < contacts.contatti.Count; i++)
             {
                 contacts.contatti[i].nomeCompletoConCodiceFiscale = contacts.contatti[i].nome + " " + contacts.contatti[i].cognome + " " + contacts.contatti[i].codice_fiscale;
+                contacts.contatti[i].nomeCognome = contacts.contatti[i].nome + " " + contacts.contatti[i].cognome;
                 temp.Add(contacts.contatti[i]);
             }
             Contatti = temp;

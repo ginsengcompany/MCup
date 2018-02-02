@@ -141,5 +141,12 @@ namespace MCup.Views
                 CurrentPage = page3;
             }
         }
+
+        private void infoUsername(object sender, EventArgs e)
+        {
+            DisplayAlert("Username",
+                "Numero o parola utilizzati da un utente per farsi identificare da un sistema operativo, da un elaboratore o da un servizio online.",
+                "ok");
+        }
     }
 }
