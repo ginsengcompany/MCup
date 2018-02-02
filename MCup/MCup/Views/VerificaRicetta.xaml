@@ -71,8 +71,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout BackgroundColor="White">
-                <Button Text="Continua" Command="{Binding ContinuaPrenotazione}" BackgroundColor="Red" TextColor="White" IsVisible="{Binding ButtonIsVisible}" IsEnabled="{Binding IsEnabled}"/>
+            <StackLayout BackgroundColor="White" VerticalOptions="End">
+                <Button Text="Continua" 
+                        Command="{Binding ContinuaPrenotazione}"  
+                        TextColor="Red" IsVisible="{Binding ButtonIsVisible}" 
+                        IsEnabled="{Binding IsEnabled}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

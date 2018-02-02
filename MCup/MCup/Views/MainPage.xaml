@@ -5,53 +5,107 @@
              Title="Mcup" 
              BackgroundImage="poweredby2.jpeg">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="logout" Order="Primary" Text="Logout" Priority="0" Clicked="logout_Clicked" Icon="logout.png" />
+        <ToolbarItem 
+            Name="logout"
+            Order="Primary" 
+            Text="Logout" 
+            Priority="0" 
+            Clicked="logout_Clicked" 
+            Icon="logout.png" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Padding="0, 40, 0, 0" >
-            <StackLayout x:Name="stackPrincipale" VerticalOptions="Start" HorizontalOptions="Center" >
-                <Image Source="eCUPT.png" />
+        <StackLayout 
+            Padding="0, 40, 0, 0" >
+            <StackLayout 
+                x:Name="stackPrincipale" 
+                VerticalOptions="Start"
+                HorizontalOptions="Center" >
+                <Image 
+                    Source="eCUPT.png" />
             </StackLayout>
-            <Grid >
-                <Grid RowSpacing="5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                </Grid>
-                <Grid ColumnSpacing="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                </Grid>
-                <Image x:Name="tapIconaPrenotazioni" Source="iconaPrenotazioni.png" Grid.Row="0" Grid.Column="0" WidthRequest="60" HorizontalOptions="Center">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="TapGestureRecognizer_Tapped"
-                            NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Label Text="Prenota" FontAttributes="Bold" TextColor="Black" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"/>
-                <Image x:Name="tapIconaAppuntamenti" Source="iconaAppuntamenti.png" Grid.Row="0" Grid.Column="1" WidthRequest="60" HorizontalOptions="Center">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="TapGestureRecognizer_Tapped_1"
-                            NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Label Text="Tuoi appuntamenti" FontAttributes="Bold" TextColor="Black" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
-                <Image x:Name="tapIconaContatti" Source="ic_contatti.png" Grid.Row="2" Grid.Column="0" WidthRequest="60" HorizontalOptions="Center">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="TapGestureRecognizer_Tapped_2"
-                            NumberOfTapsRequired="1"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Label Text="Lista contatti" FontAttributes="Bold" TextColor="Black" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center"/>
+            <ScrollView>
+            <Grid Padding="10,0,0,0" 
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" >
+                    <Image 
+                        x:Name="tapIconaPrenotazioni" 
+                        Source="iconaPrenotazioni.png" 
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        HorizontalOptions="Start">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped"
+                                NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label 
+                        Text="Prenota" 
+                        FontAttributes="Bold" 
+                        TextColor="Black" 
+                        FontSize="26"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                   <Image 
+                       x:Name="tapIconaAppuntamenti" 
+                       Source="iconaAppuntamenti.png" 
+                       WidthRequest="100"
+                       HeightRequest="100"
+                       HorizontalOptions="Start">
+                       <Image.GestureRecognizers>
+                           <TapGestureRecognizer
+                               Tapped="TapGestureRecognizer_Tapped_1"
+                               NumberOfTapsRequired="1"/>
+                       </Image.GestureRecognizers>
+                   </Image>
+                   <Label 
+                       Text="Tuoi appuntamenti" 
+                       FontAttributes="Bold" 
+                       TextColor="Black" 
+                       FontSize="26"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout  Grid.Row="2" Grid.Column="0" Orientation="Horizontal" >
+                    <Image 
+                        x:Name="tapIconaContatti" 
+                        Source="ic_contatti.png" 
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        HorizontalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped_2"
+                                NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label 
+                        Text="Lista contatti" 
+                        FontAttributes="Bold" 
+                        TextColor="Black" 
+                        
+                        FontSize="26"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+               
             </Grid>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
