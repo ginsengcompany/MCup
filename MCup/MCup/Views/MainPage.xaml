@@ -2,13 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.MainPage" 
-             Title="Mcup">
+             Title="Mcup" 
+             BackgroundImage="poweredby2.jpeg">
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="logout" Order="Primary" Text="Logout" Priority="0" Clicked="logout_Clicked" Icon="logout.png" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Padding="0, 40, 0, 0" BackgroundColor="White">
-            <StackLayout x:Name="stackPrincipale" VerticalOptions="Start" HorizontalOptions="Center" BackgroundColor="White">
+        <StackLayout Padding="0, 40, 0, 0" >
+            <StackLayout x:Name="stackPrincipale" VerticalOptions="Start" HorizontalOptions="Center" >
                 <Image Source="eCUPT.png" />
             </StackLayout>
             <Grid >
@@ -33,7 +34,7 @@
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Prenota" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"/>
+                <Label Text="Prenota" FontAttributes="Bold" TextColor="Black" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"/>
                 <Image x:Name="tapIconaAppuntamenti" Source="iconaAppuntamenti.png" Grid.Row="0" Grid.Column="1" WidthRequest="60" HorizontalOptions="Center">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
@@ -41,7 +42,7 @@
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Tuoi appuntamenti" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
+                <Label Text="Tuoi appuntamenti" FontAttributes="Bold" TextColor="Black" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center"/>
                 <Image x:Name="tapIconaContatti" Source="ic_contatti.png" Grid.Row="2" Grid.Column="0" WidthRequest="60" HorizontalOptions="Center">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
@@ -49,7 +50,7 @@
                             NumberOfTapsRequired="1"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Label Text="Lista contatti" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center"/>
+                <Label Text="Lista contatti" FontAttributes="Bold" TextColor="Black" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

@@ -69,10 +69,8 @@
                                                     </Grid.RowDefinitions>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="*"></ColumnDefinition>
-                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
                                                     </Grid.ColumnDefinitions>
-
-
                                                     <StackLayout 
                                                         Orientation="Vertical"  
                                                         Grid.Column="0" 
@@ -124,10 +122,12 @@
                                                         VerticalOptions="Center">
                                                         <Button
                                                             Text="Sposta Appuntamento" 
-                                                            TextColor="Red"/>
+                                                            TextColor="Red" 
+                                                            HeightRequest="80"/>
                                                         <Button 
                                                             Text="Elimina Appuntamento" 
-                                                            TextColor="Red"/>
+                                                            TextColor="Red"
+                                                            HeightRequest="80"/>
                                                     </StackLayout>
                                                 </Grid>
                                             </StackLayout>
