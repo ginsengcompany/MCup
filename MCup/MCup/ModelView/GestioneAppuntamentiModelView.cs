@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MCup.Model;
 using MCup.Service;
+using Xamarin.Forms;
 
 namespace MCup.ModelView
 {
@@ -14,12 +15,25 @@ namespace MCup.ModelView
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private Contacts contacts;
+        private Color colore;
         private List<Contatto> contatti = new List<Contatto>();
         private List<Appuntamento> appuntamenti = new List<Appuntamento>();
         private Appuntamento date = new Appuntamento();
         private Boolean visibileLabel = false;
         private Boolean visibile = true;
+        private string visi;
 
+
+
+        public string VisibileL
+        {
+            get { return visi; }
+            set
+            {
+                OnPropertyChanged();
+                visi = value;
+            }
+        }
         public Boolean Visibile
         {
             get { return visibile; }
@@ -59,6 +73,7 @@ namespace MCup.ModelView
             }
         }
 
+
         private async void leggiContatti()
         {
             REST<object, Contacts> rest = new REST<object, Contacts>();
@@ -91,6 +106,7 @@ namespace MCup.ModelView
 
         public GestioneAppuntamentiModelView()
         {
+            VisibileL = "false";
             leggiContatti();
         }
 
@@ -112,7 +128,7 @@ namespace MCup.ModelView
                 var invioContatto = date.assistito;
                 REST<Contatto, Appuntamento> connessione = new REST<Contatto, Appuntamento>();
                 Appuntamenti = await connessione.PostJsonList(URL.appuntamenti, invioContatto,App.Current.Properties["tokenLogin"].ToString());
-                if(Appuntamenti.Count==0)
+                if (Appuntamenti.Count==0)
                 {
                     Visibile = false;
                     VisibileLabel = true;
@@ -120,6 +136,7 @@ namespace MCup.ModelView
                 else
                 {
                     Visibile = true;
+                    VisibileL = "true";
                     VisibileLabel = false;
                 }
             }
