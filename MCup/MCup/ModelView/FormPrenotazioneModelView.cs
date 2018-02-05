@@ -18,13 +18,13 @@ namespace MCup.ModelView
         //Evento che prevede il cambiamento di proprietà all'interno della classe
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private sendRicetta invioContatto;
+        private Impegnativa invioImpegnativa;
         private string visible="false";
 
         private Regex regexNomeCognome = new Regex(@"^[A-Za-zèùàòé][a-zA-Z'èùàòé ]*$");
 
         //Oggetto che astrae l'utente che intende prenotare una o delle prestazioni
-        private UtenzaPrenotazione utenza;
+        private Assistito utenza;
         
         //Oggetto che astrae la ricetta NRE
         private InvioRicettaPrenotazione ricetta;
@@ -87,17 +87,17 @@ namespace MCup.ModelView
         //Oggetto che contiene tutte le informazioni della prenotazione che si vuole effettuare
         private FormPrenotazione model;
 
-        private List<Contatto> contatti = new List<Contatto>();
+        private List<Assistito> contatti = new List<Assistito>();
 
-        private Contacts contacts;
+        private List<Assistito> contacts;
 
-        public List<Contatto> Contatti
+        public List<Assistito> Contatti
         {
             get { return contatti; }
             set
             {
                 OnPropertyChanged();
-                contatti = new List<Contatto>(value);
+                contatti = new List<Assistito>(value);
             }
         }
 
@@ -132,10 +132,10 @@ namespace MCup.ModelView
         //Proprietà che definisce il codice fiscale dell'utente che sta effettuando la prenotazione
         public string codicefiscaleUtente
         {
-            get { return utenza.getCodiceFiscale(); }
+            get { return utenza.codice_fiscale; }
             set
             {
-                utenza.setCodiceFiscale(value);
+                utenza.codice_fiscale = value;
                 OnPropertyChanged();
             }
         }
@@ -176,15 +176,15 @@ namespace MCup.ModelView
         public FormPrenotazioneModelView(FormPrenotazione Model)
         {
             IsEnabled = true;
-            utenza = new UtenzaPrenotazione();
+            utenza = new Assistito();
             ricetta = new InvioRicettaPrenotazione();
-            invioContatto= new sendRicetta();
+            invioImpegnativa= new Impegnativa();
             model = Model;
             ricetta.codice_uno = "";
             ricetta.codice_due = "";
             utenza.nome = "";
             utenza.cognome = "";
-            utenza.setCodiceFiscale("");
+            utenza.codice_fiscale="";
             InviaRichiesta = new Command(async () =>
             {
                 IsEnabled = false;
@@ -196,20 +196,9 @@ namespace MCup.ModelView
 
         private async void leggiContatti()
         {
-            REST<object, Contacts> rest = new REST<object, Contacts>();
+            REST<object, List<Assistito>> rest = new REST<object, List<Assistito>>();
             contacts = await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
-            List<Contatto> temp = new List<Contatto>();
-            temp.Add(new Contatto {
-                nome = contacts.nome, cognome = contacts.cognome, codice_fiscale = contacts.codice_fiscale, data_nascita = contacts.data_nascita, statocivile = contacts.statocivile, codStatoCivile = contacts.codStatoCivile,
-                luogo_nascita = contacts.luogo_nascita, sesso = contacts.sesso, AccountPrimario = true, istatComuneNascita = contacts.istatComuneNascita, istatComuneResidenza = contacts.istatComuneResidenza,
-                nomeCompletoConCodiceFiscale = contacts.nome + " " + contacts.cognome + " " + contacts.codice_fiscale, comune_residenza = contacts.comune_residenza, telefono = contacts.telefono
-            });
-            for (int i = 0; i < contacts.contatti.Count; i++)
-            {
-                contacts.contatti[i].nomeCompletoConCodiceFiscale = contacts.contatti[i].nome + " " + contacts.contatti[i].cognome + " " + contacts.contatti[i].codice_fiscale;
-                temp.Add(contacts.contatti[i]);
-            }
-            Contatti = temp;
+            Contatti = contacts;
         }
 
         //Comando che chiama la funzione asincrona InvioDatiAsync()
@@ -248,12 +237,12 @@ namespace MCup.ModelView
             }
             else
                 NameTextErrorCognome = "";
-            if (string.IsNullOrEmpty(utenza.getCodiceFiscale()))
+            if (string.IsNullOrEmpty(utenza.codice_fiscale))
             {
                 NameTextErrorCodFisc = "Il campo codice fiscale è obbligatorio";
                 passControl = false;
             }
-            else if (utenza.getCodiceFiscale().Length != 16)
+            else if (utenza.codice_fiscale.Length != 16)
             {
                 NameTextErrorCodFisc = "Il campo codice fiscale non è corretto";
                 passControl = false;
@@ -288,15 +277,15 @@ namespace MCup.ModelView
             {
                 try
                 {
-                    REST<sendRicetta, Ricetta> connessione = new REST<sendRicetta, Ricetta>();
-                    invioContatto.codice_nre = codiceUno+codiceDue;
-                    Ricetta response = await connessione.PostJson(URL.Ricetta, invioContatto);
-                    if ((response == null) || (response == default(Ricetta)))
+                    REST<Impegnativa, Impegnativa> connessione = new REST<Impegnativa, Impegnativa>();
+                    invioImpegnativa.nre = codiceUno+codiceDue;
+                    Impegnativa response = await connessione.PostJson(URL.Ricetta, invioImpegnativa);
+                    if ((response == null) || (response == default(Impegnativa)))
                     {
                        await App.Current.MainPage.DisplayAlert("Attenzione", response.ToString(), "ok");
                     }
                     else
-                    model.metodoPush(response, invioContatto);
+                    model.metodoPush(response, invioImpegnativa.assistito);
                 }
                 catch (Exception e)
                 {
@@ -312,12 +301,12 @@ namespace MCup.ModelView
         .OrderBy(x => x)
         .ToList(); */
 
-        public void autoCompila(Contatto elementSelected)
+        public void autoCompila(Assistito elementSelected)
         {
             nomeUtente = elementSelected.nome;
             cognomeUtente = elementSelected.cognome;
             codicefiscaleUtente = elementSelected.codice_fiscale;
-            invioContatto.contattoDaInviare = elementSelected;
+            invioImpegnativa.assistito = elementSelected;
             Visible = "true";
         }
 
@@ -335,7 +324,7 @@ namespace MCup.ModelView
         {
             public string codice_nre;
 
-            public Contatto contattoDaInviare;
+            public Assistito contattoDaInviare;
 
             public  sendRicetta()
             { }

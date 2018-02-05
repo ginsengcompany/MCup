@@ -103,8 +103,29 @@
                         VerticalOptions="Center"
                         HorizontalOptions="Center"/>
                 </StackLayout>
-               
-            </Grid>
+                <StackLayout Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                    <Image 
+                        x:Name="tapIconaPagamenti" 
+                        Source="iconaPagamenti.png" 
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        HorizontalOptions="Start">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped_1"
+                                NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label 
+                        Text="Pagamenti" 
+                        FontAttributes="Bold" 
+                        TextColor="Black" 
+                        FontSize="26"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+
+                </Grid>
             </ScrollView>
         </StackLayout>
     </ContentPage.Content>

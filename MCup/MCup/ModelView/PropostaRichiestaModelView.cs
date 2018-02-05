@@ -16,14 +16,38 @@ namespace MCup.ModelView
 {
     public class PropostaRichiestaModelView : INotifyPropertyChanged
     {
-        private List<PrenotazioneProposta> listPrenotazioni;
         private bool isvisible, isbusy, isvisibleButton, isenabled, isbusyV;
         private string esito;
-        private Contatto contatto;
-        private List<ResponsePrenotazione> listaResponsePrenotazioni = new List<ResponsePrenotazione>();
+        private Assistito contatto;
+        private AppuntamentiConfermati appuntamentiConfermati = new AppuntamentiConfermati();
         private string visible = "true";
         private string visibleHome = "false";
         private PropostaRichiesta propostaRichiesta;
+        private AppuntamentoProposto appuntamentoProposto;
+        private List<Header> headers = new List<Header>();
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private List<Prestazione> prestazioni;
+
+        public List<AppuntamentoPrestazioneProposto> ListPrenotazioni
+        {
+            get { return appuntamentoProposto.appuntamenti; }
+            set
+            {
+                OnPropertyChanged();
+                appuntamentoProposto.appuntamenti = value;
+            }
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string name = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+
         public string Visible
         {
             get { return visible; }
@@ -76,8 +100,7 @@ namespace MCup.ModelView
                 return new Command(async (e) =>
                 {
                     IsEnabled = false;
-                    var item = (e as PrenotazioneProposta);
-                    propostaRichiesta.visualizzaDatePicker(item);
+                    propostaRichiesta.visualizzaDatePicker();
                 });
             }
         }
@@ -98,10 +121,9 @@ namespace MCup.ModelView
             {
                 return new Command(async (e) =>
                 {
-
                     IsEnabled = false;
                     IsBusyV = true;
-                    var item = (e as PrenotazioneProposta);
+                    var item = (e as AppuntamentoProposto);
                     IsBusyV = false;
                     await info(item);
                     Device.StartTimer(TimeSpan.FromSeconds(3), () =>
@@ -109,8 +131,6 @@ namespace MCup.ModelView
                         IsEnabled = true;
                         return false;
                     });
-                   
-
                 });
             }
         }
@@ -155,103 +175,42 @@ namespace MCup.ModelView
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private List<Prestazioni> prestazioni;
-
-        public List<PrenotazioneProposta> ListPrenotazioni
-        {
-            get { return listPrenotazioni; }
-            set
-            {
-                OnPropertyChanged();
-                listPrenotazioni = value;
-            }
-        }
-
-        private void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        public PropostaRichiestaModelView(List<Prestazioni> prestazioni, Contatto contatto, PropostaRichiesta proposta)
+        public PropostaRichiestaModelView(List<Prestazione> prestazioni, Assistito contatto, PropostaRichiesta proposta)
         {
             IsEnabled = true;
             propostaRichiesta = proposta;
             this.contatto = contatto;
-            listPrenotazioni = new List<PrenotazioneProposta>();
             IsVisibleButton = false;
             IsVisible = true;
             IsBusy = true;
             this.prestazioni = prestazioni;
+            headers.Add(new Header("struttura","030001"));
             recuperoInformazioni();
         }
 
         private async void recuperoInformazioni()
         {
             await info();
-
         }
 
         public async Task invioDatiPrenotazione()
         {
-            REST<PrenotazioniContatto, ResponsePrenotazione> invioDati = new REST<PrenotazioniContatto, ResponsePrenotazione>();
-            PrenotazioniContatto prenotazioni;
-            List<ResponsePrenotazione> listaPrenotazioniNonAndateABuonFine = new List<ResponsePrenotazione>();
-            List<ResponsePrenotazione> listaPrenotazioniAndateABuonFine = new List<ResponsePrenotazione>();
-            List<PrenotazioneProposta> temp = new List<PrenotazioneProposta>();
-            PrenotazioneProposta pren = new PrenotazioneProposta();
-
+            REST<AppuntamentoProposto, AppuntamentiConfermati> invioDati = new REST<AppuntamentoProposto, AppuntamentiConfermati>();
+            appuntamentoProposto.assistito = contatto;
+            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             try
             {
-                for (int i = 0; i < ListPrenotazioni.Count; i++)
-                {
-                    prenotazioni = new PrenotazioniContatto();
-                    prenotazioni.contatto = contatto;
-                    prenotazioni.prestazione = ListPrenotazioni[i];
-                    IsBusyV = true;
-                    listaResponsePrenotazioni.Add(await invioDati.PostJson(URL.ConfermaPrenotazione, prenotazioni, App.Current.Properties["tokenLogin"].ToString()));
-                    IsBusyV = false;
-                }
-                for (int j = 0; j < listaResponsePrenotazioni.Count; j++)
-                {
-                    if (listaResponsePrenotazioni[j].esito == 0)
-                    {
-                        listaPrenotazioniNonAndateABuonFine.Add(listaResponsePrenotazioni[j]);
-                        pren = listPrenotazioni[j];
-                        pren.VisibleEsito = "true";
-                        pren.VisibleButton = "false";
-                        pren.EsitoPrenotazione = listaResponsePrenotazioni[j].messaggio;
-                        pren.Color = Color.Red;
-                    }
-                    else if (listaResponsePrenotazioni[j].esito == 1)
-                    {
-                        listaPrenotazioniAndateABuonFine.Add(listaResponsePrenotazioni[j]);
-                        pren = listPrenotazioni[j];
-                        pren.VisibleEsito = "true";
-                        pren.VisibleButton = "false";
-                        pren.EsitoPrenotazione = listaResponsePrenotazioni[j].messaggio;
-                        pren.Color = Color.Green;
-                    }
-                    else if (listaResponsePrenotazioni[j].esito == 2)
-                    {
-                        listaPrenotazioniAndateABuonFine.Add(listaResponsePrenotazioni[j]);
-                        pren = listPrenotazioni[j];
-                        pren.VisibleEsito = "true";
-                        pren.VisibleButton = "false";
-                        pren.EsitoPrenotazione = listaResponsePrenotazioni[j].messaggio;
-                        pren.Color = Color.Orange;
-                    }
-                    temp.Add(pren);
-
-                }
+                IsBusyV = true;
+                AppuntamentiConfermati appuntamentiConfermati = await invioDati.PostJson(URL.ConfermaPrenotazione, appuntamentoProposto, headers);
+                await App.Current.MainPage.DisplayAlert("Attenzione", appuntamentiConfermati.messaggio, "ok");
+                IsBusyV = false;
                 Visible = "false";
                 VisibleHome = "true";
-                ListPrenotazioni = temp;
+                if (appuntamentiConfermati.esito != 0)
+                    App.Current.MainPage = new MenuPrincipale();
             }
             catch (Exception)
             {
-
                 await App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita", "ok");
             }
 
@@ -259,81 +218,30 @@ namespace MCup.ModelView
 
         private async Task info()
         {
-            REST<Prestazioni, PrenotazioneProposta> recuperoDatiLista = new REST<Prestazioni, PrenotazioneProposta>();
-            List<PrenotazioneProposta> temp = new List<PrenotazioneProposta>();
-            for (int i = 0; i < prestazioni.Count; i++)
-            {
-                temp.Add(await recuperoDatiLista.PostJson(URL.PrimaDisponibilita, prestazioni[i]));
-            }
-            ListPrenotazioni = temp;
+            REST<List<Prestazione>, AppuntamentoProposto> recuperoDatiLista = new REST<List<Prestazione>, AppuntamentoProposto>();
+            appuntamentoProposto =await recuperoDatiLista.PostJson(URL.PrimaDisponibilita, prestazioni, headers);
+            ListPrenotazioni = appuntamentoProposto.appuntamenti;
             IsVisible = false;
             IsBusy = false;
             IsVisibleButton = true;
         }
 
-        private async Task info(PrenotazioneProposta prenotazione)
+        private async Task info(AppuntamentoProposto prenotazione)
         {
-            REST<Prestazioni, PrenotazioneProposta> connessione = new REST<Prestazioni, PrenotazioneProposta>();
-            PrenotazioneProposta nuovaproposta = new PrenotazioneProposta();
-            Prestazioni prestazione = new Prestazioni();
-            prestazione.codprest = prenotazione.codPrestazione;
-            prestazione.data_inizio = prenotazione.dataAppuntamento;
-            prestazione.reparti.codReparto = prenotazione.codReparto;
-            prestazione.reparti.unitaOperativa = prenotazione.unitaOperativa;
-            prestazione.reparti.nomeStruttura = prenotazione.nomeStruttura;
+            REST<AppuntamentoProposto, AppuntamentoProposto> connessione = new REST<AppuntamentoProposto, AppuntamentoProposto>();
             IsBusyV = true;
-            nuovaproposta = await connessione.PostJson(URL.PrimaDisponibilita, prestazione);
+            appuntamentoProposto = await connessione.PostJson(URL.PrimaDisponibilita, prenotazione, headers);
             IsBusyV = false;
-            List<PrenotazioneProposta> temp = new List<PrenotazioneProposta>(ListPrenotazioni);
-            for (int i = 0; i < temp.Count; i++)
-            {
-                if (temp[i].codPrestazione == nuovaproposta.codPrestazione)
-                {
-                    temp[i] = nuovaproposta;
-                    break;
-                }
-            }
-            ListPrenotazioni = temp;
+            ListPrenotazioni = appuntamentoProposto.appuntamenti;
         }
 
-        public async Task infoProssimaData(PrenotazioneProposta prenotazione)
+        public async Task infoProssimaData(string data)
         {
-            REST<Prestazioni, PrenotazioneProposta> connessione = new REST<Prestazioni, PrenotazioneProposta>();
-            PrenotazioneProposta nuovaproposta = new PrenotazioneProposta();
-            Prestazioni prestazione = new Prestazioni();
-            prestazione.codprest = prenotazione.codPrestazione;
-            prestazione.data_inizio = prenotazione.dataAppuntamento;
-            prestazione.reparti.codReparto = prenotazione.codReparto;
-            prestazione.reparti.unitaOperativa = prenotazione.unitaOperativa;
-            prestazione.reparti.nomeStruttura = prenotazione.nomeStruttura;
+            REST<AppuntamentoProposto, AppuntamentoProposto> connessione = new REST<AppuntamentoProposto, AppuntamentoProposto>();
             IsBusyV = true;
-            nuovaproposta = await connessione.PostJson(URL.PrimaDisponibilita, prestazione);
+            appuntamentoProposto = await connessione.PostJson(URL.PrimaDisponibilita, appuntamentoProposto, headers);
             IsBusyV = false;
-            List<PrenotazioneProposta> temp = new List<PrenotazioneProposta>(ListPrenotazioni);
-            for (int i = 0; i < temp.Count; i++)
-            {
-                if (temp[i].codPrestazione == nuovaproposta.codPrestazione)
-                {
-                    temp[i] = nuovaproposta;
-                    break;
-                }
-            }
-            ListPrenotazioni = temp;
+            ListPrenotazioni = appuntamentoProposto.appuntamenti;
         }
-
-        private class PrenotazioniContatto
-        {
-            public Contatto contatto { get; set; }
-            public PrenotazioneProposta prestazione { get; set; }
-            public string struttura { get; set; } = "030001";
-        }
-
-        private class ResponsePrenotazione
-        {
-            public string messaggio { get; set; }
-            public int esito { get; set; }
-
-        }
-
     }
 }

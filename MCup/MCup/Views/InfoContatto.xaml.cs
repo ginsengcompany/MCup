@@ -13,7 +13,7 @@ namespace MCup.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InfoContatto : ContentPage
     {
-        public InfoContatto(Contatto infoContatto)
+        public InfoContatto(Assistito infoContatto)
         {
             InitializeComponent();
             BindingContext = new InfoContattoModelView(infoContatto);

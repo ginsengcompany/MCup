@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace MCup.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListaPrestazione : ContentPage
+    public partial class Pagamento : ContentPage
     {
-        public ListaPrestazione()
+        public Pagamento()
         {
             InitializeComponent();
         }

@@ -14,11 +14,11 @@ namespace MCup.ModelView
     public class GestioneAppuntamentiModelView : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private Contacts contacts;
+        private Assistito contatto;
         private Color colore;
-        private List<Contatto> contatti = new List<Contatto>();
-        private List<Appuntamento> appuntamenti = new List<Appuntamento>();
-        private Appuntamento date = new Appuntamento();
+        private List<Assistito> contatti = new List<Assistito>();
+        private List<AppuntamentoPrestazioneProposto> appuntamenti = new List<AppuntamentoPrestazioneProposto>();
+        private AppuntamentoProposto date = new AppuntamentoProposto();
         private Boolean visibileLabel = false;
         private Boolean visibile = true;
         private string visi;
@@ -53,7 +53,7 @@ namespace MCup.ModelView
             }
         }
 
-        public List<Appuntamento> Appuntamenti
+        public List<AppuntamentoPrestazioneProposto> Appuntamenti
         {
             get { return appuntamenti; }
             set
@@ -63,47 +63,22 @@ namespace MCup.ModelView
             }
         }
 
-        public List<Contatto> Contatti
+        public List<Assistito> Contatti
         {
             get { return contatti; }
             set
             {
                 OnPropertyChanged();
-                contatti = new List<Contatto>(value);
+                contatti = new List<Assistito>(value);
             }
         }
 
 
         private async void leggiContatti()
         {
-            REST<object, Contacts> rest = new REST<object, Contacts>();
-            contacts = await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
-            List<Contatto> temp = new List<Contatto>();
-            temp.Add(new Contatto
-            {
-                nome = contacts.nome,
-                cognome = contacts.cognome,
-                codice_fiscale = contacts.codice_fiscale,
-                data_nascita = contacts.data_nascita,
-                statocivile = contacts.statocivile,
-                codStatoCivile = contacts.codStatoCivile,
-                luogo_nascita = contacts.luogo_nascita,
-                sesso = contacts.sesso,
-                AccountPrimario = true,
-                istatComuneNascita = contacts.istatComuneNascita,
-                istatComuneResidenza = contacts.istatComuneResidenza,
-                nomeCognome = contacts.nome+" "+contacts.cognome,
-                nomeCompletoConCodiceFiscale = contacts.nome + " " + contacts.cognome + " " + contacts.codice_fiscale,
-                comune_residenza = contacts.comune_residenza,
-                telefono = contacts.telefono
-            });
-            for (int i = 0; i < contacts.contatti.Count; i++)
-            {
-                contacts.contatti[i].nomeCompletoConCodiceFiscale = contacts.contatti[i].nome + " " + contacts.contatti[i].cognome + " " + contacts.contatti[i].codice_fiscale;
-                contacts.contatti[i].nomeCognome = contacts.contatti[i].nome + " " + contacts.contatti[i].cognome;
-                temp.Add(contacts.contatti[i]);
-            }
-            Contatti = temp;
+            REST<object, List<Assistito>> rest = new REST<object, List<Assistito>>();
+            contatti = await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
+            Contatti = contatti;
         }
 
         public GestioneAppuntamentiModelView()
@@ -117,7 +92,7 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public async void autoCompila(Contatto elementSelected)
+        public async void autoCompila(Assistito elementSelected)
         {
             date.assistito = elementSelected;
             await invioDatiAssistito();
@@ -127,8 +102,8 @@ namespace MCup.ModelView
         {
             try
             {
-                var invioContatto = date.assistito;
-                REST<Contatto, Appuntamento> connessione = new REST<Contatto, Appuntamento>();
+                Assistito invioContatto = date.assistito;
+                REST<Assistito, AppuntamentoPrestazioneProposto> connessione = new REST<Assistito, AppuntamentoPrestazioneProposto>();
                 Appuntamenti = await connessione.PostJsonList(URL.appuntamenti, invioContatto,App.Current.Properties["tokenLogin"].ToString());
                 if (Appuntamenti.Count==0)
                 {

@@ -128,6 +128,36 @@ namespace MCup.Service
             return default(T);
         }
 
+        public async Task<T> PostJson(string url, E dati, List<Header> header)
+        {
+            T Item;
+            HttpClient client = new HttpClient();
+            string ContentType = "application/json"; // or application/xml
+            string json = JsonConvert.SerializeObject(dati);
+            var uri = new Uri(string.Format(url, String.Empty));
+            HttpContent httpContent = new StringContent(json.ToString());
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+            for (int i = 0; i < header.Count; i++)
+            {
+                httpContent.Headers.Add(header[i].header, header[i].value);
+            }
+            try
+            {
+                client.Timeout = TimeSpan.FromSeconds(10.0);
+                var result = await client.PostAsync(url, httpContent);
+                var response = await result.Content.ReadAsStringAsync();
+                warning = response;
+                var isValid = JToken.Parse(response);
+                Item = JsonConvert.DeserializeObject<T>(response);
+                return Item;
+            }
+            catch (Exception)
+            {
+
+            }
+            return default(T);
+        }
+
         public async Task<List<T>> PostJsonList(string url, E dati, string header)
         {
             List<T> Items = new List<T>();
@@ -139,6 +169,34 @@ namespace MCup.Service
             httpContent.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
             httpContent.Headers.Add("x-access-token", header);
 
+            try
+            {
+                var result = await client.PostAsync(url, httpContent);
+                var response = await result.Content.ReadAsStringAsync();
+                warning = response;
+                var isValid = JToken.Parse(response);
+                Items = JsonConvert.DeserializeObject<List<T>>(response);
+                return Items;
+            }
+            catch (Exception e)
+            {
+                return new List<T>();
+            }
+        }
+
+        public async Task<List<T>> PostJsonList(string url, E dati, List<Header> header)
+        {
+            List<T> Items = new List<T>();
+            HttpClient client = new HttpClient();
+            string ContentType = "application/json"; // or application/xml
+            string json = JsonConvert.SerializeObject(dati);
+            var uri = new Uri(string.Format(url, String.Empty));
+            HttpContent httpContent = new StringContent(json.ToString());
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+            for (int i = 0; i < header.Count; i++)
+            {
+                httpContent.Headers.Add(header[i].header, header[i].value);
+            }
             try
             {
                 var result = await client.PostAsync(url, httpContent);

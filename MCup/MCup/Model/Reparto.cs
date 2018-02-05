@@ -14,23 +14,9 @@ namespace MCup.Model
         public string nomeStruttura { get; set; }
         public string dataDisponibile { get; set; }
         public string codprest { get; set; }
+        public bool repartoScelto { get; set; }
+        public string orarioApertura { get; set; }
+        public string orarioChiusura { get; set; }
         public int defaultReparto { get; set; }
-        
-
-        public Reparto(Reparto reparto)
-
-        {
-            this.codReparto = reparto.codReparto;
-            this.dataDisponibile = reparto.dataDisponibile;
-            this.descrizione = reparto.descrizione;
-            this.nomeStruttura = reparto.nomeStruttura;
-            this.unitaOperativa = reparto.unitaOperativa;
-            this.codprest = reparto.codprest;
-        }
-
-        public Reparto()
-        {
-
-        }
     }
 }

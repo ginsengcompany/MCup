@@ -39,7 +39,8 @@ namespace MCup.Views
             {
                 new Menu { MenuTitle = "Home", ImageIcon = "home.png"},
               //  new Menu { MenuTitle = "Scegli Struttura Preferita", ImageIcon = "modify.png"},
-                new Menu { MenuTitle ="Contatti", ImageIcon = "contact.png"}
+                new Menu { MenuTitle ="Contatti", ImageIcon = "contact.png"},
+                new Menu{MenuTitle ="Pagamento", ImageIcon = "soldi.png"}
 
             };
             ListaMenu.ItemsSource = menuPrincipale; //Assegna all'oggetto ListaMenu dello xaml della pagina la lista precedentemente inizializzata
@@ -60,11 +61,16 @@ namespace MCup.Views
                     IsPresented = false;
                     Detail = new NavigationPage(new MainPage()); //Avvia la pagina principale
                 }
-              /*  else if (menu.MenuTitle.Equals("Scegli Struttura Preferita"))
+                else if (menu.MenuTitle.Equals("Pagamento"))
                 {
                     IsPresented = false;
-                    Detail = new NavigationPage(new ListaStrutture("Menu")); //Avvia la pagina per la scelta della struttura preferita
-                }*/
+                    Detail = new NavigationPage(new Pagamento()); //Avvia la pagina principale
+                }
+                /*  else if (menu.MenuTitle.Equals("Scegli Struttura Preferita"))
+                  {
+                      IsPresented = false;
+                      Detail = new NavigationPage(new ListaStrutture("Menu")); //Avvia la pagina per la scelta della struttura preferita
+                  }*/
                 else if (menu.MenuTitle.Equals("Contatti"))
                 {
                     IsPresented = false;

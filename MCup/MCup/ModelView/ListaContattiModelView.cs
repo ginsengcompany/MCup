@@ -16,11 +16,11 @@ namespace MCup.ModelView
 {
     public class ListaContattiModelView : INotifyPropertyChanged
     {
-        private List<Contatto> contatti = new List<Contatto>();
+        private List<Assistito> contatti = new List<Assistito>();
         public string primoNome;
         private NavigationPage pagina = new  NavigationPage();
         private InfoContatto paginaInfoContatto;
-        public  Contatto contattoPrimo = new Contatto();
+        public  Assistito contattoPrimo = new Assistito();
         public ICommand AggiungereContatto { protected set; get; }
         public ICommand MioContattoPersonale { protected set; get; }
         public ICommand searchContacts { protected set; get; }
@@ -28,6 +28,9 @@ namespace MCup.ModelView
         private string textSearch = "";
         private ObservableCollection<Rubrica> grouped { get; set; }
         private ObservableCollection<Rubrica> collectionView;
+
+
+
 
         public string TextSearch
         {
@@ -52,13 +55,13 @@ namespace MCup.ModelView
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public List<Contatto> Contatti
+        public List<Assistito> Contatti
         {
             get { return contatti; }
             set
             {
                 OnPropertyChanged();
-                contatti = new List<Contatto>(value);
+                contatti = new List<Assistito>(value);
             }
         }
 
@@ -108,7 +111,7 @@ namespace MCup.ModelView
                 ObservableCollection<Rubrica> temp = new ObservableCollection<Rubrica>();
                 for (int i = 0; i < grouped.Count; i++)
                 {
-                    ObservableCollection<Contatto> tempContatto = new ObservableCollection<Contatto>();
+                    ObservableCollection<Assistito> tempContatto = new ObservableCollection<Assistito>();
                     for (int j = 0; j < grouped[i].Count; j++)
                     {
                         if (grouped[i][j].nomeCompletoConCodiceFiscale.ToLower().Contains(keyword.ToLower()))
@@ -128,29 +131,15 @@ namespace MCup.ModelView
 
         private async void leggiContatti()
         {
-            REST<object, Contacts> rest = new REST<object, Contacts>();
-            Contacts contacts =
+            REST<object, List<Assistito>> rest = new REST<object, List<Assistito>>();
+            List<Assistito> contacts =
                 await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
-            List<Contatto> temp = new List<Contatto>();
+            List<Assistito> temp = new List<Assistito>();
             char a = 'a';
-            temp.Add(new Contatto
+            for (int i = 0; i < contacts.Count; i++)
             {
-                nome = contacts.nome,
-                cognome = contacts.cognome,
-                codice_fiscale = contacts.codice_fiscale,
-                data_nascita = contacts.data_nascita,
-                luogo_nascita = contacts.luogo_nascita,
-                sesso = contacts.sesso,
-                comune_residenza = contacts.comune_residenza,
-                telefono = contacts.telefono,
-                codStatoCivile = contacts.codStatoCivile,
-                statocivile = contacts.statocivile
-            });
-            for (int i = 0; i < contacts.contatti.Count; i++)
-            {
-                contacts.contatti[i].nomeCompletoConCodiceFiscale = contacts.contatti[i].nome + " " + contacts.contatti[i].cognome + " " + contacts.contatti[i].codice_fiscale;
-                temp.Add(contacts.contatti[i]);
-               
+                contacts[i].nomeCompletoConCodiceFiscale = contacts[i].nome + " " + contacts[i].cognome + " " + contacts[i].codice_fiscale;
+                temp.Add(contacts[i]);
             }
             PrimoNome = temp[0].nome + " " + temp[0].cognome;
             contattoPrimo.nome = temp[0].nome;
@@ -207,5 +196,17 @@ namespace MCup.ModelView
             CollectionView = grouped;
         }
 
+    }
+
+    public class Rubrica : ObservableCollection<Assistito>
+    {
+        public string LongName;
+        public string ShortName;
+
+        public Rubrica(string longN, string shortN)
+        {
+            this.LongName = longN;
+            this.ShortName = shortN;
+        }
     }
 }

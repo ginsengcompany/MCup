@@ -29,7 +29,7 @@ namespace MCup.Views
 	    private void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
 	    {
 	        var a = sender as Picker;
-	        var b = a.SelectedItem as Contatto;
+	        var b = a.SelectedItem as Assistito;
 	        form.autoCompila(b);
         }
 	}

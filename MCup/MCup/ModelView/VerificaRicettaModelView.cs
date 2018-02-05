@@ -17,17 +17,17 @@ namespace MCup.ModelView
 {
     public class VerificaRicettaModelView : INotifyPropertyChanged
     {
-        private List<PrestazioniTemp> listaPrestazioni = new List<PrestazioniTemp>();
+        private List<Prestazione> listaPrestazioni = new List<Prestazione>();
         private bool isBusy;
         private string nomeAssistito, cognomeAssistito, codiceRicetta;
-        private Ricetta ricetta;
-        private List<PrestazioniTemp> prestazioni; //Lista delle prestazioni contenute nella ricetta
-        private List<PrestazioniTemp> prestazioniErogabili;
+        private Impegnativa ricetta;
+        private List<Prestazione> prestazioni; //Lista delle prestazioni contenute nella ricetta
+        private List<Prestazione> prestazioniErogabili;
         private bool buttonIsVisible;
         private List<Reparto> reparto = new List<Reparto>();
         private VerificaRicetta verifica;
         public ICommand ContinuaPrenotazione { protected set; get; }
-        private List<Prestazioni> prestazioniDaInviare;
+        private List<Prestazione> prestazioniDaInviare;
         private bool isenabled;
 
         public bool ButtonIsVisible
@@ -90,16 +90,16 @@ namespace MCup.ModelView
             }
         }
 
-        public VerificaRicettaModelView(Ricetta impegnativa, VerificaRicetta verifica, FormPrenotazioneModelView.sendRicetta contatto)
+        public VerificaRicettaModelView(Impegnativa impegnativa, VerificaRicetta verifica, Assistito contatto)
         {
             IsEnabled = true;
             this.verifica = verifica;
             ricetta = impegnativa;
-            NomeAssistito = ricetta.nome_assistito;
-            CognomeAssistito = ricetta.cognome_assistito;
-            CodiceRicetta = ricetta.codice_nre;
+            NomeAssistito = contatto.nome;
+            CognomeAssistito = contatto.cognome;
+            CodiceRicetta = ricetta.nre;
             ButtonIsVisible = true;
-            prestazioniDaInviare = new List<Prestazioni>();
+            prestazioniDaInviare = new List<Prestazione>();
             ingressoPagina();
             ContinuaPrenotazione = new Command(async () =>
             {
@@ -109,14 +109,14 @@ namespace MCup.ModelView
                 {
                     if (!ListaPrestazioni[i].enabled)
                     {
-                        prestazioniDaInviare[i].reparti = ListaPrestazioni[i].reparti[0];
+                        prestazioniDaInviare[i].reparti[0].repartoScelto = true;
                     }
                 }
                 foreach (var i in prestazioniDaInviare)
                     if (i.reparti == null)
                         verificaPrestazioni = false;
                 if (verificaPrestazioni == true)
-                    await this.verifica.Navigation.PushAsync(new PropostaRichiesta(prestazioniDaInviare, contatto.contattoDaInviare));
+                    await this.verifica.Navigation.PushAsync(new PropostaRichiesta(prestazioniDaInviare, contatto));
                 else
                     await App.Current.MainPage.DisplayAlert("Attenzione", "Seleziona un reparto per ogni prestazione",
                         "OK");
@@ -124,13 +124,13 @@ namespace MCup.ModelView
             });
         }
 
-        public List<PrestazioniTemp> ListaPrestazioni
+        public List<Prestazione> ListaPrestazioni
         {
             get { return listaPrestazioni; }
             set
             {
                 OnPropertyChanged();
-                listaPrestazioni = new List<PrestazioniTemp>(value);
+                listaPrestazioni = new List<Prestazione>(value);
             }
         }
 
@@ -142,21 +142,20 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private async Task ricezioneReparti(DateTime data)
+        private async Task ricezioneReparti()
         {
-            List<PrestazioniTemp> temp = ListaPrestazioni;
-            REST<PrestazioniTemp,Reparto> connessione = new REST<PrestazioniTemp,Reparto>();
+            List<Prestazione> temp = ListaPrestazioni;
+            REST<Prestazione, Reparto> connessione = new REST<Prestazione, Reparto>();
+            List<Header> headers = new List<Header>();
+            headers.Add(new Header("struttura", "030001"));
             for (var i = 0; i < temp.Count; i++)
             {
-                string dataSub = string.Format("{0:dd/MM/yyyy}", data);
-                ListaPrestazioni[i].data_inizio = dataSub;
-                prestazioniDaInviare[i].data_inizio = dataSub;
                 IsBusy = true;
                 IsEnabled = false;
-                temp[i].reparti = await connessione.PostJsonList(URL.RicercadisponibilitaReparti, ListaPrestazioni[i]);
+                temp[i].reparti = await connessione.PostJsonList(URL.RicercadisponibilitaReparti, ListaPrestazioni[i], headers);
                 IsEnabled = true;
                 IsBusy = false;
-                for (int p=0;p < temp[i].reparti.Count; p++)
+                for (int p = 0; p < temp[i].reparti.Count; p++)
                 {
                     if (temp[i].reparti.Count == 1)
                         temp[i].reparti[p].defaultReparto = 0;
@@ -173,18 +172,18 @@ namespace MCup.ModelView
                     temp[i].title = "Scegli il reparto";
                     temp[i].enabled = true;
                 }
-                    
+
             }
             ListaPrestazioni = temp;
         }
 
         private async void ingressoPagina()
         {
-            REST<Erogazione, PrestazioniTemp> connessione = new REST<Erogazione, PrestazioniTemp>();
-            Erogazione erogazioneDaInviare = new Erogazione();
-            erogazioneDaInviare.prestazioni = ricetta.prestazioni;
-            prestazioniErogabili = await connessione.PostJsonList(URL.StruttureErogatrici, erogazioneDaInviare);
-            List<PrestazioniTemp> prestazioniNonErogabili = new List<PrestazioniTemp>();
+            REST<Impegnativa, List<Prestazione>> connessione = new REST<Impegnativa, List<Prestazione>>();
+            List<Header> headers = new List<Header>();
+            headers.Add(new Header("struttura", "030001"));
+            prestazioniErogabili = await connessione.PostJson(URL.StruttureErogatrici, ricetta, headers);
+            List<Prestazione> prestazioniNonErogabili = new List<Prestazione>();
             foreach (var i in prestazioniErogabili)
             {
                 if (!i.erogabile)
@@ -207,12 +206,12 @@ namespace MCup.ModelView
                 }
                 ListaPrestazioni = prestazioniErogabili;
                 for (var i = 0; i < prestazioniErogabili.Count; i++)
-                    prestazioniDaInviare.Add(prestazioniErogabili[i].estraiPrestazione());
+                    prestazioniDaInviare.Add(prestazioniErogabili[i]);
                 if (prestazioniErogabili.Count > 0)
                 {
                     await App.Current.MainPage.DisplayAlert("Attenzione",
                         "La struttura non eroga i seguenti servizi: " + "\n" + messaggio, "OK");
-                    await ricezioneReparti(DateTime.Today);
+                    await ricezioneReparti();
                     bool piuReparti = false;
                     foreach (var i in listaPrestazioni)
                         if (i.reparti.Count > 1)
@@ -234,8 +233,8 @@ namespace MCup.ModelView
             {
                 ListaPrestazioni = prestazioniErogabili;
                 for (var i = 0; i < prestazioniErogabili.Count; i++)
-                    prestazioniDaInviare.Add(prestazioniErogabili[i].estraiPrestazione());
-                await ricezioneReparti(DateTime.Today);
+                    prestazioniDaInviare.Add(prestazioniErogabili[i]);
+                await ricezioneReparti();
                 bool piuReparti = false;
                 foreach (var i in listaPrestazioni)
                     if (i.reparti.Count > 1)
@@ -251,45 +250,17 @@ namespace MCup.ModelView
         public void selectedReparto(Reparto reparto)
         {
             for (var i = 0; i < prestazioniDaInviare.Count; i++)
+            {
                 if (prestazioniDaInviare[i].codprest == reparto.codprest)
-                    prestazioniDaInviare[i].reparti = reparto;
+                    prestazioniDaInviare[i].reparti[i].repartoScelto = true;
+                else
+                {
+                    prestazioniDaInviare[i].reparti[i].repartoScelto = false;
+                }
+            }
+           
         }
-
-        public class PrestazioniTemp
-        {
-            public string codprest { get; set; }
-            public string desbprest { get; set; }
-            public string desprest { get; set; }
-            public string data_inizio { get; set; }
-            public List<Reparto> reparti { get; set; }
-            public bool erogabile { get; set; }
-            public string codnazionale { get; set; }
-            public string struttura { get; set; } = "030001";
-            public string title { get; set; }
-            public bool enabled { get; set; }
-
-
-            public PrestazioniTemp()
-            {
-            }
-
-            public PrestazioniTemp(PrestazioniTemp prestazioni)
-            {
-                this.codprest = prestazioni.codprest;
-                this.desbprest = prestazioni.desbprest;
-                this.desprest = prestazioni.desprest;
-                this.reparti = prestazioni.reparti;
-                this.data_inizio = prestazioni.data_inizio;
-                this.codnazionale = prestazioni.codnazionale;
-            }
-
-            public Prestazioni estraiPrestazione()
-            {
-                Prestazioni prestazioni = new Prestazioni(this.codprest,this.desbprest,this.desprest,this.erogabile);
-                return prestazioni;
-            }
-
-        }
-
     }
+
 }
+

@@ -14,14 +14,14 @@ namespace MCup.Views
     {
 
         private PropostaRichiestaModelView modelView;
-        private PrenotazioneProposta itemDatePicker;
+        private string itemDatePicker;
         private bool dataCambiata = false;
 
-        public PropostaRichiesta(List<Prestazioni> prestazioni, Contatto contatto)
+        public PropostaRichiesta(List<Prestazione> prestazioni, Assistito contatto)
         {
             InitializeComponent();
             data.MinimumDate = DateTime.Now;
-            itemDatePicker = new PrenotazioneProposta();
+            itemDatePicker = "";
             modelView = new PropostaRichiestaModelView(prestazioni, contatto, this);
             BindingContext = modelView;
         }
@@ -31,23 +31,15 @@ namespace MCup.Views
             return true;
         }
 
-        public void visualizzaDatePicker(PrenotazioneProposta item)
+        public void visualizzaDatePicker()
         {
-            itemDatePicker = item;
             if (Device.RuntimePlatform == Device.iOS)
             {
-                /*
-                string temp = item.dataAppuntamento.Substring(0, 10);
-                string giorno = temp.Substring(0, 2);
-                string mese = temp.Substring(3, 2);
-                string anno = temp.Substring(6);
-                temp = mese + "/" + giorno + "/" + anno;*/
-
-                data.Date = Convert.ToDateTime(item.dataAppuntamento, new CultureInfo("it-IT"));
+                data.Date = Convert.ToDateTime(DateTime.Today, new CultureInfo("it-IT"));
             }
             else
             {
-            data.Date = DateTime.Parse(item.dataAppuntamento);
+                data.Date = DateTime.Today;
             }
             data.Focus();
         }
@@ -57,7 +49,7 @@ namespace MCup.Views
             var a = sender as DatePicker;
             var x = a.Date;
             dataCambiata = true;
-            itemDatePicker.dataAppuntamento = string.Format("{0:dd/MM/yyyy}", x);
+            itemDatePicker = string.Format("{0:dd/MM/yyyy}", x);
         }
 
         private async void data_Unfocused(object sender, FocusEventArgs e)

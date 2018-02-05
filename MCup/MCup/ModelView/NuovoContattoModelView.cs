@@ -19,7 +19,7 @@ namespace MCup.ModelView
     {
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
 
-        private Contatto contatto; //Oggetto che astrae l'utenza del cliente
+        private Assistito contatto; //Oggetto che astrae l'utenza del cliente
 
         private List<Comune> listaComuniResidenza, listaComuniNascita;
 
@@ -274,7 +274,7 @@ namespace MCup.ModelView
         //Costruttore che inizializza un utenza vuota e definisce il metodo a cui il Command registrati fa riferimento
         public NuovoContattoModelView()
         {
-            contatto = new Contatto(); //Crea un utenza vuota
+            contatto = new Assistito(); //Crea un utenza vuota
             var token = App.Current.Properties["tokenLogin"].ToString();
             LeggiProvince();
             LeggiStatoCivile();
@@ -423,7 +423,7 @@ namespace MCup.ModelView
                     mese = contatto.data_nascita.Substring(0, 2);
                     anno = contatto.data_nascita.Substring(6, 4);
                     contatto.data_nascita = giorno + "/" + mese + "/" + anno;
-                    REST<Contatto, ResponseRegistrazione> connessioneNuovoContatto = new REST<Contatto, ResponseRegistrazione>();
+                    REST<Assistito, ResponseRegistrazione> connessioneNuovoContatto = new REST<Assistito, ResponseRegistrazione>();
                     try
                     {
                         ResponseRegistrazione response = await connessioneNuovoContatto.PostJson(URL.AggiungiNuovoContatto, contatto, token);

@@ -18,7 +18,7 @@
                         HorizontalOptions="CenterAndExpand" 
                         ItemsSource="{Binding Contatti}" 
                         WidthRequest="300"
-                        ItemDisplayBinding="{Binding nomeCognome}" 
+                        ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" 
                         VerticalOptions="Center" 
                         SelectedIndexChanged="Picker_OnSelectedIndexChanged" />
                 <Label 

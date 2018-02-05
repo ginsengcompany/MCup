@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace MCup.Model
 {
-    public class ListaDatePrenotazioni
-    {
-        public string data { get; set; }
-        public string ora { get; set; }
-
+   public class AppuntamentiConfermati
+   {
+       public int esito { get; set; }
+       public string messaggio { get; set; }
     }
 }

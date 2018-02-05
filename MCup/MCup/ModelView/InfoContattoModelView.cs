@@ -15,7 +15,7 @@ namespace MCup.ModelView
 {
     public class InfoContattoModelView : INotifyPropertyChanged
     {
-        private Contatto utente = new Contatto();
+        private Assistito utente = new Assistito();
         private string visibile="true";
         public string nomeCognome="";
 
@@ -139,7 +139,7 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public InfoContattoModelView(Contatto info)
+        public InfoContattoModelView(Assistito info)
         {
             utente = info;
             NomeCognome = info.nome + " " + info.cognome;
@@ -176,7 +176,7 @@ namespace MCup.ModelView
                     var risposta = await App.Current.MainPage.DisplayAlert("ATTENZIONE", "Sei sicuro di voler eliminare questo contatto?", "SI", "NO");
                     if (risposta == false)
                         return;
-                    REST<Contatto, string> restElimina = new REST<Contatto, string>();
+                    REST<Assistito, string> restElimina = new REST<Assistito, string>();
                     string response = await restElimina.PostJson(URL.EliminaContatto, utente, App.Current.Properties["tokenLogin"].ToString());
                     await App.Current.MainPage.DisplayAlert("Eliminazione", restElimina.warning, "OK");
                     App.Current.MainPage = new MenuPrincipale();

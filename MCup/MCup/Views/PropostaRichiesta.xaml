@@ -34,12 +34,8 @@
                                             FontSize="Large"
                                             FontAttributes="Bold"/>
                                     </StackLayout>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
-                                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <StackLayout Grid.Column="0">
+                                
+                                        <StackLayout>
                                             <StackLayout Orientation="Vertical">
                                                 <Label Text="Reparto:" TextColor="Red"  VerticalOptions="Start" />
                                                 <Label Text="{Binding descReparto}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
@@ -53,42 +49,31 @@
                                                 <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium"  FontAttributes="Italic"/>
                                             </StackLayout>
                                         </StackLayout>
-                                        <StackLayout Grid.Column="1" IsVisible="{Binding VisibleButton}" IsEnabled="{Binding IsEnabled}" Padding="0,15,0,0">
-                                            <Button 
-                                                    Text="Orario Successivo" 
-                                                    TextColor="Red" 
-                                                    HeightRequest="80"
-                                                WidthRequest="100"
-                                                    VerticalOptions="Start" 
-                                                    BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}"
-                                                    IsEnabled="{Binding IsEnabled}"
-                                                    Command="{Binding cambiaOra}" 
-                                                    CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                                />
-                                            <Button Text="Data successiva" 
-                                                        TextColor="Red" 
-                                                        HeightRequest="80" 
-                                                        VerticalOptions="End" 
-                                                        BindingContext="{Binding Source={x:Reference lst}, Path=BindingContext}" 
-                                                        IsEnabled="{Binding IsEnabled}"
-                                                        Command="{Binding cambiaData}" 
-                                                        CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                                        />
-                                        </StackLayout>
-                                        <Label Text="{Binding EsitoPrenotazione}"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="End"
-                                               TextColor="{Binding Color}"
-                                               IsVisible="{Binding VisibleEsito}" 
-                                               Grid.Column="1"
-                                        />
-                                    </Grid>
+                                  
                                 </StackLayout>
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding VisibleButton}" IsEnabled="{Binding IsEnabled}" Padding="0,15,0,0">
+                <Button 
+                    Text="Orario Successivo" 
+                    TextColor="Red" 
+                    HeightRequest="80"
+                    WidthRequest="100"
+                    VerticalOptions="Start" 
+                    IsEnabled="{Binding IsEnabled}"
+                    Command="{Binding cambiaOra}" 
+                />
+                <Button Text="Data successiva" 
+                        TextColor="Red" 
+                        HeightRequest="80" 
+                        VerticalOptions="End" 
+                        IsEnabled="{Binding IsEnabled}"
+                        Command="{Binding cambiaData}" 
+                />
+            </StackLayout>
             <StackLayout VerticalOptions="Center">
                 <ActivityIndicator IsVisible="{Binding IsBusyV}" IsRunning="{Binding IsBusyV}"></ActivityIndicator>
             </StackLayout>

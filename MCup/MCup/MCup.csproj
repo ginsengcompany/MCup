@@ -47,29 +47,27 @@
     <Compile Include="ModelView\GestioneAppuntamentiModelView.cs" />
     <Compile Include="ModelView\InfoContattoModelView.cs" />
     <Compile Include="ModelView\ListaContattiModelView.cs" />
-    <Compile Include="ModelView\ListaDatePrenotazioniModelView.cs" />
     <Compile Include="ModelView\NuovoContattoModelView.cs" />
     <Compile Include="ModelView\PropostaRichiestaModelView.cs" />
     <Compile Include="ModelView\RegistrazioneModelView.cs" />
     <Compile Include="ModelView\VerificaRicettaModelView.cs" />
-    <Compile Include="Model\Appuntamento.cs" />
+    <Compile Include="Model\AppuntamentiConfermati.cs" />
+    <Compile Include="Model\AppuntamentoPrestazioneProposto.cs" />
+    <Compile Include="Model\AppuntamentoProposto.cs" />
+    <Compile Include="Model\Assistito.cs" />
     <Compile Include="Model\Comune.cs" />
-    <Compile Include="Model\Contacts.cs" />
-    <Compile Include="Model\Contatto.cs" />
-    <Compile Include="Model\Erogazione.cs" />
-    <Compile Include="Model\ListaDatePrenotazioni.cs" />
-    <Compile Include="Model\Prenotazione.cs" />
-    <Compile Include="Model\PrenotazioneProposta.cs" />
-    <Compile Include="Model\Prestazioni.cs" />
+    <Compile Include="Model\GestioneRubrica.cs" />
+    <Compile Include="Model\Impegnativa.cs" />
+    <Compile Include="Model\PickerProperties.cs" />
+    <Compile Include="Model\Prestazione.cs" />
     <Compile Include="Model\Provincia.cs" />
     <Compile Include="Model\Reparto.cs" />
     <Compile Include="Model\ResponseRegistrazione.cs" />
-    <Compile Include="Model\Ricetta.cs" />
-    <Compile Include="Model\Rubrica.cs" />
     <Compile Include="Model\StatoCivile.cs" />
     <Compile Include="Model\Struttura.cs" />
-    <Compile Include="Model\UtenzaPrenotazione.cs" />
+    <Compile Include="Model\Utente.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Service\Header.cs" />
     <Compile Include="Service\REST.cs" />
     <Compile Include="Service\URL.cs" />
     <Compile Include="Views\FormPrenotazione.xaml.cs">
@@ -84,18 +82,6 @@
     <Compile Include="Views\ListaContatti.xaml.cs">
       <DependentUpon>ListaContatti.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ListaDatePrestazioni.xaml.cs">
-      <DependentUpon>ListaDatePrestazioni.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ListaPrestazione.xaml.cs">
-      <DependentUpon>ListaPrestazione.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ListaStrutture.xaml.cs">
-      <DependentUpon>ListaStrutture.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\LoginIoS.xaml.cs">
-      <DependentUpon>LoginIoS.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -105,6 +91,9 @@
     </Compile>
     <Compile Include="Views\NuovoContatto.xaml.cs">
       <DependentUpon>NuovoContatto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pagamento.xaml.cs">
+      <DependentUpon>Pagamento.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Registrazione.xaml.cs">
       <DependentUpon>Registrazione.xaml</DependentUpon>
@@ -117,7 +106,6 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="ModelView\LoginModelView.cs" />
-    <Compile Include="Model\Utente.cs" />
     <Compile Include="CostomControls\CustomEntry.cs" />
     <Compile Include="Views\PropostaRichiesta.xaml.cs">
       <DependentUpon>PropostaRichiesta.xaml</DependentUpon>
@@ -243,24 +231,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ListaStrutture.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\ListaPrestazione.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\ListaDatePrestazioni.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\VerificaRicetta.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -268,12 +238,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Registrazione.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\LoginIoS.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -298,6 +262,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\InfoContatto.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Pagamento.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

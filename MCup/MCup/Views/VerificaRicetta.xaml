@@ -64,8 +64,6 @@
                                             SelectedIndexChanged="Picker_OnSelectedIndexChanged"/>
                                     </StackLayout>
                                 </Grid>
-
-
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>
                     </DataTemplate>

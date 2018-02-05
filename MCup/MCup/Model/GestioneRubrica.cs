@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MCup.Model
 {
-    public class Appuntamento
+    public class GestioneRubrica:Assistito
     {
-        public PrenotazioneProposta prestazione { get; set; }
-        public Contatto assistito { get; set; }
+        public List<Assistito> contatti { get; set; }
+
     }
 }

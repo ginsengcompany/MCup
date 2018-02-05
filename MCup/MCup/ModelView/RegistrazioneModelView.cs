@@ -540,7 +540,8 @@ namespace MCup.ModelView
             Provincia provinciaSelezionata = new Provincia();
             provinciaSelezionata.provincia = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
-            listaComuni = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
+            listacomuni = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
+            listaComuni = listacomuni;
         }
         private async void LeggiComuniResidenza(string provincia)
         {
@@ -554,7 +555,6 @@ namespace MCup.ModelView
         {
             REST<object, string> connessioneProvince = new REST<object, string>();
             listaProvince = await connessioneProvince.GetJson(URL.ListaProvince);
-
         }
 
         public void provinciaDiNascitaSelezionato(string provincia)
@@ -581,7 +581,6 @@ namespace MCup.ModelView
         //Costruttore che inizializza un utenza vuota e definisce il metodo a cui il Command registrati fa riferimento
         public RegistrazioneModelView()
         {
-
             utente = new Utente(); //Crea un utenza vuota
             LeggiProvince();
             LeggiStatoCivile();

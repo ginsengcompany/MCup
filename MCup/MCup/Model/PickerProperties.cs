@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MCup.Model
 {
-   public class ResponseRegistrazione
+   public class PickerProperties
    {
-       public bool auth { get; set; }
-        public string token { get; set; }
+       public string title { get; set; }
+        public bool enabled { get; set; }
     }
 }
