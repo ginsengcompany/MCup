@@ -426,6 +426,7 @@ namespace MCup.ModelView
                     REST<Assistito, ResponseRegistrazione> connessioneNuovoContatto = new REST<Assistito, ResponseRegistrazione>();
                     try
                     {
+                        contatto.Maiuscolo();
                         ResponseRegistrazione response = await connessioneNuovoContatto.PostJson(URL.AggiungiNuovoContatto, contatto, token);
                         if ((response == null) || (response == default(ResponseRegistrazione)))
                         {

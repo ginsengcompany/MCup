@@ -111,6 +111,7 @@ namespace MCup.ModelView
                     {
                         prestazioniDaInviare[i].reparti[0].repartoScelto = true;
                     }
+                  
                 }
                 foreach (var i in prestazioniDaInviare)
                     if (i.reparti == null)
@@ -250,15 +251,14 @@ namespace MCup.ModelView
         public void selectedReparto(Reparto reparto)
         {
             for (var i = 0; i < prestazioniDaInviare.Count; i++)
-            {
                 if (prestazioniDaInviare[i].codprest == reparto.codprest)
-                    prestazioniDaInviare[i].reparti[i].repartoScelto = true;
-                else
-                {
-                    prestazioniDaInviare[i].reparti[i].repartoScelto = false;
-                }
-            }
-           
+                    for (int j = 0; j < prestazioniDaInviare[i].reparti.Count; j++)
+                    {
+                        if(prestazioniDaInviare[i].reparti[j].codReparto==reparto.codReparto)
+                            prestazioniDaInviare[i].reparti[j].repartoScelto = true;
+                        else
+                            prestazioniDaInviare[i].reparti[j].repartoScelto = false;
+                    }
         }
     }
 

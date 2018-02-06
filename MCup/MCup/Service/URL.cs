@@ -30,12 +30,15 @@ namespace MCup.Service
         public static string prossimaDataDisponibile = "http://192.168.125.71:3000/ricercaprimadisponibilita/prossimadatadisponibile";
         public static string updateTokenNotifiche = "http://192.168.125.71:3000/auth/updatetokennotifiche";
         public static string appuntamenti = "http://192.168.125.71:3000/auth/listaappuntamenti";
+        public static string PrimaDisponibilitaOra = "http://192.168.125.71:3000/ricercaprimadisponibilita/ricercaorario";
+        public static string ricercadata = "http://192.168.125.71:3000/ricercaprimadisponibilita/ricercadata";
+
 
         */
 
         // rotte PC Aldo
 
-            
+
         public static string Strutture = "http://192.168.125.14:3000/strutture";
         public static string TerminiServizio = "http://192.168.125.14:3000/terminiservizio";
         public static string Ricetta = "http://192.168.125.14:3000/ricetta";
@@ -45,6 +48,7 @@ namespace MCup.Service
         public static string StrutturaPreferita = "http://192.168.125.14:3000/auth/strutturaPreferita";
         public static string RicercadisponibilitaReparti = "http://192.168.125.14:3000/ricercareparti";
         public static string PrimaDisponibilita = "http://192.168.125.14:3000/ricercaprimadisponibilita";
+        public static string PrimaDisponibilitaOra = "http://192.168.125.14:3000/ricercaprimadisponibilita/ricercaorario";
         public static string InfoPersonali = "http://192.168.125.14:3000/auth/me";
         public static string AggiungiNuovoContatto = "http://192.168.125.14:3000/auth/aggiungiContatto";
         public static string EliminaContatto = "http://192.168.125.14:3000/auth/eliminaContatto";
@@ -56,6 +60,7 @@ namespace MCup.Service
         public static string prossimaDataDisponibile = "http://192.168.125.14:3000/ricercaprimadisponibilita/prossimadatadisponibile";
         public static string updateTokenNotifiche = "http://192.168.125.14:3000/auth/updatetokennotifiche";
         public static string eliminaContattoPersonale = "http://192.168.125.14:3000/auth/eliminaaccount";
+        public static string ricercadata = "http://192.168.125.14:3000/ricercaprimadisponibilita/ricercadata";
 
     }
 }

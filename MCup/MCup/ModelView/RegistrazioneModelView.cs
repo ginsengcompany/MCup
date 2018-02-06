@@ -251,7 +251,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.codice_fiscale = value.ToUpper();
+                utente.codice_fiscale = value;
             }
         }
 
@@ -261,7 +261,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.comune_residenza = value.ToUpper();
+                utente.comune_residenza = value;
             }
         }
 
@@ -320,7 +320,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.nome = value.ToUpper();
+                utente.nome = value;
             }
         }
 
@@ -330,7 +330,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.indirizzores = value.ToUpper();
+                utente.indirizzores = value;
             }
         }
         public string Email //Proprietà relativa al campo nome
@@ -339,7 +339,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.email = value.ToUpper();
+                utente.email = value;
             }
         }
 
@@ -349,7 +349,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.cognome = value.ToUpper();
+                utente.cognome = value;
             }
         }
 
@@ -380,7 +380,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                utente.luogo_nascita = value.ToUpper();
+                utente.luogo_nascita = value;
             }
         }
 
@@ -786,6 +786,7 @@ namespace MCup.ModelView
                     if (accetaODeclina) //Controlla che l'utente abbia accettato i termini di servizio
                     {
                         REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>(); //Crea un oggetto rest per effettuare la registrazione da remoto
+                        utente.Maiuscolo();
                         ResponseRegistrazione response = await rest.PostJson(URL.Registrazione, utente); //Effettua una POST che restituisce nella variabile response se la registrazione ha avuto successo
                         if (response == default(ResponseRegistrazione)) //Se la variabile response contiene il valore di default della classe Response Registrazione allora la registrazione non è avvenuta
                             await App.Current.MainPage.DisplayAlert("Registrazione", rest.warning, "OK"); //Visualizza un display alert che indica all'utente che la registrazione non è stata effettuata

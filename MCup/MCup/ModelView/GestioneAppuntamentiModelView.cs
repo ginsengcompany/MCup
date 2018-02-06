@@ -17,14 +17,23 @@ namespace MCup.ModelView
         private Assistito contatto;
         private Color colore;
         private List<Assistito> contatti = new List<Assistito>();
-        private List<AppuntamentoPrestazioneProposto> appuntamenti = new List<AppuntamentoPrestazioneProposto>();
+        private List<AppuntamentoProposto> appuntamenti = new List<AppuntamentoProposto>();
         private AppuntamentoProposto date = new AppuntamentoProposto();
         private Boolean visibileLabel = false;
+        List<AppuntamentoPrestazioneProposto> appunt= new List<AppuntamentoPrestazioneProposto>();
         private Boolean visibile = true;
         private string visi;
 
 
-
+        public List<AppuntamentoPrestazioneProposto> Appunt
+        {
+            get { return appunt; }
+            set
+            {
+                OnPropertyChanged();
+                appunt = value;
+            }
+        }
         public string VisibileL
         {
             get { return visi; }
@@ -53,7 +62,7 @@ namespace MCup.ModelView
             }
         }
 
-        public List<AppuntamentoPrestazioneProposto> Appuntamenti
+        public List<AppuntamentoProposto> Appuntamenti
         {
             get { return appuntamenti; }
             set
@@ -103,8 +112,9 @@ namespace MCup.ModelView
             try
             {
                 Assistito invioContatto = date.assistito;
-                REST<Assistito, AppuntamentoPrestazioneProposto> connessione = new REST<Assistito, AppuntamentoPrestazioneProposto>();
+                REST<Assistito, AppuntamentoProposto> connessione = new REST<Assistito, AppuntamentoProposto>();
                 Appuntamenti = await connessione.PostJsonList(URL.appuntamenti, invioContatto,App.Current.Properties["tokenLogin"].ToString());
+
                 if (Appuntamenti.Count==0)
                 {
                     Visibile = false;
@@ -115,6 +125,11 @@ namespace MCup.ModelView
                     Visibile = true;
                     VisibileL = "true";
                     VisibileLabel = false;
+                    foreach (var i in Appuntamenti)
+                    {
+                        Appunt = i.appuntamenti;
+                    }
+                    
                 }
             }
             catch (Exception e)

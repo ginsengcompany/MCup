@@ -26,7 +26,7 @@
                                 <StackLayout Orientation="Vertical" x:Name="Item">
                                     <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,10,0,0" Padding="5">
                                         <Label 
-                                            Text="{Binding descPrestazione}" 
+                                            Text="{Binding desprest}" 
                                             TextColor="Black" 
                                             HorizontalOptions="Center"
                                             HorizontalTextAlignment="Center" 
@@ -38,7 +38,7 @@
                                         <StackLayout>
                                             <StackLayout Orientation="Vertical">
                                                 <Label Text="Reparto:" TextColor="Red"  VerticalOptions="Start" />
-                                                <Label Text="{Binding descReparto}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
+                                            <Label Text="{Binding reparti[0].descrizione}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
                                             </StackLayout>
                                             <StackLayout Orientation="Vertical">
                                                 <Label Text="Data dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
@@ -58,7 +58,7 @@
             </ListView>
             <StackLayout Orientation="Horizontal" IsVisible="{Binding VisibleButton}" IsEnabled="{Binding IsEnabled}" Padding="0,15,0,0">
                 <Button 
-                    Text="Orario Successivo" 
+                    Text="Cambia disponibilità" 
                     TextColor="Red" 
                     HeightRequest="80"
                     WidthRequest="100"
@@ -66,7 +66,7 @@
                     IsEnabled="{Binding IsEnabled}"
                     Command="{Binding cambiaOra}" 
                 />
-                <Button Text="Data successiva" 
+                <Button Text="Scegli data" 
                         TextColor="Red" 
                         HeightRequest="80" 
                         VerticalOptions="End" 

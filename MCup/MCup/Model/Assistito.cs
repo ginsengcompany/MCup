@@ -42,6 +42,18 @@ namespace MCup.Model
             this.statocivile = "";
             this.email = "";
             this.indirizzores = "";
+       
+        }
+
+        public void Maiuscolo()
+        {
+            this.nome = this.nome.ToUpper();
+            this.cognome = this.cognome.ToUpper();
+            this.codice_fiscale = this.codice_fiscale.ToUpper();
+            this.comune_residenza = this.comune_residenza.ToUpper();
+            this.luogo_nascita = this.luogo_nascita.ToUpper();
+            this.codStatoCivile = this.codStatoCivile.ToUpper();
+            this.indirizzores = this.indirizzores.ToUpper();
         }
     }
 }

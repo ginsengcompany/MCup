@@ -23,7 +23,7 @@ namespace MCup.ModelView
         private string visible = "true";
         private string visibleHome = "false";
         private PropostaRichiesta propostaRichiesta;
-        private AppuntamentoProposto appuntamentoProposto;
+        private AppuntamentoProposto appuntamentoProposto=new AppuntamentoProposto();
         private List<Header> headers = new List<Header>();
 
 
@@ -119,13 +119,12 @@ namespace MCup.ModelView
         {
             get
             {
-                return new Command(async (e) =>
+                return new Command(async () =>
                 {
                     IsEnabled = false;
                     IsBusyV = true;
-                    var item = (e as AppuntamentoProposto);
                     IsBusyV = false;
-                    await info(item);
+                    await info(appuntamentoProposto);
                     Device.StartTimer(TimeSpan.FromSeconds(3), () =>
                     {
                         IsEnabled = true;
@@ -185,6 +184,8 @@ namespace MCup.ModelView
             IsBusy = true;
             this.prestazioni = prestazioni;
             headers.Add(new Header("struttura","030001"));
+            headers.Add(new Header("dataRicerca",""));
+            headers.Add(new Header("x-access-token",App.Current.Properties["tokenLogin"].ToString()));
             recuperoInformazioni();
         }
 
@@ -197,7 +198,6 @@ namespace MCup.ModelView
         {
             REST<AppuntamentoProposto, AppuntamentiConfermati> invioDati = new REST<AppuntamentoProposto, AppuntamentiConfermati>();
             appuntamentoProposto.assistito = contatto;
-            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             try
             {
                 IsBusyV = true;
@@ -230,7 +230,7 @@ namespace MCup.ModelView
         {
             REST<AppuntamentoProposto, AppuntamentoProposto> connessione = new REST<AppuntamentoProposto, AppuntamentoProposto>();
             IsBusyV = true;
-            appuntamentoProposto = await connessione.PostJson(URL.PrimaDisponibilita, prenotazione, headers);
+            appuntamentoProposto = await connessione.PostJson(URL.PrimaDisponibilitaOra, prenotazione, headers);
             IsBusyV = false;
             ListPrenotazioni = appuntamentoProposto.appuntamenti;
         }
@@ -239,7 +239,8 @@ namespace MCup.ModelView
         {
             REST<AppuntamentoProposto, AppuntamentoProposto> connessione = new REST<AppuntamentoProposto, AppuntamentoProposto>();
             IsBusyV = true;
-            appuntamentoProposto = await connessione.PostJson(URL.PrimaDisponibilita, appuntamentoProposto, headers);
+            headers[1].value = data;
+            appuntamentoProposto = await connessione.PostJson(URL.ricercadata, appuntamentoProposto, headers);
             IsBusyV = false;
             ListPrenotazioni = appuntamentoProposto.appuntamenti;
         }

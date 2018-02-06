@@ -11,6 +11,5 @@ namespace MCup.Model
         public List<AppuntamentoPrestazioneProposto> appuntamenti { get; set; }
         public Assistito assistito { get; set; }
         public string termid { get; set; }
-
     }
 }

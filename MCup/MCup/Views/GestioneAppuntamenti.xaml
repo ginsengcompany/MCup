@@ -22,7 +22,7 @@
                         VerticalOptions="Center" 
                         SelectedIndexChanged="Picker_OnSelectedIndexChanged" />
                 <Label 
-                    Text="Nessuna prestazione disponibile" 
+                    Text="Nessun appuntamento disponibile per il contatto scelto" 
                     IsVisible="{Binding VisibileLabel}" 
                     HorizontalOptions="Center" 
                     TextColor="Black" 
@@ -32,7 +32,7 @@
             <StackLayout VerticalOptions="FillAndExpand">
                 <ListView 
                 Margin="1"
-                ItemsSource="{Binding Appuntamenti}" 
+                ItemsSource="{Binding Appunt}" 
                 BackgroundColor="White" 
                 HasUnevenRows="True"  
                 ItemTapped="ListView_ItemTapped" 
@@ -54,7 +54,7 @@
                                                          Grid.Row="0" 
                                                          Margin="0,10,0,0">
                                                 <Label 
-                                                       Text="{Binding prestazione.descPrestazione}" 
+                                                       Text="{Binding desprest}" 
                                                        HorizontalOptions="CenterAndExpand" 
                                                        HorizontalTextAlignment="Center" 
                                                        TextColor="White" 
@@ -82,7 +82,7 @@
                                                             HorizontalOptions="Center" 
                                                             FontSize="Medium"/>
                                                         <Label 
-                                                            Text="{Binding prestazione.nomeStruttura}" 
+                                                            Text="{Binding reparti[0].nomeStruttura}" 
                                                             HorizontalOptions="Center" 
                                                             TextColor="Black" 
                                                             FontSize="Medium" 
@@ -95,7 +95,7 @@
                                                                HorizontalOptions="Center" 
                                                                FontSize="Medium"/>
                                                         <Label  
-                                                            Text="{Binding prestazione.dataAppuntamento}" 
+                                                            Text="{Binding dataAppuntamento}" 
                                                             HorizontalOptions="Center" 
                                                             TextColor="Black" 
                                                             FontAttributes="Bold"
@@ -108,7 +108,7 @@
                                                                Text="Ora Appuntamento" 
                                                                FontSize="Medium"/>
                                                         <Label 
-                                                            Text="{Binding prestazione.oraAppuntamento}" 
+                                                            Text="{Binding oraAppuntamento}" 
                                                             HorizontalOptions="Center" 
                                                             TextColor="Black" 
                                                             FontAttributes="Bold"

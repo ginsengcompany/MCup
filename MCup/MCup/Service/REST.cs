@@ -113,7 +113,6 @@ namespace MCup.Service
             var uri = new Uri(string.Format(url, String.Empty));
             try
             {
-                client.Timeout = TimeSpan.FromSeconds(10.0);
                 var result = await client.PostAsync(url, new StringContent(json.ToString(), Encoding.UTF8, ContentType));
                 var response = await result.Content.ReadAsStringAsync();
                 warning = response;
@@ -143,7 +142,6 @@ namespace MCup.Service
             }
             try
             {
-                client.Timeout = TimeSpan.FromSeconds(10.0);
                 var result = await client.PostAsync(url, httpContent);
                 var response = await result.Content.ReadAsStringAsync();
                 warning = response;
