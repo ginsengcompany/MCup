@@ -18,5 +18,8 @@ namespace MCup.Model
         public string orarioApertura { get; set; }
         public string orarioChiusura { get; set; }
         public int defaultReparto { get; set; }
+        public string nomeMedico { get; set; }
+        public string ubicazioneReparto { get; set; }
+        public string ubicazioneUnita { get; set; }
     }
 }

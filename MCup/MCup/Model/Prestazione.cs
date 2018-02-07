@@ -16,6 +16,7 @@ namespace MCup.Model
         public char priorita { get; set; }
         public int quantita { get; set; }
         public bool erogabile { get; set; }
+        public string nota { get; set; }
         public List<Reparto> reparti { get; set; }
     }
 }

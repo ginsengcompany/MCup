@@ -24,32 +24,37 @@
                         <customControls:ExtendedViewCell SelectedBackgroundColor="White">
                             <ViewCell.View>
                                 <StackLayout Orientation="Vertical" x:Name="Item">
-                                    <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,10,0,0" Padding="5">
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Margin="0,10,0,0" Padding="5" BackgroundColor="Red" >
                                         <Label 
                                             Text="{Binding desprest}" 
-                                            TextColor="Black" 
-                                            HorizontalOptions="Center"
+                                            TextColor="White" 
+                                            HorizontalOptions="CenterAndExpand"
                                             HorizontalTextAlignment="Center" 
-                                            VerticalOptions="End" 
                                             FontSize="Large"
                                             FontAttributes="Bold"/>
                                     </StackLayout>
-                                
-                                        <StackLayout>
-                                            <StackLayout Orientation="Vertical">
-                                                <Label Text="Reparto:" TextColor="Red"  VerticalOptions="Start" />
+                                    <StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="Reparto:" TextColor="Red"  VerticalOptions="Start" />
                                             <Label Text="{Binding reparti[0].descrizione}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
-                                            </StackLayout>
-                                            <StackLayout Orientation="Vertical">
-                                                <Label Text="Data dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
-                                                <Label Text="{Binding dataAppuntamento}" TextColor="Black" VerticalOptions="End" FontSize="Medium"  FontAttributes="Italic"/>
-                                            </StackLayout>
-                                            <StackLayout Orientation="Vertical">
-                                                <Label Text="Orario dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
-                                                <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium"  FontAttributes="Italic"/>
-                                            </StackLayout>
                                         </StackLayout>
-                                  
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="Data dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
+                                            <Label Text="{Binding dataAppuntamento}" TextColor="Black" VerticalOptions="End" FontSize="Medium"  FontAttributes="Italic"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="Orario dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
+                                            <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium"  FontAttributes="Italic"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="Nome del medico che effettuerà la visita:" TextColor="Red" VerticalOptions="Start"/>
+                                            <Label Text="{Binding reparti[0].nomeMedico}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="Ubicazione del reparto:" TextColor="Red" VerticalOptions="Start" />
+                                            <Label Text="{Binding reparti[0].ubicazioneReparto}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
+                                        </StackLayout>
+                                    </StackLayout>
                                 </StackLayout>
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>

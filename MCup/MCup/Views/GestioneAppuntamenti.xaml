@@ -113,7 +113,32 @@
                                                             TextColor="Black" 
                                                             FontAttributes="Bold"
                                                             FontSize="Medium"/>
-
+                                                        <Label Margin="9,0,0,0"
+                                                            Text="Nome del medico per la visita:" 
+                                                            TextColor="Red"
+                                                            FontAttributes="Bold"
+                                                            HorizontalTextAlignment="Center" 
+                                                            HorizontalOptions="Center"
+                                                            FontSize="Medium"/>
+                                                        <Label 
+                                                            Text="{Binding reparti[0].nomeMedico}" 
+                                                            TextColor="Black" 
+                                                            HorizontalOptions="Center" 
+                                                            FontSize="Medium" 
+                                                            FontAttributes="Bold"/>
+                                                        <Label 
+                                                            Text="Ubicazione del reparto:" 
+                                                            TextColor="Red" 
+                                                            HorizontalOptions="Center"
+                                                            FontAttributes="Bold"
+                                                            HorizontalTextAlignment="Center"
+                                                            FontSize="Medium"/>
+                                                        <Label 
+                                                            Text="{Binding reparti[0].ubicazioneReparto}" 
+                                                            TextColor="Black" 
+                                                            HorizontalOptions="Center" 
+                                                            FontSize="Medium" 
+                                                            FontAttributes="Bold"/>
                                                     </StackLayout>
                                                     <StackLayout 
                                                         Padding="10" 

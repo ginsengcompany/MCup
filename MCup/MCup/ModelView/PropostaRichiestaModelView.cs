@@ -196,24 +196,35 @@ namespace MCup.ModelView
 
         public async Task invioDatiPrenotazione()
         {
-            REST<AppuntamentoProposto, AppuntamentiConfermati> invioDati = new REST<AppuntamentoProposto, AppuntamentiConfermati>();
-            appuntamentoProposto.assistito = contatto;
-            try
+            var noteAccettate = false;
+            string note = "";
+            for(int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                if (!(string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].nota)))
+                    note += appuntamentoProposto.appuntamenti[i].nota + '\n';
+            if (string.IsNullOrEmpty(note))
+                noteAccettate = await App.Current.MainPage.DisplayAlert("Conferma Prenotazione", "Sicuro di voler confermare la prenotazione?", "SI", "NO");
+            else
+                noteAccettate = await App.Current.MainPage.DisplayAlert("Conferma Prenotazione", note, "SI", "NO");
+            if (noteAccettate)
             {
-                IsBusyV = true;
-                AppuntamentiConfermati appuntamentiConfermati = await invioDati.PostJson(URL.ConfermaPrenotazione, appuntamentoProposto, headers);
-                await App.Current.MainPage.DisplayAlert("Attenzione", appuntamentiConfermati.messaggio, "ok");
-                IsBusyV = false;
-                Visible = "false";
-                VisibleHome = "true";
-                if (appuntamentiConfermati.esito != 0)
-                    App.Current.MainPage = new MenuPrincipale();
+                REST<AppuntamentoProposto, AppuntamentiConfermati> invioDati = new REST<AppuntamentoProposto, AppuntamentiConfermati>();
+                appuntamentoProposto.assistito = contatto;
+                try
+                {
+                    IsBusyV = true;
+                    AppuntamentiConfermati appuntamentiConfermati = await invioDati.PostJson(URL.ConfermaPrenotazione, appuntamentoProposto, headers);
+                    await App.Current.MainPage.DisplayAlert("Attenzione", appuntamentiConfermati.messaggio, "ok");
+                    IsBusyV = false;
+                    Visible = "false";
+                    VisibleHome = "true";
+                    if (appuntamentiConfermati.esito != 0)
+                        App.Current.MainPage = new MenuPrincipale();
+                }
+                catch (Exception)
+                {
+                    await App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita", "ok");
+                }
             }
-            catch (Exception)
-            {
-                await App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita", "ok");
-            }
-
         }
 
         private async Task info()
