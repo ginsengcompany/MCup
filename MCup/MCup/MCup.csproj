@@ -59,6 +59,7 @@
     <Compile Include="Model\Comune.cs" />
     <Compile Include="Model\GestioneRubrica.cs" />
     <Compile Include="Model\Impegnativa.cs" />
+    <Compile Include="Model\ListaURL.cs" />
     <Compile Include="Model\PickerProperties.cs" />
     <Compile Include="Model\Prestazione.cs" />
     <Compile Include="Model\Provincia.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Service\Header.cs" />
     <Compile Include="Service\REST.cs" />
+    <Compile Include="Service\SingletonURL.cs" />
     <Compile Include="Service\URL.cs" />
     <Compile Include="Views\FormPrenotazione.xaml.cs">
       <DependentUpon>FormPrenotazione.xaml</DependentUpon>
