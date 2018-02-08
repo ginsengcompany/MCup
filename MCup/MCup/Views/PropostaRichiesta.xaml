@@ -61,32 +61,41 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout Orientation="Horizontal" IsVisible="{Binding VisibleButton}" IsEnabled="{Binding IsEnabled}" Padding="0,15,0,0">
-                <Button 
-                    Text="Cambia disponibilità" 
-                    TextColor="Red" 
-                    HeightRequest="80"
-                    WidthRequest="100"
-                    VerticalOptions="Start" 
-                    IsEnabled="{Binding IsEnabled}"
-                    Command="{Binding cambiaOra}" 
-                />
-                <Button Text="Scegli data" 
-                        TextColor="Red" 
-                        HeightRequest="80" 
-                        VerticalOptions="End" 
+
+            <Grid IsVisible="{Binding VisibleButton}" IsEnabled="{Binding IsEnabled}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0" 
+                        Grid.Column="0"
+                        Text="Cambia disponibilità" 
+                        TextColor="Red"
                         IsEnabled="{Binding IsEnabled}"
-                        Command="{Binding cambiaData}" 
-                />
-            </StackLayout>
+                        Command="{Binding cambiaOra}"/>
+
+                <Button Grid.Row="0" 
+                        Grid.Column="1"
+                        Text="Scegli data" 
+                        TextColor="Red"
+                        IsEnabled="{Binding IsEnabled}"
+                        Command="{Binding cambiaData}"/>
+            </Grid>
+
             <StackLayout VerticalOptions="Center">
                 <ActivityIndicator IsVisible="{Binding IsBusyV}" IsRunning="{Binding IsBusyV}"></ActivityIndicator>
             </StackLayout>
+            
             <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding Visible}">
                 <Button Text="Conferma Prenotazione" FontSize="Medium" FontAttributes="Bold"  TextColor="Red" Command="{Binding InvioDatiPerPrenotazione}" IsEnabled="{Binding IsEnabled}" />
             </StackLayout>
+            
             <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding VisibleHome}">
-                <Button Text="torna alla home" FontSize="Medium" FontAttributes="Bold" TextColor="Red" Command="{Binding TornaAllaHome}" IsEnabled="{Binding IsEnabled}"/>
+                <Button Text="Torna alla home" FontSize="Medium" FontAttributes="Bold" TextColor="Red" Command="{Binding TornaAllaHome}" IsEnabled="{Binding IsEnabled}"/>
             </StackLayout>
             <DatePicker IsVisible="False" DateSelected="DatePicker_DateSelected" x:Name="data" Unfocused="data_Unfocused" />
         </StackLayout>
