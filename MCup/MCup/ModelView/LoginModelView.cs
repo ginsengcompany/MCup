@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using MCup.Model;
@@ -193,7 +194,7 @@ namespace MCup.ModelView
                     IsVisible = true; //L'activity indicator è visibile
                     IsBusy = true; //L'activity indicator è in stato IsRunning
                     REST<Utente, ResponseLogin> rest = new REST<Utente, ResponseLogin>(); //Crea l'oggetto per eseguire la chiamata REST per la login
-                    ResponseLogin response = await rest.PostJson(URL.Login, utente); //Chiamata POST per la richiesta di autenticazione delle informazioni inserite dall'utente (codice fiscale e password)
+                    ResponseLogin response = await rest.PostJson(SingletonURL.Instance.getRotte().Login, utente); //Chiamata POST per la richiesta di autenticazione delle informazioni inserite dall'utente (codice fiscale e password)
                     if ((response == null)|| (response == default(ResponseLogin))) //Controlla se si è verificato un errore di connessione
                     {
                        await App.Current.MainPage.DisplayAlert("Attenzione", rest.warning, "riprova");
@@ -208,8 +209,10 @@ namespace MCup.ModelView
                         {
                             TokenNotification tokNot = new TokenNotification();
                             tokNot.tokenNotification = userId;
+                            List<Header> listaHeader = new List<Header>();
+                            listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
                             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
-                            bool res = await connessione.PostJson(URL.updateTokenNotifiche, tokNot, App.Current.Properties["tokenLogin"].ToString());
+                            bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot,listaHeader);
                         });
                       //  REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto per la chiamata REST
                        // ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token); //Chiamata GET che ritorna se l'utente ha già scelto la sua struttura preferita o meno

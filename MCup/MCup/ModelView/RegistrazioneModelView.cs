@@ -181,7 +181,7 @@ namespace MCup.ModelView
         public async void LeggiStatoCivile()
         {
             REST<object, StatoCivile> connessioneStatoCivile = new REST<object, StatoCivile>();
-            ListaStatoCivile = await connessioneStatoCivile.GetJson(URL.ListaStatoCivile);
+            ListaStatoCivile = await connessioneStatoCivile.GetListJson(SingletonURL.Instance.getRotte().ListaStatoCivile);
         }
 
         public void StatoCivileScelto(StatoCivile stato)
@@ -540,7 +540,7 @@ namespace MCup.ModelView
             Provincia provinciaSelezionata = new Provincia();
             provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
-            listacomuni = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
+            listacomuni = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
             listaComuni = listacomuni;
         }
         private async void LeggiComuniResidenza(Provincia provincia)
@@ -548,13 +548,13 @@ namespace MCup.ModelView
             Provincia provinciaSelezionata = new Provincia();
             provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
-            listaComuniResidenza = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
+            listaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
         }
 
         private async void LeggiProvince()
         {
             REST<object, Provincia> connessioneProvince = new REST<object, Provincia>();
-            listaProvince = await connessioneProvince.GetJson(URL.ListaProvince);
+            listaProvince = await connessioneProvince.GetListJson(SingletonURL.Instance.getRotte().ListaProvince);
         }
 
         public void provinciaDiNascitaSelezionato(Provincia provincia)
@@ -780,14 +780,14 @@ namespace MCup.ModelView
                     anno= utente.data_nascita.Substring(6);
                     utente.data_nascita = giorno + "/" + mese + "/" + anno;
                     REST<object, string> restTermini = new REST<object, string>(); //Crea un oggetto REST per i termini di servizio remoti
-                    var termini = await restTermini.getString(URL.TerminiServizio); //Recupera i termini di servizio attraverso una GET
+                    var termini = await restTermini.getString(SingletonURL.Instance.getRotte().TerminiServizio); //Recupera i termini di servizio attraverso una GET
                     //Mostra il display alert contenente i termini di servizio recuperati dalla rest restTermini e salva la risposta dell'utente nella variabile accetaODeclina
                     var accetaODeclina = await App.Current.MainPage.DisplayAlert("Termini di servizio", termini, "ACCETTA", "DECLINA");
                     if (accetaODeclina) //Controlla che l'utente abbia accettato i termini di servizio
                     {
                         REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>(); //Crea un oggetto rest per effettuare la registrazione da remoto
                         utente.Maiuscolo();
-                        ResponseRegistrazione response = await rest.PostJson(URL.Registrazione, utente); //Effettua una POST che restituisce nella variabile response se la registrazione ha avuto successo
+                        ResponseRegistrazione response = await rest.PostJson(SingletonURL.Instance.getRotte().Registrazione, utente); //Effettua una POST che restituisce nella variabile response se la registrazione ha avuto successo
                         if (response == default(ResponseRegistrazione)) //Se la variabile response contiene il valore di default della classe Response Registrazione allora la registrazione non è avvenuta
                             await App.Current.MainPage.DisplayAlert("Registrazione", rest.warning, "OK"); //Visualizza un display alert che indica all'utente che la registrazione non è stata effettuata
                         else if (response.auth) //Controlla se response contiene un oggetto e che indica che la registrazione è avvenuta con successo

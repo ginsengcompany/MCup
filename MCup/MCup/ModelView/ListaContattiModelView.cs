@@ -131,9 +131,11 @@ namespace MCup.ModelView
 
         private async void leggiContatti()
         {
+            List<Header> listaHeader = new List<Header>();
+            listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             REST<object, List<Assistito>> rest = new REST<object, List<Assistito>>();
             List<Assistito> contacts =
-                await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
+                await rest.GetSingleJson(SingletonURL.Instance.getRotte().InfoPersonali,listaHeader );
             List<Assistito> temp = new List<Assistito>();
             char a = 'a';
             for (int i = 0; i < contacts.Count; i++)

@@ -39,10 +39,12 @@ namespace MCup.Views
 
         private async void logout_Clicked(object sender, EventArgs e)
         {
+            List<Header> listaHeader = new List<Header>();
+            listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             TokenNotification tokNot = new TokenNotification();
             tokNot.tokenNotification = "";
             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
-            bool res = await connessione.PostJson(URL.updateTokenNotifiche, tokNot, App.Current.Properties["tokenLogin"].ToString());
+            bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot,listaHeader);
             Application.Current.Properties["flagRimaniLoggato"]= "False";
             Application.Current.MainPage=new NavigationPage(new Login());
         

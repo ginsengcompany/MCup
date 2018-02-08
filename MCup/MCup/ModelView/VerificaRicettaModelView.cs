@@ -153,7 +153,7 @@ namespace MCup.ModelView
             {
                 IsBusy = true;
                 IsEnabled = false;
-                temp[i].reparti = await connessione.PostJsonList(URL.RicercadisponibilitaReparti, ListaPrestazioni[i], headers);
+                temp[i].reparti = await connessione.PostJsonList(SingletonURL.Instance.getRotte().RicercadisponibilitaReparti, ListaPrestazioni[i], headers);
                 IsEnabled = true;
                 IsBusy = false;
                 for (int p = 0; p < temp[i].reparti.Count; p++)
@@ -183,7 +183,7 @@ namespace MCup.ModelView
             REST<Impegnativa, List<Prestazione>> connessione = new REST<Impegnativa, List<Prestazione>>();
             List<Header> headers = new List<Header>();
             headers.Add(new Header("struttura", "030001"));
-            prestazioniErogabili = await connessione.PostJson(URL.StruttureErogatrici, ricetta, headers);
+            prestazioniErogabili = await connessione.PostJson(SingletonURL.Instance.getRotte().StruttureErogatrici, ricetta, headers);
             List<Prestazione> prestazioniNonErogabili = new List<Prestazione>();
             foreach (var i in prestazioniErogabili)
             {
@@ -197,11 +197,23 @@ namespace MCup.ModelView
                 {
                     for (int j = 0; j < prestazioniErogabili.Count; j++)
                     {
-                        if (prestazioniErogabili[j].codprest == prestazioniNonErogabili[t].codprest)
+                        if (prestazioniErogabili[j].codregionale == null)
                         {
-                            messaggio = messaggio + prestazioniNonErogabili[t].desprest + "\n";
-                            prestazioniErogabili.RemoveAt(j);
-                            break;
+                            if (prestazioniErogabili[j].codnazionale == prestazioniNonErogabili[t].codnazionale)
+                            {
+                                messaggio = messaggio + prestazioniNonErogabili[t].desprest + "\n";
+                                prestazioniErogabili.RemoveAt(j);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (prestazioniErogabili[j].codregionale == prestazioniNonErogabili[t].codregionale)
+                            {
+                                messaggio = messaggio + prestazioniNonErogabili[t].desprest + "\n";
+                                prestazioniErogabili.RemoveAt(j);
+                                break;
+                            }
                         }
                     }
                 }

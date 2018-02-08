@@ -37,7 +37,7 @@ namespace MCup
         protected override void OnStart()
         {
             // Handle when your app starts
-            
+            SingletonURL.Instance.prelevaRotte();
         }
 
         protected override void OnSleep()

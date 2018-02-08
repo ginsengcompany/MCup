@@ -210,10 +210,12 @@ namespace MCup.ModelView
                 REST<AppuntamentoProposto, AppuntamentiConfermati> invioDati = new REST<AppuntamentoProposto, AppuntamentiConfermati>();
                 appuntamentoProposto.assistito = contatto;
                 appuntamentoProposto.codiceImpegnativa = impegnativa.nre;
+                appuntamentoProposto.classePriorita = impegnativa.classePriorita;
+                appuntamentoProposto.dataEmissioneRicetta = impegnativa.dataEmissioneRicetta;
                 try
                 {
                     IsBusyV = true;
-                    AppuntamentiConfermati appuntamentiConfermati = await invioDati.PostJson(URL.ConfermaPrenotazione, appuntamentoProposto, headers);
+                    AppuntamentiConfermati appuntamentiConfermati = await invioDati.PostJson(SingletonURL.Instance.getRotte().ConfermaPrenotazione, appuntamentoProposto, headers);
                     await App.Current.MainPage.DisplayAlert("Attenzione", appuntamentiConfermati.messaggio, "ok");
                     IsBusyV = false;
                     Visible = "false";
@@ -231,7 +233,7 @@ namespace MCup.ModelView
         private async Task info()
         {
             REST<List<Prestazione>, AppuntamentoProposto> recuperoDatiLista = new REST<List<Prestazione>, AppuntamentoProposto>();
-            appuntamentoProposto =await recuperoDatiLista.PostJson(URL.PrimaDisponibilita, prestazioni, headers);
+            appuntamentoProposto =await recuperoDatiLista.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilita, prestazioni, headers);
             ListPrenotazioni = appuntamentoProposto.appuntamenti;
             IsVisible = false;
             IsBusy = false;
@@ -242,7 +244,7 @@ namespace MCup.ModelView
         {
             REST<AppuntamentoProposto, AppuntamentoProposto> connessione = new REST<AppuntamentoProposto, AppuntamentoProposto>();
             IsBusyV = true;
-            appuntamentoProposto = await connessione.PostJson(URL.PrimaDisponibilitaOra, prenotazione, headers);
+            appuntamentoProposto = await connessione.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilitaOra, prenotazione, headers);
             IsBusyV = false;
             ListPrenotazioni = appuntamentoProposto.appuntamenti;
         }
@@ -252,7 +254,7 @@ namespace MCup.ModelView
             REST<AppuntamentoProposto, AppuntamentoProposto> connessione = new REST<AppuntamentoProposto, AppuntamentoProposto>();
             IsBusyV = true;
             headers[1].value = data;
-            appuntamentoProposto = await connessione.PostJson(URL.ricercadata, appuntamentoProposto, headers);
+            appuntamentoProposto = await connessione.PostJson(SingletonURL.Instance.getRotte().ricercadata, appuntamentoProposto, headers);
             IsBusyV = false;
             ListPrenotazioni = appuntamentoProposto.appuntamenti;
         }

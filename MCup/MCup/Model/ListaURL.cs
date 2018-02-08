@@ -29,5 +29,7 @@ namespace MCup.Model
         public string PrimaDisponibilitaOra { get; set; }
         public string ricercadata { get; set; }
         public string codiceErrore { get; set; }
+        public string eliminaContattoPersonale { get; set; }
+        public string annullaImpegnativa { get; set; }
     }
 }

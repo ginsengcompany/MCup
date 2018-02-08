@@ -197,8 +197,10 @@ namespace MCup.ModelView
 
         private async void leggiContatti()
         {
-            REST<object, List<Assistito>> rest = new REST<object, List<Assistito>>();
-            contacts = await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
+            REST<object, Assistito> rest = new REST<object,Assistito>();
+            List<Header> listaHeader = new List<Header>();
+            listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+            contacts = await rest.GetListJson(SingletonURL.Instance.getRotte().InfoPersonali,listaHeader);
             Contatti = contacts;
         }
 
@@ -280,7 +282,7 @@ namespace MCup.ModelView
                 {
                     REST<Impegnativa, Impegnativa> connessione = new REST<Impegnativa, Impegnativa>();
                     invioImpegnativa.nre = codiceUno+codiceDue;
-                    Impegnativa response = await connessione.PostJson(URL.Ricetta, invioImpegnativa,headers);
+                    Impegnativa response = await connessione.PostJson(SingletonURL.Instance.getRotte().Ricetta, invioImpegnativa,headers);
                     if ((response == null) || (response == default(Impegnativa)))
                     {
                        await App.Current.MainPage.DisplayAlert("Attenzione", response.ToString(), "ok");

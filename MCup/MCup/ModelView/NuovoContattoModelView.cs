@@ -419,6 +419,8 @@ namespace MCup.ModelView
                 if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
                 {
                     string giorno, mese, anno;
+                    List<Header> listaHeader = new List<Header>();
+                    listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
                     giorno = contatto.data_nascita.Substring(3, 2);
                     mese = contatto.data_nascita.Substring(0, 2);
                     anno = contatto.data_nascita.Substring(6, 4);
@@ -427,7 +429,7 @@ namespace MCup.ModelView
                     try
                     {
                         contatto.Maiuscolo();
-                        ResponseRegistrazione response = await connessioneNuovoContatto.PostJson(URL.AggiungiNuovoContatto, contatto, token);
+                        ResponseRegistrazione response = await connessioneNuovoContatto.PostJson(SingletonURL.Instance.getRotte().AggiungiNuovoContatto, contatto, listaHeader);
                         if ((response == null) || (response == default(ResponseRegistrazione)))
                         {
                             await App.Current.MainPage.DisplayAlert("Registrazione contatto", connessioneNuovoContatto.warning, "ok");
@@ -450,7 +452,7 @@ namespace MCup.ModelView
         private async void LeggiProvince()
         {
             REST<object, Provincia> connessioneProvince = new REST<object, Provincia>();
-            Province = await connessioneProvince.GetJson(URL.ListaProvince);
+            Province = await connessioneProvince.GetListJson(SingletonURL.Instance.getRotte().ListaProvince);
         }
 
         public async void LeggiComuniResidenza(Provincia provincia)
@@ -458,7 +460,7 @@ namespace MCup.ModelView
             Provincia provinciaSelezionata = new Provincia();
             provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
-            ListaComuniResidenza = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
+            ListaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
         }
 
         public async void LeggiComuniNascita(Provincia provincia)
@@ -466,7 +468,7 @@ namespace MCup.ModelView
             Provincia provinciaSelezionata = new Provincia();
             provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
-            ListaComuniNascita = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
+            ListaComuniNascita = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
         }
 
         public void comuneResidenzaSelezionato(Comune comune)
@@ -483,7 +485,7 @@ namespace MCup.ModelView
         private async void LeggiStatoCivile()
         {
             REST<object, StatoCivile> connessioneStatoCivile = new REST<object, StatoCivile>();
-            ListaStatoCivile = await connessioneStatoCivile.GetJson(URL.ListaStatoCivile);
+            ListaStatoCivile = await connessioneStatoCivile.GetListJson(SingletonURL.Instance.getRotte().ListaStatoCivile);
         }
 
         public void StatoCivileScelto(StatoCivile stato)

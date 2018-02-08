@@ -15,7 +15,7 @@
                     <Label x:Name="codice_ricetta" Text="{Binding CodiceRicetta}" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Medium"/>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="Nome e cognome assistito:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label Text="Cognome assistito:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
                     <Label x:Name="cognome_assistito" Text="{Binding CognomeAssistito}" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Medium"/>
                 </StackLayout>
 
@@ -45,7 +45,6 @@
                                     </StackLayout>
                                     <StackLayout Grid.Column="1" 
                                                  x:Name="stk"
-                                                 Orientation="Horizontal"
                                                  VerticalOptions="Center">
                                         <Label 
                                             Text="Reparto" 

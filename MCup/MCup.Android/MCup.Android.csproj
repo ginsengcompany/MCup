@@ -100,6 +100,15 @@
       <HintPath>..\..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Plugin.CurrentActivity, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.DeviceInfo, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.DeviceInfo.3.1.0\lib\MonoAndroid10\Plugin.DeviceInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.DeviceInfo.Abstractions, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.DeviceInfo.3.1.0\lib\MonoAndroid10\Plugin.DeviceInfo.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Rg.Plugins.Popup, Version=1.1.3.73, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Rg.Plugins.Popup.1.1.3.73-pre\lib\MonoAndroid\Rg.Plugins.Popup.dll</HintPath>
       <Private>True</Private>
@@ -302,6 +311,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainApplication.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -309,6 +319,7 @@
     <Compile Include="CostomRenderers\ExtendedViewCellRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />

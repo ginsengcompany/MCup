@@ -120,6 +120,7 @@
                     VerticalOptions="End" Orientation="Horizontal" HorizontalOptions="Center">
                   
                     <Button 
+                        Command="{Binding EliminaAppuntamento}"
                         Text="Elimina Appuntamento" 
                         TextColor="Red"/>
                 </StackLayout>

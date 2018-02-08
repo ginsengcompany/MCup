@@ -87,8 +87,10 @@ namespace MCup.ModelView
 
         private async void leggiContatti()
         {
+            List<Header> listaHeader = new List<Header>();
+            listaHeader.Add(new Header("x-access-token",App.Current.Properties["tokenLogin"].ToString() ));
             REST<object, List<Assistito>> rest = new REST<object, List<Assistito>>();
-            contatti = await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
+            contatti = await rest.GetSingleJson(SingletonURL.Instance.getRotte().InfoPersonali,listaHeader );
             Contatti = contatti;
         }
 
@@ -112,11 +114,13 @@ namespace MCup.ModelView
 
         public async Task invioDatiAssistito()
         {
+            List<Header> listaJHeaders= new List<Header>();
+            listaJHeaders.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             try
             {
                 Assistito invioContatto = date.assistito;
                 REST<Assistito, AppuntamentoProposto> connessione = new REST<Assistito, AppuntamentoProposto>();
-                Appuntamenti = await connessione.PostJsonList(URL.appuntamenti, invioContatto, App.Current.Properties["tokenLogin"].ToString());
+                Appuntamenti = await connessione.PostJsonList(SingletonURL.Instance.getRotte().appuntamenti, invioContatto,listaJHeaders);
 
                 if (Appuntamenti.Count == 0)
                 {

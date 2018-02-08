@@ -143,9 +143,12 @@ namespace MCup.ModelView
         {
             utente = info;
             NomeCognome = info.nome + " " + info.cognome;
+            List<Header> listaheader = new List<Header>();
+            listaheader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             if (info.AccountPrimario)
             {
-                Elimina = new Command(async () =>
+                
+                    Elimina = new Command(async () =>
                 {
                     REST<object,string> connessioneElimina = new REST<object, string>();
                     
@@ -154,8 +157,7 @@ namespace MCup.ModelView
                     {
                         try
                         {
-                            var response = await connessioneElimina.getStringHeader(URL.eliminaContattoPersonale,
-                                                App.Current.Properties["tokenLogin"].ToString());
+                            var response = await connessioneElimina.getString(SingletonURL.Instance.getRotte().eliminaContattoPersonale,listaheader);
                         }
                         catch (Exception)
                         {
@@ -177,7 +179,7 @@ namespace MCup.ModelView
                     if (risposta == false)
                         return;
                     REST<Assistito, string> restElimina = new REST<Assistito, string>();
-                    string response = await restElimina.PostJson(URL.EliminaContatto, utente, App.Current.Properties["tokenLogin"].ToString());
+                    string response = await restElimina.PostJson(SingletonURL.Instance.getRotte().EliminaContatto, utente, listaheader);
                     await App.Current.MainPage.DisplayAlert("Eliminazione", restElimina.warning, "OK");
                     App.Current.MainPage = new MenuPrincipale();
                 });
