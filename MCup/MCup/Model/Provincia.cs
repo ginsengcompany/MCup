@@ -9,5 +9,6 @@ namespace MCup.Model
     public class Provincia
     {
         public string provincia { get; set; }
+        public string codIstat { get; set; }
     }
 }

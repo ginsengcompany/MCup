@@ -17,9 +17,9 @@ namespace MCup.ModelView
     {
         //Evento che prevede il cambiamento di proprietà all'interno della classe
         public event PropertyChangedEventHandler PropertyChanged;
-
         private Impegnativa invioImpegnativa;
         private string visible="false";
+        private List<Header> headers = new List<Header>();
 
         private Regex regexNomeCognome = new Regex(@"^[A-Za-zèùàòé][a-zA-Z'èùàòé ]*$");
 
@@ -179,6 +179,7 @@ namespace MCup.ModelView
             utenza = new Assistito();
             ricetta = new InvioRicettaPrenotazione();
             invioImpegnativa= new Impegnativa();
+            headers.Add(new Header("struttura", "030001"));
             model = Model;
             ricetta.codice_uno = "";
             ricetta.codice_due = "";
@@ -279,7 +280,7 @@ namespace MCup.ModelView
                 {
                     REST<Impegnativa, Impegnativa> connessione = new REST<Impegnativa, Impegnativa>();
                     invioImpegnativa.nre = codiceUno+codiceDue;
-                    Impegnativa response = await connessione.PostJson(URL.Ricetta, invioImpegnativa);
+                    Impegnativa response = await connessione.PostJson(URL.Ricetta, invioImpegnativa,headers);
                     if ((response == null) || (response == default(Impegnativa)))
                     {
                        await App.Current.MainPage.DisplayAlert("Attenzione", response.ToString(), "ok");
@@ -308,30 +309,6 @@ namespace MCup.ModelView
             codicefiscaleUtente = elementSelected.codice_fiscale;
             invioImpegnativa.assistito = elementSelected;
             Visible = "true";
-        }
-
-        //Classe che identifica le prestazioni e se sono state erogate. Questa classe astrae dei possibili dati ricevuti da SOGEI
-        private class Prestazioni
-        {
-            public string prestazione { get; set; }
-
-            public bool erogato { get; set; }
-
-        }
-
-        //Classe utilizzata per astrarre il json da inviare al servizio per ottenere le informazioni della ricetta
-        public class sendRicetta
-        {
-            public string codice_nre;
-
-            public Assistito contattoDaInviare;
-
-            public  sendRicetta()
-            { }
-            public sendRicetta(string codice_uno, string codice_due)
-            {
-                this.codice_nre = codice_uno + codice_due;
-            }
         }
 
         public string Visible

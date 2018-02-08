@@ -26,8 +26,6 @@ namespace MCup.ModelView
         private AppuntamentoProposto appuntamentoProposto=new AppuntamentoProposto();
         private List<Header> headers = new List<Header>();
 
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         private List<Prestazione> prestazioni;

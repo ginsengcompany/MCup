@@ -120,7 +120,7 @@
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorDataNascita}" TextColor="Red" FontSize="Small"/>
                 
                     <Label Text="Provincia di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                    <Picker Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaNascita" ItemsSource="{Binding listaProvince}"/>
+                    <Picker Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaNascita" ItemsSource="{Binding listaProvince}" ItemDisplayBinding="{Binding provincia}"/>
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaNascita}" TextColor="Red" FontSize="Small"/>
 
 
@@ -169,7 +169,7 @@
             <ScrollView>
             <StackLayout VerticalOptions="CenterAndExpand">
                 <Label Text="Provincia di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                <Picker Title="Seleziona la provincia di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaResidenza" ItemsSource="{Binding listaProvince}" />
+                    <Picker Title="Seleziona la provincia di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaResidenza" ItemsSource="{Binding listaProvince}" ItemDisplayBinding="{Binding provincia}" />
                 <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaResidenza}" TextColor="Red" FontSize="Small"/>
 
 

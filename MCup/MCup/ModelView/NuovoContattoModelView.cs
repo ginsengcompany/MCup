@@ -25,7 +25,7 @@ namespace MCup.ModelView
 
         private List<StatoCivile> listaStatoCivile = new List<StatoCivile>();
 
-        private List<string> province;
+        private List<Provincia> province;
 
         #region Boolean_di_Controllo
         ///<summary>Boolean per controllo errore</summary> 
@@ -236,7 +236,7 @@ namespace MCup.ModelView
             }
         }
 
-        public List<string> Province
+        public List<Provincia> Province
         {
             get { return province; }
             set
@@ -449,22 +449,22 @@ namespace MCup.ModelView
 
         private async void LeggiProvince()
         {
-            REST<object, string> connessioneProvince = new REST<object, string>();
+            REST<object, Provincia> connessioneProvince = new REST<object, Provincia>();
             Province = await connessioneProvince.GetJson(URL.ListaProvince);
         }
 
-        public async void LeggiComuniResidenza(string provincia)
+        public async void LeggiComuniResidenza(Provincia provincia)
         {
             Provincia provinciaSelezionata = new Provincia();
-            provinciaSelezionata.provincia = provincia;
+            provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
             ListaComuniResidenza = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
         }
 
-        public async void LeggiComuniNascita(string provincia)
+        public async void LeggiComuniNascita(Provincia provincia)
         {
             Provincia provinciaSelezionata = new Provincia();
-            provinciaSelezionata.provincia = provincia;
+            provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
             ListaComuniNascita = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
         }

@@ -88,7 +88,7 @@ namespace MCup.Views
         private void Picker_OnSelectedIndexChangedProvinciaNascita(object sender, EventArgs e)
         {
             var a = sender as Picker;
-            var b = a.SelectedItem as string;
+            var b = a.SelectedItem as Provincia;
             modelView.provinciaDiNascitaSelezionato(b);
             PickerComuneNascita.IsEnabled = true;
         }
@@ -96,7 +96,7 @@ namespace MCup.Views
         private void Picker_OnSelectedIndexChangedProvinciaResidenza(object sender, EventArgs e)
         {
             var a = sender as Picker;
-            var b = a.SelectedItem as string;
+            var b = a.SelectedItem as Provincia;
             modelView.provinciaDiResidenzaSelezionato(b);
             PickerComuneResidenza.IsEnabled = true;
         }

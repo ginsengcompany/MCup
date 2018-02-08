@@ -21,7 +21,7 @@ namespace MCup.ModelView
     {
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
         private List<Comune> listacomuni = new List<Comune>();
-        private List<string> listaprovince = new List<string>();
+        private List<Provincia> listaprovince = new List<Provincia>();
         private List<Comune> listacomuniresidenza = new List<Comune>();
         private List<StatoCivile> listaStatoCivile = new List<StatoCivile>();
 
@@ -216,7 +216,7 @@ namespace MCup.ModelView
             }
         }
 
-        public List<string> listaProvince
+        public List<Provincia> listaProvince
         {
             get { return listaprovince; }
             set
@@ -535,34 +535,34 @@ namespace MCup.ModelView
         }
 
 
-        private async void LeggiComuni(string provincia)
+        private async void LeggiComuni(Provincia provincia)
         {
             Provincia provinciaSelezionata = new Provincia();
-            provinciaSelezionata.provincia = provincia;
+            provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
             listacomuni = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
             listaComuni = listacomuni;
         }
-        private async void LeggiComuniResidenza(string provincia)
+        private async void LeggiComuniResidenza(Provincia provincia)
         {
             Provincia provinciaSelezionata = new Provincia();
-            provinciaSelezionata.provincia = provincia;
+            provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
             listaComuniResidenza = await connessioneComuni.PostJsonList(URL.ListaComuni, provinciaSelezionata);
         }
 
         private async void LeggiProvince()
         {
-            REST<object, string> connessioneProvince = new REST<object, string>();
+            REST<object, Provincia> connessioneProvince = new REST<object, Provincia>();
             listaProvince = await connessioneProvince.GetJson(URL.ListaProvince);
         }
 
-        public void provinciaDiNascitaSelezionato(string provincia)
+        public void provinciaDiNascitaSelezionato(Provincia provincia)
         {
             LeggiComuni(provincia);
         }
 
-        public void provinciaDiResidenzaSelezionato(string provincia)
+        public void provinciaDiResidenzaSelezionato(Provincia provincia)
         {
             LeggiComuniResidenza(provincia);
         }

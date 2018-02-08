@@ -33,7 +33,7 @@
 
 
                     <Label Text="Provincia di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                    <Picker Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_SelectedIndexChangedProvinciaNascita" ItemsSource="{Binding Province}"/>
+                    <Picker Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_SelectedIndexChangedProvinciaNascita" ItemsSource="{Binding Province}" ItemDisplayBinding="{Binding provincia}"/>
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaNascita}" TextColor="Red" FontSize="Small"/>
                     
                     <Label Text="Comune di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
@@ -41,7 +41,7 @@
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneNascita}" TextColor="Red" FontSize="Small"/>
 
                     <Label Text="Provincia di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                    <Picker Title="Seleziona la provincia di residenza" SelectedIndexChanged="Picker_SelectedIndexChangedProvinciaResidenza" ItemsSource="{Binding Province}" />
+                    <Picker Title="Seleziona la provincia di residenza" SelectedIndexChanged="Picker_SelectedIndexChangedProvinciaResidenza" ItemsSource="{Binding Province}" ItemDisplayBinding="{Binding provincia}" />
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaResidenza}" TextColor="Red" FontSize="Small"/>
                     
                     <Label Text="comune di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
