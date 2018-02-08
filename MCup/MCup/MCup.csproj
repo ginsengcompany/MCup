@@ -48,6 +48,7 @@
     <Compile Include="ModelView\InfoContattoModelView.cs" />
     <Compile Include="ModelView\ListaContattiModelView.cs" />
     <Compile Include="ModelView\NuovoContattoModelView.cs" />
+    <Compile Include="ModelView\PaginaAppuntamentiModelView.cs" />
     <Compile Include="ModelView\PropostaRichiestaModelView.cs" />
     <Compile Include="ModelView\RegistrazioneModelView.cs" />
     <Compile Include="ModelView\VerificaRicettaModelView.cs" />
@@ -94,6 +95,9 @@
     </Compile>
     <Compile Include="Views\Pagamento.xaml.cs">
       <DependentUpon>Pagamento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaginaAppuntamenti.xaml.cs">
+      <DependentUpon>PaginaAppuntamenti.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Registrazione.xaml.cs">
       <DependentUpon>Registrazione.xaml</DependentUpon>
@@ -268,6 +272,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Pagamento.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PaginaAppuntamenti.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

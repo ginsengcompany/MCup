@@ -7,21 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using MCup.Model;
 using MCup.Service;
+using MCup.Views;
 using Xamarin.Forms;
 
 namespace MCup.ModelView
 {
-    public class GestioneAppuntamentiModelView : INotifyPropertyChanged
+    public class PaginaAppuntamentiModelView: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private Assistito contatto;
         private Color colore;
+        private PaginaAppuntamenti paginaAppuntamenti;
         private List<Assistito> contatti = new List<Assistito>();
         private List<AppuntamentoProposto> appuntamenti = new List<AppuntamentoProposto>();
         private AppuntamentoProposto date = new AppuntamentoProposto();
-        private AppuntamentoProposto appuntamentoSelezionato = new AppuntamentoProposto();
         private Boolean visibileLabel = false;
-        List<AppuntamentoPrestazioneProposto> appunt= new List<AppuntamentoPrestazioneProposto>();
+        List<AppuntamentoPrestazioneProposto> appunt = new List<AppuntamentoPrestazioneProposto>();
         private Boolean visibile = true;
         private string visi;
 
@@ -73,12 +74,29 @@ namespace MCup.ModelView
             }
         }
 
+        public List<Assistito> Contatti
+        {
+            get { return contatti; }
+            set
+            {
+                OnPropertyChanged();
+                contatti = new List<Assistito>(value);
+            }
+        }
 
-        public GestioneAppuntamentiModelView( AppuntamentoProposto appuntamentoSelezionato)
+
+        private async void leggiContatti()
+        {
+            REST<object, List<Assistito>> rest = new REST<object, List<Assistito>>();
+            contatti = await rest.GetSingleJson(URL.InfoPersonali, App.Current.Properties["tokenLogin"].ToString());
+            Contatti = contatti;
+        }
+
+        public PaginaAppuntamentiModelView( PaginaAppuntamenti pagina)
         {
             VisibileL = "false";
-            this.appuntamentoSelezionato = appuntamentoSelezionato;
-            invioDatiAssistito();
+            leggiContatti();
+            this.paginaAppuntamenti = pagina;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
@@ -86,14 +104,21 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        public async void autoCompila(Assistito elementSelected)
+        {
+            date.assistito = elementSelected;
+            await invioDatiAssistito();
+        }
+
         public async Task invioDatiAssistito()
         {
             try
             {
-               
+                Assistito invioContatto = date.assistito;
+                REST<Assistito, AppuntamentoProposto> connessione = new REST<Assistito, AppuntamentoProposto>();
+                Appuntamenti = await connessione.PostJsonList(URL.appuntamenti, invioContatto, App.Current.Properties["tokenLogin"].ToString());
 
-                Appunt = appuntamentoSelezionato.appuntamenti;
-                if (Appuntamenti.Count==0)
+                if (Appuntamenti.Count == 0)
                 {
                     Visibile = false;
                     VisibileLabel = true;
@@ -103,18 +128,25 @@ namespace MCup.ModelView
                     Visibile = true;
                     VisibileL = "true";
                     VisibileLabel = false;
-                  /*  foreach (var i in Appuntamenti)
+                    foreach (var i in Appuntamenti)
                     {
                         Appunt = i.appuntamenti;
-                    }*/
-                    
+                    }
+
                 }
             }
+
+        
             catch (Exception e)
             {
                 await App.Current.MainPage.DisplayAlert("Attenzione",
                     "connessione non riuscita o codici impegnativa errati", "riprova");
             }
+        }
+
+        public async void push(AppuntamentoProposto elementoSelezionato)
+        {
+            await paginaAppuntamenti.Navigation.PushAsync(new GestioneAppuntamenti(elementoSelezionato));
         }
     }
 }

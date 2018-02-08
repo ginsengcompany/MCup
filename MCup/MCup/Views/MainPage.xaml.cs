@@ -34,7 +34,7 @@ namespace MCup.Views
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             disableMultiTouch();
-            Navigation.PushAsync(new GestioneAppuntamenti());
+            Navigation.PushAsync(new PaginaAppuntamenti());
         }
 
         private async void logout_Clicked(object sender, EventArgs e)

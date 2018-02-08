@@ -117,7 +117,7 @@ namespace MCup.ModelView
                     if (i.reparti == null)
                         verificaPrestazioni = false;
                 if (verificaPrestazioni == true)
-                    await this.verifica.Navigation.PushAsync(new PropostaRichiesta(prestazioniDaInviare, contatto));
+                    await this.verifica.Navigation.PushAsync(new PropostaRichiesta(impegnativa,prestazioniDaInviare, contatto));
                 else
                     await App.Current.MainPage.DisplayAlert("Attenzione", "Seleziona un reparto per ogni prestazione",
                         "OK");

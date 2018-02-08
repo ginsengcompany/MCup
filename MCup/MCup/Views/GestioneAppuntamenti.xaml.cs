@@ -14,23 +14,15 @@ namespace MCup.Views
 	public partial class GestioneAppuntamenti : ContentPage
 	{
 	    private GestioneAppuntamentiModelView form;
-		public GestioneAppuntamenti ()
+		public GestioneAppuntamenti (AppuntamentoProposto appuntamentoSelezionato)
 		{
 			InitializeComponent ();
-		    form = new GestioneAppuntamentiModelView();
+		    form = new GestioneAppuntamentiModelView(appuntamentoSelezionato);
 		    BindingContext = form;
         }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
+     
 
-        }
-
-	    private void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
-	    {
-	        var a = sender as Picker;
-	        var b = a.SelectedItem as Assistito;
-	        form.autoCompila(b);
-        }
+	  
 	}
 }

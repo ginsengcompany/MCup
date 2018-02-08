@@ -17,12 +17,12 @@ namespace MCup.Views
         private string itemDatePicker;
         private bool dataCambiata = false;
 
-        public PropostaRichiesta(List<Prestazione> prestazioni, Assistito contatto)
+        public PropostaRichiesta(Impegnativa ricetta,List<Prestazione> prestazioni, Assistito contatto)
         {
             InitializeComponent();
             data.MinimumDate = DateTime.Now;
             itemDatePicker = "";
-            modelView = new PropostaRichiestaModelView(prestazioni, contatto, this);
+            modelView = new PropostaRichiestaModelView(ricetta,prestazioni, contatto, this);
             BindingContext = modelView;
         }
 

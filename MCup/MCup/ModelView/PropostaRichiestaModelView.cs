@@ -22,6 +22,7 @@ namespace MCup.ModelView
         private AppuntamentiConfermati appuntamentiConfermati = new AppuntamentiConfermati();
         private string visible = "true";
         private string visibleHome = "false";
+        private Impegnativa impegnativa;
         private PropostaRichiesta propostaRichiesta;
         private AppuntamentoProposto appuntamentoProposto=new AppuntamentoProposto();
         private List<Header> headers = new List<Header>();
@@ -172,9 +173,10 @@ namespace MCup.ModelView
             }
         }
 
-        public PropostaRichiestaModelView(List<Prestazione> prestazioni, Assistito contatto, PropostaRichiesta proposta)
+        public PropostaRichiestaModelView(Impegnativa ricetta,List<Prestazione> prestazioni, Assistito contatto, PropostaRichiesta proposta)
         {
             IsEnabled = true;
+            this.impegnativa = ricetta;
             propostaRichiesta = proposta;
             this.contatto = contatto;
             IsVisibleButton = false;
@@ -207,6 +209,7 @@ namespace MCup.ModelView
             {
                 REST<AppuntamentoProposto, AppuntamentiConfermati> invioDati = new REST<AppuntamentoProposto, AppuntamentiConfermati>();
                 appuntamentoProposto.assistito = contatto;
+                appuntamentoProposto.codiceImpegnativa = impegnativa.nre;
                 try
                 {
                     IsBusyV = true;

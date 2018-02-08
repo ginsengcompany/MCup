@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:costomControls="clr-namespace:MCup.CostomControls;assembly=MCup"
+             x:Class="MCup.Views.PaginaAppuntamenti"
+             Title="Appuntamenti">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label FormattedText="Seleziona il contatto di cui vuoi visualizzare gli appuntamenti" 
+                   HorizontalOptions="Center" 
+                   FontSize="Medium"/>
+            <Picker TextColor="Red" 
+                    Title="Seleziona il contatto " 
+                    HorizontalOptions="CenterAndExpand" 
+                    ItemsSource="{Binding Contatti}" 
+                    WidthRequest="300"
+                    ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" 
+                    VerticalOptions="Center" 
+                    SelectedIndexChanged="Picker_OnSelectedIndexChanged" />
+            <Label 
+                Text="Nessun appuntamento disponibile per il contatto scelto" 
+                IsVisible="{Binding VisibileLabel}" 
+                HorizontalOptions="Center" 
+                TextColor="Black" 
+                FontSize="Medium" 
+                FontAttributes="Bold"/>
+            <ListView ItemsSource="{Binding Appuntamenti}" ItemTapped="VaiPaginaAppuntamentiIndettaglio" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <costomControls:ExtendedViewCell SelectedBackgroundColor="White">
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal">
+                                    <Grid HorizontalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0" >
+                                            <Label Text="Data prenotazione:" FontSize="Medium" TextColor="Red" FontAttributes="Bold"></Label>
+                                            <Label Text="{Binding dataPrenotazione}"></Label>
+                                            <Label Text="Codice impegnativa:" FontSize="Medium" TextColor="Red" FontAttributes="Bold"></Label>
+                                            <Label Text="{Binding codiceImpegnativa}"></Label>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center" Grid.Column="1" >
+                                            <Image Source="rightArrow.png" VerticalOptions="Center"></Image>
+                                        </StackLayout>
+
+                                    </Grid>
+
+                                </StackLayout>
+
+                            </ViewCell.View>
+                        </costomControls:ExtendedViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
