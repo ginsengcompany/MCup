@@ -48,10 +48,10 @@ namespace MCup.Views
         }
       
        
-        public FormPrenotazione()
+        public FormPrenotazione(bool prenotazioPending)
         {
             InitializeComponent();
-            form = new FormPrenotazioneModelView(this);
+            form = new FormPrenotazioneModelView(this, prenotazioPending);
             BindingContext = form; //Questa pagina esegue il Binding con la classe FormPrenotazioneModelView
         }
 
@@ -132,6 +132,12 @@ namespace MCup.Views
             var a = sender as Picker;
             var b = a.SelectedItem as Assistito;
             form.autoCompila(b);
+        }
+
+        public void selezionaElemento(Assistito contatto)
+        {
+            pickerContatti.Title = contatto.nomeCompletoConCodiceFiscale;
+            form.autoCompila(contatto);
         }
         /*
 private void XfxComboBox_ItemSelected(object sender, SelectedItemChangedEventArgs e)

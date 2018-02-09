@@ -28,6 +28,7 @@ namespace MCup.ModelView
         private bool loginisvisible;
         private bool signupisvisible;
         private bool isenabled;
+        private Login loginPage;
 
         private ImageSource showPasswordImage = "eye_hide.png";
         public ImageSource ShowPasswordImage
@@ -144,8 +145,9 @@ namespace MCup.ModelView
 
         private class ResponseLogin
         {
-            public string token;
-            public bool auth;
+            public string token { get; set; }
+            public bool auth { get; set; }
+            public bool prenotazionePending { get; set; } = false;
         }
 
         private class ResponseStrutturaPreferita
@@ -165,12 +167,13 @@ namespace MCup.ModelView
         }
 
         //Costruttore del ModelView che inizializza le variabili fondamentali per il corretto funzionamento della pagina di login (sia Android che IOS).
-        public LoginModelView()
+        public LoginModelView(Login loginPage)
         {
             utente = new Utente(); //Crea un oggetto Utente vuoto
             Username = utente.username = utente.recuperaUserName();
             LoginIsVisible = true;
             SignupIsVisible = true;
+            this.loginPage = loginPage;
             IsEnabled = true;
             IsVisible = false; //L'activity indicator non è visibile
             IsBusy = false; //L'activity indicator non si trova nello stato IsRunning
@@ -214,15 +217,36 @@ namespace MCup.ModelView
                             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
                             bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot,listaHeader);
                         });
+                        if (response.prenotazionePending)
+                        {
+                            var responseDisplayAlert =await App.Current.MainPage.DisplayAlert("Attenzione",
+                                "Gentile utente, nell'ultima sessione abbiamo constatato che ha lasciato una prenotazione in sospeso, vuoi continuare?",
+                                "si", "no");
+                            if (responseDisplayAlert)
+                            {
+                                loginPage.PendingPrenotazione(response.prenotazionePending);
+                                await Application.Current.SavePropertiesAsync();
+
+                            }
+                            else
+                            {
+                                App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
+                                await Application.Current.SavePropertiesAsync();
+                            }
+                        }
+                        else
+                        {
+                            App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
+                            await Application.Current.SavePropertiesAsync();
+                        }
+                      
                       //  REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto per la chiamata REST
                        // ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token); //Chiamata GET che ritorna se l'utente ha già scelto la sua struttura preferita o meno
                          /*   if (responseStruttura.scelta) //Se l'utente ha già scelto la sua struttura preferita
                               App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
                               else //Se l'utente non ha ancora scelto la sua struttura preferita
                               App.Current.MainPage = new ListaStrutture("Login"); //Avvia la pagina per la scelta di essa*/
-                        App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
-                        Application.Current.Properties["flagRimaniLoggato"] = flagLogin.ToString();
-                        await Application.Current.SavePropertiesAsync();
+                     
 
                     }
                    

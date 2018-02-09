@@ -14,15 +14,17 @@ namespace MCup.Views
 	public partial class GestioneAppuntamenti : ContentPage
 	{
 	    private GestioneAppuntamentiModelView form;
+
 		public GestioneAppuntamenti (AppuntamentoProposto appuntamentoSelezionato)
 		{
 			InitializeComponent ();
-		    form = new GestioneAppuntamentiModelView(appuntamentoSelezionato);
+		    form = new GestioneAppuntamentiModelView(appuntamentoSelezionato,this);
 		    BindingContext = form;
         }
 
-     
-
-	  
+	    public async void PopAsync()
+	    {
+	       await Navigation.PopAsync();
+	    }
 	}
 }

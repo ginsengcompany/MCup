@@ -18,8 +18,7 @@ namespace MCup.Views
         public PaginaAppuntamenti()
         {
             InitializeComponent();
-            form = new PaginaAppuntamentiModelView(this);
-            BindingContext = form;
+            
         }
         private void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -32,6 +31,13 @@ namespace MCup.Views
         {
             var b = e.Item as AppuntamentoProposto;
              form.push(b);
+        }
+
+        protected override void OnAppearing()
+        {
+            pickerContatti.SelectedIndex = -1;
+            form = new PaginaAppuntamentiModelView(this);
+            BindingContext = form;
         }
     }
 }

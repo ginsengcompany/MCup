@@ -30,6 +30,13 @@ namespace MCup.ModelView
         private List<Prestazione> prestazioniDaInviare;
         private bool isenabled;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         public bool ButtonIsVisible
         {
             get { return buttonIsVisible; }
@@ -135,13 +142,7 @@ namespace MCup.ModelView
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+    
 
         private async Task ricezioneReparti()
         {
@@ -149,6 +150,7 @@ namespace MCup.ModelView
             REST<Prestazione, Reparto> connessione = new REST<Prestazione, Reparto>();
             List<Header> headers = new List<Header>();
             headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("x-access-token",App.Current.Properties["tokenLogin"].ToString()));
             for (var i = 0; i < temp.Count; i++)
             {
                 IsBusy = true;
@@ -183,6 +185,7 @@ namespace MCup.ModelView
             REST<Impegnativa, List<Prestazione>> connessione = new REST<Impegnativa, List<Prestazione>>();
             List<Header> headers = new List<Header>();
             headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             prestazioniErogabili = await connessione.PostJson(SingletonURL.Instance.getRotte().StruttureErogatrici, ricetta, headers);
             List<Prestazione> prestazioniNonErogabili = new List<Prestazione>();
             foreach (var i in prestazioniErogabili)

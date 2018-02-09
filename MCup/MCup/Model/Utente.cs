@@ -11,6 +11,7 @@ namespace MCup.Model
    {
        public string username { get; set; }
         public string password { get; set; }
+        
 
         public void salvaCredenzialiAccesso(string user)
        {

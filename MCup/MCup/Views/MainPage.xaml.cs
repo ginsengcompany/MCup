@@ -22,12 +22,13 @@ namespace MCup.Views
             tapIconaPrenotazioni.IsEnabled = true;
             tapIconaAppuntamenti.IsEnabled = true;
             tapIconaContatti.IsEnabled = true;
+            tapIconaPagamenti.IsEnabled = false;
         }
         //Metodo per avviare la page dell'icona Prenotazioni
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             disableMultiTouch();
-            Navigation.PushAsync(new FormPrenotazione());
+            Navigation.PushAsync(new FormPrenotazione(false));
         }
 
         //Metodo per avviare la page dell'icona Appuntamenti

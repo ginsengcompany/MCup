@@ -173,26 +173,33 @@ namespace MCup.ModelView
         }
 
         //Costruttore del ModelView, viene passato come parametro il riferimento alla pagina che lo richiama per poter effettuare una Navigation.pushAsync
-        public FormPrenotazioneModelView(FormPrenotazione Model)
+        public FormPrenotazioneModelView(FormPrenotazione Model, bool prenotazionePending)
         {
             IsEnabled = true;
             utenza = new Assistito();
             ricetta = new InvioRicettaPrenotazione();
             invioImpegnativa= new Impegnativa();
             headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             model = Model;
             ricetta.codice_uno = "";
             ricetta.codice_due = "";
             utenza.nome = "";
             utenza.cognome = "";
             utenza.codice_fiscale="";
+            leggiContatti();
+            if (prenotazionePending)
+            {
+             RiempiPagina();
+            }
+          
             InviaRichiesta = new Command(async () =>
             {
                 IsEnabled = false;
                 await InvioDatiAsync();
                 IsEnabled = true;
             });
-            leggiContatti();
+            
         }
 
         private async void leggiContatti()
@@ -202,6 +209,17 @@ namespace MCup.ModelView
             listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             contacts = await rest.GetListJson(SingletonURL.Instance.getRotte().InfoPersonali,listaHeader);
             Contatti = contacts;
+        }
+
+        public async void RiempiPagina()
+        {
+            REST<object, Impegnativa> connessione = new REST<object, Impegnativa>();
+            List<Header> listaHeader = new List<Header>();
+            listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+            Impegnativa response = await  connessione.GetSingleJson(SingletonURL.Instance.getRotte().ricezioneDatiPrenotazione, listaHeader);
+            model.selezionaElemento(response.assistito);
+            codiceUno = response.nre.Substring(0, 5);
+            codiceDue = response.nre.Substring(5);
         }
 
         //Comando che chiama la funzione asincrona InvioDatiAsync()

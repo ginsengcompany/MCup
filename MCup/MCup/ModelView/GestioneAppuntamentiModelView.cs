@@ -110,7 +110,7 @@ namespace MCup.ModelView
                      await App.Current.MainPage.DisplayAlert("Mcup",response.messaggio , "ok");
                     if (response.esito == true)
                     {
-                      await  pagina.Navigation.PushAsync(new NavigationPage(new PaginaAppuntamenti()));
+                         pagina.PopAsync();
                     }
                 }
                 catch (Exception)
@@ -123,9 +123,10 @@ namespace MCup.ModelView
             }
            
         }
-        public GestioneAppuntamentiModelView( AppuntamentoProposto appuntamentoSelezionato)
+        public GestioneAppuntamentiModelView( AppuntamentoProposto appuntamentoSelezionato, GestioneAppuntamenti page)
         {
             VisibileL = "false";
+            this.pagina = page;
             this.appuntamentoSelezionato = appuntamentoSelezionato;
             invioDatiAssistito();
         }

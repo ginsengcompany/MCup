@@ -13,13 +13,18 @@ namespace MCup.Views
     public partial class Login : ContentPage
     {
         private Boolean flaglogin = false;
-        private LoginModelView z = new LoginModelView();
+        private LoginModelView z;
         public Login()
         {
             InitializeComponent();
-            
+            z = new LoginModelView(this);
             BindingContext = z; //Questa pagina utilizza l'MWWM ed effettua il binding con la classe LoginModelView
 
+        }
+
+        public void PendingPrenotazione(bool pending)
+        {
+            Navigation.PushAsync(new FormPrenotazione(pending));
         }
 
         /*
@@ -28,20 +33,6 @@ namespace MCup.Views
         private async void vaiRegistrazione(object sender, System.EventArgs e)
         {
             await Navigation.PushAsync(new Registrazione()); //Avvia la pagina di registrazione dedicata ai dispositivi Android
-        }
-
-        private async void Switch_OnToggled(object sender, ToggledEventArgs e)
-        {
-            if (e.Value)
-            {
-                flaglogin = true;
-               
-            }
-            else
-            {
-                flaglogin = false;
-            }
-            z.modificaFlag(flaglogin);
         }
     }
 }

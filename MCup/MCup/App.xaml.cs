@@ -1,10 +1,4 @@
-﻿using MCup.Model;
-using MCup.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MCup.Views;
 using Xamarin.Forms;
 using Com.OneSignal;
 using MCup.Service;

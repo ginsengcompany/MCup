@@ -10,6 +10,7 @@
                    HorizontalOptions="Center" 
                    FontSize="Medium"/>
             <Picker TextColor="Red" 
+                    x:Name="pickerContatti"
                     Title="Seleziona il contatto " 
                     HorizontalOptions="CenterAndExpand" 
                     ItemsSource="{Binding Contatti}" 
@@ -19,6 +20,7 @@
                     SelectedIndexChanged="Picker_OnSelectedIndexChanged" />
             <Label 
                 Text="Nessun appuntamento disponibile per il contatto scelto" 
+                x:Name="labeleeee"
                 IsVisible="{Binding VisibileLabel}" 
                 HorizontalOptions="Center" 
                 TextColor="Black" 

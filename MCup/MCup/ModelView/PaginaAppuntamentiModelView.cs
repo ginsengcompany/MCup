@@ -97,6 +97,7 @@ namespace MCup.ModelView
         public PaginaAppuntamentiModelView( PaginaAppuntamenti pagina)
         {
             VisibileL = "false";
+            
             leggiContatti();
             this.paginaAppuntamenti = pagina;
         }
@@ -151,6 +152,8 @@ namespace MCup.ModelView
         public async void push(AppuntamentoProposto elementoSelezionato)
         {
             await paginaAppuntamenti.Navigation.PushAsync(new GestioneAppuntamenti(elementoSelezionato));
+            Contatti.Clear();
+            VisibileLabel = false;
         }
     }
 }
