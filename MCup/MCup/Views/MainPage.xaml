@@ -10,7 +10,7 @@
             Order="Primary" 
             Text="Logout" 
             Priority="0" 
-            Clicked="logout_Clicked" 
+            Clicked="logout_Clicked"
             Icon="logout.png" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

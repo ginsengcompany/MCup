@@ -24,6 +24,8 @@ namespace MCup.ModelView
         private string visibleHome = "false";
         private Impegnativa impegnativa;
         private PropostaRichiesta propostaRichiesta;
+        public ICommand AnnullaPrenotazione { protected set; get; }
+
         private AppuntamentoProposto appuntamentoProposto=new AppuntamentoProposto();
         private List<Header> headers = new List<Header>();
 
@@ -98,8 +100,23 @@ namespace MCup.ModelView
             {
                 return new Command(async (e) =>
                 {
-                    IsEnabled = false;
-                    propostaRichiesta.visualizzaDatePicker();
+                    if (impegnativa.classePriorita == "P")
+                    {
+                        IsEnabled = false;
+                        propostaRichiesta.visualizzaDatePicker();
+                    }
+                    else
+                    {
+                        var responseDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione",
+                            "Sei sicuro di voler cambiare? Se confermi perderai la priorità assegnata dal tuo medico curante",
+                            "SI", "NO");
+                        if (responseDisplayAlert)
+                        {
+                            IsEnabled = false;
+                            propostaRichiesta.visualizzaDatePicker();
+                        }
+                    }
+                    
                 });
             }
         }
@@ -120,15 +137,37 @@ namespace MCup.ModelView
             {
                 return new Command(async () =>
                 {
-                    IsEnabled = false;
-                    IsBusyV = true;
-                    IsBusyV = false;
-                    await info(appuntamentoProposto);
-                    Device.StartTimer(TimeSpan.FromSeconds(3), () =>
+                    if (impegnativa.classePriorita == "P")
                     {
-                        IsEnabled = true;
-                        return false;
-                    });
+                        IsEnabled = false;
+                        IsBusyV = true;
+                        IsBusyV = false;
+                        await info(appuntamentoProposto);
+                        Device.StartTimer(TimeSpan.FromSeconds(3), () =>
+                        {
+                            IsEnabled = true;
+                            return false;
+                        });
+                    }
+                    else
+                    {
+                        var responseDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione",
+                            "Sei sicuro di voler cambiare? Se confermi perderai la priorità assegnata dal tuo medico curante",
+                            "SI", "NO");
+                        if (responseDisplayAlert)
+                        {
+                            IsEnabled = false;
+                            IsBusyV = true;
+                            IsBusyV = false;
+                            await info(appuntamentoProposto);
+                            Device.StartTimer(TimeSpan.FromSeconds(3), () =>
+                            {
+                                IsEnabled = true;
+                                return false;
+                            });
+                        }
+                    }
+                   
                 });
             }
         }
@@ -187,6 +226,22 @@ namespace MCup.ModelView
             headers.Add(new Header("dataRicerca",""));
             headers.Add(new Header("x-access-token",App.Current.Properties["tokenLogin"].ToString()));
             recuperoInformazioni();
+            AnnullaPrenotazione = new Command(async () =>
+            {
+
+                var responseDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione", "Sei sicuro di voler annullare la prenotazione?", "si",
+                    "no");
+                if (responseDisplayAlert)
+                {
+                    REST<object, string> connessioneAnnullamento = new REST<object, string>();
+                    string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
+                        headers);
+                    await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
+                    App.Current.MainPage = new MenuPrincipale();
+                }
+
+
+            });
         }
 
         private async void recuperoInformazioni()

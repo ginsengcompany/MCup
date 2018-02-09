@@ -7,7 +7,7 @@
              Title="Appuntamenti">
     <ContentPage.Content>
         <StackLayout Padding="15">
-     
+
             <StackLayout VerticalOptions="FillAndExpand">
                 <ListView 
                 Margin="1"
@@ -23,92 +23,91 @@
                             <costomControls:ExtendedViewCell SelectedBackgroundColor="White" >
                                 <ViewCell.View>
                                     <StackLayout>
-                               
-                                            <StackLayout HorizontalOptions="FillAndExpand"  
+
+                                        <StackLayout HorizontalOptions="FillAndExpand"  
                                                          VerticalOptions="Start"
                                                          BackgroundColor="Red"
                                                          Margin="0,10,0,0">
-                                                <Label 
+                                            <Label 
                                                        Text="{Binding desprest}" 
                                                        HorizontalOptions="CenterAndExpand" 
                                                        HorizontalTextAlignment="Center" 
                                                        TextColor="White" 
                                                        FontSize="Medium"
                                                        FontAttributes="Bold"/>
-                                            </StackLayout>
-                                            <StackLayout >
+                                        </StackLayout>
+                                        <StackLayout >
 
-                                                <StackLayout 
+                                            <StackLayout 
                                                         Orientation="Vertical"  HorizontalOptions="Center"
                                                         VerticalOptions="Center">
-                                                        <Label 
+                                                <Label 
                                                             TextColor="Red" 
                                                             Text="Struttura" 
                                                             Margin="9,0,0,0" 
                                                             FontAttributes="Bold" 
                                                             HorizontalOptions="Center" 
                                                             FontSize="Medium"/>
-                                                        <Label 
+                                                <Label 
                                                             Text="{Binding reparti[0].nomeStruttura}" 
                                                             HorizontalOptions="Center" 
                                                             TextColor="Black" 
                                                             FontSize="Medium" 
                                                             FontAttributes="Bold"/>
-                                                        <Label Margin="9,0,0,0" 
+                                                <Label Margin="9,0,0,0" 
                                                                TextColor="Red" 
                                                                FontAttributes="Bold" 
                                                                HorizontalTextAlignment="Center" 
                                                                Text="Data Appuntamento" 
                                                                HorizontalOptions="Center" 
                                                                FontSize="Medium"/>
-                                                        <Label  
+                                                <Label  
                                                             Text="{Binding dataAppuntamento}" 
                                                             HorizontalOptions="Center" 
                                                             TextColor="Black" 
                                                             FontAttributes="Bold"
                                                             FontSize="Medium"/>
-                                                        <Label Margin="9,0,0,0" 
+                                                <Label Margin="9,0,0,0" 
                                                                TextColor="Red" 
                                                                FontAttributes="Bold"
                                                                HorizontalTextAlignment="Center" 
                                                                HorizontalOptions="Center" 
                                                                Text="Ora Appuntamento" 
                                                                FontSize="Medium"/>
-                                                        <Label 
+                                                <Label 
                                                             Text="{Binding oraAppuntamento}" 
                                                             HorizontalOptions="Center" 
                                                             TextColor="Black" 
                                                             FontAttributes="Bold"
                                                             FontSize="Medium"/>
-                                                        <Label Margin="9,0,0,0"
+                                                <Label Margin="9,0,0,0"
                                                             Text="Nome del medico per la visita:" 
                                                             TextColor="Red"
                                                             FontAttributes="Bold"
                                                             HorizontalTextAlignment="Center" 
                                                             HorizontalOptions="Center"
                                                             FontSize="Medium"/>
-                                                        <Label 
+                                                <Label 
                                                             Text="{Binding reparti[0].nomeMedico}" 
                                                             TextColor="Black" 
                                                             HorizontalOptions="Center" 
                                                             FontSize="Medium" 
                                                             FontAttributes="Bold"/>
-                                                        <Label 
+                                                <Label 
                                                             Text="Ubicazione del reparto:" 
                                                             TextColor="Red" 
                                                             HorizontalOptions="Center"
                                                             FontAttributes="Bold"
                                                             HorizontalTextAlignment="Center"
                                                             FontSize="Medium"/>
-                                                        <Label 
+                                                <Label 
                                                             Text="{Binding reparti[0].ubicazioneReparto}" 
                                                             TextColor="Black" 
                                                             HorizontalOptions="Center" 
                                                             FontSize="Medium" 
                                                             FontAttributes="Bold"/>
-                                                    </StackLayout>
                                             </StackLayout>
-                                        
+                                        </StackLayout>
                                     </StackLayout>
                                 </ViewCell.View>
                             </costomControls:ExtendedViewCell>
@@ -118,14 +117,16 @@
                 <StackLayout 
                     Padding="10" 
                     VerticalOptions="End" Orientation="Horizontal" HorizontalOptions="Center">
-                  
+                    <Button
+                        Command="{Binding SpostaAppuntamento}"
+                        Text="Sposta Appuntamento"
+                        TextColor="Red"/>
                     <Button 
                         Command="{Binding EliminaAppuntamento}"
                         Text="Elimina Appuntamento" 
                         TextColor="Red"/>
                 </StackLayout>
             </StackLayout>
-               
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

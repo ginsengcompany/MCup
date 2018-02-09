@@ -24,7 +24,8 @@ namespace MCup.ModelView
         private AppuntamentoProposto date = new AppuntamentoProposto();
         private AppuntamentoProposto appuntamentoSelezionato = new AppuntamentoProposto();
         private Boolean visibileLabel = false;
-        List<AppuntamentoPrestazioneProposto> appunt= new List<AppuntamentoPrestazioneProposto>();
+        private List<Header> headers = new List<Header>();
+        List<AppuntamentoPrestazioneProposto> appunt = new List<AppuntamentoPrestazioneProposto>();
         private Boolean visibile = true;
         private string visi;
         public ICommand EliminaAppuntamento
@@ -37,7 +38,16 @@ namespace MCup.ModelView
                 });
             }
         }
-
+        public ICommand SpostaAppuntamento
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    await SpostaAppuntamentoMethod();
+                });
+            }
+        }
         public List<AppuntamentoPrestazioneProposto> Appunt
         {
             get { return appunt; }
@@ -105,12 +115,12 @@ namespace MCup.ModelView
             {
                 try
                 {
-                   ResponseAnnullaImpegnativa response =  await connessioneAnnullamentoImpegnativa.PostJson(SingletonURL.Instance.getRotte().annullaImpegnativa,
-                                appuntamentoSelezionato, headers);
-                     await App.Current.MainPage.DisplayAlert("Mcup",response.messaggio , "ok");
+                    ResponseAnnullaImpegnativa response = await connessioneAnnullamentoImpegnativa.PostJson(SingletonURL.Instance.getRotte().annullaImpegnativa,
+                                 appuntamentoSelezionato, headers);
+                    await App.Current.MainPage.DisplayAlert("Mcup", response.messaggio, "ok");
                     if (response.esito == true)
                     {
-                         pagina.PopAsync();
+                        pagina.PopAsync();
                     }
                 }
                 catch (Exception)
@@ -121,11 +131,28 @@ namespace MCup.ModelView
                 }
 
             }
-           
+
         }
-        public GestioneAppuntamentiModelView( AppuntamentoProposto appuntamentoSelezionato, GestioneAppuntamenti page)
+
+        public async Task SpostaAppuntamentoMethod()
+        {
+            try
+            {
+                REST<object, string> connessioneSpostamento = new REST<object, string>();
+                string messaggioDalServer = await connessioneSpostamento.getString(SingletonURL.Instance.getRotte().spostamentoPrenotazione,
+                        headers);
+                await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDalServer, "ok");
+            }
+            catch (Exception)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita", "ok");
+            }
+
+        }
+        public GestioneAppuntamentiModelView(AppuntamentoProposto appuntamentoSelezionato, GestioneAppuntamenti page)
         {
             VisibileL = "false";
+            headers.Add(new Header("struttura", "030001"));
             this.pagina = page;
             this.appuntamentoSelezionato = appuntamentoSelezionato;
             invioDatiAssistito();
@@ -140,10 +167,10 @@ namespace MCup.ModelView
         {
             try
             {
-               
+
 
                 Appunt = appuntamentoSelezionato.appuntamenti;
-                if (Appuntamenti.Count==0)
+                if (Appuntamenti.Count == 0)
                 {
                     Visibile = false;
                     VisibileLabel = true;
@@ -153,11 +180,11 @@ namespace MCup.ModelView
                     Visibile = true;
                     VisibileL = "true";
                     VisibileLabel = false;
-                  /*  foreach (var i in Appuntamenti)
-                    {
-                        Appunt = i.appuntamenti;
-                    }*/
-                    
+                    /*  foreach (var i in Appuntamenti)
+                      {
+                          Appunt = i.appuntamenti;
+                      }*/
+
                 }
             }
             catch (Exception e)
@@ -170,7 +197,7 @@ namespace MCup.ModelView
 
     public class ResponseAnnullaImpegnativa
     {
-         public string messaggio { get; set; }
-         public bool esito { get; set; }
+        public string messaggio { get; set; }
+        public bool esito { get; set; }
     }
 }

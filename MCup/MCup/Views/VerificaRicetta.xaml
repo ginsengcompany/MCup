@@ -6,7 +6,17 @@
              xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              BackgroundColor="White"
-             Title="Verifica Contenuto Impegnativa">
+             Title="Verifica Contenuto Impegnativa"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="AnnullaPrenotazione"
+            Order="Primary" 
+            Text="Annulla" 
+            Command="{Binding AnnullaPrenotazione}"
+            Priority="0"/>
+    </ContentPage.ToolbarItems>
+   
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="15">
             <StackLayout>

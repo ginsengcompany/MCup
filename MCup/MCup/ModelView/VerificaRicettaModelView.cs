@@ -26,7 +26,11 @@ namespace MCup.ModelView
         private bool buttonIsVisible;
         private List<Reparto> reparto = new List<Reparto>();
         private VerificaRicetta verifica;
+        private List<Header> headers = new List<Header>();
+      
         public ICommand ContinuaPrenotazione { protected set; get; }
+        public ICommand AnnullaPrenotazione { protected set; get; }
+
         private List<Prestazione> prestazioniDaInviare;
         private bool isenabled;
 
@@ -107,7 +111,23 @@ namespace MCup.ModelView
             CodiceRicetta = ricetta.nre;
             ButtonIsVisible = true;
             prestazioniDaInviare = new List<Prestazione>();
+            headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             ingressoPagina();
+            AnnullaPrenotazione = new Command(async () =>
+            {
+               
+               var responseDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione", "Sei sicuro di voler annullare la prenotazione?", "si",
+                    "no");
+                if (responseDisplayAlert)
+                {
+                    REST<object, string> connessioneAnnullamento = new REST<object, string>();
+                    string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
+                            headers);
+                    await App.Current.MainPage.DisplayAlert("Attenzione",messaggioDiAnnullamento,"ok");
+                    App.Current.MainPage= new MenuPrincipale();
+                }
+            });
             ContinuaPrenotazione = new Command(async () =>
             {
                 IsEnabled = false;
@@ -124,7 +144,9 @@ namespace MCup.ModelView
                     if (i.reparti == null)
                         verificaPrestazioni = false;
                 if (verificaPrestazioni == true)
-                    await this.verifica.Navigation.PushAsync(new PropostaRichiesta(impegnativa,prestazioniDaInviare, contatto));
+                {
+                    await this.verifica.Navigation.PushAsync(new PropostaRichiesta(impegnativa, prestazioniDaInviare, contatto));
+                }
                 else
                     await App.Current.MainPage.DisplayAlert("Attenzione", "Seleziona un reparto per ogni prestazione",
                         "OK");
@@ -148,9 +170,7 @@ namespace MCup.ModelView
         {
             List<Prestazione> temp = ListaPrestazioni;
             REST<Prestazione, Reparto> connessione = new REST<Prestazione, Reparto>();
-            List<Header> headers = new List<Header>();
-            headers.Add(new Header("struttura", "030001"));
-            headers.Add(new Header("x-access-token",App.Current.Properties["tokenLogin"].ToString()));
+   
             for (var i = 0; i < temp.Count; i++)
             {
                 IsBusy = true;
@@ -236,7 +256,13 @@ namespace MCup.ModelView
                             break;
                         }
                     if (piuReparti)
-                        await App.Current.MainPage.DisplayAlert("Attenzione", "Alcune prestazioni vengono erogate da più reparti, se non si conosce il reparto per cui prenotare chiamare il Call Center", "OK");
+                    {
+                        REST<object,string> connessioneMessaggioReparti = new REST<object, string>();
+                        var risposta =await 
+                            connessioneMessaggioReparti.getString(SingletonURL.Instance.getRotte().piuReparti, headers);
+                            await App.Current.MainPage.DisplayAlert("Attenzione", risposta, "OK");
+
+                    }
                 }
                 else
                 {

@@ -32,5 +32,8 @@ namespace MCup.Model
         public string eliminaContattoPersonale { get; set; }
         public string annullaImpegnativa { get; set; }
         public string ricezioneDatiPrenotazione { get; set; }
+        public string annullaPrenotazioneSospesa { get; set; }
+        public string spostamentoPrenotazione { get; set; }
+        public string piuReparti { get; set; }
     }
 }

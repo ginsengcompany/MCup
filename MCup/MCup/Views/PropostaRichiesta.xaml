@@ -7,6 +7,14 @@
     BackgroundColor="White"
     Title="Richiesta proposta"
     NavigationPage.HasNavigationBar="{Binding Visible}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+        Name="AnnullaPrenotazione"
+        Order="Primary" 
+        Text="Annulla" 
+        Command="{Binding AnnullaPrenotazione}"
+        Priority="0"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="white" Padding="0,25,0,0">
             <ActivityIndicator IsVisible="{Binding IsVisible}" IsRunning="{Binding IsBusy}"/>

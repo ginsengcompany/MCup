@@ -6,9 +6,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Notifications;
 using MCup.ModelView;
 using MCup.Service;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 /*
@@ -22,15 +24,15 @@ namespace MCup.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VerificaRicetta : ContentPage
     {
-
         private VerificaRicettaModelView ModelViewVerifica;
-
+        private List<Header> headers= new List<Header>();
         private ListView listView = new ListView();
-
+        
         //Costruttore della pagina che inizializza e visualizza le informazioni descritte nel commento della pagina
         public VerificaRicetta(Impegnativa ricetta, Assistito contatto)
         {
             InitializeComponent();
+            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             ModelViewVerifica = new VerificaRicettaModelView(ricetta, this, contatto);
             BindingContext = ModelViewVerifica;
         }
@@ -42,5 +44,24 @@ namespace MCup.Views
             ModelViewVerifica.selectedReparto(b);
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            AnnullaAppuntamentoSospeso();
+            return false;
+        }
+
+        private async void AnnullaAppuntamentoSospeso()
+        {
+            var responseDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione", "Sei sicuro di voler annullare la prenotazione?", "si",
+                "no");
+            if (responseDisplayAlert)
+            {
+                REST<object, string> connessioneAnnullamento = new REST<object, string>();
+                string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
+                    headers);
+                await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
+            }
+         
+        }
     }
 }
