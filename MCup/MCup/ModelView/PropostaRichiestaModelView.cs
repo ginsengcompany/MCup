@@ -277,7 +277,7 @@ namespace MCup.ModelView
                 {
                     IsBusyV = true;
                     AppuntamentiConfermati appuntamentiConfermati = await invioDati.PostJson(SingletonURL.Instance.getRotte().ConfermaPrenotazione, appuntamentoProposto, headers);
-                    if ((invioDati.responseMessage != HttpStatusCode.Created) || (invioDati.responseMessage != HttpStatusCode.InternalServerError)||(invioDati.responseMessage != HttpStatusCode.NotFound))
+                    if ((invioDati.responseMessage != HttpStatusCode.Created) && (invioDati.responseMessage != HttpStatusCode.InternalServerError)&&(invioDati.responseMessage != HttpStatusCode.NotFound))
                     {
                         await App.Current.MainPage.DisplayAlert("Attenzione " + (int)invioDati.responseMessage, invioDati.warning, "OK");
                     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
 using System.Net.Http;
 using MCup;
+using MCup.Service;
 
 /*
  * Questa è la pagina principale che permette all'utente di navigare tra i servizi offerti dall'app e dal sistema informatico messo a sua disposizione.
@@ -20,11 +22,28 @@ namespace MCup.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MenuPrincipale: MasterDetailPage
 	{
+	    private List<Header> listaHeader;
+
 		public MenuPrincipale ()
 		{
 			InitializeComponent();
+            listaHeader = new List<Header>();
+		    getLogo();
             inizializzazioneMenu();
 		}
+
+	    private async void getLogo()
+	    {
+	        if (listaHeader.Count != 0)
+	        {
+	            listaHeader.Clear();
+	        }
+	        listaHeader.Add(new Header("struttura", "030001"));
+	        REST<object, string> connessioneLogo = new REST<object, string>();
+	        var logo = await connessioneLogo.getString("http://192.168.125.14:3000/infostruttura/logoStruttura", listaHeader);
+	        Image.Source = Xamarin.Forms.ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(logo)));
+        }
+
         public MenuPrincipale(string scelta)
         {
             InitializeComponent();

@@ -22,6 +22,8 @@ namespace MCup.Views
         }
         private void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            if(pickerContatti.SelectedIndex==-1)
+                return;
             var a = sender as Picker;
             var b = a.SelectedItem as Assistito;
             form.autoCompila(b);

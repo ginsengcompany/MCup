@@ -10,14 +10,13 @@
     <MasterDetailPage.Master>
         <ContentPage  Title="MyApp">
             <ContentPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource"
-                    iOS="menu.png" Android="">
+                <OnPlatform x:TypeArguments="FileImageSource" iOS="menu.png" Android="">
                 </OnPlatform>
             </ContentPage.Icon>
 
             <StackLayout >
-                <StackLayout  BackgroundColor="Red" HeightRequest="200" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                    <Image Source="ico.png"  WidthRequest="240" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Image>
+                <StackLayout  BackgroundColor="Transparent" HeightRequest="200" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <Image x:Name="Image"   WidthRequest="240" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
                     <ListView x:Name="ListaMenu" ItemSelected="ListaMenu_ItemSelected" VerticalOptions="Center">
                         <ListView.ItemTemplate>

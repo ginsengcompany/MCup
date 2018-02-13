@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-
+using Com.OneSignal;
 using Foundation;
 using UIKit;
 using Xamarin.Forms.Platform.iOS;

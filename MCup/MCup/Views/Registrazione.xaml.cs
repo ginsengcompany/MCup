@@ -87,6 +87,10 @@ namespace MCup.Views
 
         private void Picker_OnSelectedIndexChangedProvinciaNascita(object sender, EventArgs e)
         {
+            if (pickerProvinciaNascita.SelectedIndex == -1)
+            {
+                return;
+            }
             var a = sender as Picker;
             var b = a.SelectedItem as Provincia;
             modelView.provinciaDiNascitaSelezionato(b);
@@ -95,6 +99,8 @@ namespace MCup.Views
 
         private void Picker_OnSelectedIndexChangedProvinciaResidenza(object sender, EventArgs e)
         {
+            if(pickerProvinciaResidenza.SelectedIndex==-1)
+                return;
             var a = sender as Picker;
             var b = a.SelectedItem as Provincia;
             modelView.provinciaDiResidenzaSelezionato(b);
@@ -103,6 +109,8 @@ namespace MCup.Views
 
         private void Picker_OnSelectedIndexChangedSceltaUnione(object sender, EventArgs e)
         {
+            if (PickerUnione.SelectedIndex == -1)
+                return;
             var a = sender as Picker;
             var b = a.SelectedItem as StatoCivile;
             modelView.StatoCivileScelto(b);
