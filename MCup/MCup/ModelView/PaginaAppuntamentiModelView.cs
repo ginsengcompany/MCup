@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,7 +92,15 @@ namespace MCup.ModelView
             listaHeader.Add(new Header("x-access-token",App.Current.Properties["tokenLogin"].ToString() ));
             REST<object, List<Assistito>> rest = new REST<object, List<Assistito>>();
             contatti = await rest.GetSingleJson(SingletonURL.Instance.getRotte().InfoPersonali,listaHeader );
-            Contatti = contatti;
+            if (rest.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
+            }
+            else
+            {
+                Contatti = contatti;
+
+            }
         }
 
         public PaginaAppuntamentiModelView( PaginaAppuntamenti pagina)
@@ -122,7 +131,10 @@ namespace MCup.ModelView
                 Assistito invioContatto = date.assistito;
                 REST<Assistito, AppuntamentoProposto> connessione = new REST<Assistito, AppuntamentoProposto>();
                 Appuntamenti = await connessione.PostJsonList(SingletonURL.Instance.getRotte().appuntamenti, invioContatto,listaJHeaders);
-
+                if (connessione.responseMessage != HttpStatusCode.OK)
+                {
+                    await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+                }
                 if (Appuntamenti.Count == 0)
                 {
                     Visibile = false;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Net;
 using System.Runtime.CompilerServices;
 using MCup.Model;
 using System.Windows.Input;
@@ -29,8 +31,9 @@ namespace MCup.ModelView
         private bool signupisvisible;
         private bool isenabled;
         private Login loginPage;
-
+        private List<Header> listaHeader = new List<Header>();
         private ImageSource showPasswordImage = "eye_hide.png";
+        private ImageSource logoOspedale;
         public ImageSource ShowPasswordImage
         {
             get { return showPasswordImage; }
@@ -38,6 +41,16 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 showPasswordImage = value;
+            }
+        }
+
+        public ImageSource LogoStruttura
+        {
+            get { return logoOspedale; }
+            set
+            {
+                OnPropertyChanged();
+                logoOspedale = value;
             }
         }
         //Command utilizzato per il tentativo di accesso ai servizi da parte dell'utente
@@ -169,6 +182,9 @@ namespace MCup.ModelView
         //Costruttore del ModelView che inizializza le variabili fondamentali per il corretto funzionamento della pagina di login (sia Android che IOS).
         public LoginModelView(Login loginPage)
         {
+            listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+            listaHeader.Add(new Header("struttura", "030001"));
+            
             utente = new Utente(); //Crea un oggetto Utente vuoto
             Username = utente.username = utente.recuperaUserName();
             LoginIsVisible = true;
@@ -177,6 +193,7 @@ namespace MCup.ModelView
             IsEnabled = true;
             IsVisible = false; //L'activity indicator non è visibile
             IsBusy = false; //L'activity indicator non si trova nello stato IsRunning
+            RicezioneLogo();
             effettuaLogin = new Command(async () => //Definisce il metodo del Command effettuaLogin che gestisce il tentativo di login da parte dell'utente
             {
                 IsEnabled = false;
@@ -198,13 +215,11 @@ namespace MCup.ModelView
                     IsBusy = true; //L'activity indicator è in stato IsRunning
                     REST<Utente, ResponseLogin> rest = new REST<Utente, ResponseLogin>(); //Crea l'oggetto per eseguire la chiamata REST per la login
                     ResponseLogin response = await rest.PostJson(SingletonURL.Instance.getRotte().Login, utente); //Chiamata POST per la richiesta di autenticazione delle informazioni inserite dall'utente (codice fiscale e password)
-                    if ((response == null)|| (response == default(ResponseLogin))) //Controlla se si è verificato un errore di connessione
+                    if (rest.responseMessage != HttpStatusCode.OK)
                     {
-                       await App.Current.MainPage.DisplayAlert("Attenzione", rest.warning, "riprova");
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
                     }
-                    else if (!response.auth) //Controlla se la login ha dato unn response negativo alle informazioni inserite dall'utente
-                        await App.Current.MainPage.DisplayAlert("Login", "Login non riuscita", "OK");
-                    else //Le informazioni dell'utenza sono corrette
+                    else if(response.auth) //Le informazioni dell'utenza sono corrette
                     {
                         utente.cancellaEdAggiornaUsername(utente.username);
                         App.Current.Properties["tokenLogin"] = response.token; //Salva nel dictionary dell'app il token dell'utente per accedere alle sue informazioni private
@@ -212,10 +227,13 @@ namespace MCup.ModelView
                         {
                             TokenNotification tokNot = new TokenNotification();
                             tokNot.tokenNotification = userId;
-                            List<Header> listaHeader = new List<Header>();
-                            listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+                          
                             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
                             bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot,listaHeader);
+                            if (connessione.responseMessage != HttpStatusCode.OK)
+                            {
+                                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+                            }
                         });
                         if (response.prenotazionePending)
                         {
@@ -278,6 +296,13 @@ namespace MCup.ModelView
             });
         }
 
+        private async void RicezioneLogo()
+        {
+            REST<object, string> connessioneLogo = new REST<object, string>();
+            var logo = await connessioneLogo.getString("http://192.168.125.71:3000/infostruttura/logoStruttura", listaHeader);
+            LogoStruttura =  Xamarin.Forms.ImageSource.FromStream(
+                () => new MemoryStream(Convert.FromBase64String(logo)));
+        }
         private class TokenNotification
         {
             public string tokenNotification;

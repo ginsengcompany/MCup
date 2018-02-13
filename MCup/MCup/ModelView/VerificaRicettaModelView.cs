@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -124,8 +125,16 @@ namespace MCup.ModelView
                     REST<object, string> connessioneAnnullamento = new REST<object, string>();
                     string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
                             headers);
-                    await App.Current.MainPage.DisplayAlert("Attenzione",messaggioDiAnnullamento,"ok");
-                    App.Current.MainPage= new MenuPrincipale();
+                    if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, connessioneAnnullamento.warning, "OK");
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
+                        App.Current.MainPage = new MenuPrincipale();
+                    }
+                  
                 }
             });
             ContinuaPrenotazione = new Command(async () =>
@@ -176,28 +185,36 @@ namespace MCup.ModelView
                 IsBusy = true;
                 IsEnabled = false;
                 temp[i].reparti = await connessione.PostJsonList(SingletonURL.Instance.getRotte().RicercadisponibilitaReparti, ListaPrestazioni[i], headers);
-                IsEnabled = true;
-                IsBusy = false;
-                for (int p = 0; p < temp[i].reparti.Count; p++)
+                if (connessione.responseMessage != HttpStatusCode.OK)
                 {
-                    if (temp[i].reparti.Count == 1)
-                        temp[i].reparti[p].defaultReparto = 0;
-                    else
-                        temp[i].reparti[p].defaultReparto = -1;
-                }
-                if (temp[i].reparti.Count == 1)
-                {
-                    temp[i].title = temp[i].reparti[0].descrizione;
-                    temp[i].enabled = false;
+                    await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
                 }
                 else
                 {
-                    temp[i].title = "Scegli il reparto";
-                    temp[i].enabled = true;
-                }
+                    IsEnabled = true;
+                    IsBusy = false;
+                    for (int p = 0; p < temp[i].reparti.Count; p++)
+                    {
+                        if (temp[i].reparti.Count == 1)
+                            temp[i].reparti[p].defaultReparto = 0;
+                        else
+                            temp[i].reparti[p].defaultReparto = -1;
+                    }
+                    if (temp[i].reparti.Count == 1)
+                    {
+                        temp[i].title = temp[i].reparti[0].descrizione;
+                        temp[i].enabled = false;
+                    }
+                    else
+                    {
+                        temp[i].title = "Scegli il reparto";
+                        temp[i].enabled = true;
+                    }
 
+                }
+                ListaPrestazioni = temp;
             }
-            ListaPrestazioni = temp;
+               
         }
 
         private async void ingressoPagina()
@@ -207,46 +224,81 @@ namespace MCup.ModelView
             headers.Add(new Header("struttura", "030001"));
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             prestazioniErogabili = await connessione.PostJson(SingletonURL.Instance.getRotte().StruttureErogatrici, ricetta, headers);
-            List<Prestazione> prestazioniNonErogabili = new List<Prestazione>();
-            foreach (var i in prestazioniErogabili)
+            if (connessione.responseMessage != HttpStatusCode.OK)
             {
-                if (!i.erogabile)
-                    prestazioniNonErogabili.Add(i);
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
             }
-            if (prestazioniNonErogabili.Count > 0)
+            else
             {
-                string messaggio = "";
-                for (int t = 0; t < prestazioniNonErogabili.Count; t++)
+                List<Prestazione> prestazioniNonErogabili = new List<Prestazione>();
+                foreach (var i in prestazioniErogabili)
                 {
-                    for (int j = 0; j < prestazioniErogabili.Count; j++)
+                    if (!i.erogabile)
+                        prestazioniNonErogabili.Add(i);
+                }
+                if (prestazioniNonErogabili.Count > 0)
+                {
+                    string messaggio = "";
+                    for (int t = 0; t < prestazioniNonErogabili.Count; t++)
                     {
-                        if (prestazioniErogabili[j].codregionale == null)
+                        for (int j = 0; j < prestazioniErogabili.Count; j++)
                         {
-                            if (prestazioniErogabili[j].codnazionale == prestazioniNonErogabili[t].codnazionale)
+                            if (prestazioniErogabili[j].codregionale == null)
                             {
-                                messaggio = messaggio + prestazioniNonErogabili[t].desprest + "\n";
-                                prestazioniErogabili.RemoveAt(j);
-                                break;
+                                if (prestazioniErogabili[j].codnazionale == prestazioniNonErogabili[t].codnazionale)
+                                {
+                                    messaggio = messaggio + prestazioniNonErogabili[t].desprest + "\n";
+                                    prestazioniErogabili.RemoveAt(j);
+                                    break;
+                                }
                             }
-                        }
-                        else
-                        {
-                            if (prestazioniErogabili[j].codregionale == prestazioniNonErogabili[t].codregionale)
+                            else
                             {
-                                messaggio = messaggio + prestazioniNonErogabili[t].desprest + "\n";
-                                prestazioniErogabili.RemoveAt(j);
-                                break;
+                                if (prestazioniErogabili[j].codregionale == prestazioniNonErogabili[t].codregionale)
+                                {
+                                    messaggio = messaggio + prestazioniNonErogabili[t].desprest + "\n";
+                                    prestazioniErogabili.RemoveAt(j);
+                                    break;
+                                }
                             }
                         }
                     }
+                    ListaPrestazioni = prestazioniErogabili;
+                    for (var i = 0; i < prestazioniErogabili.Count; i++)
+                        prestazioniDaInviare.Add(prestazioniErogabili[i]);
+                    if (prestazioniErogabili.Count > 0)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione",
+                            "La struttura non eroga i seguenti servizi: " + "\n" + messaggio, "OK");
+                        await ricezioneReparti();
+                        bool piuReparti = false;
+                        foreach (var i in listaPrestazioni)
+                            if (i.reparti.Count > 1)
+                            {
+                                piuReparti = true;
+                                break;
+                            }
+                        if (piuReparti)
+                        {
+                            REST<object, string> connessioneMessaggioReparti = new REST<object, string>();
+                            var risposta = await
+                                connessioneMessaggioReparti.getString(SingletonURL.Instance.getRotte().piuReparti, headers);
+                            await App.Current.MainPage.DisplayAlert("Attenzione", risposta, "OK");
+
+                        }
+                    }
+                    else
+                    {
+                        ButtonIsVisible = false;
+                        await App.Current.MainPage.DisplayAlert("Attenzione",
+                            "La struttura non eroga nessuna prestazione contenuta nella ricetta", "OK");
+                    }
                 }
-                ListaPrestazioni = prestazioniErogabili;
-                for (var i = 0; i < prestazioniErogabili.Count; i++)
-                    prestazioniDaInviare.Add(prestazioniErogabili[i]);
-                if (prestazioniErogabili.Count > 0)
+                else
                 {
-                    await App.Current.MainPage.DisplayAlert("Attenzione",
-                        "La struttura non eroga i seguenti servizi: " + "\n" + messaggio, "OK");
+                    ListaPrestazioni = prestazioniErogabili;
+                    for (var i = 0; i < prestazioniErogabili.Count; i++)
+                        prestazioniDaInviare.Add(prestazioniErogabili[i]);
                     await ricezioneReparti();
                     bool piuReparti = false;
                     foreach (var i in listaPrestazioni)
@@ -256,37 +308,10 @@ namespace MCup.ModelView
                             break;
                         }
                     if (piuReparti)
-                    {
-                        REST<object,string> connessioneMessaggioReparti = new REST<object, string>();
-                        var risposta =await 
-                            connessioneMessaggioReparti.getString(SingletonURL.Instance.getRotte().piuReparti, headers);
-                            await App.Current.MainPage.DisplayAlert("Attenzione", risposta, "OK");
-
-                    }
-                }
-                else
-                {
-                    ButtonIsVisible = false;
-                    await App.Current.MainPage.DisplayAlert("Attenzione",
-                        "La struttura non eroga nessuna prestazione contenuta nella ricetta", "OK");
+                        await App.Current.MainPage.DisplayAlert("Attenzione", "Alcune prestazioni vengono erogate da più reparti, se non si conosce il reparto per cui prenotare chiamare il Call Center", "OK");
                 }
             }
-            else
-            {
-                ListaPrestazioni = prestazioniErogabili;
-                for (var i = 0; i < prestazioniErogabili.Count; i++)
-                    prestazioniDaInviare.Add(prestazioniErogabili[i]);
-                await ricezioneReparti();
-                bool piuReparti = false;
-                foreach (var i in listaPrestazioni)
-                    if (i.reparti.Count > 1)
-                    {
-                        piuReparti = true;
-                        break;
-                    }
-                if (piuReparti)
-                    await App.Current.MainPage.DisplayAlert("Attenzione", "Alcune prestazioni vengono erogate da più reparti, se non si conosce il reparto per cui prenotare chiamare il Call Center", "OK");
-            }
+         
         }
 
         public void selectedReparto(Reparto reparto)

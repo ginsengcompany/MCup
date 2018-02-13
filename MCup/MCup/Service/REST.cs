@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -13,16 +14,19 @@ namespace MCup.Service
     public class REST<E, T>
     {
         public string warning;
+        public HttpStatusCode responseMessage;
 
         public async Task<T> GetSingleJson(string url)
         {
             T Item;
             HttpClient client = new HttpClient();
-            var uri = new Uri(string.Format(url, String.Empty));
+            var uri  = new Uri(string.Format(url, String.Empty));
             try
             {
-                var response = await client.GetStringAsync(uri);
-                warning = response;
+
+                var result = await client.GetAsync(uri);
+                var response = await result.Content.ReadAsStringAsync();
+                responseMessage = result.StatusCode; warning = response;
                 var isValid = JToken.Parse(response);
                 Item = JsonConvert.DeserializeObject<T>(response);
                 return Item;
@@ -42,7 +46,9 @@ namespace MCup.Service
                 client.DefaultRequestHeaders.Add(headers[i].header, headers[i].value);
             try
             {
-                var response = await client.GetStringAsync(uri);
+                var result = await client.GetAsync(uri);
+                var response = await result.Content.ReadAsStringAsync();
+                responseMessage = result.StatusCode;
                 warning = response;
                 var isValid = JToken.Parse(response);
                 Item = JsonConvert.DeserializeObject<T>(response);
@@ -58,7 +64,9 @@ namespace MCup.Service
         {
             HttpClient client = new HttpClient();
             var uri = new Uri(string.Format(url, string.Empty));
-            string response = await client.GetStringAsync(uri);
+            var result = await client.GetAsync(uri);
+            var response = await result.Content.ReadAsStringAsync();
+            responseMessage = result.StatusCode;
             return response;
         }
 
@@ -68,7 +76,9 @@ namespace MCup.Service
             for (int i = 0; i < headers.Count; i++)
                 client.DefaultRequestHeaders.Add(headers[i].header, headers[i].value);
             var uri = new Uri(string.Format(url, string.Empty));
-            string response = await client.GetStringAsync(uri);
+            var result = await client.GetAsync(uri);
+            var response = await result.Content.ReadAsStringAsync();
+            responseMessage = result.StatusCode;
             return response;
         }
 
@@ -79,7 +89,9 @@ namespace MCup.Service
             var uri = new Uri(string.Format(url, string.Empty));
             try
             {
-                var response = await client.GetStringAsync(uri);
+                var result = await client.GetAsync(uri);
+                var response = await result.Content.ReadAsStringAsync();
+                responseMessage = result.StatusCode;
                 warning = response;
                 var isValid = JToken.Parse(response);
                 Items = JsonConvert.DeserializeObject<List<T>>(response);
@@ -100,7 +112,9 @@ namespace MCup.Service
                 client.DefaultRequestHeaders.Add(headers[i].header, headers[i].value);
             try
             {
-                var response = await client.GetStringAsync(uri);
+                var result = await client.GetAsync(uri);
+                var response = await result.Content.ReadAsStringAsync();
+                responseMessage = result.StatusCode;
                 warning = response;
                 var isValid = JToken.Parse(response);
                 Items = JsonConvert.DeserializeObject<List<T>>(response);
@@ -123,6 +137,7 @@ namespace MCup.Service
             {
                 var result = await client.PostAsync(url, new StringContent(json.ToString(), Encoding.UTF8, ContentType));
                 var response = await result.Content.ReadAsStringAsync();
+                responseMessage = result.StatusCode;
                 warning = response;
                 var isValid = JToken.Parse(response);
                 Item = JsonConvert.DeserializeObject<T>(response);
@@ -152,6 +167,7 @@ namespace MCup.Service
             {
                 var result = await client.PostAsync(url, httpContent);
                 var response = await result.Content.ReadAsStringAsync();
+                responseMessage = result.StatusCode;
                 warning = response;
                 var isValid = JToken.Parse(response);
                 Item = JsonConvert.DeserializeObject<T>(response);
@@ -175,6 +191,7 @@ namespace MCup.Service
             {
                 var result = await client.PostAsync(url, new StringContent(json.ToString(), Encoding.UTF8, ContentType));
                 var response = await result.Content.ReadAsStringAsync();
+                responseMessage = result.StatusCode;
                 warning = response;
                 var isValid = JToken.Parse(response);
                 Items = JsonConvert.DeserializeObject<List<T>>(response);
@@ -203,6 +220,7 @@ namespace MCup.Service
             {
                 var result = await client.PostAsync(url, httpContent);
                 var response = await result.Content.ReadAsStringAsync();
+                responseMessage = result.StatusCode;
                 warning = response;
                 var isValid = JToken.Parse(response);
                 Items = JsonConvert.DeserializeObject<List<T>>(response);

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -236,11 +237,16 @@ namespace MCup.ModelView
                     REST<object, string> connessioneAnnullamento = new REST<object, string>();
                     string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
                         headers);
-                    await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
-                    App.Current.MainPage = new MenuPrincipale();
+                    if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, connessioneAnnullamento.warning, "OK");
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
+                        App.Current.MainPage = new MenuPrincipale();
+                    }
                 }
-
-
             });
         }
 
@@ -271,12 +277,20 @@ namespace MCup.ModelView
                 {
                     IsBusyV = true;
                     AppuntamentiConfermati appuntamentiConfermati = await invioDati.PostJson(SingletonURL.Instance.getRotte().ConfermaPrenotazione, appuntamentoProposto, headers);
-                    await App.Current.MainPage.DisplayAlert("Attenzione", appuntamentiConfermati.messaggio, "ok");
-                    IsBusyV = false;
-                    Visible = "false";
-                    VisibleHome = "true";
-                    if (appuntamentiConfermati.esito != 0)
-                        App.Current.MainPage = new MenuPrincipale();
+                    if ((invioDati.responseMessage != HttpStatusCode.Created) || (invioDati.responseMessage != HttpStatusCode.InternalServerError)||(invioDati.responseMessage != HttpStatusCode.NotFound))
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)invioDati.responseMessage, invioDati.warning, "OK");
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Appuntamento Confermato", appuntamentiConfermati.messaggio, "ok");
+                        IsBusyV = false;
+                        Visible = "false";
+                        VisibleHome = "true";
+                        if (appuntamentiConfermati.esito != 0)
+                            App.Current.MainPage = new MenuPrincipale();
+                    }
+                 
                 }
                 catch (Exception)
                 {
@@ -289,10 +303,18 @@ namespace MCup.ModelView
         {
             REST<List<Prestazione>, AppuntamentoProposto> recuperoDatiLista = new REST<List<Prestazione>, AppuntamentoProposto>();
             appuntamentoProposto =await recuperoDatiLista.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilita, prestazioni, headers);
-            ListPrenotazioni = appuntamentoProposto.appuntamenti;
-            IsVisible = false;
-            IsBusy = false;
-            IsVisibleButton = true;
+            if (recuperoDatiLista.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)recuperoDatiLista.responseMessage, recuperoDatiLista.warning, "OK");
+            }
+            else
+            {
+                ListPrenotazioni = appuntamentoProposto.appuntamenti;
+                IsVisible = false;
+                IsBusy = false;
+                IsVisibleButton = true;
+            }
+           
         }
 
         private async Task info(AppuntamentoProposto prenotazione)
@@ -300,8 +322,16 @@ namespace MCup.ModelView
             REST<AppuntamentoProposto, AppuntamentoProposto> connessione = new REST<AppuntamentoProposto, AppuntamentoProposto>();
             IsBusyV = true;
             appuntamentoProposto = await connessione.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilitaOra, prenotazione, headers);
-            IsBusyV = false;
-            ListPrenotazioni = appuntamentoProposto.appuntamenti;
+            if (connessione.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+            }
+            else
+            {
+                IsBusyV = false;
+                ListPrenotazioni = appuntamentoProposto.appuntamenti;
+            }
+           
         }
 
         public async Task infoProssimaData(string data)
@@ -310,8 +340,16 @@ namespace MCup.ModelView
             IsBusyV = true;
             headers[1].value = data;
             appuntamentoProposto = await connessione.PostJson(SingletonURL.Instance.getRotte().ricercadata, appuntamentoProposto, headers);
-            IsBusyV = false;
-            ListPrenotazioni = appuntamentoProposto.appuntamenti;
+            if (connessione.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+            }
+            else
+            {
+                IsBusyV = false;
+                ListPrenotazioni = appuntamentoProposto.appuntamenti;
+            }
+           
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -117,8 +118,11 @@ namespace MCup.ModelView
                 {
                     ResponseAnnullaImpegnativa response = await connessioneAnnullamentoImpegnativa.PostJson(SingletonURL.Instance.getRotte().annullaImpegnativa,
                                  appuntamentoSelezionato, headers);
-                    await App.Current.MainPage.DisplayAlert("Mcup", response.messaggio, "ok");
-                    if (response.esito == true)
+                    if (connessioneAnnullamentoImpegnativa.responseMessage != HttpStatusCode.OK)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamentoImpegnativa.responseMessage, connessioneAnnullamentoImpegnativa.warning, "OK");
+                    }
+                    else
                     {
                         pagina.PopAsync();
                     }
@@ -141,7 +145,15 @@ namespace MCup.ModelView
                 REST<object, string> connessioneSpostamento = new REST<object, string>();
                 string messaggioDalServer = await connessioneSpostamento.getString(SingletonURL.Instance.getRotte().spostamentoPrenotazione,
                         headers);
-                await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDalServer, "ok");
+                if (connessioneSpostamento.responseMessage != HttpStatusCode.OK)
+                {
+                    await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneSpostamento.responseMessage, connessioneSpostamento.warning, "OK");
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDalServer, "ok");
+                }
+                
             }
             catch (Exception)
             {

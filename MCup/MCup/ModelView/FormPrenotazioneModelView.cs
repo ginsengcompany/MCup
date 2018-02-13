@@ -4,6 +4,7 @@ using MCup.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -25,14 +26,16 @@ namespace MCup.ModelView
 
         //Oggetto che astrae l'utente che intende prenotare una o delle prestazioni
         private Assistito utenza;
-        
+
+        private string sar;
         //Oggetto che astrae la ricetta NRE
         private InvioRicettaPrenotazione ricetta;
 
         private bool isenabled;
+        private bool switchSarIstrueOrFalse = false;
 
 
-        private string nameTextErrorNome, nameTextErrorCognome, nameTextErrorCodFisc, nameTextErrorCodUno, nameTextErrorCodDue;
+        private string nameTextErrorNome, nameTextErrorCognome, nameTextErrorCodFisc, nameTextErrorCodUno, nameTextErrorCodDue, nameErrorCodiceSar;
 
         public string NameTextErrorNome
         {
@@ -41,6 +44,16 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 nameTextErrorNome = value;
+            }
+        }
+
+        public string NameErrorCodiceSar
+        {
+            get { return nameErrorCodiceSar; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorCodiceSar = value;
             }
         }
 
@@ -129,6 +142,16 @@ namespace MCup.ModelView
             }
         }
 
+        public string codiceSar
+        {
+            get { return sar; }
+            set
+            {
+                sar = value;
+                OnPropertyChanged();
+            }
+        }
+
         //Proprietà che definisce il codice fiscale dell'utente che sta effettuando la prenotazione
         public string codicefiscaleUtente
         {
@@ -208,7 +231,15 @@ namespace MCup.ModelView
             List<Header> listaHeader = new List<Header>();
             listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             contacts = await rest.GetListJson(SingletonURL.Instance.getRotte().InfoPersonali,listaHeader);
-            Contatti = contacts;
+            if (rest.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
+            }
+            else
+            {
+                Contatti = contacts;
+            }
+            
         }
 
         public async void RiempiPagina()
@@ -217,9 +248,13 @@ namespace MCup.ModelView
             List<Header> listaHeader = new List<Header>();
             listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             Impegnativa response = await  connessione.GetSingleJson(SingletonURL.Instance.getRotte().ricezioneDatiPrenotazione, listaHeader);
-            model.selezionaElemento(response.assistito);
-            codiceUno = response.nre.Substring(0, 5);
-            codiceDue = response.nre.Substring(5);
+            if (connessione.responseMessage == HttpStatusCode.OK)
+            {
+                model.selezionaElemento(response.assistito);
+                codiceUno = response.nre.Substring(0, 5);
+                codiceDue = response.nre.Substring(5);
+            }
+
         }
 
         //Comando che chiama la funzione asincrona InvioDatiAsync()
@@ -270,40 +305,70 @@ namespace MCup.ModelView
             }
             else
                 NameTextErrorCodFisc = "";
-            if (string.IsNullOrEmpty(ricetta.codice_uno))
+            if (model.isSwitch())
             {
-                NameTextErrorCodUno = "Il campo è obbligatorio";
-                passControl = false;
-            }
-            else if (ricetta.codice_uno.Length != 5)
-            {
-                NameTextErrorCodUno = "Il campo deve contentere un codice impegnativa valido";
-                passControl = false;
-            }
-            else
-                NameTextErrorCodUno = "";
-            if (string.IsNullOrEmpty(ricetta.codice_due))
-            {
-                NameTextErrorCodDue = "Il campo è obbligatorio";
-                passControl = false;
-            }
-            else if (ricetta.codice_due.Length != 10)
-            {
-                NameTextErrorCodDue = "Il campo deve contentere un codice impegnativa valido";
-                passControl = false;
+                if (string.IsNullOrEmpty(codiceSar))
+                {
+                    NameErrorCodiceSar = "Il campo è obbligatorio";
+                    passControl = false;
+                }
+                else if (codiceSar.Length != 15)
+                {
+                    NameErrorCodiceSar = "Il campo deve contentere un codice impegnativa valido";
+                    passControl = false;
+                }
+                else
+                {
+                    NameErrorCodiceSar = "";
+                }
             }
             else
-                NameTextErrorCodDue = "";
+            {
+                if (string.IsNullOrEmpty(ricetta.codice_uno))
+                {
+                    NameTextErrorCodUno = "Il campo è obbligatorio";
+                    passControl = false;
+                }
+                else if (ricetta.codice_uno.Length != 5)
+                {
+                    NameTextErrorCodUno = "Il campo deve contentere un codice impegnativa valido";
+                    passControl = false;
+                }
+                else
+                    NameTextErrorCodUno = "";
+                if (string.IsNullOrEmpty(ricetta.codice_due))
+                {
+                    NameTextErrorCodDue = "Il campo è obbligatorio";
+                    passControl = false;
+                }
+                else if (ricetta.codice_due.Length != 10)
+                {
+                    NameTextErrorCodDue = "Il campo deve contentere un codice impegnativa valido";
+                    passControl = false;
+                }
+                else
+                    NameTextErrorCodDue = "";
+
+            }
+
+
             if (passControl)
             {
                 try
                 {
                     REST<Impegnativa, Impegnativa> connessione = new REST<Impegnativa, Impegnativa>();
-                    invioImpegnativa.nre = codiceUno+codiceDue;
-                    Impegnativa response = await connessione.PostJson(SingletonURL.Instance.getRotte().Ricetta, invioImpegnativa,headers);
-                    if ((response == null) || (response == default(Impegnativa)))
+                    if(model.isSwitch())
+                        invioImpegnativa.nre = codiceSar;
+                    else
                     {
-                       await App.Current.MainPage.DisplayAlert("Attenzione", response.ToString(), "ok");
+                        invioImpegnativa.nre = codiceUno + codiceDue;
+
+                    }
+
+                    Impegnativa response = await connessione.PostJson(SingletonURL.Instance.getRotte().Ricetta, invioImpegnativa,headers);
+                    if (connessione.responseMessage != HttpStatusCode.OK)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
                     }
                     else
                     model.metodoPush(response, invioImpegnativa.assistito);

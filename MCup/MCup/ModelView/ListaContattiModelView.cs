@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -136,28 +137,36 @@ namespace MCup.ModelView
             REST<object, List<Assistito>> rest = new REST<object, List<Assistito>>();
             List<Assistito> contacts =
                 await rest.GetSingleJson(SingletonURL.Instance.getRotte().InfoPersonali,listaHeader );
-            List<Assistito> temp = new List<Assistito>();
-            char a = 'a';
-            for (int i = 0; i < contacts.Count; i++)
+            if (rest.responseMessage != HttpStatusCode.OK)
             {
-                contacts[i].nomeCompletoConCodiceFiscale = contacts[i].nome + " " + contacts[i].cognome + " " + contacts[i].codice_fiscale;
-                temp.Add(contacts[i]);
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
             }
-            PrimoNome = temp[0].nome + " " + temp[0].cognome;
-            contattoPrimo.nome = temp[0].nome;
-            contattoPrimo.cognome= temp[0].cognome;
-            contattoPrimo.codice_fiscale= temp[0].codice_fiscale;
-            contattoPrimo.data_nascita = temp[0].data_nascita;
-            contattoPrimo.luogo_nascita = temp[0].luogo_nascita;
-            contattoPrimo.sesso = temp[0].sesso;
-            contattoPrimo.AccountPrimario = true;
-            contattoPrimo.comune_residenza = temp[0].comune_residenza;
-            contattoPrimo.telefono = temp[0].telefono;
-            contattoPrimo.statocivile = temp[0].statocivile;
-            contattoPrimo.codStatoCivile = temp[0].codStatoCivile;
-            temp.Remove(temp[0]);
-            Contatti = temp;
-            ImplementaRubrica();
+            else
+            {
+                List<Assistito> temp = new List<Assistito>();
+                char a = 'a';
+                for (int i = 0; i < contacts.Count; i++)
+                {
+                    contacts[i].nomeCompletoConCodiceFiscale = contacts[i].nome + " " + contacts[i].cognome + " " + contacts[i].codice_fiscale;
+                    temp.Add(contacts[i]);
+                }
+                PrimoNome = temp[0].nome + " " + temp[0].cognome;
+                contattoPrimo.nome = temp[0].nome;
+                contattoPrimo.cognome = temp[0].cognome;
+                contattoPrimo.codice_fiscale = temp[0].codice_fiscale;
+                contattoPrimo.data_nascita = temp[0].data_nascita;
+                contattoPrimo.luogo_nascita = temp[0].luogo_nascita;
+                contattoPrimo.sesso = temp[0].sesso;
+                contattoPrimo.AccountPrimario = true;
+                contattoPrimo.comune_residenza = temp[0].comune_residenza;
+                contattoPrimo.telefono = temp[0].telefono;
+                contattoPrimo.statocivile = temp[0].statocivile;
+                contattoPrimo.codStatoCivile = temp[0].codStatoCivile;
+                temp.Remove(temp[0]);
+                Contatti = temp;
+                ImplementaRubrica();
+            }
+           
         }
 
         private void ImplementaRubrica()

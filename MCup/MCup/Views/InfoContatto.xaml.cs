@@ -16,7 +16,7 @@ namespace MCup.Views
         public InfoContatto(Assistito infoContatto)
         {
             InitializeComponent();
-            BindingContext = new InfoContattoModelView(infoContatto);
+            BindingContext = new InfoContattoModelView(infoContatto,this);
 
         }
 

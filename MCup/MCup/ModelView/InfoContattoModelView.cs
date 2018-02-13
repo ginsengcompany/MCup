@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MCup.Model;
 using System.Windows.Input;
 using System.ComponentModel;
+using System.Net;
 using MCup.Service;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
@@ -18,7 +19,7 @@ namespace MCup.ModelView
         private Assistito utente = new Assistito();
         private string visibile="true";
         public string nomeCognome="";
-
+        private InfoContatto pagina;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand Elimina { protected set; get; } //Command per il tentativo di eliminare un utenza 
@@ -139,9 +140,10 @@ namespace MCup.ModelView
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public InfoContattoModelView(Assistito info)
+        public InfoContattoModelView(Assistito info, InfoContatto paginaInfoContatto)
         {
             utente = info;
+            this.pagina = paginaInfoContatto;
             NomeCognome = info.nome + " " + info.cognome;
             List<Header> listaheader = new List<Header>();
             listaheader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
@@ -158,14 +160,22 @@ namespace MCup.ModelView
                         try
                         {
                             var response = await connessioneElimina.getString(SingletonURL.Instance.getRotte().eliminaContattoPersonale,listaheader);
+                            if (connessioneElimina.responseMessage != HttpStatusCode.OK)
+                            {
+                                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneElimina.responseMessage, connessioneElimina.warning, "OK");
+                            }
+                            else
+                            {
+                                await App.Current.MainPage.DisplayAlert("Complimenti", "l'account è stato eliminato con successo", "ok");
+                                App.Current.MainPage = new NavigationPage(new Login());
+                            }
                         }
                         catch (Exception)
                         {
                             await App.Current.MainPage.DisplayAlert("Attenzione", connessioneElimina.warning, "ok");
 
                         }
-                        await  App.Current.MainPage.DisplayAlert("Complimenti", "l'account è stato eliminato con successo", "ok");
-                        App.Current.MainPage = new NavigationPage(new Login());
+                        
                     }
                     
                     
@@ -180,8 +190,16 @@ namespace MCup.ModelView
                         return;
                     REST<Assistito, string> restElimina = new REST<Assistito, string>();
                     string response = await restElimina.PostJson(SingletonURL.Instance.getRotte().EliminaContatto, utente, listaheader);
-                    await App.Current.MainPage.DisplayAlert("Eliminazione", restElimina.warning, "OK");
-                    App.Current.MainPage = new MenuPrincipale();
+                    if (restElimina.responseMessage != HttpStatusCode.OK)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)restElimina.responseMessage, restElimina.warning, "OK");
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Eliminazione", restElimina.warning, "OK");
+                        App.Current.MainPage= new MenuPrincipale();
+                    }
+                    
                 });
             }
           

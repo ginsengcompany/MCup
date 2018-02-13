@@ -11,6 +11,7 @@ namespace MCup
         {
             InitializeComponent();
             MainPage = new NavigationPage(new Login());
+            //MainPage = new NavigationPage(new MenuPrincipale());
           /*  try
             {
                 if (Application.Current.Properties["flagRimaniLoggato"].ToString().Equals("True")) //controlla se il device su cui l'app viene avviata è IOS o Android
@@ -31,7 +32,14 @@ namespace MCup
         protected override void OnStart()
         {
             // Handle when your app starts
-            SingletonURL.Instance.prelevaRotte();
+            try
+            {
+                SingletonURL.Instance.prelevaRotte();
+            }
+            catch (System.Exception)
+            {
+                App.Current.MainPage.DisplayAlert("Attenzione", "errore nel prelevamento rotte", "ok");
+            }
         }
 
         protected override void OnSleep()

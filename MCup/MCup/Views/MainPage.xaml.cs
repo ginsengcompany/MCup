@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using MCup.Model;
@@ -46,6 +47,10 @@ namespace MCup.Views
             tokNot.tokenNotification = "";
             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
             bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot,listaHeader);
+            if (connessione.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+            }
             Application.Current.Properties["flagRimaniLoggato"]= "False";
             Application.Current.MainPage=new NavigationPage(new Login());
         

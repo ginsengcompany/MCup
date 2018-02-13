@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MCup.Model;
 using System.ComponentModel;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -182,6 +183,10 @@ namespace MCup.ModelView
         {
             REST<object, StatoCivile> connessioneStatoCivile = new REST<object, StatoCivile>();
             ListaStatoCivile = await connessioneStatoCivile.GetListJson(SingletonURL.Instance.getRotte().ListaStatoCivile);
+            if (connessioneStatoCivile.responseMessage != HttpStatusCode.OK)
+            {
+               await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneStatoCivile.responseMessage, connessioneStatoCivile.warning, "OK");
+            }
         }
 
         public void StatoCivileScelto(StatoCivile stato)
@@ -541,7 +546,15 @@ namespace MCup.ModelView
             provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
             listacomuni = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
-            listaComuni = listacomuni;
+            if (connessioneComuni.responseMessage != HttpStatusCode.OK)
+            {
+               await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+            }
+            else
+            {
+                listaComuni = listacomuni;
+            }
+            
         }
         private async void LeggiComuniResidenza(Provincia provincia)
         {
@@ -549,12 +562,20 @@ namespace MCup.ModelView
             provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
             listaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
+            if (connessioneComuni.responseMessage != HttpStatusCode.OK)
+            {
+               await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+            }
         }
 
         private async void LeggiProvince()
         {
             REST<object, Provincia> connessioneProvince = new REST<object, Provincia>();
             listaProvince = await connessioneProvince.GetListJson(SingletonURL.Instance.getRotte().ListaProvince);
+            if (connessioneProvince.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneProvince.responseMessage, connessioneProvince.warning, "OK");
+            }
         }
 
         public void provinciaDiNascitaSelezionato(Provincia provincia)
@@ -781,26 +802,37 @@ namespace MCup.ModelView
                     utente.data_nascita = giorno + "/" + mese + "/" + anno;
                     REST<object, string> restTermini = new REST<object, string>(); //Crea un oggetto REST per i termini di servizio remoti
                     var termini = await restTermini.getString(SingletonURL.Instance.getRotte().TerminiServizio); //Recupera i termini di servizio attraverso una GET
-                    //Mostra il display alert contenente i termini di servizio recuperati dalla rest restTermini e salva la risposta dell'utente nella variabile accetaODeclina
-                    var accetaODeclina = await App.Current.MainPage.DisplayAlert("Termini di servizio", termini, "ACCETTA", "DECLINA");
-                    if (accetaODeclina) //Controlla che l'utente abbia accettato i termini di servizio
+                    if (restTermini.responseMessage != HttpStatusCode.OK)
                     {
-                        REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>(); //Crea un oggetto rest per effettuare la registrazione da remoto
-                        utente.Maiuscolo();
-                        ResponseRegistrazione response = await rest.PostJson(SingletonURL.Instance.getRotte().Registrazione, utente); //Effettua una POST che restituisce nella variabile response se la registrazione ha avuto successo
-                        if (response == default(ResponseRegistrazione)) //Se la variabile response contiene il valore di default della classe Response Registrazione allora la registrazione non è avvenuta
-                            await App.Current.MainPage.DisplayAlert("Registrazione", rest.warning, "OK"); //Visualizza un display alert che indica all'utente che la registrazione non è stata effettuata
-                        else if (response.auth) //Controlla se response contiene un oggetto e che indica che la registrazione è avvenuta con successo
-                        {
-                            //Visualizza un display alert che indica all'utente che la registrazione è avvenuta con successo
-                            await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione effettuata con successo", "OK");
-                            await App.Current.MainPage.Navigation.PopAsync(); //Ritorna alla pagina di login
-                        }
-                        else //Errore imprevisto durante la registrazione
-                            await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)restTermini.responseMessage, restTermini.warning, "OK");
                     }
-                    else //L'utente non ha accettato i termini di servizio
-                        await App.Current.MainPage.DisplayAlert("Registrazione", "Devi accettare i termini di servizio per poter proseguire", "OK");
+                    else
+                    {
+                        //Mostra il display alert contenente i termini di servizio recuperati dalla rest restTermini e salva la risposta dell'utente nella variabile accetaODeclina
+                        var accetaODeclina = await App.Current.MainPage.DisplayAlert("Termini di servizio", termini, "ACCETTA", "DECLINA");
+                        if (accetaODeclina) //Controlla che l'utente abbia accettato i termini di servizio
+                        {
+                            REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>(); //Crea un oggetto rest per effettuare la registrazione da remoto
+                            utente.Maiuscolo();
+                            ResponseRegistrazione response = await rest.PostJson(SingletonURL.Instance.getRotte().Registrazione, utente); //Effettua una POST che restituisce nella variabile response se la registrazione ha avuto successo
+
+                            if (rest.responseMessage != HttpStatusCode.Created)
+                            {
+                                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
+                            }
+                            else if (response.auth) //Controlla se response contiene un oggetto e che indica che la registrazione è avvenuta con successo
+                            {
+                                //Visualizza un display alert che indica all'utente che la registrazione è avvenuta con successo
+                                await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione effettuata con successo", "OK");
+                                await App.Current.MainPage.Navigation.PopAsync(); //Ritorna alla pagina di login
+                            }
+                            else //Errore imprevisto durante la registrazione
+                                await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
+                        }
+                        else //L'utente non ha accettato i termini di servizio
+                            await App.Current.MainPage.DisplayAlert("Registrazione", "Devi accettare i termini di servizio per poter proseguire", "OK");
+                    }
+                   
                 }
             });
         }

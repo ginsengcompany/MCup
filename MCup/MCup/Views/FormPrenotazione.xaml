@@ -20,6 +20,7 @@
                     ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" 
                     VerticalOptions="Center" 
                     SelectedIndexChanged="Picker_SelectedIndexChanged" />
+                <Label TextColor="Black" Text="Seleziona il contatto per continuare" HorizontalTextAlignment="Center" HorizontalOptions="Center"></Label>
 
                 <xfx:XfxEntry 
                     Placeholder="Nome"     
@@ -53,9 +54,37 @@
                         IsVisible="{Binding Visible}"
                         IsEnabled="False"
                         VerticalOptions="Center"/>
-      
-                <StackLayout Orientation="Horizontal" Padding="0,10,0,0"  VerticalOptions="Center" HorizontalOptions="Center">
-                    <xfx:XfxEntry 
+                <StackLayout HorizontalOptions="Center" IsVisible="{Binding Visible}">
+                    <Label Text="Posseggo impegnativa con codice SAR" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                    <Switch x:Name="switchSar" IsToggled="False" Toggled="Switch" HorizontalOptions="Center"></Switch>
+
+                    <StackLayout IsVisible="{Binding Visible}" x:Name="stackSar" Orientation="Horizontal" Padding="0,10,0,0"  VerticalOptions="Center" HorizontalOptions="Center">
+                        <xfx:XfxEntry 
+                            x:Name="entryCodiceRicettaSar"
+                            Placeholder="Inserisci il codice dell'impegnativa"     
+                            Text="{Binding codiceSar}" 
+                            ErrorText="{Binding NameErrorCodiceSar}" 
+                            ErrorDisplay="Underline"
+                            WidthRequest="250"
+                            HorizontalOptions="Center" 
+                            VerticalOptions="Center"/>
+                        <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ScanSarMethod" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Source="info.png" VerticalOptions="Center" WidthRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_1" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout x:Name="stackNRE" IsVisible="{Binding Visible}">
+                    <StackLayout Orientation="Horizontal" Padding="0,10,0,0"  VerticalOptions="Center" HorizontalOptions="Center">
+                        <xfx:XfxEntry 
                         x:Name="entryCodiceRicettaUno"
                         Placeholder="Inserisci il 1° dell'impegnativa"     
                         Text="{Binding codiceUno}" 
@@ -64,20 +93,20 @@
                         WidthRequest="250"
                         HorizontalOptions="Center" 
                         VerticalOptions="Center"/>
-                    <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Image Source="info.png" VerticalOptions="Center" WidthRequest="30">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Handle_Tapped_1" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-         
-                <StackLayout Orientation="Horizontal" Padding="0,10,0,0" VerticalOptions="Center" HorizontalOptions="Center">
-                    <xfx:XfxEntry 
+                        <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Source="info.png" VerticalOptions="Center" WidthRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_1" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Padding="0,10,0,0" VerticalOptions="Center" HorizontalOptions="Center">
+                        <xfx:XfxEntry 
                         x:Name="entryCodiceRicettaDue"
                         Placeholder="Inserisci il 2° codice dell'impegnativa"     
                         Text="{Binding codiceDue}" 
@@ -86,18 +115,20 @@
                         WidthRequest="250"
                         HorizontalOptions="Center" 
                         VerticalOptions="Center"/>
-                    <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Image Source="info.png" VerticalOptions="Center" WidthRequest="30">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Handle_Tapped_2" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
+                        <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Source="info.png" VerticalOptions="Center" WidthRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_2" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0">
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0" IsVisible="{Binding Visible}">
                     <Image IsEnabled="{Binding IsEnabled}" Source="send.png" WidthRequest="250">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>

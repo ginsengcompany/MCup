@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -430,9 +431,9 @@ namespace MCup.ModelView
                     {
                         contatto.Maiuscolo();
                         ResponseRegistrazione response = await connessioneNuovoContatto.PostJson(SingletonURL.Instance.getRotte().AggiungiNuovoContatto, contatto, listaHeader);
-                        if ((response == null) || (response == default(ResponseRegistrazione)))
+                        if (connessioneNuovoContatto.responseMessage != HttpStatusCode.Created)
                         {
-                            await App.Current.MainPage.DisplayAlert("Registrazione contatto", connessioneNuovoContatto.warning, "ok");
+                            await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNuovoContatto.responseMessage, connessioneNuovoContatto.warning, "OK");
                         }
                         else
                         {
@@ -453,6 +454,10 @@ namespace MCup.ModelView
         {
             REST<object, Provincia> connessioneProvince = new REST<object, Provincia>();
             Province = await connessioneProvince.GetListJson(SingletonURL.Instance.getRotte().ListaProvince);
+            if (connessioneProvince.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneProvince.responseMessage, connessioneProvince.warning, "OK");
+            }
         }
 
         public async void LeggiComuniResidenza(Provincia provincia)
@@ -461,6 +466,10 @@ namespace MCup.ModelView
             provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
             ListaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
+            if (connessioneComuni.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+            }
         }
 
         public async void LeggiComuniNascita(Provincia provincia)
@@ -469,6 +478,10 @@ namespace MCup.ModelView
             provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
             ListaComuniNascita = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
+            if (connessioneComuni.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+            }
         }
 
         public void comuneResidenzaSelezionato(Comune comune)
@@ -486,6 +499,10 @@ namespace MCup.ModelView
         {
             REST<object, StatoCivile> connessioneStatoCivile = new REST<object, StatoCivile>();
             ListaStatoCivile = await connessioneStatoCivile.GetListJson(SingletonURL.Instance.getRotte().ListaStatoCivile);
+            if (connessioneStatoCivile.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneStatoCivile.responseMessage, connessioneStatoCivile.warning, "OK");
+            }
         }
 
         public void StatoCivileScelto(StatoCivile stato)
