@@ -27,6 +27,7 @@ namespace MCup.Views
         public string imgCodFiscale = "coduno.png"; //Variabile contenente il nome dell'immagine di esempio del codice fiscale
         public string imgCodUno = "coddue.png"; //Variabile contenente il nome dell'immagine di esempio del codice 1 della ricetta
         public string imgCodDue = "codtre.png"; //Variabile contenente il nome dell'immagine di esempio del codice 2 della ricetta
+        public string imgSar = "ricettaSAR.png";
         private FormPrenotazioneModelView form;
         private bool sar;
 
@@ -197,6 +198,11 @@ private void XfxComboBox_ItemSelected(object sender, SelectedItemChangedEventArg
                 });
             };
             await Navigation.PushAsync(scanPage);
+        }
+
+        private async void InfoScanImageSar(object sender, EventArgs e)
+        {
+            await Navigation.PushPopupAsync(new PopupInfoScan(imgSar));
         }
     }
 }

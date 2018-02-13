@@ -75,7 +75,7 @@
                         </Image>
                         <Image Source="info.png" VerticalOptions="Center" WidthRequest="30">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Handle_Tapped_1" NumberOfTapsRequired="1"/>
+                                <TapGestureRecognizer Tapped="InfoScanImageSar" NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
                         </Image>
                     </StackLayout>
