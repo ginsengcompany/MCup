@@ -182,8 +182,7 @@ namespace MCup.ModelView
         //Costruttore del ModelView che inizializza le variabili fondamentali per il corretto funzionamento della pagina di login (sia Android che IOS).
         public LoginModelView(Login loginPage)
         {
-            listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-            listaHeader.Add(new Header("struttura", "030001"));
+            
             
             utente = new Utente(); //Crea un oggetto Utente vuoto
             Username = utente.username = utente.recuperaUserName();
@@ -227,7 +226,10 @@ namespace MCup.ModelView
                         {
                             TokenNotification tokNot = new TokenNotification();
                             tokNot.tokenNotification = userId;
-                          
+                            if (listaHeader.Count != 0)
+                                listaHeader.Clear();
+                            listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+                            listaHeader.Add(new Header("struttura", "030001"));
                             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
                             bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot,listaHeader);
                             if (connessione.responseMessage != HttpStatusCode.OK)
@@ -298,8 +300,13 @@ namespace MCup.ModelView
 
         private async void RicezioneLogo()
         {
+            if (listaHeader.Count != 0)
+            {
+                listaHeader.Clear();
+            }
+            listaHeader.Add(new Header("struttura","030001"));
             REST<object, string> connessioneLogo = new REST<object, string>();
-            var logo = await connessioneLogo.getString("http://192.168.125.71:3000/infostruttura/logoStruttura", listaHeader);
+            var logo = await connessioneLogo.getString("http://192.168.125.14:3000/infostruttura/logoStruttura", listaHeader);
             LogoStruttura =  Xamarin.Forms.ImageSource.FromStream(
                 () => new MemoryStream(Convert.FromBase64String(logo)));
         }
