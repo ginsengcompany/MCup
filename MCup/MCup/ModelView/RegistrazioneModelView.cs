@@ -7,6 +7,7 @@ using MCup.Model;
 using System.ComponentModel;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Xamarin.Forms;
 using MCup.Service;
@@ -25,7 +26,7 @@ namespace MCup.ModelView
         private List<Provincia> listaprovince = new List<Provincia>();
         private List<Comune> listacomuniresidenza = new List<Comune>();
         private List<StatoCivile> listaStatoCivile = new List<StatoCivile>();
-
+        private Regex regexPass = new Regex(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])");
         private Utente utente; //Oggetto che astrae l'utenza del cliente
 
 
@@ -429,37 +430,26 @@ namespace MCup.ModelView
         public async Task<bool> AvantiSecondaPagina()
         {
             bool control = true;
-
+            NameErrorNome = false;
+            NameErrorCognome = false;
+            NameErrorDataNascita = false;
+            NameErrorComuneNascita = false;
+            NameErrorCodFiscale = false;
             if (string.IsNullOrEmpty(nome))
             {
                 NameErrorNome = true;
                 control = false;
             }
-            else
-            {
-                NameErrorNome = false;
-            }
-          
-          
             if (string.IsNullOrEmpty(cognome))
             {
                 NameErrorCognome = true;
                 control = false;
-            }
-            else
-            {
-                NameErrorCognome = false;
             }
             if (string.IsNullOrEmpty(data_nascita))
             {
                 NameErrorDataNascita = true;
                 control = false;
             }
-            else
-            {
-                NameErrorDataNascita = false;
-            }
-
             //non so dove trovare la provincia
             /* if (string.IsNullOrEmpty())
              {
@@ -475,21 +465,11 @@ namespace MCup.ModelView
                 NameErrorComuneNascita = true;
                 control = false;
             }
-            else
-            {
-                NameErrorComuneNascita = false;
-            }
-          
             if (string.IsNullOrEmpty(codiceFiscale))
             {
                 NameErrorCodFiscale = true;
                 control = false;
             }
-            else
-            {
-                NameErrorCodFiscale = false;
-            }
-
             return control;
         }
 
@@ -497,45 +477,47 @@ namespace MCup.ModelView
 
         public async Task<bool> VaiAvanti()
         {
+            NameErrorTextPassword = "";
+            NameErrorUsername = false;
+            NameErrorTextPassword = "";
+            NameErrorTextConfermaPassword = "";
+            Match matchPass;
             bool control = true;
             if (string.IsNullOrEmpty(Username))
             {
                 NameErrorUsername = true;
                 control = false;
             }
-            else
-            {
-                NameErrorUsername = false;
-            }
-
             if (string.IsNullOrEmpty(password))
             {
                 NameErrorTextPassword = "attenzione, campo obbligatorio";
                 control = false;
             }
+            else if (password.Length < 8)
+            {
+                NameErrorTextPassword = "la password deve essere almeno di 8 caratteri";
+                control = false;
+            }
             else
             {
-                NameErrorTextPassword = "";
+                matchPass = regexPass.Match(password);
+                if (!matchPass.Success)
+                {
+                    NameErrorTextPassword = "la password deve contenere una lettera maiuscola, minuscola ed un numero";
+                    control = false;
+                }
             }
             if (string.IsNullOrEmpty(ConfermaPassword))
             {
                 NameErrorTextConfermaPassword = "attenzione, campo obbligatorio";
                 control = false;
             }
-            else
-            {
-                NameErrorTextConfermaPassword = "";
-            }
             if (password != ConfermaPassword)
             {
                 NameErrorTextPassword = "attenzione password non corrispondenti";
+                NameErrorTextConfermaPassword = "attenzione password non corrispondenti";
                 control = false;
             }
-            else
-            {
-                NameErrorTextPassword = "";
-            }
-
             return control;
         }
 
@@ -607,7 +589,7 @@ namespace MCup.ModelView
             LeggiStatoCivile();
             registrati = new Command(async () =>
             {
-
+                
                 //Imposta gli errori ad una stringa vuota
             
                 NameErrorTextPassword = String.Empty;
@@ -621,18 +603,12 @@ namespace MCup.ModelView
 
                 #region controlloErrori
                 //Imposta gli errori ad una stringa vuota
-                NameErrorNome =
-                NameErrorCognome =
-                NameErrorDataNascita =
-                NameErrorProvinciaNascita =
-                NameErrorComuneNascita =
                 NameErrorProvinciaResidenza =
                 NameErrorComuneResidenza =
                 NameErrorStatoCivile =
                 NameErrorTelefono =
                 NameErrorSesso =
-                NameErrorIndirizzo =
-                NameErrorCodFiscale = false;
+                NameErrorIndirizzo = false;
 
                 /*
                 * variabile locale utilizzata per verificare se l'utente ha inserito i campi obbligatori per effettuare il tentativo di registrazione.
@@ -644,70 +620,10 @@ namespace MCup.ModelView
                 ///grazie alla label di errore.
                 /// </summary>
                 bool controllPass = true;
-
                 if (string.IsNullOrEmpty(Indirizzo))
                 {
                     NameErrorIndirizzo = true;
                     controllPass = false;
-                }
-                else
-                {
-                    NameErrorIndirizzo = false;
-                }
-                if (string.IsNullOrEmpty(Username))
-                {
-                    NameErrorUsername = true;
-                    controllPass = true;
-                }
-                else
-                {
-                    NameErrorUsername = false;
-                }
-
-                if (string.IsNullOrEmpty(nome))
-                {
-                    NameErrorNome = true;
-                    controllPass = false;
-                }
-                else
-                {
-                    NameErrorNome = false;
-                }
-                if (string.IsNullOrEmpty(password))
-                {
-                    NameErrorTextPassword = "attenzione, campo obbligatorio";
-                    controllPass = false;
-                }
-                else
-                {
-                    controllPass = true;
-                }
-                if (string.IsNullOrEmpty(ConfermaPassword))
-                {
-                    NameErrorTextConfermaPassword = "attenzione, campo obbligatorio";
-                    controllPass = false;
-                }
-                else
-                {
-                    controllPass = true;
-                }
-                if (string.IsNullOrEmpty(cognome))
-                {
-                    NameErrorCognome = true;
-                    controllPass = false;
-                }
-                else
-                {
-                    NameErrorCognome = false;
-                }
-                if (string.IsNullOrEmpty(data_nascita))
-                {
-                    NameErrorDataNascita = true;
-                    controllPass = false;
-                }
-                else
-                {
-                    NameErrorDataNascita = false;
                 }
                 //non so dove trovare la provincia
                 /* if (string.IsNullOrEmpty())
@@ -719,15 +635,7 @@ namespace MCup.ModelView
                  {
                      NameErrorProvinciaNascita = false;
                  }*/
-                if (string.IsNullOrEmpty(luogo_nascita))
-                {
-                    NameErrorComuneNascita = true;
-                    controllPass = false;
-                }
-                else
-                {
-                    NameErrorComuneNascita = false;
-                }
+
                 /*
                 if (string.IsNullOrEmpty(provinciaSelezionata.provincia))
                 {
@@ -743,55 +651,22 @@ namespace MCup.ModelView
                     NameErrorComuneResidenza = true;
                     controllPass = false;
                 }
-                else
-                {
-                    NameErrorComuneResidenza = false;
-                }
                 if (string.IsNullOrEmpty(utente.statocivile))
                 {
                     NameErrorStatoCivile = true;
                     controllPass = false;
-                }
-                else
-                {
-                    NameErrorStatoCivile = false;
                 }
                 if (string.IsNullOrEmpty(telefono))
                 {
                     NameErrorTelefono = true;
                     controllPass = false;
                 }
-                else
-                {
-                    NameErrorTelefono = false;
-                }
                 if (sceltaSesso.Equals(' '))
                 {
                     NameErrorSesso = true;
                     controllPass = false;
                 }
-                else
-                {
-                    NameErrorSesso = false;
-                }
-                if (string.IsNullOrEmpty(codiceFiscale))
-                {
-                    NameErrorCodFiscale = true;
-                    controllPass = false;
-                }
-                else
-                {
-                    NameErrorCodFiscale = false;
-                }
-                if (password != ConfermaPassword)
-                {
-                    NameErrorTextPassword = "attenzione password non corrispondenti";
-                    controllPass = false;
-                }
                 #endregion
-
-
-              
                 if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
                 {
                     utente.data_nascita = utente.data_nascita.Substring(0, 10);
