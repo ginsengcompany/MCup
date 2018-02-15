@@ -18,15 +18,21 @@ namespace MCup.ModelView
     public class NuovoContattoModelView : INotifyPropertyChanged
 
     {
+
+
+        #region DichiarazioneVariabili
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
 
         private Assistito contatto; //Oggetto che astrae l'utenza del cliente
 
-        private List<Comune> listaComuniResidenza, listaComuniNascita;
+        private List<Comune> listaComuniResidenza, listaComuniNascita;//Lista di comuni di nascita e residenza
 
-        private List<StatoCivile> listaStatoCivile = new List<StatoCivile>();
+        private List<StatoCivile> listaStatoCivile = new List<StatoCivile>();//lista che contiene gli stati civili che arriveranno dal server
 
-        private List<Provincia> province;
+        private List<Provincia> province;//Lista province
+
+
+        #endregion
 
         #region Boolean_di_Controllo
         ///<summary>Boolean per controllo errore</summary> 
@@ -144,6 +150,8 @@ namespace MCup.ModelView
         }
         #endregion
 
+        #region Proprietà
+
         public ICommand registraNuovoContatto { protected set; get; } //Command per il tentativo di registrazione dell'utenza
         public ICommand annullaRegistrazioneNuovoContatto { protected set; get; }
 
@@ -246,7 +254,7 @@ namespace MCup.ModelView
                 province = value;
             }
         }
-        
+
         public List<Comune> ListaComuniResidenza
         {
             get { return listaComuniResidenza; }
@@ -267,11 +275,20 @@ namespace MCup.ModelView
             }
         }
 
+
+        #endregion
+
+        #region OnPropertyChange
+
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+
+        #endregion
+
+        #region Costruttore
         //Costruttore che inizializza un utenza vuota e definisce il metodo a cui il Command registrati fa riferimento
         public NuovoContattoModelView()
         {
@@ -288,16 +305,16 @@ namespace MCup.ModelView
             {
                 #region controlloErrori
                 //Imposta gli errori ad una stringa vuota
-                NameErrorNome = 
-                NameErrorCognome = 
-                NameErrorDataNascita = 
+                NameErrorNome =
+                NameErrorCognome =
+                NameErrorDataNascita =
                 NameErrorProvinciaNascita =
-                NameErrorComuneNascita = 
-                NameErrorProvinciaResidenza = 
+                NameErrorComuneNascita =
+                NameErrorProvinciaResidenza =
                 NameErrorComuneResidenza =
                 NameErrorStatoCivile =
-                NameErrorTelefono = 
-                NameErrorSesso = 
+                NameErrorTelefono =
+                NameErrorSesso =
                 NameErrorCodFiscale = false;
 
                 /*
@@ -310,53 +327,40 @@ namespace MCup.ModelView
                 ///Controllo se i capi sono nulli, se uno è nulla la registrazione non verrà effettuata e il campo o i campi vuoi verragno segnalati
                 ///grazie alla label di errore.
                 /// </summary>
-                
+
                 if (string.IsNullOrEmpty(NomeNuovoContatto))
                 {
                     NameErrorNome = true;
                     controllPass = false;
                 }
-                else
-                {
-                    NameErrorNome = false;
-                }
+
                 if (string.IsNullOrEmpty(CognomeNuovoContatto))
                 {
                     NameErrorCognome = true;
                     controllPass = false;
-                }
-                else
-                {
-                    NameErrorCognome = false;
                 }
                 if (string.IsNullOrEmpty(contatto.data_nascita))
                 {
                     NameErrorDataNascita = true;
                     controllPass = false;
                 }
-                else
-                {
-                    NameErrorDataNascita = false;
-                }
+
                 //non so dove trovare la provincia
-               /* if (string.IsNullOrEmpty())
-                {
-                    NameErrorProvinciaNascita = true;
-                    controllPass = false;
-                }
-                else
-                {
-                    NameErrorProvinciaNascita = false;
-                }*/
+                /* if (string.IsNullOrEmpty())
+                 {
+                     NameErrorProvinciaNascita = true;
+                     controllPass = false;
+                 }
+                 else
+                 {
+                     NameErrorProvinciaNascita = false;
+                 }*/
                 if (string.IsNullOrEmpty(contatto.luogo_nascita))
                 {
                     NameErrorComuneNascita = true;
                     controllPass = false;
                 }
-                else
-                {
-                    NameErrorComuneNascita = false;
-                }
+
                 /*
                 if (string.IsNullOrEmpty(provinciaSelezionata.provincia))
                 {
@@ -372,45 +376,25 @@ namespace MCup.ModelView
                     NameErrorComuneResidenza = true;
                     controllPass = false;
                 }
-                else
-                {
-                    NameErrorComuneResidenza = false;
-                }
                 if (string.IsNullOrEmpty(contatto.statocivile))
                 {
                     NameErrorStatoCivile = true;
                     controllPass = false;
-                }
-                else
-                {
-                    NameErrorStatoCivile = false;
                 }
                 if (string.IsNullOrEmpty(telefono))
                 {
                     NameErrorTelefono = true;
                     controllPass = false;
                 }
-                else
-                {
-                    NameErrorTelefono = false;
-                }
                 if (sceltaSesso.Equals(' '))
                 {
                     NameErrorSesso = true;
                     controllPass = false;
                 }
-                else
-                {
-                    NameErrorSesso = false;
-                }
                 if (string.IsNullOrEmpty(CodiceFiscaleNuovoContatto))
                 {
                     NameErrorCodFiscale = true;
                     controllPass = false;
-                }
-                else
-                {
-                    NameErrorCodFiscale = false;
                 }
 
                 #endregion
@@ -450,6 +434,11 @@ namespace MCup.ModelView
             });
         }
 
+        #endregion
+
+        #region Metodi
+
+        //Metodo che restituisce la lista delle province proveniente dal server
         private async void LeggiProvince()
         {
             REST<object, Provincia> connessioneProvince = new REST<object, Provincia>();
@@ -460,6 +449,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Metodo che restituisce, dopo aver selezionato la provincia, la lista dei comuni
         public async void LeggiComuniResidenza(Provincia provincia)
         {
             Provincia provinciaSelezionata = new Provincia();
@@ -495,6 +485,8 @@ namespace MCup.ModelView
             contatto.luogo_nascita = comune.nome;
             contatto.istatComuneNascita = comune.codice;
         }
+
+        //Metodo che restituisce la lista degli stati civili
         private async void LeggiStatoCivile()
         {
             REST<object, StatoCivile> connessioneStatoCivile = new REST<object, StatoCivile>();
@@ -511,5 +503,9 @@ namespace MCup.ModelView
             contatto.statocivile = stato.descrizione;
         }
 
+
+
+        #endregion
     }
+
 }

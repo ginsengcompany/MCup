@@ -1,8 +1,7 @@
-﻿using System;
+﻿#region Librerie
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MCup.Model;
 using System.Windows.Input;
 using System.ComponentModel;
@@ -12,15 +11,28 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using MCup.Views;
 
+#endregion
+
+
 namespace MCup.ModelView
 {
     public class InfoContattoModelView : INotifyPropertyChanged
     {
+
+
+        #region DichiarazioneVaribili
+        //Oggetto che astrae le proprietà dell'utente utilizzatore
         private Assistito utente = new Assistito();
-        private string visibile="true";
-        public string nomeCognome="";
+        //Variabile che implementata rende visibile o meno un elemento nello xaml
+        private string visibile = "true";
+        //Variabile che mostra il nome e il cognome dell'utente
+        public string nomeCognome = "";
         private InfoContatto pagina;
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Proprietà
 
         public ICommand Elimina { protected set; get; } //Command per il tentativo di eliminare un utenza 
         public string codiceFiscale //Proprietà relativa al campo codice fiscale
@@ -81,7 +93,7 @@ namespace MCup.ModelView
             }
         }
 
-        public string statocivile
+        public string statocivile//Proprietà relativa al campo stato civile
         {
             get { return utente.statocivile; }
             set
@@ -93,7 +105,8 @@ namespace MCup.ModelView
 
         public string Sesso //Proprietà relativa al campo sesso
         {
-            get {
+            get
+            {
                 if (utente.sesso == 'M')
                     return "Maschio";
                 else
@@ -135,11 +148,22 @@ namespace MCup.ModelView
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        #region OnPropertyChange
+
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+
+        #endregion
+
+        #region Costruttore
+
+        //Costruttore
         public InfoContattoModelView(Assistito info, InfoContatto paginaInfoContatto)
         {
             utente = info;
@@ -149,17 +173,17 @@ namespace MCup.ModelView
             listaheader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             if (info.AccountPrimario)
             {
-                
-                    Elimina = new Command(async () =>
+
+                Elimina = new Command(async () =>
                 {
-                    REST<object,string> connessioneElimina = new REST<object, string>();
-                    
-                  var risposta=  await App.Current.MainPage.DisplayAlert("Eliminazione", "sei sicuro di voler eliminare l'account? Se confermi allora dovrai effettuare una nuova registrazione", "si","no");
+                    REST<object, string> connessioneElimina = new REST<object, string>();
+
+                    var risposta = await App.Current.MainPage.DisplayAlert("Eliminazione", "sei sicuro di voler eliminare l'account? Se confermi allora dovrai effettuare una nuova registrazione", "si", "no");
                     if (risposta)
                     {
                         try
                         {
-                            var response = await connessioneElimina.getString(SingletonURL.Instance.getRotte().eliminaContattoPersonale,listaheader);
+                            var response = await connessioneElimina.getString(SingletonURL.Instance.getRotte().eliminaContattoPersonale, listaheader);
                             if (connessioneElimina.responseMessage != HttpStatusCode.OK)
                             {
                                 await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneElimina.responseMessage, connessioneElimina.warning, "OK");
@@ -175,10 +199,10 @@ namespace MCup.ModelView
                             await App.Current.MainPage.DisplayAlert("Attenzione", connessioneElimina.warning, "ok");
 
                         }
-                        
+
                     }
-                    
-                    
+
+
                 });
             }
             else
@@ -197,13 +221,16 @@ namespace MCup.ModelView
                     else
                     {
                         await App.Current.MainPage.DisplayAlert("Eliminazione", restElimina.warning, "OK");
-                        App.Current.MainPage= new MenuPrincipale();
+                        App.Current.MainPage = new MenuPrincipale();
                     }
-                    
+
                 });
             }
-          
-         }
+
+        }
+
+        #endregion
+
 
 
     }

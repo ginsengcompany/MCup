@@ -1,38 +1,61 @@
-﻿using MCup.Model;
+﻿#region Librerie
+
+using MCup.Model;
 using MCup.Service;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using MCup.Views;
 using Xamarin.Forms;
+
+#endregion
 
 namespace MCup.ModelView
 {
     public class ListaContattiModelView : INotifyPropertyChanged
     {
+
+
+        #region DichiarazioneVariabili
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        //Lista usata per contenere i contatti
         private List<Assistito> contatti = new List<Assistito>();
+        //Variabile che contraddistingue il contatto dell'utente utilizzatore dell'applicativo dai contatti "figli"
         public string primoNome;
-        private NavigationPage pagina = new  NavigationPage();
-        private InfoContatto paginaInfoContatto;
-        public  Assistito contattoPrimo = new Assistito();
+
+       //Variabile che contraddistingue il contatto dell'utente utilizzatore dell'applicativo dai contatti "figli"
+        public Assistito contattoPrimo = new Assistito();
+        //Comando che richiama il metodo per aggiungere un contatto
         public ICommand AggiungereContatto { protected set; get; }
+
+        //Comando che richiama il metodo per andare alle info personali del contatto utente
         public ICommand MioContattoPersonale { protected set; get; }
+
+        //comando utilizzato per ricercare all'interno della rubrica un contatto
         public ICommand searchContacts { protected set; get; }
+
+        //oggetto utilizzato per richiamare metodi dalla pagina
         private ListaContatti paginaListaContatti;
+
+        //Variabile utilizzata per ricercare i contatti
         private string textSearch = "";
+
+        //Variabile usata per raggruppare la lista dei contatti
         private ObservableCollection<Rubrica> grouped { get; set; }
+
+        //Variabile utilizzate per raggruppare i contatti visualizzati
         private ObservableCollection<Rubrica> collectionView;
 
+        #endregion
 
+        #region Proprietà
 
-
+        //Proprietà relativa al campo textSearch
         public string TextSearch
         {
             get { return textSearch; }
@@ -44,6 +67,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà relativa al collectionView
         public ObservableCollection<Rubrica> CollectionView
         {
             get { return collectionView; }
@@ -54,8 +78,7 @@ namespace MCup.ModelView
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        //Proprietà relativa al campo Contatti
         public List<Assistito> Contatti
         {
             get { return contatti; }
@@ -66,6 +89,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà relativa al campo del primo nome visualizzato
         public string PrimoNome
         {
             get { return primoNome; }
@@ -75,12 +99,18 @@ namespace MCup.ModelView
                 primoNome = value;
             }
         }
+        #endregion
+
+        #region OnPropertyChange
+
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        
+        #endregion
+
+        #region Costruttore
 
         public ListaContattiModelView(ListaContatti pagina)
         {
@@ -90,7 +120,7 @@ namespace MCup.ModelView
             leggiContatti();
             AggiungereContatto = new Command(() =>
             {
-                App.Current.MainPage = new NavigationPage(new NuovoContatto()); 
+                App.Current.MainPage = new NavigationPage(new NuovoContatto());
             });
             MioContattoPersonale = new Command(async () =>
             {
@@ -101,7 +131,12 @@ namespace MCup.ModelView
                 aggiornaRubrica();
             });
         }
-  
+
+        #endregion
+
+        #region Metodi
+
+        //Metodo che implementa l'aggiornamento della rubrica
         private void aggiornaRubrica()
         {
             string keyword = textSearch;
@@ -130,13 +165,14 @@ namespace MCup.ModelView
             }
         }
 
+        //Metodo che tramite una connessione legge i contatti salvati
         private async void leggiContatti()
         {
             List<Header> listaHeader = new List<Header>();
             listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             REST<object, List<Assistito>> rest = new REST<object, List<Assistito>>();
             List<Assistito> contacts =
-                await rest.GetSingleJson(SingletonURL.Instance.getRotte().InfoPersonali,listaHeader );
+                await rest.GetSingleJson(SingletonURL.Instance.getRotte().InfoPersonali, listaHeader);
             if (rest.responseMessage != HttpStatusCode.OK)
             {
                 await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
@@ -166,14 +202,15 @@ namespace MCup.ModelView
                 Contatti = temp;
                 ImplementaRubrica();
             }
-           
+
         }
 
+        //Metodo che implementa la visualizzazione della rubrica
         private void ImplementaRubrica()
         {
             List<Rubrica> listGroup = new List<Rubrica>();
             bool x;
-            for(int i = 0; i < contatti.Count; i++)
+            for (int i = 0; i < contatti.Count; i++)
             {
                 x = false;
                 if (listGroup.Count > 0)
@@ -181,7 +218,7 @@ namespace MCup.ModelView
                     int j;
                     for (j = 0; j < listGroup.Count; j++)
                     {
-                        if(listGroup[j].ShortName.ToLower()[0] == contatti[i].nome.ToLower()[0])
+                        if (listGroup[j].ShortName.ToLower()[0] == contatti[i].nome.ToLower()[0])
                         {
                             x = true;
                             listGroup[j].Add(contatti[i]);
@@ -200,15 +237,17 @@ namespace MCup.ModelView
                     listGroup[0].Add(contatti[i]);
                 }
             }
-            for(int i = 0; i < listGroup.Count; i++)
+            for (int i = 0; i < listGroup.Count; i++)
             {
                 grouped.Add(listGroup[i]);
             }
             CollectionView = grouped;
         }
 
+        #endregion
     }
 
+    #region PublicOrPrivateClass
     public class Rubrica : ObservableCollection<Assistito>
     {
         public string LongName;
@@ -220,4 +259,7 @@ namespace MCup.ModelView
             this.ShortName = shortN;
         }
     }
+    #endregion
+
+
 }

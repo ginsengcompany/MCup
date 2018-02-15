@@ -1,4 +1,6 @@
-﻿using MCup.Model;
+﻿#region LibrerieUsate
+
+using MCup.Model;
 using MCup.Service;
 using MCup.Views;
 using System;
@@ -11,31 +13,54 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
+
+#endregion
+
 namespace MCup.ModelView
 {
     //ModelView della pagina FormPrenotazione, tale classe è utilizzata per implementare il binding con la relativa pagina
     public class FormPrenotazioneModelView : INotifyPropertyChanged
     {
+        #region RegioneDiInizializzazioneEDichiarazione
+
         //Evento che prevede il cambiamento di proprietà all'interno della classe
         public event PropertyChangedEventHandler PropertyChanged;
+        //Oggetto che astrae l'impegnativa che invieremo per prenotare
         private Impegnativa invioImpegnativa;
-        private string visible="false";
+        //stringa che modifichera la visibilità di uno o più elementi nello xaml
+        private string visible = "false";
+        //Lista di header
         private List<Header> headers = new List<Header>();
-
+        //Variabile che controlla che il nome e cognome non contenga caratteri numerici o simboli
         private Regex regexNomeCognome = new Regex(@"^[A-Za-zèùàòé][a-zA-Z'èùàòé ]*$");
-
         //Oggetto che astrae l'utente che intende prenotare una o delle prestazioni
         private Assistito utenza;
-
         private string sar;
         //Oggetto che astrae la ricetta NRE
         private InvioRicettaPrenotazione ricetta;
-
+        //Booleano che abiliterà o non abiliterà gli elementi nello xaml
         private bool isenabled;
+        //Booleano di controllo, che ci permetterà di capire se la ricetta sarà sar o nre
         private bool switchSarIstrueOrFalse = false;
+        //Stringhe di controllo, saranno visibili solo nel caso in cui ci sia un errore nella entry
+        private string nameTextErrorNome,
+            nameTextErrorCognome,
+            nameTextErrorCodFisc,
+            nameTextErrorCodUno,
+            nameTextErrorCodDue,
+            nameErrorCodiceSar;
+        //Oggetto che astrae la pagina a cui punta il modelView in questione.
+        private FormPrenotazione model;
+        //Lista di tipo Assistito
+        private List<Assistito> contatti = new List<Assistito>();
+        //Lista di tipo Assistito che conterrà i contatti
+        private List<Assistito> contacts;
 
+        #endregion
 
-        private string nameTextErrorNome, nameTextErrorCognome, nameTextErrorCodFisc, nameTextErrorCodUno, nameTextErrorCodDue, nameErrorCodiceSar;
+        #region ProprietaGetSet
+
+        //Proprietà che sarà usata solo se il campo sarà vuoto o non corrisponderà con il nome salvato nel database
 
         public string NameTextErrorNome
         {
@@ -47,6 +72,12 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà che eseguirà la richiesta di invio della ricetta al server
+        public ICommand InviaRichiesta { protected set; get; }
+
+
+        //Proprietà che sarà usata solo se l'utente avrà abilitato lo switch del sar ed il codice del sar non sarà esatto
+
         public string NameErrorCodiceSar
         {
             get { return nameErrorCodiceSar; }
@@ -56,6 +87,8 @@ namespace MCup.ModelView
                 nameErrorCodiceSar = value;
             }
         }
+
+        //Proprietà che sarà usata solo se il cognome avrà errori ortografici o non corrisponderà con il cognome salvato nel database
 
         public string NameTextErrorCognome
         {
@@ -67,6 +100,8 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà che sarà usata solo se il codice fiscale avrà errori ortografici o non corrisponderà con il codice fiscale salvato nel database
+
         public string NameTextErrorCodFisc
         {
             get { return nameTextErrorCodFisc; }
@@ -76,6 +111,7 @@ namespace MCup.ModelView
                 nameTextErrorCodFisc = value;
             }
         }
+        //Proprietà che sarà usata solo se il primo codice dell'impegnativa sarà errato
 
         public string NameTextErrorCodUno
         {
@@ -87,6 +123,8 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà che sarà usata solo se il primo codice dell'impegnativa sarà errato
+
         public string NameTextErrorCodDue
         {
             get { return nameTextErrorCodDue; }
@@ -97,12 +135,8 @@ namespace MCup.ModelView
             }
         }
 
-        //Oggetto che contiene tutte le informazioni della prenotazione che si vuole effettuare
-        private FormPrenotazione model;
+        //Proprietà che contiene tutte le informazioni della prenotazione che si vuole effettuare
 
-        private List<Assistito> contatti = new List<Assistito>();
-
-        private List<Assistito> contacts;
 
         public List<Assistito> Contatti
         {
@@ -114,11 +148,8 @@ namespace MCup.ModelView
             }
         }
 
-        private class InvioRicettaPrenotazione
-        {
-            public string codice_uno;
-            public string codice_due;
-        }
+
+
 
         //Proprietà che definisce il nome dell'utente che sta effettuando la prenotazione
         public string nomeUtente
@@ -141,6 +172,8 @@ namespace MCup.ModelView
                 OnPropertyChanged();
             }
         }
+
+        //Proprietà che definisce il codice Sar di 15 caratteri
 
         public string codiceSar
         {
@@ -185,6 +218,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà che definisce la possibilità di abilitare o disabilitare gli elementi all'interno della pagina
         public bool IsEnabled
         {
             get { return isenabled; }
@@ -195,13 +229,28 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà che definisce la possibilità di rendere visibili gli elementi all'interno della pagina
+        public string Visible
+        {
+            get { return visible; }
+            set
+            {
+                visible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Costruttore
+
         //Costruttore del ModelView, viene passato come parametro il riferimento alla pagina che lo richiama per poter effettuare una Navigation.pushAsync
         public FormPrenotazioneModelView(FormPrenotazione Model, bool prenotazionePending)
         {
             IsEnabled = true;
             utenza = new Assistito();
             ricetta = new InvioRicettaPrenotazione();
-            invioImpegnativa= new Impegnativa();
+            invioImpegnativa = new Impegnativa();
             headers.Add(new Header("struttura", "030001"));
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             model = Model;
@@ -209,28 +258,34 @@ namespace MCup.ModelView
             ricetta.codice_due = "";
             utenza.nome = "";
             utenza.cognome = "";
-            utenza.codice_fiscale="";
+            utenza.codice_fiscale = "";
             leggiContatti();
             if (prenotazionePending)
             {
-             RiempiPagina();
+                RiempiPagina();
             }
-          
+
             InviaRichiesta = new Command(async () =>
             {
                 IsEnabled = false;
                 await InvioDatiAsync();
                 IsEnabled = true;
             });
-            
+
         }
 
+
+        #endregion
+
+        #region Metodi
+
+        //Metodo che tramite una connessione restituisce i contatti collegati al token dell'applicazione
         private async void leggiContatti()
         {
-            REST<object, Assistito> rest = new REST<object,Assistito>();
+            REST<object, Assistito> rest = new REST<object, Assistito>();
             List<Header> listaHeader = new List<Header>();
             listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-            contacts = await rest.GetListJson(SingletonURL.Instance.getRotte().InfoPersonali,listaHeader);
+            contacts = await rest.GetListJson(SingletonURL.Instance.getRotte().InfoPersonali, listaHeader);
             if (rest.responseMessage != HttpStatusCode.OK)
             {
                 await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
@@ -239,15 +294,16 @@ namespace MCup.ModelView
             {
                 Contatti = contacts;
             }
-            
+
         }
 
+        //Metodo che richimiamo solo nel caso in cui l'applicativo è stato chiuso o crashato, ed restituisce, tramite connessione, tutti i campi riempiti della pagina
         public async void RiempiPagina()
         {
             REST<object, Impegnativa> connessione = new REST<object, Impegnativa>();
             List<Header> listaHeader = new List<Header>();
             listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-            Impegnativa response = await  connessione.GetSingleJson(SingletonURL.Instance.getRotte().ricezioneDatiPrenotazione, listaHeader);
+            Impegnativa response = await connessione.GetSingleJson(SingletonURL.Instance.getRotte().ricezioneDatiPrenotazione, listaHeader);
             if (connessione.responseMessage == HttpStatusCode.OK)
             {
                 model.selezionaElemento(response.assistito);
@@ -257,17 +313,21 @@ namespace MCup.ModelView
 
         }
 
-        //Comando che chiama la funzione asincrona InvioDatiAsync()
-        public ICommand InviaRichiesta { protected set; get; }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
+        //Metodo che viene richiamato quando l'utente sceglie il contatto per cui prenotare dal picker
+        public void autoCompila(Assistito elementSelected)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            nomeUtente = elementSelected.nome;
+            cognomeUtente = elementSelected.cognome;
+            codicefiscaleUtente = elementSelected.codice_fiscale;
+            invioImpegnativa.assistito = elementSelected;
+            Visible = "true";
         }
 
         //Funzione utilizzata per l'invio della richiesta di prenotazione al servizio
-        public async Task InvioDatiAsync ()
+        public async Task InvioDatiAsync()
         {
+            #region RegioneDiControllo
+
             bool passControl = true;
             if (string.IsNullOrEmpty(utenza.nome))
             {
@@ -348,16 +408,19 @@ namespace MCup.ModelView
                 }
                 else
                     NameTextErrorCodDue = "";
-
             }
 
+
+            #endregion
+
+            #region RegioneControlloRiuscito
 
             if (passControl)
             {
                 try
                 {
                     REST<Impegnativa, Impegnativa> connessione = new REST<Impegnativa, Impegnativa>();
-                    if(model.isSwitch())
+                    if (model.isSwitch())
                         invioImpegnativa.nre = codiceSar;
                     else
                     {
@@ -365,45 +428,47 @@ namespace MCup.ModelView
 
                     }
 
-                    Impegnativa response = await connessione.PostJson(SingletonURL.Instance.getRotte().Ricetta, invioImpegnativa,headers);
+                    Impegnativa response = await connessione.PostJson(SingletonURL.Instance.getRotte().Ricetta, invioImpegnativa, headers);
                     if (connessione.responseMessage != HttpStatusCode.OK)
                     {
                         await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
                     }
                     else
-                    model.metodoPush(response, invioImpegnativa.assistito);
+                        model.metodoPush(response, invioImpegnativa.assistito);
                 }
                 catch (Exception e)
                 {
-                   await App.Current.MainPage.DisplayAlert("Attenzione","connessione non riuscita o codici impegnativa errati" , "riprova");
+                    await App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita o codici impegnativa errati", "riprova");
                 }
-                
             }
+
+            #endregion
+
         }
+        #endregion
 
-        /* Ordina la lista della combo box
-        public Func<string, ICollection<string>, ICollection<string>> SortingAlgorithm { get; } = (text, values) => values
-        .Where(x => x.ToLower().StartsWith(text.ToLower()))
-        .OrderBy(x => x)
-        .ToList(); */
+        #region PropertyChange
 
-        public void autoCompila(Assistito elementSelected)
+        //Comando che chiama la funzione asincrona InvioDatiAsync()
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
-            nomeUtente = elementSelected.nome;
-            cognomeUtente = elementSelected.cognome;
-            codicefiscaleUtente = elementSelected.codice_fiscale;
-            invioImpegnativa.assistito = elementSelected;
-            Visible = "true";
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public string Visible
+
+        #endregion
+
+        #region ClassiPrivate
+
+        // classe privata che richiamiamo per inviare i dati della ricetta al server
+        private class InvioRicettaPrenotazione
         {
-            get { return visible; }
-            set
-            {
-                visible = value;
-                OnPropertyChanged();
-            }
+            public string codice_uno;
+            public string codice_due;
         }
+
+        #endregion
+
     }
 }

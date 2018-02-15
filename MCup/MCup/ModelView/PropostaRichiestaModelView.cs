@@ -17,23 +17,39 @@ namespace MCup.ModelView
 {
     public class PropostaRichiestaModelView : INotifyPropertyChanged
     {
-        private bool isvisible, isbusy, isvisibleButton, isenabled, isbusyV;
-        private string esito;
-        private Assistito contatto;
-        private AppuntamentiConfermati appuntamentiConfermati = new AppuntamentiConfermati();
-        private string visible = "true";
-        private string visibleHome = "false";
-        private Impegnativa impegnativa;
-        private PropostaRichiesta propostaRichiesta;
+
+        #region DichiarazioneVariabili
+
+        private bool isvisible, isbusy, isvisibleButton, isenabled, isbusyV;//Variabili booleane utilizzate per rendere visibili e abilitati elementi nello xaml
+        private Assistito contatto;//Oggetto di tipo assistito, da cui raccoglieremo le informazioni del contatto
+        private string visible = "true";//Variabile utilizzata per rendere visibile o meno oggetti nello xaml
+        private string messaggio = "";//Variabile utilizzata per dire all'utente quali esami sono disponibili o meno
+        private string visibleHome = "false";//Variabile utilizzata per rendere visibile o meno oggetti nello xaml
+        private int count = 0;//Variabile che tiene conto di quanti esami non sono disponibili
+        private Impegnativa impegnativa;//Oggetto di tipo impegnativa da cui traiamo le informazioni dell'impegnativa
+        private PropostaRichiesta propostaRichiesta;//Oggetto di tipo della pagina da cui il model view si riferisce
+        private AppuntamentoProposto appuntamentoProposto = new AppuntamentoProposto();//Oggetto di tipo Appuntamentoproposto che utilizzeremo per far vedere all'utente l'appuntamento proposto dal sistema.
+        private List<Header> headers = new List<Header>();//lista di header
+        private List<Prestazione> prestazioni;//Lista di prestazioni
+        public event PropertyChangedEventHandler PropertyChanged;//evento on property change
+
+        #endregion
+
+        #region OnPropertyChange
+
+        private void OnPropertyChanged([CallerMemberName] string name = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        #endregion
+       
+        #region Proprietà
+
+        //Comando che richiama un metodo che annulla la prenotazione in sospeso
         public ICommand AnnullaPrenotazione { protected set; get; }
 
-        private AppuntamentoProposto appuntamentoProposto=new AppuntamentoProposto();
-        private List<Header> headers = new List<Header>();
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private List<Prestazione> prestazioni;
-
+        //proprietà riferita al campo ListPrestazioni
         public List<AppuntamentoPrestazioneProposto> ListPrenotazioni
         {
             get { return appuntamentoProposto.appuntamenti; }
@@ -43,13 +59,8 @@ namespace MCup.ModelView
                 appuntamentoProposto.appuntamenti = value;
             }
         }
-
-        private void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-
+        
+        //Proprietà riferita al campo Visible
         public string Visible
         {
             get { return visible; }
@@ -59,6 +70,8 @@ namespace MCup.ModelView
                 visible = value;
             }
         }
+
+        //Proprietà riferita al campo VisibleHome
         public string VisibleHome
         {
             get { return visibleHome; }
@@ -69,32 +82,47 @@ namespace MCup.ModelView
             }
         }
 
+        //Comando usato per inviare i dati per la conferma della prenotazione
         public ICommand InvioDatiPerPrenotazione
         {
             get
             {
                 return new Command(async () =>
-               {
-                   IsEnabled = false;
-                   await invioDatiPrenotazione();
-                   IsEnabled = true;
-               });
+                {
+                    IsEnabled = false;
+                    await invioDatiPrenotazione();
+                    IsEnabled = true;
+                });
             }
         }
 
+        //Comando usato per tornare alla home page dell'applicativo
         public ICommand TornaAllaHome
         {
             get
             {
                 return new Command(async () =>
-               {
-                   IsEnabled = false;
-                   App.Current.MainPage = new NavigationPage(new MenuPrincipale());
-                   IsEnabled = true;
-               });
+                {
+                    IsEnabled = false;
+                    App.Current.MainPage = new NavigationPage(new MenuPrincipale());
+                    IsEnabled = true;
+                });
             }
         }
 
+        //proprietà riferita al campo IsEnabled
+
+        public bool IsEnabled
+        {
+            get { return isenabled; }
+            set
+            {
+                OnPropertyChanged();
+                isenabled = value;
+            }
+        }
+
+        //Comando usato per richiamare la funzione per cambiare data
         public ICommand cambiaData
         {
             get
@@ -117,21 +145,13 @@ namespace MCup.ModelView
                             propostaRichiesta.visualizzaDatePicker();
                         }
                     }
-                    
+
                 });
             }
         }
 
-        public bool IsEnabled
-        {
-            get { return isenabled; }
-            set
-            {
-                OnPropertyChanged();
-                isenabled = value;
-            }
-        }
 
+        //Comando usato per richiamare la funzione per cambiare ora
         public ICommand cambiaOra
         {
             get
@@ -168,11 +188,12 @@ namespace MCup.ModelView
                             });
                         }
                     }
-                   
+
                 });
             }
         }
 
+        //Proprietà riferita al campo IsVisible
         public bool IsVisible
         {
             get { return isvisible; }
@@ -182,7 +203,7 @@ namespace MCup.ModelView
                 isvisible = value;
             }
         }
-
+        //Proprietà riferita al campo IsBusy
         public bool IsBusy
         {
             get { return isbusy; }
@@ -193,6 +214,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà riferita al campo IsbusyV
         public bool IsBusyV
         {
             get { return isbusyV; }
@@ -202,7 +224,7 @@ namespace MCup.ModelView
                 isbusyV = value;
             }
         }
-
+        //Proprietà riferita al campo IsVisibleButton
         public bool IsVisibleButton
         {
             get { return isvisibleButton; }
@@ -213,7 +235,11 @@ namespace MCup.ModelView
             }
         }
 
-        public PropostaRichiestaModelView(Impegnativa ricetta,List<Prestazione> prestazioni, Assistito contatto, PropostaRichiesta proposta)
+        #endregion
+
+        #region Costruttore
+
+        public PropostaRichiestaModelView(Impegnativa ricetta, List<Prestazione> prestazioni, Assistito contatto, PropostaRichiesta proposta)
         {
             IsEnabled = true;
             this.impegnativa = ricetta;
@@ -223,9 +249,9 @@ namespace MCup.ModelView
             IsVisible = true;
             IsBusy = true;
             this.prestazioni = prestazioni;
-            headers.Add(new Header("struttura","030001"));
-            headers.Add(new Header("dataRicerca",""));
-            headers.Add(new Header("x-access-token",App.Current.Properties["tokenLogin"].ToString()));
+            headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("dataRicerca", ""));
+            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             recuperoInformazioni();
             AnnullaPrenotazione = new Command(async () =>
             {
@@ -250,16 +276,23 @@ namespace MCup.ModelView
             });
         }
 
+
+        #endregion
+
+        #region Metodi
+
+        //Metodo usato per richiamare un altro metodo di nome info, nel quale, tramite una connessione e l'invio di una lista di prestazioni, il servizio ci restituirà gli appuntamenti proposti
         private async void recuperoInformazioni()
         {
             await info();
         }
 
+        //Metodo che utilizzeremo per inviare i dati dell'assistito, della ricetta al server 
         public async Task invioDatiPrenotazione()
         {
             var noteAccettate = false;
             string note = "";
-            for(int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+            for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
                 if (!(string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].nota)))
                     note += appuntamentoProposto.appuntamenti[i].nota + '\n';
             if (string.IsNullOrEmpty(note))
@@ -277,7 +310,7 @@ namespace MCup.ModelView
                 {
                     IsBusyV = true;
                     AppuntamentiConfermati appuntamentiConfermati = await invioDati.PostJson(SingletonURL.Instance.getRotte().ConfermaPrenotazione, appuntamentoProposto, headers);
-                    if ((invioDati.responseMessage != HttpStatusCode.Created) && (invioDati.responseMessage != HttpStatusCode.InternalServerError)&&(invioDati.responseMessage != HttpStatusCode.NotFound))
+                    if ((invioDati.responseMessage != HttpStatusCode.Created) && (invioDati.responseMessage != HttpStatusCode.InternalServerError) && (invioDati.responseMessage != HttpStatusCode.NotFound))
                     {
                         await App.Current.MainPage.DisplayAlert("Attenzione " + (int)invioDati.responseMessage, invioDati.warning, "OK");
                     }
@@ -290,7 +323,7 @@ namespace MCup.ModelView
                         if (appuntamentiConfermati.esito != 0)
                             App.Current.MainPage = new MenuPrincipale();
                     }
-                 
+
                 }
                 catch (Exception)
                 {
@@ -302,19 +335,32 @@ namespace MCup.ModelView
         private async Task info()
         {
             REST<List<Prestazione>, AppuntamentoProposto> recuperoDatiLista = new REST<List<Prestazione>, AppuntamentoProposto>();
-            appuntamentoProposto =await recuperoDatiLista.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilita, prestazioni, headers);
+            appuntamentoProposto = await recuperoDatiLista.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilita, prestazioni, headers);
             if (recuperoDatiLista.responseMessage != HttpStatusCode.OK)
             {
                 await App.Current.MainPage.DisplayAlert("Attenzione " + (int)recuperoDatiLista.responseMessage, recuperoDatiLista.warning, "OK");
             }
             else
             {
+                for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                {
+                    if (appuntamentoProposto.appuntamenti[i].disponibile == false)
+                    {
+                        messaggio = messaggio + appuntamentoProposto.appuntamenti[i].desprest + '\n';
+                        count++;
+                    }
+                }
+                if (count > 0)
+                    await App.Current.MainPage.DisplayAlert("Attenzione",
+                        "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "ok");
                 ListPrenotazioni = appuntamentoProposto.appuntamenti;
                 IsVisible = false;
                 IsBusy = false;
                 IsVisibleButton = true;
+
+
             }
-           
+
         }
 
         private async Task info(AppuntamentoProposto prenotazione)
@@ -328,10 +374,21 @@ namespace MCup.ModelView
             }
             else
             {
+                for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                {
+                    if (appuntamentoProposto.appuntamenti[i].disponibile == false)
+                    {
+                        messaggio = messaggio + appuntamentoProposto.appuntamenti[i].desprest + '\n';
+                        count++;
+                    }
+                }
+                if (count > 0)
+                    await App.Current.MainPage.DisplayAlert("Attenzione",
+                        "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "ok");
                 IsBusyV = false;
                 ListPrenotazioni = appuntamentoProposto.appuntamenti;
             }
-           
+
         }
 
         public async Task infoProssimaData(string data)
@@ -346,10 +403,24 @@ namespace MCup.ModelView
             }
             else
             {
+                for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                {
+                    if (appuntamentoProposto.appuntamenti[i].disponibile == false)
+                    {
+                        messaggio = messaggio + appuntamentoProposto.appuntamenti[i].desprest + '\n';
+                        count++;
+                    }
+                }
+                if (count > 0)
+                    await App.Current.MainPage.DisplayAlert("Attenzione",
+                        "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "ok");
                 IsBusyV = false;
                 ListPrenotazioni = appuntamentoProposto.appuntamenti;
             }
-           
+
         }
+
+        #endregion
+
     }
 }

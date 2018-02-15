@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region Librerie
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -11,6 +13,9 @@ using MCup.Service;
 using MCup.Views;
 using Com.OneSignal;
 
+#endregion
+
+
 /*
  * Questa classe è il ModelView delle pagine Login e LoginIOS. La classe gestisce tutte le informazioni inserite e prelevate da remoto riguardanti l'utenza del cliente.
  * La classe concede l'accesso all'utente solo se le informazioni da lui inserite sono corrette. 
@@ -20,20 +25,31 @@ namespace MCup.ModelView
 {
     public class LoginModelView : INotifyPropertyChanged
     {
+
+        #region DichiarazioneVariabili
+
         private Utente utente; //Oggetto che astrae l'utenza del cliente e che nel caso in cui la login vada a buon fine conterrà le informazioni relative all'utente
-        private bool flagLogin = false;
-        private string nameErrorTextPassword; 
+        private bool flagLogin = false;//Booleano che andrà a true quando l'utente avrà effettuato la login
+        public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
+        private string nameErrorTextPassword;//Variabile utilizzata nel caso in cui ci sia un errore nel campo password o sia vuoto
         private bool isbusy; //variabile booleana utilizzata per gestire la proprietà IsRunning dell'activity indicator
-        private string nameErrorText;
-        private bool showPassword = true;
+        private string nameErrorText;//Variabile utilizzata nel caso in cui ci sia un errore nel campo nome o sia vuoto
+        private bool showPassword = true;//Booleano utilizzato per mostrare o meno la password
         private bool isvisible; //variabile booleana utilizzata per gestire la proprietà IsVisible dell'activity indicator
-        private bool loginisvisible;
-        private bool signupisvisible;
-        private bool isenabled;
-        private Login loginPage;
-        private List<Header> listaHeader = new List<Header>();
-        private ImageSource showPasswordImage = "eye_hide.png";
-        private ImageSource logoOspedale;
+        private bool loginisvisible;//Booleano utilizzato per mostrare o meno alcuni elementi nello xaml
+        private bool signupisvisible;//Booleano utilizzato per rendere visibile o meno la label per la registrazione
+        private bool isenabled;//booleano utilizzato per abilitare o meno un elemento nello xaml
+        private Login loginPage;//Oggetto del tipo della pagina Login
+        private List<Header> listaHeader = new List<Header>();//Lista di header
+        private ImageSource showPasswordImage = "eye_hide.png";//Sorgente da cui andremo a prendere l'immagine dell'occhio per mostrare la password
+        private ImageSource logoOspedale;//Sorgente per il logo della struttura 
+
+
+        #endregion
+
+        #region Proprietà
+
+        //Proprietà per il campo ShowPassword
         public ImageSource ShowPasswordImage
         {
             get { return showPasswordImage; }
@@ -44,6 +60,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà relativa al logo della struttura
         public ImageSource LogoStruttura
         {
             get { return logoOspedale; }
@@ -55,10 +72,11 @@ namespace MCup.ModelView
         }
         //Command utilizzato per il tentativo di accesso ai servizi da parte dell'utente
         public ICommand effettuaLogin { protected set; get; }
+        //Command utilizzato per mostrare la password
         public ICommand showPass { protected set; get; }
 
-        public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
 
+        //proprietà relativa al campo loginVisible
         public bool LoginIsVisible
         {
             get { return loginisvisible; }
@@ -69,6 +87,8 @@ namespace MCup.ModelView
             }
         }
 
+        //proprietà relativa al campo Signup
+
         public bool SignupIsVisible
         {
             get { return signupisvisible; }
@@ -78,6 +98,8 @@ namespace MCup.ModelView
                 signupisvisible = value;
             }
         }
+
+        //proprietà relativa al campo ShowPassword
 
         public bool ShowPassword
         {
@@ -99,6 +121,8 @@ namespace MCup.ModelView
             }
         }
 
+        //proprietà relativa al campo isEnabled
+
         public bool IsEnabled
         {
             get { return isenabled; }
@@ -117,6 +141,17 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 isbusy = value;
+            }
+        }
+
+        //proprietà relativa al campo NameErrorTextPassword
+        public string NameErrorTextPassword
+        {
+            get { return nameErrorTextPassword; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextPassword = value;
             }
         }
 
@@ -141,6 +176,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà relativa al campo nome
         public string NameErrorText
         {
             get { return nameErrorText; }
@@ -150,12 +186,25 @@ namespace MCup.ModelView
                 nameErrorText = value;
             }
         }
-        
+
+
+        #endregion
+
+        #region OnPropertyChange
+
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        #endregion
+
+        #region PrivateClass
+
+        private class TokenNotification
+        {
+            public string tokenNotification;
+        }
         private class ResponseLogin
         {
             public string token { get; set; }
@@ -169,21 +218,15 @@ namespace MCup.ModelView
             public string struttura;
         }
 
-        public string NameErrorTextPassword
-        {
-            get { return nameErrorTextPassword; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorTextPassword = value;
-            }
-        }
+        #endregion
+
+        #region Costruttore
 
         //Costruttore del ModelView che inizializza le variabili fondamentali per il corretto funzionamento della pagina di login (sia Android che IOS).
         public LoginModelView(Login loginPage)
         {
-            
-            
+
+
             utente = new Utente(); //Crea un oggetto Utente vuoto
             Username = utente.username = utente.recuperaUserName();
             LoginIsVisible = true;
@@ -218,7 +261,7 @@ namespace MCup.ModelView
                     {
                         await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
                     }
-                    else if(response.auth) //Le informazioni dell'utenza sono corrette
+                    else if (response.auth) //Le informazioni dell'utenza sono corrette
                     {
                         utente.cancellaEdAggiornaUsername(utente.username);
                         App.Current.Properties["tokenLogin"] = response.token; //Salva nel dictionary dell'app il token dell'utente per accedere alle sue informazioni private
@@ -231,7 +274,7 @@ namespace MCup.ModelView
                             listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
                             listaHeader.Add(new Header("struttura", "030001"));
                             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
-                            bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot,listaHeader);
+                            bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot, listaHeader);
                             if (connessione.responseMessage != HttpStatusCode.OK)
                             {
                                 await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
@@ -239,7 +282,7 @@ namespace MCup.ModelView
                         });
                         if (response.prenotazionePending)
                         {
-                            var responseDisplayAlert =await App.Current.MainPage.DisplayAlert("Attenzione",
+                            var responseDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione",
                                 "Gentile utente, nell'ultima sessione abbiamo constatato che ha lasciato una prenotazione in sospeso, vuoi continuare?",
                                 "si", "no");
                             if (responseDisplayAlert)
@@ -259,17 +302,17 @@ namespace MCup.ModelView
                             App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
                             await Application.Current.SavePropertiesAsync();
                         }
-                      
-                      //  REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto per la chiamata REST
-                       // ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token); //Chiamata GET che ritorna se l'utente ha già scelto la sua struttura preferita o meno
-                         /*   if (responseStruttura.scelta) //Se l'utente ha già scelto la sua struttura preferita
-                              App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
-                              else //Se l'utente non ha ancora scelto la sua struttura preferita
-                              App.Current.MainPage = new ListaStrutture("Login"); //Avvia la pagina per la scelta di essa*/
-                     
+
+                        //  REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto per la chiamata REST
+                        // ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token); //Chiamata GET che ritorna se l'utente ha già scelto la sua struttura preferita o meno
+                        /*   if (responseStruttura.scelta) //Se l'utente ha già scelto la sua struttura preferita
+                             App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
+                             else //Se l'utente non ha ancora scelto la sua struttura preferita
+                             App.Current.MainPage = new ListaStrutture("Login"); //Avvia la pagina per la scelta di essa*/
+
 
                     }
-                   
+
 
                     IsBusy = false; //L'activity indicator non è in stato IsRunning
                     IsVisible = false; //L'activity indicator non è visibile
@@ -278,8 +321,8 @@ namespace MCup.ModelView
                     IsEnabled = true;
                 }
                 else
-                IsEnabled = true;
-            } 
+                    IsEnabled = true;
+            }
             );
             showPass = new Command(() =>
             {
@@ -294,30 +337,34 @@ namespace MCup.ModelView
                     ShowPassword = true;
                     ShowPasswordImage = "eye_hide.png";
                 }
-                   
+
             });
         }
 
+        #endregion
+
+        #region Metodi
+
+        //Metodo che tramite una connessione riceve il logo Della struttura
         private async void RicezioneLogo()
         {
             if (listaHeader.Count != 0)
             {
                 listaHeader.Clear();
             }
-            listaHeader.Add(new Header("struttura","030001"));
+            listaHeader.Add(new Header("struttura", "030001"));
             REST<object, string> connessioneLogo = new REST<object, string>();
             var logo = await connessioneLogo.getString("http://192.168.125.14:3000/infostruttura/logoStruttura", listaHeader);
-            LogoStruttura =  Xamarin.Forms.ImageSource.FromStream(
+            LogoStruttura = Xamarin.Forms.ImageSource.FromStream(
                 () => new MemoryStream(Convert.FromBase64String(logo)));
         }
-        private class TokenNotification
-        {
-            public string tokenNotification;
-        }
+
         public void modificaFlag(bool flag)
         {
             flagLogin = flag;
         }
 
+        #endregion
+       
     }
 }

@@ -1,47 +1,53 @@
-﻿using System;
+﻿#region Librerie
+
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MCup.Annotations;
 using MCup.Model;
 using MCup.Service;
 using MCup.Views;
 using Xamarin.Forms;
 
+#endregion
 namespace MCup.ModelView
 {
     public class VerificaRicettaModelView : INotifyPropertyChanged
     {
-        private List<Prestazione> listaPrestazioni = new List<Prestazione>();
-        private bool isBusy;
-        private string nomeAssistito, cognomeAssistito, codiceRicetta;
-        private Impegnativa ricetta;
+
+        #region DichiarazioneVariabili
+
+        private List<Prestazione> listaPrestazioni = new List<Prestazione>();//Lista utilizzata per le prestazioni
+        private bool isBusy;//Variabile booleana utilizzata per l'activity indicator
+        private string nomeAssistito, cognomeAssistito, codiceRicetta;//Variabili utilizzate per il nome cognome e il codice ricetta
+        private Impegnativa ricetta;//Oggetto che astrae le informazioni dell'impegnativa
         private List<Prestazione> prestazioni; //Lista delle prestazioni contenute nella ricetta
-        private List<Prestazione> prestazioniErogabili;
-        private bool buttonIsVisible;
-        private List<Reparto> reparto = new List<Reparto>();
-        private VerificaRicetta verifica;
-        private List<Header> headers = new List<Header>();
-      
-        public ICommand ContinuaPrenotazione { protected set; get; }
-        public ICommand AnnullaPrenotazione { protected set; get; }
-
-        private List<Prestazione> prestazioniDaInviare;
-        private bool isenabled;
-
+        private List<Prestazione> prestazioniErogabili;//Lista che tiene conto delle prestazioni non erogabili dalla struttura
+        private bool buttonIsVisible;//Variabile utilizzata per rendere visibile o meno il button
+        private VerificaRicetta verifica; //oggetto di tipo Verificaricetta che utilizziamo per richiamare i metodi nella pagina a cui si riferisce il modelview
+        private List<Header> headers = new List<Header>();//lista di header
+        private List<Prestazione> prestazioniDaInviare;//Prestazioni da inviare
+        private bool isenabled;//Variabile Booleana per disabilitare o meno elementi nello xaml
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Proprietà
+
+        public ICommand ContinuaPrenotazione { protected set; get; }//Command che utilizziamo per andare avanti con il procedimento di prenotazioni
+        public ICommand AnnullaPrenotazione { protected set; get; }//Comando che utilizziamo  per annullare la prenotazione in sospeso
+
+       
 
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        //Proprietà riferita al campo Visible
         public bool ButtonIsVisible
         {
             get { return buttonIsVisible; }
@@ -52,6 +58,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà riferita al campo Enabled
         public bool IsEnabled
         {
             get { return isenabled; }
@@ -62,6 +69,7 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà riferita al campo NomeAssistito
         public string NomeAssistito
         {
             get { return nomeAssistito; }
@@ -71,6 +79,7 @@ namespace MCup.ModelView
                 nomeAssistito = value;
             }
         }
+        //Proprietà riferita al campo iSbusy
 
         public bool IsBusy
         {
@@ -82,6 +91,8 @@ namespace MCup.ModelView
             }
 
         }
+        //Proprietà riferita al campo CognomeAssistito
+
         public string CognomeAssistito
         {
             get { return cognomeAssistito; }
@@ -91,6 +102,7 @@ namespace MCup.ModelView
                 cognomeAssistito = value;
             }
         }
+        //Proprietà riferita al campo CodiceRicetta
 
         public string CodiceRicetta
         {
@@ -102,6 +114,23 @@ namespace MCup.ModelView
             }
         }
 
+        //Proprietà riferita al campo ListaPrestazioni
+
+        public List<Prestazione> ListaPrestazioni
+        {
+            get { return listaPrestazioni; }
+            set
+            {
+                OnPropertyChanged();
+                listaPrestazioni = new List<Prestazione>(value);
+            }
+        }
+
+        #endregion
+
+        #region Costruttore
+
+        //Costruttore
         public VerificaRicettaModelView(Impegnativa impegnativa, VerificaRicetta verifica, Assistito contatto)
         {
             IsEnabled = true;
@@ -117,9 +146,9 @@ namespace MCup.ModelView
             ingressoPagina();
             AnnullaPrenotazione = new Command(async () =>
             {
-               
-               var responseDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione", "Sei sicuro di voler annullare la prenotazione?", "si",
-                    "no");
+
+                var responseDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione", "Sei sicuro di voler annullare la prenotazione?", "si",
+                     "no");
                 if (responseDisplayAlert)
                 {
                     REST<object, string> connessioneAnnullamento = new REST<object, string>();
@@ -134,7 +163,7 @@ namespace MCup.ModelView
                         await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
                         App.Current.MainPage = new MenuPrincipale();
                     }
-                  
+
                 }
             });
             ContinuaPrenotazione = new Command(async () =>
@@ -147,7 +176,7 @@ namespace MCup.ModelView
                     {
                         prestazioniDaInviare[i].reparti[0].repartoScelto = true;
                     }
-                  
+
                 }
                 foreach (var i in prestazioniDaInviare)
                     if (i.reparti == null)
@@ -162,24 +191,17 @@ namespace MCup.ModelView
                 IsEnabled = true;
             });
         }
+        #endregion
 
-        public List<Prestazione> ListaPrestazioni
-        {
-            get { return listaPrestazioni; }
-            set
-            {
-                OnPropertyChanged();
-                listaPrestazioni = new List<Prestazione>(value);
-            }
-        }
+        #region Metodi
 
-    
 
+        //Metodo che tramite una post richiede i reparti al server ed il servizio, dopo aver controllato i dati, ritorna una lista di reparti
         private async Task ricezioneReparti()
         {
             List<Prestazione> temp = ListaPrestazioni;
             REST<Prestazione, Reparto> connessione = new REST<Prestazione, Reparto>();
-   
+
             for (var i = 0; i < temp.Count; i++)
             {
                 IsBusy = true;
@@ -214,9 +236,10 @@ namespace MCup.ModelView
                 }
                 ListaPrestazioni = temp;
             }
-               
+
         }
 
+        //Metodo che parte all'ingresso della pagina ed come prima cosa crea una connessione col server e gli passa l'impegnativa cosi da ricevere le prestazioni e i reparti
         private async void ingressoPagina()
         {
             REST<Impegnativa, List<Prestazione>> connessione = new REST<Impegnativa, List<Prestazione>>();
@@ -311,21 +334,24 @@ namespace MCup.ModelView
                         await App.Current.MainPage.DisplayAlert("Attenzione", "Alcune prestazioni vengono erogate da più reparti, se non si conosce il reparto per cui prenotare chiamare il Call Center", "OK");
                 }
             }
-         
+
         }
 
+        //Metodo che legge qual è il reparto scelto dall'utente 
         public void selectedReparto(Reparto reparto)
         {
             for (var i = 0; i < prestazioniDaInviare.Count; i++)
                 if (prestazioniDaInviare[i].codprest == reparto.codprest)
                     for (int j = 0; j < prestazioniDaInviare[i].reparti.Count; j++)
                     {
-                        if(prestazioniDaInviare[i].reparti[j].codReparto==reparto.codReparto)
+                        if (prestazioniDaInviare[i].reparti[j].codReparto == reparto.codReparto)
                             prestazioniDaInviare[i].reparti[j].repartoScelto = true;
                         else
                             prestazioniDaInviare[i].reparti[j].repartoScelto = false;
                     }
         }
+        #endregion
+
     }
 
 }
