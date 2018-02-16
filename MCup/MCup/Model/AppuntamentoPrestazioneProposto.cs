@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Plugin.Geolocator;
 using Xamarin.Forms;
 
 namespace MCup.Model
@@ -28,16 +29,23 @@ namespace MCup.Model
         private async Task RiceviLuogo(Reparto reparto)
         {
             string url;
-            if (Device.RuntimePlatform == Device.iOS)
+            var locator = CrossGeolocator.Current;
+            var position = await locator.GetLastKnownLocationAsync();
+            if (position != null)
             {
-                url = string.Format("http://maps.apple.com/maps?q={0},{1}", reparto.latitudine, reparto.longitudine);
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    url = string.Format("https://www.google.com/maps/dir/?api=1&origin={0},{1}&destination={2},{3}&travelmode=car", position.Latitude.ToString().Replace(',','.'),position.Longitude.ToString().Replace(',', '.'), reparto.latitudine, reparto.longitudine);
 
+                }
+                else
+                {
+                    url = string.Format("https://www.google.com/maps/dir/?api=1&origin={0},{1}&destination={2},{3}&travelmode=car", position.Latitude.ToString().Replace(',', '.'), position.Longitude.ToString().Replace(',', '.'), reparto.latitudine, reparto.longitudine);
+                }
+                Device.OpenUri(new Uri(url));
             }
-            else
-            {
-                url = string.Format("http://maps.google.com/maps?q={0},{1}", reparto.latitudine, reparto.longitudine);
-            }
-            Device.OpenUri(new Uri(url));
+
+            
         }
 
     }

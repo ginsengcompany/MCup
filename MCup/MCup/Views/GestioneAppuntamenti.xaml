@@ -100,18 +100,25 @@
                                                             FontAttributes="Bold"
                                                             HorizontalTextAlignment="Center"
                                                             FontSize="Medium"/>
-                                                <StackLayout Orientation="Horizontal">
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                                                     <Label 
                                                         Text="{Binding reparti[0].ubicazioneReparto}" 
                                                         TextColor="Black" 
                                                         HorizontalOptions="Center" 
                                                         FontSize="Medium" 
                                                         FontAttributes="Bold"/>
-                                                    <Button Image="luogo.png" 
-                                                            Command="{Binding LuogoUbicazioneReparto}" 
-                                                            CommandParameter="{Binding reparti[0]}"
-                                                            IsVisible="{Binding reparti[0].visibile}"/>
+                                                  
+                                                    <Image Source="luogo.png"
+                                                           IsVisible="{Binding reparti[0].visibile}">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer 
+                                                                Command="{Binding LuogoUbicazioneReparto}"
+                                                                CommandParameter="{Binding reparti[0]}"/>
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
                                                 </StackLayout>
+                                               
+                                                
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
