@@ -22,7 +22,7 @@ namespace MCup.ModelView
     public class FormPrenotazioneModelView : INotifyPropertyChanged
     {
         #region RegioneDiInizializzazioneEDichiarazione
-
+       
         //Evento che prevede il cambiamento di proprietà all'interno della classe
         public event PropertyChangedEventHandler PropertyChanged;
         //Oggetto che astrae l'impegnativa che invieremo per prenotare

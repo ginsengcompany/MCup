@@ -106,6 +106,7 @@
                                                             HorizontalOptions="Center" 
                                                             FontSize="Medium" 
                                                             FontAttributes="Bold"/>
+                                                
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>

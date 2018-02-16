@@ -250,8 +250,8 @@ namespace MCup.ModelView
     #region PublicOrPrivateClass
     public class Rubrica : ObservableCollection<Assistito>
     {
-        public string LongName;
-        public string ShortName;
+        public string LongName { get; set; }
+        public string ShortName { get; set; }
 
         public Rubrica(string longN, string shortN)
         {
