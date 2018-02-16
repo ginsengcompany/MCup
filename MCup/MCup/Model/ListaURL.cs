@@ -35,5 +35,6 @@ namespace MCup.Model
         public string annullaPrenotazioneSospesa { get; set; }
         public string spostamentoPrenotazione { get; set; }
         public string piuReparti { get; set; }
+        public string appuntamentiFuturiEPassati { get; set; }
     }
 }

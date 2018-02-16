@@ -26,6 +26,14 @@
                 TextColor="Black" 
                 FontSize="Medium" 
                 FontAttributes="Bold"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" IsVisible="{Binding VisibleSwitch}">
+                <Label Text="Visualizza tutti gli appuntamenti"/>
+                <Switch 
+                    IsToggled="False" 
+                    Toggled="SwitchVisibleAppuntamentiScaduti"
+                    x:Name="SwitchAppuntamentiPassati"></Switch>
+            </StackLayout>
+           
             <ListView ItemsSource="{Binding Appuntamenti}" ItemTapped="VaiPaginaAppuntamentiIndettaglio" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

@@ -14,7 +14,7 @@ namespace MCup.Views
     public partial class PaginaAppuntamenti : ContentPage
     {
         private PaginaAppuntamentiModelView form;
-
+        private bool switchApp=false;
         public PaginaAppuntamenti()
         {
             InitializeComponent();
@@ -40,6 +40,17 @@ namespace MCup.Views
             pickerContatti.SelectedIndex = -1;
             form = new PaginaAppuntamentiModelView(this);
             BindingContext = form;
+        }
+
+        private async void SwitchVisibleAppuntamentiScaduti(object sender, ToggledEventArgs e)
+        {
+
+            if (SwitchAppuntamentiPassati.IsToggled)
+                form.recuperaDatiAppuntamentiPassati();
+            else
+            {
+              await form.invioDatiAssistito();
+            }
         }
     }
 }

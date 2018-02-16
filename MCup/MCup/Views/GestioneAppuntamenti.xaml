@@ -106,10 +106,13 @@
                                                         TextColor="Black" 
                                                         HorizontalOptions="Center" 
                                                         FontSize="Medium" 
-                                                        FontAttributes="Bold"/>
+                                                        FontAttributes="Bold"
+                                                        Margin="0,0,15,0"/>
                                                   
                                                     <Image Source="luogo.png"
-                                                           IsVisible="{Binding reparti[0].visibile}">
+                                                           VerticalOptions="Center"
+                                                           IsVisible="{Binding reparti[0].visibile}" 
+                                                           HeightRequest="40" >
                                                         <Image.GestureRecognizers>
                                                             <TapGestureRecognizer 
                                                                 Command="{Binding LuogoUbicazioneReparto}"

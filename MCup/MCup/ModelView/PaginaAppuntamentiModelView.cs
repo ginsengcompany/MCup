@@ -25,6 +25,7 @@ namespace MCup.ModelView
 
         public event PropertyChangedEventHandler PropertyChanged;//Evento che tiene traccia dei cambiamenti di stato delle proprietà
         private Assistito contatto;//Oggetto che astrae la classe assistito
+        private bool switched;
         private PaginaAppuntamenti paginaAppuntamenti;//Oggetto che astrae la pagina a cui si riferisce il model view
         private List<Assistito> contatti = new List<Assistito>();// lista di contattai di tipo assistito
         private List<AppuntamentoProposto> appuntamenti = new List<AppuntamentoProposto>();//Lista di appuntamenti utilizzato per creare la listview di appuntamenti da far selezionare all'utente
@@ -33,6 +34,7 @@ namespace MCup.ModelView
         List<AppuntamentoPrestazioneProposto> appunt = new List<AppuntamentoPrestazioneProposto>();//Lista che servirà per il binding nello xaml
         private Boolean visibile = true;//variabile booleana che setta la visibilità o meno di un elemento nello xaml
         private string visi;//variabile  che setta la visibilità o meno di un elemento nello xaml
+        private bool visibleSwitch = false;
 
         #endregion
 
@@ -45,6 +47,16 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 appunt = value;
+            }
+        }
+
+        public bool VisibleSwitch
+        {
+            get { return visibleSwitch; }
+            set
+            {
+                OnPropertyChanged();
+                visibleSwitch = value;
             }
         }
         public string VisibileL//Proprietà riferita al campo VisibleL
@@ -110,6 +122,13 @@ namespace MCup.ModelView
 
         #region Metodi
 
+
+        public async void recuperaDatiAppuntamentiPassati()
+        {
+            await invioDatiAssistitoConSwitch();
+
+        }
+
         //Metodo che implementa l'autocompilazione nel picker della scelta del contatto di cui visualizzare gli appuntamenti
         public async void autoCompila(Assistito elementSelected)
         {
@@ -138,6 +157,7 @@ namespace MCup.ModelView
                 }
                 else
                 {
+                    VisibleSwitch = true;
                     Visibile = true;
                     VisibileL = "true";
                     VisibileLabel = false;
@@ -154,6 +174,44 @@ namespace MCup.ModelView
                     "connessione non riuscita o codici impegnativa errati", "riprova");
             }
         }
+
+        public async Task invioDatiAssistitoConSwitch()
+        {
+            List<Header> listaJHeaders = new List<Header>();
+            listaJHeaders.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+            try
+            {
+                Assistito invioContatto = date.assistito;
+                REST<Assistito, AppuntamentoProposto> connessione = new REST<Assistito, AppuntamentoProposto>();
+                Appuntamenti = await connessione.PostJsonList(SingletonURL.Instance.getRotte().appuntamentiFuturiEPassati, invioContatto, listaJHeaders);
+                if (connessione.responseMessage != HttpStatusCode.OK)
+                {
+                    await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+                }
+                if (Appuntamenti.Count == 0)
+                {
+                    Visibile = false;
+                    VisibileLabel = true;
+                }
+                else
+                {
+                    Visibile = true;
+                    VisibileL = "true";
+                    VisibileLabel = false;
+                    foreach (var i in Appuntamenti)
+                    {
+                        Appunt = i.appuntamenti;
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione",
+                    "connessione non riuscita o codici impegnativa errati", "riprova");
+            }
+        }
+
 
         //Metodo che implementa il passaggio da una pagina all'altra
         public async void push(AppuntamentoProposto elementoSelezionato)
@@ -186,7 +244,6 @@ namespace MCup.ModelView
         public PaginaAppuntamentiModelView(PaginaAppuntamenti pagina)
         {
             VisibileL = "false";
-
             leggiContatti();
             this.paginaAppuntamenti = pagina;
         }
