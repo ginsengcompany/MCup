@@ -81,14 +81,14 @@
 
                 <Button Grid.Row="0" 
                         Grid.Column="0"
-                        Text="Cambia disponibilità" 
+                        Text="prossima disponibilità" 
                         TextColor="Red"
                         IsEnabled="{Binding IsEnabled}"
                         Command="{Binding cambiaOra}"/>
 
                 <Button Grid.Row="0" 
                         Grid.Column="1"
-                        Text="Scegli data" 
+                        Text="Scegli la data di ricerca" 
                         TextColor="Red"
                         IsEnabled="{Binding IsEnabled}"
                         Command="{Binding cambiaData}"/>

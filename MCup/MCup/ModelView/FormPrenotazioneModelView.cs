@@ -6,6 +6,7 @@ using MCup.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -292,7 +293,7 @@ namespace MCup.ModelView
             }
             else
             {
-                Contatti = contacts;
+                Contatti = contacts.OrderBy(o => o.nomeCompletoConCodiceFiscale).ToList();
             }
 
         }

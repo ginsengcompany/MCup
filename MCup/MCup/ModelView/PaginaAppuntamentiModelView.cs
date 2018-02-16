@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -147,8 +148,6 @@ namespace MCup.ModelView
 
                 }
             }
-
-
             catch (Exception e)
             {
                 await App.Current.MainPage.DisplayAlert("Attenzione",
@@ -177,8 +176,7 @@ namespace MCup.ModelView
             }
             else
             {
-                Contatti = contatti;
-
+                Contatti = contatti.OrderBy(o => o.nomeCompletoConCodiceFiscale).ToList();
             }
         }
         #endregion
