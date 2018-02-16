@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MCup.Model
 {
-    public class Reparto
+    public class Reparto : Geolocalizzazione
     {
         public string unitaOperativa { get; set; }
         public string codReparto { get; set; }

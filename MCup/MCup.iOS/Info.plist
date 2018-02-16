@@ -28,6 +28,12 @@
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app needs access location when open and in the background.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Need location for geolocator plugin.</string>
+	<key>RequestWhenInUseAuthorization</key>
+	<string>Need location for geolocator plugin.</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Media.xcassets/Immagini di avvio.launchimage</string>
 	<key>XSAppIconAssets</key>
@@ -38,6 +44,7 @@
 	<string>MCup</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 </dict>

@@ -100,13 +100,18 @@
                                                             FontAttributes="Bold"
                                                             HorizontalTextAlignment="Center"
                                                             FontSize="Medium"/>
-                                                <Label 
-                                                            Text="{Binding reparti[0].ubicazioneReparto}" 
-                                                            TextColor="Black" 
-                                                            HorizontalOptions="Center" 
-                                                            FontSize="Medium" 
-                                                            FontAttributes="Bold"/>
-                                                
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label 
+                                                        Text="{Binding reparti[0].ubicazioneReparto}" 
+                                                        TextColor="Black" 
+                                                        HorizontalOptions="Center" 
+                                                        FontSize="Medium" 
+                                                        FontAttributes="Bold"/>
+                                                    <Button Image="luogo.png" 
+                                                            Command="{Binding LuogoUbicazioneReparto}" 
+                                                            CommandParameter="{Binding reparti[0]}"
+                                                            IsVisible="{Binding reparti[0].visibile}"/>
+                                                </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>

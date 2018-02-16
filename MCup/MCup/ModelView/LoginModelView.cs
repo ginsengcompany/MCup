@@ -293,8 +293,21 @@ namespace MCup.ModelView
                             }
                             else
                             {
-                                App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
-                                await Application.Current.SavePropertiesAsync();
+                                REST<object, string> connessioneAnnullamento = new REST<object, string>();
+                                string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
+                                    listaHeader);
+                                if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
+                                {
+                                    await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, connessioneAnnullamento.warning, "OK");
+                                }
+                                else
+                                {
+                                    await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
+                                    App.Current.MainPage = new MenuPrincipale();
+                                    await Application.Current.SavePropertiesAsync();
+                                }
+                               
+                                
                             }
                         }
                         else

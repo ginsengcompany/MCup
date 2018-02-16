@@ -9,6 +9,7 @@ using System.Windows.Input;
 using MCup.Model;
 using MCup.Service;
 using MCup.Views;
+using Plugin.Geolocator;
 using Xamarin.Forms;
 #endregion
 
@@ -215,6 +216,12 @@ namespace MCup.ModelView
         {
             try
             {
+                for (int i = 0; i < appuntamentoSelezionato.appuntamenti.Count; i++)
+                {
+                    if (string.IsNullOrEmpty(appuntamentoSelezionato.appuntamenti[i].reparti[0].latitudine) ||
+                        string.IsNullOrEmpty(appuntamentoSelezionato.appuntamenti[i].reparti[0].longitudine))
+                        appuntamentoSelezionato.appuntamenti[i].reparti[0].visibile = false;
+                }
                 Appunt = appuntamentoSelezionato.appuntamenti;
                 if (Appuntamenti.Count == 0)
                 {
@@ -234,6 +241,8 @@ namespace MCup.ModelView
                     "connessione non riuscita o codici impegnativa errati", "riprova");
             }
         }
+
+        
         #endregion
 
         #region Costruttore
