@@ -32,7 +32,12 @@
                         <customControls:ExtendedViewCell SelectedBackgroundColor="White">
                             <ViewCell.View>
                                 <StackLayout Orientation="Vertical" x:Name="Item">
-                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Margin="0,10,0,0" Padding="5" BackgroundColor="Red" >
+                                    <StackLayout 
+                                        Orientation="Vertical" 
+                                        HorizontalOptions="FillAndExpand" 
+                                        Margin="0,10,0,0"
+                                        Padding="5" 
+                                        BackgroundColor="Red" >
                                         <Label 
                                             Text="{Binding desprest}" 
                                             TextColor="White" 
@@ -43,24 +48,64 @@
                                     </StackLayout>
                                     <StackLayout>
                                         <StackLayout Orientation="Vertical">
-                                            <Label Text="Reparto:" TextColor="Red"  VerticalOptions="Start" />
-                                            <Label Text="{Binding reparti[0].descrizione}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
+                                            <Label 
+                                                Text="Reparto:" 
+                                                TextColor="Red"  
+                                                VerticalOptions="Start" />
+                                            <Label 
+                                                Text="{Binding reparti[0].descrizione}" 
+                                                TextColor="Black" 
+                                                VerticalOptions="End" 
+                                                FontSize="Medium"
+                                                FontAttributes="Italic"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Vertical">
-                                            <Label Text="Data dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
-                                            <Label Text="{Binding dataAppuntamento}" TextColor="Black" VerticalOptions="End" FontSize="Medium"  FontAttributes="Italic"/>
+                                            <Label 
+                                                Text="Data dell'appuntamento:" 
+                                                TextColor="Red" 
+                                                VerticalOptions="Start" />
+                                            <Label 
+                                                Text="{Binding dataAppuntamento}" 
+                                                TextColor="Black" 
+                                                VerticalOptions="End"
+                                                FontSize="Medium" 
+                                                FontAttributes="Italic"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Vertical">
-                                            <Label Text="Orario dell'appuntamento:" TextColor="Red" VerticalOptions="Start" />
-                                            <Label Text="{Binding oraAppuntamento}" VerticalOptions="End" TextColor="Black" FontSize="Medium"  FontAttributes="Italic"/>
+                                            <Label 
+                                                Text="Orario dell'appuntamento:"
+                                                TextColor="Red" 
+                                                VerticalOptions="Start" />
+                                            <Label 
+                                                Text="{Binding oraAppuntamento}" 
+                                                VerticalOptions="End" 
+                                                TextColor="Black" 
+                                                FontSize="Medium"  
+                                                FontAttributes="Italic"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Vertical">
-                                            <Label Text="Nome del medico che effettuerà la visita:" TextColor="Red" VerticalOptions="Start"/>
-                                            <Label Text="{Binding reparti[0].nomeMedico}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
+                                            <Label 
+                                                Text="Nome del medico che effettuerà la visita:" 
+                                                TextColor="Red"
+                                                VerticalOptions="Start"/>
+                                            <Label 
+                                                Text="{Binding reparti[0].nomeMedico}" 
+                                                TextColor="Black"
+                                                VerticalOptions="End"
+                                                FontSize="Medium"
+                                                FontAttributes="Italic"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Vertical">
-                                            <Label Text="Ubicazione del reparto:" TextColor="Red" VerticalOptions="Start" />
-                                            <Label Text="{Binding reparti[0].ubicazioneReparto}" TextColor="Black" VerticalOptions="End" FontSize="Medium" FontAttributes="Italic"/>
+                                            <Label 
+                                                Text="Ubicazione del reparto:" 
+                                                TextColor="Red" 
+                                                VerticalOptions="Start" />
+                                            <Label 
+                                                Text="{Binding reparti[0].ubicazioneReparto}"
+                                                TextColor="Black" 
+                                                VerticalOptions="End" 
+                                                FontSize="Medium" 
+                                                FontAttributes="Italic"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
@@ -70,7 +115,8 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Grid IsVisible="{Binding VisibleButton}" IsEnabled="{Binding IsEnabled}">
+            <Grid IsVisible="{Binding VisibleButton}" 
+                  IsEnabled="{Binding IsEnabled}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -95,11 +141,17 @@
             </Grid>
 
             <StackLayout VerticalOptions="Center">
-                <ActivityIndicator IsVisible="{Binding IsBusyV}" IsRunning="{Binding IsBusyV}"></ActivityIndicator>
+                <ActivityIndicator 
+                    IsVisible="{Binding IsBusyV}" 
+                    IsRunning="{Binding IsBusyV}"/>
             </StackLayout>
             
-            <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding Visible}">
-                <Button Text="Conferma Prenotazione" FontSize="Medium" FontAttributes="Bold"  TextColor="Red" Command="{Binding InvioDatiPerPrenotazione}" IsEnabled="{Binding IsEnabled}" />
+            <StackLayout 
+                BackgroundColor="White" 
+                VerticalOptions="End" 
+                IsVisible="{Binding Visible}">
+                <Button
+                    Text="Conferma Prenotazione" FontSize="Medium" FontAttributes="Bold"  TextColor="Red" Command="{Binding InvioDatiPerPrenotazione}" IsEnabled="{Binding IsEnabled}" />
             </StackLayout>
             
             <StackLayout BackgroundColor="White" VerticalOptions="End" IsVisible="{Binding VisibleHome}">
