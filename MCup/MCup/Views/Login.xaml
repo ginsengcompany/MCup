@@ -8,7 +8,8 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Margin="10" Padding="0,0,0,20">
             <StackLayout Orientation="Vertical" >
-                <Image Source="{Binding LogoStruttura}" HorizontalOptions="Center"/>
+                <Image Source="{Binding LogoStruttura}" 
+                       HorizontalOptions="Center"/>
                 <Grid HorizontalOptions="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.3*"></ColumnDefinition>

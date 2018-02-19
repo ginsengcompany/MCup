@@ -48,7 +48,7 @@ namespace MCup.ModelView
 
         //Comando che richiama un metodo che annulla la prenotazione in sospeso
         public ICommand AnnullaPrenotazione { protected set; get; }
-
+ 
         //proprietà riferita al campo ListPrestazioni
         public List<AppuntamentoPrestazioneProposto> ListPrenotazioni
         {
@@ -95,7 +95,7 @@ namespace MCup.ModelView
                 });
             }
         }
-
+     
         //Comando usato per tornare alla home page dell'applicativo
         public ICommand TornaAllaHome
         {
@@ -290,15 +290,29 @@ namespace MCup.ModelView
         //Metodo che utilizzeremo per inviare i dati dell'assistito, della ricetta al server 
         public async Task invioDatiPrenotazione()
         {
-            var noteAccettate = false;
+            var noteAccettate = true;
             string note = "";
             for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
-                if (!(string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].nota)))
-                    note += appuntamentoProposto.appuntamenti[i].nota + '\n';
-            if (string.IsNullOrEmpty(note))
+            {
+                if (appuntamentoProposto.appuntamenti[i].esitoNote != true && !string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].nota))
+                {
+                    noteAccettate = false;
+                    await App.Current.MainPage.DisplayAlert("Attenzione", "Prima di continuare accetta tutte le note: "+"\n" +appuntamentoProposto.appuntamenti[i].desprest,
+                        "ok");
+                }
+            
+            }
+            for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].nota))
+                {
+                    note = "Note presenti";
+                }
+
+            }
+            if (string.IsNullOrEmpty(note)||noteAccettate)
                 noteAccettate = await App.Current.MainPage.DisplayAlert("Conferma Prenotazione", "Sicuro di voler confermare la prenotazione?", "SI", "NO");
-            else
-                noteAccettate = await App.Current.MainPage.DisplayAlert("Conferma Prenotazione", note, "SI", "NO");
+          
             if (noteAccettate)
             {
                 REST<AppuntamentoProposto, AppuntamentiConfermati> invioDati = new REST<AppuntamentoProposto, AppuntamentiConfermati>();

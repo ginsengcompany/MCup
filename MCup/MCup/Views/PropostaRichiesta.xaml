@@ -106,6 +106,14 @@
                                                 VerticalOptions="End" 
                                                 FontSize="Medium" 
                                                 FontAttributes="Italic"/>
+                                            <Button
+                                                Text="Nota Prestazione"
+                                                HorizontalOptions="End"
+                                                TextColor="Red"
+                                                Command="{Binding AccettaNote}"
+                                                CommandParameter="{Binding nota}"
+                                                BackgroundColor="{Binding ColoreNote}"
+                                                ></Button>
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>

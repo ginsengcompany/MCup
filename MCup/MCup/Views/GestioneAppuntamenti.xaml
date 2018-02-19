@@ -93,44 +93,49 @@
                                                             HorizontalOptions="Center" 
                                                             FontSize="Medium" 
                                                             FontAttributes="Bold"/>
-                                                
+
                                                 <Grid HorizontalOptions="Center">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                                                    </Grid.ColumnDefinitions> 
-                                                    <StackLayout Grid.Column="0" >
-                                                    <Label 
-                                                            Text="Ubicazione del reparto:" 
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+
+                                                    <StackLayout HorizontalOptions="Center" Grid.Row="0" >
+                                                        <Label 
+                                                            Text="Ubicazione reparto:" 
                                                             TextColor="Red" 
                                                             FontAttributes="Bold"
                                                             HorizontalTextAlignment="Center"
                                                             FontSize="Medium"/>
-                                                    <Label 
-                                                        Text="{Binding reparti[0].ubicazioneReparto}" 
-                                                        TextColor="Black" 
-                                                        FontSize="Medium" 
-                                                        FontAttributes="Bold"/>
+
                                                     </StackLayout>
-                                                    <StackLayout Grid.Column="1" >
-                                                        <Image Source="luogo.png"
-                                                               VerticalOptions="Center"
-                                                               IsVisible="{Binding reparti[0].visibile}" 
-                                                               HeightRequest="50" >
-                                                            <Image.GestureRecognizers>
-                                                                <TapGestureRecognizer 
-                                                                    Command="{Binding LuogoUbicazioneReparto}"
-                                                                    CommandParameter="{Binding reparti[0]}"/>
-                                                            </Image.GestureRecognizers>
-                                                        </Image>
+                                                    <StackLayout 
+                                                                 Orientation="Horizontal" 
+                                                                 Grid.Row="1"
+                                                                 HorizontalOptions="Center">
+
+                                                        <StackLayout
+                                                                HorizontalOptions="Center"
+                                                            Orientation="Horizontal">
+                                                            <Label 
+                                                                    Text="{Binding reparti[0].ubicazioneReparto}" 
+                                                                    TextColor="Black" 
+                                                                    FontSize="Medium" 
+                                                                    FontAttributes="Bold"/>
+                                                            <Image Source="luogo.png"
+                                                                       VerticalOptions="Center"
+                                                                       IsVisible="{Binding reparti[0].visibile}" 
+                                                                       HeightRequest="50" 
+                                                                       >
+                                                                <Image.GestureRecognizers>
+                                                                    <TapGestureRecognizer 
+                                                                            Command="{Binding LuogoUbicazioneReparto}"
+                                                                            CommandParameter="{Binding reparti[0]}"/>
+                                                                </Image.GestureRecognizers>
+                                                            </Image>
+                                                        </StackLayout>
                                                     </StackLayout>
                                                 </Grid>
-                                               
-                                                  
-                                                   
-                                               
-                                               
-                                                
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>

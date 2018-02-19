@@ -18,5 +18,6 @@ namespace MCup.Model
         public bool erogabile { get; set; }
         public string nota { get; set; }
         public List<Reparto> reparti { get; set; }
+
     }
 }

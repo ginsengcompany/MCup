@@ -134,6 +134,7 @@ namespace MCup.ModelView
         {
             date.assistito = elementSelected;
             await invioDatiAssistito();
+            VisibleSwitch = true;
         }
 
         //Metodo che invia i dati dell'utente per cui si è scelto di visualizzare gli appuntamenti
