@@ -37,10 +37,14 @@ namespace MCup.ModelView
         //Oggetto che astrae l'utente che intende prenotare una o delle prestazioni
         private Assistito utenza;
         private string sar;
+
+        private string placeHolderCodiceImpegnativaSarONre;
         //Oggetto che astrae la ricetta NRE
         private InvioRicettaPrenotazione ricetta;
         //Booleano che abiliterà o non abiliterà gli elementi nello xaml
         private bool isenabled;
+
+        private bool isEnabledCodDue;
         //Booleano di controllo, che ci permetterà di capire se la ricetta sarà sar o nre
         private bool switchSarIstrueOrFalse = false;
         //Stringhe di controllo, saranno visibili solo nel caso in cui ci sia un errore nella entry
@@ -197,6 +201,15 @@ namespace MCup.ModelView
             }
         }
 
+        public string PlaceHolderCodiceImpegnativaSarONre
+        {
+            get { return placeHolderCodiceImpegnativaSarONre; }
+            set
+            {
+               OnPropertyChanged();
+                placeHolderCodiceImpegnativaSarONre = value;
+            }
+        }
         //Proprietà che definisce il primo codice della ricetta che sta effettuando la prenotazione
         public string codiceUno
         {
@@ -204,7 +217,21 @@ namespace MCup.ModelView
             set
             {
                 ricetta.codice_uno = value;
-                OnPropertyChanged();
+                if (ricetta.codice_uno.Length != 5)
+                {
+                    PlaceHolderCodiceImpegnativaSarONre = "Inserisci il 1° codice Impegnativa";
+                    IsEnabledCodiceDue = false;
+                }
+                else
+                {
+                    IsEnabledCodiceDue = true;
+                }
+
+                if (ricetta.codice_uno.Length > 5)
+                {
+                    PlaceHolderCodiceImpegnativaSarONre = "Inserisci codice SAR";
+                }
+                    OnPropertyChanged();
             }
         }
 
@@ -219,6 +246,16 @@ namespace MCup.ModelView
             }
         }
 
+        public bool IsEnabledCodiceDue
+        {
+            get { return isEnabledCodDue; }
+            set
+            {
+                OnPropertyChanged();
+                isEnabledCodDue = value;
+            }
+        }
+
         //Proprietà che definisce la possibilità di abilitare o disabilitare gli elementi all'interno della pagina
         public bool IsEnabled
         {
@@ -229,6 +266,7 @@ namespace MCup.ModelView
                 isenabled = value;
             }
         }
+   
 
         //Proprietà che definisce la possibilità di rendere visibili gli elementi all'interno della pagina
         public string Visible
@@ -366,31 +404,13 @@ namespace MCup.ModelView
             }
             else
                 NameTextErrorCodFisc = "";
-            if (model.isSwitch())
-            {
-                if (string.IsNullOrEmpty(codiceSar))
-                {
-                    NameErrorCodiceSar = "Il campo è obbligatorio";
-                    passControl = false;
-                }
-                else if (codiceSar.Length != 15)
-                {
-                    NameErrorCodiceSar = "Il campo deve contentere un codice impegnativa valido";
-                    passControl = false;
-                }
-                else
-                {
-                    NameErrorCodiceSar = "";
-                }
-            }
-            else
-            {
+    
                 if (string.IsNullOrEmpty(ricetta.codice_uno))
                 {
                     NameTextErrorCodUno = "Il campo è obbligatorio";
                     passControl = false;
                 }
-                else if (ricetta.codice_uno.Length != 5)
+                else if (ricetta.codice_uno.Length != 5 || ricetta.codice_uno.Length != 15)
                 {
                     NameTextErrorCodUno = "Il campo deve contentere un codice impegnativa valido";
                     passControl = false;
@@ -409,7 +429,7 @@ namespace MCup.ModelView
                 }
                 else
                     NameTextErrorCodDue = "";
-            }
+            
 
 
             #endregion
@@ -420,9 +440,13 @@ namespace MCup.ModelView
             {
                 try
                 {
+                   
                     REST<Impegnativa, Impegnativa> connessione = new REST<Impegnativa, Impegnativa>();
-                    if (model.isSwitch())
+                    if (codiceUno.Length==15)
+                    {
+                        codiceSar = codiceUno;
                         invioImpegnativa.nre = codiceSar;
+                    }
                     else
                     {
                         invioImpegnativa.nre = codiceUno + codiceDue;

@@ -27,7 +27,7 @@ namespace MCup.Views
         public string imgCodFiscale = "coduno.png"; //Variabile contenente il nome dell'immagine di esempio del codice fiscale
         public string imgCodUno = "coddue.png"; //Variabile contenente il nome dell'immagine di esempio del codice 1 della ricetta
         public string imgCodDue = "codtre.png"; //Variabile contenente il nome dell'immagine di esempio del codice 2 della ricetta
-        public string imgSar = "ricettaSAR.png";
+     
         private FormPrenotazioneModelView form;
         private bool sar;
 
@@ -53,7 +53,6 @@ namespace MCup.Views
         public FormPrenotazione(bool prenotazioPending)
         {
             InitializeComponent();
-            stackSar.IsVisible = false;
             form = new FormPrenotazioneModelView(this, prenotazioPending);
             BindingContext = form; //Questa pagina esegue il Binding con la classe FormPrenotazioneModelView
         }
@@ -149,60 +148,9 @@ private void XfxComboBox_ItemSelected(object sender, SelectedItemChangedEventArg
    form.autoCompila(x);
    ComboNome.Unfocus();
 } */
-        public void Switch(object sender, ToggledEventArgs e)
-        {
-            if (switchSar.IsToggled)
-            {
-                stackSar.IsVisible = true;
-                sar = true;
-                entryCodiceRicettaSar.IsVisible = true;
-                stackNRE.IsVisible = false;
-            }
-            else
-            {
-                entryCodiceRicettaSar.IsVisible = false;
-                stackSar.IsVisible = false;
-                stackNRE.IsVisible = true;
-                sar = false;
-            }
-        }
+  
 
-        public bool isSwitch()
-        {
-            return sar;
-        }
-
-        private async void ScanSarMethod(object sender, EventArgs e)
-        {
-            var options = new MobileBarcodeScanningOptions
-            {
-                UseFrontCameraIfAvailable = false,
-                TryHarder = true,
-                AutoRotate = false,
-                DisableAutofocus = false
-                //PossibleFormats = new List < BarcodeFormat >(){ BarcodeFormat.CODE_39 }
-            };
-            var overlay = new ZXingDefaultOverlay
-            {
-                ShowFlashButton = false
-            };
-            overlay.BindingContext = overlay;
-            var scanPage = new ZXingScannerPage(options, overlay);
-            scanPage.OnScanResult += (result) =>
-            {
-                scanPage.IsScanning = false;
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    Navigation.PopAsync();
-                    entryCodiceRicettaSar.Text = result.Text;
-                });
-            };
-            await Navigation.PushAsync(scanPage);
-        }
-
-        private async void InfoScanImageSar(object sender, EventArgs e)
-        {
-            await Navigation.PushPopupAsync(new PopupInfoScan(imgSar));
-        }
+     
+     
     }
 }

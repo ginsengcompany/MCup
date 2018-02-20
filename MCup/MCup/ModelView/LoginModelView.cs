@@ -367,9 +367,16 @@ namespace MCup.ModelView
             }
             listaHeader.Add(new Header("struttura", "030001"));
             REST<object, string> connessioneLogo = new REST<object, string>();
-            var logo = await connessioneLogo.getString("http://192.168.125.14:3000/infostruttura/logoStruttura", listaHeader);
-            LogoStruttura = Xamarin.Forms.ImageSource.FromStream(
-                () => new MemoryStream(Convert.FromBase64String(logo)));
+            try
+            {
+                var logo = await connessioneLogo.getString("http://192.168.125.14:3000/infostruttura/logoStruttura", listaHeader);
+                LogoStruttura = Xamarin.Forms.ImageSource.FromStream(
+                    () => new MemoryStream(Convert.FromBase64String(logo)));
+            }
+            catch (Exception)
+            {
+               await App.Current.MainPage.DisplayAlert("Attenzione", "errore nel prelievo del logo struttura", "ok");
+            }
         }
 
         public void modificaFlag(bool flag)
