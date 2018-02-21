@@ -14,13 +14,13 @@
                 <Picker 
                     TextColor="Red" 
                     x:Name="pickerContatti"
-                    Title="Seleziona il contatto per cui vuoi prenotare" 
+                    Title="Seleziona il nominativo per cui vuoi prenotare" 
                     HorizontalOptions="CenterAndExpand" 
                     ItemsSource="{Binding Contatti}" 
                     ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" 
                     VerticalOptions="Center" 
                     SelectedIndexChanged="Picker_SelectedIndexChanged" />
-                <Label TextColor="Black" Text="Seleziona il contatto per continuare" HorizontalTextAlignment="Center" HorizontalOptions="Center"></Label>
+                <Label TextColor="Black" Text="Seleziona il nominativo per continuare" HorizontalTextAlignment="Center" HorizontalOptions="Center"></Label>
 
                 <xfx:XfxEntry 
                     Placeholder="Nome"     

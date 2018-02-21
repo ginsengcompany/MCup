@@ -314,7 +314,7 @@ namespace MCup.ModelView
                     {
                         ButtonIsVisible = false;
                         await App.Current.MainPage.DisplayAlert("Attenzione",
-                            "La struttura non eroga nessuna prestazione contenuta nella ricetta", "OK");
+                            "La struttura non eroga nessuna prestazione contenuta nella ricetta, si prega di annullare l'impegnativa", "OK");
                     }
                 }
                 else

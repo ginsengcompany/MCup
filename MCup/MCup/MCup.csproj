@@ -69,6 +69,7 @@
     <Compile Include="Model\StatoCivile.cs" />
     <Compile Include="Model\Struttura.cs" />
     <Compile Include="Model\Utente.cs" />
+    <Compile Include="Model\VisualizzaAppuntamenti.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Service\Header.cs" />
     <Compile Include="Service\REST.cs" />

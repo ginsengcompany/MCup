@@ -22,7 +22,11 @@
                 <Label Text="Contatti" TextColor="Black" FontSize="Large" HorizontalOptions="Center" />
             </StackLayout>
             <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <ListView x:Name="listacontatti" HeaderTemplate="{Binding LongName}" ItemsSource="{Binding CollectionView}" IsGroupingEnabled="True" GroupShortNameBinding="{Binding ShortName}"  GroupDisplayBinding="{Binding LongName}"   ItemTapped="ListView_ItemTapped" 
+                <ListView x:Name="listacontatti" HeaderTemplate="{Binding LongName}" 
+                          ItemsSource="{Binding CollectionView}" 
+                          IsGroupingEnabled="True" GroupShortNameBinding="{Binding ShortName}"  
+                          GroupDisplayBinding="{Binding LongName}"   
+                          ItemTapped="ListView_ItemTapped" 
                           SeparatorColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
                     <ListView.ItemTemplate>
                         <DataTemplate>

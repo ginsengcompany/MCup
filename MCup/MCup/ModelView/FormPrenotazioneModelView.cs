@@ -219,7 +219,7 @@ namespace MCup.ModelView
                 ricetta.codice_uno = value;
                 if (ricetta.codice_uno.Length != 5)
                 {
-                    PlaceHolderCodiceImpegnativaSarONre = "Inserisci il 1° codice Impegnativa";
+                    PlaceHolderCodiceImpegnativaSarONre = "Inserisci il codice Impegnativa";
                     IsEnabledCodiceDue = false;
                 }
                 else
@@ -410,13 +410,15 @@ namespace MCup.ModelView
                     NameTextErrorCodUno = "Il campo è obbligatorio";
                     passControl = false;
                 }
-                else if (ricetta.codice_uno.Length != 5 || ricetta.codice_uno.Length != 15)
+                else if (ricetta.codice_uno.Length != 5 && ricetta.codice_uno.Length != 15)
                 {
                     NameTextErrorCodUno = "Il campo deve contentere un codice impegnativa valido";
                     passControl = false;
                 }
                 else
                     NameTextErrorCodUno = "";
+            if (IsEnabledCodiceDue)
+            {
                 if (string.IsNullOrEmpty(ricetta.codice_due))
                 {
                     NameTextErrorCodDue = "Il campo è obbligatorio";
@@ -429,6 +431,8 @@ namespace MCup.ModelView
                 }
                 else
                     NameTextErrorCodDue = "";
+            }
+                
             
 
 

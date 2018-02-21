@@ -46,11 +46,18 @@
                                     </Grid.ColumnDefinitions>
                                     <StackLayout Grid.Column="0" VerticalOptions="Center">
                                         <Label 
+                                            Text="Prestazione" 
+                                            TextColor="Black"  
+                                            FontAttributes="Bold"
+                                            VerticalOptions="Start"
+                                            FontSize="Medium"
+                                            HorizontalTextAlignment="Center" />
+                                        <Label 
                                             Text="{Binding desprest}" 
                                             TextColor="Black"  
                                             FontAttributes="Italic"
                                             VerticalOptions="Center"
-                                            FontSize="Medium"
+                                            FontSize="Small"
                                             HorizontalTextAlignment="Center" />
                                     </StackLayout>
                                     <StackLayout Grid.Column="1" 

@@ -27,14 +27,14 @@ namespace MCup.Views
 		public MenuPrincipale ()
 		{
 			InitializeComponent();
-            listaHeader = new List<Header>();
 		    getLogo();
             inizializzazioneMenu();
 		}
 
 	    private async void getLogo()
 	    {
-	        if (listaHeader.Count != 0)
+	        listaHeader = new List<Header>();
+            if (listaHeader.Count != 0)
 	        {
 	            listaHeader.Clear();
 	        }
@@ -50,6 +50,9 @@ namespace MCup.Views
             inizializzazioneMenu();
             if(scelta.Equals("Contatti"))
                 Detail = new NavigationPage(new ListaContatti());
+            if(scelta.Equals("Appuntamenti"))
+                Detail= new NavigationPage(new PaginaAppuntamenti());
+            getLogo();
         }
         //Metodo che inizializza la MasterDetailPage e che inserisce in essa le pagine a cui è possibile accedere dal menu
         private void inizializzazioneMenu()

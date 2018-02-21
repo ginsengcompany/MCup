@@ -18,7 +18,6 @@ namespace MCup.Views
         public PaginaAppuntamenti()
         {
             InitializeComponent();
-            
         }
         private void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -31,7 +30,7 @@ namespace MCup.Views
 
         private void VaiPaginaAppuntamentiIndettaglio(object sender, ItemTappedEventArgs e)
         {
-            var b = e.Item as AppuntamentoProposto;
+            var b = e.Item as AppuntamentoPrestazioneProposto;
              form.push(b);
         }
 

@@ -291,17 +291,19 @@ namespace MCup.ModelView
         public async Task invioDatiPrenotazione()
         {
             var noteAccettate = true;
-            string note = "";
+            string note = "Prima di continuare accetta tutte le note: " + "\n\n";
+
+
             for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
             {
                 if (appuntamentoProposto.appuntamenti[i].esitoNote != true && !string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].nota))
                 {
                     noteAccettate = false;
-                    await App.Current.MainPage.DisplayAlert("Attenzione", "Prima di continuare accetta tutte le note: "+"\n" +appuntamentoProposto.appuntamenti[i].desprest,
-                        "ok");
+                    note += appuntamentoProposto.appuntamenti[i].desprest + "\n\n";
+                    await App.Current.MainPage.DisplayAlert("Attenzione", note, "ok");
                 }
-            
             }
+            
             for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
             {
                 if (!string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].nota))

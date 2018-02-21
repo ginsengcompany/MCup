@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.MainPage" 
-             Title="Mcup" 
+             Title="Ecup" 
              BackgroundImage="poweredby2.jpeg">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
@@ -32,7 +32,8 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
 
@@ -119,12 +120,32 @@
                     <Label 
                         Text="Pagamenti" 
                         FontAttributes="Bold" 
-                        TextColor="Black" 
+                        TextColor="Gray" 
                         FontSize="26"
                         VerticalOptions="Center"
                         HorizontalOptions="Center"/>
                 </StackLayout>
 
+                <StackLayout Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                    <Image 
+                        
+                        Source="iconaReferto.png" 
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        HorizontalOptions="Start">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label 
+                        Text="Referti"
+                        
+                        FontAttributes="Bold" 
+                        TextColor="Gray" 
+                        FontSize="26"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"/>
+                </StackLayout>
                 </Grid>
             </ScrollView>
         </StackLayout>
