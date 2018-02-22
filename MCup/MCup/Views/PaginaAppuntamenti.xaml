@@ -46,7 +46,7 @@
                                     <Label
                                         Text="Impegnativa: "
                                         FontAttributes="Italic"
-                                        TextColor="LightGray"
+                                        TextColor="Black"
                                         FontSize="Medium"/>
                                     <Label Text="{Binding LongName}"
                                           FontAttributes="Bold"
@@ -88,11 +88,11 @@
                             <ViewCell.View>
                                 <StackLayout Orientation="Horizontal">
                                     <StackLayout Orientation="Vertical">
-                                        <StackLayout Orientation="Horizontal">
+                                        <StackLayout>
                                             <Label Text="Prestazione: " TextColor="Red" FontAttributes="Bold"/>
                                             <Label Text="{Binding desprest}" TextColor="Black" FontAttributes="Italic"/>
                                         </StackLayout>
-                                        <StackLayout Orientation="Horizontal">
+                                        <StackLayout>
                                             <Label Text="Data Appuntamento: " TextColor="Red" FontAttributes="Bold"/>
                                             <Label Text="{Binding dataAppuntamento}" TextColor="Black" FontAttributes="Italic"/>
                                         </StackLayout>
