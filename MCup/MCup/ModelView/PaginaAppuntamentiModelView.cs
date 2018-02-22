@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -240,7 +241,26 @@ namespace MCup.ModelView
                 Appunt.Clear();
             }
             for (int i = 0; i < Appuntamenti.Count; i++)
-            {
+            {/*
+                for (int t = 0; t < Appuntamenti.Count - 1; t++)
+                {
+                    int posmin = t;
+                    for (int k = t + 1; k < Appuntamenti.Count; k++)
+                    {
+                        DateTime date1 = new DateTime(Convert.ToInt32(Appuntamenti[posmin].appuntamenti[0].dataAppuntamento.Substring(6, 4), 10), Convert.ToInt32(Appuntamenti[posmin].appuntamenti[0].dataAppuntamento.Substring(3, 2), 10), Convert.ToInt32(Appuntamenti[posmin].appuntamenti[0].dataAppuntamento.Substring(0, 2), 10));
+                        DateTime date2 = new DateTime(Convert.ToInt32(Appuntamenti[k].appuntamenti[0].dataAppuntamento.Substring(6, 4), 10), Convert.ToInt32(Appuntamenti[k].appuntamenti[0].dataAppuntamento.Substring(3, 2), 10), Convert.ToInt32(Appuntamenti[k].appuntamenti[0].dataAppuntamento.Substring(0, 2), 10));
+                        if (date1.CompareTo(date2) > 0)
+                        {
+                            posmin = k;
+                        }
+                    }
+                    if (posmin != t)
+                    {
+                        AppuntamentoProposto temp = Appuntamenti[t];
+                        Appuntamenti[t] = Appuntamenti[posmin];
+                        Appuntamenti[posmin] = temp;
+                    }
+                }*/
                 VisualizzaAppuntamenti grouped = new VisualizzaAppuntamenti()
                 {
                     LongName = Appuntamenti[i].codiceImpegnativa,
