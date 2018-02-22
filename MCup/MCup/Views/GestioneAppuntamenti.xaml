@@ -6,128 +6,73 @@
              BackgroundColor="White"
              Title="Appuntamenti">
     <ContentPage.Content>
-        <StackLayout Padding="15">
 
-            <StackLayout VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <Grid>
 
+                <Image Source="{Binding LogoStruttura}" 
+                           HorizontalOptions="Fill"
+                           Aspect="Fill"
+                           HeightRequest="280"
+                           Grid.Row="0" Grid.Column="0"/>
+                <StackLayout 
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Opacity="0.9"
+                        BackgroundColor="Black"
+                        VerticalOptions="EndAndExpand"
+                        HeightRequest="70"
+                        Orientation="Horizontal">
+                    <Label Text="ORA: " TextColor="White" VerticalOptions="Center" FontSize="24" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+                    <Label Text="{Binding OraAppuntamento}" VerticalOptions="Center" TextColor="White" FontSize="24" FontAttributes="Bold" HorizontalOptions="Start" ></Label>
+                    <Label TextColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="{Binding NomeStruttura}" FontSize="35" FontAttributes="Bold" ></Label>
+                </StackLayout>
+
+            </Grid>
+
+            <Label Text="Prestazione prenotata:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+            <Label Text="{Binding Titolo}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
+
+            <Label Text="Data Appuntamento:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Start"/>
+            <Label Text="{Binding DataAppuntamento}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
+
+            <Label Text="Nome medico:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+            <Label Text="{Binding NomeMedico}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
+
+            <StackLayout Orientation="Horizontal">
                 <StackLayout>
-
-                    <StackLayout HorizontalOptions="FillAndExpand"  
-                                                         VerticalOptions="Start"
-                                                         BackgroundColor="Red"
-                                                         Margin="0,10,0,0">
-                        <Label 
-                                                       Text="{Binding Titolo}" 
-                                                       HorizontalOptions="CenterAndExpand" 
-                                                       HorizontalTextAlignment="Center" 
-                                                       TextColor="White" 
-                                                       FontSize="Medium"
-                                                       FontAttributes="Bold"/>
-                    </StackLayout>
-                    <StackLayout >
-
-                        <StackLayout 
-                                                        Orientation="Vertical"  HorizontalOptions="Center"
-                                                        VerticalOptions="Center">
-                            <Label 
-                                                            TextColor="Red" 
-                                                            Text="Struttura" 
-                                                            Margin="9,0,0,0" 
-                                                            FontAttributes="Bold" 
-                                                            HorizontalOptions="Center" 
-                                                            FontSize="Medium"/>
-                            <Label 
-                                                            Text="{Binding NomeStruttura}" 
-                                                            HorizontalOptions="Center" 
-                                                            TextColor="Black" 
-                                                            FontSize="Medium" 
-                                                            FontAttributes="Bold"/>
-                            <Label Margin="9,0,0,0" 
-                                                               TextColor="Red" 
-                                                               FontAttributes="Bold" 
-                                                               HorizontalTextAlignment="Center" 
-                                                               Text="Data Appuntamento" 
-                                                               HorizontalOptions="Center" 
-                                                               FontSize="Medium"/>
-                            <Label  
-                                                            Text="{Binding DataAppuntamento}" 
-                                                            HorizontalOptions="Center" 
-                                                            TextColor="Black" 
-                                                            FontAttributes="Bold"
-                                                            FontSize="Medium"/>
-                            <Label Margin="9,0,0,0" 
-                                                               TextColor="Red" 
-                                                               FontAttributes="Bold"
-                                                               HorizontalTextAlignment="Center" 
-                                                               HorizontalOptions="Center" 
-                                                               Text="Ora Appuntamento" 
-                                                               FontSize="Medium"/>
-                            <Label 
-                                                            Text="{Binding OraAppuntamento}" 
-                                                            HorizontalOptions="Center" 
-                                                            TextColor="Black" 
-                                                            FontAttributes="Bold"
-                                                            FontSize="Medium"/>
-                            <Label Margin="9,0,0,0"
-                                                            Text="Nome del medico per la visita:" 
-                                                            TextColor="Red"
-                                                            FontAttributes="Bold"
-                                                            HorizontalTextAlignment="Center" 
-                                                            HorizontalOptions="Center"
-                                                            FontSize="Medium"/>
-                            <Label 
-                                                            Text="{Binding NomeMedico}" 
-                                                            TextColor="Black" 
-                                                            HorizontalOptions="Center" 
-                                                            FontSize="Medium" 
-                                                            FontAttributes="Bold"/>
-
-                            <Grid HorizontalOptions="Center">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                </Grid.RowDefinitions>
-
-                                <StackLayout HorizontalOptions="Center" Grid.Row="0" >
-                                    <Label 
-                                                            Text="Ubicazione reparto:" 
-                                                            TextColor="Red" 
-                                                            FontAttributes="Bold"
-                                                            HorizontalTextAlignment="Center"
-                                                            FontSize="Medium"/>
-
-                                </StackLayout>
-                                <StackLayout 
-                                                                 Orientation="Horizontal" 
-                                                                 Grid.Row="1"
-                                                                 HorizontalOptions="Center">
-
-                                    <StackLayout
-                                                                HorizontalOptions="Center"
-                                                            Orientation="Horizontal">
-                                        <Label 
-                                                                    Text="{Binding UbicazioneReparto}" 
-                                                                    TextColor="Black" 
-                                                                    FontSize="Medium" 
-                                                                    FontAttributes="Bold"/>
-                                        <Image Source="luogo.png"
-                                                                       VerticalOptions="Center"
-                                                                       IsVisible="{Binding VisibileB}" 
-                                                                       HeightRequest="50" 
-                                                                       >
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer 
-                                                                            Command="{Binding LuogoUbicazioneReparto}"
-                                                                            CommandParameter="{Binding reparti[0]}"/>
-                                            </Image.GestureRecognizers>
-                                        </Image>
-                                    </StackLayout>
-                                </StackLayout>
-                            </Grid>
-                        </StackLayout>
-                    </StackLayout>
+                    <Label Text="Ubicazione Reparto:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+                    <Label Text="{Binding UbicazioneReparto}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
+                </StackLayout>
+                <StackLayout  HorizontalOptions="EndAndExpand">
+                    <Image Source="luogo.png"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding VisibileB}" 
+                           HeightRequest="50">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding LuogoUbicazioneReparto}"
+                                CommandParameter="{Binding reparti[0]}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </StackLayout>
             </StackLayout>
+          
+           
+            <StackLayout IsVisible="{Binding StackNoteVisible}">
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VisualizzaNote}"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                    <Label Text="Note prestazione" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+                    <Image Source="downArrow.png" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <Label Text="{Binding Nota}" IsVisible="{Binding VisibleNote}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
+
+            </StackLayout>
+            
+
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

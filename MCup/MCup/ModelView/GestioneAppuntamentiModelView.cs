@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -43,7 +44,7 @@ namespace MCup.ModelView
         //Booleano che renderà visibile o non la label di informazione sulla presenza o meno degli appuntamenti
         private Boolean visibileLabel = false;
 
-
+        private string nota;
         //Lista di header
         private List<Header> headers = new List<Header>();
 
@@ -54,7 +55,12 @@ namespace MCup.ModelView
         //Booleano di controllo per la visibilità degli elementi nello xaml
         private Boolean visibile = true;
 
+        private Boolean stackNoteVisible = false;
         private Boolean visibileB = true;
+        private Boolean visibleNote = false;
+        public ICommand VisualizzaNote { protected set; get; }
+
+        private ImageSource logoOspedale;
         //Variabile usata per la visibilità degli elementi nello xaml
         private string visi, desprest, nomeStruttura, dataAppuntamento, oraAppuntamento, nomeMedico, ubicazioneReparto;
 
@@ -64,7 +70,35 @@ namespace MCup.ModelView
 
         //Comando che richiama il metodo dell'eliminazione di un appuntamento
 
+        public Boolean VisibleNote
+        {
+            get { return visibleNote; }
+            set
+            {
+                OnPropertyChanged();
+                visibleNote = value;
+            }
+        }
 
+        public Boolean StackNoteVisible
+        {
+            get { return stackNoteVisible; }
+            set
+            {
+                OnPropertyChanged();
+                stackNoteVisible = value;
+            }
+        }
+
+        public ImageSource LogoStruttura
+        {
+            get { return logoOspedale; }
+            set
+            {
+                OnPropertyChanged();
+                logoOspedale = value;
+            }
+        }
         public string Titolo
         {
             get { return desprest; }
@@ -168,57 +202,69 @@ namespace MCup.ModelView
             }
         }
 
-        //Proprietà che verrà usata per il risultato della connessione al server e verrà riempita degli appuntamenti dell'utente
-
-
-
+        public string Nota
+        {
+            get { return nota; }
+            set
+            {
+                OnPropertyChanged();
+                nota = value;
+            }
+        }
         #endregion
 
         #region Metodi
 
-        //Metodo che implementa l'eliminazione di un appuntamento
-     
+       
 
-        //Metodo che tramite una connessione invia al server i dati dell'Utente
-      /*  public async Task invioDatiAssistito()
+        private async void RicezioneLogo()
         {
+            if (headers.Count != 0)
+            {
+                headers.Clear();
+            }
+            headers.Add(new Header("struttura", "030001"));
+            REST<object, string> connessioneLogo = new REST<object, string>();
             try
             {
-                
-                    if (string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].latitudine) ||
-                        string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].longitudine))
-                        appuntamentoSelezionatoProposto.reparti[0].visibile = false;
-
-                if (Appuntamenti.Count == 0)
-                {
-                    Visibile = false;
-                    VisibileLabel = true;
-                }
-                else
-                {
-                    Visibile = true;
-                    VisibileL = "true";
-                    VisibileLabel = false;
-                }
+                var logo = await connessioneLogo.getString("http://192.168.125.14:3000/infostruttura/logoStruttura", headers);
+                LogoStruttura = Xamarin.Forms.ImageSource.FromStream(
+                    () => new MemoryStream(Convert.FromBase64String(logo)));
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione",
-                    "connessione non riuscita o codici impegnativa errati", "riprova");
+                await App.Current.MainPage.DisplayAlert("Attenzione", "errore nel prelievo del logo struttura", "ok");
             }
         }
-        */
-
-
         public void IngressoPagina()
         {
+            RicezioneLogo();
             Titolo = appuntamentoSelezionatoProposto.desprest;
             UbicazioneReparto = appuntamentoSelezionatoProposto.reparti[0].ubicazioneReparto;
             NomeStruttura = appuntamentoSelezionatoProposto.reparti[0].nomeStruttura;
             DataAppuntamento = appuntamentoSelezionatoProposto.dataAppuntamento;
             OraAppuntamento = appuntamentoSelezionatoProposto.oraAppuntamento;
             NomeMedico = appuntamentoSelezionatoProposto.reparti[0].nomeMedico;
-            if (string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].latitudine) || string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].longitudine))
+            if (appuntamentoSelezionatoProposto.nota == null)
+            {
+                StackNoteVisible = false;
+            }
+            else
+            {
+                StackNoteVisible = true;
+                Nota = appuntamentoSelezionatoProposto.nota;
+                VisualizzaNote = new Command(async () =>
+                {
+                    if(VisibleNote==false)
+                    VisibleNote = true;
+                    else
+                        VisibleNote = false;
+                });
+            }
+
+          
+
+                if (string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].latitudine) || string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].longitudine))
                 VisibileB = false;
         }
 
