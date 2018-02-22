@@ -493,16 +493,7 @@
     <BundleResource Include="Resources\poweredby2.jpeg" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ricettaSAR.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\luogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\luogo2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\luogo3x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\iconaReferto.png" />
