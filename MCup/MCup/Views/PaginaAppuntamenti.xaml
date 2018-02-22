@@ -57,6 +57,7 @@
                                     Orientation="Horizontal" 
                                     HorizontalOptions="EndAndExpand">
                                     <Label Text="Annulla" 
+                                           IsVisible="{Binding scaduto}"
                                            FontAttributes="Bold"
                                            TextColor="White"
                                            FontSize="Medium"
@@ -67,6 +68,7 @@
                                         </Label.GestureRecognizers>
                                     </Label>
                                     <Label Text="Sposta"
+                                           IsVisible="{Binding scaduto}"
                                            FontAttributes="Bold"
                                            FontSize="Medium"
                                            TextColor="White"

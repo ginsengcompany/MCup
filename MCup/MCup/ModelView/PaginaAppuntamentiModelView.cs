@@ -272,6 +272,7 @@ namespace MCup.ModelView
                 {
                     grouped.Add(Appuntamenti[i].appuntamenti[j]);
                 }
+                grouped.Scaduto();
                 Appunt.Add(grouped);
             }
         }

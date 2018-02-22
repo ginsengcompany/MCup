@@ -18,6 +18,21 @@ namespace MCup.Model
         public string LongName { get; set; }
         public string ShortName { get; set; }
         public string dataEmissioneRicetta { get; set; }
+        public bool scaduto { get; set; } = true;
+
+        public void Scaduto()
+        {
+            DateTime data_appuntamento = Convert.ToDateTime(this[0].dataAppuntamento);
+            DateTime dataOdierna = DateTime.Today;
+            if ((data_appuntamento - dataOdierna).TotalDays < 0)
+            {
+                scaduto = false;
+            }
+            else
+            {
+                scaduto = true;
+            }
+        }
         public Assistito contatto { get; set; }
 
         public ICommand EliminaAppuntamento
@@ -42,9 +57,6 @@ namespace MCup.Model
                 });
             }
         }
-
-
-
 
         public async Task EliminazioneAppuntamento()
         {
