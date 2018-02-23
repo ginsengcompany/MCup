@@ -157,6 +157,10 @@ namespace MCup.ModelView
                 {
                     Visibile = false;
                     VisibileLabel = true;
+                    if (Appunt.Count != 0)
+                    {
+                        Appunt.Clear();
+                    }
                 }
                 else
                 {
@@ -212,7 +216,7 @@ namespace MCup.ModelView
         public async void push(AppuntamentoPrestazioneProposto elementoSelezionato)
         {
             await paginaAppuntamenti.Navigation.PushAsync(new GestioneAppuntamenti(elementoSelezionato));
-            Contatti.Clear();
+           // Contatti.Clear();
             VisibileLabel = false;
         }
 

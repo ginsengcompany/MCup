@@ -16,7 +16,7 @@
                      
                         Opacity="0.85"
                         Padding="10,0,10,0"
-                        BackgroundColor="#FF0000"
+                        BackgroundColor="Black"
                         HeightRequest="70"
                         Orientation="Horizontal">
                     <Label Text="ORA: " TextColor="White" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start"></Label>
@@ -27,23 +27,23 @@
             <ScrollView>
             <StackLayout>
                 
-                    <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="Red" Padding="7,0,0,0">
-                        <Label Text="Prestazione prenotata:" TextColor="White" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+                    <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand"  Padding="7,0,0,0">
+                        <Label Text="Prestazione prenotata:" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="Start"></Label>
                     </StackLayout>
                     <Label Margin="10,0,0,0" Text="{Binding Titolo}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
 
-                    <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="Red" Padding="7,0,0,0">
-                        <Label Text="Data Appuntamento:" TextColor="White" FontAttributes="Bold" HorizontalOptions="Start"/>
+                    <StackLayout HorizontalOptions="FillAndExpand"  Padding="7,0,0,0">
+                        <Label Text="Data Appuntamento:" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="Start"/>
                     </StackLayout>
                     <Label Margin="10,0,0,0" Text="{Binding DataAppuntamento}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
 
-                    <StackLayout  HorizontalOptions="FillAndExpand" BackgroundColor="Red" Padding="7,0,0,0">
-                        <Label Text="Nome medico:" TextColor="White" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+                    <StackLayout  HorizontalOptions="FillAndExpand"  Padding="7,0,0,0">
+                        <Label Text="Nome medico:" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="Start"></Label>
                     </StackLayout>
                     <Label Margin="10,0,0,0" Text="{Binding NomeMedico}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
 
-                    <StackLayout  HorizontalOptions="FillAndExpand" BackgroundColor="Red" Padding="7,0,0,0">
-                        <Label Text="Ubicazione Reparto:" TextColor="White" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+                    <StackLayout  HorizontalOptions="FillAndExpand"  Padding="7,0,0,0">
+                        <Label Text="Ubicazione Reparto:" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="Start"></Label>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center">
 
@@ -63,9 +63,11 @@
                         </StackLayout>
                     </StackLayout>
 
-
+                      
                     <StackLayout IsVisible="{Binding StackNoteVisible}"  HorizontalOptions="FillAndExpand" >
-                        <StackLayout Orientation="Horizontal" BackgroundColor="Red" Padding="7,0,0,0">
+                        
+                        <StackLayout Orientation="Horizontal" BackgroundColor="DimGray" Padding="7,0,0,0">
+                           
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding VisualizzaNote}"></TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>
@@ -73,12 +75,21 @@
                             <Label Text="clicca per vedere le note" VerticalOptions="Center" TextColor="White" FontAttributes="Italic" FontSize="Small" HorizontalOptions="EndAndExpand"></Label>
                             <Image Source="downArrow.png" HeightRequest="30" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
-                        <Label Text="{Binding Nota}" IsVisible="{Binding VisibleNote}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
+                            <StackLayout IsVisible="{Binding VisibleNote}" 
+                                     BackgroundColor="LightGray" Padding="10,0,10,0">
+
+                                <Label  Text="{Binding Nota}"
+                                    HorizontalTextAlignment="Center"                                    
+                                    TextColor="Black" 
+                                    FontSize="Medium" 
+                                    FontAttributes="Italic"></Label>
+
+                            </StackLayout>
                     </StackLayout>
+            
 
-                
 
-            </StackLayout>
+        </StackLayout>
             </ScrollView>
         </StackLayout>
 

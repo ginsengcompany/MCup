@@ -193,6 +193,8 @@ namespace MCup.ModelView
             }
         }
 
+
+
         //Proprietà riferita al campo IsVisible
         public bool IsVisible
         {
@@ -291,7 +293,8 @@ namespace MCup.ModelView
         public async Task invioDatiPrenotazione()
         {
             var noteAccettate = true;
-            string note = "Prima di continuare accetta tutte le note: " + "\n\n";
+            string note = "Prima di continuare prendi visione di tutte le note: " + "\n\n";
+            bool flag = false;
 
 
             for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
@@ -300,10 +303,14 @@ namespace MCup.ModelView
                 {
                     noteAccettate = false;
                     note += appuntamentoProposto.appuntamenti[i].desprest + "\n\n";
-                    await App.Current.MainPage.DisplayAlert("Attenzione", note, "ok");
+                    appuntamentoProposto.appuntamenti[i].coloreNote=Color.Red;
+                    appuntamentoProposto.appuntamenti[i].coloreTestoNote = Color.White;
+                    flag = true;
                 }
             }
-            
+            if(flag)
+                await App.Current.MainPage.DisplayAlert("Attenzione", note, "ok");
+
             for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
             {
                 if (!string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].nota))

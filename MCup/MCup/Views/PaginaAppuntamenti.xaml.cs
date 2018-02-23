@@ -18,6 +18,10 @@ namespace MCup.Views
         public PaginaAppuntamenti()
         {
             InitializeComponent();
+            pickerContatti.SelectedIndex = -1;
+            form = new PaginaAppuntamentiModelView(this);
+            BindingContext = form;
+           
         }
         private void Picker_OnSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -34,12 +38,12 @@ namespace MCup.Views
              form.push(b);
         }
 
-        protected override void OnAppearing()
+       /* protected override void OnAppearing()
         {
             pickerContatti.SelectedIndex = -1;
             form = new PaginaAppuntamentiModelView(this);
             BindingContext = form;
-        }
+        }*/
 
         private async void SwitchVisibleAppuntamentiScaduti(object sender, ToggledEventArgs e)
         {
