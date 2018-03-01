@@ -56,28 +56,44 @@
                                 <StackLayout 
                                     Orientation="Horizontal" 
                                     HorizontalOptions="EndAndExpand">
-                                    <Label Text="Annulla" 
-                                           IsVisible="{Binding scaduto}"
-                                           FontAttributes="Bold"
-                                           TextColor="White"
-                                           FontSize="Medium"
-                                           Margin="0,0,5,0">
-                                        <Label.GestureRecognizers>
+                                    <StackLayout>
+                                        <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer 
                                                 Command="{Binding EliminaAppuntamento}"/>
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                    <Label Text="Sposta"
-                                           IsVisible="{Binding scaduto}"
-                                           FontAttributes="Bold"
-                                           FontSize="Medium"
-                                           TextColor="White"
-                                    >
-                                        <Label.GestureRecognizers>
+                                        </StackLayout.GestureRecognizers>
+                                        <Label Text="Cancella" 
+                                               IsVisible="{Binding scaduto}"
+                                               FontAttributes="Bold"
+                                               TextColor="White"
+                                               HorizontalOptions="Center"
+                                               FontSize="Medium"
+                                               Margin="0,0,5,0">
+                                          
+                                        </Label>
+                                        <Image Source="cancella.png" 
+                                               HeightRequest="30"
+                                               HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                  
+                                    <StackLayout>
+                                        <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer 
-                                                Command="{Binding SpostaAppuntamento}"/>
-                                        </Label.GestureRecognizers>
-                                    </Label>
+                                            Command="{Binding SpostaAppuntamento}"/>
+                                        </StackLayout.GestureRecognizers>
+                                        <Label Text="Sposta"
+                                               IsVisible="{Binding scaduto}"
+                                               FontAttributes="Bold"
+                                               FontSize="Medium"
+                                               TextColor="White"
+                                               HorizontalOptions="Center"
+                                        >
+                                        </Label>
+                                        <Image 
+                                            Source="reply.png"
+                                            HeightRequest="30"
+                                            HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                   
                                 </StackLayout>
                             </StackLayout>
 

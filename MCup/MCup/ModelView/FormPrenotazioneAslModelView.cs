@@ -1,29 +1,25 @@
-﻿#region LibrerieUsate
-
-using MCup.Model;
-using MCup.Service;
-using MCup.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MCup.Model;
+using MCup.Service;
+using MCup.Views;
 using Xamarin.Forms;
-
-
-#endregion
 
 namespace MCup.ModelView
 {
-    //ModelView della pagina FormPrenotazione, tale classe è utilizzata per implementare il binding con la relativa pagina
-    public class FormPrenotazioneModelView : INotifyPropertyChanged
+    public class FormPrenotazioneAslModelView:INotifyPropertyChanged
     {
         #region RegioneDiInizializzazioneEDichiarazione
-       
+
+        private string nomeMedico;
         //Evento che prevede il cambiamento di proprietà all'interno della classe
         public event PropertyChangedEventHandler PropertyChanged;
         //Oggetto che astrae l'impegnativa che invieremo per prenotare
@@ -55,7 +51,7 @@ namespace MCup.ModelView
             nameTextErrorCodDue,
             nameErrorCodiceSar;
         //Oggetto che astrae la pagina a cui punta il modelView in questione.
-        private FormPrenotazione model;
+        private FormPrenotazioneAsl model;
         //Lista di tipo Assistito
         private List<Assistito> contatti = new List<Assistito>();
         //Lista di tipo Assistito che conterrà i contatti
@@ -206,7 +202,7 @@ namespace MCup.ModelView
             get { return placeHolderCodiceImpegnativaSarONre; }
             set
             {
-               OnPropertyChanged();
+                OnPropertyChanged();
                 placeHolderCodiceImpegnativaSarONre = value;
             }
         }
@@ -231,7 +227,17 @@ namespace MCup.ModelView
                 {
                     PlaceHolderCodiceImpegnativaSarONre = "Inserisci codice SAR";
                 }
-                    OnPropertyChanged();
+                OnPropertyChanged();
+            }
+        }
+
+        public string NomeMedico
+        {
+            get { return nomeMedico; }
+            set
+            {
+                OnPropertyChanged();
+                nomeMedico = value;
             }
         }
 
@@ -266,7 +272,7 @@ namespace MCup.ModelView
                 isenabled = value;
             }
         }
-   
+
 
         //Proprietà che definisce la possibilità di rendere visibili gli elementi all'interno della pagina
         public string Visible
@@ -280,42 +286,6 @@ namespace MCup.ModelView
         }
 
         #endregion
-
-        #region Costruttore
-
-        //Costruttore del ModelView, viene passato come parametro il riferimento alla pagina che lo richiama per poter effettuare una Navigation.pushAsync
-        public FormPrenotazioneModelView(FormPrenotazione Model, bool prenotazionePending)
-        {
-            IsEnabled = true;
-            utenza = new Assistito();
-            ricetta = new InvioRicettaPrenotazione();
-            invioImpegnativa = new Impegnativa();
-            headers.Add(new Header("struttura", "030001"));
-            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-            model = Model;
-            ricetta.codice_uno = "";
-            ricetta.codice_due = "";
-            utenza.nome = "";
-            utenza.cognome = "";
-            utenza.codice_fiscale = "";
-            leggiContatti();
-            if (prenotazionePending)
-            {
-                RiempiPagina();
-            }
-
-            InviaRichiesta = new Command(async () =>
-            {
-                IsEnabled = false;
-                await InvioDatiAsync();
-                IsEnabled = true;
-            });
-
-        }
-
-
-        #endregion
-
         #region Metodi
 
         //Metodo che tramite una connessione restituisce i contatti collegati al token dell'applicazione
@@ -346,15 +316,8 @@ namespace MCup.ModelView
             if (connessione.responseMessage == HttpStatusCode.OK)
             {
                 model.selezionaElemento(response.assistito);
-                if (response.sar)
-                {
-                    codiceUno = response.nre;
-                }
-                else
-                {
-                    codiceUno = response.nre.Substring(0, 5);
-                    codiceDue = response.nre.Substring(5);
-                }
+                codiceUno = response.nre.Substring(0, 5);
+                codiceDue = response.nre.Substring(5);
             }
 
         }
@@ -411,19 +374,19 @@ namespace MCup.ModelView
             }
             else
                 NameTextErrorCodFisc = "";
-    
-                if (string.IsNullOrEmpty(ricetta.codice_uno))
-                {
-                    NameTextErrorCodUno = "Il campo è obbligatorio";
-                    passControl = false;
-                }
-                else if (ricetta.codice_uno.Length != 5 && ricetta.codice_uno.Length != 15)
-                {
-                    NameTextErrorCodUno = "Il campo deve contentere un codice impegnativa valido";
-                    passControl = false;
-                }
-                else
-                    NameTextErrorCodUno = "";
+
+            if (string.IsNullOrEmpty(ricetta.codice_uno))
+            {
+                NameTextErrorCodUno = "Il campo è obbligatorio";
+                passControl = false;
+            }
+            else if (ricetta.codice_uno.Length != 5 && ricetta.codice_uno.Length != 15)
+            {
+                NameTextErrorCodUno = "Il campo deve contentere un codice impegnativa valido";
+                passControl = false;
+            }
+            else
+                NameTextErrorCodUno = "";
             if (IsEnabledCodiceDue)
             {
                 if (string.IsNullOrEmpty(ricetta.codice_due))
@@ -439,8 +402,8 @@ namespace MCup.ModelView
                 else
                     NameTextErrorCodDue = "";
             }
-                
-            
+
+
 
 
             #endregion
@@ -451,18 +414,16 @@ namespace MCup.ModelView
             {
                 try
                 {
-                   
+
                     REST<Impegnativa, Impegnativa> connessione = new REST<Impegnativa, Impegnativa>();
-                    if (codiceUno.Length==15)
+                    if (codiceUno.Length == 15)
                     {
                         codiceSar = codiceUno;
                         invioImpegnativa.nre = codiceSar;
-                        invioImpegnativa.sar = true;
                     }
                     else
                     {
                         invioImpegnativa.nre = codiceUno + codiceDue;
-                        invioImpegnativa.sar = false;
 
                     }
 
@@ -497,6 +458,38 @@ namespace MCup.ModelView
 
         #endregion
 
+        #region Costruttore
+
+        public FormPrenotazioneAslModelView(FormPrenotazioneAsl Model, bool prenotazionePending)
+        {
+            IsEnabled = true;
+            utenza = new Assistito();
+            ricetta = new InvioRicettaPrenotazione();
+            invioImpegnativa = new Impegnativa();
+            headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+            model = Model;
+            ricetta.codice_uno = "";
+            ricetta.codice_due = "";
+            utenza.nome = "";
+            utenza.cognome = "";
+            utenza.codice_fiscale = "";
+            leggiContatti();
+            if (prenotazionePending)
+            {
+                RiempiPagina();
+            }
+
+            InviaRichiesta = new Command(async () =>
+            {
+                IsEnabled = false;
+                await InvioDatiAsync();
+                IsEnabled = true;
+            });
+        }
+
+        #endregion
+
         #region ClassiPrivate
 
         // classe privata che richiamiamo per inviare i dati della ricetta al server
@@ -507,6 +500,5 @@ namespace MCup.ModelView
         }
 
         #endregion
-
     }
 }

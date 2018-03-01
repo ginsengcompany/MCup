@@ -36,5 +36,7 @@ namespace MCup.Model
         public string spostamentoPrenotazione { get; set; }
         public string piuReparti { get; set; }
         public string appuntamentiFuturiEPassati { get; set; }
+
+        public string isAsl { get; set; }
     }
 }

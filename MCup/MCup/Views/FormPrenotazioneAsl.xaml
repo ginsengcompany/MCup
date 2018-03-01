@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+             x:Class="MCup.Views.FormPrenotazioneAsl">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Padding="20,20,20,0" >
+                <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
+                <!-- <xfx:XfxComboBox x:Name="ComboNome" ErrorText="{Binding NameTextErrorNome}" ErrorDisplay="Underline" Placeholder="Inserire nome" SortingAlgorithm="{Binding SortingAlgorithm}" ItemsSource="{Binding Contatti}" ItemSelected="XfxComboBox_ItemSelected" Text="{Binding nomeUtente}" WidthRequest="250" VerticalOptions="Center" /> -->
+
+                <Picker 
+                    TextColor="Red" 
+                    x:Name="pickerContatti"
+                    Title="Seleziona il nominativo per cui vuoi prenotare" 
+                    HorizontalOptions="CenterAndExpand" 
+                    ItemsSource="{Binding Contatti}" 
+                    ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" 
+                    VerticalOptions="Center" 
+                    SelectedIndexChanged="Picker_SelectedIndexChanged" />
+                <Label TextColor="Black" Text="Seleziona il nominativo per continuare" HorizontalTextAlignment="Center" HorizontalOptions="Center"></Label>
+
+                <xfx:XfxEntry 
+                    Placeholder="Nome"     
+                    Text="{Binding nomeUtente}" 
+                    ErrorText="{Binding NameErrorText}" 
+                    ErrorDisplay="Underline"
+                    WidthRequest="250"
+                    IsEnabled="False"
+                    IsVisible="{Binding Visible}"
+                    VerticalOptions="Center"/>
+
+                <xfx:XfxEntry 
+                    Placeholder="Cognome"     
+                    Text="{Binding cognomeUtente}" 
+                    ErrorText="{Binding NameTextErrorCognome}" 
+                    ErrorDisplay="Underline"
+                    PlaceholderColor="Black"
+                    IsVisible="{Binding Visible}"
+                    IsEnabled="False"
+                    WidthRequest="250" 
+                    VerticalOptions="Center"/>
+
+                <xfx:XfxEntry 
+                        x:Name="entryCodiceFiscale"
+                        Placeholder="Codice Fiscale"     
+                        Text="{Binding codicefiscaleUtente}" 
+                        ErrorText="{Binding NameTextErrorCodFisc}" 
+                        ErrorDisplay="Underline"
+                        PlaceholderColor="Black"
+                        WidthRequest="250"
+                        IsVisible="{Binding Visible}"
+                        IsEnabled="False"
+                        VerticalOptions="Center"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                  
+                        <xfx:XfxEntry 
+                            x:Name="entryNomeDottore"
+                            Grid.Column="0"
+                            Placeholder="Inserisci nome medico"     
+                            Text="{Binding NomeMedico}"
+                            ErrorDisplay="Underline"
+                            PlaceholderColor="Black"
+                            WidthRequest="250"
+                            IsVisible="{Binding Visible}"
+                            VerticalOptions="Center"/>
+
+                    <Image Source="info.png"
+                           Grid.Column="1"
+                               VerticalOptions="Center" 
+                               WidthRequest="30" 
+                               IsVisible="{Binding Visible}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="InfoNomeMedico" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                
+                
+                <StackLayout x:Name="stackNRE" IsVisible="{Binding Visible}">
+                    <StackLayout Orientation="Horizontal" Padding="0,10,0,0"  VerticalOptions="Center" HorizontalOptions="Center">
+                        <xfx:XfxEntry 
+                        x:Name="entryCodiceRicettaUno"
+                        Placeholder="{Binding PlaceHolderCodiceImpegnativaSarONre}"     
+                        Text="{Binding codiceUno, Mode=TwoWay}" 
+                        ErrorText="{Binding NameTextErrorCodUno}" 
+                        ErrorDisplay="Underline"
+                        WidthRequest="250"
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center"/>
+                        <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_Clicked_1" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Source="info.png" VerticalOptions="Center" WidthRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_1" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+
+                    <StackLayout IsVisible="{Binding IsEnabledCodiceDue}" 
+                                 Orientation="Horizontal" Padding="0,10,0,0" 
+                                 VerticalOptions="Center" 
+                                 HorizontalOptions="Center">
+                        <xfx:XfxEntry 
+                        x:Name="entryCodiceRicettaDue"
+                        Placeholder="Inserisci il 2° codice dell'impegnativa"     
+                        Text="{Binding codiceDue}" 
+                        ErrorText="{Binding NameTextErrorCodDue}" 
+                        ErrorDisplay="Underline"
+                        WidthRequest="250"
+                        HorizontalOptions="Center" 
+                           
+                        VerticalOptions="Center"/>
+                        <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_Clicked_2" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Source="info.png" VerticalOptions="Center" WidthRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Handle_Tapped_2" NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0" IsVisible="{Binding Visible}">
+                    <Image IsEnabled="{Binding IsEnabled}" Source="send.png" WidthRequest="250">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
