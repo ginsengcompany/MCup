@@ -316,8 +316,15 @@ namespace MCup.ModelView
             if (connessione.responseMessage == HttpStatusCode.OK)
             {
                 model.selezionaElemento(response.assistito);
-                codiceUno = response.nre.Substring(0, 5);
-                codiceDue = response.nre.Substring(5);
+                if (response.sar)
+                {
+                    codiceUno = response.nre;
+                }
+                else
+                {
+                    codiceUno = response.nre.Substring(0, 5);
+                    codiceDue = response.nre.Substring(5);
+                }
             }
 
         }
@@ -420,13 +427,14 @@ namespace MCup.ModelView
                     {
                         codiceSar = codiceUno;
                         invioImpegnativa.nre = codiceSar;
+                        invioImpegnativa.sar = true;
                     }
                     else
                     {
                         invioImpegnativa.nre = codiceUno + codiceDue;
+                        invioImpegnativa.sar = false;
 
                     }
-
                     Impegnativa response = await connessione.PostJson(SingletonURL.Instance.getRotte().Ricetta, invioImpegnativa, headers);
                     if (connessione.responseMessage != HttpStatusCode.OK)
                     {

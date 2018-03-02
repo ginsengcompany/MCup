@@ -26,7 +26,7 @@
                             x:Name="entryCodFis"
                             Grid.Column="1" Grid.Row="0"
                             Placeholder="Inserire Username"     
-                            PlaceholderColor="Red"   
+                            PlaceholderColor="#0971B2"   
                             Text="{Binding Username}" 
                             ErrorText="{Binding NameErrorText}" 
                             ErrorDisplay="Underline"
@@ -38,7 +38,7 @@
                             Text="{Binding passWord}" 
                             Placeholder="Inserire Password" 
                             Grid.Column="1" Grid.Row="1"
-                            PlaceholderColor="Red" 
+                            PlaceholderColor="#0971B2" 
                             TextColor="Black"
                             ErrorText="{Binding NameErrorTextPassword}" 
                             ErrorDisplay="Underline"
@@ -54,7 +54,8 @@
                 </Grid>
                
                 <StackLayout Padding="75,0,75,0">
-                    <Button Text="LOGIN" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding LoginIsVisible}" TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="Red"  BorderRadius="20" BorderColor="Red" BorderWidth="3" Command="{Binding effettuaLogin}"/>
+                    <Button Text="LOGIN" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding LoginIsVisible}" 
+                            TextColor="White" FontSize="Medium" FontAttributes="Bold" BackgroundColor="#0971B2"  BorderRadius="20"  BorderWidth="3" Command="{Binding effettuaLogin}"/>
                    <!-- <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -67,7 +68,7 @@
                         </Grid>
                       
                     </StackLayout>-->
-                    <Label Text="Registrati" IsVisible="{Binding SignupIsVisible}" TextColor="Red" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" Margin="10">
+                    <Label Text="Registrati" IsVisible="{Binding SignupIsVisible}" TextColor="#0971B2" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" Margin="10">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>
                         </Label.GestureRecognizers>

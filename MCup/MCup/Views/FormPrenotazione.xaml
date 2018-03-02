@@ -9,7 +9,16 @@
         <ScrollView>
             <StackLayout Orientation="Vertical" Padding="20,20,20,0" >
                 <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
-                <!-- <xfx:XfxComboBox x:Name="ComboNome" ErrorText="{Binding NameTextErrorNome}" ErrorDisplay="Underline" Placeholder="Inserire nome" SortingAlgorithm="{Binding SortingAlgorithm}" ItemsSource="{Binding Contatti}" ItemSelected="XfxComboBox_ItemSelected" Text="{Binding nomeUtente}" WidthRequest="250" VerticalOptions="Center" /> -->
+                <!-- <xfx:XfxComboBox 
+                x:Name="ComboNome" 
+                ErrorText="{Binding NameTextErrorNome}" 
+                ErrorDisplay="Underline" 
+                Placeholder="Inserire nome" 
+                ItemsSource="{Binding Contatti}" 
+                ItemSelected="XfxComboBox_ItemSelected" 
+                Text="{Binding nomeUtente}" 
+                WidthRequest="250"
+                VerticalOptions="Center" /> -->
 
                 <Picker 
                     TextColor="Red" 

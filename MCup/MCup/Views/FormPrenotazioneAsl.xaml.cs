@@ -113,7 +113,7 @@ namespace MCup.Views
         //Funzione chiamata per passare alla pagina VerificaRicetta per visualizzare il contenuto della ricetta all'utente
         public void metodoPush(Impegnativa ricetta, Assistito contatto)
         {
-            Navigation.PushAsync(new VerificaRicetta(ricetta, contatto));
+            Navigation.PushAsync(new VerificaRicettaAsl(ricetta, contatto));
         }
 
         private void Picker_SelectedIndexChanged(object sender, EventArgs e)
@@ -128,14 +128,6 @@ namespace MCup.Views
             pickerContatti.Title = contatto.nomeCompletoConCodiceFiscale;
             form.autoCompila(contatto);
         }
-        /*
-private void XfxComboBox_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-{
-   string x = e.SelectedItem as string;
-   form.autoCompila(x);
-   ComboNome.Unfocus();
-} */
-
 
         private void InfoNomeMedico(object sender, EventArgs e)
         {

@@ -37,6 +37,7 @@ namespace MCup.Model
         public string piuReparti { get; set; }
         public string appuntamentiFuturiEPassati { get; set; }
 
+        public string listaMediciCombo { get; set; }
         public string isAsl { get; set; }
     }
 }

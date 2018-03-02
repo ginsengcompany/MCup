@@ -7,7 +7,7 @@
         <ScrollView>
             <StackLayout Orientation="Vertical" Padding="20,20,20,0" >
                 <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
-                <!-- <xfx:XfxComboBox x:Name="ComboNome" ErrorText="{Binding NameTextErrorNome}" ErrorDisplay="Underline" Placeholder="Inserire nome" SortingAlgorithm="{Binding SortingAlgorithm}" ItemsSource="{Binding Contatti}" ItemSelected="XfxComboBox_ItemSelected" Text="{Binding nomeUtente}" WidthRequest="250" VerticalOptions="Center" /> -->
+                 
 
                 <Picker 
                     TextColor="Red" 
@@ -52,35 +52,7 @@
                         IsVisible="{Binding Visible}"
                         IsEnabled="False"
                         VerticalOptions="Center"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                  
-                        <xfx:XfxEntry 
-                            x:Name="entryNomeDottore"
-                            Grid.Column="0"
-                            Placeholder="Inserisci nome medico"     
-                            Text="{Binding NomeMedico}"
-                            ErrorDisplay="Underline"
-                            PlaceholderColor="Black"
-                            WidthRequest="250"
-                            IsVisible="{Binding Visible}"
-                            VerticalOptions="Center"/>
 
-                    <Image Source="info.png"
-                           Grid.Column="1"
-                               VerticalOptions="Center" 
-                               WidthRequest="30" 
-                               IsVisible="{Binding Visible}">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="InfoNomeMedico" NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </Grid>
-                
-                
                 <StackLayout x:Name="stackNRE" IsVisible="{Binding Visible}">
                     <StackLayout Orientation="Horizontal" Padding="0,10,0,0"  VerticalOptions="Center" HorizontalOptions="Center">
                         <xfx:XfxEntry 

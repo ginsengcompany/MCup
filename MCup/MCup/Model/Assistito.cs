@@ -24,6 +24,7 @@ namespace MCup.Model
         public string nomeCompletoConCodiceFiscale { get; set; }
         public bool AccountPrimario { get; set; } = false;
         public string data_nascita { get; set; }
+        public List<string> listaMedici { get; set; }
 
 
     public Assistito()

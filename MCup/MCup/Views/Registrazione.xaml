@@ -9,7 +9,7 @@
     <ContentPage Padding="20" x:Name="page0">
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout VerticalOptions="StartAndExpand">
-                <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati utente" TextColor="Red"></Label>
+                <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati utente" TextColor="#0971B2"></Label>
 
             </StackLayout>
             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="15" >
@@ -82,7 +82,7 @@
         <StackLayout>
             
             <StackLayout VerticalOptions="Start">
-                <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati anagrafici" TextColor="Red"></Label>
+                <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati anagrafici" TextColor="#0971B2"></Label>
 
             </StackLayout>
             <ScrollView>
@@ -168,7 +168,7 @@
     <ContentPage Padding="20"  x:Name="page3">
         <StackLayout>
             <StackLayout VerticalOptions="StartAndExpand">
-                <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati Utente" TextColor="Red"></Label>
+                <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati Utente" TextColor="#0971B2"></Label>
             </StackLayout>
             <ScrollView>
             <StackLayout VerticalOptions="CenterAndExpand">
@@ -228,7 +228,7 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackLayout Spacing="5" Grid.Column="1" Grid.Row="0"  HorizontalOptions="End" >
-                        <Button Text="Registrati" Command="{Binding registrati}" BackgroundColor="Red" BorderColor="Red" TextColor="White" Margin="15"/>
+                        <Button Text="Registrati" Command="{Binding registrati}" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White" Margin="15"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" Spacing="5"  HorizontalOptions="Start" Grid.Column="0" Grid.Row="0">
                         <StackLayout.GestureRecognizers>
