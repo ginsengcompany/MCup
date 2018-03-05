@@ -41,7 +41,7 @@ namespace MCup.ModelView
         private bool isenabled;//booleano utilizzato per abilitare o meno un elemento nello xaml
         private Login loginPage;//Oggetto del tipo della pagina Login
         private List<Header> listaHeader = new List<Header>();//Lista di header
-        private ImageSource showPasswordImage = "eye_hide.png";//Sorgente da cui andremo a prendere l'immagine dell'occhio per mostrare la password
+        private ImageSource showPasswordImage = "EyePasswordWhite.png";//Sorgente da cui andremo a prendere l'immagine dell'occhio per mostrare la password
         private ImageSource logoOspedale;//Sorgente per il logo della struttura 
 
 
@@ -341,14 +341,14 @@ namespace MCup.ModelView
             {
                 if (ShowPassword == true)
                 {
-                    ShowPasswordImage = "eye.png";
+                    ShowPasswordImage = "EyePasswordWhite.png";
                     ShowPassword = false;
                 }
 
                 else
                 {
                     ShowPassword = true;
-                    ShowPasswordImage = "eye_hide.png";
+                    ShowPasswordImage = "eye.png";
                 }
 
             });

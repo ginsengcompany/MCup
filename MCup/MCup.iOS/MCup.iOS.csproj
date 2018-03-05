@@ -525,6 +525,48 @@
   <ItemGroup>
     <BundleResource Include="Resources\cancella3x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\referti.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\appuntamenti.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contatti.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pagamenti.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\prenota.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\user_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pass_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\passwor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pass_login_curv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\user_login_curv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EyePasswordWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EyePasswordWhite2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EyePasswordWhite3x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

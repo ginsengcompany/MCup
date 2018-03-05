@@ -41,12 +41,13 @@
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal"  Padding="0,0,10,0" BackgroundColor="Red">
+                            <StackLayout Orientation="Horizontal"  Padding="0,0,10,0" BackgroundColor="#003964">
                                 <StackLayout HorizontalOptions="StartAndExpand">
                                     <Label
                                         Text="Impegnativa: "
+                                        
                                         FontAttributes="Italic"
-                                        TextColor="Black"
+                                        TextColor="White"
                                         FontSize="Medium"/>
                                     <Label Text="{Binding LongName}"
                                           FontAttributes="Bold"

@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical" Padding="20,20,20,0" >
-                <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
+                <Label TextColor="#003964" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
                 <!-- <xfx:XfxComboBox 
                 x:Name="ComboNome" 
                 ErrorText="{Binding NameTextErrorNome}" 

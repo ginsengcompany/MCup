@@ -44,7 +44,7 @@
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell Height="23">
-                                <StackLayout BackgroundColor="#ff0000">
+                                <StackLayout BackgroundColor="#003964">
                                     <Label Text="{Binding ShortName}"  
                                            TextColor="White"  
                                            FontSize="Large"
