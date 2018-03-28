@@ -272,7 +272,7 @@ namespace MCup.ModelView
                             if (listaHeader.Count != 0)
                                 listaHeader.Clear();
                             listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-                            listaHeader.Add(new Header("struttura", "030001"));
+                            listaHeader.Add(new Header("struttura", "150021"));
                             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
                             bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot, listaHeader);
                             if (connessione.responseMessage != HttpStatusCode.OK)
@@ -365,7 +365,7 @@ namespace MCup.ModelView
             {
                 listaHeader.Clear();
             }
-            listaHeader.Add(new Header("struttura", "030001"));
+            listaHeader.Add(new Header("struttura", "150021"));
             REST<object, string> connessioneLogo = new REST<object, string>();
             try
             {

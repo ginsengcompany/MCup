@@ -251,7 +251,7 @@ namespace MCup.ModelView
             IsVisible = true;
             IsBusy = true;
             this.prestazioni = prestazioni;
-            headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("struttura", "150021"));
             headers.Add(new Header("dataRicerca", ""));
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             recuperoInformazioni();
