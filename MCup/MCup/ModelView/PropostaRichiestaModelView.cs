@@ -129,7 +129,7 @@ namespace MCup.ModelView
             {
                 return new Command(async (e) =>
                 {
-                    if (impegnativa.classePriorita == "P")
+                    if (impegnativa.classePriorita ==  "P")
                     {
                         IsEnabled = false;
                         propostaRichiesta.visualizzaDatePicker();
