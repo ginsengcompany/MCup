@@ -6,9 +6,7 @@
              Title="Appuntamenti">
     <ContentPage.Content>
         <StackLayout>
-            <Label FormattedText="Seleziona il nominativo di cui vuoi visualizzare gli appuntamenti" 
-                   HorizontalOptions="Center" 
-                   FontSize="Medium"/>
+            <Label TextColor="#003964" Text="APPUNTAMENTI" HorizontalOptions="CenterAndExpand" FontSize="30" FontAttributes="Bold"/>
             <Picker TextColor="Red" 
                     x:Name="pickerContatti"
                     Title="Seleziona il nominativo " 
@@ -27,11 +25,11 @@
                 FontSize="Medium" 
                 FontAttributes="Bold"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" IsVisible="{Binding VisibleSwitch}">
-                <Label Text="Visualizza tutti gli appuntamenti"/>
+                <Label IsVisible="False" Text="Visualizza tutti gli appuntamenti"/>
                 <Switch 
                     IsToggled="False" 
                     Toggled="SwitchVisibleAppuntamentiScaduti"
-                    x:Name="SwitchAppuntamentiPassati"></Switch>
+                    x:Name="SwitchAppuntamentiPassati" IsVisible="False"></Switch>
             </StackLayout>
             <ListView ItemsSource="{Binding Appunt}" 
                       IsGroupingEnabled="True"

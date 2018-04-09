@@ -23,7 +23,7 @@
                 <Picker 
                     TextColor="Red" 
                     x:Name="pickerContatti"
-                    Title="Seleziona il nominativo per cui vuoi prenotare" 
+                    Title="Seleziona il nominativo" 
                     HorizontalOptions="CenterAndExpand" 
                     ItemsSource="{Binding Contatti}" 
                     ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" 
