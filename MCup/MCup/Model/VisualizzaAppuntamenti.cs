@@ -90,6 +90,8 @@ namespace MCup.Model
                     }
                     else
                     {
+                        await App.Current.MainPage.DisplayAlert("Attenzione ",
+                            connessioneAnnullamentoImpegnativa.warning, "OK");
                         App.Current.MainPage = new MenuPrincipale("Appuntamenti");
                     }
                 }

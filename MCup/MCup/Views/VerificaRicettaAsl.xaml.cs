@@ -27,11 +27,13 @@ namespace MCup.Views
         private VerificaRicettaAslModelView ModelViewVerifica;
         private List<Header> headers = new List<Header>();
         private ListView listView = new ListView();
+        private Impegnativa ricetta;
 
         //Costruttore della pagina che inizializza e visualizza le informazioni descritte nel commento della pagina
         public VerificaRicettaAsl(Impegnativa ricetta, Assistito contatto)
         {
             InitializeComponent();
+            this.ricetta = ricetta;
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             ModelViewVerifica = new VerificaRicettaAslModelView(ricetta, this, contatto);
             BindingContext = ModelViewVerifica;
@@ -57,7 +59,7 @@ namespace MCup.Views
             if (responseDisplayAlert)
             {
                 REST<object, string> connessioneAnnullamento = new REST<object, string>();
-                string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
+                string messaggioDiAnnullamento = await connessioneAnnullamento.PostJson(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,ricetta,
                     headers);
                 await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
             }

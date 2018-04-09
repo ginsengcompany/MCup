@@ -245,6 +245,7 @@ namespace MCup.ModelView
         {
             IsEnabled = true;
             this.impegnativa = ricetta;
+            ricetta.assistito = contatto;
             propostaRichiesta = proposta;
             this.contatto = contatto;
             IsVisibleButton = false;
