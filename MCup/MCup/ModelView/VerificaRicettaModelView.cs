@@ -139,6 +139,7 @@ namespace MCup.ModelView
             NomeAssistito = contatto.nome;
             CognomeAssistito = contatto.cognome;
             CodiceRicetta = ricetta.nre;
+            ricetta.assistito = contatto;
             ButtonIsVisible = true;
             prestazioniDaInviare = new List<Prestazione>();
             headers.Add(new Header("struttura", "150021"));
@@ -318,7 +319,12 @@ namespace MCup.ModelView
                     {
                         ButtonIsVisible = false;
                         await App.Current.MainPage.DisplayAlert("Attenzione",
-                            "La struttura non eroga nessuna prestazione contenuta nella ricetta, si prega di annullare l'impegnativa", "OK");
+                            "La struttura non eroga nessuna prestazione contenuta nell'impegnativa, la stessa verrà resa di nuovo disponibile a breve", "OK");
+                        REST<Impegnativa, string> rEST = new REST<Impegnativa, string>();
+                        var response = await rEST.PostJson(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa, ricetta,headers);
+                        await App.Current.MainPage.DisplayAlert("Elaborazione avvenuta",
+                            rEST.warning, "OK");
+                        App.Current.MainPage = new NavigationPage(new MenuPrincipale());
                     }
                 }
                 else
