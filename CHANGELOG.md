@@ -1,6 +1,8 @@
 # Changelog
 
-## [1.0.0] (18-04-18)
+## [Unreleased](https://github.com/ginsengcompany/MCup/compare/v1.0.0...HEAD)
+### Commits
+- Aggiornato changelog [`4633336`](https://github.com/ginsengcompany/MCup/commit/46333362e9da479437becdcfe76444122da59ccb)
 
 ### Commits
 - Aggiunto changelog [`8468380`](https://github.com/ginsengcompany/MCup/commit/846838003787eef78989c67b12824686c4727440)
