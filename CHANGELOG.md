@@ -1,6 +1,9 @@
 # Changelog
 
+## [1.0.0] (18-04-18)
+
 ### Commits
+- Aggiunto changelog [`8468380`](https://github.com/ginsengcompany/MCup/commit/846838003787eef78989c67b12824686c4727440)
 - modificate label [`9eabd05`](https://github.com/ginsengcompany/MCup/commit/9eabd0567f8a6b8827699a0e06028a67547b6718)
 - risolti bug dell&#x27;annullamento della prenotazione sospesa [`c5c0b9f`](https://github.com/ginsengcompany/MCup/commit/c5c0b9f93e422ec9d1e1152c0aa820d72bdbdfce)
 - ho aggiornato il model view [`da1fdf9`](https://github.com/ginsengcompany/MCup/commit/da1fdf98bceee124b205eb8fdf96f462a4560524)
