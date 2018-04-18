@@ -1,9 +1,12 @@
 # Changelog
 
-## [Unreleased](https://github.com/ginsengcompany/MCup/compare/v1.0.0...HEAD)
+## [Unreleased](https://github.com/ginsengcompany/MCup/compare/v1.0.1...HEAD)
+## [v1.0.1](https://github.com/ginsengcompany/MCup/compare/v1.0.0...v1.0.1) - 2018-04-18
 ### Commits
+- Ancora changelog aggiornato [`3492b0c`](https://github.com/ginsengcompany/MCup/commit/3492b0c2a204e36782dea7697425dd34e72947c1)
 - Aggiornato changelog [`4633336`](https://github.com/ginsengcompany/MCup/commit/46333362e9da479437becdcfe76444122da59ccb)
 
+## v1.0.0 - 2018-04-18
 ### Commits
 - Aggiunto changelog [`8468380`](https://github.com/ginsengcompany/MCup/commit/846838003787eef78989c67b12824686c4727440)
 - modificate label [`9eabd05`](https://github.com/ginsengcompany/MCup/commit/9eabd0567f8a6b8827699a0e06028a67547b6718)
