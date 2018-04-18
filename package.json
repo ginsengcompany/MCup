@@ -9,7 +9,6 @@
   },
    "auto-changelog": {
    "template": "keepachangelog",
-   "unreleased": true,
    "commitLimit": false
   }
 }
