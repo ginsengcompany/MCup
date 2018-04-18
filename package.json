@@ -1,0 +1,15 @@
+{
+  "name": "my-awesome-package",
+  "version": "1.0.0",
+  "devDependencies": {
+    "auto-changelog": "*"
+  },
+  "scripts": {
+    "version": "auto-changelog -p && git add CHANGELOG.md"
+  },
+   "auto-changelog": {
+   "template": "keepachangelog",
+   "unreleased": true,
+   "commitLimit": false
+  }
+}
