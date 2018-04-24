@@ -47,5 +47,10 @@ namespace MCup.Views
         {
             await Navigation.PushAsync(new Registrazione()); //Avvia la pagina di registrazione dedicata ai dispositivi Android
         }
+
+        private void richiestaDimenticaPassw(object sender, EventArgs e)
+        {
+            DisplayAlert("Attenzione", "contatta il numero 555-XXX-50MM0", "OK");
+        }
     }
 }

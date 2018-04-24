@@ -171,7 +171,7 @@ namespace MCup.ModelView
                     raggruppaLista();
                 }
             }
-            catch (Exception e)
+            catch (FormatException e)
             {
                 await App.Current.MainPage.DisplayAlert("Attenzione",
                     "connessione non riuscita o codici impegnativa errati", "riprova");

@@ -82,6 +82,11 @@
                             <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>
                         </Label.GestureRecognizers>
                     </Label>
+                    <Label Text="Ho dimenticato la password" IsVisible="{Binding SignupIsVisible}" TextColor="#0971B2" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" Margin="10">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="richiestaDimenticaPassw" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
                     <ActivityIndicator Color="Red" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsVisible}" />
                 </StackLayout>
             </StackLayout>

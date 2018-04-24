@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -22,7 +23,8 @@ namespace MCup.Model
 
         public void Scaduto()
         {
-            DateTime data_appuntamento = Convert.ToDateTime(this[0].dataAppuntamento);
+
+            DateTime data_appuntamento = DateTime.ParseExact(this[0].dataAppuntamento, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime dataOdierna = DateTime.Today;
             if ((data_appuntamento - dataOdierna).TotalDays < 0)
             {

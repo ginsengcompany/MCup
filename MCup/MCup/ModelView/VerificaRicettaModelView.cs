@@ -321,9 +321,9 @@ namespace MCup.ModelView
                         await App.Current.MainPage.DisplayAlert("Attenzione",
                             "La struttura non eroga nessuna prestazione contenuta nell'impegnativa, la stessa verrà resa di nuovo disponibile a breve", "OK");
                         REST<Impegnativa, string> rEST = new REST<Impegnativa, string>();
-                        var response = await rEST.PostJson(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa, ricetta,headers);
-                        await App.Current.MainPage.DisplayAlert("Elaborazione avvenuta",
-                            rEST.warning, "OK");
+                        var response = await rEST.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,headers);
+                        //await App.Current.MainPage.DisplayAlert("Elaborazione avvenuta",
+                          //  rEST.warning, "OK");
                         App.Current.MainPage = new NavigationPage(new MenuPrincipale());
                     }
                 }
