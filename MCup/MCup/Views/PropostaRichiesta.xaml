@@ -42,7 +42,7 @@
                                     <StackLayout Padding="10,0,0,0">
                                         <StackLayout>
                                             <Label Text="Prestazione:"
-                                                   TextColor="Red"
+                                                   TextColor="#0971B2"
                                                    FontSize="Medium"
                                                    VerticalOptions="Start"/>
                                             <Label 
@@ -56,7 +56,7 @@
                                          
                                             <Label 
                                                 Text="Reparto:" 
-                                                TextColor="Red"  
+                                                TextColor="#0971B2"
                                                 VerticalOptions="Start" />
                                             <Label 
                                                 Text="{Binding reparti[0].descrizione}" 
@@ -68,7 +68,7 @@
                                         <StackLayout Orientation="Vertical">
                                             <Label 
                                                 Text="Data dell'appuntamento:" 
-                                                TextColor="Red" 
+                                                TextColor="#0971B2"
                                                 VerticalOptions="Start" />
                                             <Label 
                                                 Text="{Binding dataAppuntamento}" 
@@ -80,7 +80,7 @@
                                         <StackLayout Orientation="Vertical">
                                             <Label 
                                                 Text="Orario dell'appuntamento:"
-                                                TextColor="Red" 
+                                                TextColor="#0971B2"
                                                 VerticalOptions="Start" />
                                             <Label 
                                                 Text="{Binding oraAppuntamento}" 
@@ -92,7 +92,7 @@
                                         <StackLayout Orientation="Vertical">
                                             <Label 
                                                 Text="Nome del medico che effettuerà la visita:" 
-                                                TextColor="Red"
+                                                TextColor="#0971B2"
                                                 VerticalOptions="Start"/>
                                             <Label 
                                                 Text="{Binding reparti[0].nomeMedico}" 
@@ -104,7 +104,7 @@
                                         <StackLayout Orientation="Vertical">
                                             <Label 
                                                 Text="Ubicazione del reparto:" 
-                                                TextColor="Red" 
+                                                TextColor="#0971B2"
                                                 VerticalOptions="Start" />
                                             <Label 
                                                 Text="{Binding reparti[0].ubicazioneReparto}"
@@ -143,14 +143,16 @@
                 <Button Grid.Row="0" 
                         Grid.Column="0"
                         Text="prossima disponibilità" 
-                        TextColor="Red"
+                        TextColor="White"
+                        BackgroundColor="#0971B2"
                         IsEnabled="{Binding IsEnabled}"
                         Command="{Binding cambiaOra}"/>
 
                 <Button Grid.Row="0" 
                         Grid.Column="1"
                         Text="Scegli la data di ricerca" 
-                        TextColor="Red"
+                        TextColor="White"
+                        BackgroundColor="#0971B2"
                         IsEnabled="{Binding IsEnabled}"
                         Command="{Binding cambiaData}"/>
             </Grid>
@@ -169,7 +171,8 @@
                     Text="Conferma Prenotazione" 
                     FontSize="Medium" 
                     FontAttributes="Bold"  
-                    TextColor="Red" 
+                    TextColor="White" 
+                    BackgroundColor="#0971B2"
                     Command="{Binding InvioDatiPerPrenotazione}" 
                     IsEnabled="{Binding IsEnabled}" />
             </StackLayout>
@@ -181,7 +184,8 @@
                 <Button Text="Torna alla home" 
                         FontSize="Medium" 
                         FontAttributes="Bold" 
-                        TextColor="Red"
+                        TextColor="White"
+                        BackgroundColor="#0971B2"
                         Command="{Binding TornaAllaHome}" 
                         IsEnabled="{Binding IsEnabled}"/>
             </StackLayout>

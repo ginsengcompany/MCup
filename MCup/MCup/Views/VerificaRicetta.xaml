@@ -21,19 +21,19 @@
         <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="15">
             <StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="Codice impegnativa:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label Text="Codice impegnativa:" TextColor="#0971B2" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
                     <Label x:Name="codice_ricetta" Text="{Binding CodiceRicetta}" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Medium"/>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="Cognome assistito:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label Text="Cognome assistito:" TextColor="#0971B2" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
                     <Label x:Name="cognome_assistito" Text="{Binding CognomeAssistito}" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Medium"/>
                 </StackLayout>
 
             </StackLayout>
             <StackLayout>
-                <Label Text="Descrizione impegnativa:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
+                <Label Text="Descrizione impegnativa:" TextColor="#0971B2" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
             </StackLayout>
-            <ListView ItemsSource="{Binding ListaPrestazioni}" SeparatorColor="Red" x:Name="lst" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
+            <ListView ItemsSource="{Binding ListaPrestazioni}" SeparatorColor="#0971B2" x:Name="lst" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <customControls:ExtendedViewCell 
@@ -42,7 +42,7 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <StackLayout Grid.Column="0" VerticalOptions="Center">
                                         <Label 
@@ -88,7 +88,8 @@
             <StackLayout BackgroundColor="White" VerticalOptions="End">
                 <Button Text="Continua" 
                         Command="{Binding ContinuaPrenotazione}"  
-                        TextColor="Red" IsVisible="{Binding ButtonIsVisible}" 
+                        TextColor="White" IsVisible="{Binding ButtonIsVisible}" 
+                        BackgroundColor="#0971B2"
                         IsEnabled="{Binding IsEnabled}"/>
             </StackLayout>
         </StackLayout>

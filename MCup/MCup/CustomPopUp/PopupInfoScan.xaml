@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:animations1="clr-namespace:MCup.Animations;assembly=MCup"
+                 xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              x:Class="MCup.CustomPopUp.PopupInfoScan">
       <pages:PopupPage.Animation>
           <animations1:UserAnimation/>
@@ -16,6 +17,12 @@
                      Spacing="3">
           <Image x:Name="imgInfo"
                  HeightRequest="250"/>
+          <Image x:Name="immaginedilogo" Source="logo.png" Margin="0,0,0,15" HorizontalOptions="Center" HeightRequest="200" WidthRequest="400"></Image>
+        <xfx:XfxEntry 
+          Placeholder="Inserisci username" 
+               x:Name="entryUsername"
+               IsVisible="False"/>
+        <Button Text="Invia" BackgroundColor="#0971B2" TextColor="White" x:Name="btnInvio" Clicked="ModificaPassword"></Button>
         </StackLayout>
       </Frame>
     </AbsoluteLayout>

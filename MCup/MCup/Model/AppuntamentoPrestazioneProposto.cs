@@ -14,8 +14,8 @@ namespace MCup.Model
 {
     public class AppuntamentoPrestazioneProposto : Prestazione,INotifyPropertyChanged
     {
-        private Color colore;
-        private Color coloreTesto;
+        private Color colore= Color.FromHex("#0971B2");
+        private Color coloreTesto = Color.White;
 
         public string dataAppuntamento { get; set; }
         public string oraAppuntamento { get; set; }

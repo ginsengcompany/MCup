@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MCup.CustomPopUp;
 using MCup.ModelView;
 using MCup.Service;
+using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 
 /*
@@ -48,9 +50,10 @@ namespace MCup.Views
             await Navigation.PushAsync(new Registrazione()); //Avvia la pagina di registrazione dedicata ai dispositivi Android
         }
 
-        private void richiestaDimenticaPassw(object sender, EventArgs e)
+        private async void richiestaDimenticaPassw(object sender, EventArgs e)
         {
-            DisplayAlert("Attenzione", "contatta il numero 555-XXX-50MM0", "OK");
+            await Navigation.PushPopupAsync(new PopupInfoScan());
+
         }
     }
 }

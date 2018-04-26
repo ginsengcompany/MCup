@@ -24,6 +24,7 @@
                     TextColor="Red" 
                     x:Name="pickerContatti"
                     Title="Seleziona il nominativo" 
+                    WidthRequest="260"
                     HorizontalOptions="CenterAndExpand" 
                     ItemsSource="{Binding Contatti}" 
                     ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" 
