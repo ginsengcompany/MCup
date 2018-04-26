@@ -23,7 +23,7 @@ namespace MCup.ModelView
         private bool isBusy;//Variabile booleana utilizzata per l'activity indicator
         private string nomeAssistito, cognomeAssistito, codiceRicetta;//Variabili utilizzate per il nome cognome e il codice ricetta
         private Impegnativa ricetta;//Oggetto che astrae le informazioni dell'impegnativa
-        private List<Prestazione> prestazioni; //Lista delle prestazioni contenute nella ricetta
+        //private List<Prestazione> prestazioni; //Lista delle prestazioni contenute nella ricetta
         private List<Prestazione> prestazioniErogabili;//Lista che tiene conto delle prestazioni non erogabili dalla struttura
         private bool buttonIsVisible;//Variabile utilizzata per rendere visibile o meno il button
         private VerificaRicetta verifica; //oggetto di tipo Verificaricetta che utilizziamo per richiamare i metodi nella pagina a cui si riferisce il modelview
@@ -139,9 +139,10 @@ namespace MCup.ModelView
             NomeAssistito = contatto.nome;
             CognomeAssistito = contatto.cognome;
             CodiceRicetta = ricetta.nre;
+            ricetta.assistito = contatto;
             ButtonIsVisible = true;
             prestazioniDaInviare = new List<Prestazione>();
-            headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("struttura", "150021"));
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             ingressoPagina();
             AnnullaPrenotazione = new Command(async () =>
@@ -242,11 +243,15 @@ namespace MCup.ModelView
         //Metodo che parte all'ingresso della pagina ed come prima cosa crea una connessione col server e gli passa l'impegnativa cosi da ricevere le prestazioni e i reparti
         private async void ingressoPagina()
         {
-            REST<Impegnativa, List<Prestazione>> connessione = new REST<Impegnativa, List<Prestazione>>();
+            REST<Prestazione, Prestazione> connessione = new REST<Prestazione, Prestazione>();
             List<Header> headers = new List<Header>();
-            headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("struttura", "150021"));
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-            prestazioniErogabili = await connessione.PostJson(SingletonURL.Instance.getRotte().StruttureErogatrici, ricetta, headers);
+            prestazioniErogabili = new List<Prestazione>();
+            for(var i = 0; i < ricetta.prestazioni.Count; i++)
+            {
+                prestazioniErogabili.Add(await connessione.PostJson(SingletonURL.Instance.getRotte().StruttureErogatrici, ricetta.prestazioni[i], headers));
+            }
             if (connessione.responseMessage != HttpStatusCode.OK)
             {
                 await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
@@ -314,7 +319,12 @@ namespace MCup.ModelView
                     {
                         ButtonIsVisible = false;
                         await App.Current.MainPage.DisplayAlert("Attenzione",
-                            "La struttura non eroga nessuna prestazione contenuta nella ricetta", "OK");
+                            "La struttura non eroga nessuna prestazione contenuta nell'impegnativa, la stessa verrà resa di nuovo disponibile a breve", "OK");
+                        REST<Impegnativa, string> rEST = new REST<Impegnativa, string>();
+                        var response = await rEST.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,headers);
+                        //await App.Current.MainPage.DisplayAlert("Elaborazione avvenuta",
+                          //  rEST.warning, "OK");
+                        App.Current.MainPage = new NavigationPage(new MenuPrincipale());
                     }
                 }
                 else

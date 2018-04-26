@@ -34,7 +34,7 @@
                         VerticalOptions="Center">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                            <costomControls:ExtendedViewCell SelectedBackgroundColor="Red">
+                            <costomControls:ExtendedViewCell SelectedBackgroundColor="#0971B2">
                             <ViewCell.View>
                                     <StackLayout  
                                         VerticalOptions="Center" 

@@ -6,157 +6,92 @@
              BackgroundColor="White"
              Title="Appuntamenti">
     <ContentPage.Content>
-        <StackLayout Padding="15">
 
-            <StackLayout VerticalOptions="FillAndExpand">
-                <ListView 
-                Margin="1"
-                ItemsSource="{Binding Appunt}" 
-                BackgroundColor="White" 
-                HasUnevenRows="True"  
-                IsVisible="{Binding Visible}" 
-                SeparatorVisibility="Default"  
-                SeparatorColor="Black">
+        <StackLayout>
+         
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <costomControls:ExtendedViewCell SelectedBackgroundColor="White" >
-                                <ViewCell.View>
-                                    <StackLayout>
-
-                                        <StackLayout HorizontalOptions="FillAndExpand"  
-                                                         VerticalOptions="Start"
-                                                         BackgroundColor="Red"
-                                                         Margin="0,10,0,0">
-                                            <Label 
-                                                       Text="{Binding desprest}" 
-                                                       HorizontalOptions="CenterAndExpand" 
-                                                       HorizontalTextAlignment="Center" 
-                                                       TextColor="White" 
-                                                       FontSize="Medium"
-                                                       FontAttributes="Bold"/>
-                                        </StackLayout>
-                                        <StackLayout >
-
-                                            <StackLayout 
-                                                        Orientation="Vertical"  HorizontalOptions="Center"
-                                                        VerticalOptions="Center">
-                                                <Label 
-                                                            TextColor="Red" 
-                                                            Text="Struttura" 
-                                                            Margin="9,0,0,0" 
-                                                            FontAttributes="Bold" 
-                                                            HorizontalOptions="Center" 
-                                                            FontSize="Medium"/>
-                                                <Label 
-                                                            Text="{Binding reparti[0].nomeStruttura}" 
-                                                            HorizontalOptions="Center" 
-                                                            TextColor="Black" 
-                                                            FontSize="Medium" 
-                                                            FontAttributes="Bold"/>
-                                                <Label Margin="9,0,0,0" 
-                                                               TextColor="Red" 
-                                                               FontAttributes="Bold" 
-                                                               HorizontalTextAlignment="Center" 
-                                                               Text="Data Appuntamento" 
-                                                               HorizontalOptions="Center" 
-                                                               FontSize="Medium"/>
-                                                <Label  
-                                                            Text="{Binding dataAppuntamento}" 
-                                                            HorizontalOptions="Center" 
-                                                            TextColor="Black" 
-                                                            FontAttributes="Bold"
-                                                            FontSize="Medium"/>
-                                                <Label Margin="9,0,0,0" 
-                                                               TextColor="Red" 
-                                                               FontAttributes="Bold"
-                                                               HorizontalTextAlignment="Center" 
-                                                               HorizontalOptions="Center" 
-                                                               Text="Ora Appuntamento" 
-                                                               FontSize="Medium"/>
-                                                <Label 
-                                                            Text="{Binding oraAppuntamento}" 
-                                                            HorizontalOptions="Center" 
-                                                            TextColor="Black" 
-                                                            FontAttributes="Bold"
-                                                            FontSize="Medium"/>
-                                                <Label Margin="9,0,0,0"
-                                                            Text="Nome del medico per la visita:" 
-                                                            TextColor="Red"
-                                                            FontAttributes="Bold"
-                                                            HorizontalTextAlignment="Center" 
-                                                            HorizontalOptions="Center"
-                                                            FontSize="Medium"/>
-                                                <Label 
-                                                            Text="{Binding reparti[0].nomeMedico}" 
-                                                            TextColor="Black" 
-                                                            HorizontalOptions="Center" 
-                                                            FontSize="Medium" 
-                                                            FontAttributes="Bold"/>
-
-                                                <Grid HorizontalOptions="Center">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"></RowDefinition>
-                                                        <RowDefinition Height="Auto"></RowDefinition>
-                                                    </Grid.RowDefinitions>
-
-                                                    <StackLayout HorizontalOptions="Center" Grid.Row="0" >
-                                                        <Label 
-                                                            Text="Ubicazione reparto:" 
-                                                            TextColor="Red" 
-                                                            FontAttributes="Bold"
-                                                            HorizontalTextAlignment="Center"
-                                                            FontSize="Medium"/>
-
-                                                    </StackLayout>
-                                                    <StackLayout 
-                                                                 Orientation="Horizontal" 
-                                                                 Grid.Row="1"
-                                                                 HorizontalOptions="Center">
-
-                                                        <StackLayout
-                                                                HorizontalOptions="Center"
-                                                            Orientation="Horizontal">
-                                                            <Label 
-                                                                    Text="{Binding reparti[0].ubicazioneReparto}" 
-                                                                    TextColor="Black" 
-                                                                    FontSize="Medium" 
-                                                                    FontAttributes="Bold"/>
-                                                            <Image Source="luogo.png"
-                                                                       VerticalOptions="Center"
-                                                                       IsVisible="{Binding reparti[0].visibile}" 
-                                                                       HeightRequest="50" 
-                                                                       >
-                                                                <Image.GestureRecognizers>
-                                                                    <TapGestureRecognizer 
-                                                                            Command="{Binding LuogoUbicazioneReparto}"
-                                                                            CommandParameter="{Binding reparti[0]}"/>
-                                                                </Image.GestureRecognizers>
-                                                            </Image>
-                                                        </StackLayout>
-                                                    </StackLayout>
-                                                </Grid>
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </StackLayout>
-                                </ViewCell.View>
-                            </costomControls:ExtendedViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <Image Source="{Binding LogoStruttura}" 
+                          />
                 <StackLayout 
-                    Padding="10" 
-                    VerticalOptions="End" Orientation="Horizontal" HorizontalOptions="Center">
-                    <Button
-                        Command="{Binding SpostaAppuntamento}"
-                        Text="Sposta Appuntamento"
-                        TextColor="Red"/>
-                    <Button 
-                        Command="{Binding EliminaAppuntamento}"
-                        Text="Elimina Appuntamento" 
-                        TextColor="Red"/>
+                     
+                        Opacity="0.85"
+                        Padding="10,0,10,0"
+                        BackgroundColor="Black"
+                        HeightRequest="70"
+                        Orientation="Horizontal">
+                    <Label Text="ORA: " TextColor="White" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+                    <Label Text="{Binding OraAppuntamento}" VerticalOptions="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" ></Label>
+                    <Label TextColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="{Binding NomeStruttura}" FontSize="Large" FontAttributes="Bold" ></Label>
                 </StackLayout>
-            </StackLayout>
+
+            <ScrollView>
+            <StackLayout>
+                
+                    <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand"  Padding="7,0,0,0">
+                        <Label Text="Prestazione prenotata:" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+                    </StackLayout>
+                    <Label Margin="10,0,0,0" Text="{Binding Titolo}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
+
+                    <StackLayout HorizontalOptions="FillAndExpand"  Padding="7,0,0,0">
+                        <Label Text="Data Appuntamento:" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="Start"/>
+                    </StackLayout>
+                    <Label Margin="10,0,0,0" Text="{Binding DataAppuntamento}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
+
+                    <StackLayout  HorizontalOptions="FillAndExpand"  Padding="7,0,0,0">
+                        <Label Text="Nome medico:" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+                    </StackLayout>
+                    <Label Margin="10,0,0,0" Text="{Binding NomeMedico}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
+
+                    <StackLayout  HorizontalOptions="FillAndExpand"  Padding="7,0,0,0">
+                        <Label Text="Ubicazione Reparto:" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+
+                        <Label Margin="10,0,0,0" Text="{Binding UbicazioneReparto}" TextColor="Black" FontSize="Medium" VerticalOptions="Center" FontAttributes="Italic"></Label>
+
+                        <StackLayout  HorizontalOptions="EndAndExpand" Padding="0,0,10,0">
+                            <Image Source="luogo.png"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding VisibileB}" 
+                           HeightRequest="50">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                Command="{Binding LuogoUbicazioneReparto}"
+                                CommandParameter="{Binding reparti[0]}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </StackLayout>
+
+                      
+                    <StackLayout IsVisible="{Binding StackNoteVisible}"  HorizontalOptions="FillAndExpand" >
+                        
+                        <StackLayout Orientation="Horizontal" BackgroundColor="DimGray" Padding="7,0,0,0">
+                           
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding VisualizzaNote}"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                            <Label Margin="10,0,0,0" Text="Note prestazione" VerticalOptions="Center" TextColor="White" FontAttributes="Bold" HorizontalOptions="Start"></Label>
+                            <Label Text="clicca per vedere le note" VerticalOptions="Center" TextColor="White" FontAttributes="Italic" FontSize="Small" HorizontalOptions="EndAndExpand"></Label>
+                            <Image Source="downArrow.png" HeightRequest="30" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                            <StackLayout IsVisible="{Binding VisibleNote}" 
+                                     BackgroundColor="LightGray" Padding="10,0,10,0">
+
+                                <Label  Text="{Binding Nota}"
+                                    HorizontalTextAlignment="Center"                                    
+                                    TextColor="Black" 
+                                    FontSize="Medium" 
+                                    FontAttributes="Italic"></Label>
+
+                            </StackLayout>
+                    </StackLayout>
+            
+
+
         </StackLayout>
+            </ScrollView>
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

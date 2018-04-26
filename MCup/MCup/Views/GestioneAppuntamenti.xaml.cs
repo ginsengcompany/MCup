@@ -15,7 +15,7 @@ namespace MCup.Views
 	{
 	    private GestioneAppuntamentiModelView form;
 
-		public GestioneAppuntamenti (AppuntamentoProposto appuntamentoSelezionato)
+		public GestioneAppuntamenti (AppuntamentoPrestazioneProposto appuntamentoSelezionato)
 		{
 			InitializeComponent ();
 		    form = new GestioneAppuntamentiModelView(appuntamentoSelezionato,this);

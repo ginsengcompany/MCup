@@ -129,7 +129,7 @@ namespace MCup.ModelView
             {
                 return new Command(async (e) =>
                 {
-                    if (impegnativa.classePriorita == "P")
+                    if (impegnativa.classePriorita ==  "P")
                     {
                         IsEnabled = false;
                         propostaRichiesta.visualizzaDatePicker();
@@ -193,6 +193,8 @@ namespace MCup.ModelView
             }
         }
 
+
+
         //Proprietà riferita al campo IsVisible
         public bool IsVisible
         {
@@ -243,13 +245,14 @@ namespace MCup.ModelView
         {
             IsEnabled = true;
             this.impegnativa = ricetta;
+            ricetta.assistito = contatto;
             propostaRichiesta = proposta;
             this.contatto = contatto;
             IsVisibleButton = false;
             IsVisible = true;
             IsBusy = true;
             this.prestazioni = prestazioni;
-            headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("struttura", "150021"));
             headers.Add(new Header("dataRicerca", ""));
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             recuperoInformazioni();
@@ -291,17 +294,24 @@ namespace MCup.ModelView
         public async Task invioDatiPrenotazione()
         {
             var noteAccettate = true;
-            string note = "";
+            string note = "Prima di continuare prendi visione di tutte le note: " + "\n\n";
+            bool flag = false;
+
+
             for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
             {
                 if (appuntamentoProposto.appuntamenti[i].esitoNote != true && !string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].nota))
                 {
                     noteAccettate = false;
-                    await App.Current.MainPage.DisplayAlert("Attenzione", "Prima di continuare accetta tutte le note: "+"\n" +appuntamentoProposto.appuntamenti[i].desprest,
-                        "ok");
+                    note += appuntamentoProposto.appuntamenti[i].desprest + "\n\n";
+                    appuntamentoProposto.appuntamenti[i].coloreNote=Color.Red;
+                    appuntamentoProposto.appuntamenti[i].coloreTestoNote = Color.White;
+                    flag = true;
                 }
-            
             }
+            if(flag)
+                await App.Current.MainPage.DisplayAlert("Attenzione", note, "ok");
+
             for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
             {
                 if (!string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].nota))

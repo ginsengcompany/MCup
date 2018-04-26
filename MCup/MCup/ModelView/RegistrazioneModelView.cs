@@ -169,15 +169,7 @@ namespace MCup.ModelView
                 nameErrorSesso = value;
             }
         }
-        public Boolean NameErrorStatoCivile //proprietà per il NameErrorStatoCivile
-        {
-            get { return nameErrorStatoCivile; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorStatoCivile = value;
-            }
-        }
+  
         public Boolean NameErrorCodFiscale //proprietà per il NameErrorCodFiscale
         {
             get { return nameErrorCodFiscale; }
@@ -439,7 +431,6 @@ namespace MCup.ModelView
                 //Imposta gli errori ad una stringa vuota
                 NameErrorProvinciaResidenza =
                 NameErrorComuneResidenza =
-                NameErrorStatoCivile =
                 NameErrorTelefono =
                 NameErrorSesso =
                 NameErrorIndirizzo = false;
@@ -485,11 +476,7 @@ namespace MCup.ModelView
                     NameErrorComuneResidenza = true;
                     controllPass = false;
                 }
-                if (string.IsNullOrEmpty(utente.statocivile))
-                {
-                    NameErrorStatoCivile = true;
-                    controllPass = false;
-                }
+         
                 if (string.IsNullOrEmpty(telefono))
                 {
                     NameErrorTelefono = true;

@@ -8,19 +8,29 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical" Padding="20,20,20,0" >
-                <Label TextColor="Red" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
-                <!-- <xfx:XfxComboBox x:Name="ComboNome" ErrorText="{Binding NameTextErrorNome}" ErrorDisplay="Underline" Placeholder="Inserire nome" SortingAlgorithm="{Binding SortingAlgorithm}" ItemsSource="{Binding Contatti}" ItemSelected="XfxComboBox_ItemSelected" Text="{Binding nomeUtente}" WidthRequest="250" VerticalOptions="Center" /> -->
+                <Label TextColor="#003964" Text="PRENOTAZIONE" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold"/>
+                <!-- <xfx:XfxComboBox 
+                x:Name="ComboNome" 
+                ErrorText="{Binding NameTextErrorNome}" 
+                ErrorDisplay="Underline" 
+                Placeholder="Inserire nome" 
+                ItemsSource="{Binding Contatti}" 
+                ItemSelected="XfxComboBox_ItemSelected" 
+                Text="{Binding nomeUtente}" 
+                WidthRequest="250"
+                VerticalOptions="Center" /> -->
 
                 <Picker 
                     TextColor="Red" 
                     x:Name="pickerContatti"
-                    Title="Seleziona il contatto per cui vuoi prenotare" 
+                    Title="Seleziona il nominativo" 
+                    WidthRequest="260"
                     HorizontalOptions="CenterAndExpand" 
                     ItemsSource="{Binding Contatti}" 
                     ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" 
                     VerticalOptions="Center" 
                     SelectedIndexChanged="Picker_SelectedIndexChanged" />
-                <Label TextColor="Black" Text="Seleziona il contatto per continuare" HorizontalTextAlignment="Center" HorizontalOptions="Center"></Label>
+                <Label TextColor="Black" Text="Seleziona il nominativo per continuare" HorizontalTextAlignment="Center" HorizontalOptions="Center"></Label>
 
                 <xfx:XfxEntry 
                     Placeholder="Nome"     

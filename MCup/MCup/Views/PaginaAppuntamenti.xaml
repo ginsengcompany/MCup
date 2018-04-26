@@ -6,12 +6,10 @@
              Title="Appuntamenti">
     <ContentPage.Content>
         <StackLayout>
-            <Label FormattedText="Seleziona il contatto di cui vuoi visualizzare gli appuntamenti" 
-                   HorizontalOptions="Center" 
-                   FontSize="Medium"/>
+            <Label TextColor="#003964" Text="APPUNTAMENTI" HorizontalOptions="CenterAndExpand" FontSize="30" FontAttributes="Bold"/>
             <Picker TextColor="Red" 
                     x:Name="pickerContatti"
-                    Title="Seleziona il contatto " 
+                    Title="Seleziona il nominativo " 
                     HorizontalOptions="CenterAndExpand" 
                     ItemsSource="{Binding Contatti}" 
                     WidthRequest="300"
@@ -27,39 +25,97 @@
                 FontSize="Medium" 
                 FontAttributes="Bold"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" IsVisible="{Binding VisibleSwitch}">
-                <Label Text="Visualizza tutti gli appuntamenti"/>
+                <Label IsVisible="False" Text="Visualizza tutti gli appuntamenti"/>
                 <Switch 
                     IsToggled="False" 
                     Toggled="SwitchVisibleAppuntamentiScaduti"
-                    x:Name="SwitchAppuntamentiPassati"></Switch>
+                    x:Name="SwitchAppuntamentiPassati" IsVisible="False"></Switch>
             </StackLayout>
-           
-            <ListView ItemsSource="{Binding Appuntamenti}" ItemTapped="VaiPaginaAppuntamentiIndettaglio" HasUnevenRows="True">
+            <ListView ItemsSource="{Binding Appunt}" 
+                      IsGroupingEnabled="True"
+                      ItemTapped="VaiPaginaAppuntamentiIndettaglio"
+                      HasUnevenRows="True"
+                      >
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"  Padding="0,0,10,0" BackgroundColor="#003964">
+                                <StackLayout HorizontalOptions="StartAndExpand">
+                                    <Label
+                                        Text="Impegnativa: "
+                                        
+                                        FontAttributes="Italic"
+                                        TextColor="White"
+                                        FontSize="Medium"/>
+                                    <Label Text="{Binding LongName}"
+                                          FontAttributes="Bold"
+                                          TextColor="White"
+                                          FontSize="Large"/>
+                                </StackLayout>
+                                <StackLayout 
+                                    Orientation="Horizontal" 
+                                    HorizontalOptions="EndAndExpand">
+                                    <StackLayout>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                                Command="{Binding EliminaAppuntamento}"/>
+                                        </StackLayout.GestureRecognizers>
+                                        <Label Text="Cancella" 
+                                               IsVisible="{Binding scaduto}"
+                                               FontAttributes="Bold"
+                                               TextColor="White"
+                                               HorizontalOptions="Center"
+                                               FontSize="Medium"
+                                               Margin="0,0,5,0">
+                                          
+                                        </Label>
+                                        <Image Source="cancella.png" 
+                                               HeightRequest="30"
+                                               HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                  
+                                    <StackLayout>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                            Command="{Binding SpostaAppuntamento}"/>
+                                        </StackLayout.GestureRecognizers>
+                                        <Label Text="Sposta"
+                                               IsVisible="{Binding scaduto}"
+                                               FontAttributes="Bold"
+                                               FontSize="Medium"
+                                               TextColor="White"
+                                               HorizontalOptions="Center"
+                                        >
+                                        </Label>
+                                        <Image 
+                                            Source="reply.png"
+                                            HeightRequest="30"
+                                            HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                   
+                                </StackLayout>
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <costomControls:ExtendedViewCell SelectedBackgroundColor="White">
                             <ViewCell.View>
                                 <StackLayout Orientation="Horizontal">
-                                    <Grid HorizontalOptions="FillAndExpand">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                            <ColumnDefinition Width="0.3*"></ColumnDefinition>
-
-                                        </Grid.ColumnDefinitions>
-                                        <StackLayout Grid.Column="0" >
-                                            <Label Text="Data prenotazione:" FontSize="Medium" TextColor="Red" FontAttributes="Bold"></Label>
-                                            <Label Text="{Binding dataPrenotazione}"></Label>
-                                            <Label Text="Codice impegnativa:" FontSize="Medium" TextColor="Red" FontAttributes="Bold"></Label>
-                                            <Label Text="{Binding codiceImpegnativa}"></Label>
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout>
+                                            <Label Text="Prestazione: " TextColor="Red" FontAttributes="Bold"/>
+                                            <Label Text="{Binding desprest}" TextColor="Black" FontAttributes="Italic"/>
                                         </StackLayout>
-                                        <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center" Grid.Column="1" >
-                                            <Image Source="rightArrow.png" VerticalOptions="Center"></Image>
+                                        <StackLayout>
+                                            <Label Text="Data Appuntamento: " TextColor="Red" FontAttributes="Bold"/>
+                                            <Label Text="{Binding dataAppuntamento}" TextColor="Black" FontAttributes="Italic"/>
                                         </StackLayout>
-
-                                    </Grid>
-
+                                    </StackLayout>
+                                    <Image Source="rightArrow.png" HorizontalOptions="EndAndExpand"/>
                                 </StackLayout>
-
                             </ViewCell.View>
                         </costomControls:ExtendedViewCell>
                     </DataTemplate>

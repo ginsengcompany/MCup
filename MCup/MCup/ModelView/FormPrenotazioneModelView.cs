@@ -219,7 +219,7 @@ namespace MCup.ModelView
                 ricetta.codice_uno = value;
                 if (ricetta.codice_uno.Length != 5)
                 {
-                    PlaceHolderCodiceImpegnativaSarONre = "Inserisci il 1° codice Impegnativa";
+                    PlaceHolderCodiceImpegnativaSarONre = "Inserisci il codice Impegnativa";
                     IsEnabledCodiceDue = false;
                 }
                 else
@@ -290,7 +290,7 @@ namespace MCup.ModelView
             utenza = new Assistito();
             ricetta = new InvioRicettaPrenotazione();
             invioImpegnativa = new Impegnativa();
-            headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("struttura", "150021"));
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             model = Model;
             ricetta.codice_uno = "";
@@ -346,8 +346,15 @@ namespace MCup.ModelView
             if (connessione.responseMessage == HttpStatusCode.OK)
             {
                 model.selezionaElemento(response.assistito);
-                codiceUno = response.nre.Substring(0, 5);
-                codiceDue = response.nre.Substring(5);
+                if (response.sar)
+                {
+                    codiceUno = response.nre;
+                }
+                else
+                {
+                    codiceUno = response.nre.Substring(0, 5);
+                    codiceDue = response.nre.Substring(5);
+                }
             }
 
         }
@@ -410,13 +417,15 @@ namespace MCup.ModelView
                     NameTextErrorCodUno = "Il campo è obbligatorio";
                     passControl = false;
                 }
-                else if (ricetta.codice_uno.Length != 5 || ricetta.codice_uno.Length != 15)
+                else if (ricetta.codice_uno.Length != 5 && ricetta.codice_uno.Length != 15)
                 {
                     NameTextErrorCodUno = "Il campo deve contentere un codice impegnativa valido";
                     passControl = false;
                 }
                 else
                     NameTextErrorCodUno = "";
+            if (IsEnabledCodiceDue)
+            {
                 if (string.IsNullOrEmpty(ricetta.codice_due))
                 {
                     NameTextErrorCodDue = "Il campo è obbligatorio";
@@ -429,6 +438,8 @@ namespace MCup.ModelView
                 }
                 else
                     NameTextErrorCodDue = "";
+            }
+                
             
 
 
@@ -446,10 +457,12 @@ namespace MCup.ModelView
                     {
                         codiceSar = codiceUno;
                         invioImpegnativa.nre = codiceSar;
+                        invioImpegnativa.sar = true;
                     }
                     else
                     {
                         invioImpegnativa.nre = codiceUno + codiceDue;
+                        invioImpegnativa.sar = false;
 
                     }
 

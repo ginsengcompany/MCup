@@ -2,11 +2,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MCup.Model;
 using MCup.Service;
 using MCup.Views;
@@ -17,7 +20,7 @@ using Xamarin.Forms;
 
 namespace MCup.ModelView
 {
-    public class PaginaAppuntamentiModelView: INotifyPropertyChanged
+    public class PaginaAppuntamentiModelView : INotifyPropertyChanged
     {
 
 
@@ -31,7 +34,7 @@ namespace MCup.ModelView
         private List<AppuntamentoProposto> appuntamenti = new List<AppuntamentoProposto>();//Lista di appuntamenti utilizzato per creare la listview di appuntamenti da far selezionare all'utente
         private AppuntamentoProposto date = new AppuntamentoProposto();//Oggetto di tipo appuntamento proposto contiene i dati dell'appuntamento
         private Boolean visibileLabel = false;//variabile booleana che setta la visibilità o meno di un elemento nello xaml
-        List<AppuntamentoPrestazioneProposto> appunt = new List<AppuntamentoPrestazioneProposto>();//Lista che servirà per il binding nello xaml
+        private ObservableCollection<VisualizzaAppuntamenti> appunt = new ObservableCollection<VisualizzaAppuntamenti>();//Lista che servirà per il binding nello xaml
         private Boolean visibile = true;//variabile booleana che setta la visibilità o meno di un elemento nello xaml
         private string visi;//variabile  che setta la visibilità o meno di un elemento nello xaml
         private bool visibleSwitch = false;
@@ -40,7 +43,7 @@ namespace MCup.ModelView
 
         #region Proprietà
 
-        public List<AppuntamentoPrestazioneProposto> Appunt//Proprietà riferita al campo Appunt
+        public ObservableCollection<VisualizzaAppuntamenti> Appunt//Proprietà riferita al campo Appunt
         {
             get { return appunt; }
             set
@@ -108,7 +111,6 @@ namespace MCup.ModelView
         }
 
 
-
         #endregion
 
         #region OnPropertyChange
@@ -155,6 +157,10 @@ namespace MCup.ModelView
                 {
                     Visibile = false;
                     VisibileLabel = true;
+                    if (Appunt.Count != 0)
+                    {
+                        Appunt.Clear();
+                    }
                 }
                 else
                 {
@@ -162,14 +168,10 @@ namespace MCup.ModelView
                     Visibile = true;
                     VisibileL = "true";
                     VisibileLabel = false;
-                    foreach (var i in Appuntamenti)
-                    {
-                        Appunt = i.appuntamenti;
-                    }
-
+                    raggruppaLista();
                 }
             }
-            catch (Exception e)
+            catch (FormatException e)
             {
                 await App.Current.MainPage.DisplayAlert("Attenzione",
                     "connessione non riuscita o codici impegnativa errati", "riprova");
@@ -199,11 +201,7 @@ namespace MCup.ModelView
                     Visibile = true;
                     VisibileL = "true";
                     VisibileLabel = false;
-                    foreach (var i in Appuntamenti)
-                    {
-                        Appunt = i.appuntamenti;
-                    }
-
+                    raggruppaLista();
                 }
             }
             catch (Exception e)
@@ -215,13 +213,14 @@ namespace MCup.ModelView
 
 
         //Metodo che implementa il passaggio da una pagina all'altra
-        public async void push(AppuntamentoProposto elementoSelezionato)
+        public async void push(AppuntamentoPrestazioneProposto elementoSelezionato)
         {
             await paginaAppuntamenti.Navigation.PushAsync(new GestioneAppuntamenti(elementoSelezionato));
-            Contatti.Clear();
+           // Contatti.Clear();
             VisibileLabel = false;
         }
 
+      
         //Metodo che tramite una connessione riceve i contatti relativi all'utentenza
         private async void leggiContatti()
         {
@@ -238,6 +237,50 @@ namespace MCup.ModelView
                 Contatti = contatti.OrderBy(o => o.nomeCompletoConCodiceFiscale).ToList();
             }
         }
+
+        private void raggruppaLista()
+        {
+            if (Appunt.Count != 0)
+            {
+                Appunt.Clear();
+            }
+            for (int i = 0; i < Appuntamenti.Count; i++)
+            {/*
+                for (int t = 0; t < Appuntamenti.Count - 1; t++)
+                {
+                    int posmin = t;
+                    for (int k = t + 1; k < Appuntamenti.Count; k++)
+                    {
+                        DateTime date1 = new DateTime(Convert.ToInt32(Appuntamenti[posmin].appuntamenti[0].dataAppuntamento.Substring(6, 4), 10), Convert.ToInt32(Appuntamenti[posmin].appuntamenti[0].dataAppuntamento.Substring(3, 2), 10), Convert.ToInt32(Appuntamenti[posmin].appuntamenti[0].dataAppuntamento.Substring(0, 2), 10));
+                        DateTime date2 = new DateTime(Convert.ToInt32(Appuntamenti[k].appuntamenti[0].dataAppuntamento.Substring(6, 4), 10), Convert.ToInt32(Appuntamenti[k].appuntamenti[0].dataAppuntamento.Substring(3, 2), 10), Convert.ToInt32(Appuntamenti[k].appuntamenti[0].dataAppuntamento.Substring(0, 2), 10));
+                        if (date1.CompareTo(date2) > 0)
+                        {
+                            posmin = k;
+                        }
+                    }
+                    if (posmin != t)
+                    {
+                        AppuntamentoProposto temp = Appuntamenti[t];
+                        Appuntamenti[t] = Appuntamenti[posmin];
+                        Appuntamenti[posmin] = temp;
+                    }
+                }*/
+                VisualizzaAppuntamenti grouped = new VisualizzaAppuntamenti()
+                {
+                    LongName = Appuntamenti[i].codiceImpegnativa,
+                    ShortName = Appuntamenti[i].codiceImpegnativa,
+                    dataEmissioneRicetta = Appuntamenti[i].dataEmissioneRicetta,
+                    contatto = Appuntamenti[i].assistito
+                };
+                for (int j = 0; j < Appuntamenti[i].appuntamenti.Count; j++)
+                {
+                    grouped.Add(Appuntamenti[i].appuntamenti[j]);
+                }
+                grouped.Scaduto();
+                Appunt.Add(grouped);
+            }
+        }
+
         #endregion
 
         #region Costruttore
@@ -248,6 +291,7 @@ namespace MCup.ModelView
             leggiContatti();
             this.paginaAppuntamenti = pagina;
         }
+
 
         #endregion
 

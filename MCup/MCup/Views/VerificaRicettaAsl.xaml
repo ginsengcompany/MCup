@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
+             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+             x:Class="MCup.Views.VerificaRicettaAsl"
+             NavigationPage.HasBackButton="False"
+             Title="Verifica Contenuto Impegnativa">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="AnnullaPrenotazione"
+            Order="Primary" 
+            Text="Annulla" 
+            Command="{Binding AnnullaPrenotazione}"
+            Priority="0"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="15">
+            <StackLayout>
+                <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="Codice impegnativa:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label x:Name="codice_ricetta" Text="{Binding CodiceRicetta}" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Medium"/>
+                </StackLayout>
+                <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="Cognome assistito:" TextColor="Red" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label x:Name="cognome_assistito" Text="{Binding CognomeAssistito}" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Medium"/>
+                </StackLayout>
+                <StackLayout>
+                    <xfx:XfxComboBox 
+                        Placeholder="Inserisci il nome e il cognome del medico"
+                        Text="{Binding NomeMedico}"
+                        ItemsSource="{Binding ListaMedici}"
+                        SortingAlgorithm="{Binding SortMedici}"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Descrizione impegnativa:" TextColor="Red" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"/>
+            </StackLayout>
+            <ListView ItemsSource="{Binding ListaPrestazioni}" SeparatorColor="Red" x:Name="lst" BackgroundColor="White" HasUnevenRows="True" HorizontalOptions="Center" VerticalOptions="Fill">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <customControls:ExtendedViewCell 
+                            SelectedBackgroundColor="White">
+                            <ViewCell.View>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Column="0" VerticalOptions="Center">
+                                        <Label 
+                                            Text="Prestazione" 
+                                            TextColor="Black"  
+                                            FontAttributes="Bold"
+                                            VerticalOptions="Start"
+                                            FontSize="Medium"
+                                            HorizontalTextAlignment="Center" />
+                                        <Label 
+                                            Text="{Binding desprest}" 
+                                            TextColor="Black"  
+                                            FontAttributes="Italic"
+                                            VerticalOptions="Center"
+                                            FontSize="Small"
+                                            HorizontalTextAlignment="Center" />
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1" 
+                                                 x:Name="stk"
+                                                 VerticalOptions="Center">
+                                        <Label 
+                                            Text="Reparto" 
+                                            FontAttributes="Bold" 
+                                            FontSize="Medium" 
+                                            VerticalOptions="Center"
+                                            TextColor="Black"></Label>
+                                        <Picker 
+                                            Title="{Binding title}" 
+                                            TextColor="Black" 
+                                            VerticalOptions="Center"
+                                            IsEnabled="{Binding enabled}"
+                                            SelectedIndex="{Binding defaultReparto}"
+                                            ItemsSource="{Binding reparti}" 
+                                            ItemDisplayBinding="{Binding descrizione}"
+                                            SelectedIndexChanged="Picker_OnSelectedIndexChanged"/>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell.View>
+                        </customControls:ExtendedViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout BackgroundColor="White" VerticalOptions="End">
+                <Button Text="Continua" 
+                        Command="{Binding ContinuaPrenotazione}"  
+                        TextColor="Red" IsVisible="{Binding ButtonIsVisible}" 
+                        IsEnabled="{Binding IsEnabled}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

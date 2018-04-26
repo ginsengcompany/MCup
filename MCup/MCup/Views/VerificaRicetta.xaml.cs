@@ -27,12 +27,16 @@ namespace MCup.Views
         private VerificaRicettaModelView ModelViewVerifica;
         private List<Header> headers= new List<Header>();
         private ListView listView = new ListView();
+        private Impegnativa ricetta;
         
         //Costruttore della pagina che inizializza e visualizza le informazioni descritte nel commento della pagina
         public VerificaRicetta(Impegnativa ricetta, Assistito contatto)
         {
             InitializeComponent();
+            this.ricetta = ricetta;
+            ricetta.assistito = contatto;
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+            headers.Add(new Header("struttura", "150021"));
             ModelViewVerifica = new VerificaRicettaModelView(ricetta, this, contatto);
             BindingContext = ModelViewVerifica;
         }
@@ -56,7 +60,7 @@ namespace MCup.Views
                 "no");
             if (responseDisplayAlert)
             {
-                REST<object, string> connessioneAnnullamento = new REST<object, string>();
+                REST<Impegnativa, string> connessioneAnnullamento = new REST<Impegnativa, string>();
                 string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
                     headers);
                 await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");

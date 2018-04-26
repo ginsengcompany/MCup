@@ -27,18 +27,18 @@ namespace MCup.Views
 		public MenuPrincipale ()
 		{
 			InitializeComponent();
-            listaHeader = new List<Header>();
 		    getLogo();
             inizializzazioneMenu();
 		}
 
 	    private async void getLogo()
 	    {
-	        if (listaHeader.Count != 0)
+	        listaHeader = new List<Header>();
+            if (listaHeader.Count != 0)
 	        {
 	            listaHeader.Clear();
 	        }
-	        listaHeader.Add(new Header("struttura", "030001"));
+	        listaHeader.Add(new Header("struttura", "150021"));
 	        REST<object, string> connessioneLogo = new REST<object, string>();
 	        var logo = await connessioneLogo.getString("http://192.168.125.14:3000/infostruttura/logoStruttura", listaHeader);
 	        Image.Source = Xamarin.Forms.ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(logo)));
@@ -50,6 +50,9 @@ namespace MCup.Views
             inizializzazioneMenu();
             if(scelta.Equals("Contatti"))
                 Detail = new NavigationPage(new ListaContatti());
+            if(scelta.Equals("Appuntamenti"))
+                Detail= new NavigationPage(new PaginaAppuntamenti());
+            getLogo();
         }
         //Metodo che inizializza la MasterDetailPage e che inserisce in essa le pagine a cui è possibile accedere dal menu
         private void inizializzazioneMenu()
@@ -83,7 +86,7 @@ namespace MCup.Views
                 else if (menu.MenuTitle.Equals("Pagamento"))
                 {
                     IsPresented = false;
-                    Detail = new NavigationPage(new Pagamento()); //Avvia la pagina principale
+                   // Detail = new NavigationPage(new Pagamento()); //Avvia la pagina principale
                 }
                 /*  else if (menu.MenuTitle.Equals("Scegli Struttura Preferita"))
                   {

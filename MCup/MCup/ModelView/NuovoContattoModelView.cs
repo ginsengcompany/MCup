@@ -44,7 +44,6 @@ namespace MCup.ModelView
                         nameErrorComuneNascita = false,
                         nameErrorProvinciaResidenza = false,
                         nameErrorComuneResidenza = false,
-                        nameErrorStatoCivile=false,
                         nameErrorTelefono = false,
                         nameErrorSesso = false,
                         nameErrorCodFiscale = false;
@@ -130,15 +129,7 @@ namespace MCup.ModelView
                 nameErrorSesso = value;
             }
         }
-        public Boolean NameErrorStatoCivile //proprietà per il NameErrorStatoCivile
-        {
-            get { return nameErrorStatoCivile; }
-            set
-            {
-                OnPropertyChanged();
-                nameErrorStatoCivile = value;
-            }
-        }
+
         public Boolean NameErrorCodFiscale //proprietà per il NameErrorCodFiscale
         {
             get { return nameErrorCodFiscale; }
@@ -312,7 +303,6 @@ namespace MCup.ModelView
                 NameErrorComuneNascita =
                 NameErrorProvinciaResidenza =
                 NameErrorComuneResidenza =
-                NameErrorStatoCivile =
                 NameErrorTelefono =
                 NameErrorSesso =
                 NameErrorCodFiscale = false;
@@ -376,11 +366,7 @@ namespace MCup.ModelView
                     NameErrorComuneResidenza = true;
                     controllPass = false;
                 }
-                if (string.IsNullOrEmpty(contatto.statocivile))
-                {
-                    NameErrorStatoCivile = true;
-                    controllPass = false;
-                }
+     
                 if (string.IsNullOrEmpty(telefono))
                 {
                     NameErrorTelefono = true;

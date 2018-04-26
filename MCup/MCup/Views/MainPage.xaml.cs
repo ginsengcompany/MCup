@@ -26,10 +26,23 @@ namespace MCup.Views
             tapIconaPagamenti.IsEnabled = false;
         }
         //Metodo per avviare la page dell'icona Prenotazioni
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             disableMultiTouch();
-            Navigation.PushAsync(new FormPrenotazione(false));
+            bool controllo = await ControlloAsl();
+            if(controllo)
+           await Navigation.PushAsync(new FormPrenotazioneAsl(false));
+            else
+               await Navigation.PushAsync(new FormPrenotazione(false));
+        }
+
+       private async Task<bool> ControlloAsl()
+        {
+            REST<object, bool> connessioneControlloAsl = new REST<object, bool>();
+            List<Header> listaheaders = new List<Header>();
+            listaheaders.Add(new Header("struttura", "150021"));
+            bool controllo = await connessioneControlloAsl.GetSingleJson(SingletonURL.Instance.getRotte().isAsl,listaheaders);
+            return controllo;
         }
 
         //Metodo per avviare la page dell'icona Appuntamenti

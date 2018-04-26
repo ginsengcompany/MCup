@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -38,9 +39,12 @@ namespace MCup.ModelView
         //Oggetto che conterrà le informazioni dell'appuntamento selezionato dall'utente
         private AppuntamentoProposto appuntamentoSelezionato = new AppuntamentoProposto();
 
+        private AppuntamentoPrestazioneProposto appuntamentoSelezionatoProposto;
+
         //Booleano che renderà visibile o non la label di informazione sulla presenza o meno degli appuntamenti
         private Boolean visibileLabel = false;
 
+        private string nota;
         //Lista di header
         private List<Header> headers = new List<Header>();
 
@@ -51,45 +55,107 @@ namespace MCup.ModelView
         //Booleano di controllo per la visibilità degli elementi nello xaml
         private Boolean visibile = true;
 
+        private Boolean stackNoteVisible = false;
+        private Boolean visibileB = true;
+        private Boolean visibleNote = false;
+        public ICommand VisualizzaNote { protected set; get; }
+
+        private ImageSource logoOspedale;
         //Variabile usata per la visibilità degli elementi nello xaml
-        private string visi;
+        private string visi, desprest, nomeStruttura, dataAppuntamento, oraAppuntamento, nomeMedico, ubicazioneReparto;
 
         #endregion
 
         #region ProprietaGetSet
 
         //Comando che richiama il metodo dell'eliminazione di un appuntamento
-        public ICommand EliminaAppuntamento
-        {
-            get
-            {
-                return new Command(async () =>
-                {
-                    await EliminazioneAppuntamento();
-                });
-            }
-        }
 
-        //Comando che richiama il metodo dello spostamento di un appuntamento
-        public ICommand SpostaAppuntamento
+        public Boolean VisibleNote
         {
-            get
-            {
-                return new Command(async () =>
-                {
-                    await SpostaAppuntamentoMethod();
-                });
-            }
-        }
-
-        //Proprietà che conterrà gli appuntamenti dell'utente selezionato
-        public List<AppuntamentoPrestazioneProposto> Appunt
-        {
-            get { return appunt; }
+            get { return visibleNote; }
             set
             {
                 OnPropertyChanged();
-                appunt = value;
+                visibleNote = value;
+            }
+        }
+
+        public Boolean StackNoteVisible
+        {
+            get { return stackNoteVisible; }
+            set
+            {
+                OnPropertyChanged();
+                stackNoteVisible = value;
+            }
+        }
+
+        public ImageSource LogoStruttura
+        {
+            get { return logoOspedale; }
+            set
+            {
+                OnPropertyChanged();
+                logoOspedale = value;
+            }
+        }
+        public string Titolo
+        {
+            get { return desprest; }
+            set
+            {
+                OnPropertyChanged();
+                desprest = value;
+            }
+        }
+
+        public string NomeStruttura
+        {
+            get { return nomeStruttura; }
+            set
+            {
+                OnPropertyChanged();
+                nomeStruttura = value;
+            }
+        }
+
+        public string DataAppuntamento
+        {
+            get { return dataAppuntamento; }
+            set
+            {
+                OnPropertyChanged();
+                dataAppuntamento = value;
+            }
+        }
+
+        public string OraAppuntamento
+        {
+            get { return oraAppuntamento; }
+            set
+            {
+                OnPropertyChanged();
+                oraAppuntamento = value;
+            }
+        }
+
+        public string NomeMedico
+        {
+            get { return nomeMedico; }
+            set
+            {
+                OnPropertyChanged();
+                nomeMedico = value;
+            }
+        }
+
+        public string UbicazioneReparto
+        {
+            get { return ubicazioneReparto; }
+            set
+            {
+                OnPropertyChanged();
+                ubicazioneReparto = value;
             }
         }
 
@@ -115,6 +181,15 @@ namespace MCup.ModelView
             }
         }
 
+        public Boolean VisibileB
+        {
+            get { return visibileB; }
+            set
+            {
+                OnPropertyChanged();
+                visibileB = value;
+            }
+        }
         //Proprietà che verrà richiamata nel momento in cui abbiamo bisogno di rendere visibile o meno un'elemento nello xaml
 
         public Boolean VisibileLabel
@@ -127,134 +202,118 @@ namespace MCup.ModelView
             }
         }
 
-        //Proprietà che verrà usata per il risultato della connessione al server e verrà riempita degli appuntamenti dell'utente
-
-        public List<AppuntamentoProposto> Appuntamenti
+        public string Nota
         {
-            get { return appuntamenti; }
+            get { return nota; }
             set
             {
                 OnPropertyChanged();
-                appuntamenti = value;
+                nota = value;
             }
         }
-
         #endregion
 
         #region Metodi
 
-        //Metodo che implementa l'eliminazione di un appuntamento
-        public async Task EliminazioneAppuntamento()
+       
+
+        private async void RicezioneLogo()
         {
-            var messDisplay = "";
-            DateTime dataEmissione = Convert.ToDateTime(appuntamentoSelezionato.dataEmissioneRicetta);
-            DateTime dataOdierna = DateTime.Today;
-            if ((dataEmissione - dataOdierna).TotalDays < 30)
+            if (headers.Count != 0)
             {
-                messDisplay = "Sei sicuro di voler annullare la prenotazione?\nse confermi non sarà più possibile prenotare con questa impegnativa, inquanto la data di emissione dell'impegnativa ha superato i 30 giorni utili per utilizzarla";
+                headers.Clear();
             }
-            else
-                messDisplay = "Sei sicuro di voler annullare la prenotazione?";
-            var esitoDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione", messDisplay
-                , "si", "no");
-            REST<AppuntamentoProposto, ResponseAnnullaImpegnativa> connessioneAnnullamentoImpegnativa = new REST<AppuntamentoProposto, ResponseAnnullaImpegnativa>();
-            List<Header> headers = new List<Header>();
-            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-            if (esitoDisplayAlert)
-            {
-                try
-                {
-                    ResponseAnnullaImpegnativa response = await connessioneAnnullamentoImpegnativa.PostJson(SingletonURL.Instance.getRotte().annullaImpegnativa,
-                                 appuntamentoSelezionato, headers);
-                    if (connessioneAnnullamentoImpegnativa.responseMessage != HttpStatusCode.OK)
-                    {
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamentoImpegnativa.responseMessage, connessioneAnnullamentoImpegnativa.warning, "OK");
-                    }
-                    else
-                    {
-                        pagina.PopAsync();
-                    }
-                }
-                catch (Exception)
-                {
-
-                    await App.Current.MainPage.DisplayAlert("Mcup", "Connessione non riuscita", "ok");
-
-                }
-
-            }
-
-        }
-
-        //Metodo che implementa lo spostamento di un appuntamento
-        public async Task SpostaAppuntamentoMethod()
-        {
+            headers.Add(new Header("struttura", "150021"));
+            REST<object, string> connessioneLogo = new REST<object, string>();
             try
             {
-                REST<object, string> connessioneSpostamento = new REST<object, string>();
-                string messaggioDalServer = await connessioneSpostamento.getString(SingletonURL.Instance.getRotte().spostamentoPrenotazione,
-                        headers);
-                if (connessioneSpostamento.responseMessage != HttpStatusCode.OK)
-                {
-                    await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneSpostamento.responseMessage, connessioneSpostamento.warning, "OK");
-                }
-                else
-                {
-                    await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDalServer, "ok");
-                }
-
+                var logo = await connessioneLogo.getString("http://192.168.125.14:3000/infostruttura/logoStruttura", headers);
+                LogoStruttura = Xamarin.Forms.ImageSource.FromStream(
+                    () => new MemoryStream(Convert.FromBase64String(logo)));
             }
             catch (Exception)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita", "ok");
+                await App.Current.MainPage.DisplayAlert("Attenzione", "errore nel prelievo del logo struttura", "ok");
             }
-
         }
-
-        //Metodo che tramite una connessione invia al server i dati dell'Utente
-        public async Task invioDatiAssistito()
+        public void IngressoPagina()
         {
-            try
+            RicezioneLogo();
+            Titolo = appuntamentoSelezionatoProposto.desprest;
+            UbicazioneReparto = appuntamentoSelezionatoProposto.reparti[0].ubicazioneReparto;
+            NomeStruttura = appuntamentoSelezionatoProposto.reparti[0].nomeStruttura;
+            DataAppuntamento = appuntamentoSelezionatoProposto.dataAppuntamento;
+            OraAppuntamento = appuntamentoSelezionatoProposto.oraAppuntamento;
+            NomeMedico = appuntamentoSelezionatoProposto.reparti[0].nomeMedico;
+            if (appuntamentoSelezionatoProposto.nota == null)
             {
-                for (int i = 0; i < appuntamentoSelezionato.appuntamenti.Count; i++)
-                {
-                    if (string.IsNullOrEmpty(appuntamentoSelezionato.appuntamenti[i].reparti[0].latitudine) ||
-                        string.IsNullOrEmpty(appuntamentoSelezionato.appuntamenti[i].reparti[0].longitudine))
-                        appuntamentoSelezionato.appuntamenti[i].reparti[0].visibile = false;
-                }
-                Appunt = appuntamentoSelezionato.appuntamenti;
-                if (Appuntamenti.Count == 0)
-                {
-                    Visibile = false;
-                    VisibileLabel = true;
-                }
-                else
-                {
-                    Visibile = true;
-                    VisibileL = "true";
-                    VisibileLabel = false;
-                }
+                StackNoteVisible = false;
             }
-            catch (Exception e)
+            else
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione",
-                    "connessione non riuscita o codici impegnativa errati", "riprova");
+                StackNoteVisible = true;
+                Nota = appuntamentoSelezionatoProposto.nota;
+                VisualizzaNote = new Command(async () =>
+                {
+                    if(VisibleNote==false)
+                    VisibleNote = true;
+                    else
+                        VisibleNote = false;
+                });
+            }
+
+          
+
+                if (string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].latitudine) || string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].longitudine))
+                VisibileB = false;
+        }
+
+        public ICommand LuogoUbicazioneReparto
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                   await RiceviLuogo(appuntamentoSelezionatoProposto.reparti[0]);
+                });
             }
         }
 
-        
+        private async Task RiceviLuogo(Reparto reparto)
+        {
+            string url;
+            var locator = CrossGeolocator.Current;
+            var position = await locator.GetLastKnownLocationAsync();
+            if (position != null)
+            {
+
+                url = string.Format(
+                    "https://www.google.com/maps/dir/?api=1&origin={0},{1}&destination={2},{3}&travelmode=car",
+                    position.Latitude.ToString().Replace(',', '.'), position.Longitude.ToString().Replace(',', '.'),
+                    reparto.latitudine, reparto.longitudine);
+                Device.OpenUri(new Uri(url));
+            }
+            else
+            {
+                url = string.Format("https://www.google.com/maps/?q={0},{1}", reparto.latitudine, reparto.longitudine);
+                Device.OpenUri(new Uri(url));
+            }
+
+        }
         #endregion
 
         #region Costruttore
 
         //Costruttore
-        public GestioneAppuntamentiModelView(AppuntamentoProposto appuntamentoSelezionato, GestioneAppuntamenti page)
+        public GestioneAppuntamentiModelView(AppuntamentoPrestazioneProposto appuntamentoSelezionato, GestioneAppuntamenti page)
         {
             VisibileL = "false";
-            headers.Add(new Header("struttura", "030001"));
+            headers.Add(new Header("struttura", "150021"));
             this.pagina = page;
-            this.appuntamentoSelezionato = appuntamentoSelezionato;
-            invioDatiAssistito();
+            
+            this.appuntamentoSelezionatoProposto = appuntamentoSelezionato;
+          //  invioDatiAssistito();
+          IngressoPagina();
         }
 
 

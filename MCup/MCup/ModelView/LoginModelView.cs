@@ -41,7 +41,7 @@ namespace MCup.ModelView
         private bool isenabled;//booleano utilizzato per abilitare o meno un elemento nello xaml
         private Login loginPage;//Oggetto del tipo della pagina Login
         private List<Header> listaHeader = new List<Header>();//Lista di header
-        private ImageSource showPasswordImage = "eye_hide.png";//Sorgente da cui andremo a prendere l'immagine dell'occhio per mostrare la password
+        private ImageSource showPasswordImage = "EyePasswordWhite.png";//Sorgente da cui andremo a prendere l'immagine dell'occhio per mostrare la password
         private ImageSource logoOspedale;//Sorgente per il logo della struttura 
 
 
@@ -272,7 +272,7 @@ namespace MCup.ModelView
                             if (listaHeader.Count != 0)
                                 listaHeader.Clear();
                             listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-                            listaHeader.Add(new Header("struttura", "030001"));
+                            listaHeader.Add(new Header("struttura", "150021"));
                             REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
                             bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot, listaHeader);
                             if (connessione.responseMessage != HttpStatusCode.OK)
@@ -341,14 +341,14 @@ namespace MCup.ModelView
             {
                 if (ShowPassword == true)
                 {
-                    ShowPasswordImage = "eye.png";
+                    ShowPasswordImage = "EyePasswordWhite.png";
                     ShowPassword = false;
                 }
 
                 else
                 {
                     ShowPassword = true;
-                    ShowPasswordImage = "eye_hide.png";
+                    ShowPasswordImage = "eye.png";
                 }
 
             });
@@ -365,7 +365,7 @@ namespace MCup.ModelView
             {
                 listaHeader.Clear();
             }
-            listaHeader.Add(new Header("struttura", "030001"));
+            listaHeader.Add(new Header("struttura", "150021"));
             REST<object, string> connessioneLogo = new REST<object, string>();
             try
             {
