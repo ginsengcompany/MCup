@@ -157,14 +157,13 @@ namespace MCup.ModelView
                             headers);
                     if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
                     {
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, connessioneAnnullamento.warning, "OK");
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, messaggioDiAnnullamento, "OK");
                     }
                     else
                     {
                         await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
                         App.Current.MainPage = new MenuPrincipale();
                     }
-
                 }
             });
             ContinuaPrenotazione = new Command(async () =>

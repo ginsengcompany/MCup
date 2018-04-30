@@ -7,19 +7,19 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar SearchCommand="{Binding searchContacts}" TextColor="Black" Text="{Binding TextSearch}" Placeholder="Cerca" HorizontalOptions="FillAndExpand" BackgroundColor="LightGray" />
-                <StackLayout BackgroundColor="LightGray" Orientation="Vertical">
-                <Label Text="Profilo Personale" TextColor="Black"  FontSize="Large" HorizontalOptions="Center" />
+            <SearchBar SearchCommand="{Binding searchContacts}" TextColor="Black" Text="{Binding TextSearch}" Placeholder="Cerca" HorizontalOptions="FillAndExpand" BackgroundColor="#6C94B2" />
+            <StackLayout BackgroundColor="#6C94B2" Orientation="Vertical">
+                <Label Text="Profilo Personale" TextColor="White" Margin="5,0,0,0" FontSize="Large" HorizontalOptions="Start" />
             </StackLayout>
             <StackLayout BackgroundColor="White" Orientation="Horizontal">
-                <Label x:Name="MioContatto" Margin="10,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black" Text="{Binding PrimoNome}" FontSize="Large" FontAttributes="Italic"/>
+                <Label x:Name="MioContatto" Margin="10,0,0,0" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black" Text="{Binding PrimoNome}" FontSize="Large" />
                 <Image Source="rightArrow.png" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="40" HeightRequest="40"/>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding MioContattoPersonale}" NumberOfTapsRequired="1"></TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
             </StackLayout>
-            <StackLayout BackgroundColor="LightGray" Orientation="Vertical">
-                <Label Text="Contatti" TextColor="Black" FontSize="Large" HorizontalOptions="Center" />
+            <StackLayout BackgroundColor="#6C94B2" Orientation="Vertical">
+                <Label Text="Contatti" TextColor="White" FontSize="Large" Margin="5,0,0,0" HorizontalOptions="Start" />
             </StackLayout>
             <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <ListView x:Name="listacontatti" HeaderTemplate="{Binding LongName}" 
@@ -33,7 +33,7 @@
                             <costomControls:ExtendedViewCell SelectedBackgroundColor="White">
                                 <ViewCell.View>
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding nome}" Margin="10,0,0,0" VerticalOptions="Center" FontSize="Medium" TextColor="#CC0000" FontAttributes="Italic"/>
+                                        <Label Text="{Binding nome}" Margin="10,0,0,0" VerticalOptions="Center" FontSize="Medium" TextColor="#CC0000" />
                                         <Label Text="{Binding cognome}" VerticalOptions="Center" FontSize="Small" TextColor="Black"/>
                                         <Image Source="rightArrow.png" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="40" HeightRequest="40"/>
                                     </StackLayout>

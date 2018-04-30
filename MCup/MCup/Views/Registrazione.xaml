@@ -22,7 +22,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                        <Image Source="user.png"  VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="50" WidthRequest="50" Grid.Column="0" Grid.Row="0"></Image>
+                        <Image Source="user.png"  VerticalOptions="Center"  HeightRequest="50" WidthRequest="50" Grid.Column="0" Grid.Row="0"></Image>
                    
                     <StackLayout Grid.Column="1" Grid.Row="0" VerticalOptions="Center">
 
@@ -59,7 +59,12 @@
                             <RowDefinition Height="*"></RowDefinition>
 
                         </Grid.RowDefinitions>
-                   <Image Source="passwor.png" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"></Image>
+                   <Image Source="passwor.png" 
+                          Grid.Column="0" 
+                          Grid.Row="0" 
+                          VerticalOptions="Center" 
+                          HeightRequest="50" 
+                          WidthRequest="50"/>
                         <StackLayout  Grid.Column="1"
                                       Grid.Row="0" VerticalOptions="Center">
                            <Label Text="Password"

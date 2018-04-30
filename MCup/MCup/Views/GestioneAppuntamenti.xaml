@@ -10,15 +10,14 @@
         <StackLayout>
          
 
-                <Image Source="{Binding LogoStruttura}" 
-                          />
+                <Image Source="{Binding LogoStruttura}"/>
                 <StackLayout 
-                     
                         Opacity="0.85"
                         Padding="10,0,10,0"
-                        BackgroundColor="Black"
+                        BackgroundColor="#003964"
                         HeightRequest="70"
                         Orientation="Horizontal">
+                    
                     <Label Text="ORA: " TextColor="White" VerticalOptions="Center" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start"></Label>
                     <Label Text="{Binding OraAppuntamento}" VerticalOptions="Center" TextColor="White" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" ></Label>
                     <Label TextColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="{Binding NomeStruttura}" FontSize="Large" FontAttributes="Bold" ></Label>
@@ -65,8 +64,8 @@
 
                       
                     <StackLayout IsVisible="{Binding StackNoteVisible}"  HorizontalOptions="FillAndExpand" >
-                        
-                        <StackLayout Orientation="Horizontal" BackgroundColor="DimGray" Padding="7,0,0,0">
+
+                        <StackLayout Orientation="Horizontal" BackgroundColor="#6C94B2" Padding="7,0,0,0">
                            
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding VisualizzaNote}"></TapGestureRecognizer>
@@ -76,7 +75,7 @@
                             <Image Source="downArrow.png" HeightRequest="30" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                             <StackLayout IsVisible="{Binding VisibleNote}" 
-                                     BackgroundColor="LightGray" Padding="10,0,10,0">
+                                     BackgroundColor="#6C94B2" Padding="10,0,10,0">
 
                                 <Label  Text="{Binding Nota}"
                                     HorizontalTextAlignment="Center"                                    

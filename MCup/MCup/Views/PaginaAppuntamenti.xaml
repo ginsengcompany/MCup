@@ -39,7 +39,7 @@
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal"  Padding="0,0,10,0" BackgroundColor="#003964">
+                            <StackLayout Orientation="Horizontal"  Padding="10,0,10,0" BackgroundColor="#003964">
                                 <StackLayout HorizontalOptions="StartAndExpand">
                                     <Label
                                         Text="Impegnativa: "
@@ -104,7 +104,7 @@
                         <costomControls:ExtendedViewCell SelectedBackgroundColor="White">
                             <ViewCell.View>
                                 <StackLayout Orientation="Horizontal">
-                                    <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Vertical" Padding="10,0,0,0">
                                         <StackLayout>
                                             <Label Text="Prestazione: " TextColor="Red" FontAttributes="Bold"/>
                                             <Label Text="{Binding desprest}" TextColor="Black" FontAttributes="Italic"/>

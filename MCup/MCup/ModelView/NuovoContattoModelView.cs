@@ -152,7 +152,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                contatto.codice_fiscale = value.ToUpper();
+                contatto.codice_fiscale = value;
             }
         }
 
@@ -162,7 +162,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                contatto.comune_residenza = value.ToUpper();
+                contatto.comune_residenza = value;
             }
         }
 
@@ -172,7 +172,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                contatto.telefono = value.ToUpper();
+                contatto.telefono = value;
             }
         }
 
@@ -192,7 +192,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                contatto.nome = value.ToUpper();
+                contatto.nome = value;
             }
         }
 
@@ -202,7 +202,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                contatto.cognome = value.ToUpper();
+                contatto.cognome = value;
             }
         }
 
@@ -232,7 +232,7 @@ namespace MCup.ModelView
             set
             {
                 OnPropertyChanged();
-                contatto.luogo_nascita = value.ToUpper();
+                contatto.luogo_nascita = value;
             }
         }
 

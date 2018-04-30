@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MCup.Views;
@@ -268,7 +269,7 @@ namespace MCup.ModelView
                         headers);
                     if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
                     {
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, connessioneAnnullamento.warning, "OK");
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, messaggioDiAnnullamento, "OK");
                     }
                     else
                     {
@@ -439,6 +440,26 @@ namespace MCup.ModelView
                     await App.Current.MainPage.DisplayAlert("Attenzione",
                         "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "ok");
                 IsBusyV = false;
+                for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                {
+                    if (appuntamentoProposto.appuntamenti[i].dataAppuntamento.Length < 10)
+                    {
+                        DateTime dataTemp;
+                        if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{1}/\d{1}/\d{4}"))
+                        {
+                            dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(4)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                        }
+                        else if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{2}/\d{1}/\d{4}"))
+                        {
+                            dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(3, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 2)));
+                        }
+                        else
+                        {
+                            dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                        }
+                        appuntamentoProposto.appuntamenti[i].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
+                    }
+                }
                 ListPrenotazioni = appuntamentoProposto.appuntamenti;
             }
 
