@@ -16,7 +16,7 @@
             Command="{Binding AnnullaPrenotazione}"
             Priority="0"/>
     </ContentPage.ToolbarItems>
-   
+
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White" Padding="15">
             <StackLayout>
@@ -25,7 +25,7 @@
                     <Label x:Name="codice_ricetta" Text="{Binding CodiceRicetta}" TextColor="Black" HorizontalOptions="Center" FontAttributes="Italic" FontSize="Medium"/>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <Label Text="Cognome assistito:" TextColor="#0971B2" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label Text="Nome e cognome assistito:" TextColor="#0971B2" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
                     <Label x:Name="cognome_assistito" Text="{Binding CognomeAssistito}" TextColor="Black" FontAttributes="Italic" HorizontalOptions="Center" FontSize="Medium"/>
                 </StackLayout>
 
@@ -39,46 +39,24 @@
                         <customControls:ExtendedViewCell 
                             SelectedBackgroundColor="White">
                             <ViewCell.View>
-                                <Grid>
+                                <Grid Padding="15" VerticalOptions="Start" RowSpacing="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <StackLayout Grid.Column="0" VerticalOptions="Center">
-                                        <Label 
-                                            Text="Prestazione" 
-                                            TextColor="Black"  
-                                            FontAttributes="Bold"
-                                            VerticalOptions="Start"
-                                            FontSize="Medium"
-                                            HorizontalTextAlignment="Center" />
-                                        <Label 
-                                            Text="{Binding desprest}" 
-                                            TextColor="Black"  
-                                            FontAttributes="Italic"
-                                            VerticalOptions="Center"
-                                            FontSize="Small"
-                                            HorizontalTextAlignment="Center" />
-                                    </StackLayout>
-                                    <StackLayout Grid.Column="1" 
-                                                 x:Name="stk"
-                                                 VerticalOptions="Center">
-                                        <Label 
-                                            Text="Reparto" 
-                                            FontAttributes="Bold" 
-                                            FontSize="Medium" 
-                                            VerticalOptions="Center"
-                                            TextColor="Black"></Label>
-                                        <Picker 
-                                            Title="{Binding title}" 
-                                            TextColor="Black" 
-                                            VerticalOptions="Center"
-                                            IsEnabled="{Binding enabled}"
-                                            SelectedIndex="{Binding defaultReparto}"
-                                            ItemsSource="{Binding reparti}" 
-                                            ItemDisplayBinding="{Binding descrizione}"
-                                            SelectedIndexChanged="Picker_OnSelectedIndexChanged"/>
-                                    </StackLayout>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25"></RowDefinition>
+                                        <RowDefinition Height="25"></RowDefinition>
+                                        <RowDefinition Height="25"></RowDefinition>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Prestazione" TextColor="Black" FontAttributes="Bold" VerticalOptions="Start" 
+                                           FontSize="Medium" HorizontalTextAlignment="Center" />
+                                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding desprest}" TextColor="Black" FontAttributes="Italic" VerticalOptions="Center" FontSize="Medium"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Reparto" FontAttributes="Bold" FontSize="Medium" VerticalOptions="Center" TextColor="Black" HorizontalTextAlignment="Center"/>
+                                    <Picker Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Title="{Binding title}" TextColor="Black" VerticalOptions="Center" IsEnabled="{Binding enabled}"
+                                            SelectedIndex="{Binding defaultReparto}" ItemsSource="{Binding reparti}" ItemDisplayBinding="{Binding descrizione}" SelectedIndexChanged="Picker_OnSelectedIndexChanged"/>
                                 </Grid>
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>

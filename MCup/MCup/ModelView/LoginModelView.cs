@@ -341,14 +341,14 @@ namespace MCup.ModelView
             {
                 if (ShowPassword == true)
                 {
-                    ShowPasswordImage = "EyePasswordWhite.png";
+                    ShowPasswordImage = "eye.png";
                     ShowPassword = false;
                 }
 
                 else
                 {
                     ShowPassword = true;
-                    ShowPasswordImage = "eye.png";
+                    ShowPasswordImage = "EyePasswordWhite.png";
                 }
 
             });
