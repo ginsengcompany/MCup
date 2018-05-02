@@ -32,7 +32,7 @@
                     <Label Margin="10,0,0,0" Text="{Binding Titolo}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
 
                     <StackLayout HorizontalOptions="FillAndExpand"  Padding="7,0,0,0">
-                        <Label Text="Data Appuntamento:" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="Start"/>
+                        <Label Text="Appuntamento:" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="Start"/>
                     </StackLayout>
                     <Label Margin="10,0,0,0" Text="{Binding DataAppuntamento}" TextColor="Black" FontSize="Medium" FontAttributes="Italic"></Label>
 

@@ -7,7 +7,7 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar SearchCommand="{Binding searchContacts}" TextColor="Black" Text="{Binding TextSearch}" Placeholder="Cerca" HorizontalOptions="FillAndExpand" BackgroundColor="#6C94B2" />
+            <SearchBar SearchCommand="{Binding searchContacts}" TextColor="Black" Text="{Binding TextSearch}" Placeholder="Cerca" HorizontalOptions="FillAndExpand" BackgroundColor="White" />
             <StackLayout BackgroundColor="#6C94B2" Orientation="Vertical">
                 <Label Text="Profilo Personale" TextColor="White" Margin="5,0,0,0" FontSize="Large" HorizontalOptions="Start" />
             </StackLayout>
@@ -33,7 +33,7 @@
                             <costomControls:ExtendedViewCell SelectedBackgroundColor="White">
                                 <ViewCell.View>
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding nome}" Margin="10,0,0,0" VerticalOptions="Center" FontSize="Medium" TextColor="#CC0000" />
+                                        <Label Text="{Binding nome}" Margin="10,0,0,0" VerticalOptions="Center" FontSize="Medium" TextColor="#6C94B2" />
                                         <Label Text="{Binding cognome}" VerticalOptions="Center" FontSize="Small" TextColor="Black"/>
                                         <Image Source="rightArrow.png" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="40" HeightRequest="40"/>
                                     </StackLayout>

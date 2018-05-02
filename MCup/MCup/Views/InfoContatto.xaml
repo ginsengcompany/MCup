@@ -7,15 +7,24 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="20">
-                <xfx:XfxEntry Placeholder="Codice fiscale" Text="{Binding codiceFiscale}" PlaceholderColor="Red" ErrorText="{Binding NameErrorTextCodice}"  IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black"/>
-                <xfx:XfxEntry Placeholder="Nome" Text="{Binding nome}" ErrorText="{Binding NameErrorTextNome}" PlaceholderColor="Red" ErrorDisplay="Underline"  IsEnabled="false" WidthRequest="250" TextColor="Black" />
-                <xfx:XfxEntry Placeholder="Cognome" Text="{Binding cognome}" ErrorText="{Binding NameErrorTextCognome}" PlaceholderColor="Red" ErrorDisplay="Underline"  IsEnabled="false" WidthRequest="250" TextColor="Black" />
-                <xfx:XfxEntry Placeholder="Data di nascita" Text="{Binding data_nascita}" ErrorText="{Binding NameErrorTextDataNascita}" PlaceholderColor="Red"  IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black" />
-                <xfx:XfxEntry Placeholder="Luogo di nascita" Text="{Binding luogo_nascita}" ErrorText="{Binding NameErrorTextLuogoNascita}" PlaceholderColor="Red"  IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black" />
-                <xfx:XfxEntry Placeholder="Sesso" Text="{Binding Sesso}" ErrorText="{Binding NameErrorTextPassword}" PlaceholderColor="Red" ErrorDisplay="Underline"  IsEnabled="false"  WidthRequest="250" TextColor="Black" />
-                <xfx:XfxEntry Placeholder="comune di residenza" Text="{Binding comune_residenza}" PlaceholderColor="Red" TextColor="Black" ErrorText="{Binding NameTextErrorComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250" IsEnabled="False"/>
-                <xfx:XfxEntry Placeholder="numero di telefono mobile" Text="{Binding telefono}" PlaceholderColor="Red" TextColor="Black" Keyboard="Numeric" ErrorText="{Binding NameTextErrorTelefono}" ErrorDisplay="Underline"  WidthRequest="250" IsEnabled="False"/>
-                <Button Text="Elimina" Command="{Binding Elimina}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large" BackgroundColor="Transparent" BorderColor="Red"  IsEnabled="false" TextColor="Red"  Margin="10" IsVisible="{Binding Visibile}"/>
+                <xfx:XfxEntry Placeholder="Codice fiscale" Text="{Binding codiceFiscale}" PlaceholderColor="#003964" ErrorText="{Binding NameErrorTextCodice}" 
+                              IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black"/>
+                <xfx:XfxEntry Placeholder="Nome" Text="{Binding nome}" ErrorText="{Binding NameErrorTextNome}" PlaceholderColor="#003964" ErrorDisplay="Underline" 
+                              IsEnabled="false" WidthRequest="250" TextColor="Black" />
+                <xfx:XfxEntry Placeholder="Cognome" Text="{Binding cognome}" ErrorText="{Binding NameErrorTextCognome}" PlaceholderColor="#003964" ErrorDisplay="Underline" 
+                              IsEnabled="false" WidthRequest="250" TextColor="Black" />
+                <xfx:XfxEntry Placeholder="Data di nascita" Text="{Binding data_nascita}" ErrorText="{Binding NameErrorTextDataNascita}" PlaceholderColor="#003964" 
+                              IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black" />
+                <xfx:XfxEntry Placeholder="Luogo di nascita" Text="{Binding luogo_nascita}" ErrorText="{Binding NameErrorTextLuogoNascita}" PlaceholderColor="#003964" 
+                              IsEnabled="false" ErrorDisplay="Underline" WidthRequest="250" TextColor="Black" />
+                <xfx:XfxEntry Placeholder="Sesso" Text="{Binding Sesso}" ErrorText="{Binding NameErrorTextPassword}" PlaceholderColor="#003964" ErrorDisplay="Underline" 
+                              IsEnabled="false"  WidthRequest="250" TextColor="Black" />
+                <xfx:XfxEntry Placeholder="comune di residenza" Text="{Binding comune_residenza}" PlaceholderColor="#003964" TextColor="Black" 
+                              ErrorText="{Binding NameTextErrorComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250" IsEnabled="False"/>
+                <xfx:XfxEntry Placeholder="numero di telefono mobile" Text="{Binding telefono}" PlaceholderColor="#003964" TextColor="Black" Keyboard="Numeric" 
+                              ErrorText="{Binding NameTextErrorTelefono}" ErrorDisplay="Underline"  WidthRequest="250" IsEnabled="False"/>
+                <Button Text="Elimina" Command="{Binding Elimina}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" WidthRequest="150"
+                        FontSize="Large" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="false" TextColor="White"  Margin="10" IsVisible="{Binding Visibile}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

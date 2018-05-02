@@ -242,7 +242,7 @@ namespace MCup.ModelView
             Titolo = appuntamentoSelezionatoProposto.desprest;
             UbicazioneReparto = appuntamentoSelezionatoProposto.reparti[0].ubicazioneReparto;
             NomeStruttura = appuntamentoSelezionatoProposto.reparti[0].nomeStruttura;
-            DataAppuntamento = appuntamentoSelezionatoProposto.dataAppuntamento;
+            DataAppuntamento = appuntamentoSelezionatoProposto.dataAppuntamento + " " + appuntamentoSelezionatoProposto.oraAppuntamento;
             OraAppuntamento = appuntamentoSelezionatoProposto.oraAppuntamento;
             NomeMedico = appuntamentoSelezionatoProposto.reparti[0].nomeMedico;
             if (appuntamentoSelezionatoProposto.nota == null)

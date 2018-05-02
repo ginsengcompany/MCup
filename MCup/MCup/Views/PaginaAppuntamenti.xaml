@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label TextColor="#003964" Text="APPUNTAMENTI" HorizontalOptions="CenterAndExpand" FontSize="30" FontAttributes="Bold"/>
-            <Picker TextColor="Red" 
+            <Picker TextColor="#6C94B2" 
                     x:Name="pickerContatti"
                     Title="Seleziona il nominativo " 
                     HorizontalOptions="CenterAndExpand" 
@@ -43,7 +43,6 @@
                                 <StackLayout HorizontalOptions="StartAndExpand">
                                     <Label
                                         Text="Impegnativa: "
-                                        
                                         FontAttributes="Italic"
                                         TextColor="White"
                                         FontSize="Medium"/>
@@ -106,11 +105,11 @@
                                 <StackLayout Orientation="Horizontal">
                                     <StackLayout Orientation="Vertical" Padding="10,0,0,0">
                                         <StackLayout>
-                                            <Label Text="Prestazione: " TextColor="Red" FontAttributes="Bold"/>
+                                            <Label Text="Prestazione: " TextColor="#6C94B2" FontAttributes="Bold"/>
                                             <Label Text="{Binding desprest}" TextColor="Black" FontAttributes="Italic"/>
                                         </StackLayout>
                                         <StackLayout>
-                                            <Label Text="Data Appuntamento: " TextColor="Red" FontAttributes="Bold"/>
+                                            <Label Text="Data Appuntamento: " TextColor="#6C94B2" FontAttributes="Bold"/>
                                             <Label Text="{Binding dataAppuntamento}" TextColor="Black" FontAttributes="Italic"/>
                                         </StackLayout>
                                     </StackLayout>
