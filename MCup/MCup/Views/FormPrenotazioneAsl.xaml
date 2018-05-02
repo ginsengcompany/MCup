@@ -10,7 +10,7 @@
                  
 
                 <Picker 
-                    TextColor="Red" 
+                    TextColor="#6C94B2" 
                     x:Name="pickerContatti"
                     Title="Seleziona il nominativo per cui vuoi prenotare" 
                     HorizontalOptions="CenterAndExpand" 
@@ -62,6 +62,7 @@
                         ErrorText="{Binding NameTextErrorCodUno}" 
                         ErrorDisplay="Underline"
                         WidthRequest="250"
+                        TextColor="#6C94B2"
                         HorizontalOptions="Center" 
                         VerticalOptions="Center"/>
                         <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
@@ -88,7 +89,7 @@
                         ErrorDisplay="Underline"
                         WidthRequest="250"
                         HorizontalOptions="Center" 
-                           
+                        TextColor="#6C94B2"
                         VerticalOptions="Center"/>
                         <Image Source="iconaScan.png" WidthRequest="40" VerticalOptions="Center">
                             <Image.GestureRecognizers>
@@ -104,11 +105,13 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0" IsVisible="{Binding Visible}">
-                    <Image IsEnabled="{Binding IsEnabled}" Source="send.png" WidthRequest="250">
+              <!--      <Image IsEnabled="{Binding IsEnabled}" Source="send.png" WidthRequest="250">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
-                    </Image>
+                    </Image> -->
+                    <Button IsEnabled="{Binding IsEnabled}" WidthRequest="150" Command="{Binding InviaRichiesta}" BackgroundColor="#003964" TextColor="White"
+                            Text="Invia dati"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

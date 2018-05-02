@@ -161,7 +161,7 @@ namespace MCup.ModelView
             this.verifica = verifica;
             ricetta = impegnativa;
             NomeAssistito = contatto.nome;
-            CognomeAssistito = contatto.cognome;
+            CognomeAssistito = contatto.cognome + " " + contatto.nome;
             CodiceRicetta = ricetta.nre;
             ButtonIsVisible = true;
             prestazioniDaInviare = new List<Prestazione>();
