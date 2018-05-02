@@ -15,16 +15,14 @@
             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="15" >
                 <Grid HorizontalOptions="FillAndExpand">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="0.1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                        <Image Source="user.png"  VerticalOptions="Center"  HeightRequest="50" WidthRequest="50" Grid.Column="0" Grid.Row="0"></Image>
-                   
-                    <StackLayout Grid.Column="1" Grid.Row="0" VerticalOptions="Center">
+
+                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" VerticalOptions="Center">
 
                         <Label 
                                 Text="Username" 
@@ -41,7 +39,7 @@
                             TextColor="Red" 
                             FontSize="Small"/>
                     </StackLayout>
-                    <Image Source="info.png" HeightRequest="30" VerticalOptions="Center" WidthRequest="30" Grid.Column="2" Grid.Row="0">
+                    <Image Source="info.png" HeightRequest="30" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="30" Grid.Column="1" Grid.Row="0">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="infoUsername"></TapGestureRecognizer>
                         </Image.GestureRecognizers>
@@ -51,7 +49,6 @@
                <StackLayout Margin="0,10,0,0">
                    <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.2*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -59,13 +56,7 @@
                             <RowDefinition Height="*"></RowDefinition>
 
                         </Grid.RowDefinitions>
-                   <Image Source="passwor.png" 
-                          Grid.Column="0" 
-                          Grid.Row="0" 
-                          VerticalOptions="Center" 
-                          HeightRequest="50" 
-                          WidthRequest="50"/>
-                        <StackLayout  Grid.Column="1"
+                        <StackLayout  Grid.Column="0"
                                       Grid.Row="0" VerticalOptions="Center">
                            <Label Text="Password"
                                   FontAttributes="Bold"
@@ -81,7 +72,7 @@
                         </StackLayout>
                 
                    <xfx:XfxEntry 
-                       Grid.Column="1" Grid.Row="1"
+                       Grid.Column="0" Grid.Row="1"
                        Placeholder="Reinserire password*" 
                        Text="{Binding ConfermaPassword}" 
                        ErrorText="{Binding NameErrorTextConfermaPassword}" 
@@ -107,28 +98,41 @@
     </ContentPage>
 
 
-
-
     <ContentPage Padding="20" x:Name="page1" InputTransparent="False">
-        
+
         <StackLayout>
-            
             <StackLayout VerticalOptions="Start">
                 <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati anagrafici" TextColor="#0971B2"></Label>
-
             </StackLayout>
-            <ScrollView>
-                <StackLayout VerticalOptions="CenterAndExpand">
+            
+                <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
 
-                    <Label Text="Nome" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                    <Entry Placeholder="Inserire nome*" Text="{Binding nome}" WidthRequest="250"/>
-                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorNome}" TextColor="Red" FontSize="Small"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
 
-                    <Label Text="Cognome" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                    <Entry Placeholder="Inserire cognome*" Text="{Binding cognome}" WidthRequest="250"/>
-                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCognome}" TextColor="Red" FontSize="Small"/>
+                    <StackLayout Margin="5" Grid.Column="0" Grid.Row="0" VerticalOptions="Start">
+                        <Label Text="Nome" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                        <Entry Placeholder="Inserire nome*" Text="{Binding nome}" WidthRequest="250"/>
+                        <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorNome}" TextColor="Red" FontSize="Small"/>
+                    </StackLayout>
 
-                    <StackLayout Margin="5">
+                    <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Start">
+                        <Label Text="Cognome" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                        <Entry Placeholder="Inserire cognome*" Text="{Binding cognome}" WidthRequest="250"/>
+                        <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCognome}" TextColor="Red" FontSize="Small"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="2" VerticalOptions="Start">
                         <Label Text="Codice Fiscale" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -136,64 +140,66 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Entry x:Name="entryCodiceFiscale" HorizontalOptions="StartAndExpand" Placeholder="Inserire codice fiscale*" Text="{Binding codiceFiscale}"  WidthRequest="600" Grid.Row="0"/>
-                            <Image Source="iconaScan.png" WidthRequest="40" HorizontalOptions="End" Grid.Row="0" Grid.Column="1">
+                            <Image Source="iconaScan.png" WidthRequest="30" HorizontalOptions="End" Grid.Row="0" Grid.Column="0" Margin="5">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1" />
                                 </Image.GestureRecognizers>
                             </Image>
                         </Grid>
                         <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCodFiscale}" TextColor="Red" FontSize="Small"/>
-
                     </StackLayout>
 
+                    <StackLayout Grid.Column="0" Grid.Row="3" VerticalOptions="Start">
+                        <Label Text="Data di nascita*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                        <DatePicker x:Name="pickerNascita" Date="{Binding data_nascita}" Format="dd/MM/yyyy" />
+                        <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorDataNascita}" TextColor="Red" FontSize="Small"/>
+                    </StackLayout>
 
-                    <Label Text="Data di nascita*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                    <DatePicker x:Name="pickerNascita" Date="{Binding data_nascita}" Format="dd/MM/yyyy" />
-                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorDataNascita}" TextColor="Red" FontSize="Small"/>
+                    <StackLayout Grid.Column="0" Grid.Row="4" VerticalOptions="Start">
+                        <Label Text="Provincia di nascita*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                        <Picker x:Name="pickerProvinciaNascita" Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaNascita" ItemsSource="{Binding listaProvince}" ItemDisplayBinding="{Binding provincia}"/>
+                        <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaNascita}" TextColor="Red" FontSize="Small"/>
+                    </StackLayout>
 
-                    <Label Text="Provincia di nascita*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                    <Picker x:Name="pickerProvinciaNascita" Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaNascita" ItemsSource="{Binding listaProvince}" ItemDisplayBinding="{Binding provincia}"/>
-                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaNascita}" TextColor="Red" FontSize="Small"/>
-
-
-                    <Label Text="Comune di nascita*" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                    <Picker x:Name="PickerComuneNascita" Title="Seleziona il comune di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChanged" ItemsSource="{Binding listaComuni}" ItemDisplayBinding="{Binding nome}"/>
-                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneNascita}" TextColor="Red" FontSize="Small"/>
-                </StackLayout>
+                    <StackLayout Grid.Column="0" Grid.Row="5" VerticalOptions="Start">
+                        <Label Text="Comune di nascita*" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                        <Picker x:Name="PickerComuneNascita" Title="Seleziona il comune di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChanged" ItemsSource="{Binding listaComuni}" ItemDisplayBinding="{Binding nome}"/>
+                        <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneNascita}" TextColor="Red" FontSize="Small"/>
+                    </StackLayout>
+                </Grid>
             </ScrollView>
+            
             <StackLayout VerticalOptions="EndAndExpand" HorizontalOptions="Center">
                 <Label Text="* campi obbligatori" FontSize="Small"/>
             </StackLayout>
-            <StackLayout Margin="5" VerticalOptions="EndAndExpand">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+            <StackLayout VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
 
-                <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="End" HorizontalOptions="End" Grid.Column="1" Grid.Row="0" >
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="AvantiSecondaPagina"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Label Text="AVANTI"/>
-                    <Image Source="frecciadx.png"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="End" HorizontalOptions="Start"  Grid.Column="0" Grid.Row="0" >
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="IndietroPrimaPagina"></TapGestureRecognizer>
-                    </StackLayout.GestureRecognizers>
-                    <Image Source="frecciadx.png" Rotation="180"/>
-                    <Label Text="INDIETRO"/>
-                </StackLayout>
-            </Grid>
-        </StackLayout>
-
+                    <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="End" Grid.Column="1" Grid.Row="0" >
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AvantiSecondaPagina"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="AVANTI"/>
+                        <Image Source="frecciadx.png"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="Start"  Grid.Column="0" Grid.Row="0" >
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="IndietroPrimaPagina"></TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="frecciadx.png" Rotation="180"/>
+                        <Label Text="INDIETRO"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
         </StackLayout>
     </ContentPage>
 
@@ -202,76 +208,102 @@
             <StackLayout VerticalOptions="StartAndExpand">
                 <Label HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" Text="Dati Utente" TextColor="#0971B2"></Label>
             </StackLayout>
-            <ScrollView>
-            <StackLayout VerticalOptions="CenterAndExpand">
-                <Label Text="Provincia di residenza*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                    <Picker x:Name="pickerProvinciaResidenza" Title="Seleziona la provincia di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaResidenza" ItemsSource="{Binding listaProvince}" ItemDisplayBinding="{Binding provincia}" />
-                <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaResidenza}" TextColor="Red" FontSize="Small"/>
 
+            <StackLayout>
+                <ScrollView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
 
-                <Label Text="comune di residenza*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                <Picker x:Name="PickerComuneResidenza" Title="Seleziona il comune di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChanged1" ItemsSource="{Binding listaComuniResidenza}" ItemDisplayBinding="{Binding nome}"/>
-                <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneResidenza}" TextColor="Red" FontSize="Small"/>
+                        <StackLayout Margin="5" Grid.Column="0" Grid.Row="0" VerticalOptions="Start">
+                            <Label Text="Provincia di residenza*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                            <Picker x:Name="pickerProvinciaResidenza" Title="Seleziona la provincia di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaResidenza" ItemsSource="{Binding listaProvince}" ItemDisplayBinding="{Binding provincia}" />
+                            <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaResidenza}" TextColor="Red" FontSize="Small"/>
+                        </StackLayout>
 
-                <Label Text="Indirizzo*" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                <Entry Placeholder="Inserire indirizzo" Text="{Binding Indirizzo}" WidthRequest="250"/>
-                <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorIndirizzo}" TextColor="Red" FontSize="Small"/>
+                        <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Start">
+                            <Label Text="comune di residenza*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                            <Picker x:Name="PickerComuneResidenza" Title="Seleziona il comune di residenza" SelectedIndexChanged="Picker_OnSelectedIndexChanged1" ItemsSource="{Binding listaComuniResidenza}" ItemDisplayBinding="{Binding nome}"/>
+                            <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneResidenza}" TextColor="Red" FontSize="Small"/>
+                        </StackLayout>
 
+                        <StackLayout Grid.Column="0" Grid.Row="2" VerticalOptions="Start">
+                            <Label Text="Indirizzo*" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                            <Entry Placeholder="Inserire indirizzo" Text="{Binding Indirizzo}" WidthRequest="250"/>
+                            <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorIndirizzo}" TextColor="Red" FontSize="Small"/>
+                        </StackLayout>
 
-                <Label Text="Numero Telefonia mobile*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                <Entry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" Keyboard="Numeric" WidthRequest="250"/>
-                <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorTelefono}" TextColor="Red" FontSize="Small"/>
+                        <StackLayout Grid.Column="0" Grid.Row="3" VerticalOptions="Start">
+                            <Label Text="Numero Telefonia mobile*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                            <Entry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" Keyboard="Numeric" WidthRequest="250"/>
+                            <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorTelefono}" TextColor="Red" FontSize="Small"/>
+                        </StackLayout>
 
-                <Label Text="Inserisci la tua E-mail" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                <Entry Placeholder="Inserire email" Text="{Binding Email}" WidthRequest="250"/>
+                        <StackLayout Grid.Column="0" Grid.Row="4" VerticalOptions="Start">
+                            <Label Text="Inserisci la tua E-mail" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                            <Entry Placeholder="Inserire email" Text="{Binding Email}" WidthRequest="250"/>
+                        </StackLayout>
 
-                <Label Text="StatoCivile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                <Picker x:Name="PickerUnione" Title="Seleziona lo stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"/>
+                        <StackLayout Grid.Column="0" Grid.Row="5" VerticalOptions="Start">
+                            <Label Text="StatoCivile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                            <Picker x:Name="PickerUnione" Title="Seleziona lo stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"/>
+                        </StackLayout>
 
+                        <StackLayout Grid.Column="0" Grid.Row="6" VerticalOptions="Start">
+                            <Label Text="Sesso*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                            <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:Char}">
+                                        <x:Char>F</x:Char>
+                                        <x:Char>M</x:Char>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                            <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorSesso}" TextColor="Red" FontSize="Small"/>
+                        </StackLayout>
+                    </Grid>
+                </ScrollView>
 
+                <StackLayout VerticalOptions="EndAndExpand" HorizontalOptions="Center">
+                    <Label Text="* campi obbligatori" FontSize="Small"/>
+                </StackLayout>
 
-                <Label Text="Sesso*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:Char}">
-                            <x:Char>F</x:Char>
-                            <x:Char>M</x:Char>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
-                <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorSesso}" TextColor="Red" FontSize="Small"/>
+                <StackLayout VerticalOptions="EndAndExpand">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="End" >
+                            <Button Text="Registrati" Command="{Binding registrati}" VerticalOptions="End" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White"/>
+                        </StackLayout>
 
-
-               
+                        <StackLayout  Orientation="Horizontal" Spacing="5" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="IndietroSecondaPagina"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                            <Image Source="frecciadx.png"  Rotation="180" VerticalOptions="End"/>
+                            <Label Text="INDIETRO" VerticalOptions="End"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
 
             </StackLayout>
-            </ScrollView>
 
-            <StackLayout VerticalOptions="EndAndExpand" HorizontalOptions="Center">
-                <Label Text="* campi obbligatori" FontSize="Small"/>
-            </StackLayout>
-            <StackLayout Margin="5" VerticalOptions="EndAndExpand">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <StackLayout Spacing="5" Grid.Column="1" Grid.Row="0"  HorizontalOptions="End" >
-                        <Button Text="Registrati" Command="{Binding registrati}" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White" Margin="15"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" Spacing="5"  HorizontalOptions="Start" Grid.Column="0" Grid.Row="0">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="IndietroSecondaPagina"></TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                        <Image Source="frecciadx.png"  Rotation="180" VerticalOptions="Center"/>
-                        <Label Text="INDIETRO" VerticalOptions="Center"/>
-                    </StackLayout>
-                </Grid>
-            </StackLayout>
         </StackLayout>
-        
     </ContentPage>
+    
 </CarouselPage>
