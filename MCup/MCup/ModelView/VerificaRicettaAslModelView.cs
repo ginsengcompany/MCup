@@ -165,7 +165,7 @@ namespace MCup.ModelView
             CodiceRicetta = ricetta.nre;
             ButtonIsVisible = true;
             prestazioniDaInviare = new List<Prestazione>();
-            headers.Add(new Header("struttura", "150021"));
+            headers.Add(new Header("struttura", "150907"));
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             ingressoPagina();
             AnnullaPrenotazione = new Command(async () =>
@@ -279,7 +279,7 @@ namespace MCup.ModelView
             RicezioneMedici();
             REST<Impegnativa, List<Prestazione>> connessione = new REST<Impegnativa, List<Prestazione>>();
             List<Header> headers = new List<Header>();
-            headers.Add(new Header("struttura", "150021"));
+            headers.Add(new Header("struttura", "150907"));
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             prestazioniErogabili = await connessione.PostJson(SingletonURL.Instance.getRotte().StruttureErogatrici, ricetta, headers);
             if (connessione.responseMessage != HttpStatusCode.OK)

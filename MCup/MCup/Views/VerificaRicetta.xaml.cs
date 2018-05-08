@@ -36,7 +36,7 @@ namespace MCup.Views
             this.ricetta = ricetta;
             ricetta.assistito = contatto;
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-            headers.Add(new Header("struttura", "150021"));
+            headers.Add(new Header("struttura", "150907"));
             ModelViewVerifica = new VerificaRicettaModelView(ricetta, this, contatto);
             BindingContext = ModelViewVerifica;
         }

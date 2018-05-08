@@ -38,7 +38,7 @@ namespace MCup.Views
 	        {
 	            listaHeader.Clear();
 	        }
-	        listaHeader.Add(new Header("struttura", "150021"));
+	        listaHeader.Add(new Header("struttura", "150907"));
 	        REST<object, string> connessioneLogo = new REST<object, string>();
 	        var logo = await connessioneLogo.getString("http://192.168.125.14:3000/infostruttura/logoStruttura", listaHeader);
 	        Image.Source = Xamarin.Forms.ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(logo)));

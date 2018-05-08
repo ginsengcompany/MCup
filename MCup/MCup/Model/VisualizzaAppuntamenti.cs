@@ -111,7 +111,7 @@ namespace MCup.Model
             {
                 List<Header> headers = new List<Header>();
                 headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-                headers.Add(new Header("struttura", "150021"));
+                headers.Add(new Header("struttura", "150907"));
                 REST<object, string> connessioneSpostamento = new REST<object, string>();
                 string messaggioDalServer = await connessioneSpostamento.getString(SingletonURL.Instance.getRotte().spostamentoPrenotazione,
                         headers);

@@ -142,7 +142,7 @@ namespace MCup.ModelView
             ricetta.assistito = contatto;
             ButtonIsVisible = true;
             prestazioniDaInviare = new List<Prestazione>();
-            headers.Add(new Header("struttura", "150021"));
+            headers.Add(new Header("struttura", "150907"));
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             ingressoPagina();
             AnnullaPrenotazione = new Command(async () =>
@@ -244,7 +244,7 @@ namespace MCup.ModelView
         {
             REST<Prestazione, Prestazione> connessione = new REST<Prestazione, Prestazione>();
             List<Header> headers = new List<Header>();
-            headers.Add(new Header("struttura", "150021"));
+            headers.Add(new Header("struttura", "150907"));
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             prestazioniErogabili = new List<Prestazione>();
             for(var i = 0; i < ricetta.prestazioni.Count; i++)

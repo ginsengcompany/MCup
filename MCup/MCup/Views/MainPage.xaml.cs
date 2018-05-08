@@ -40,7 +40,7 @@ namespace MCup.Views
         {
             REST<object, bool> connessioneControlloAsl = new REST<object, bool>();
             List<Header> listaheaders = new List<Header>();
-            listaheaders.Add(new Header("struttura", "150021"));
+            listaheaders.Add(new Header("struttura", "150907"));
             bool controllo = await connessioneControlloAsl.GetSingleJson(SingletonURL.Instance.getRotte().isAsl,listaheaders);
             return controllo;
         }

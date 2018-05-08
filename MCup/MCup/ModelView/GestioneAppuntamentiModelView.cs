@@ -223,7 +223,7 @@ namespace MCup.ModelView
             {
                 headers.Clear();
             }
-            headers.Add(new Header("struttura", "150021"));
+            headers.Add(new Header("struttura", "150907"));
             REST<object, string> connessioneLogo = new REST<object, string>();
             try
             {
@@ -308,7 +308,7 @@ namespace MCup.ModelView
         public GestioneAppuntamentiModelView(AppuntamentoPrestazioneProposto appuntamentoSelezionato, GestioneAppuntamenti page)
         {
             VisibileL = "false";
-            headers.Add(new Header("struttura", "150021"));
+            headers.Add(new Header("struttura", "150907"));
             this.pagina = page;
             
             this.appuntamentoSelezionatoProposto = appuntamentoSelezionato;
