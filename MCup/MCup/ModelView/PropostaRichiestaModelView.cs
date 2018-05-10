@@ -386,7 +386,7 @@ namespace MCup.ModelView
                 }
                 if (count > 0)
                     await App.Current.MainPage.DisplayAlert("Attenzione",
-                        "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "ok");
+                        "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "OK");
                 IsBusy = false;
                 IsVisible = false;
                 IsVisibleButton = true;
@@ -447,7 +447,7 @@ namespace MCup.ModelView
                 }
                 if (count > 0)
                     await App.Current.MainPage.DisplayAlert("Attenzione",
-                        "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "ok");
+                        "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "OK");
                 IsBusyV = false;
                 for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
                 {
@@ -507,7 +507,7 @@ namespace MCup.ModelView
                 }
                 if (count > 0)
                     await App.Current.MainPage.DisplayAlert("Attenzione",
-                        "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "ok");
+                        "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "OK");
                 IsBusyV = false;
                 for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
                 {
