@@ -376,15 +376,41 @@ namespace MCup.ModelView
                         count++;
                     }
                 }
+                for (int i=0;i<appuntamentoProposto.appuntamenti.Count; i++)
+                {
+                    if (appuntamentoProposto.appuntamenti[i].nota.Trim() == string.Empty)
+                    {
+                        appuntamentoProposto.appuntamenti[i].esitoNote = true;
+                        appuntamentoProposto.appuntamenti[i].visibleNote = false;
+                    }
+                }
                 if (count > 0)
                     await App.Current.MainPage.DisplayAlert("Attenzione",
                         "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "ok");
-                ListPrenotazioni = appuntamentoProposto.appuntamenti;
-                IsVisible = false;
                 IsBusy = false;
+                IsVisible = false;
                 IsVisibleButton = true;
-
-
+                for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                {
+                    if (appuntamentoProposto.appuntamenti[i].dataAppuntamento.Length < 10)
+                    {
+                        DateTime dataTemp;
+                        if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{1}/\d{1}/\d{4}"))
+                        {
+                            dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(4)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                        }
+                        else if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{2}/\d{1}/\d{4}"))
+                        {
+                            dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(3, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 2)));
+                        }
+                        else
+                        {
+                            dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                        }
+                        appuntamentoProposto.appuntamenti[i].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
+                    }
+                }
+                ListPrenotazioni = appuntamentoProposto.appuntamenti;
             }
 
         }
@@ -407,13 +433,42 @@ namespace MCup.ModelView
                     if (appuntamentoProposto.appuntamenti[i].disponibile == false)
                     {
                         messaggio = messaggio + appuntamentoProposto.appuntamenti[i].desprest + '\n';
+                        appuntamentoProposto.appuntamenti.RemoveAt(i);
                         count++;
+                    }
+                }
+                for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                {
+                    if (appuntamentoProposto.appuntamenti[i].nota.Trim() == string.Empty)
+                    {
+                        appuntamentoProposto.appuntamenti[i].esitoNote = true;
+                        appuntamentoProposto.appuntamenti[i].visibleNote = false;
                     }
                 }
                 if (count > 0)
                     await App.Current.MainPage.DisplayAlert("Attenzione",
                         "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "ok");
                 IsBusyV = false;
+                for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                {
+                    if (appuntamentoProposto.appuntamenti[i].dataAppuntamento.Length < 10)
+                    {
+                        DateTime dataTemp;
+                        if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{1}/\d{1}/\d{4}"))
+                        {
+                            dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(4)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                        }
+                        else if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{2}/\d{1}/\d{4}"))
+                        {
+                            dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(3, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 2)));
+                        }
+                        else
+                        {
+                            dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                        }
+                        appuntamentoProposto.appuntamenti[i].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
+                    }
+                }
                 ListPrenotazioni = appuntamentoProposto.appuntamenti;
             }
 
@@ -438,7 +493,16 @@ namespace MCup.ModelView
                     if (appuntamentoProposto.appuntamenti[i].disponibile == false)
                     {
                         messaggio = messaggio + appuntamentoProposto.appuntamenti[i].desprest + '\n';
+                        appuntamentoProposto.appuntamenti.RemoveAt(i);
                         count++;
+                    }
+                }
+                for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                {
+                    if (appuntamentoProposto.appuntamenti[i].nota.Trim() == string.Empty)
+                    {
+                        appuntamentoProposto.appuntamenti[i].esitoNote = true;
+                        appuntamentoProposto.appuntamenti[i].visibleNote = false;
                     }
                 }
                 if (count > 0)

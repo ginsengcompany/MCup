@@ -115,7 +115,7 @@
                                             <Button
                                                 Text="Nota Prestazione"
                                                 HorizontalOptions="End"
-                                                
+                                                IsVisible="{Binding visibleNote}"
                                                 TextColor="{Binding coloreTestoNote}"
                                                 Command="{Binding AccettaNote}"
                                                 CommandParameter="{Binding nota}"

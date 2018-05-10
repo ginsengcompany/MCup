@@ -22,6 +22,7 @@ namespace MCup.Model
         public string posizione { get; set; }
         public bool disponibile { get; set; }
         public bool esitoNote { get; set; } = false;
+        public bool visibleNote { get; set; } = true;
 
         public void copiaAppuntamentoPrestazioneProposto(AppuntamentoPrestazioneProposto appuntamento)
         {
