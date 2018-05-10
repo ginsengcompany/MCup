@@ -372,6 +372,7 @@ namespace MCup.ModelView
                     if (appuntamentoProposto.appuntamenti[i].disponibile == false)
                     {
                         messaggio = messaggio + appuntamentoProposto.appuntamenti[i].desprest + '\n';
+                        appuntamentoProposto.appuntamenti.RemoveAt(i);
                         count++;
                     }
                 }
@@ -399,6 +400,8 @@ namespace MCup.ModelView
             }
             else
             {
+                count = 0;
+                messaggio = "";
                 for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
                 {
                     if (appuntamentoProposto.appuntamenti[i].disponibile == false)
@@ -428,6 +431,8 @@ namespace MCup.ModelView
             }
             else
             {
+                count = 0;
+                messaggio = "";
                 for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
                 {
                     if (appuntamentoProposto.appuntamenti[i].disponibile == false)

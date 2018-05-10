@@ -39,10 +39,10 @@
                         <customControls:ExtendedViewCell 
                             SelectedBackgroundColor="White">
                             <ViewCell.View>
-                                <Grid Padding="15" VerticalOptions="Start" RowSpacing="0">
+                                <Grid Padding="15" VerticalOptions="Start">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="25"></RowDefinition>

@@ -23,6 +23,15 @@ namespace MCup.Model
         public bool disponibile { get; set; }
         public bool esitoNote { get; set; } = false;
 
+        public void copiaAppuntamentoPrestazioneProposto(AppuntamentoPrestazioneProposto appuntamento)
+        {
+            dataAppuntamento = appuntamento.dataAppuntamento;
+            oraAppuntamento = appuntamento.oraAppuntamento;
+            posizione = appuntamento.posizione;
+            disponibile = appuntamento.disponibile;
+            esitoNote = appuntamento.esitoNote;
+        }
+
         public Color coloreNote
         {
             get { return colore; }
