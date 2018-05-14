@@ -227,7 +227,7 @@ namespace MCup.ModelView
             REST<object, string> connessioneLogo = new REST<object, string>();
             try
             {
-                var logo = await connessioneLogo.getString("http://192.168.125.14:3000/infostruttura/logoStruttura", headers);
+                var logo = await connessioneLogo.getString("http://192.168.125.24:3002/infostruttura/logoStruttura", headers);
                 LogoStruttura = Xamarin.Forms.ImageSource.FromStream(
                     () => new MemoryStream(Convert.FromBase64String(logo)));
             }

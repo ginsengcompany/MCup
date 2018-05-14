@@ -311,7 +311,6 @@ namespace MCup.ModelView
                             var risposta = await
                                 connessioneMessaggioReparti.getString(SingletonURL.Instance.getRotte().piuReparti, headers);
                             await App.Current.MainPage.DisplayAlert("Attenzione", risposta, "OK");
-
                         }
                     }
                     else
@@ -340,7 +339,12 @@ namespace MCup.ModelView
                             break;
                         }
                     if (piuReparti)
-                        await App.Current.MainPage.DisplayAlert("Attenzione", "Alcune prestazioni vengono erogate da più reparti, se non si conosce il reparto per cui prenotare chiamare il Call Center", "OK");
+                    {
+                        REST<object, string> connessioneMessaggioReparti = new REST<object, string>();
+                        var risposta = await
+                            connessioneMessaggioReparti.getString(SingletonURL.Instance.getRotte().piuReparti, headers);
+                        await App.Current.MainPage.DisplayAlert("Attenzione", risposta, "OK");
+                    }
                 }
             }
 
