@@ -144,6 +144,7 @@ namespace MCup.ModelView
         {
             List<Header> listaJHeaders = new List<Header>();
             listaJHeaders.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+            listaJHeaders.Add(new Header("struttura","150907"));
             try
             {
                 Assistito invioContatto = date.assistito;

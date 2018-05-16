@@ -31,15 +31,7 @@ namespace MCup
 
         protected override void OnStart()
         {
-            // Handle when your app starts
-            try
-            {
-                SingletonURL.Instance.prelevaRotte();
-            }
-            catch (System.Exception)
-            {
-                App.Current.MainPage.DisplayAlert("Attenzione", "errore nel prelevamento rotte", "ok");
-            }
+            SingletonURL.Instance.prelevaRotte();
         }
 
         protected override void OnSleep()
