@@ -11,27 +11,30 @@ namespace MCup
         {
             InitializeComponent();
             MainPage = new NavigationPage(new Login());
+            //SingletonURL.Instance.prelevaRotte();
+
             //MainPage = new NavigationPage(new MenuPrincipale());
-          /*  try
-            {
-                if (Application.Current.Properties["flagRimaniLoggato"].ToString().Equals("True")) //controlla se il device su cui l'app viene avviata è IOS o Android
-                {
-                    MainPage = new NavigationPage(new MenuPrincipale()); //Avvia la pagina di login per i dispositivi IOS
-                }
-                else
-                    MainPage = new NavigationPage(new Login()); //Avvia la pagina di login per i dispositivi Android
-            }
-            catch (Exception)
-            {
-                Application.Current.Properties.Add("flagRimaniLoggato", "False");
-                MainPage = new NavigationPage(new Login());
-            }*/
+            /*  try
+              {
+                  if (Application.Current.Properties["flagRimaniLoggato"].ToString().Equals("True")) //controlla se il device su cui l'app viene avviata è IOS o Android
+                  {
+                      MainPage = new NavigationPage(new MenuPrincipale()); //Avvia la pagina di login per i dispositivi IOS
+                  }
+                  else
+                      MainPage = new NavigationPage(new Login()); //Avvia la pagina di login per i dispositivi Android
+              }
+              catch (Exception)
+              {
+                  Application.Current.Properties.Add("flagRimaniLoggato", "False");
+                  MainPage = new NavigationPage(new Login());
+              }*/
             OneSignal.Current.StartInit("821d395a-09ed-48a4-81b8-4a79971452eb").EndInit();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
-            SingletonURL.Instance.prelevaRotte();
+            await SingletonURL.Instance.prelevaRotte();
+            
         }
 
         protected override void OnSleep()

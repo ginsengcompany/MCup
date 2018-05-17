@@ -26,7 +26,11 @@ namespace MCup.Service
 
                 var result = await client.GetAsync(uri);
                 var response = await result.Content.ReadAsStringAsync();
-                responseMessage = result.StatusCode; warning = response;
+                responseMessage = result.StatusCode;
+                if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                    warning = result.ReasonPhrase;
+                else
+                    warning = response;
                 var isValid = JToken.Parse(response);
                 Item = JsonConvert.DeserializeObject<T>(response);
                 return Item;
@@ -49,7 +53,10 @@ namespace MCup.Service
                 var result = await client.GetAsync(uri);
                 var response = await result.Content.ReadAsStringAsync();
                 responseMessage = result.StatusCode;
-                warning = response;
+                if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                    warning = result.ReasonPhrase;
+                else
+                    warning = response;
                 var isValid = JToken.Parse(response);
                 Item = JsonConvert.DeserializeObject<T>(response);
                 return Item;
@@ -67,6 +74,10 @@ namespace MCup.Service
             var result = await client.GetAsync(uri);
             var response = await result.Content.ReadAsStringAsync();
             responseMessage = result.StatusCode;
+            if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                warning = result.ReasonPhrase;
+            else
+                warning = response;
             return response;
         }
 
@@ -79,6 +90,10 @@ namespace MCup.Service
             var result = await client.GetAsync(uri);
             var response = await result.Content.ReadAsStringAsync();
             responseMessage = result.StatusCode;
+            if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                warning = result.ReasonPhrase;
+            else
+                warning = response;
             return response;
         }
 
@@ -92,7 +107,10 @@ namespace MCup.Service
                 var result = await client.GetAsync(uri);
                 var response = await result.Content.ReadAsStringAsync();
                 responseMessage = result.StatusCode;
-                warning = response;
+                if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                    warning = result.ReasonPhrase;
+                else
+                    warning = response;
                 var isValid = JToken.Parse(response);
                 Items = JsonConvert.DeserializeObject<List<T>>(response);
                 return Items;
@@ -115,7 +133,10 @@ namespace MCup.Service
                 var result = await client.GetAsync(uri);
                 var response = await result.Content.ReadAsStringAsync();
                 responseMessage = result.StatusCode;
-                warning = response;
+                if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                    warning = result.ReasonPhrase;
+                else
+                    warning = response;
                 var isValid = JToken.Parse(response);
                 Items = JsonConvert.DeserializeObject<List<T>>(response);
                 return Items;
@@ -138,7 +159,10 @@ namespace MCup.Service
                 var result = await client.PostAsync(url, new StringContent(json.ToString(), Encoding.UTF8, ContentType));
                 var response = await result.Content.ReadAsStringAsync();
                 responseMessage = result.StatusCode;
-                warning = response;
+                if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                    warning = result.ReasonPhrase;
+                else
+                    warning = response;
                 var isValid = JToken.Parse(response);
                 Item = JsonConvert.DeserializeObject<T>(response);
                 return Item;
@@ -168,14 +192,17 @@ namespace MCup.Service
                 var result = await client.PostAsync(url, httpContent);
                 var response = await result.Content.ReadAsStringAsync();
                 responseMessage = result.StatusCode;
-                warning = response;
+                if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                    warning = result.ReasonPhrase;
+                else
+                    warning = response;
                 var isValid = JToken.Parse(response);
                 Item = JsonConvert.DeserializeObject<T>(response);
                 return Item;
             }
             catch (Exception)
             {
-
+                warning = "Errore in fase di connessione con il servizio";
             }
             return default(T);
         }
@@ -192,7 +219,10 @@ namespace MCup.Service
                 var result = await client.PostAsync(url, new StringContent(json.ToString(), Encoding.UTF8, ContentType));
                 var response = await result.Content.ReadAsStringAsync();
                 responseMessage = result.StatusCode;
-                warning = response;
+                if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                    warning = result.ReasonPhrase;
+                else
+                    warning = response;
                 var isValid = JToken.Parse(response);
                 Items = JsonConvert.DeserializeObject<List<T>>(response);
                 return Items;
@@ -221,7 +251,10 @@ namespace MCup.Service
                 var result = await client.PostAsync(url, httpContent);
                 var response = await result.Content.ReadAsStringAsync();
                 responseMessage = result.StatusCode;
-                warning = response;
+                if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                    warning = result.ReasonPhrase;
+                else
+                    warning = response;
                 var isValid = JToken.Parse(response);
                 Items = JsonConvert.DeserializeObject<List<T>>(response);
                 return Items;

@@ -23,16 +23,19 @@ namespace MCup.Model
 
         public void Scaduto()
         {
-
-            DateTime data_appuntamento = DateTime.ParseExact(this[0].dataAppuntamento, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            DateTime dataOdierna = DateTime.Today;
-            if ((data_appuntamento - dataOdierna).TotalDays < 0)
+            for (int i = 0; i < this.Count; i++)
             {
-                scaduto = false;
-            }
-            else
-            {
-                scaduto = true;
+                DateTime data_appuntamento = DateTime.ParseExact(this[i].dataAppuntamento, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataOdierna = DateTime.Today;
+                if ((data_appuntamento - dataOdierna).TotalDays < 0)
+                {
+                    scaduto = false;
+                    break;
+                }
+                else
+                {
+                    scaduto = true;
+                }
             }
         }
         public Assistito contatto { get; set; }

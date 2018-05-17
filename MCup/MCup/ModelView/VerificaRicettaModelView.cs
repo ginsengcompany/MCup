@@ -176,12 +176,30 @@ namespace MCup.ModelView
                     {
                         prestazioniDaInviare[i].reparti[0].repartoScelto = true;
                     }
+             
 
                 }
                 foreach (var i in prestazioniDaInviare)
+                {
                     if (i.reparti == null)
                         verificaPrestazioni = false;
-                if (verificaPrestazioni == true)
+                    else
+                    {
+                        bool scelto = false;
+                        for (int j=0;j<i.reparti.Count;j++)
+                            if (i.reparti[j].repartoScelto)
+                            {
+                                scelto = true;
+                                break;
+                            }
+                        if (!scelto)
+                        {
+                            verificaPrestazioni = false;
+                            break;
+                        }
+                    }
+                }
+                if (verificaPrestazioni)
                 {
                     await this.verifica.Navigation.PushAsync(new PropostaRichiesta(impegnativa, prestazioniDaInviare, contatto));
                 }

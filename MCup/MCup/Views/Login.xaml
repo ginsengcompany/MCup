@@ -51,7 +51,7 @@
                             HorizontalOptions="Center" VerticalOptions="Center" Grid.ColumnSpan="3" TextColor="White" FontSize="Medium"
                             WidthRequest="150" FontAttributes="Bold" BackgroundColor="#0971B2" BorderRadius="20"  BorderWidth="3" Command="{Binding effettuaLogin}"/>
                     
-                    <Label Text="Registrati" IsVisible="{Binding SignupIsVisible}" TextColor="White" FontSize="Medium" Grid.Row="3" Grid.Column="0"
+                    <Label Text="Registrati" IsVisible="{Binding SignupIsVisible}" IsEnabled="{Binding ErrorePrelievoRotte}" TextColor="White" FontSize="Medium" Grid.Row="3" Grid.Column="0"
                            Grid.ColumnSpan="3" FontAttributes="Bold" HorizontalOptions="Center" Margin="10" VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>

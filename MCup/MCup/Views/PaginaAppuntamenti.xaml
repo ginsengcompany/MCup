@@ -30,7 +30,9 @@
                     IsToggled="False" 
                     Toggled="SwitchVisibleAppuntamentiScaduti"
                     x:Name="SwitchAppuntamentiPassati" IsVisible="False"></Switch>
+               
             </StackLayout>
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"></ActivityIndicator>
             <ListView ItemsSource="{Binding Appunt}" 
                       IsGroupingEnabled="True"
                       ItemTapped="VaiPaginaAppuntamentiIndettaglio"
@@ -54,7 +56,7 @@
                                 <StackLayout 
                                     Orientation="Horizontal" 
                                     HorizontalOptions="EndAndExpand">
-                                    <StackLayout>
+                                    <StackLayout >
                                         <StackLayout.GestureRecognizers>
                                             <TapGestureRecognizer 
                                                 Command="{Binding EliminaAppuntamento}"/>
@@ -66,10 +68,10 @@
                                                HorizontalOptions="Center"
                                                FontSize="Medium"
                                                Margin="0,0,5,0">
-                                          
                                         </Label>
                                         <Image Source="cancella.png" 
                                                HeightRequest="30"
+                                               IsVisible="{Binding scaduto}"
                                                HorizontalOptions="Center"/>
                                     </StackLayout>
                                   
@@ -89,6 +91,7 @@
                                         <Image 
                                             Source="reply.png"
                                             HeightRequest="30"
+                                            IsVisible="{Binding scaduto}"
                                             HorizontalOptions="Center"/>
                                     </StackLayout>
                                    

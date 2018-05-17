@@ -47,13 +47,18 @@ namespace MCup.Views
          */
         private async void vaiRegistrazione(object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new Registrazione()); //Avvia la pagina di registrazione dedicata ai dispositivi Android
+            if (SingletonURL.Instance.error)
+                await DisplayAlert("Attenzione", "server momentaneamente non disponibile", "OK");
+            else
+                await Navigation.PushAsync(new Registrazione()); //Avvia la pagina di registrazione dedicata ai dispositivi Android
         }
 
         private async void richiestaDimenticaPassw(object sender, EventArgs e)
         {
-            await Navigation.PushPopupAsync(new PopupInfoScan());
-
+            if (SingletonURL.Instance.error)
+                await DisplayAlert("Attenzione", "server momentaneamente non disponibile", "OK");
+            else
+                await Navigation.PushPopupAsync(new PopupInfoScan());
         }
     }
 }

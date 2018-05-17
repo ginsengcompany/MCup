@@ -29,6 +29,7 @@ namespace MCup.ModelView
         public event PropertyChangedEventHandler PropertyChanged;//Evento che tiene traccia dei cambiamenti di stato delle proprietà
         private Assistito contatto;//Oggetto che astrae la classe assistito
         private bool switched;
+        private bool isBusy = false;
         private PaginaAppuntamenti paginaAppuntamenti;//Oggetto che astrae la pagina a cui si riferisce il model view
         private List<Assistito> contatti = new List<Assistito>();// lista di contattai di tipo assistito
         private List<AppuntamentoProposto> appuntamenti = new List<AppuntamentoProposto>();//Lista di appuntamenti utilizzato per creare la listview di appuntamenti da far selezionare all'utente
@@ -43,6 +44,15 @@ namespace MCup.ModelView
 
         #region Proprietà
 
+        public Boolean IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                OnPropertyChanged();
+                isBusy = value;
+            }
+        }
         public ObservableCollection<VisualizzaAppuntamenti> Appunt//Proprietà riferita al campo Appunt
         {
             get { return appunt; }
@@ -135,7 +145,9 @@ namespace MCup.ModelView
         public async void autoCompila(Assistito elementSelected)
         {
             date.assistito = elementSelected;
+            IsBusy = true;
             await invioDatiAssistito();
+            IsBusy = false;
             VisibleSwitch = true;
         }
 

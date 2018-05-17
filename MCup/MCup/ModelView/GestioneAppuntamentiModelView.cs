@@ -227,7 +227,7 @@ namespace MCup.ModelView
             REST<object, string> connessioneLogo = new REST<object, string>();
             try
             {
-                var logo = await connessioneLogo.getString("http://192.168.125.24:3001/infostruttura/logoStruttura", headers);
+                var logo = await connessioneLogo.getString("http://ecuptservice.ak12srl.it/infostruttura/logoStruttura", headers);
                 LogoStruttura = Xamarin.Forms.ImageSource.FromStream(
                     () => new MemoryStream(Convert.FromBase64String(logo)));
             }
@@ -240,12 +240,18 @@ namespace MCup.ModelView
         {
             RicezioneLogo();
             Titolo = appuntamentoSelezionatoProposto.desprest;
-            UbicazioneReparto = appuntamentoSelezionatoProposto.reparti[0].ubicazioneReparto;
+            if (!string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].ubicazioneReparto))
+                UbicazioneReparto = appuntamentoSelezionatoProposto.reparti[0].ubicazioneReparto;
+            else
+                ubicazioneReparto = "N/D";
             NomeStruttura = appuntamentoSelezionatoProposto.reparti[0].nomeStruttura;
             DataAppuntamento = appuntamentoSelezionatoProposto.dataAppuntamento + " " + appuntamentoSelezionatoProposto.oraAppuntamento;
             OraAppuntamento = appuntamentoSelezionatoProposto.oraAppuntamento;
-            NomeMedico = appuntamentoSelezionatoProposto.reparti[0].nomeMedico;
-            if (appuntamentoSelezionatoProposto.nota == null)
+            if (string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].nomeMedico))
+                NomeMedico = "N/D";
+            else
+                NomeMedico =  appuntamentoSelezionatoProposto.reparti[0].nomeMedico;
+            if (string.IsNullOrEmpty(appuntamentoSelezionatoProposto.nota ))
             {
                 StackNoteVisible = false;
             }

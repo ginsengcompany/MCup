@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using MCup.Model;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -30,6 +31,7 @@ namespace MCup.ModelView
 
         private Utente utente; //Oggetto che astrae l'utenza del cliente e che nel caso in cui la login vada a buon fine conterrà le informazioni relative all'utente
         private bool flagLogin = false;//Booleano che andrà a true quando l'utente avrà effettuato la login
+        private bool errorePrelievoRotte = true;
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
         private string nameErrorTextPassword;//Variabile utilizzata nel caso in cui ci sia un errore nel campo password o sia vuoto
         private bool isbusy; //variabile booleana utilizzata per gestire la proprietà IsRunning dell'activity indicator
@@ -48,6 +50,16 @@ namespace MCup.ModelView
         #endregion
 
         #region Proprietà
+
+        public Boolean ErrorePrelievoRotte
+        {
+            get { return errorePrelievoRotte; }
+            set
+            {
+                OnPropertyChanged();
+                errorePrelievoRotte = value;
+            }
+        }
 
         //Proprietà per il campo ShowPassword
         public ImageSource ShowPasswordImage
@@ -225,8 +237,6 @@ namespace MCup.ModelView
         //Costruttore del ModelView che inizializza le variabili fondamentali per il corretto funzionamento della pagina di login (sia Android che IOS).
         public LoginModelView(Login loginPage)
         {
-
-
             utente = new Utente(); //Crea un oggetto Utente vuoto
             Username = utente.username = utente.recuperaUserName();
             LoginIsVisible = true;
@@ -236,6 +246,8 @@ namespace MCup.ModelView
             IsVisible = false; //L'activity indicator non è visibile
             IsBusy = false; //L'activity indicator non si trova nello stato IsRunning
             RicezioneLogo();
+            
+
             effettuaLogin = new Command(async () => //Definisce il metodo del Command effettuaLogin che gestisce il tentativo di login da parte dell'utente
             {
                 IsEnabled = false;
@@ -249,89 +261,123 @@ namespace MCup.ModelView
                     NameErrorTextPassword = "Attenzione password non inserita correttamente";
                     IsBusy = false;
                 }
-                if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(passWord)) //se i campi codice fiscale e password non sono vuoti o null
+                if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(passWord)
+                ) //se i campi codice fiscale e password non sono vuoti o null
                 {
                     LoginIsVisible = false;
                     SignupIsVisible = false;
-                    IsVisible = true; //L'activity indicator è visibile
-                    IsBusy = true; //L'activity indicator è in stato IsRunning
-                    REST<Utente, ResponseLogin> rest = new REST<Utente, ResponseLogin>(); //Crea l'oggetto per eseguire la chiamata REST per la login
-                    ResponseLogin response = await rest.PostJson(SingletonURL.Instance.getRotte().Login, utente); //Chiamata POST per la richiesta di autenticazione delle informazioni inserite dall'utente (codice fiscale e password)
-                    if (rest.responseMessage != HttpStatusCode.OK)
-                    {
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
+               
+                        IsVisible = true; //L'activity indicator è visibile
+                        IsBusy = true; //L'activity indicator è in stato IsRunning
+                    if (SingletonURL.Instance.error)
+                    {  await App.Current.MainPage.DisplayAlert("Attenzione", "server momentaneamente non disponibile",
+                            "OK");
+                        LoginIsVisible = true;
+                        SignupIsVisible = true;
+
+                        IsVisible = false;
+                        IsBusy = false;
+
                     }
-                    else if (response.auth) //Le informazioni dell'utenza sono corrette
+
+                    else
                     {
-                        utente.cancellaEdAggiornaUsername(utente.username);
-                        App.Current.Properties["tokenLogin"] = response.token; //Salva nel dictionary dell'app il token dell'utente per accedere alle sue informazioni private
-                        OneSignal.Current.IdsAvailable(async (string userId, string token) =>
+                        REST<Utente, ResponseLogin>
+                            rest =
+                                new REST<Utente, ResponseLogin
+                                >(); //Crea l'oggetto per eseguire la chiamata REST per la login
+                        ResponseLogin
+                            response = await rest.PostJson(SingletonURL.Instance.getRotte().Login,
+                                utente); //Chiamata POST per la richiesta di autenticazione delle informazioni inserite dall'utente (codice fiscale e password)
+                        if (rest.responseMessage != HttpStatusCode.OK)
                         {
-                            TokenNotification tokNot = new TokenNotification();
-                            tokNot.tokenNotification = userId;
-                            if (listaHeader.Count != 0)
-                                listaHeader.Clear();
-                            listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-                            listaHeader.Add(new Header("struttura", "150907"));
-                            REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
-                            bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot, listaHeader);
-                            if (connessione.responseMessage != HttpStatusCode.OK)
-                            {
-                                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
-                            }
-                        });
-                        if (response.prenotazionePending)
+                            await App.Current.MainPage.DisplayAlert("Attenzione " + (int) rest.responseMessage,
+                                rest.warning, "OK");
+                        }
+                        else if (response.auth) //Le informazioni dell'utenza sono corrette
                         {
-                            var responseDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione",
-                                "Gentile utente, nell'ultima sessione abbiamo constatato che ha lasciato una prenotazione in sospeso, vuoi continuare?",
-                                "si", "no");
-                            if (responseDisplayAlert)
+                            utente.cancellaEdAggiornaUsername(utente.username);
+                            App.Current.Properties["tokenLogin"] =
+                                response
+                                    .token; //Salva nel dictionary dell'app il token dell'utente per accedere alle sue informazioni private
+                            OneSignal.Current.IdsAvailable(async (string userId, string token) =>
                             {
-                                loginPage.PendingPrenotazione(response.prenotazionePending);
-                                await Application.Current.SavePropertiesAsync();
+                                TokenNotification tokNot = new TokenNotification();
+                                tokNot.tokenNotification = userId;
+                                if (listaHeader.Count != 0)
+                                    listaHeader.Clear();
+                                listaHeader.Add(new Header("x-access-token",
+                                    App.Current.Properties["tokenLogin"].ToString()));
+                                listaHeader.Add(new Header("struttura", "150907"));
+                                REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
+                                bool res = await connessione.PostJson(
+                                    SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot, listaHeader);
+                                if (connessione.responseMessage != HttpStatusCode.OK)
+                                {
+                                    await App.Current.MainPage.DisplayAlert(
+                                        "Attenzione " + (int) connessione.responseMessage, connessione.warning, "OK");
+                                }
+                            });
+                            if (response.prenotazionePending)
+                            {
+                                var responseDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione",
+                                    "Gentile utente, nell'ultima sessione abbiamo constatato che ha lasciato una prenotazione in sospeso, vuoi continuare?",
+                                    "si", "no");
+                                if (responseDisplayAlert)
+                                {
+                                    loginPage.PendingPrenotazione(response.prenotazionePending);
+                                    await Application.Current.SavePropertiesAsync();
+
+                                }
+                                else
+                                {
+                                    REST<object, string> connessioneAnnullamento = new REST<object, string>();
+                                    string messaggioDiAnnullamento = await connessioneAnnullamento.getString(
+                                        SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
+                                        listaHeader);
+                                    if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
+                                    {
+                                        await App.Current.MainPage.DisplayAlert(
+                                            "Attenzione " + (int) connessioneAnnullamento.responseMessage,
+                                            connessioneAnnullamento.warning, "OK");
+                                    }
+                                    else
+                                    {
+                                        await App.Current.MainPage.DisplayAlert("Attenzione",
+                                            messaggioDiAnnullamento,
+                                            "ok");
+                                        App.Current.MainPage = new MenuPrincipale();
+                                        await Application.Current.SavePropertiesAsync();
+                                    }
+
+
+                                }
 
                             }
                             else
                             {
-                                REST<object, string> connessioneAnnullamento = new REST<object, string>();
-                                string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
-                                    listaHeader);
-                                if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
-                                {
-                                    await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, connessioneAnnullamento.warning, "OK");
-                                }
-                                else
-                                {
-                                    await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
-                                    App.Current.MainPage = new MenuPrincipale();
-                                    await Application.Current.SavePropertiesAsync();
-                                }
-                               
-                                
+                                App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
+                                await Application.Current.SavePropertiesAsync();
                             }
-                        }
-                        else
-                        {
-                            App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
-                            await Application.Current.SavePropertiesAsync();
+
+                            //  REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto per la chiamata REST
+                            // ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token); //Chiamata GET che ritorna se l'utente ha già scelto la sua struttura preferita o meno
+                            /*   if (responseStruttura.scelta) //Se l'utente ha già scelto la sua struttura preferita
+                                 App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
+                                 else //Se l'utente non ha ancora scelto la sua struttura preferita
+                                 App.Current.MainPage = new ListaStrutture("Login"); //Avvia la pagina per la scelta di essa*/
+
+
                         }
 
-                        //  REST<object, ResponseStrutturaPreferita> restStrutturaPreferita = new REST<object, ResponseStrutturaPreferita>(); //Crea un oggetto per la chiamata REST
-                        // ResponseStrutturaPreferita responseStruttura = await restStrutturaPreferita.GetSingleJson(URL.StrutturaPreferita, response.token); //Chiamata GET che ritorna se l'utente ha già scelto la sua struttura preferita o meno
-                        /*   if (responseStruttura.scelta) //Se l'utente ha già scelto la sua struttura preferita
-                             App.Current.MainPage = new MenuPrincipale(); //Avvia la pagina MenuPrincipale
-                             else //Se l'utente non ha ancora scelto la sua struttura preferita
-                             App.Current.MainPage = new ListaStrutture("Login"); //Avvia la pagina per la scelta di essa*/
 
+                        IsBusy = false; //L'activity indicator non è in stato IsRunning
+                        IsVisible = false; //L'activity indicator non è visibile
+                        LoginIsVisible = true;
+                        SignupIsVisible = true;
+                        IsEnabled = true;
 
                     }
-
-
-                    IsBusy = false; //L'activity indicator non è in stato IsRunning
-                    IsVisible = false; //L'activity indicator non è visibile
-                    LoginIsVisible = true;
-                    SignupIsVisible = true;
-                    IsEnabled = true;
                 }
                 else
                     IsEnabled = true;
@@ -358,6 +404,8 @@ namespace MCup.ModelView
 
         #region Metodi
 
+
+
         //Metodo che tramite una connessione riceve il logo Della struttura
         private async void RicezioneLogo()
         {
@@ -369,7 +417,7 @@ namespace MCup.ModelView
             REST<object, string> connessioneLogo = new REST<object, string>();
             try
             {
-                var logo = await connessioneLogo.getString("http://192.168.125.24:3001/infostruttura/logoStruttura", listaHeader);
+                var logo = await connessioneLogo.getString("http://ecuptservice.ak12srl.it/infostruttura/logoStruttura", listaHeader);
                 LogoStruttura = Xamarin.Forms.ImageSource.FromStream(
                     () => new MemoryStream(Convert.FromBase64String(logo)));
             }
