@@ -136,6 +136,13 @@ namespace MCup.Views
             form.autoCompila(b);
         }
 
+        public void Picker_SelezionaPrimoElemento(Assistito assistito)
+        {
+            pickerContatti.SelectedItem = assistito;
+            pickerContatti.IsEnabled = false;
+            selezionaElemento(assistito);
+        }
+
         public void selezionaElemento(Assistito contatto)
         {
             pickerContatti.Title = contatto.nomeCompletoConCodiceFiscale;

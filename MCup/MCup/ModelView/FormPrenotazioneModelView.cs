@@ -150,6 +150,10 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 contatti = new List<Assistito>(value);
+                if (value.Count == 1)
+                {
+                    model.Picker_SelezionaPrimoElemento(value[0]);
+                }
             }
         }
 
@@ -333,7 +337,6 @@ namespace MCup.ModelView
             {
                 Contatti = contacts.OrderBy(o => o.nomeCompletoConCodiceFiscale).ToList();
             }
-
         }
 
         //Metodo che richimiamo solo nel caso in cui l'applicativo è stato chiuso o crashato, ed restituisce, tramite connessione, tutti i campi riempiti della pagina
