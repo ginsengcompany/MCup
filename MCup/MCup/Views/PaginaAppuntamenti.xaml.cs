@@ -36,6 +36,7 @@ namespace MCup.Views
         {
             pickerContatti.SelectedItem = assistito;
             pickerContatti.IsEnabled = false;
+            pickerContatti.Title = assistito.nomeCompletoConCodiceFiscale;
             form.autoCompila(assistito);
         }
 
