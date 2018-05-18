@@ -54,6 +54,9 @@ namespace MCup.Views
 
         private async void logout_Clicked(object sender, EventArgs e)
         {
+            var risposta = await DisplayAlert("Logout","Sei sicuro di voler effettuare il logout?","SI","NO");
+            if (!risposta)
+                return;
             List<Header> listaHeader = new List<Header>();
             listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             TokenNotification tokNot = new TokenNotification();
