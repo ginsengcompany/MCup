@@ -108,6 +108,9 @@
     <Compile Include="Views\PaginaAppuntamenti.xaml.cs">
       <DependentUpon>PaginaAppuntamenti.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PaginaLavoriInCorso.xaml.cs">
+      <DependentUpon>PaginaLavoriInCorso.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Registrazione.xaml.cs">
       <DependentUpon>Registrazione.xaml</DependentUpon>
     </Compile>
@@ -309,6 +312,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\VerificaRicettaAsl.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PaginaLavoriInCorso.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

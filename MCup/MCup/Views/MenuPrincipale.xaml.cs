@@ -86,7 +86,7 @@ namespace MCup.Views
                 else if (menu.MenuTitle.Equals("Pagamento"))
                 {
                     IsPresented = false;
-                   // Detail = new NavigationPage(new Pagamento()); //Avvia la pagina principale
+                   Detail = new NavigationPage(new PaginaLavoriInCorso()); //Avvia la pagina principale
                 }
                 /*  else if (menu.MenuTitle.Equals("Scegli Struttura Preferita"))
                   {

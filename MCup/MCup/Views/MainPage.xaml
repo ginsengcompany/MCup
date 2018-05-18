@@ -38,7 +38,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
 
                     </Grid.ColumnDefinitions>
-                <StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="Center">
+                    <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center">
                     <Image 
                         x:Name="tapIconaPrenotazioni" 
                         Source="prenota.png" 
@@ -54,7 +54,7 @@
                  
                 </StackLayout>
 
-                    <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center">
+                    <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="1" HorizontalOptions="Center">
                    <Image 
                        x:Name="tapIconaAppuntamenti" 
                        Source="appuntamenti.png" 
@@ -70,7 +70,7 @@
                   
                 </StackLayout>
 
-                    <StackLayout  Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" >
+                    <StackLayout  Grid.Row="1" Grid.Column="0"  HorizontalOptions="Center" >
                     <Image 
                         x:Name="tapIconaContatti" 
                         Source="contatti.png" 
@@ -85,7 +85,7 @@
                     </Image>
                     
                 </StackLayout>
-                    <StackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="Center">
+                    <StackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="Center">
                     <Image 
                         x:Name="tapIconaPagamenti" 
                         Source="pagamenti.png" 
@@ -94,22 +94,24 @@
                         HorizontalOptions="Center">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
-                                Tapped="TapGestureRecognizer_Tapped_1"
+                                Tapped="vaiPaginaManutenzione"
                                 NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
                     </Image>
                  
                 </StackLayout>
 
-                    <StackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="Center">
+                    <StackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="Center">
                     <Image 
                         Source="referti.png" 
                         WidthRequest="100"
                         HeightRequest="100"
                         HorizontalOptions="Center">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer/>
-                        </Image.GestureRecognizers>
+                                <TapGestureRecognizer  
+                                    Tapped="vaiPaginaManutenzione"
+                                    NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
                     </Image>
                     
                 </StackLayout>

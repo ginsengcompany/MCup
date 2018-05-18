@@ -40,5 +40,6 @@ namespace MCup.Model
         public string listaMediciCombo { get; set; }
         public string isAsl { get; set; }
         public string passwordSmarrita { get; set; }
+        public string modAssistito { get; set; }
     }
 }

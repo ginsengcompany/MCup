@@ -23,7 +23,7 @@ namespace MCup.Views
             tapIconaPrenotazioni.IsEnabled = true;
             tapIconaAppuntamenti.IsEnabled = true;
             tapIconaContatti.IsEnabled = true;
-            tapIconaPagamenti.IsEnabled = false;
+            tapIconaPagamenti.IsEnabled = true;
         }
         //Metodo per avviare la page dell'icona Prenotazioni
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -83,6 +83,11 @@ namespace MCup.Views
         private class TokenNotification
         {
             public string tokenNotification;
+        }
+
+        private async void vaiPaginaManutenzione(object sender, EventArgs e)
+        {
+           await Navigation.PushAsync(new  PaginaLavoriInCorso());
         }
     }
 }
