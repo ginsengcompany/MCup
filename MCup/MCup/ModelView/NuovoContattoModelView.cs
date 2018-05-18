@@ -24,6 +24,8 @@ namespace MCup.ModelView
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
 
         private Assistito contatto; //Oggetto che astrae l'utenza del cliente
+        Provincia provinciaSelezionata = new Provincia();
+
 
         private List<Comune> listaComuniResidenza, listaComuniNascita;//Lista di comuni di nascita e residenza
 
@@ -396,15 +398,16 @@ namespace MCup.ModelView
                     mese = contatto.data_nascita.Substring(0, 2);
                     anno = contatto.data_nascita.Substring(6, 4);
                     contatto.data_nascita = giorno + "/" + mese + "/" + anno;
+                    contatto.provincia = provinciaSelezionata.provincia;
                     REST<Assistito, ResponseRegistrazione> connessioneNuovoContatto = new REST<Assistito, ResponseRegistrazione>();
                     try
                     {
                         contatto.Maiuscolo();
                         ResponseRegistrazione response = await connessioneNuovoContatto.PostJson(SingletonURL.Instance.getRotte().AggiungiNuovoContatto, contatto, listaHeader);
-                        if (connessioneNuovoContatto.responseMessage != HttpStatusCode.Created)
-                        {
+                        if (connessioneNuovoContatto.responseMessage == HttpStatusCode.BadRequest)
+                            await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNuovoContatto.responseMessage, "Controllare tutti i dati", "OK");
+                        else if(connessioneNuovoContatto.responseMessage != HttpStatusCode.Created)
                             await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNuovoContatto.responseMessage, connessioneNuovoContatto.warning, "OK");
-                        }
                         else
                         {
                             await App.Current.MainPage.DisplayAlert("Nuovo contatto", "Il contatto è stato aggiunto correttamente", "OK");
@@ -438,7 +441,6 @@ namespace MCup.ModelView
         //Metodo che restituisce, dopo aver selezionato la provincia, la lista dei comuni
         public async void LeggiComuniResidenza(Provincia provincia)
         {
-            Provincia provinciaSelezionata = new Provincia();
             provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
             ListaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);

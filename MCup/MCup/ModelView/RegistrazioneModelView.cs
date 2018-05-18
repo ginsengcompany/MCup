@@ -29,6 +29,8 @@ namespace MCup.ModelView
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
         private List<Comune> listacomuni = new List<Comune>();
         private List<Provincia> listaprovince = new List<Provincia>();
+        Provincia provinciaSelezionata = new Provincia();
+
         private List<Comune> listacomuniresidenza = new List<Comune>();
         private List<StatoCivile> listaStatoCivile = new List<StatoCivile>();
         private Regex regexPass = new Regex(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])");
@@ -496,6 +498,7 @@ namespace MCup.ModelView
                     mese = utente.data_nascita.Substring(0, 2);
                     anno = utente.data_nascita.Substring(6);
                     utente.data_nascita = giorno + "/" + mese + "/" + anno;
+                    utente.provincia = provinciaSelezionata.provincia;
                     REST<object, string> restTermini = new REST<object, string>(); //Crea un oggetto REST per i termini di servizio remoti
                     var termini = await restTermini.getString(SingletonURL.Instance.getRotte().TerminiServizio); //Recupera i termini di servizio attraverso una GET
                     if (restTermini.responseMessage != HttpStatusCode.OK)
@@ -675,7 +678,6 @@ namespace MCup.ModelView
         }
         private async void LeggiComuniResidenza(Provincia provincia)
         {
-            Provincia provinciaSelezionata = new Provincia();
             provinciaSelezionata = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
             listaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);

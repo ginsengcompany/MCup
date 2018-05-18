@@ -20,6 +20,7 @@ namespace MCup.Model
         public string codStatoCivile { get; set; }
         public string statocivile { get; set; }
         public string indirizzores { get; set; }
+        public string provincia { get; set; }
         public string email { get; set; }
         public string nomeCompletoConCodiceFiscale { get; set; }
         public bool AccountPrimario { get; set; } = false;
