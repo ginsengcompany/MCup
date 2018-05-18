@@ -117,6 +117,10 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 contatti = new List<Assistito>(value);
+                if(value.Count == 1)
+                {
+                    paginaAppuntamenti.Picker_selezionaPrimoElemento(value[0]);
+                }
             }
         }
 

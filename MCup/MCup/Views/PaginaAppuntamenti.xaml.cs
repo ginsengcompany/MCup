@@ -32,6 +32,13 @@ namespace MCup.Views
             form.autoCompila(b);
         }
 
+        public void Picker_selezionaPrimoElemento(Assistito assistito)
+        {
+            pickerContatti.SelectedItem = assistito;
+            pickerContatti.IsEnabled = false;
+            form.autoCompila(assistito);
+        }
+
         private void VaiPaginaAppuntamentiIndettaglio(object sender, ItemTappedEventArgs e)
         {
             var b = e.Item as AppuntamentoPrestazioneProposto;
