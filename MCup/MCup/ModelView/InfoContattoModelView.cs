@@ -35,6 +35,7 @@ namespace MCup.ModelView
         #region Proprietà
 
         public ICommand Elimina { protected set; get; } //Command per il tentativo di eliminare un utenza 
+        public ICommand Modifica { protected set; get; } //Command per inviare l'utente sulla pagina di modifica Contatto
         public string codiceFiscale //Proprietà relativa al campo codice fiscale
         {
             get { return utente.codice_fiscale; }
@@ -42,6 +43,24 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 utente.codice_fiscale = value;
+            }
+        }
+        public string email //Proprietà relativa al campo codice fiscale
+        {
+            get { return utente.email; }
+            set
+            {
+                OnPropertyChanged();
+                utente.email = value;
+            }
+        }
+        public string indirizzoRes //Proprietà relativa al campo codice fiscale
+        {
+            get { return utente.indirizzores; }
+            set
+            {
+                OnPropertyChanged();
+                utente.indirizzores = value;
             }
         }
         public string comune_residenza //Proprietà relativa al campo codice fiscale
@@ -226,7 +245,11 @@ namespace MCup.ModelView
 
                 });
             }
+            Modifica = new Command(async () =>
+            {
+                App.Current.MainPage = new NavigationPage(new ModificaContatto(utente));
 
+            });
         }
 
         #endregion
