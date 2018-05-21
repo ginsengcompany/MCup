@@ -198,6 +198,26 @@ namespace MCup.ModelView
             }
         }
 
+        public string Indirizzo //Proprietà relativa al campo nome
+        {
+            get { return contatto.indirizzores; }
+            set
+            {
+                OnPropertyChanged();
+                contatto.indirizzores = value;
+            }
+        }
+
+        public string Email //Proprietà relativa al campo nome
+        {
+            get { return contatto.email; }
+            set
+            {
+                OnPropertyChanged();
+                contatto.email = value;
+            }
+        }
+
         public string CognomeNuovoContatto //Proprietà relativa al campo cognome
         {
             get { return contatto.cognome; }

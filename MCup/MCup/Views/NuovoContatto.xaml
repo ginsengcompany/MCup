@@ -48,10 +48,15 @@
                     <Picker x:Name="PickerComuneResidenza" Title="Seleziona il comune di residenza" SelectedIndexChanged="Picker_SelectedIndexChangedComuneResidenza" ItemsSource="{Binding ListaComuniResidenza}" ItemDisplayBinding="{Binding nome}"/>
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneResidenza}" TextColor="Red" FontSize="Small"/>
 
+                    <Label Text="Indirizzo" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Entry Placeholder="Inserire indirizzo" Text="{Binding Indirizzo}" WidthRequest="250"/>
+
+                    <Label Text="Email/pec" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Entry Placeholder="Inserire indirizzo" Text="{Binding Email}" WidthRequest="250"/>
+
                     <Label Text="StatoCivile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Picker Title="Seleziona lo stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"/>
 
-                    
                     <Label Text="Numero Telefonia mobile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Entry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" Keyboard="Numeric" WidthRequest="250"/>
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorTelefono}" TextColor="Red" FontSize="Small"/>
