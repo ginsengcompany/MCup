@@ -386,7 +386,7 @@ namespace MCup.ModelView
                     {
                         contatto.Maiuscolo();
                         ResponseRegistrazione response = await connessioneModificaContatto.PostJson(SingletonURL.Instance.getRotte().modAssistito, contatto, listaHeader);
-                        if (connessioneModificaContatto.responseMessage != HttpStatusCode.Created)
+                        if (connessioneModificaContatto.responseMessage != HttpStatusCode.OK)
                         {
                             await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneModificaContatto.responseMessage, connessioneModificaContatto.warning, "OK");
                         }
