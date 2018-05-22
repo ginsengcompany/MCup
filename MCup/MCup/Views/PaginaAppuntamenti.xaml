@@ -18,7 +18,6 @@
                     SelectedIndexChanged="Picker_OnSelectedIndexChanged" />
             <Label 
                 Text="Nessun appuntamento disponibile per il contatto scelto" 
-                x:Name="labeleeee"
                 IsVisible="{Binding VisibileLabel}" 
                 HorizontalOptions="Center" 
                 TextColor="Black" 
@@ -110,6 +109,10 @@
                                         <StackLayout>
                                             <Label Text="Prestazione: " TextColor="#6C94B2" FontAttributes="Bold"/>
                                             <Label Text="{Binding desprest}" TextColor="Black" FontAttributes="Italic"/>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <ActivityIndicator IsVisible="{Binding IsBusyAnnulla}" IsRunning="{Binding IsBusyAnnulla}"></ActivityIndicator>
+
                                         </StackLayout>
                                         <StackLayout>
                                             <Label Text="Data Appuntamento: " TextColor="#6C94B2" FontAttributes="Bold"/>

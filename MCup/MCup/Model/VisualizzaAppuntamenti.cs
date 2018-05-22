@@ -21,6 +21,7 @@ namespace MCup.Model
         public string codiceFiscale { get; set; }
         public string dataEmissioneRicetta { get; set; }
         public bool scaduto { get; set; } = true;
+        public bool IsBusyAnnulla { get; set; }
 
         public void Scaduto()
         {
@@ -47,7 +48,9 @@ namespace MCup.Model
             {
                 return new Command(async () =>
                 {
+                    IsBusyAnnulla = true;
                     await EliminazioneAppuntamento();
+                    IsBusyAnnulla = false;
                 });
             }
         }
