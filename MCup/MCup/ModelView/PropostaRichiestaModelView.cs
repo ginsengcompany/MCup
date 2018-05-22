@@ -409,8 +409,8 @@ namespace MCup.ModelView
                             }
                             appuntamentoProposto.appuntamenti[i].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
                         }
-                        if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].reparti[i].nomeMedico))
-                            appuntamentoProposto.appuntamenti[i].reparti[i].nomeMedico = "N/D";
+                        if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico))
+                            appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
                     }
                     ListPrenotazioni = appuntamentoProposto.appuntamenti;
                 }

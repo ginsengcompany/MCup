@@ -470,12 +470,12 @@ namespace MCup.ModelView
                     }
 
                     Impegnativa response = await connessione.PostJson(SingletonURL.Instance.getRotte().Ricetta, invioImpegnativa, headers);
-                    if (connessione.responseMessage != HttpStatusCode.OK)
-                    {
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
-                    }
-                    else
+                    if (connessione.responseMessage == HttpStatusCode.OK)
                         model.metodoPush(response, invioImpegnativa.assistito);
+                    else if (connessione.responseMessage == HttpStatusCode.BadRequest)
+                        await App.Current.MainPage.DisplayAlert("Attenzione 400", connessione.warning, "OK");
+                    else
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
                 }
                 catch (Exception e)
                 {

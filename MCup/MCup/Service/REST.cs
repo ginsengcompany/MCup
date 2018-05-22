@@ -202,7 +202,7 @@ namespace MCup.Service
             }
             catch (Exception)
             {
-                warning = "Errore in fase di connessione con il servizio";
+
             }
             return default(T);
         }
