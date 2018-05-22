@@ -18,6 +18,7 @@ namespace MCup.Model
     {
         public string LongName { get; set; }
         public string ShortName { get; set; }
+        public string codiceFiscale { get; set; }
         public string dataEmissioneRicetta { get; set; }
         public bool scaduto { get; set; } = true;
 
@@ -87,6 +88,7 @@ namespace MCup.Model
                     
                     AppuntamentoProposto appuntamentoSelezionato = new AppuntamentoProposto();
                     appuntamentoSelezionato.codiceImpegnativa = this.LongName;
+                    appuntamentoSelezionato.assistito.codice_fiscale = this.codiceFiscale;
                     ResponseAnnullaImpegnativa response = await connessioneAnnullamentoImpegnativa.PostJson(SingletonURL.Instance.getRotte().annullaImpegnativa,
                                  appuntamentoSelezionato, headers);
                     if (connessioneAnnullamentoImpegnativa.responseMessage != HttpStatusCode.OK)

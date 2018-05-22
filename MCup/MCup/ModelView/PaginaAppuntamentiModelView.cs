@@ -164,6 +164,7 @@ namespace MCup.ModelView
             try
             {
                 Assistito invioContatto = date.assistito;
+
                 REST<Assistito, AppuntamentoProposto> connessione = new REST<Assistito, AppuntamentoProposto>();
                 Appuntamenti = await connessione.PostJsonList(SingletonURL.Instance.getRotte().appuntamenti, invioContatto, listaJHeaders);
                 if (connessione.responseMessage != HttpStatusCode.OK)
