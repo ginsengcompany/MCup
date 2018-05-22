@@ -39,6 +39,7 @@ namespace MCup.ModelView
         private Boolean visibile = true;//variabile booleana che setta la visibilità o meno di un elemento nello xaml
         private string visi;//variabile  che setta la visibilità o meno di un elemento nello xaml
         private bool visibleSwitch = false;
+        private Boolean isbusyannulla;
 
         #endregion
 
@@ -60,6 +61,16 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 appunt = value;
+            }
+        }
+
+        public Boolean IsBusyAnnulla
+        {
+            get { return isbusyannulla; }
+            set
+            {
+                OnPropertyChanged();
+                isbusyannulla = value;
             }
         }
 
@@ -307,6 +318,7 @@ namespace MCup.ModelView
         public PaginaAppuntamentiModelView(PaginaAppuntamenti pagina)
         {
             VisibileL = "false";
+            IsBusyAnnulla = false;
             leggiContatti();
             this.paginaAppuntamenti = pagina;
         }
