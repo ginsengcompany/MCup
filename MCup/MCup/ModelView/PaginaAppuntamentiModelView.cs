@@ -288,6 +288,7 @@ namespace MCup.ModelView
                     LongName = Appuntamenti[i].codiceImpegnativa,
                     ShortName = Appuntamenti[i].codiceImpegnativa,
                     dataEmissioneRicetta = Appuntamenti[i].dataEmissioneRicetta,
+                    codiceFiscale = Appuntamenti[i].assistito.codice_fiscale,
                     contatto = Appuntamenti[i].assistito
                 };
                 for (int j = 0; j < Appuntamenti[i].appuntamenti.Count; j++)

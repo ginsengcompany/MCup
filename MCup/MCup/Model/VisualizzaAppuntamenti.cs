@@ -81,6 +81,7 @@ namespace MCup.Model
             REST<AppuntamentoProposto, ResponseAnnullaImpegnativa> connessioneAnnullamentoImpegnativa = new REST<AppuntamentoProposto, ResponseAnnullaImpegnativa>();
             List<Header> headers = new List<Header>();
             headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+            headers.Add(new Header("struttura", "150907"));
             if (esitoDisplayAlert)
             {
                 try
@@ -88,6 +89,7 @@ namespace MCup.Model
                     
                     AppuntamentoProposto appuntamentoSelezionato = new AppuntamentoProposto();
                     appuntamentoSelezionato.codiceImpegnativa = this.LongName;
+                    appuntamentoSelezionato.assistito = new Assistito();
                     appuntamentoSelezionato.assistito.codice_fiscale = this.codiceFiscale;
                     ResponseAnnullaImpegnativa response = await connessioneAnnullamentoImpegnativa.PostJson(SingletonURL.Instance.getRotte().annullaImpegnativa,
                                  appuntamentoSelezionato, headers);
