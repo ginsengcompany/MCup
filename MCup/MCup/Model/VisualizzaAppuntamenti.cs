@@ -69,7 +69,7 @@ namespace MCup.Model
             DateTime dataEmissione =  DateTime.ParseExact(dataEmissioneRicetta, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime dataOdierna = DateTime.Today;
             PaginaAppuntamentiModelView pagina;
-            if ((dataEmissione - dataOdierna).TotalDays < 30)
+            if ((dataOdierna - dataEmissione).TotalDays > 30)
             {
                 messDisplay = "Sei sicuro di voler annullare la prenotazione?\nse confermi non sarà più possibile prenotare con questa impegnativa, inquanto la data di emissione dell'impegnativa ha superato i 30 giorni utili per utilizzarla";
             }

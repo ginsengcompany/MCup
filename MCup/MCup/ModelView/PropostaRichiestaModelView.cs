@@ -480,9 +480,9 @@ namespace MCup.ModelView
                                 dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
                             }
                             appuntamentoProposto.appuntamenti[i].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
-                            if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico))
-                                appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
                         }
+                        if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico))
+                            appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
                         ListPrenotazioni = appuntamentoProposto.appuntamenti;
                     }
                 }
@@ -549,9 +549,9 @@ namespace MCup.ModelView
                                 dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
                             }
                             appuntamentoProposto.appuntamenti[i].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
-                            if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico))
-                                appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
                         }
+                        if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico))
+                            appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
                     }
                     ListPrenotazioni = appuntamentoProposto.appuntamenti;
                 }
