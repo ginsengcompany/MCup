@@ -65,7 +65,7 @@
                             <TapGestureRecognizer Tapped="richiestaDimenticaPassw" NumberOfTapsRequired="1"></TapGestureRecognizer>
                         </Label.GestureRecognizers>
                     </Label>
-                    <ActivityIndicator Color="Red" HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy}" 
+                    <ActivityIndicator  HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy}" 
                                        IsVisible="{Binding IsVisible}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" />
                 </Grid>
             </StackLayout>

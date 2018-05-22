@@ -32,6 +32,8 @@ namespace MCup.ModelView
         private string visible = "false";
         //Lista di header
         private List<Header> headers = new List<Header>();
+
+        private bool isBusy = false;
         //Variabile che controlla che il nome e cognome non contenga caratteri numerici o simboli
         private Regex regexNomeCognome = new Regex(@"^[A-Za-zèùàòé][a-zA-Z'èùàòé ]*$");
         //Oggetto che astrae l'utente che intende prenotare una o delle prestazioni
@@ -67,6 +69,15 @@ namespace MCup.ModelView
 
         //Proprietà che sarà usata solo se il campo sarà vuoto o non corrisponderà con il nome salvato nel database
 
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                OnPropertyChanged();
+                isBusy = value;
+            }
+        }
         public string NameTextErrorNome
         {
             get { return nameTextErrorNome; }
@@ -311,7 +322,9 @@ namespace MCup.ModelView
             InviaRichiesta = new Command(async () =>
             {
                 IsEnabled = false;
+                IsBusy = true;
                 await InvioDatiAsync();
+                IsBusy = false;
                 IsEnabled = true;
             });
 

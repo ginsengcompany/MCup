@@ -104,6 +104,7 @@
                             <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
                     </Image> -->
+                    <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"></ActivityIndicator>
                     <Button IsEnabled="{Binding IsEnabled}" WidthRequest="150" Command="{Binding InviaRichiesta}" BackgroundColor="#003964" TextColor="White"
                             Text="Invia dati"/>
                 </StackLayout>
