@@ -66,7 +66,7 @@ namespace MCup.Model
         public async Task EliminazioneAppuntamento()
         {
             var messDisplay = "";
-            DateTime dataEmissione = Convert.ToDateTime(dataEmissioneRicetta);
+            DateTime dataEmissione =  DateTime.ParseExact(dataEmissioneRicetta, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             DateTime dataOdierna = DateTime.Today;
             PaginaAppuntamentiModelView pagina;
             if ((dataEmissione - dataOdierna).TotalDays < 30)
