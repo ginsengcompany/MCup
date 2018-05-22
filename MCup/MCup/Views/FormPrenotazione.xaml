@@ -98,13 +98,14 @@
                         </Image>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,30,0,0" IsVisible="{Binding Visible}">
+                <StackLayout  HorizontalOptions="Center" Padding="0,30,0,0" IsVisible="{Binding Visible}">
      <!--               <Image IsEnabled="{Binding IsEnabled}" Source="send.png" WidthRequest="250">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding InviaRichiesta}" NumberOfTapsRequired="1"/>
                         </Image.GestureRecognizers>
                     </Image> -->
                     <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"></ActivityIndicator>
+
                     <Button IsEnabled="{Binding IsEnabled}" WidthRequest="150" Command="{Binding InviaRichiesta}" BackgroundColor="#003964" TextColor="White"
                             Text="Invia dati"/>
                 </StackLayout>
