@@ -198,6 +198,8 @@ namespace MCup.ModelView
                 contattoPrimo.telefono = temp[0].telefono;
                 contattoPrimo.statocivile = temp[0].statocivile;
                 contattoPrimo.codStatoCivile = temp[0].codStatoCivile;
+                contattoPrimo.indirizzores = temp[0].indirizzores;
+                contattoPrimo.email = temp[0].email;
                 temp.Remove(temp[0]);
                 Contatti = temp;
                 ImplementaRubrica();

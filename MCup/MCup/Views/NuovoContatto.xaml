@@ -52,7 +52,7 @@
                     <Entry Placeholder="Inserire indirizzo" Text="{Binding Indirizzo}" WidthRequest="250"/>
 
                     <Label Text="Email/pec" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                    <Entry Placeholder="Inserire indirizzo" Text="{Binding Email}" WidthRequest="250"/>
+                    <Entry Placeholder="Inserire email" Text="{Binding Email}" WidthRequest="250"/>
 
                     <Label Text="StatoCivile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                     <Picker Title="Seleziona lo stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"/>

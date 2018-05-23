@@ -375,7 +375,7 @@ namespace MCup.ModelView
                 if (prestazioniDaInviare[i].codprest == reparto.codprest)
                     for (int j = 0; j < prestazioniDaInviare[i].reparti.Count; j++)
                     {
-                        if (prestazioniDaInviare[i].reparti[j].codReparto == reparto.codReparto)
+                        if (prestazioniDaInviare[i].reparti[j].descrizione == reparto.descrizione)
                             prestazioniDaInviare[i].reparti[j].repartoScelto = true;
                         else
                             prestazioniDaInviare[i].reparti[j].repartoScelto = false;

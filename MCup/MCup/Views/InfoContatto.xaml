@@ -23,9 +23,9 @@
                               IsEnabled="false"  WidthRequest="250" TextColor="Black" />
                     <xfx:XfxEntry Placeholder="comune di residenza" Text="{Binding comune_residenza}" PlaceholderColor="#003964" TextColor="Black" 
                               ErrorText="{Binding NameTextErrorComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250" IsEnabled="False"/>
-                    <xfx:XfxEntry Placeholder="comune di residenza" Text="{Binding indirizzoRes}" PlaceholderColor="#003964" TextColor="Black" 
+                    <xfx:XfxEntry Placeholder="indirizzo di residenza" Text="{Binding indirizzoRes}" PlaceholderColor="#003964" TextColor="Black" 
                               ErrorText="{Binding NameTextErrorComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250" IsEnabled="False"/>
-                    <xfx:XfxEntry Placeholder="comune di residenza" Text="{Binding email}" PlaceholderColor="#003964" TextColor="Black" 
+                    <xfx:XfxEntry Placeholder="email" Text="{Binding email}" PlaceholderColor="#003964" TextColor="Black" 
                               ErrorText="{Binding NameTextErrorComuneResidenza}" ErrorDisplay="Underline" WidthRequest="250" IsEnabled="False"/>
                     <xfx:XfxEntry Placeholder="numero di telefono mobile" Text="{Binding telefono}" PlaceholderColor="#003964" TextColor="Black" Keyboard="Numeric" 
                               ErrorText="{Binding NameTextErrorTelefono}" ErrorDisplay="Underline"  WidthRequest="250" IsEnabled="False"/>
