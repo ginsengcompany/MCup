@@ -263,7 +263,7 @@ namespace MCup.ModelView
             }
             else
             {
-                Contatti = contatti.OrderBy(o => o.nomeCompletoConCodiceFiscale).ToList();
+                Contatti = contatti.OrderBy(o => o.cognome).ToList();
             }
         }
 

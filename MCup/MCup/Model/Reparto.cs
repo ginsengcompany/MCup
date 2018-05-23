@@ -21,5 +21,6 @@ namespace MCup.Model
         public string nomeMedico { get; set; }
         public string ubicazioneReparto { get; set; }
         public string ubicazioneUnita { get; set; }
+        public string desprest { get; set; }
     }
 }

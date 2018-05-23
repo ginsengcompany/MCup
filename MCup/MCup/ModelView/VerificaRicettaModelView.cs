@@ -225,6 +225,7 @@ namespace MCup.ModelView
                 IsBusy = true;
                 IsEnabled = false;
                 temp[i].reparti = await connessione.PostJsonList(SingletonURL.Instance.getRotte().RicercadisponibilitaReparti, ListaPrestazioni[i], headers);
+                temp[i].desprest = ListaPrestazioni[i].reparti[0].desprest;
                 if (connessione.responseMessage != HttpStatusCode.OK)
                 {
                     await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
@@ -247,7 +248,7 @@ namespace MCup.ModelView
                     }
                     else
                     {
-                        temp[i].title = "Scegli il reparto";
+                        temp[i].title = "Scegli il Reparto/Ambulatorio";
                         temp[i].enabled = true;
                     }
 
