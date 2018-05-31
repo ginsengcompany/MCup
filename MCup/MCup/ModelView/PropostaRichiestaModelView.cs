@@ -392,6 +392,7 @@ namespace MCup.ModelView
                     }
                     for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
                     {
+                        appuntamentoProposto.appuntamenti[i].desprest = prestazioni[i].reparti[i].desprest;
                         if (appuntamentoProposto.appuntamenti[i].dataAppuntamento.Length < 10)
                         {
                             DateTime dataTemp;
@@ -412,6 +413,7 @@ namespace MCup.ModelView
                         if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico))
                             appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
                     }
+                    
                     ListPrenotazioni = appuntamentoProposto.appuntamenti;
                 }
                 else
@@ -456,6 +458,7 @@ namespace MCup.ModelView
                 {
                     for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
                     {
+                        appuntamentoProposto.appuntamenti[i].desprest = prestazioni[i].reparti[i].desprest;
                         if (appuntamentoProposto.appuntamenti[i].nota.Trim() == string.Empty)
                         {
                             appuntamentoProposto.appuntamenti[i].esitoNote = true;
@@ -522,9 +525,11 @@ namespace MCup.ModelView
                         "Le seguenti prestazioni non sono momentaneamente disponibili: " + "\n" + messaggio, "OK");
                 IsBusyV = false;
                 if (appuntamentoProposto.appuntamenti.Count > 0)
-                {
+                { 
+
                     for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
                     {
+                        appuntamentoProposto.appuntamenti[i].desprest = prestazioni[i].reparti[i].desprest;
                         if (appuntamentoProposto.appuntamenti[i].nota.Trim() == string.Empty)
                         {
                             appuntamentoProposto.appuntamenti[i].esitoNote = true;
