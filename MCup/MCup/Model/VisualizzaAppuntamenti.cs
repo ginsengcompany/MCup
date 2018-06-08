@@ -71,35 +71,41 @@ namespace MCup.Model
         public async Task EliminazioneAppuntamento()
         {
             var messDisplay = "";
-            DateTime dataEmissione =  DateTime.ParseExact(dataEmissioneRicetta, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            DateTime dataOdierna = DateTime.Today;
-            PaginaAppuntamentiModelView pagina;
-            if ((dataOdierna - dataEmissione).TotalDays > 30)
+            try
             {
-                messDisplay = "Sei sicuro di voler annullare la prenotazione?\nse confermi non sarà più possibile prenotare con questa impegnativa, inquanto la data di emissione dell'impegnativa ha superato i 30 giorni utili per utilizzarla";
-            }
-            else
-                messDisplay = "Sei sicuro di voler annullare la prenotazione?";
-            var esitoDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione", messDisplay
-                , "si", "no");
-            REST<AppuntamentoProposto, ResponseAnnullaImpegnativa> connessioneAnnullamentoImpegnativa = new REST<AppuntamentoProposto, ResponseAnnullaImpegnativa>();
-            List<Header> headers = new List<Header>();
-            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-            headers.Add(new Header("struttura", "150907"));
-            if (esitoDisplayAlert)
-            {
-                try
+                DateTime dataEmissione =
+                    DateTime.ParseExact(dataEmissioneRicetta, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataOdierna = DateTime.Today;
+                PaginaAppuntamentiModelView pagina;
+                if ((dataOdierna - dataEmissione).TotalDays > 30)
                 {
-                    
+                    messDisplay =
+                        "Sei sicuro di voler annullare la prenotazione?\nse confermi non sarà più possibile prenotare con questa impegnativa, inquanto la data di emissione dell'impegnativa ha superato i 30 giorni utili per utilizzarla";
+                }
+                else
+                    messDisplay = "Sei sicuro di voler annullare la prenotazione?";
+                var esitoDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione", messDisplay
+                    , "si", "no");
+                REST<AppuntamentoProposto, ResponseAnnullaImpegnativa> connessioneAnnullamentoImpegnativa =
+                    new REST<AppuntamentoProposto, ResponseAnnullaImpegnativa>();
+                List<Header> headers = new List<Header>();
+                headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+                headers.Add(new Header("struttura", "150907"));
+                if (esitoDisplayAlert)
+                {
+
                     AppuntamentoProposto appuntamentoSelezionato = new AppuntamentoProposto();
                     appuntamentoSelezionato.codiceImpegnativa = this.LongName;
                     appuntamentoSelezionato.assistito = new Assistito();
                     appuntamentoSelezionato.assistito.codice_fiscale = this.codiceFiscale;
-                    ResponseAnnullaImpegnativa response = await connessioneAnnullamentoImpegnativa.PostJson(SingletonURL.Instance.getRotte().annullaImpegnativa,
-                                 appuntamentoSelezionato, headers);
+                    ResponseAnnullaImpegnativa response = await connessioneAnnullamentoImpegnativa.PostJson(
+                        SingletonURL.Instance.getRotte().annullaImpegnativa,
+                        appuntamentoSelezionato, headers);
                     if (connessioneAnnullamentoImpegnativa.responseMessage != HttpStatusCode.OK)
                     {
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamentoImpegnativa.responseMessage, connessioneAnnullamentoImpegnativa.warning, "OK");
+                        await App.Current.MainPage.DisplayAlert(
+                            "Attenzione " + (int) connessioneAnnullamentoImpegnativa.responseMessage,
+                            connessioneAnnullamentoImpegnativa.warning, "OK");
                     }
                     else
                     {
@@ -108,10 +114,15 @@ namespace MCup.Model
                         App.Current.MainPage = new MenuPrincipale("Appuntamenti");
                     }
                 }
-                catch (Exception)
+            }
+            catch (Exception e)
+            {
+                if (e is FormatException)
                 {
-                    await App.Current.MainPage.DisplayAlert("Mcup", "Connessione non riuscita", "ok");
+                    await App.Current.MainPage.DisplayAlert("Mcup", "Impossibile recuperare la data di emissione dell'impegnativa", "ok");
                 }
+                else
+                    await App.Current.MainPage.DisplayAlert("Mcup", "Connessione non riuscita", "ok");
             }
         }
 
