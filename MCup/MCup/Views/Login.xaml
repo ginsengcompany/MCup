@@ -49,7 +49,7 @@
                     
                     <Button Text="LOGIN" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding LoginIsVisible}" Grid.Row="2" Grid.Column="0"
                             HorizontalOptions="Center" VerticalOptions="Center" Grid.ColumnSpan="3" TextColor="White" FontSize="Medium"
-                            WidthRequest="150" FontAttributes="Bold" BackgroundColor="#0971B2" BorderRadius="20"  BorderWidth="3" Command="{Binding effettuaLogin}"/>
+                            WidthRequest="150" FontAttributes="Bold" BackgroundColor="#0971B2" Command="{Binding effettuaLogin}"/>
                     
                     <Label Text="Registrati" IsVisible="{Binding SignupIsVisible}" IsEnabled="{Binding ErrorePrelievoRotte}" TextColor="White" FontSize="Medium" Grid.Row="3" Grid.Column="0"
                            Grid.ColumnSpan="3" FontAttributes="Bold" HorizontalOptions="Center" Margin="10" VerticalOptions="Center">

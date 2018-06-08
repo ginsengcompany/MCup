@@ -30,10 +30,10 @@ namespace MCup.iOS
             XfxControls.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-            UINavigationBar.Appearance.BarTintColor = UIColor.Red;
+            UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(0, 57, 100);
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes {TextColor = UIColor.White});
             UIBarButtonItem.Appearance.TintColor = UIColor.LightTextColor;
-            DatePickerRenderer.Appearance.TintColor= UIColor.Black; 
+            DatePickerRenderer.Appearance.TintColor= UIColor.White;
             return base.FinishedLaunching(app, options);
         }
       

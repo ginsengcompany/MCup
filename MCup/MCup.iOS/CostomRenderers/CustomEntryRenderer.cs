@@ -22,10 +22,10 @@ namespace MCup.iOS.CostomRenderers{
                 //Below line is useful to give border color 
 
                 Control.Layer.BorderColor =UIColor.Black.CGColor;
-                Control.TintColor = UIColor.Black;
+                Control.TintColor = UIColor.White;
                 Control.Layer.BorderWidth = 2;
                 Control.Layer.CornerRadius = 10;
-                Control.TextColor = UIColor.Black;
+                Control.TextColor = UIColor.White;
 
             }
         }
