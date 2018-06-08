@@ -40,8 +40,8 @@
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal"  Padding="10,0,10,0" HeightRequest="200" BackgroundColor="#003964">
-                                <StackLayout HorizontalOptions="StartAndExpand">
+                            <StackLayout Orientation="Horizontal"  BackgroundColor="#003964">
+                                <StackLayout HorizontalOptions="StartAndExpand" >
                                     <Label
                                         Text="Impegnativa: "
                                         FontAttributes="Italic"
@@ -50,7 +50,7 @@
                                     <Label Text="{Binding LongName}"
                                           FontAttributes="Bold"
                                           TextColor="White"
-                                          FontSize="Large"/>
+                                          FontSize="Medium"/>
                                 </StackLayout>
                                 <StackLayout 
                                     Orientation="Horizontal" 
@@ -65,11 +65,10 @@
                                                FontAttributes="Bold"
                                                TextColor="White"
                                                HorizontalOptions="Center"
-                                               FontSize="Medium"
                                                Margin="0,0,5,0">
                                         </Label>
                                         <Image Source="cancella.png" 
-                                               HeightRequest="30"
+                                               HeightRequest="20"
                                                IsVisible="{Binding scaduto}"
                                                HorizontalOptions="Center"/>
                                     </StackLayout>
@@ -82,14 +81,13 @@
                                         <Label Text="Sposta"
                                                IsVisible="{Binding scaduto}"
                                                FontAttributes="Bold"
-                                               FontSize="Medium"
                                                TextColor="White"
                                                HorizontalOptions="Center"
                                         >
                                         </Label>
                                         <Image 
                                             Source="reply.png"
-                                            HeightRequest="30"
+                                            HeightRequest="20"
                                             IsVisible="{Binding scaduto}"
                                             HorizontalOptions="Center"/>
                                     </StackLayout>

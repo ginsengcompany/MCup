@@ -536,24 +536,6 @@
     <BundleResource Include="Resources\downArrow3x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\reply.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\reply2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\reply3x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\cancella.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\cancella2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\cancella3x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\referti.png" />
   </ItemGroup>
   <ItemGroup>
@@ -597,6 +579,12 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\lavoriIncorso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cancella.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\reply.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets')" />
