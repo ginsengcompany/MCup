@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MCup.Views;
 using Xamarin.Forms;
+using System.Linq;
 
 #endregion
 
@@ -220,7 +221,7 @@ namespace MCup.ModelView
                     int j;
                     for (j = 0; j < listGroup.Count; j++)
                     {
-                        if (listGroup[j].ShortName.ToLower()[0] == contatti[i].nome.ToLower()[0])
+                        if (listGroup[j].ShortName.ToLower()[0] == contatti[i].cognome.ToLower()[0])
                         {
                             x = true;
                             listGroup[j].Add(contatti[i]);
@@ -229,13 +230,13 @@ namespace MCup.ModelView
                     }
                     if (!x)
                     {
-                        listGroup.Add(new Rubrica(contatti[i].nome.ToUpper()[0].ToString(), contatti[i].nome.ToUpper()[0].ToString()));
+                        listGroup.Add(new Rubrica(contatti[i].cognome.ToUpper()[0].ToString(), contatti[i].cognome.ToUpper()[0].ToString()));
                         listGroup[j].Add(contatti[i]);
                     }
                 }
                 else
                 {
-                    listGroup.Add(new Rubrica(contatti[i].nome.ToUpper()[0].ToString(), contatti[i].nome.ToUpper()[0].ToString()));
+                    listGroup.Add(new Rubrica(contatti[i].cognome.ToUpper()[0].ToString(), contatti[i].cognome.ToUpper()[0].ToString()));
                     listGroup[0].Add(contatti[i]);
                 }
             }
@@ -243,7 +244,8 @@ namespace MCup.ModelView
             {
                 grouped.Add(listGroup[i]);
             }
-            CollectionView = grouped;
+            CollectionView = new ObservableCollection<Rubrica>(grouped.OrderBy(o => o.ShortName).ToList());
+            //CollectionView = grouped;
         }
 
         #endregion
