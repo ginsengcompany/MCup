@@ -12,7 +12,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="#003964" Padding="15,0,15,0" >
-                <Button Command="{Binding annullaRegistrazioneNuovoContatto}" Text="Annulla" BorderWidth="1" BorderRadius="0" TextColor="White" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="StartAndExpand"></Button>
+                <Button Command="{Binding annullaRegistrazioneNuovoContatto}" IsEnabled="{Binding Disabilita}" Text="Annulla" BorderWidth="1" BorderRadius="0" TextColor="White" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="StartAndExpand"></Button>
                 <Label Text="Nuovo contatto" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" FontSize="Medium"></Label>
                 <Button Text="Conferma" Command="{Binding registraNuovoContatto}" BorderColor="Transparent" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"  TextColor="White" />
             </StackLayout>

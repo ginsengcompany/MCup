@@ -22,7 +22,7 @@ namespace MCup.ModelView
 
         #region DichiarazioneVariabili
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
-
+        private bool disabilita = true;
         private Assistito contatto; //Oggetto che astrae l'utenza del cliente
         Provincia provinciaSelezionata = new Provincia();
 
@@ -145,6 +145,15 @@ namespace MCup.ModelView
 
         #region Proprietà
 
+        public bool Disabilita
+        {
+            get { return disabilita; }
+            set
+            {
+                disabilita = value;
+                OnPropertyChanged();
+            }
+        }
         public ICommand registraNuovoContatto { protected set; get; } //Command per il tentativo di registrazione dell'utenza
         public ICommand annullaRegistrazioneNuovoContatto { protected set; get; }
 
@@ -412,6 +421,7 @@ namespace MCup.ModelView
                 if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
                 {
                     string giorno, mese, anno;
+                    Disabilita = false;
                     List<Header> listaHeader = new List<Header>();
                     listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
                     giorno = contatto.data_nascita.Substring(3, 2);
@@ -431,12 +441,16 @@ namespace MCup.ModelView
                         else
                         {
                             await App.Current.MainPage.DisplayAlert("Nuovo contatto", "Il contatto è stato aggiunto correttamente", "OK");
+                            Disabilita = true;
+
                             App.Current.MainPage = new MenuPrincipale("Contatti");
                         }
 
                     }
                     catch (Exception)
                     {
+                        Disabilita = true;
+
                         await App.Current.MainPage.DisplayAlert("Attenzione", "connessione non riuscita", "riprova");
                     }
                 }
