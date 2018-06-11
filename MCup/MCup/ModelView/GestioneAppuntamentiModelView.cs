@@ -30,6 +30,7 @@ namespace MCup.ModelView
         //Oggetto che astrae l'utente che intende prenotare una o delle prestazioni        
         private Assistito contatto;
 
+        private string reparto;
         //Oggetto che astrae la pagina a cui punta il modelView in questione.
         private GestioneAppuntamenti pagina;
 
@@ -136,6 +137,16 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 oraAppuntamento = value;
+            }
+        }
+
+        public string Reparto
+        {
+            get { return reparto; }
+            set
+            {
+                reparto = value;
+                OnPropertyChanged();
             }
         }
 
@@ -247,11 +258,12 @@ namespace MCup.ModelView
             NomeStruttura = appuntamentoSelezionatoProposto.reparti[0].nomeStruttura;
             DataAppuntamento = appuntamentoSelezionatoProposto.dataAppuntamento + " " + appuntamentoSelezionatoProposto.oraAppuntamento;
             OraAppuntamento = appuntamentoSelezionatoProposto.oraAppuntamento;
+            Reparto = appuntamentoSelezionatoProposto.reparti[0].descrizione;
             if (string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].nomeMedico))
                 NomeMedico = "N/D";
             else
                 NomeMedico =  appuntamentoSelezionatoProposto.reparti[0].nomeMedico;
-            if (string.IsNullOrEmpty(appuntamentoSelezionatoProposto.nota ))
+            if (string.IsNullOrEmpty(appuntamentoSelezionatoProposto.nota.Trim()))
             {
                 StackNoteVisible = false;
             }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -360,7 +361,25 @@ namespace MCup.ModelView
         private async Task info()
         {
             REST<List<Prestazione>, AppuntamentoProposto> recuperoDatiLista = new REST<List<Prestazione>, AppuntamentoProposto>();
+           
             appuntamentoProposto = await recuperoDatiLista.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilita, prestazioni, headers);
+            var dataAppProposto = DateTime.ParseExact(appuntamentoProposto.dataPrenotazione, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            var dataEmissione = DateTime.ParseExact(appuntamentoProposto.dataEmissioneRicetta, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            if ((appuntamentoProposto.classePriorita == "U")&&((dataAppProposto-dataEmissione).TotalDays>3))
+            {
+                var displayAlertUrgente = App.Current.MainPage.DisplayAlert("Attenzione",
+                    "La prima disponibilità ha superato le 72 ore di prassi per un'impegnativa con priorità " +
+                    "'urgente', è sicuro di voler continuare con la prenotazione? Se no chiami il call center o si rechi al CUP",
+                    "Si", "No");
+            }
+            if ((appuntamentoProposto.classePriorita == "B") && ((dataAppProposto - dataEmissione).TotalDays > 10))
+            {
+                var displayAlertUrgente = App.Current.MainPage.DisplayAlert("Attenzione",
+                    "La prima disponibilità ha superato i 10 giorni prassi per un'impegnativa con priorità " +
+                    "'B', è sicuro di voler continuare con la prenotazione? Se no chiami il call center o si rechi al CUP",
+                    "Si", "No");
+            }
+        
             if (recuperoDatiLista.responseMessage != HttpStatusCode.OK)
             {
                 await App.Current.MainPage.DisplayAlert("Attenzione " + (int)recuperoDatiLista.responseMessage, recuperoDatiLista.warning, "OK");
