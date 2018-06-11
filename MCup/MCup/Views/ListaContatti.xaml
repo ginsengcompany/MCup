@@ -7,7 +7,7 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar SearchCommand="{Binding searchContacts}" TextColor="Black" Text="{Binding TextSearch}" Placeholder="Cerca" HorizontalOptions="FillAndExpand" BackgroundColor="White" />
+            <SearchBar SearchCommand="{Binding searchContacts}" Margin="10" TextColor="Black" Text="{Binding TextSearch}" Placeholder="Cerca" HorizontalOptions="FillAndExpand" BackgroundColor="White" />
             <StackLayout BackgroundColor="#6C94B2" Orientation="Vertical">
                 <Label Text="Profilo Personale" TextColor="White" Margin="5,0,0,0" FontSize="Large" HorizontalOptions="Start" />
             </StackLayout>
