@@ -174,6 +174,7 @@ namespace MCup.ModelView
                     }
                     else
                     {
+
                         var responseDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione",
                             "Sei sicuro di voler cambiare? Se confermi perderai la priorità assegnata dal tuo medico curante",
                             "SI", "NO");
@@ -367,17 +368,49 @@ namespace MCup.ModelView
             var dataEmissione = DateTime.ParseExact(appuntamentoProposto.dataEmissioneRicetta, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             if ((appuntamentoProposto.classePriorita == "U")&&((dataAppProposto-dataEmissione).TotalDays>3))
             {
-                var displayAlertUrgente = App.Current.MainPage.DisplayAlert("Attenzione",
+                var displayAlertUrgente = await App.Current.MainPage.DisplayAlert("Attenzione",
                     "La prima disponibilità ha superato le 72 ore di prassi per un'impegnativa con priorità " +
                     "'urgente', è sicuro di voler continuare con la prenotazione? Se no chiami il call center o si rechi al CUP",
-                    "Si", "No");
+                    "SI", "NO");
+                if (!displayAlertUrgente)
+                {
+                    REST<object, string> connessioneAnnullamento = new REST<object, string>();
+                    string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
+                        headers);
+                    if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, messaggioDiAnnullamento, "OK");
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
+                        App.Current.MainPage = new MenuPrincipale();
+                    }
+                }
+
+                    
             }
             if ((appuntamentoProposto.classePriorita == "B") && ((dataAppProposto - dataEmissione).TotalDays > 10))
             {
-                var displayAlertUrgente = App.Current.MainPage.DisplayAlert("Attenzione",
+                var displayAlertUrgente =await App.Current.MainPage.DisplayAlert("Attenzione",
                     "La prima disponibilità ha superato i 10 giorni prassi per un'impegnativa con priorità " +
                     "'B', è sicuro di voler continuare con la prenotazione? Se no chiami il call center o si rechi al CUP",
-                    "Si", "No");
+                    "SI", "NO");
+                if (!displayAlertUrgente)
+                {
+                    REST<object, string> connessioneAnnullamento = new REST<object, string>();
+                    string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
+                        headers);
+                    if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, messaggioDiAnnullamento, "OK");
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
+                        App.Current.MainPage = new MenuPrincipale();
+                    }
+                }
             }
         
             if (recuperoDatiLista.responseMessage != HttpStatusCode.OK)
