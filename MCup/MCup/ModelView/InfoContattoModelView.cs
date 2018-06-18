@@ -197,7 +197,7 @@ namespace MCup.ModelView
                 {
                     REST<object, string> connessioneElimina = new REST<object, string>();
 
-                    var risposta = await App.Current.MainPage.DisplayAlert("Eliminazione", "sei sicuro di voler eliminare l'account? Se confermi allora dovrai effettuare una nuova registrazione", "si", "no");
+                    var risposta = await App.Current.MainPage.DisplayAlert("Eliminazione", "sei sicuro di voler eliminare l'account? In accordo al rgpd agli articoli 17, 21 e 22 tutti i tuoi dati saranno rimossi v", "si", "no");
                     if (risposta)
                     {
                         try
