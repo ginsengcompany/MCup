@@ -8,7 +8,7 @@ using MCup.Droid;
 
 namespace QuizAmoroso.Droid
 {
-    [Activity(Label = "MCup", Icon = "@drawable/icon", Theme = "@style/SplashTheme", MainLauncher = true, NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "ecupt Sant'Anna e San Sebastiano Caserta", Icon = "@drawable/icon", Theme = "@style/SplashTheme", MainLauncher = true, NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class SplashScreen : Activity
     {
         protected async override void OnCreate(Bundle bundle)
