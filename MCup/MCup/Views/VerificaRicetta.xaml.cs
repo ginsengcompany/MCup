@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Notifications;
 using MCup.ModelView;
 using MCup.Service;
 using Xamarin.Forms;
