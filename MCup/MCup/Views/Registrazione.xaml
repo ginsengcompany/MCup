@@ -278,28 +278,22 @@
                     <Label Text="* campi obbligatori" FontSize="Small"/>
                 </StackLayout>
 
-                <StackLayout VerticalOptions="EndAndExpand">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="End" >
-                            <Button Text="Termini d'utilizzo" Command="{Binding terminiDiServizio}" VerticalOptions="End" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White"></Button>
-                            <Button Text="Registrati" Command="{Binding registrati}" VerticalOptions="End" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White" IsEnabled="{Binding TerminiAccettati}"/>
-                        </StackLayout>
+                <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal">
+                   
+                        
 
-                        <StackLayout  Orientation="Horizontal" Spacing="5" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0">
+                        <StackLayout  Orientation="Horizontal" Spacing="5" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" >
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="IndietroSecondaPagina"></TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>
                             <Image Source="frecciadx.png"  Rotation="180" VerticalOptions="End"/>
                             <Label Text="INDIETRO" VerticalOptions="End"/>
                         </StackLayout>
-                    </Grid>
+                    <StackLayout Orientation="Horizontal"  VerticalOptions="EndAndExpand"  HorizontalOptions="EndAndExpand">
+                            <Button Text="Termini d'utilizzo" Command="{Binding terminiDiServizio}" VerticalOptions="End" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White"></Button>
+                            <Button Text="Registrati" Command="{Binding registrati}" VerticalOptions="End" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White" IsEnabled="{Binding TerminiAccettati}"/>
+                        </StackLayout>
+           
                 </StackLayout>
 
             </StackLayout>

@@ -537,8 +537,7 @@ namespace MCup.ModelView
                     else //Errore imprevisto durante la registrazione
                         await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
                 }
-                else //L'utente non ha accettato i termini di servizio
-                    await App.Current.MainPage.DisplayAlert("Registrazione","Devi accettare i termini di servizio per poter proseguire", "OK");
+                
             });
 
             terminiDiServizio = new Command(async () =>

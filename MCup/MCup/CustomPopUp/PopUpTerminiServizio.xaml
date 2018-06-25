@@ -15,8 +15,7 @@
              BackgroundColor="White" VerticalOptions="Center">
             <StackLayout IsClippedToBounds="True"
                      Spacing="3">
-                <WebView WidthRequest="300" HeightRequest="500" Source="http://ecuptservice.ak12srl.it/terminiservizio/display"/>
-            <Button Text="Registrati"></Button>
+                <WebView WidthRequest="400" HeightRequest="500" Source="http://ecuptservice.ak12srl.it/terminiservizio/display"/>
             </StackLayout>
             
         </Frame>
