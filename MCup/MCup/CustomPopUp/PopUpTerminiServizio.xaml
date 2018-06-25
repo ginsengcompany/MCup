@@ -10,12 +10,13 @@
     </pages:PopupPage.Animation>
     <AbsoluteLayout >
         <Frame HorizontalOptions="Center"
-             Margin="15"
+             Margin="5"
              x:Name="FrameContainer"
              BackgroundColor="White" VerticalOptions="Center">
             <StackLayout IsClippedToBounds="True"
                      Spacing="3">
                 <WebView WidthRequest="300" HeightRequest="500" Source="http://ecuptservice.ak12srl.it/terminiservizio/display"/>
+            <Button Text="Registrati"></Button>
             </StackLayout>
             
         </Frame>

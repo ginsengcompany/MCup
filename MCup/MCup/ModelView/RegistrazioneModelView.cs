@@ -9,8 +9,10 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
+using MCup.CustomPopUp;
 using Xamarin.Forms;
 using MCup.Service;
+using Rg.Plugins.Popup.Extensions;
 
 #endregion
 
@@ -30,7 +32,7 @@ namespace MCup.ModelView
         private List<Comune> listacomuni = new List<Comune>();
         private List<Provincia> listaprovince = new List<Provincia>();
         Provincia provinciaSelezionata = new Provincia();
-
+        private bool terminiAccettati = false;
         private List<Comune> listacomuniresidenza = new List<Comune>();
         private List<StatoCivile> listaStatoCivile = new List<StatoCivile>();
         private Regex regexPass = new Regex(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])");
@@ -196,6 +198,7 @@ namespace MCup.ModelView
         }
         public ICommand registrati { protected set; get; } //Command per il tentativo di registrazione dell'utenza
         public ICommand Avanti { protected set; get; }
+        public ICommand terminiDiServizio { protected set; get; }
         public string Username //Proprietà relativa al campo Username
         {
             get { return utente.username; }
@@ -213,6 +216,16 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 listaprovince = value;
+            }
+        }
+
+        public bool TerminiAccettati
+        {
+            get { return terminiAccettati; }
+            set
+            {
+                OnPropertyChanged();
+                terminiAccettati = value;
             }
         }
 
@@ -430,12 +443,13 @@ namespace MCup.ModelView
                  */
 
                 #region controlloErrori
+
                 //Imposta gli errori ad una stringa vuota
                 NameErrorProvinciaResidenza =
-                NameErrorComuneResidenza =
-                NameErrorTelefono =
-                NameErrorSesso =
-                NameErrorIndirizzo = false;
+                    NameErrorComuneResidenza =
+                        NameErrorTelefono =
+                            NameErrorSesso =
+                                NameErrorIndirizzo = false;
 
                 /*
                 * variabile locale utilizzata per verificare se l'utente ha inserito i campi obbligatori per effettuare il tentativo di registrazione.
@@ -478,7 +492,7 @@ namespace MCup.ModelView
                     NameErrorComuneResidenza = true;
                     controllPass = false;
                 }
-         
+
                 if (string.IsNullOrEmpty(telefono))
                 {
                     NameErrorTelefono = true;
@@ -489,7 +503,9 @@ namespace MCup.ModelView
                     NameErrorSesso = true;
                     controllPass = false;
                 }
+
                 #endregion
+
                 if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
                 {
                     utente.data_nascita = utente.data_nascita.Substring(0, 10);
@@ -499,40 +515,37 @@ namespace MCup.ModelView
                     anno = utente.data_nascita.Substring(6);
                     utente.data_nascita = giorno + "/" + mese + "/" + anno;
                     utente.provincia = provinciaSelezionata.provincia;
-                    REST<object, string> restTermini = new REST<object, string>(); //Crea un oggetto REST per i termini di servizio remoti
-                    var termini = await restTermini.getString(SingletonURL.Instance.getRotte().TerminiServizio); //Recupera i termini di servizio attraverso una GET
-                    if (restTermini.responseMessage != HttpStatusCode.OK)
-                    {
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)restTermini.responseMessage, restTermini.warning, "OK");
-                    }
-                    else
-                    {
-                        //Mostra il display alert contenente i termini di servizio recuperati dalla rest restTermini e salva la risposta dell'utente nella variabile accetaODeclina
-                        var accetaODeclina = await App.Current.MainPage.DisplayAlert("Termini di servizio", termini, "ACCETTA", "DECLINA");
-                        if (accetaODeclina) //Controlla che l'utente abbia accettato i termini di servizio
-                        {
-                            REST<Utente, ResponseRegistrazione> rest = new REST<Utente, ResponseRegistrazione>(); //Crea un oggetto rest per effettuare la registrazione da remoto
-                            utente.Maiuscolo();
-                            ResponseRegistrazione response = await rest.PostJson(SingletonURL.Instance.getRotte().Registrazione, utente); //Effettua una POST che restituisce nella variabile response se la registrazione ha avuto successo
 
-                            if (rest.responseMessage != HttpStatusCode.Created)
-                            {
-                                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
-                            }
-                            else if (response.auth) //Controlla se response contiene un oggetto e che indica che la registrazione è avvenuta con successo
-                            {
-                                //Visualizza un display alert che indica all'utente che la registrazione è avvenuta con successo
-                                await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione effettuata con successo", "OK");
-                                await App.Current.MainPage.Navigation.PopAsync(); //Ritorna alla pagina di login
-                            }
-                            else //Errore imprevisto durante la registrazione
-                                await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
-                        }
-                        else //L'utente non ha accettato i termini di servizio
-                            await App.Current.MainPage.DisplayAlert("Registrazione", "Devi accettare i termini di servizio per poter proseguire", "OK");
-                    }
 
+
+                    //Mostra il display alert contenente i termini di servizio recuperati dalla rest restTermini e salva la risposta dell'utente nella variabile accetaODeclina
+
+                    REST<Utente, ResponseRegistrazione> rest =new REST<Utente, ResponseRegistrazione>(); //Crea un oggetto rest per effettuare la registrazione da remoto
+                    utente.Maiuscolo();
+                    ResponseRegistrazione response =await rest.PostJson(SingletonURL.Instance.getRotte().Registrazione,utente); //Effettua una POST che restituisce nella variabile response se la registrazione ha avuto successo
+
+                    if (rest.responseMessage != HttpStatusCode.Created)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int) rest.responseMessage,rest.warning, "OK");
+                    }
+                    else if (response.auth) //Controlla se response contiene un oggetto e che indica che la registrazione è avvenuta con successo
+                    {
+                        //Visualizza un display alert che indica all'utente che la registrazione è avvenuta con successo
+                        await App.Current.MainPage.DisplayAlert("Registrazione","Registrazione effettuata con successo", "OK");
+                        await App.Current.MainPage.Navigation.PopAsync(); //Ritorna alla pagina di login
+                    }
+                    else //Errore imprevisto durante la registrazione
+                        await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
                 }
+                else //L'utente non ha accettato i termini di servizio
+                    await App.Current.MainPage.DisplayAlert("Registrazione","Devi accettare i termini di servizio per poter proseguire", "OK");
+            });
+
+            terminiDiServizio = new Command(async () =>
+            {
+
+               await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpTerminiServizio());
+                TerminiAccettati = true;
             });
         }
 

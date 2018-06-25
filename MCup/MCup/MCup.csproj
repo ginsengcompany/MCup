@@ -119,9 +119,6 @@
     <Compile Include="Views\PaginaLavoriInCorso.xaml.cs">
       <DependentUpon>PaginaLavoriInCorso.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Prova.xaml.cs">
-      <DependentUpon>Prova.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Registrazione.xaml.cs">
       <DependentUpon>Registrazione.xaml</DependentUpon>
     </Compile>
@@ -335,12 +332,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ModificaContatto.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Prova.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

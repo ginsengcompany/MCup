@@ -288,7 +288,8 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Spacing="5" VerticalOptions="EndAndExpand" HorizontalOptions="End" >
-                            <Button Text="Registrati" Command="{Binding registrati}" VerticalOptions="End" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White"/>
+                            <Button Text="Termini d'utilizzo" Command="{Binding terminiDiServizio}" VerticalOptions="End" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White"></Button>
+                            <Button Text="Registrati" Command="{Binding registrati}" VerticalOptions="End" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White" IsEnabled="{Binding TerminiAccettati}"/>
                         </StackLayout>
 
                         <StackLayout  Orientation="Horizontal" Spacing="5" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" Grid.Column="0" Grid.Row="0">
