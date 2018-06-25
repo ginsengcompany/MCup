@@ -1,7 +1,9 @@
 ﻿#region Librerie
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -21,7 +23,8 @@ namespace MCup.ModelView
 
         private List<Prestazione> listaPrestazioni = new List<Prestazione>();//Lista utilizzata per le prestazioni
         private bool isBusy;//Variabile booleana utilizzata per l'activity indicator
-        private string nomeAssistito, cognomeAssistito, codiceRicetta;//Variabili utilizzate per il nome cognome e il codice ricetta
+        private string nomeAssistito, cognomeAssistito, codiceRicetta,dataNascita;//Variabili utilizzate per il nome cognome e il codice ricetta
+        private DateTime dataNascitaDT;
         private Impegnativa ricetta;//Oggetto che astrae le informazioni dell'impegnativa
         //private List<Prestazione> prestazioni; //Lista delle prestazioni contenute nella ricetta
         private List<Prestazione> prestazioniErogabili;//Lista che tiene conto delle prestazioni non erogabili dalla struttura
@@ -137,6 +140,8 @@ namespace MCup.ModelView
             this.verifica = verifica;
             ricetta = impegnativa;
             NomeAssistito = contatto.nome;
+            dataNascita = contatto.data_nascita;
+            dataNascitaDT = DateTime.ParseExact(dataNascita, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             CognomeAssistito = contatto.cognome + " " + contatto.nome;
             CodiceRicetta = ricetta.nre;
             ricetta.assistito = contatto;
@@ -234,6 +239,12 @@ namespace MCup.ModelView
                 {
                     IsEnabled = true;
                     IsBusy = false;
+                    if ((DateTime.Today - dataNascitaDT).TotalDays / 365 < 14)
+                    {
+                       await App.Current.MainPage.DisplayAlert("Attenzione",
+                            "L'assistito per cui si sta cercando di prenotare è minore di 14 anni, è obbligatorio selezionare il reparto con dicitura 'PEDIATRIA' ",
+                            "OK");
+                    }
                     for (int p = 0; p < temp[i].reparti.Count; p++)
                     {
                         if (temp[i].reparti.Count == 1)
