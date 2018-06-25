@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations1="clr-namespace:MCup.Animations;assembly=MCup"
+                 xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+             x:Class="MCup.CustomPopUp.PopUpTerminiServizio">
+    <pages:PopupPage.Animation>
+        <animations1:UserAnimation/>
+    </pages:PopupPage.Animation>
+    <AbsoluteLayout >
+        <Frame HorizontalOptions="Center"
+             Margin="15"
+             x:Name="FrameContainer"
+             BackgroundColor="White" VerticalOptions="Center">
+            <StackLayout IsClippedToBounds="True"
+                     Spacing="3">
+                <WebView WidthRequest="300" HeightRequest="500" Source="http://ecuptservice.ak12srl.it/terminiservizio/display"/>
+            </StackLayout>
+            
+        </Frame>
+    </AbsoluteLayout>
+</pages:PopupPage>
