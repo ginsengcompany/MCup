@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MCup.Model;
 using Xamarin.Forms;
+using MCup.CustomPopUp;
+using Rg.Plugins.Popup.Extensions;
 
 namespace MCup.Views
 {
@@ -91,6 +93,11 @@ namespace MCup.Views
         private async void vaiPaginaManutenzione(object sender, EventArgs e)
         {
            await Navigation.PushAsync(new  PaginaLavoriInCorso());
+        }
+
+        private async void termini_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushPopupAsync(new PopUpTerminiServizio());
         }
     }
 }

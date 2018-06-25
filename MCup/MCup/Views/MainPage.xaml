@@ -5,12 +5,17 @@
              Title="eCupt" >
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Name="logout"
-            Order="Primary" 
-            Text="Logout" 
-            Priority="0" 
+            Name="logout" 
+            Text="Logout"
+            Order="Secondary"
             Clicked="logout_Clicked"
             Icon="logout.png" />
+        <ToolbarItem
+            Name="terminiduso"
+            Text="Termini d'uso"
+            Order="Secondary"
+            Clicked="termini_Clicked"
+            />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout 
