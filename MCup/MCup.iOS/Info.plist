@@ -64,5 +64,7 @@
 	<string>LaunchScreen</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Media.xcassets/LaunchImage.launchimage</string>
+	<key>NSCameraUsageDescription</key>
+	<string>New Entry</string>
 </dict>
 </plist>

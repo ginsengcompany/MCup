@@ -36,6 +36,7 @@
                       IsGroupingEnabled="True"
                       ItemTapped="VaiPaginaAppuntamentiIndettaglio"
                       HasUnevenRows="True"
+                      Footer=""
                       >
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
