@@ -33,7 +33,7 @@ namespace MCup.iOS
             UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(0, 57, 100);
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes {TextColor = UIColor.White});
             UIBarButtonItem.Appearance.TintColor = UIColor.LightTextColor;
-            DatePickerRenderer.Appearance.TintColor= UIColor.White;
+            DatePickerRenderer.Appearance.TintColor= UIColor.Black;
             return base.FinishedLaunching(app, options);
         }
       

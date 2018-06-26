@@ -57,12 +57,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer: Pasquale Russo (BY955K9SHU)</CodesignKey>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer: Maurizio Fucile (W5GJS3NBU5)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>
     </CodesignEntitlements>
-    <CodesignProvision>VS: com.Ak12.MCup Development</CodesignProvision>
+    <CodesignProvision>McupIos</CodesignProvision>
+    <MtouchHttpClientHandler>CFNetworkHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -244,6 +245,21 @@
     <ImageAsset Include="Media.xcassets\cancella.imageset\ic_cancel_white_48pt_3x.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\1536x2048.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\640x1136.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\640x960.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\768x1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Media.xcassets\LaunchImage.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Media.xcassets\reply.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -298,13 +314,7 @@
     <ImageAsset Include="Resources\Media.xcassets\Icone dell'app.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1024x768.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\1536x2048.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\2048x1536.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Resources\Media.xcassets\Immagini di avvio.launchimage\640x1136.png">
@@ -383,54 +393,6 @@
     <BundleResource Include="Resources\ic_contatti-60x60%402x.png" />
     <BundleResource Include="Resources\ic_contatti-60x60%403x.png" />
     <BundleResource Include="Resources\ic_contatti.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen%402x~iphone_640x960.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen~ipad.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen~iphone.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-568h%402x~iphone_640x1136.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-750%402x~iphone6-landscape_1334x750.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-750%402x~iphone6-portrait_750x1334.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-1242%403x~iphone6s-landscape_2208x1242.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-1242%403x~iphone6s-portrait_1242x2208.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-Landscape%402x~ipad_2048x1496.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-Landscape%402x~ipad_2048x1536.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-Landscape~ipad_1024x748.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-Landscape~ipad_1024x768.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-Portrait%402x~ipad_1536x2008.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-Portrait%402x~ipad_1536x2048.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\splashscreen-Portrait~ipad_768x1024.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profilo.png" />

@@ -23,7 +23,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>MCup</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Ak12.MCup</string>
+	<string>com.Ak12.MCupIOS</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -34,8 +34,6 @@
 	<string>Need location for geolocator plugin.</string>
 	<key>RequestWhenInUseAuthorization</key>
 	<string>Need location for geolocator plugin.</string>
-	<key>XSLaunchImageAssets</key>
-	<string>Resources/Media.xcassets/Immagini di avvio.launchimage</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Media.xcassets/Icone dell&apos;app.appiconset</string>
 	<key>CFBundleShortVersionString</key>
@@ -47,5 +45,24 @@
 		<string>location</string>
 		<string>remote-notification</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>ecuptservice.ak12srl.it</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>UIMainStoryboardFile</key>
+	<string>LaunchScreen</string>
+	<key>XSLaunchImageAssets</key>
+	<string>Resources/Media.xcassets/LaunchImage.launchimage</string>
 </dict>
 </plist>
