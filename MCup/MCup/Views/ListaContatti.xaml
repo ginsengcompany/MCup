@@ -27,6 +27,7 @@
                           IsGroupingEnabled="True" GroupShortNameBinding="{Binding ShortName}"  
                           GroupDisplayBinding="{Binding LongName}"   
                           ItemTapped="ListView_ItemTapped" 
+                          Footer=""
                           SeparatorColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
