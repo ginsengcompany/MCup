@@ -352,7 +352,7 @@ namespace MCup.ModelView
             }
         }
 
-        //Metodo che richimiamo solo nel caso in cui l'applicativo è stato chiuso o crashato, ed restituisce, tramite connessione, tutti i campi riempiti della pagina
+        //Metodo che richiamiamo solo nel caso in cui l'applicativo è stato chiuso o crashato, ed restituisce, tramite connessione, tutti i campi riempiti della pagina
         public async void RiempiPagina()
         {
             REST<object, Impegnativa> connessione = new REST<object, Impegnativa>();
@@ -484,7 +484,27 @@ namespace MCup.ModelView
 
                     Impegnativa response = await connessione.PostJson(SingletonURL.Instance.getRotte().Ricetta, invioImpegnativa, headers);
                     if (connessione.responseMessage == HttpStatusCode.OK)
+                    {
+                        if (response.classePriorita == "U")
+                        {
+                         var displayAlertScelta= await  App.Current.MainPage.DisplayAlert("Attenzione",
+                                "L'impegnativa è classificata come urgente, se continua la prenotazione è possibile che non venga rispettata la priorità assegnata",
+                                "SI", "NO");
+                            if(displayAlertScelta)
+                                model.metodoPush(response, invioImpegnativa.assistito);
+                            else
+                            {
+                                REST<Impegnativa, string> rEST = new REST<Impegnativa, string>();
+                                var responseAnnullamento = await rEST.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa, headers);
+                                //await App.Current.MainPage.DisplayAlert("Elaborazione avvenuta",
+                                //  rEST.warning, "OK");
+                                App.Current.MainPage = new NavigationPage(new MenuPrincipale());
+                            }
+
+                        }
+                        else
                         model.metodoPush(response, invioImpegnativa.assistito);
+                    }
                     else if (connessione.responseMessage == HttpStatusCode.BadRequest)
                         await App.Current.MainPage.DisplayAlert("Attenzione 400", connessione.warning, "OK");
                     else

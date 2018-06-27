@@ -418,7 +418,7 @@ namespace MCup.ModelView
                             appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
                     }
                     ListPrenotazioni = appuntamentoProposto.appuntamenti;
-                    if ((appuntamentoProposto.classePriorita == "B") || (appuntamentoProposto.classePriorita == "U"))
+                  /*  if ((appuntamentoProposto.classePriorita == "B") || (appuntamentoProposto.classePriorita == "U"))
                     {
                         messaggio = "Le seguenti prestazioni superano la priorità assegnata dal medico curante:\n";
                         for (int j = 0; j < appuntamentoProposto.appuntamenti.Count; j++)
@@ -446,7 +446,7 @@ namespace MCup.ModelView
                                 App.Current.MainPage = new MenuPrincipale();
                             }
                         }
-                    }
+                    }*/
                 }
                 else
                 {
@@ -519,35 +519,35 @@ namespace MCup.ModelView
                         if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico))
                             appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
                         ListPrenotazioni = appuntamentoProposto.appuntamenti;
-                        if ((appuntamentoProposto.classePriorita == "B") || (appuntamentoProposto.classePriorita == "U"))
-                        {
-                            messaggio = "Le seguenti prestazioni superano la priorità assegnata dal medico curante:\n";
-                            for (int j = 0; j < appuntamentoProposto.appuntamenti.Count; j++)
-                            {
-                                var dataAppProposto = DateTime.ParseExact(appuntamentoProposto.appuntamenti[j].dataAppuntamento, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                                var dataEmissione = DateTime.ParseExact(appuntamentoProposto.dataEmissioneRicetta, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                                if (((appuntamentoProposto.classePriorita == "U") && ((dataAppProposto - dataEmissione).TotalDays > 3)) || ((appuntamentoProposto.classePriorita == "B") && ((dataAppProposto - dataEmissione).TotalDays > 10)))
-                                {
-                                    messaggio += appuntamentoProposto.appuntamenti[j].desprest + "\n";
-                                }
-                            }
-                            var displayAlertUrgente = await App.Current.MainPage.DisplayAlert("Attenzione", messaggio, "SI", "NO");
-                            if (!displayAlertUrgente)
-                            {
-                                REST<object, string> connessioneAnnullamento = new REST<object, string>();
-                                string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
-                                    headers);
-                                if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
-                                {
-                                    await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, messaggioDiAnnullamento, "OK");
-                                }
-                                else
-                                {
-                                    await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
-                                    App.Current.MainPage = new MenuPrincipale();
-                                }
-                            }
-                        }
+                        /*   if ((appuntamentoProposto.classePriorita == "B") || (appuntamentoProposto.classePriorita == "U"))
+                           {
+                               messaggio = "Le seguenti prestazioni superano la priorità assegnata dal medico curante:\n";
+                               for (int j = 0; j < appuntamentoProposto.appuntamenti.Count; j++)
+                               {
+                                   var dataAppProposto = DateTime.ParseExact(appuntamentoProposto.appuntamenti[j].dataAppuntamento, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                   var dataEmissione = DateTime.ParseExact(appuntamentoProposto.dataEmissioneRicetta, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                   if (((appuntamentoProposto.classePriorita == "U") && ((dataAppProposto - dataEmissione).TotalDays > 3)) || ((appuntamentoProposto.classePriorita == "B") && ((dataAppProposto - dataEmissione).TotalDays > 10)))
+                                   {
+                                       messaggio += appuntamentoProposto.appuntamenti[j].desprest + "\n";
+                                   }
+                               }
+                               var displayAlertUrgente = await App.Current.MainPage.DisplayAlert("Attenzione", messaggio, "SI", "NO");
+                               if (!displayAlertUrgente)
+                               {
+                                   REST<object, string> connessioneAnnullamento = new REST<object, string>();
+                                   string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
+                                       headers);
+                                   if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
+                                   {
+                                       await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, messaggioDiAnnullamento, "OK");
+                                   }
+                                   else
+                                   {
+                                       await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
+                                       App.Current.MainPage = new MenuPrincipale();
+                                   }
+                               }
+                           }*/
                     }
                 }
                 else
@@ -620,7 +620,7 @@ namespace MCup.ModelView
                             appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
                     }
                     ListPrenotazioni = appuntamentoProposto.appuntamenti;
-                    if ((appuntamentoProposto.classePriorita == "B") || (appuntamentoProposto.classePriorita == "U"))
+                    /*if ((appuntamentoProposto.classePriorita == "B") || (appuntamentoProposto.classePriorita == "U"))
                     {
                         messaggio = "Le seguenti prestazioni superano la priorità assegnata dal medico curante:\n";
                         for (int j = 0; j < appuntamentoProposto.appuntamenti.Count; j++)
@@ -648,7 +648,7 @@ namespace MCup.ModelView
                                 App.Current.MainPage = new MenuPrincipale();
                             }
                         }
-                    }
+                    }*/
                 }
                 else
                 {

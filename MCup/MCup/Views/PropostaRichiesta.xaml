@@ -67,6 +67,19 @@
                                                 FontAttributes="Italic"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Vertical">
+
+                                            <Label 
+                                                Text="Unità Operativa:" 
+                                                TextColor="#0971B2"
+                                                VerticalOptions="Start" />
+                                            <Label 
+                                                Text="{Binding reparti[0].desunitaop}" 
+                                                TextColor="Black" 
+                                                VerticalOptions="End" 
+                                                FontSize="Medium"
+                                                FontAttributes="Italic"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical">
                                             <Label 
                                                 Text="Data dell'appuntamento:" 
                                                 TextColor="#0971B2"

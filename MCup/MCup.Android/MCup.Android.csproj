@@ -276,6 +276,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CostomRenderers\CustomPicker.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
