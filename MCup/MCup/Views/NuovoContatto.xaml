@@ -31,13 +31,19 @@
                     <DatePicker x:Name="pickerNascita" Date="{Binding Data_nascitaNuovoContatto}" />
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorDataNascita}" TextColor="Red" FontSize="Small"/>
 
+                    <Label Text="Stato estero" FontAttributes="Bold" TextColor="Black" FontSize="Medium"></Label>
+                    <Switch HorizontalOptions="Start" Toggled="SwitchPaeseStraniere" IsToggled="False"></Switch>
 
-                    <Label Text="Provincia di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                    <Picker Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_SelectedIndexChangedProvinciaNascita" ItemsSource="{Binding Province}" ItemDisplayBinding="{Binding provincia}"/>
+                    <Label Text="Stato estero" FontAttributes="Bold" TextColor="Black" FontSize="Medium"  IsVisible="{Binding NationalVisibilityForeign}"></Label>
+                    <Picker  IsVisible="{Binding NationalVisibilityForeign}" x:Name="pickerNazioni" Title="Seleziona la nazione di nascita" SelectedIndexChanged="NazioneSelezionata" ItemsSource="{Binding ListaNazioni}" ItemDisplayBinding="{Binding descrizione}"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorNazione}" TextColor="Red" FontSize="Small"/>
+
+                    <Label IsVisible="{Binding NationalVisibility}"  Text="Provincia di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Picker IsVisible="{Binding NationalVisibility}"  Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_SelectedIndexChangedProvinciaNascita" ItemsSource="{Binding Province}" ItemDisplayBinding="{Binding provincia}"/>
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaNascita}" TextColor="Red" FontSize="Small"/>
-                    
-                    <Label Text="Comune di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                    <Picker x:Name="PickerComuneNascita" Title="Seleziona il comune di nascita" SelectedIndexChanged="Picker_SelectedIndexChangedComuneNascita" ItemsSource="{Binding ListaComuniNascita}" ItemDisplayBinding="{Binding nome}"/>
+
+                    <Label IsVisible="{Binding NationalVisibility}"  Text="Comune di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                    <Picker IsVisible="{Binding NationalVisibility}"  x:Name="PickerComuneNascita" Title="Seleziona il comune di nascita" SelectedIndexChanged="Picker_SelectedIndexChangedComuneNascita" ItemsSource="{Binding ListaComuniNascita}" ItemDisplayBinding="{Binding nome}"/>
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneNascita}" TextColor="Red" FontSize="Small"/>
 
                     <Label Text="Provincia di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>

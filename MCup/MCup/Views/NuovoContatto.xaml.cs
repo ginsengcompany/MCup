@@ -97,6 +97,19 @@ namespace MCup.Views
             var b = a.SelectedItem as StatoCivile;
             model.StatoCivileScelto(b);
         }
+        private void NazioneSelezionata(object sender, EventArgs e)
+        {
+            var a = sender as Picker;
+            if (a.SelectedIndex > -1)
+            {
+                var b = a.SelectedItem as Nazione;
+                model.NazioneSelezionata(b);
+            }
+        }
+        private void SwitchPaeseStraniere(object sender, ToggledEventArgs e)
+        {
+            model.sceltaNazione(e.Value);
+        }
 
     }
 }

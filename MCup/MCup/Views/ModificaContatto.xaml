@@ -36,7 +36,7 @@
                     <Entry  Text="{Binding Luogo_nascitaNuovoContatto}" WidthRequest="250" IsEnabled="False"/>
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaNascita}" TextColor="Red" FontSize="Small"/>
                 -->
-                    <Label Text="Comune di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand" IsEnabled="False"/>
+                    <Label Text="Luogo di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand" IsEnabled="False"/>
                     <Entry  Text="{Binding Luogo_nascitaNuovoContatto}" WidthRequest="250" IsEnabled="False"/>
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneNascita}" TextColor="Red" FontSize="Small"/>
 

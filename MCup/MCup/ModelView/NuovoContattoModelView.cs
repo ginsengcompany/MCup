@@ -21,6 +21,8 @@ namespace MCup.ModelView
 
 
         #region DichiarazioneVariabili
+        private List<Nazione> listanazioni = new List<Nazione>();
+        private bool nationalVisibilityForeign, nationalVisibility, nameErrorNazione = false;
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
         private bool disabilita = true;
         private Assistito contatto; //Oggetto che astrae l'utenza del cliente
@@ -144,6 +146,42 @@ namespace MCup.ModelView
         #endregion
 
         #region Proprietà
+        public List<Nazione> ListaNazioni
+        {
+            get { return listanazioni; }
+            set
+            {
+                OnPropertyChanged();
+                listanazioni = value;
+            }
+        }
+        public bool NationalVisibilityForeign
+        {
+            get { return nationalVisibilityForeign; }
+            set
+            {
+                OnPropertyChanged();
+                nationalVisibilityForeign = value;
+            }
+        }
+        public bool NationalVisibility
+        {
+            get { return nationalVisibility; }
+            set
+            {
+                OnPropertyChanged();
+                nationalVisibility = value;
+            }
+        }
+        public bool NameErrorNazione
+        {
+            get { return nameErrorNazione; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorNazione = value;
+            }
+        }
 
         public bool Disabilita
         {
@@ -314,6 +352,9 @@ namespace MCup.ModelView
         //Costruttore che inizializza un utenza vuota e definisce il metodo a cui il Command registrati fa riferimento
         public NuovoContattoModelView()
         {
+            NationalVisibilityForeign = false;
+            NationalVisibility = true;
+            RicezioneNazioni();
             contatto = new Assistito(); //Crea un utenza vuota
             var token = App.Current.Properties["tokenLogin"].ToString();
             LeggiProvince();
@@ -524,8 +565,41 @@ namespace MCup.ModelView
             contatto.codStatoCivile = stato.id;
             contatto.statocivile = stato.descrizione;
         }
+        public async void RicezioneNazioni()
+        {
+            REST<object, Nazione> connessioneNazioni = new REST<object, Nazione>();
+            ListaNazioni = await connessioneNazioni.GetListJson(SingletonURL.Instance.getRotte().listaNazioni);
+            if (connessioneNazioni.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNazioni.responseMessage, connessioneNazioni.warning, "OK");
+            }
+            else
+            {
+                ListaNazioni = listanazioni.OrderBy(o => o.descrizione).ToList();
+            }
+        }
+        public void NazioneSelezionata(Nazione nation)
+        {
 
+            contatto.luogo_nascita = nation.descrizione;
+            contatto.istatComuneNascita = nation.codiceCatastale;
+        }
+        public void sceltaNazione(bool statoEstero)
+        {
+            if (statoEstero)
+            {
 
+                NationalVisibilityForeign = true;
+                NationalVisibility = false;
+                contatto.luogo_nascita = String.Empty;
+            }
+            else
+            {
+                NationalVisibilityForeign = false;
+                NationalVisibility = true;
+                contatto.luogo_nascita = String.Empty;
+            }
+        }
 
         #endregion
     }
