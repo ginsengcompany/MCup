@@ -41,5 +41,6 @@ namespace MCup.Model
         public string isAsl { get; set; }
         public string passwordSmarrita { get; set; }
         public string modAssistito { get; set; }
+        public string listaNazioni { get; set; }
     }
 }

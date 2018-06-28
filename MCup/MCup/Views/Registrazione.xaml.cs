@@ -156,5 +156,20 @@ namespace MCup.Views
                 "Numero o parola utilizzati da un utente per farsi identificare da un sistema operativo, da un elaboratore o da un servizio online.",
                 "ok");
         }
+
+        private void SwitchPaeseStraniere(object sender, ToggledEventArgs e)
+        {
+            modelView.sceltaNazione(e.Value);
+        }
+
+        private void NazioneSelezionata(object sender, EventArgs e)
+        {
+            var a = sender as Picker;
+            if (a.SelectedIndex > -1)
+            {
+                var b = a.SelectedItem as Nazione;
+                modelView.NazioneSelezionata(b);
+            }
+        }
     }
 }

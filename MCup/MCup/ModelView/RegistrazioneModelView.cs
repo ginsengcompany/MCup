@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using MCup.Model;
 using System.ComponentModel;
+using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -31,6 +32,8 @@ namespace MCup.ModelView
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
         private List<Comune> listacomuni = new List<Comune>();
         private List<Provincia> listaprovince = new List<Provincia>();
+        private bool nationalVisibilityForeign, nationalVisibility, nameErrorNazione = false;
+        private List<Nazione> listanazioni = new List<Nazione>();
         Provincia provinciaSelezionata = new Provincia();
         private bool terminiAccettati = false;
         private List<Comune> listacomuniresidenza = new List<Comune>();
@@ -187,6 +190,15 @@ namespace MCup.ModelView
 
         #region Proprietà
 
+        public List<Nazione> ListaNazioni
+        {
+            get { return listanazioni; }
+            set
+            {
+                OnPropertyChanged();
+                listanazioni = value;
+            }
+        }
         public List<StatoCivile> ListaStatoCivile
         {
             get { return listaStatoCivile; }
@@ -226,6 +238,34 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 terminiAccettati = value;
+            }
+        }
+
+        public bool NationalVisibilityForeign
+        {
+            get { return nationalVisibilityForeign; }
+            set
+            {
+                OnPropertyChanged();
+                nationalVisibilityForeign = value;
+            }
+        }
+        public bool NationalVisibility
+        {
+            get { return nationalVisibility; }
+            set
+            {
+                OnPropertyChanged();
+                nationalVisibility = value;
+            }
+        }
+        public bool NameErrorNazione
+        {
+            get { return nameErrorNazione; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorNazione = value;
             }
         }
 
@@ -425,9 +465,12 @@ namespace MCup.ModelView
         //Costruttore che inizializza un utenza vuota e definisce il metodo a cui il Command registrati fa riferimento
         public RegistrazioneModelView()
         {
+            NationalVisibilityForeign = false;
+            NationalVisibility = true;
             utente = new Utente(); //Crea un utenza vuota
             LeggiProvince();
             LeggiStatoCivile();
+            RicezioneNazioni();
             registrati = new Command(async () =>
             {
 
@@ -466,6 +509,7 @@ namespace MCup.ModelView
                     NameErrorIndirizzo = true;
                     controllPass = false;
                 }
+
                 //non so dove trovare la provincia
                 /* if (string.IsNullOrEmpty())
                  {
@@ -515,11 +559,11 @@ namespace MCup.ModelView
                     anno = utente.data_nascita.Substring(6);
                     utente.data_nascita = giorno + "/" + mese + "/" + anno;
                     utente.provincia = provinciaSelezionata.provincia;
-
-
-
+                    var risposta = await App.Current.MainPage.DisplayAlert("Registrazione",
+                        "Cliccando SI accetti i termini d'uso", "SI", "NO");
+                    if (!risposta)
+                        return;
                     //Mostra il display alert contenente i termini di servizio recuperati dalla rest restTermini e salva la risposta dell'utente nella variabile accetaODeclina
-
                     REST<Utente, ResponseRegistrazione> rest =new REST<Utente, ResponseRegistrazione>(); //Crea un oggetto rest per effettuare la registrazione da remoto
                     utente.Maiuscolo();
                     ResponseRegistrazione response =await rest.PostJson(SingletonURL.Instance.getRotte().Registrazione,utente); //Effettua una POST che restituisce nella variabile response se la registrazione ha avuto successo
@@ -552,6 +596,37 @@ namespace MCup.ModelView
 
         #region Metodi
 
+        public void sceltaNazione(bool statoEstero)
+        {
+            if (statoEstero)
+            {
+                
+                NationalVisibilityForeign = true;
+                NationalVisibility = false;
+                utente.luogo_nascita = String.Empty;
+            }
+            else
+            {
+                NationalVisibilityForeign = false;
+                NationalVisibility = true;
+                utente.luogo_nascita=String.Empty;
+            }
+        }
+
+        public async void RicezioneNazioni()
+        {
+            REST<object, Nazione> connessioneNazioni = new REST<object, Nazione>();
+            ListaNazioni = await connessioneNazioni.GetListJson(SingletonURL.Instance.getRotte().listaNazioni);
+            if (connessioneNazioni.responseMessage != HttpStatusCode.OK)
+            {
+                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNazioni.responseMessage, connessioneNazioni.warning, "OK");
+            }
+            else
+            {
+                ListaNazioni= listanazioni.OrderBy(o => o.descrizione).ToList();
+            }
+        }
+
         public async void LeggiStatoCivile()
         {
             REST<object, StatoCivile> connessioneStatoCivile = new REST<object, StatoCivile>();
@@ -568,6 +643,12 @@ namespace MCup.ModelView
             utente.statocivile = stato.descrizione;
         }
 
+        public void NazioneSelezionata(Nazione nation)
+        {
+            
+            utente.luogo_nascita = nation.descrizione;
+            utente.istatComuneNascita = nation.codiceCatastale;
+        }
 
 
 
@@ -584,6 +665,7 @@ namespace MCup.ModelView
             NameErrorCognome = false;
             NameErrorDataNascita = false;
             NameErrorComuneNascita = false;
+            NameErrorNazione = false;
             NameErrorCodFiscale = false;
             if (string.IsNullOrEmpty(nome))
             {
@@ -600,6 +682,7 @@ namespace MCup.ModelView
                 NameErrorDataNascita = true;
                 control = false;
             }
+  
             //non so dove trovare la provincia
             /* if (string.IsNullOrEmpty())
              {
@@ -610,7 +693,7 @@ namespace MCup.ModelView
              {
                  NameErrorProvinciaNascita = false;
              }*/
-            if (string.IsNullOrEmpty(luogo_nascita))
+            if (string.IsNullOrEmpty(utente.luogo_nascita))
             {
                 NameErrorComuneNascita = true;
                 control = false;

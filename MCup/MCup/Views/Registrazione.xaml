@@ -114,6 +114,7 @@
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -158,12 +159,23 @@
                     </StackLayout>
 
                     <StackLayout Grid.Column="0" Grid.Row="4" VerticalOptions="Start">
+                        <Label Text="Stato estero" FontAttributes="Bold" TextColor="Black" FontSize="Medium"></Label>
+                        <Switch HorizontalOptions="Start" Toggled="SwitchPaeseStraniere" IsToggled="False"></Switch>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="5" VerticalOptions="Start" IsVisible="{Binding NationalVisibilityForeign}">
+                        <Label Text="Stato estero" FontAttributes="Bold" TextColor="Black" FontSize="Medium"></Label>
+                        <Picker x:Name="pickerNazioni" Title="Seleziona la nazione di nascita" SelectedIndexChanged="NazioneSelezionata" ItemsSource="{Binding ListaNazioni}" ItemDisplayBinding="{Binding descrizione}"/>
+                        <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorNazione}" TextColor="Red" FontSize="Small"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="5" VerticalOptions="Start" IsVisible="{Binding NationalVisibility}">
                         <Label Text="Provincia di nascita*" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                         <Picker x:Name="pickerProvinciaNascita" Title="Seleziona la provincia di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChangedProvinciaNascita" ItemsSource="{Binding listaProvince}" ItemDisplayBinding="{Binding provincia}"/>
                         <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaNascita}" TextColor="Red" FontSize="Small"/>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="0" Grid.Row="5" VerticalOptions="Start">
+                    <StackLayout Grid.Column="0" Grid.Row="6" VerticalOptions="Start" IsVisible="{Binding NationalVisibility}">
                         <Label Text="Comune di nascita*" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
                         <Picker x:Name="PickerComuneNascita" Title="Seleziona il comune di nascita" SelectedIndexChanged="Picker_OnSelectedIndexChanged" ItemsSource="{Binding listaComuni}" ItemDisplayBinding="{Binding nome}"/>
                         <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneNascita}" TextColor="Red" FontSize="Small"/>

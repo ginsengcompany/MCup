@@ -69,6 +69,7 @@
     <Compile Include="Model\GestioneRubrica.cs" />
     <Compile Include="Model\Impegnativa.cs" />
     <Compile Include="Model\ListaURL.cs" />
+    <Compile Include="Model\Nazione.cs" />
     <Compile Include="Model\PickerProperties.cs" />
     <Compile Include="Model\Prestazione.cs" />
     <Compile Include="Model\Provincia.cs" />

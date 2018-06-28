@@ -62,5 +62,6 @@ namespace MCup.Service
         public static string eliminaContattoPersonale = "http://192.168.125.14:3000/auth/eliminaaccount";
         public static string ricercadata = "http://192.168.125.14:3000/ricercaprimadisponibilita/ricercadata";
 
+
     }
 }
