@@ -376,6 +376,7 @@ namespace MCup.ModelView
                     {
                         messaggio = messaggio + appuntamentoProposto.appuntamenti[i].desprest + '\n';
                         appuntamentoProposto.appuntamenti.RemoveAt(i);
+                        prestazioni.RemoveAt(i);
                         i -= 1;
                         count++;
                     }
@@ -386,36 +387,36 @@ namespace MCup.ModelView
                 IsBusy = false;
                 if (appuntamentoProposto.appuntamenti.Count > 0)
                 {
-                    for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                    for (int j = 0; j < appuntamentoProposto.appuntamenti.Count; j++)
                     {
-                        if (appuntamentoProposto.appuntamenti[i].nota.Trim() == string.Empty)
+                        if (appuntamentoProposto.appuntamenti[j].nota.Trim() == string.Empty)
                         {
-                            appuntamentoProposto.appuntamenti[i].esitoNote = true;
-                            appuntamentoProposto.appuntamenti[i].visibleNote = false;
+                            appuntamentoProposto.appuntamenti[j].esitoNote = true;
+                            appuntamentoProposto.appuntamenti[j].visibleNote = false;
                         }
                     }
-                    for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                    for (int k = 0; k < appuntamentoProposto.appuntamenti.Count; k++)
                     {
-                        appuntamentoProposto.appuntamenti[i].desprest = prestazioni[i].reparti[i].desprest;
-                        if (appuntamentoProposto.appuntamenti[i].dataAppuntamento.Length < 10)
+                        appuntamentoProposto.appuntamenti[k].desprest = prestazioni[k].reparti[0].desprest;
+                        if (appuntamentoProposto.appuntamenti[k].dataAppuntamento.Length < 10)
                         {
                             DateTime dataTemp;
-                            if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{1}/\d{1}/\d{4}"))
+                            if (Regex.IsMatch(appuntamentoProposto.appuntamenti[k].dataAppuntamento, @"^\d{1}/\d{1}/\d{4}"))
                             {
-                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(4)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(4)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(2, 1)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(0, 1)));
                             }
-                            else if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{2}/\d{1}/\d{4}"))
+                            else if (Regex.IsMatch(appuntamentoProposto.appuntamenti[k].dataAppuntamento, @"^\d{2}/\d{1}/\d{4}"))
                             {
-                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(3, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 2)));
+                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(3, 1)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(0, 2)));
                             }
                             else
                             {
-                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(0, 1)));
                             }
-                            appuntamentoProposto.appuntamenti[i].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
+                            appuntamentoProposto.appuntamenti[k].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
                         }
-                        if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico))
-                            appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
+                        if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[k].reparti[0].nomeMedico))
+                            appuntamentoProposto.appuntamenti[k].reparti[0].nomeMedico = "N/D";
                     }
                     ListPrenotazioni = appuntamentoProposto.appuntamenti;
                   /*  if ((appuntamentoProposto.classePriorita == "B") || (appuntamentoProposto.classePriorita == "U"))
@@ -479,6 +480,8 @@ namespace MCup.ModelView
                     {
                         messaggio = messaggio + appuntamentoProposto.appuntamenti[i].desprest + '\n';
                         appuntamentoProposto.appuntamenti.RemoveAt(i);
+                        prestazioni.RemoveAt(i);
+                        i -= 1;
                         count++;
                     }
                 }
@@ -488,36 +491,36 @@ namespace MCup.ModelView
                 IsBusyV = false;
                 if (appuntamentoProposto.appuntamenti.Count > 0)
                 {
-                    for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                    for (int j = 0; j < appuntamentoProposto.appuntamenti.Count; j++)
                     {
-                        appuntamentoProposto.appuntamenti[i].desprest = prestazioni[i].reparti[i].desprest;
-                        if (appuntamentoProposto.appuntamenti[i].nota.Trim() == string.Empty)
+                        appuntamentoProposto.appuntamenti[j].desprest = prestazioni[j].reparti[0].desprest;
+                        if (appuntamentoProposto.appuntamenti[j].nota.Trim() == string.Empty)
                         {
-                            appuntamentoProposto.appuntamenti[i].esitoNote = true;
-                            appuntamentoProposto.appuntamenti[i].visibleNote = false;
+                            appuntamentoProposto.appuntamenti[j].esitoNote = true;
+                            appuntamentoProposto.appuntamenti[j].visibleNote = false;
                         }
                     }
-                    for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                    for (int k = 0; k < appuntamentoProposto.appuntamenti.Count; k++)
                     {
-                        if (appuntamentoProposto.appuntamenti[i].dataAppuntamento.Length < 10)
+                        if (appuntamentoProposto.appuntamenti[k].dataAppuntamento.Length < 10)
                         {
                             DateTime dataTemp;
-                            if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{1}/\d{1}/\d{4}"))
+                            if (Regex.IsMatch(appuntamentoProposto.appuntamenti[k].dataAppuntamento, @"^\d{1}/\d{1}/\d{4}"))
                             {
-                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(4)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(4)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(2, 1)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(0, 1)));
                             }
-                            else if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{2}/\d{1}/\d{4}"))
+                            else if (Regex.IsMatch(appuntamentoProposto.appuntamenti[k].dataAppuntamento, @"^\d{2}/\d{1}/\d{4}"))
                             {
-                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(3, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 2)));
+                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(3, 1)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(0, 2)));
                             }
                             else
                             {
-                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(0, 1)));
                             }
-                            appuntamentoProposto.appuntamenti[i].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
+                            appuntamentoProposto.appuntamenti[k].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
                         }
-                        if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico))
-                            appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
+                        if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[k].reparti[0].nomeMedico))
+                            appuntamentoProposto.appuntamenti[k].reparti[0].nomeMedico = "N/D";
                         ListPrenotazioni = appuntamentoProposto.appuntamenti;
                         /*   if ((appuntamentoProposto.classePriorita == "B") || (appuntamentoProposto.classePriorita == "U"))
                            {
@@ -578,6 +581,8 @@ namespace MCup.ModelView
                     {
                         messaggio = messaggio + appuntamentoProposto.appuntamenti[i].desprest + '\n';
                         appuntamentoProposto.appuntamenti.RemoveAt(i);
+                        prestazioni.RemoveAt(i);
+                        i -= 1;
                         count++;
                     }
                 }
@@ -588,36 +593,36 @@ namespace MCup.ModelView
                 if (appuntamentoProposto.appuntamenti.Count > 0)
                 { 
 
-                    for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                    for (int k = 0; k < appuntamentoProposto.appuntamenti.Count;k++)
                     {
-                        appuntamentoProposto.appuntamenti[i].desprest = prestazioni[i].reparti[i].desprest;
-                        if (appuntamentoProposto.appuntamenti[i].nota.Trim() == string.Empty)
+                        appuntamentoProposto.appuntamenti[k].desprest = prestazioni[k].reparti[0].desprest;
+                        if (appuntamentoProposto.appuntamenti[k].nota.Trim() == string.Empty)
                         {
-                            appuntamentoProposto.appuntamenti[i].esitoNote = true;
-                            appuntamentoProposto.appuntamenti[i].visibleNote = false;
+                            appuntamentoProposto.appuntamenti[k].esitoNote = true;
+                            appuntamentoProposto.appuntamenti[k].visibleNote = false;
                         }
                     }
-                    for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                    for (int j = 0; j < appuntamentoProposto.appuntamenti.Count; j++)
                     {
-                        if (appuntamentoProposto.appuntamenti[i].dataAppuntamento.Length < 10)
+                        if (appuntamentoProposto.appuntamenti[j].dataAppuntamento.Length < 10)
                         {
                             DateTime dataTemp;
-                            if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{1}/\d{1}/\d{4}"))
+                            if (Regex.IsMatch(appuntamentoProposto.appuntamenti[j].dataAppuntamento, @"^\d{1}/\d{1}/\d{4}"))
                             {
-                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(4)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(4)), int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(2, 1)), int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(0, 1)));
                             }
-                            else if (Regex.IsMatch(appuntamentoProposto.appuntamenti[i].dataAppuntamento, @"^\d{2}/\d{1}/\d{4}"))
+                            else if (Regex.IsMatch(appuntamentoProposto.appuntamenti[j].dataAppuntamento, @"^\d{2}/\d{1}/\d{4}"))
                             {
-                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(3, 1)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 2)));
+                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(3, 1)), int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(0, 2)));
                             }
                             else
                             {
-                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[i].dataAppuntamento.Substring(0, 1)));
+                                dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(0, 1)));
                             }
-                            appuntamentoProposto.appuntamenti[i].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
+                            appuntamentoProposto.appuntamenti[j].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
                         }
-                        if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico))
-                            appuntamentoProposto.appuntamenti[i].reparti[0].nomeMedico = "N/D";
+                        if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[j].reparti[0].nomeMedico))
+                            appuntamentoProposto.appuntamenti[j].reparti[0].nomeMedico = "N/D";
                     }
                     ListPrenotazioni = appuntamentoProposto.appuntamenti;
                     /*if ((appuntamentoProposto.classePriorita == "B") || (appuntamentoProposto.classePriorita == "U"))
