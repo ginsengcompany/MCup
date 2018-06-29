@@ -48,6 +48,7 @@
     <Compile Include="CustomPopUp\PopUpTerminiServizio.xaml.cs">
       <DependentUpon>PopUpTerminiServizio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModelView\AutoCompilazioneModelView.cs" />
     <Compile Include="ModelView\FormPrenotazioneAslModelView.cs" />
     <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
     <Compile Include="ModelView\GestioneAppuntamentiModelView.cs" />

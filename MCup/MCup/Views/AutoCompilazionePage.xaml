@@ -1,12 +1,101 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
+             NavigationPage.HasNavigationBar="False"
              x:Class="MCup.Views.AutoCompilazionePage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="0,30,0,0"/>
+    </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Orientation="Horizontal" BackgroundColor="#003964" Padding="15,0,15,0" >
+                <Button Command="{Binding annullaRegistrazioneNuovoContatto}"  Text="Annulla" BorderWidth="1" BorderRadius="0" TextColor="White" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="StartAndExpand"></Button>
+                <Label Text="Nuovo contatto" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" FontSize="Medium"></Label>
+                <Button Text="Conferma" Command="{Binding registraNuovoContatto}" BorderColor="Transparent" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent"  TextColor="White" />
+            </StackLayout>
+            <ScrollView >
+                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="20">
+                    
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneNascita}" TextColor="Red" FontSize="Small"/>
+                    <Label Text="Nome" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Entry Placeholder="Inserire nome" Text="{Binding NomeNuovoContatto}" WidthRequest="250"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorNome}" TextColor="Red" FontSize="Small"/>
+
+                    <Label Text="Cognome" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Entry Placeholder="Inserire cognome" Text="{Binding CognomeNuovoContatto}" WidthRequest="250"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCognome}" TextColor="Red" FontSize="Small"/>
+
+                    <Label Text="Codice Fiscale" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <xfx:XfxEntry x:Name="entryCodiceFiscale" HorizontalOptions="StartAndExpand" Placeholder="Inserire codice fiscale" Text="{Binding CodiceFiscaleNuovoContatto}"  WidthRequest="600" Grid.Row="0"/>
+                        <Image Source="iconaScan.png" WidthRequest="40" HorizontalOptions="End" Grid.Row="0" Grid.Column="1">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCodFiscale}" TextColor="Red" FontSize="Small"/>
+                    
+                    <Label Text="Data di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Entry Placeholder="Data Nascita" Text="{Binding Data_nascitaNuovoContatto}" IsEnabled="False" />
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorDataNascita}" TextColor="Red" FontSize="Small"/>
+
+                    <Label Text="Stato estero" FontAttributes="Bold" TextColor="Black" FontSize="Medium"  IsVisible="{Binding NationalVisibilityForeign}"></Label>
+                    <Entry  IsVisible="{Binding NationalVisibilityForeign}" Placeholder="Nazione Nascita" Text="{Binding NazioneNascita}"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorNazione}" TextColor="Red" FontSize="Small"/>
+
+                    <Label IsVisible="{Binding NationalVisibility}"  Text="Provincia di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Entry IsVisible="{Binding NationalVisibility}" Placeholder="Provincia" IsEnabled="False" WidthRequest="250" Text="{Binding Luogo_nascitaNuovoContatto}" />
+
+                    <Label IsVisible="{Binding NationalVisibility}"  Text="Comune di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                    <Entry IsVisible="{Binding NationalVisibility}" Placeholder="Comune" IsEnabled="False" WidthRequest="250" Text="{Binding Luogo_nascitaNuovoContatto}" />
+
+                    <Label Text="Sesso" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Picker x:Name="sexPicker" Title="Seleziona sesso" SelectedItem="{Binding sceltaSesso}" IsEnabled="False">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:Char}">
+                                <x:Char>F</x:Char>
+                                <x:Char>M</x:Char>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorSesso}" TextColor="Red" FontSize="Small"/>
+
+
+                    <Label Text="Provincia di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Picker Title="Seleziona la provincia di residenza" SelectedIndexChanged="Picker_SelectedIndexChangedProvinciaResidenza" ItemsSource="{Binding Province}" ItemDisplayBinding="{Binding provincia}" />
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorProvinciaResidenza}" TextColor="Red" FontSize="Small"/>
+
+                    <Label Text="comune di residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Picker x:Name="PickerComuneResidenza" Title="Seleziona il comune di residenza" SelectedIndexChanged="Picker_SelectedIndexChangedComuneResidenza" ItemsSource="{Binding ListaComuniResidenza}" ItemDisplayBinding="{Binding nome}"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorComuneResidenza}" TextColor="Red" FontSize="Small"/>
+
+
+                    <Label Text="Indirizzo" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Entry Placeholder="Inserire indirizzo" Text="{Binding Indirizzo}" WidthRequest="250"/>
+
+                    <Label Text="Email/pec" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Entry Placeholder="Inserire email" Text="{Binding Email}" WidthRequest="250"/>
+
+                    <Label Text="StatoCivile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Picker Title="Seleziona lo stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"/>
+
+                    <Label Text="Numero Telefonia mobile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                    <Entry Placeholder="Inserire numero di telefono mobile" Text="{Binding telefono}" Keyboard="Numeric" WidthRequest="250"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorTelefono}" TextColor="Red" FontSize="Small"/>
+
+
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
