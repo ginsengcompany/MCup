@@ -19,6 +19,7 @@ namespace MCup.ModelView
     {
         #region DichiarazioneVariabili
         private List<Nazione> listanazioni = new List<Nazione>();
+        private bool visibleCdf = false;
         private bool nationalVisibilityForeign, nationalVisibility, nameErrorNazione = false;
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
         private Assistito contatto; //Oggetto che astrae l'utenza del cliente
@@ -140,6 +141,16 @@ namespace MCup.ModelView
         #endregion
 
         #region Proprietà
+
+        public bool VisibleCdf
+        {
+            get { return visibleCdf; }
+            set
+            {
+                OnPropertyChanged();
+                visibleCdf = value;
+            }
+        }
         public List<Nazione> ListaNazioni
         {
             get { return listanazioni; }
@@ -581,7 +592,8 @@ namespace MCup.ModelView
         private List<Comuni> AllComuni = new List<Comuni>();
         private BASE temp = new BASE();
         public void autocompila()
-    {
+        {
+            VisibleCdf = true;
         //anno
         CodiceFiscaleNuovoContatto = CodiceFiscaleNuovoContatto.ToUpper();
         string anno = "19" + CodiceFiscaleNuovoContatto.Substring(6, 2);
@@ -663,7 +675,7 @@ namespace MCup.ModelView
                 Comune temp = new Comune();
                 temp.codice = i.sezCodFiscale;
                 temp.nome = i.descrizione;
-                    Luogo_nascitaNuovoContatto = i.descrizione;
+                Luogo_nascitaNuovoContatto = i.descrizione;
                 comuneNascitaSelezionato(temp);
                 flagNaziolanità = true;
                 break;
@@ -675,8 +687,8 @@ namespace MCup.ModelView
             {
                     if(i.codiceCatastale == sezCodFiscale)
                     {
-                contatto.luogo_nascita = i.descrizione;
-                contatto.istatComuneNascita = i.codiceCatastale;
+                    contatto.luogo_nascita = i.descrizione;
+                    contatto.istatComuneNascita = i.codiceCatastale;
                     Luogo_nascitaNuovoContatto = i.descrizione;
                     break;
                     }
