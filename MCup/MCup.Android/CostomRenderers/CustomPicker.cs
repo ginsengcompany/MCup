@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
@@ -27,6 +28,8 @@ namespace MCup.Droid.CostomRenderers
             if (Control != null)
             {
                 Control.SetSingleLine(false);
+                Control.SoundEffectsEnabled = true;
+                Control.SetTextColor(Android.Graphics.Color.ParseColor("#003964"));
             }
         }
     }
