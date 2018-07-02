@@ -55,7 +55,7 @@
                         <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorNazione}" TextColor="Red" FontSize="Small"/>
 
                         <Label IsVisible="{Binding NationalVisibility}"  Text="Provincia di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                        <Entry IsVisible="{Binding NationalVisibility}" Placeholder="Provincia" IsEnabled="False" WidthRequest="250" Text="{Binding Luogo_nascitaNuovoContatto}" />
+                        <Entry IsVisible="{Binding NationalVisibility}" Placeholder="Provincia" IsEnabled="False" WidthRequest="250" Text="{Binding Provincia_nascitaNuovoContatto}" />
 
                         <Label IsVisible="{Binding NationalVisibility}"  Text="Comune di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
                         <Entry IsVisible="{Binding NationalVisibility}" Placeholder="Comune" IsEnabled="False" WidthRequest="250" Text="{Binding Luogo_nascitaNuovoContatto}" />

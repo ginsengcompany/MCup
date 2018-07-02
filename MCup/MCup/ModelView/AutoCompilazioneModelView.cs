@@ -31,6 +31,8 @@ namespace MCup.ModelView
 
         private List<Provincia> province;//Lista province
 
+        private string provinciaNascita; //Oggetto che astrae l'utenza del cliente
+
 
         #endregion
 
@@ -301,6 +303,16 @@ namespace MCup.ModelView
                 contatto.luogo_nascita = value;
             }
         }
+        public string Provincia_nascitaNuovoContatto //Proprietà relativa al campo luogo di nascita
+        {
+            get { return provinciaNascita; }
+            set
+            {
+                OnPropertyChanged();
+                provinciaNascita = value;
+            }
+        }
+        
 
         public List<Provincia> Province
         {
@@ -352,7 +364,6 @@ namespace MCup.ModelView
             NationalVisibility = true;
 
             RicezioneNazioni();
-            TuttiIComuni();
             LeggiProvince();
             LeggiStatoCivile();
 
@@ -588,17 +599,81 @@ namespace MCup.ModelView
         }
 
         #endregion
-
-        private List<Comuni> AllComuni = new List<Comuni>();
-        private BASE temp = new BASE();
-        public void autocompila()
+        
+        public async void autocompila()
         {
+            Comuni controlloComuneNascita = new Comuni();
             VisibleCdf = true;
-        //anno
-        CodiceFiscaleNuovoContatto = CodiceFiscaleNuovoContatto.ToUpper();
-        string anno = "19" + CodiceFiscaleNuovoContatto.Substring(6, 2);
-        string mese = CodiceFiscaleNuovoContatto.Substring(8, 1);
-        switch (mese)
+            int y = 6;
+            //anno
+            CodiceFiscaleNuovoContatto = CodiceFiscaleNuovoContatto.ToUpper();
+            char[] prova = new char[CodiceFiscaleNuovoContatto.Length];
+            prova = CodiceFiscaleNuovoContatto.ToCharArray();
+
+            while (y != 0)
+            {
+                switch (prova[y])
+                {
+                    case 'L':
+                        prova[y] = '0';
+                        break;
+                    case 'M':
+                        prova[y] = '1';
+                        break;
+                    case 'N':
+                        prova[y] = '2';
+                        break;
+                    case 'P':
+                        prova[y] = '3';
+                        break;
+                    case 'Q':
+                        prova[y] = '4';
+                        break;
+                    case 'R':
+                        prova[y] = '5';
+                        break;
+                    case 'S':
+                        prova[y] = '6';
+                        break;
+                    case 'T':
+                        prova[y] = '7';
+                        break;
+                    case 'U':
+                        prova[y] = '8';
+                        break;
+                    case 'V':
+                        prova[y] = '9';
+                        break;
+                    default:
+                        break;
+                }
+                //controllo posizione e fine while
+                if (y == 6)
+                    y = 7;
+                else if (y == 7)
+                    y = 9;
+                else if (y == 9)
+                    y = 10;
+                else if (y == 10)
+                    y = 12;
+                else if (y == 12)
+                    y = 13;
+                else if (y == 13)
+                    y = 14;
+                else if (y == 14)
+                    y = 0;
+            }
+            y = 1;
+            CodiceFiscaleNuovoContatto = prova[0].ToString();
+            while (y != prova.Length)
+            {
+                CodiceFiscaleNuovoContatto = CodiceFiscaleNuovoContatto + prova[y].ToString();
+                y++;
+            }
+
+            string anno = "19" + CodiceFiscaleNuovoContatto.Substring(6, 2);
+            string mese = CodiceFiscaleNuovoContatto.Substring(8, 1);
+            switch (mese)
         {
             case "A":
                 mese = "01";
@@ -640,93 +715,80 @@ namespace MCup.ModelView
                 break;
 
         };
-        char sesso;
-        string giorno;
-        int giornoint = Convert.ToInt16(CodiceFiscaleNuovoContatto.Substring(9, 2));
-        if (giornoint > 40)
-        {
-            sesso = 'F';
-            giornoint = giornoint - 40;
-        }
-        else
-        {
-            sesso = 'M';
-        }
-        if (giornoint < 10)
-        {
-            giorno = "0" + giornoint.ToString();
-        }
-        else
-            giorno = giornoint.ToString();
-
-
-
-        Data_nascitaNuovoContatto = giorno + "/" + mese + "/" + anno;
-        sceltaSesso = sesso;
-        string sezCodFiscale = CodiceFiscaleNuovoContatto.Substring(11, 4);
-        sezCodFiscale = sezCodFiscale.ToUpper();
-        Boolean flagNaziolanità = false;
-        foreach (var i in AllComuni)
-        {
-            if (i.sezCodFiscale == sezCodFiscale)
+            char sesso;
+            string giorno;
+            int giornoint = Convert.ToInt16(CodiceFiscaleNuovoContatto.Substring(9, 2));
+            if (giornoint > 40)
             {
-                provinciaSelezionata.provincia = i.provinciaDescrizione;
-                provinciaSelezionata.codIstat = i.provinciaCodiceIstat;
+                sesso = 'F';
+                giornoint = giornoint - 40;
+            }
+            else
+            {
+                sesso = 'M';
+            }
+            if (giornoint < 10)
+            {
+                giorno = "0" + giornoint.ToString();
+            }
+            else
+                giorno = giornoint.ToString();
+
+            Data_nascitaNuovoContatto = giorno + "/" + mese + "/" + anno;
+            sceltaSesso = sesso;
+            string sezCodFiscale = CodiceFiscaleNuovoContatto.Substring(11, 4);
+            controlloComuneNascita = await ComuneNascita(sezCodFiscale);
+            Boolean flagNaziolanità = false;
+
+            if (controlloComuneNascita.codice != null)
+            {
+                Provincia_nascitaNuovoContatto = controlloComuneNascita.provincia;
+                provinciaSelezionata.provincia = controlloComuneNascita.provincia;
+                provinciaSelezionata.codIstat = controlloComuneNascita.codIstat;
                 Comune temp = new Comune();
-                temp.codice = i.sezCodFiscale;
-                temp.nome = i.descrizione;
-                Luogo_nascitaNuovoContatto = i.descrizione;
-                comuneNascitaSelezionato(temp);
+                Luogo_nascitaNuovoContatto = controlloComuneNascita.nome;
+                temp.codice = controlloComuneNascita.codice;
+                temp.nome = controlloComuneNascita.nome;
+                comuneNascitaSelezionato(temp); 
                 flagNaziolanità = true;
-                break;
             }
-        }
-        if (!flagNaziolanità)
-        {
-            foreach (var i in ListaNazioni)
+            if (!flagNaziolanità)
             {
-                    if(i.codiceCatastale == sezCodFiscale)
+                foreach (var i in ListaNazioni)
+                {
+                    if (i.codiceCatastale == sezCodFiscale)
                     {
-                    contatto.luogo_nascita = i.descrizione;
-                    contatto.istatComuneNascita = i.codiceCatastale;
-                    Luogo_nascitaNuovoContatto = i.descrizione;
-                    break;
+                        Luogo_nascitaNuovoContatto = i.descrizione;
+                        contatto.luogo_nascita = i.descrizione;
+                        contatto.istatComuneNascita = i.codiceCatastale;
+                        break;
                     }
-
+                }
             }
         }
-    }
-        public async void TuttiIComuni()
-{
 
-    REST<string, BASE> connessioneComuni = new REST<string, BASE>();
-    temp = await connessioneComuni.GetSingleJson("http://10.10.13.67:8080/distretti-3.0/rest/comune/findAll");
-    AllComuni = temp.elenco;
-    if (connessioneComuni.responseMessage != HttpStatusCode.OK)
-    {
-        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
-    }
-}
+        public async Task<Comuni> ComuneNascita(string temp2)
+        {
+            Comuni temp = new Comuni();
+            REST<string, Comuni> connessioneComuni = new REST<string, Comuni>();
+            temp = await connessioneComuni.GetSingleJson("http://192.168.125.24:3001/comuni/getByCodCatastale?codcatastale=" + temp2);
+            if (connessioneComuni.responseMessage != HttpStatusCode.OK)
+            {
+                //await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+                return new Comuni();
+            }
+            else
+                return temp;
+        }
     }
 
 }
 
-public class BASE
-{
-    public string messaggio { get; set; }
-    public bool isDati { get; set; }
-    public List<Comuni> elenco { get; set; }
-}
+
 public class Comuni
 {
-    public string codiceIstat { get; set; }
-    public object cap { get; set; }
-    public string descrizione { get; set; }
-    public string sezCodFiscale { get; set; }
-    public string soppresso { get; set; }
-    public string provinciaCodiceIstat { get; set; }
-    public string provinciaDescrizione { get; set; }
-    public string provinciaSigla { get; set; }
-    public string regioneCodiceIstat { get; set; }
-    public string regioneDescrizione { get; set; }
+    public string nome { get; set; }
+    public string codice { get; set; }
+    public string provincia { get; set; }
+    public string codIstat { get; set; }
 }
