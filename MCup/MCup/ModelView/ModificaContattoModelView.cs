@@ -388,7 +388,7 @@ namespace MCup.ModelView
                         ResponseRegistrazione response = await connessioneModificaContatto.PostJson(SingletonURL.Instance.getRotte().modAssistito, contatto, listaHeader);
                         if (connessioneModificaContatto.responseMessage != HttpStatusCode.OK)
                         {
-                            await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneModificaContatto.responseMessage, connessioneModificaContatto.warning, "OK");
+                            await MessaggioConnessione.displayAlert((int)connessioneModificaContatto.responseMessage, connessioneModificaContatto.warning);
                         }
                         else
                         {
@@ -416,7 +416,7 @@ namespace MCup.ModelView
             Province = await connessioneProvince.GetListJson(SingletonURL.Instance.getRotte().ListaProvince);
             if (connessioneProvince.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneProvince.responseMessage, connessioneProvince.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneProvince.responseMessage, connessioneProvince.warning);
             }
         }
 
@@ -429,7 +429,7 @@ namespace MCup.ModelView
             ListaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
             if (connessioneComuni.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);
             }
         }
 
@@ -441,7 +441,7 @@ namespace MCup.ModelView
             ListaComuniNascita = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
             if (connessioneComuni.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);
             }
         }
 
@@ -464,7 +464,7 @@ namespace MCup.ModelView
             ListaStatoCivile = await connessioneStatoCivile.GetListJson(SingletonURL.Instance.getRotte().ListaStatoCivile);
             if (connessioneStatoCivile.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneStatoCivile.responseMessage, connessioneStatoCivile.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneStatoCivile.responseMessage, connessioneStatoCivile.warning);
             }
         }
 

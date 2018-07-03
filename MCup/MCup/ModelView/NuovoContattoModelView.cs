@@ -466,9 +466,9 @@ namespace MCup.ModelView
                         contatto.Maiuscolo();
                         ResponseRegistrazione response = await connessioneNuovoContatto.PostJson(SingletonURL.Instance.getRotte().AggiungiNuovoContatto, contatto, listaHeader);
                         if (connessioneNuovoContatto.responseMessage == HttpStatusCode.BadRequest)
-                            await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNuovoContatto.responseMessage, "Controllare tutti i dati", "OK");
+                            await MessaggioConnessione.displayAlert((int)connessioneNuovoContatto.responseMessage, "Controllare tutti i dati");
                         else if(connessioneNuovoContatto.responseMessage != HttpStatusCode.Created)
-                            await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNuovoContatto.responseMessage, connessioneNuovoContatto.warning, "OK");
+                            await MessaggioConnessione.displayAlert((int)connessioneNuovoContatto.responseMessage, connessioneNuovoContatto.warning);
                         else
                         {
                             await App.Current.MainPage.DisplayAlert("Nuovo contatto", "Il contatto è stato aggiunto correttamente", "OK");
@@ -499,7 +499,7 @@ namespace MCup.ModelView
             Province = await connessioneProvince.GetListJson(SingletonURL.Instance.getRotte().ListaProvince);
             if (connessioneProvince.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneProvince.responseMessage, connessioneProvince.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneProvince.responseMessage, connessioneProvince.warning);
             }
         }
 
@@ -511,7 +511,7 @@ namespace MCup.ModelView
             ListaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
             if (connessioneComuni.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);
             }
         }
 
@@ -523,7 +523,7 @@ namespace MCup.ModelView
             ListaComuniNascita = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
             if (connessioneComuni.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);
             }
         }
 
@@ -546,7 +546,7 @@ namespace MCup.ModelView
             ListaStatoCivile = await connessioneStatoCivile.GetListJson(SingletonURL.Instance.getRotte().ListaStatoCivile);
             if (connessioneStatoCivile.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneStatoCivile.responseMessage, connessioneStatoCivile.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneStatoCivile.responseMessage, connessioneStatoCivile.warning);
             }
         }
 
@@ -561,7 +561,7 @@ namespace MCup.ModelView
             ListaNazioni = await connessioneNazioni.GetListJson(SingletonURL.Instance.getRotte().listaNazioni);
             if (connessioneNazioni.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNazioni.responseMessage, connessioneNazioni.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneNazioni.responseMessage, connessioneNazioni.warning);
             }
             else
             {

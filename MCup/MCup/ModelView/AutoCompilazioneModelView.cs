@@ -475,10 +475,6 @@ namespace MCup.ModelView
                     string giorno, mese, anno;
                     List<Header> listaHeader = new List<Header>();
                     listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
-                    giorno = contatto.data_nascita.Substring(3, 2);
-                    mese = contatto.data_nascita.Substring(0, 2);
-                    anno = contatto.data_nascita.Substring(6, 4);
-                    contatto.data_nascita = giorno + "/" + mese + "/" + anno;
                     contatto.provincia = provinciaSelezionata.provincia;
                     REST<Assistito, ResponseRegistrazione> connessioneNuovoContatto = new REST<Assistito, ResponseRegistrazione>();
                     try
@@ -486,9 +482,9 @@ namespace MCup.ModelView
                         contatto.Maiuscolo();
                         ResponseRegistrazione response = await connessioneNuovoContatto.PostJson(SingletonURL.Instance.getRotte().AggiungiNuovoContatto, contatto, listaHeader);
                         if (connessioneNuovoContatto.responseMessage == HttpStatusCode.BadRequest)
-                            await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNuovoContatto.responseMessage, "Controllare tutti i dati", "OK");
+                            await MessaggioConnessione.displayAlert((int)connessioneNuovoContatto.responseMessage, "Controllare tutti i dati");
                         else if (connessioneNuovoContatto.responseMessage != HttpStatusCode.Created)
-                            await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNuovoContatto.responseMessage, connessioneNuovoContatto.warning, "OK");
+                            await MessaggioConnessione.displayAlert((int)connessioneNuovoContatto.responseMessage, connessioneNuovoContatto.warning);
                         else
                         {
                             await App.Current.MainPage.DisplayAlert("Nuovo contatto", "Il contatto è stato aggiunto correttamente", "OK");
@@ -518,7 +514,7 @@ namespace MCup.ModelView
             Province = await connessioneProvince.GetListJson(SingletonURL.Instance.getRotte().ListaProvince);
             if (connessioneProvince.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneProvince.responseMessage, connessioneProvince.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneProvince.responseMessage, connessioneProvince.warning);
             }
         }
 
@@ -530,7 +526,7 @@ namespace MCup.ModelView
             ListaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
             if (connessioneComuni.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);
             }
         }
 
@@ -553,7 +549,7 @@ namespace MCup.ModelView
             ListaStatoCivile = await connessioneStatoCivile.GetListJson(SingletonURL.Instance.getRotte().ListaStatoCivile);
             if (connessioneStatoCivile.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneStatoCivile.responseMessage, connessioneStatoCivile.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneStatoCivile.responseMessage, connessioneStatoCivile.warning);
             }
         }
 
@@ -568,7 +564,7 @@ namespace MCup.ModelView
             ListaNazioni = await connessioneNazioni.GetListJson(SingletonURL.Instance.getRotte().listaNazioni);
             if (connessioneNazioni.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNazioni.responseMessage, connessioneNazioni.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneNazioni.responseMessage, connessioneNazioni.warning);
             }
             else
             {
@@ -671,7 +667,14 @@ namespace MCup.ModelView
                 y++;
             }
 
-            string anno = "19" + CodiceFiscaleNuovoContatto.Substring(6, 2);
+            int annoint = 2000 + Convert.ToInt16(CodiceFiscaleNuovoContatto.Substring(6, 2));
+            string anno;
+            int annoCorrente = DateTime.Now.Year;
+            if (annoint > annoCorrente)
+                anno = "19" + CodiceFiscaleNuovoContatto.Substring(6, 2);
+            else
+                anno = "20" + CodiceFiscaleNuovoContatto.Substring(6, 2);
+
             string mese = CodiceFiscaleNuovoContatto.Substring(8, 1);
             switch (mese)
         {
@@ -742,6 +745,9 @@ namespace MCup.ModelView
 
             if (controlloComuneNascita.codice != null)
             {
+
+                NationalVisibility = false;
+                NationalVisibilityForeign = true;
                 Provincia_nascitaNuovoContatto = controlloComuneNascita.provincia;
                 provinciaSelezionata.provincia = controlloComuneNascita.provincia;
                 provinciaSelezionata.codIstat = controlloComuneNascita.codIstat;
@@ -758,6 +764,9 @@ namespace MCup.ModelView
                 {
                     if (i.codiceCatastale == sezCodFiscale)
                     {
+
+                        NationalVisibility = true;
+                        NationalVisibilityForeign = false;
                         Luogo_nascitaNuovoContatto = i.descrizione;
                         contatto.luogo_nascita = i.descrizione;
                         contatto.istatComuneNascita = i.codiceCatastale;
@@ -774,7 +783,7 @@ namespace MCup.ModelView
             temp = await connessioneComuni.GetSingleJson("http://192.168.125.24:3001/comuni/getByCodCatastale?codcatastale=" + temp2);
             if (connessioneComuni.responseMessage != HttpStatusCode.OK)
             {
-                //await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+                //await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);
                 return new Comuni();
             }
             else

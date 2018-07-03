@@ -180,7 +180,7 @@ namespace MCup.ModelView
                 Appuntamenti = await connessione.PostJsonList(SingletonURL.Instance.getRotte().appuntamenti, invioContatto, listaJHeaders);
                 if (connessione.responseMessage != HttpStatusCode.OK)
                 {
-                    await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+                    await MessaggioConnessione.displayAlert((int)connessione.responseMessage, connessione.warning);
                 }
                 if (Appuntamenti.Count == 0)
                 {
@@ -218,7 +218,7 @@ namespace MCup.ModelView
                 Appuntamenti = await connessione.PostJsonList(SingletonURL.Instance.getRotte().appuntamentiFuturiEPassati, invioContatto, listaJHeaders);
                 if (connessione.responseMessage != HttpStatusCode.OK)
                 {
-                    await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+                    await MessaggioConnessione.displayAlert((int)connessione.responseMessage, connessione.warning);
                 }
                 if (Appuntamenti.Count == 0)
                 {
@@ -259,7 +259,7 @@ namespace MCup.ModelView
             contatti = await rest.GetSingleJson(SingletonURL.Instance.getRotte().InfoPersonali, listaHeader);
             if (rest.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)rest.responseMessage, rest.warning);
             }
             else
             {

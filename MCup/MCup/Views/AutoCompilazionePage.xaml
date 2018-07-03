@@ -44,6 +44,8 @@
                         </Image>
                     </Grid>
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCodFiscale}" TextColor="Red" FontSize="Small"/>
+                    <Button BackgroundColor="#003964" TextColor="White" Text="Autocompila" HorizontalOptions="Center" x:Name="btnAutoCompila" Clicked="btnAutoCompila_Clicked"/>
+                    
                     
                     <StackLayout IsVisible="{Binding VisibleCdf}">
                         <Label Text="Data di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>

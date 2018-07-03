@@ -271,13 +271,14 @@ namespace MCup.ModelView
                         headers);
                     if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
                     {
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, messaggioDiAnnullamento, "OK");
+                        await MessaggioConnessione.displayAlert((int)connessioneAnnullamento.responseMessage, messaggioDiAnnullamento);
                     }
                     else
                     {
                         await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
                         App.Current.MainPage = new MenuPrincipale();
                     }
+                
                 }
             });
         }
@@ -366,7 +367,7 @@ namespace MCup.ModelView
             appuntamentoProposto = await recuperoDatiLista.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilita, prestazioni, headers);
             if (recuperoDatiLista.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)recuperoDatiLista.responseMessage, recuperoDatiLista.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)recuperoDatiLista.responseMessage, recuperoDatiLista.warning);
             }
             else
             {
@@ -468,7 +469,7 @@ namespace MCup.ModelView
             appuntamentoProposto = await connessione.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilitaOra, prenotazione, headers);
             if (connessione.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessione.responseMessage, connessione.warning);
             }
             else
             {
@@ -569,7 +570,7 @@ namespace MCup.ModelView
             appuntamentoProposto = await connessione.PostJson(SingletonURL.Instance.getRotte().ricercadata, appuntamentoProposto, headers);
             if (connessione.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessione.responseMessage, connessione.warning);
             }
             else
             {

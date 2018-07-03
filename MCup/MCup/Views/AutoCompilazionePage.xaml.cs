@@ -51,10 +51,7 @@ namespace MCup.Views
                 });
             };
             await Navigation.PushAsync(scanPage);
-            if(entryCodiceFiscale.Text.Length == 16)
-            {
-                model.autocompila();
-            }
+          
         }
         private void Picker_SelectedIndexChangedProvinciaResidenza(object sender, EventArgs e)
         {
@@ -81,6 +78,19 @@ namespace MCup.Views
         private void SwitchPaeseStraniere(object sender, ToggledEventArgs e)
         {
             model.sceltaNazione(e.Value);
+        }
+
+        private void btnAutoCompila_Clicked(object sender, EventArgs e)
+        {
+            if (entryCodiceFiscale.Text.Length == 16)
+            {
+                model.autocompila();
+                btnAutoCompila.IsVisible = false;
+            }
+            else
+            {
+                btnAutoCompila.IsVisible = true;
+            }
         }
     }
 }

@@ -344,7 +344,7 @@ namespace MCup.ModelView
             contacts = await rest.GetListJson(SingletonURL.Instance.getRotte().InfoPersonali, listaHeader);
             if (rest.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
+                    await MessaggioConnessione.displayAlert((int)rest.responseMessage, rest.warning);
             }
             else
             {
@@ -508,7 +508,7 @@ namespace MCup.ModelView
                     else if (connessione.responseMessage == HttpStatusCode.BadRequest)
                         await App.Current.MainPage.DisplayAlert("Attenzione 400", connessione.warning, "OK");
                     else
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+                        await MessaggioConnessione.displayAlert((int)connessione.responseMessage, connessione.warning);
                 }
                 catch (Exception e)
                 {

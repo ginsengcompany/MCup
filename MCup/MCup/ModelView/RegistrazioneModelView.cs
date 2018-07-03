@@ -29,6 +29,9 @@ namespace MCup.ModelView
 
         #region DichiarazioneVariabili
 
+        private string provinciaNascita;
+
+        private Boolean visibleCdf = false;
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
         private List<Comune> listacomuni = new List<Comune>();
         private List<Provincia> listaprovince = new List<Provincia>();
@@ -189,7 +192,15 @@ namespace MCup.ModelView
         #endregion
 
         #region Proprietà
-
+        public bool VisibleCdf
+        {
+            get { return visibleCdf; }
+            set
+            {
+                OnPropertyChanged();
+                visibleCdf = value;
+            }
+        }
         public List<Nazione> ListaNazioni
         {
             get { return listanazioni; }
@@ -457,6 +468,25 @@ namespace MCup.ModelView
             }
         }
 
+        public string Luogo_nascitaNuovoContatto //Proprietà relativa al campo luogo di nascita
+        {
+            get { return utente.luogo_nascita; }
+            set
+            {
+                OnPropertyChanged();
+                utente.luogo_nascita = value;
+            }
+        }
+        public string Provincia_nascitaNuovoContatto //Proprietà relativa al campo luogo di nascita
+        {
+            get { return provinciaNascita; }
+            set
+            {
+                OnPropertyChanged();
+                provinciaNascita = value;
+            }
+        }
+
 
         #endregion
 
@@ -553,11 +583,11 @@ namespace MCup.ModelView
                 if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
                 {
                     utente.data_nascita = utente.data_nascita.Substring(0, 10);
-                    string giorno, mese, anno;
+                   /* string giorno, mese, anno;
                     giorno = utente.data_nascita.Substring(3, 2);
                     mese = utente.data_nascita.Substring(0, 2);
                     anno = utente.data_nascita.Substring(6);
-                    utente.data_nascita = giorno + "/" + mese + "/" + anno;
+                    utente.data_nascita = giorno + "/" + mese + "/" + anno;*/
                     utente.provincia = provinciaSelezionata.provincia;
                     var risposta = await App.Current.MainPage.DisplayAlert("Registrazione",
                         "Cliccando SI accetti i termini d'uso", "SI", "NO");
@@ -570,7 +600,7 @@ namespace MCup.ModelView
 
                     if (rest.responseMessage != HttpStatusCode.Created)
                     {
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int) rest.responseMessage,rest.warning, "OK");
+                        await MessaggioConnessione.displayAlert((int) rest.responseMessage,rest.warning);
                     }
                     else if (response.auth) //Controlla se response contiene un oggetto e che indica che la registrazione è avvenuta con successo
                     {
@@ -619,7 +649,7 @@ namespace MCup.ModelView
             ListaNazioni = await connessioneNazioni.GetListJson(SingletonURL.Instance.getRotte().listaNazioni);
             if (connessioneNazioni.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneNazioni.responseMessage, connessioneNazioni.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneNazioni.responseMessage, connessioneNazioni.warning);
             }
             else
             {
@@ -633,7 +663,7 @@ namespace MCup.ModelView
             ListaStatoCivile = await connessioneStatoCivile.GetListJson(SingletonURL.Instance.getRotte().ListaStatoCivile);
             if (connessioneStatoCivile.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneStatoCivile.responseMessage, connessioneStatoCivile.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneStatoCivile.responseMessage, connessioneStatoCivile.warning);
             }
         }
 
@@ -763,7 +793,7 @@ namespace MCup.ModelView
             listacomuni = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
             if (connessioneComuni.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);
             }
             else
             {
@@ -778,7 +808,7 @@ namespace MCup.ModelView
             listaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
             if (connessioneComuni.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneComuni.responseMessage, connessioneComuni.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);
             }
         }
 
@@ -788,7 +818,7 @@ namespace MCup.ModelView
             listaProvince = await connessioneProvince.GetListJson(SingletonURL.Instance.getRotte().ListaProvince);
             if (connessioneProvince.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneProvince.responseMessage, connessioneProvince.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessioneProvince.responseMessage, connessioneProvince.warning);
             }
         }
 
@@ -814,10 +844,203 @@ namespace MCup.ModelView
             utente.istatComuneResidenza = comune.codice;
         }
 
+        public async void autocompila()
+        {
+            Comuni controlloComuneNascita = new Comuni();
+            VisibleCdf = true;
+            int y = 6;
+            //anno
+            codiceFiscale = codiceFiscale.ToUpper();
+            char[] prova = new char[codiceFiscale.Length];
+            prova = codiceFiscale.ToCharArray();
 
+            while (y != 0)
+            {
+                switch (prova[y])
+                {
+                    case 'L':
+                        prova[y] = '0';
+                        break;
+                    case 'M':
+                        prova[y] = '1';
+                        break;
+                    case 'N':
+                        prova[y] = '2';
+                        break;
+                    case 'P':
+                        prova[y] = '3';
+                        break;
+                    case 'Q':
+                        prova[y] = '4';
+                        break;
+                    case 'R':
+                        prova[y] = '5';
+                        break;
+                    case 'S':
+                        prova[y] = '6';
+                        break;
+                    case 'T':
+                        prova[y] = '7';
+                        break;
+                    case 'U':
+                        prova[y] = '8';
+                        break;
+                    case 'V':
+                        prova[y] = '9';
+                        break;
+                    default:
+                        break;
+                }
+                //controllo posizione e fine while
+                if (y == 6)
+                    y = 7;
+                else if (y == 7)
+                    y = 9;
+                else if (y == 9)
+                    y = 10;
+                else if (y == 10)
+                    y = 12;
+                else if (y == 12)
+                    y = 13;
+                else if (y == 13)
+                    y = 14;
+                else if (y == 14)
+                    y = 0;
+            }
+            y = 1;
+            codiceFiscale = prova[0].ToString();
+            while (y != prova.Length)
+            {
+                codiceFiscale = codiceFiscale + prova[y].ToString();
+                y++;
+            }
+            int annoint = 2000 + Convert.ToInt16(codiceFiscale.Substring(6, 2));
+            string anno;
+            int annoCorrente = DateTime.Now.Year;
+            if(annoint>annoCorrente)
+                anno = "19" + codiceFiscale.Substring(6, 2);
+            else
+                anno = "20" + codiceFiscale.Substring(6, 2);
+
+            string mese = codiceFiscale.Substring(8, 1);
+            switch (mese)
+            {
+                case "A":
+                    mese = "01";
+                    break;
+                case "B":
+                    mese = "02";
+                    break;
+                case "C":
+                    mese = "03";
+                    break;
+                case "D":
+                    mese = "04";
+                    break;
+                case "E":
+                    mese = "05";
+                    break;
+                case "H":
+                    mese = "06";
+                    break;
+                case "L":
+                    mese = "07";
+                    break;
+                case "M":
+                    mese = "08";
+                    break;
+                case "P":
+                    mese = "09";
+                    break;
+                case "R":
+                    mese = "10";
+                    break;
+                case "S":
+                    mese = "11";
+                    break;
+                case "T":
+                    mese = "12";
+                    break;
+                default:
+                    break;
+
+            };
+            char sesso;
+            string giorno;
+            int giornoint = Convert.ToInt16(codiceFiscale.Substring(9, 2));
+            if (giornoint > 40)
+            {
+                sesso = 'F';
+                giornoint = giornoint - 40;
+            }
+            else
+            {
+                sesso = 'M';
+            }
+            if (giornoint < 10)
+            {
+                giorno = "0" + giornoint.ToString();
+            }
+            else
+                giorno = giornoint.ToString();
+
+            data_nascita = giorno + "/" + mese + "/" + anno;
+            sceltaSesso = sesso;
+            string sezCodFiscale = codiceFiscale.Substring(11, 4);
+            controlloComuneNascita = await ComuneNascita(sezCodFiscale);
+            Boolean flagNaziolanità = false;
+
+            if (controlloComuneNascita.codice != null)
+            {
+                NationalVisibility = true;
+                NationalVisibilityForeign = false;
+                Provincia_nascitaNuovoContatto = controlloComuneNascita.provincia;
+                provinciaSelezionata.provincia = controlloComuneNascita.provincia;
+                provinciaSelezionata.codIstat = controlloComuneNascita.codIstat;
+                Comune temp = new Comune();
+                Luogo_nascitaNuovoContatto = controlloComuneNascita.nome;
+                temp.codice = controlloComuneNascita.codice;
+                temp.nome = controlloComuneNascita.nome;
+                comuneNascitaSelezionato(temp);
+                flagNaziolanità = true;
+            }
+            if (!flagNaziolanità)
+            {
+                foreach (var i in ListaNazioni)
+                {
+                    if (i.codiceCatastale == sezCodFiscale)
+                    {
+
+                        NationalVisibility = false;
+                        NationalVisibilityForeign = true;
+                        Luogo_nascitaNuovoContatto = i.descrizione;
+                        utente.luogo_nascita = i.descrizione;
+                        utente.istatComuneNascita = i.codiceCatastale;
+                        break;
+                    }
+                }
+            }
+        }
+        public async Task<Comuni> ComuneNascita(string temp2)
+        {
+            Comuni temp = new Comuni();
+            REST<string, Comuni> connessioneComuni = new REST<string, Comuni>();
+            temp = await connessioneComuni.GetSingleJson("http://192.168.125.24:3001/comuni/getByCodCatastale?codcatastale=" + temp2);
+            if (connessioneComuni.responseMessage != HttpStatusCode.OK)
+            {
+                //await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);
+                return new Comuni();
+            }
+            else
+                return temp;
+        }
         #endregion
-
-
-
+    }
+    public class Comuni
+    {
+        public string nome { get; set; }
+        public string codice { get; set; }
+        public string provincia { get; set; }
+        public string codIstat { get; set; }
     }
 }
