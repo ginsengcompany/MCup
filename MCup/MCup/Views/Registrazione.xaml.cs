@@ -31,7 +31,7 @@ namespace MCup.Views
             this.Children.Clear();
             this.Children.Add(page0);
             BindingContext = modelView; //Questa pagina utilizza l'MWWM, ed effettua il binding delle informazioni con la classe RegistrazioneModelView.
-            PickerComuneNascita.IsEnabled = false;
+            //PickerComuneNascita.IsEnabled = false;
             PickerComuneResidenza.IsEnabled = false;
         }
         private async void Button_Clicked(object sender, EventArgs e)
@@ -85,7 +85,7 @@ namespace MCup.Views
             
         }
 
-        private void Picker_OnSelectedIndexChangedProvinciaNascita(object sender, EventArgs e)
+      /*  private void Picker_OnSelectedIndexChangedProvinciaNascita(object sender, EventArgs e)
         {
             if (pickerProvinciaNascita.SelectedIndex == -1)
             {
@@ -96,7 +96,7 @@ namespace MCup.Views
             modelView.provinciaDiNascitaSelezionato(b);
             PickerComuneNascita.IsEnabled = true;
         }
-
+        */
         private void Picker_OnSelectedIndexChangedProvinciaResidenza(object sender, EventArgs e)
         {
             if(pickerProvinciaResidenza.SelectedIndex==-1)
@@ -169,6 +169,18 @@ namespace MCup.Views
             {
                 var b = a.SelectedItem as Nazione;
                 modelView.NazioneSelezionata(b);
+            }
+        }
+        private void btnAutoCompila_Clicked(object sender, EventArgs e)
+        {
+            if (entryCodiceFiscale.Text.Length == 16)
+            {
+                modelView.autocompila();
+                btnAutoCompila.IsVisible = false;
+            }
+            else
+            {
+                btnAutoCompila.IsVisible = true;
             }
         }
     }

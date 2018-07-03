@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -16,6 +17,7 @@ namespace MCup.Model
     {
         private Color colore= Color.FromHex("#0971B2");
         private Color coloreTesto = Color.White;
+        
 
         public string dataAppuntamento { get; set; }
         public string oraAppuntamento { get; set; }
@@ -23,6 +25,8 @@ namespace MCup.Model
         public bool disponibile { get; set; }
         public bool esitoNote { get; set; } = false;
         public bool visibleNote { get; set; } = true;
+
+     
 
         public void copiaAppuntamentoPrestazioneProposto(AppuntamentoPrestazioneProposto appuntamento)
         {

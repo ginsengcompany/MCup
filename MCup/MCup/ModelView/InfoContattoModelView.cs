@@ -205,7 +205,7 @@ namespace MCup.ModelView
                             var response = await connessioneElimina.getString(SingletonURL.Instance.getRotte().eliminaContattoPersonale, listaheader);
                             if (connessioneElimina.responseMessage != HttpStatusCode.OK)
                             {
-                                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneElimina.responseMessage, connessioneElimina.warning, "OK");
+                                await MessaggioConnessione.displayAlert((int)connessioneElimina.responseMessage, connessioneElimina.warning);
                             }
                             else
                             {
@@ -235,7 +235,7 @@ namespace MCup.ModelView
                     string response = await restElimina.PostJson(SingletonURL.Instance.getRotte().EliminaContatto, utente, listaheader);
                     if (restElimina.responseMessage != HttpStatusCode.OK)
                     {
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)restElimina.responseMessage, restElimina.warning, "OK");
+                        await MessaggioConnessione.displayAlert((int)restElimina.responseMessage, restElimina.warning);
                     }
                     else
                     {

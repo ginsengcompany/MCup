@@ -271,13 +271,14 @@ namespace MCup.ModelView
                         headers);
                     if (connessioneAnnullamento.responseMessage != HttpStatusCode.OK)
                     {
-                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessioneAnnullamento.responseMessage, messaggioDiAnnullamento, "OK");
+                        await MessaggioConnessione.displayAlert((int)connessioneAnnullamento.responseMessage, messaggioDiAnnullamento);
                     }
                     else
                     {
                         await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
                         App.Current.MainPage = new MenuPrincipale();
                     }
+                
                 }
             });
         }
@@ -366,12 +367,14 @@ namespace MCup.ModelView
             appuntamentoProposto = await recuperoDatiLista.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilita, prestazioni, headers);
             if (recuperoDatiLista.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)recuperoDatiLista.responseMessage, recuperoDatiLista.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)recuperoDatiLista.responseMessage, recuperoDatiLista.warning);
             }
             else
             {
                 for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
                 {
+
+                   
                     if (appuntamentoProposto.appuntamenti[i].disponibile == false)
                     {
                         messaggio = messaggio + appuntamentoProposto.appuntamenti[i].desprest + '\n';
@@ -387,8 +390,15 @@ namespace MCup.ModelView
                 IsBusy = false;
                 if (appuntamentoProposto.appuntamenti.Count > 0)
                 {
+
                     for (int j = 0; j < appuntamentoProposto.appuntamenti.Count; j++)
                     {
+                        DateTime data_appuntamento = DateTime.ParseExact(appuntamentoProposto.appuntamenti[j].dataAppuntamento, "dd/MM/yyyy", null);
+
+                        var culture = new System.Globalization.CultureInfo("it-IT");
+                        var day = culture.DateTimeFormat.GetDayName(data_appuntamento.DayOfWeek);
+                        appuntamentoProposto.appuntamenti[j].dataAppuntamento = day.ToString() + " " + appuntamentoProposto.appuntamenti[j].dataAppuntamento;
+
                         if (appuntamentoProposto.appuntamenti[j].nota.Trim() == string.Empty)
                         {
                             appuntamentoProposto.appuntamenti[j].esitoNote = true;
@@ -413,8 +423,11 @@ namespace MCup.ModelView
                             {
                                 dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(0, 1)));
                             }
-                            appuntamentoProposto.appuntamenti[k].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
+                            var dataAppoggio = String.Format("{0:dd/MM/yyyy}", dataTemp);
+                            appuntamentoProposto.appuntamenti[k].dataAppuntamento = dataAppoggio + dataTemp.DayOfWeek.ToString();
+                            
                         }
+                        
                         if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[k].reparti[0].nomeMedico))
                             appuntamentoProposto.appuntamenti[k].reparti[0].nomeMedico = "N/D";
                     }
@@ -468,14 +481,17 @@ namespace MCup.ModelView
             appuntamentoProposto = await connessione.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilitaOra, prenotazione, headers);
             if (connessione.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessione.responseMessage, connessione.warning);
             }
             else
             {
                 count = 0;
                 messaggio = "";
+
+
                 for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
                 {
+
                     if (appuntamentoProposto.appuntamenti[i].disponibile == false)
                     {
                         messaggio = messaggio + appuntamentoProposto.appuntamenti[i].desprest + '\n';
@@ -491,8 +507,15 @@ namespace MCup.ModelView
                 IsBusyV = false;
                 if (appuntamentoProposto.appuntamenti.Count > 0)
                 {
+
                     for (int j = 0; j < appuntamentoProposto.appuntamenti.Count; j++)
                     {
+
+                        DateTime data_appuntamento = DateTime.ParseExact(appuntamentoProposto.appuntamenti[j].dataAppuntamento, "dd/MM/yyyy", null);
+
+                        var culture = new System.Globalization.CultureInfo("it-IT");
+                        var day = culture.DateTimeFormat.GetDayName(data_appuntamento.DayOfWeek);
+                        appuntamentoProposto.appuntamenti[j].dataAppuntamento = day.ToString() + " " + appuntamentoProposto.appuntamenti[j].dataAppuntamento;
                         appuntamentoProposto.appuntamenti[j].desprest = prestazioni[j].reparti[0].desprest;
                         if (appuntamentoProposto.appuntamenti[j].nota.Trim() == string.Empty)
                         {
@@ -517,7 +540,7 @@ namespace MCup.ModelView
                             {
                                 dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[k].dataAppuntamento.Substring(0, 1)));
                             }
-                            appuntamentoProposto.appuntamenti[k].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
+                            appuntamentoProposto.appuntamenti[k].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp) + dataTemp.DayOfWeek;
                         }
                         if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[k].reparti[0].nomeMedico))
                             appuntamentoProposto.appuntamenti[k].reparti[0].nomeMedico = "N/D";
@@ -569,7 +592,7 @@ namespace MCup.ModelView
             appuntamentoProposto = await connessione.PostJson(SingletonURL.Instance.getRotte().ricercadata, appuntamentoProposto, headers);
             if (connessione.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)connessione.responseMessage, connessione.warning);
             }
             else
             {
@@ -595,6 +618,12 @@ namespace MCup.ModelView
 
                     for (int k = 0; k < appuntamentoProposto.appuntamenti.Count;k++)
                     {
+
+                        DateTime data_appuntamento = DateTime.ParseExact(appuntamentoProposto.appuntamenti[k].dataAppuntamento, "dd/MM/yyyy", null);
+
+                        var culture = new System.Globalization.CultureInfo("it-IT");
+                        var day = culture.DateTimeFormat.GetDayName(data_appuntamento.DayOfWeek);
+                        appuntamentoProposto.appuntamenti[k].dataAppuntamento = day.ToString() + " " + appuntamentoProposto.appuntamenti[k].dataAppuntamento;
                         appuntamentoProposto.appuntamenti[k].desprest = prestazioni[k].reparti[0].desprest;
                         if (appuntamentoProposto.appuntamenti[k].nota.Trim() == string.Empty)
                         {
@@ -619,7 +648,7 @@ namespace MCup.ModelView
                             {
                                 dataTemp = new DateTime(int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(5)), int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(2, 2)), int.Parse(appuntamentoProposto.appuntamenti[j].dataAppuntamento.Substring(0, 1)));
                             }
-                            appuntamentoProposto.appuntamenti[j].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp);
+                            appuntamentoProposto.appuntamenti[j].dataAppuntamento = String.Format("{0:dd/MM/yyyy}", dataTemp) + dataTemp.DayOfWeek;
                         }
                         if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[j].reparti[0].nomeMedico))
                             appuntamentoProposto.appuntamenti[j].reparti[0].nomeMedico = "N/D";

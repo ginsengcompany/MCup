@@ -121,7 +121,7 @@ namespace MCup.ModelView
             leggiContatti();
             AggiungereContatto = new Command(() =>
             {
-                App.Current.MainPage = new NavigationPage(new NuovoContatto());
+                App.Current.MainPage = new NavigationPage(new AutoCompilazionePage());
             });
             MioContattoPersonale = new Command(async () =>
             {
@@ -176,7 +176,7 @@ namespace MCup.ModelView
                 await rest.GetSingleJson(SingletonURL.Instance.getRotte().InfoPersonali, listaHeader);
             if (rest.responseMessage != HttpStatusCode.OK)
             {
-                await App.Current.MainPage.DisplayAlert("Attenzione " + (int)rest.responseMessage, rest.warning, "OK");
+                await MessaggioConnessione.displayAlert((int)rest.responseMessage, rest.warning);
             }
             else
             {
