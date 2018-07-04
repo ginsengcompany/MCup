@@ -42,5 +42,6 @@ namespace MCup.Model
         public string passwordSmarrita { get; set; }
         public string modAssistito { get; set; }
         public string listaNazioni { get; set; }
+        public string comunebycodicecatastale { get; set; }
     }
 }

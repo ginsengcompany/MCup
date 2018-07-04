@@ -251,9 +251,9 @@ namespace MCup.ModelView
 
             });
 
-            Prenotazione = new Command(async () =>
+            Prenotazione = new Command(() =>
             {
-                App.Current.MainPage = new NavigationPage(new FormPrenotazione(utente));
+                 pagina.PrenotazioneAutomatica(utente);
 
             });
         }

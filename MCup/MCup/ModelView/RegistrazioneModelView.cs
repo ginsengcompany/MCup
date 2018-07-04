@@ -1025,7 +1025,7 @@ namespace MCup.ModelView
         {
             Comuni temp = new Comuni();
             REST<string, Comuni> connessioneComuni = new REST<string, Comuni>();
-            temp = await connessioneComuni.GetSingleJson("http://192.168.125.24:3001/comuni/getByCodCatastale?codcatastale=" + temp2);
+            temp = await connessioneComuni.GetSingleJson(SingletonURL.Instance.getRotte().comunebycodicecatastale + "?codcatastale=" + temp2);
             if (connessioneComuni.responseMessage != HttpStatusCode.OK)
             {
                 //await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);

@@ -152,7 +152,7 @@ namespace MCup.Views
 
         public void selezionaElemento(Assistito contatto)
         {
-            pickerContatti.Title = contatto.nomeCompletoConCodiceFiscale;
+            pickerContatti.Title = contatto.nome + " " +contatto.cognome;
             form.autoCompila(contatto);
         }
         /*

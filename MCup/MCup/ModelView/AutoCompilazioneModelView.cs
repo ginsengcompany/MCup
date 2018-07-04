@@ -746,8 +746,8 @@ namespace MCup.ModelView
             if (controlloComuneNascita.codice != null)
             {
 
-                NationalVisibility = false;
-                NationalVisibilityForeign = true;
+                NationalVisibility = true;
+                NationalVisibilityForeign = false;
                 Provincia_nascitaNuovoContatto = controlloComuneNascita.provincia;
                 provinciaSelezionata.provincia = controlloComuneNascita.provincia;
                 provinciaSelezionata.codIstat = controlloComuneNascita.codIstat;
@@ -765,8 +765,8 @@ namespace MCup.ModelView
                     if (i.codiceCatastale == sezCodFiscale)
                     {
 
-                        NationalVisibility = true;
-                        NationalVisibilityForeign = false;
+                        NationalVisibility = false;
+                        NationalVisibilityForeign = true;
                         Luogo_nascitaNuovoContatto = i.descrizione;
                         contatto.luogo_nascita = i.descrizione;
                         contatto.istatComuneNascita = i.codiceCatastale;
@@ -780,7 +780,7 @@ namespace MCup.ModelView
         {
             Comuni temp = new Comuni();
             REST<string, Comuni> connessioneComuni = new REST<string, Comuni>();
-            temp = await connessioneComuni.GetSingleJson("http://192.168.125.24:3001/comuni/getByCodCatastale?codcatastale=" + temp2);
+            temp = await connessioneComuni.GetSingleJson(SingletonURL.Instance.getRotte().comunebycodicecatastale + "?codcatastale=" + temp2);
             if (connessioneComuni.responseMessage != HttpStatusCode.OK)
             {
                 //await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);

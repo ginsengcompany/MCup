@@ -20,5 +20,9 @@ namespace MCup.Views
 
         }
 
+        public async void PrenotazioneAutomatica(Assistito assistito)
+        {
+          await  Navigation.PushAsync(new FormPrenotazione(assistito));
+        }
     }
 }
