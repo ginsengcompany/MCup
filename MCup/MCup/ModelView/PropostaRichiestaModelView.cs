@@ -21,7 +21,7 @@ namespace MCup.ModelView
     {
 
         #region DichiarazioneVariabili
-
+        private char[] alfabeto = { 'ì', 'a', 'b', 'c', 'd', 'D', 'e', 'f', 'g', 'G', 'h', 'i', 'l', 'L', 'm', 'M', 'n', 'o', 'p', 'q', 'r', 's', 'S', 't', 'u', 'v', 'V', 'z', ' ' };
         private bool isvisible, isbusy, isvisibleButton, isenabled, isbusyV;//Variabili booleane utilizzate per rendere visibili e abilitati elementi nello xaml
         private Assistito contatto;//Oggetto di tipo assistito, da cui raccoglieremo le informazioni del contatto
         private string visible = "true";//Variabile utilizzata per rendere visibile o meno oggetti nello xaml
@@ -478,6 +478,11 @@ namespace MCup.ModelView
         {
             REST<AppuntamentoProposto, AppuntamentoProposto> connessione = new REST<AppuntamentoProposto, AppuntamentoProposto>();
             IsBusyV = true;
+
+            foreach(var i in prenotazione.appuntamenti)
+            {
+                i.dataAppuntamento = i.dataAppuntamento.Trim(alfabeto);
+            }
             appuntamentoProposto = await connessione.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilitaOra, prenotazione, headers);
             if (connessione.responseMessage != HttpStatusCode.OK)
             {
@@ -589,6 +594,10 @@ namespace MCup.ModelView
             REST<AppuntamentoProposto, AppuntamentoProposto> connessione = new REST<AppuntamentoProposto, AppuntamentoProposto>();
             IsBusyV = true;
             headers[1].value = data;
+            foreach (var i in appuntamentoProposto.appuntamenti)
+            {
+                i.dataAppuntamento = i.dataAppuntamento.Trim(alfabeto);
+            }
             appuntamentoProposto = await connessione.PostJson(SingletonURL.Instance.getRotte().ricercadata, appuntamentoProposto, headers);
             if (connessione.responseMessage != HttpStatusCode.OK)
             {
