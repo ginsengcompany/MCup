@@ -246,7 +246,7 @@ namespace MCup.ModelView
 
         public PropostaRichiestaModelView(Impegnativa ricetta, List<Prestazione> prestazioni, Assistito contatto, PropostaRichiesta proposta)
         {
-            IsEnabled = true;
+           
             this.impegnativa = ricetta;
             ricetta.assistito = contatto;
             propostaRichiesta = proposta;
@@ -291,7 +291,9 @@ namespace MCup.ModelView
         //Metodo usato per richiamare un altro metodo di nome info, nel quale, tramite una connessione e l'invio di una lista di prestazioni, il servizio ci restituirà gli appuntamenti proposti
         private async void recuperoInformazioni()
         {
+            IsEnabled = false;
             await info();
+            IsEnabled = true;
         }
 
         //Metodo che utilizzeremo per inviare i dati dell'assistito, della ricetta al server 
