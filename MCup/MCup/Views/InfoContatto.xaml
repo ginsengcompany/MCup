@@ -32,10 +32,12 @@
                 </StackLayout>
             </ScrollView>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="Modifica" Command="{Binding Modifica}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" WidthRequest="150"
-                        FontSize="Large" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="false" TextColor="White"  Margin="10" IsVisible="{Binding Visibile}"/>
-                <Button Text="Elimina" Command="{Binding Elimina}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" WidthRequest="150"
-                        FontSize="Large" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="false" TextColor="White"  Margin="10" IsVisible="{Binding Visibile}"/>
+                <Button Text="Modifica" Command="{Binding Modifica}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" 
+                        FontSize="Large" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="True" TextColor="White"  Margin="5" IsVisible="{Binding Visibile}"/>
+                <Button Text="Prenota" Command="{Binding Prenotazione}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" 
+                        FontSize="Large" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="True" TextColor="White"  Margin="5" IsVisible="{Binding Visibile}"/>
+                <Button Text="Elimina" Command="{Binding Elimina}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" 
+                        FontSize="Large" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="True" TextColor="White"  Margin="5" IsVisible="{Binding Visibile}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

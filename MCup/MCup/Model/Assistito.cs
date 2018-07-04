@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace MCup.Model
 {
@@ -11,6 +12,7 @@ namespace MCup.Model
         public string nome { get; set; }
         public string cognome { get; set; }
         public char sesso { get; set; }
+        public ImageSource imgSesso { get; set; }
         public string codice_fiscale { get; set; }
         public string istatComuneNascita { get; set; }
         public string luogo_nascita { get; set; }
@@ -44,6 +46,7 @@ namespace MCup.Model
             this.statocivile = "";
             this.email = "";
             this.indirizzores = "";
+            this.imgSesso = "";
        
         }
 

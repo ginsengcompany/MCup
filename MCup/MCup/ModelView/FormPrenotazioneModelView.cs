@@ -329,6 +329,33 @@ namespace MCup.ModelView
             });
 
         }
+        public FormPrenotazioneModelView(FormPrenotazione Model, Assistito utente)
+        {
+            IsEnabled = true;
+            utenza = new Assistito();
+            ricetta = new InvioRicettaPrenotazione();
+            invioImpegnativa = new Impegnativa();
+            headers.Add(new Header("struttura", "150907"));
+            headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+            model = Model;
+            ricetta.codice_uno = "";
+            ricetta.codice_due = "";
+            utenza.nome = "";
+            utenza.cognome = "";
+            utenza.codice_fiscale = "";
+            leggiContatti();
+            autoCompila(utente);
+
+            InviaRichiesta = new Command(async () =>
+            {
+                IsEnabled = false;
+                IsBusy = true;
+                await InvioDatiAsync();
+                IsBusy = false;
+                IsEnabled = true;
+            });
+
+        }
 
 
         #endregion
@@ -481,6 +508,7 @@ namespace MCup.ModelView
                         invioImpegnativa.sar = false;
 
                     }
+                    invioImpegnativa.assistito.imgSesso = "";
 
                     Impegnativa response = await connessione.PostJson(SingletonURL.Instance.getRotte().Ricetta, invioImpegnativa, headers);
                     if (connessione.responseMessage == HttpStatusCode.OK)

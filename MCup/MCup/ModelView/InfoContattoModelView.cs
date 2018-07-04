@@ -33,7 +33,7 @@ namespace MCup.ModelView
         #endregion
 
         #region Proprietà
-
+        public ICommand Prenotazione { protected set; get; } //Command per il tentativo di prenotazione
         public ICommand Elimina { protected set; get; } //Command per il tentativo di eliminare un utenza 
         public ICommand Modifica { protected set; get; } //Command per inviare l'utente sulla pagina di modifica Contatto
         public string codiceFiscale //Proprietà relativa al campo codice fiscale
@@ -248,6 +248,12 @@ namespace MCup.ModelView
             Modifica = new Command(async () =>
             {
                 App.Current.MainPage = new NavigationPage(new ModificaContatto(utente));
+
+            });
+
+            Prenotazione = new Command(async () =>
+            {
+                App.Current.MainPage = new NavigationPage(new FormPrenotazione(utente));
 
             });
         }

@@ -181,10 +181,14 @@ namespace MCup.ModelView
             else
             {
                 List<Assistito> temp = new List<Assistito>();
-                char a = 'a';
                 for (int i = 0; i < contacts.Count; i++)
                 {
                     contacts[i].nomeCompletoConCodiceFiscale = contacts[i].nome + " " + contacts[i].cognome + " " + contacts[i].codice_fiscale;
+                    if (contacts[i].sesso == 'M' || contacts[i].sesso == 'm')
+                        contacts[i].imgSesso = "malesolid.png";
+                    else
+                        contacts[i].imgSesso = "femalesolid.png";
+
                     temp.Add(contacts[i]);
                 }
                 PrimoNome = temp[0].nome + " " + temp[0].cognome;

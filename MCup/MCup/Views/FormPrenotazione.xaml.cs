@@ -56,9 +56,16 @@ namespace MCup.Views
             form = new FormPrenotazioneModelView(this, prenotazioPending);
             BindingContext = form; //Questa pagina esegue il Binding con la classe FormPrenotazioneModelView
         }
+        public FormPrenotazione(Assistito utente)
+        {
+            InitializeComponent();
+            form = new FormPrenotazioneModelView(this, utente);
+            BindingContext = form; //Questa pagina esegue il Binding con la classe FormPrenotazioneModelView
+            Picker_SelezionaPrimoElemento(utente);
+        }
 
         //Funzione chiamata per scannerizzare il codice fiscale dell'utente
-     
+
 
         private void ScanPage_OnScanResult(ZXing.Result result)
         {

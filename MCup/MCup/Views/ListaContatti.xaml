@@ -34,6 +34,7 @@
                             <costomControls:ExtendedViewCell SelectedBackgroundColor="White">
                                 <ViewCell.View>
                                     <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding imgSesso}" VerticalOptions="Center" HorizontalOptions="Start" WidthRequest="40" HeightRequest="40"/>
                                         <Label Text="{Binding cognome}" Margin="10,0,0,0" VerticalOptions="Center" FontSize="Medium" TextColor="#6C94B2" />
                                         <Label Text="{Binding nome}" VerticalOptions="Center" FontSize="Small" TextColor="Black"/>
                                         <Image Source="rightArrow.png" VerticalOptions="Center" HorizontalOptions="EndAndExpand" WidthRequest="40" HeightRequest="40"/>
