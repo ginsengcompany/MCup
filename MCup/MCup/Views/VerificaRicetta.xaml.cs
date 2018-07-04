@@ -44,6 +44,7 @@ namespace MCup.Views
         {
             var a = sender as Picker;
             var b = a.SelectedItem as Reparto;
+            a.Title = b.descrizione;
             ModelViewVerifica.selectedReparto(b);
         }
 

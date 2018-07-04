@@ -37,7 +37,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <customControls:ExtendedViewCell 
-                            SelectedBackgroundColor="White">
+                            SelectedBackgroundColor="Transparent">
                             <ViewCell.View>
                                 <Grid Padding="15" VerticalOptions="Start">
                                     <Grid.ColumnDefinitions>
@@ -48,16 +48,20 @@
                                         <RowDefinition Height="25"></RowDefinition>
                                         <RowDefinition Height="25"></RowDefinition>
                                         <RowDefinition Height="25"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="50"></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Prestazione" TextColor="Black" FontAttributes="Bold" VerticalOptions="Start" 
                                            FontSize="Medium" HorizontalTextAlignment="Center" />
                                     <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding desprest}" TextColor="Black" FontAttributes="Italic" FontSize="Small"
                                            HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />
                                     <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Reparto" FontAttributes="Bold" FontSize="Medium" TextColor="Black" HorizontalTextAlignment="Center"/>
-                                    <customControls:CustomPickerForms Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Title="{Binding title}" TextColor="Black" VerticalOptions="Center" IsEnabled="{Binding enabled}"
+                                    <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Source={Reference picker}, Path=Title}">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SetFocusPicker}" CommandParameter="{Binding Source={x:Reference picker}}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Picker IsVisible="False" x:Name="picker" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Title="{Binding title}" TextColor="Black" VerticalOptions="Center" IsEnabled="{Binding enabled}"
                                             SelectedIndex="{Binding defaultReparto}" ItemsSource="{Binding reparti}" ItemDisplayBinding="{Binding descrizione}" SelectedIndexChanged="Picker_OnSelectedIndexChanged"/>
-
                                 </Grid>
                             </ViewCell.View>
                         </customControls:ExtendedViewCell>

@@ -22,6 +22,13 @@ namespace MCup.Droid.CostomRenderers
 {
     public class CustomPicker : PickerRenderer
     {
+        public CustomPicker(Context context) : base(context)
+        {
+            AutoPackage = false;
+        }
+
+        
+
         protected override void OnElementChanged(ElementChangedEventArgs<Picker> e)
         {
             base.OnElementChanged(e);
