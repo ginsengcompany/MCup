@@ -16,7 +16,7 @@
                 </OnPlatform>
             </ContentPage.Icon>
 
-            <StackLayout >
+            <StackLayout>
                 <StackLayout 
                     BackgroundColor="Transparent" 
                     HeightRequest="200" 
