@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -256,7 +257,10 @@ namespace MCup.ModelView
             else
                 ubicazioneReparto = "N/D";
             NomeStruttura = appuntamentoSelezionatoProposto.reparti[0].nomeStruttura;
-            DataAppuntamento = appuntamentoSelezionatoProposto.dataAppuntamento + " " + appuntamentoSelezionatoProposto.oraAppuntamento;
+            var dataAppuntamentoConGiornoDellaSettimana = DateTime.ParseExact(appuntamentoSelezionatoProposto.dataAppuntamento, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            var culture = new System.Globalization.CultureInfo("it-IT");
+            var day = culture.DateTimeFormat.GetDayName(dataAppuntamentoConGiornoDellaSettimana.DayOfWeek);
+            DataAppuntamento = day + " " + appuntamentoSelezionatoProposto.dataAppuntamento + " " + appuntamentoSelezionatoProposto.oraAppuntamento;
             OraAppuntamento = appuntamentoSelezionatoProposto.oraAppuntamento;
             Reparto = appuntamentoSelezionatoProposto.reparti[0].descrizione;
             if (string.IsNullOrEmpty(appuntamentoSelezionatoProposto.reparti[0].nomeMedico))

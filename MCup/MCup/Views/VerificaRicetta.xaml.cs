@@ -51,7 +51,7 @@ namespace MCup.Views
         protected override bool OnBackButtonPressed()
         {
             AnnullaAppuntamentoSospeso();
-            return false;
+            return true;
         }
 
         private async void AnnullaAppuntamentoSospeso()
@@ -64,6 +64,8 @@ namespace MCup.Views
                 string messaggioDiAnnullamento = await connessioneAnnullamento.getString(SingletonURL.Instance.getRotte().annullaPrenotazioneSospesa,
                     headers);
                 await App.Current.MainPage.DisplayAlert("Attenzione", messaggioDiAnnullamento, "ok");
+                await Navigation.PopAsync();
+
             }
          
         }
