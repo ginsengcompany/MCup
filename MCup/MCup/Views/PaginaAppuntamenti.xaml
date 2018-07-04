@@ -18,10 +18,12 @@
                     VerticalOptions="Center" 
                     SelectedIndexChanged="Picker_OnSelectedIndexChanged" />
             <Label 
-                Text="Nessun appuntamento disponibile per il contatto scelto" 
+                Text="Nessun appuntamento disponibile per l'assistito" 
                 IsVisible="{Binding VisibileLabel}" 
                 HorizontalOptions="Center" 
                 TextColor="Black" 
+                HorizontalTextAlignment="Center"
+                Margin="10,0,0,0"
                 FontSize="Medium" 
                 FontAttributes="Bold"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" IsVisible="{Binding VisibleSwitch}">
