@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label TextColor="#003964" Text="APPUNTAMENTI" HorizontalOptions="CenterAndExpand" FontSize="30" FontAttributes="Bold"/>
-            <customControls:CustomPickerForms TextColor="#6C94B2" 
+            <Picker TextColor="#6C94B2" 
                     x:Name="pickerContatti"
                     Title="Seleziona il nominativo " 
                     HorizontalOptions="CenterAndExpand" 

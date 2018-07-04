@@ -21,7 +21,7 @@
                 WidthRequest="250"
                 VerticalOptions="Center" /> -->
 
-                <customControls:CustomPickerForms
+                <Picker
                     x:Name="pickerContatti"
                     Title="Seleziona il nominativo" 
                     WidthRequest="260"
