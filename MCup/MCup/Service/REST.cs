@@ -189,10 +189,10 @@ namespace MCup.Service
             }
             try
             {
+                client.Timeout = System.Threading.Timeout.InfiniteTimeSpan;
                 var result = await client.PostAsync(url, httpContent);
                 var response = await result.Content.ReadAsStringAsync();
                 responseMessage = result.StatusCode;
-                client.Timeout=TimeSpan.FromMinutes(2);
                 if (responseMessage == HttpStatusCode.ServiceUnavailable)
                     warning = result.ReasonPhrase;
                 else

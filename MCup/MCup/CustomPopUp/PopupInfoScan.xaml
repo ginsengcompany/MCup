@@ -19,7 +19,8 @@
                  HeightRequest="250"/>
           <Image x:Name="immaginedilogo" Source="logo.png" Margin="0,0,0,15" HorizontalOptions="Center" HeightRequest="200" WidthRequest="400"></Image>
         <xfx:XfxEntry 
-          Placeholder="Inserisci username" 
+          Placeholder="Inserisci e-mail" 
+                Keyboard="Email"
                x:Name="entryUsername"
                IsVisible="False"/>
         <Button Text="Invia" BackgroundColor="#0971B2" TextColor="White" x:Name="btnInvio" Clicked="ModificaPassword"></Button>

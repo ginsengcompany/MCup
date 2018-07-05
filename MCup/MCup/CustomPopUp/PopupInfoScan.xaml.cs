@@ -84,7 +84,7 @@ namespace MCup.CustomPopUp
         private async void ModificaPassword(object sender, EventArgs e)
         {
             Utente user = new Utente();
-            user.username = entryUsername.Text;
+            user.email = entryUsername.Text;
             REST<Utente,string> connessioneModifica = new REST<Utente, string>();
             var response = await 
                 connessioneModifica.PostJson(SingletonURL.Instance.getRotte().passwordSmarrita, user);

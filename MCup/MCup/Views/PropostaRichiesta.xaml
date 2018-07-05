@@ -22,6 +22,10 @@
             <ActivityIndicator 
                 IsVisible="{Binding IsVisible}" 
                 IsRunning="{Binding IsBusy}"/>
+            <Label 
+                IsVisible="{Binding IsVisible}" 
+                HorizontalOptions="Center"
+                Text="L'operazione potrebbe richiedere qualche minuto"/>
             <ListView 
                 IsEnabled="{Binding IsEnabled}" 
                 HasUnevenRows="true"
