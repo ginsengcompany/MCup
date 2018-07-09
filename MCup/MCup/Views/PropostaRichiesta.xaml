@@ -131,6 +131,13 @@
                                                 FontSize="Medium" 
                                                 FontAttributes="Italic"/>
                                             <Button
+                                                Text="Blocca data"
+                                                HorizontalOptions="End"
+                                                Margin="0,0,5,5"
+                                                TextColor="{Binding coloreTestoNote}"
+                                                BackgroundColor="{Binding coloreNote}"
+                                            ></Button>
+                                            <Button
                                                 Text="Nota Prestazione"
                                                 HorizontalOptions="End"
                                                 IsVisible="{Binding visibleNote}"
