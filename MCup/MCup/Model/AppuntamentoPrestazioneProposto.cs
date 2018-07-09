@@ -17,7 +17,7 @@ namespace MCup.Model
     {
         private Color colore= Color.FromHex("#0971B2");
         private Color coloreTesto = Color.White;
-        
+        private ImageSource immagineBloccoData = "unlocked.png";
 
         public string dataAppuntamento { get; set; }
         public string oraAppuntamento { get; set; }
@@ -25,8 +25,9 @@ namespace MCup.Model
         public bool disponibile { get; set; }
         public bool esitoNote { get; set; } = false;
         public bool visibleNote { get; set; } = true;
+        public bool bloccoData { get; set; } = false;
 
-     
+
 
         public void copiaAppuntamentoPrestazioneProposto(AppuntamentoPrestazioneProposto appuntamento)
         {
@@ -45,6 +46,16 @@ namespace MCup.Model
                 colore = value;
                 OnPropertyChanged();
                
+            }
+        }
+        public ImageSource ImmagineBloccoData
+        {
+            get { return immagineBloccoData; }
+            set
+            {
+                immagineBloccoData = value;
+                OnPropertyChanged();
+
             }
         }
 
@@ -75,10 +86,26 @@ namespace MCup.Model
                         coloreNote = Color.Red;
                         coloreTestoNote = Color.White;
                     }
-                       
-                    
-                    
+                });
+            }
+        }
+        public ICommand BloccaData
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    if (bloccoData == true)
+                    {
+                        ImmagineBloccoData = "unlocked.png";
+                        bloccoData = false;
+                    }
+                    else
+                    {
 
+                        ImmagineBloccoData = "locked.png";
+                        bloccoData = true;
+                    }
                 });
             }
         }

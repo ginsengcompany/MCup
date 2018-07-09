@@ -485,6 +485,7 @@ namespace MCup.ModelView
             {
                 i.dataAppuntamento = i.dataAppuntamento.Trim(alfabeto);
             }
+            
             appuntamentoProposto = await connessione.PostJson(SingletonURL.Instance.getRotte().PrimaDisponibilitaOra, prenotazione, headers);
             if (connessione.responseMessage != HttpStatusCode.OK)
             {
