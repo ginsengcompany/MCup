@@ -130,34 +130,7 @@
                                                 VerticalOptions="End" 
                                                 FontSize="Medium" 
                                                 FontAttributes="Italic"/>
-                                            <Grid HorizontalOptions="End">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.GestureRecognizers>
-                                                    <TapGestureRecognizer
-                                                        Command="{Binding BloccaData}"/>
-                                                </Grid.GestureRecognizers>
-                                                <Image
-                                                    Source="{Binding ImmagineBloccoData}"
-                                                    WidthRequest="50"
-                                                    HeightRequest="50"
-                                                    HorizontalOptions="Center"
-                                                    Grid.Column="0"
-                                                    Grid.Row="0"
-                                                   />
-                                                <Label
-                                                    Text="Blocca data"
-                                                    HorizontalOptions="Center"
-                                                    Grid.Column="0"
-                                                    Grid.Row="1"
-                                                    Margin="0,0,5,5"/>
-                                            </Grid>
-                                            
+                                       
                                             <Button
                                                 Text="Nota Prestazione"
                                                 HorizontalOptions="End"
