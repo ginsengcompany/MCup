@@ -37,7 +37,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <customControls:ExtendedViewCell 
-                            SelectedBackgroundColor="Transparent">
+                            SelectedBackgroundColor="White">
                             <ViewCell.View>
                                 <Grid Padding="15" VerticalOptions="Start">
                                     <Grid.ColumnDefinitions>

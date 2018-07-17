@@ -17,7 +17,6 @@ namespace MCup.Model
     {
         private Color colore= Color.FromHex("#0971B2");
         private Color coloreTesto = Color.White;
-        private ImageSource immagineBloccoData = "unlocked.png";
 
         public string dataAppuntamento { get; set; }
         public string oraAppuntamento { get; set; }
@@ -48,17 +47,7 @@ namespace MCup.Model
                
             }
         }
-        public ImageSource ImmagineBloccoData
-        {
-            get { return immagineBloccoData; }
-            set
-            {
-                immagineBloccoData = value;
-                OnPropertyChanged();
-
-            }
-        }
-
+       
         public Color coloreTestoNote
         {
             get { return coloreTesto; }
@@ -89,26 +78,7 @@ namespace MCup.Model
                 });
             }
         }
-        public ICommand BloccaData
-        {
-            get
-            {
-                return new Command(async () =>
-                {
-                    if (bloccoData == true)
-                    {
-                        ImmagineBloccoData = "unlocked.png";
-                        bloccoData = false;
-                    }
-                    else
-                    {
-
-                        ImmagineBloccoData = "locked.png";
-                        bloccoData = true;
-                    }
-                });
-            }
-        }
+     
 
         public event PropertyChangedEventHandler PropertyChanged;
 

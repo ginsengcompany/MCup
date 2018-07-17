@@ -385,6 +385,7 @@ namespace MCup.ModelView
                     try
                     {
                         contatto.Maiuscolo();
+                        contatto.imgSesso = string.Empty;
                         ResponseRegistrazione response = await connessioneModificaContatto.PostJson(SingletonURL.Instance.getRotte().modAssistito, contatto, listaHeader);
                         if (connessioneModificaContatto.responseMessage != HttpStatusCode.OK)
                         {

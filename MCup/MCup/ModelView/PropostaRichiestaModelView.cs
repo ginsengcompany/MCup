@@ -333,7 +333,7 @@ namespace MCup.ModelView
             {
                 REST<AppuntamentoProposto, AppuntamentiConfermati> invioDati = new REST<AppuntamentoProposto, AppuntamentiConfermati>();
                 appuntamentoProposto.assistito = contatto;
-                appuntamentoProposto.codiceImpegnativa = impegnativa.nre;
+                appuntamentoProposto.codiceImpegnativa = impegnativa.nre.ToUpper();
                 appuntamentoProposto.classePriorita = impegnativa.classePriorita;
                 appuntamentoProposto.dataEmissioneRicetta = impegnativa.dataEmissioneRicetta;
                 try

@@ -31,7 +31,7 @@
                               ErrorText="{Binding NameTextErrorTelefono}" ErrorDisplay="Underline"  WidthRequest="250" IsEnabled="False"/>
                 </StackLayout>
             </ScrollView>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Button Text="Modifica" Command="{Binding Modifica}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" 
                         FontSize="Large" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="True" TextColor="White"  Margin="5" IsVisible="{Binding Visibile}"/>
                 <Button Text="Prenota" Command="{Binding Prenotazione}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold" 
