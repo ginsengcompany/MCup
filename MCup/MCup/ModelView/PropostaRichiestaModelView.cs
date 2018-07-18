@@ -340,9 +340,36 @@ namespace MCup.ModelView
                 {
                     IsBusyV = true;
                     AppuntamentiConfermati appuntamentiConfermati = await invioDati.PostJson(SingletonURL.Instance.getRotte().ConfermaPrenotazione, appuntamentoProposto, headers);
-                    if ((invioDati.responseMessage != HttpStatusCode.Created) && (invioDati.responseMessage != HttpStatusCode.InternalServerError) && (invioDati.responseMessage != HttpStatusCode.NotFound))
+                    if ((invioDati.responseMessage != HttpStatusCode.Created) && (invioDati.responseMessage != HttpStatusCode.BadGateway) && (invioDati.responseMessage != HttpStatusCode.InternalServerError) && (invioDati.responseMessage != HttpStatusCode.NotFound))
                     {
                         await App.Current.MainPage.DisplayAlert("Attenzione " + (int)invioDati.responseMessage, invioDati.warning, "OK");
+                        App.Current.MainPage = new NavigationPage(new MenuPrincipale());
+
+                    }
+                    else if(invioDati.responseMessage==HttpStatusCode.BadGateway)
+                    {
+                        impegnativa.assistito = contatto;
+                        REST<Impegnativa, Impegnativa> connessione = new REST<Impegnativa, Impegnativa>();
+                        int j = 0;
+                        while ((connessione.responseMessage!=HttpStatusCode.Conflict)&&(j<3))
+                        {
+                            await Task.Delay(20000);
+                            var response = await connessione.PostJson(SingletonURL.Instance.getRotte().Ricetta, impegnativa, headers);
+                            j++;
+                        }
+                        if (connessione.responseMessage == HttpStatusCode.Conflict)
+                        {
+                            string messaggio = "Appuntamento prenotato con successo";
+                            await MessaggioConnessione.displayAlert(messaggio);
+                            App.Current.MainPage=new NavigationPage(new MenuPrincipale());
+                        }
+                        else
+                        {
+                            string messaggio = "Errore di connessione si prova di riprovare più tardi";
+                            await MessaggioConnessione.displayAlert(messaggio);
+                            App.Current.MainPage = new NavigationPage(new MenuPrincipale());
+                        }
+
                     }
                     else
                     {

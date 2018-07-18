@@ -15,6 +15,11 @@ namespace MCup.Model
             await App.Current.MainPage.DisplayAlert("ATTENZIONE", messaggio, "OK");
             App.Current.MainPage = new Login();
         }
+        public static async Task displayAlert(string messaggioNuovo)
+        {
+            await App.Current.MainPage.DisplayAlert("ATTENZIONE", messaggioNuovo, "OK");
+            App.Current.MainPage = new Login();
+        }
         public static async Task displayAlert(int i, string mes)
         {
             if((i!=0)&&(i!=408))
