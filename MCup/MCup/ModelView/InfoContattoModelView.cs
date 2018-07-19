@@ -232,6 +232,7 @@ namespace MCup.ModelView
                     if (risposta == false)
                         return;
                     REST<Assistito, string> restElimina = new REST<Assistito, string>();
+                    utente.imgSesso = "";
                     string response = await restElimina.PostJson(SingletonURL.Instance.getRotte().EliminaContatto, utente, listaheader);
                     if (restElimina.responseMessage != HttpStatusCode.OK)
                     {
