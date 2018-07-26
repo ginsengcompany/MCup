@@ -22,11 +22,10 @@ namespace MCup.Service
 
         public async Task prelevaRotte()
         {
-            ListaURL dati = new ListaURL();
             REST<ListaURL, ListaURL> connessione = new REST<ListaURL, ListaURL>();
             List<Header> headers = new List<Header>();
             headers.Add(new Header("codice_struttura", "150907"));
-            var response = await connessione.PostJson("http://ecuptservice.ak12srl.it/urlserviziapp", dati, headers);
+            var response = await connessione.GetSingleJson("http://ecuptservice.ak12srl.it/urlserviziapp", headers);
             if (connessione.responseMessage != System.Net.HttpStatusCode.OK)
             {
                 error = true;
