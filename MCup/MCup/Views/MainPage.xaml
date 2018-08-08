@@ -116,7 +116,7 @@
                         HorizontalOptions="Center">
                         <Image.GestureRecognizers>
                                 <TapGestureRecognizer  
-                                    Tapped="vaiPaginaManutenzione"
+                                    Tapped="vaiPaginaReferti"
                                     NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
                     </Image>

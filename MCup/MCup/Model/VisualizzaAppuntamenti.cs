@@ -23,8 +23,49 @@ namespace MCup.Model
         public string dataEmissioneRicetta { get; set; }
         public bool scaduto { get; set; } = true;
 
+
+        public void ControlloAccettazione()
+        {
+            for (int i = 0;  i < this.Count;  i++)
+            {
+                if (!string.IsNullOrEmpty(this[i].dataaccettazione))
+                {
+                    scaduto = false;
+                }
+                
+            }
+        }
+
+        public void ControlloCodiceMancante()
+        {
+            for (int i = 0;  i< this.Count;  i++)
+        {
+            if (string.IsNullOrEmpty(LongName))
+            {
+                switch (this[i].tipoprenotazione)
+                {
+                    case "A":
+                        LongName = "Prenotazione di tipo Ambulatoriale";
+                        break;
+                    case "I":
+                        LongName = "Prenotazione di tipo Interna";
+                        break;
+                    case "L":
+                        LongName = "Prenotazione di tipo Alpi";
+                        break;
+                    case "D":
+                        LongName = "Prenotazione di tipo Domiciliare";
+                        break;
+                    case "P":
+                        LongName = "Prenotazione di tipo PACC";
+                        break;
+
+                }
+            }
         
 
+        }
+        }
 
         public void Scaduto()
         {
@@ -73,21 +114,17 @@ namespace MCup.Model
             var messDisplay = "";
             try
             {
-                DateTime dataEmissione =
-                    DateTime.ParseExact(dataEmissioneRicetta, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime dataEmissione = DateTime.ParseExact(dataEmissioneRicetta, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime dataOdierna = DateTime.Today;
                 PaginaAppuntamentiModelView pagina;
                 if ((dataOdierna - dataEmissione).TotalDays > 30)
                 {
-                    messDisplay =
-                        "Sei sicuro di voler annullare la prenotazione?\nse confermi non sarà più possibile prenotare con questa impegnativa, inquanto la data di emissione dell'impegnativa ha superato i 30 giorni utili per utilizzarla";
+                    messDisplay = "Sei sicuro di voler annullare la prenotazione?\nse confermi non sarà più possibile prenotare con questa impegnativa, inquanto la data di emissione dell'impegnativa ha superato i 30 giorni utili per utilizzarla";
                 }
                 else
                     messDisplay = "Sei sicuro di voler annullare la prenotazione?";
-                var esitoDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione", messDisplay
-                    , "si", "no");
-                REST<AppuntamentoProposto, ResponseAnnullaImpegnativa> connessioneAnnullamentoImpegnativa =
-                    new REST<AppuntamentoProposto, ResponseAnnullaImpegnativa>();
+                var esitoDisplayAlert = await App.Current.MainPage.DisplayAlert("Attenzione", messDisplay, "si", "no");
+                REST<AppuntamentoProposto, ResponseAnnullaImpegnativa> connessioneAnnullamentoImpegnativa = new REST<AppuntamentoProposto, ResponseAnnullaImpegnativa>();
                 List<Header> headers = new List<Header>();
                 headers.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
                 headers.Add(new Header("struttura", "150907"));
@@ -98,8 +135,7 @@ namespace MCup.Model
                     appuntamentoSelezionato.codiceImpegnativa = this.LongName;
                     appuntamentoSelezionato.assistito = new Assistito();
                     appuntamentoSelezionato.assistito.codice_fiscale = this.codiceFiscale;
-                    ResponseAnnullaImpegnativa response = await connessioneAnnullamentoImpegnativa.PostJson(
-                        SingletonURL.Instance.getRotte().annullaImpegnativa,
+                    ResponseAnnullaImpegnativa response = await connessioneAnnullamentoImpegnativa.PostJson(SingletonURL.Instance.getRotte().annullaImpegnativa,
                         appuntamentoSelezionato, headers);
                     if (connessioneAnnullamentoImpegnativa.responseMessage != HttpStatusCode.OK)
                     {

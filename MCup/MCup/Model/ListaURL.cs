@@ -9,12 +9,14 @@ namespace MCup.Model
     class ListaURL
     {
         public string TerminiServizio { get; set; }
+        public string listaRefertiUtente { get; set; }
         public string Ricetta { get; set; }
         public string StruttureErogatrici { get; set; }
         public string Registrazione { get; set; }
         public string Login { get; set; }
+        public string scaricaReferto { get; set; }
         public string StrutturaPreferita { get; set; }
-        public string RicercadisponibilitaReparti { get; set; }
+        public string  RicercadisponibilitaReparti { get; set; }
         public string PrimaDisponibilita { get; set; }
         public string InfoPersonali { get; set; }
         public string AggiungiNuovoContatto { get; set; }

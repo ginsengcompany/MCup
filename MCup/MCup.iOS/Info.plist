@@ -21,9 +21,9 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>MCup</string>
+	<string>ecupt Sant&apos;Anna e San Sebastiano Caserta</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Ak12.MCupIOS</string>
+	<string>com.gesan.ecupt.sabcaserta</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>

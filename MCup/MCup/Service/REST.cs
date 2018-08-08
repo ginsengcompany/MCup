@@ -208,6 +208,39 @@ namespace MCup.Service
             return default(T);
         }
 
+        public async Task<T> PostJson(string url, List<Header> header)
+        {
+            T Item;
+            HttpClient client = new HttpClient();
+            string ContentType = "application/json"; // or application/xml
+            var uri = new Uri(string.Format(url, String.Empty));
+            HttpContent httpContent = new StringContent("");
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+            for (int i = 0; i < header.Count; i++)
+            {
+                httpContent.Headers.Add(header[i].header, header[i].value);
+            }
+            try
+            {
+                client.Timeout = System.Threading.Timeout.InfiniteTimeSpan;
+                var result = await client.PostAsync(url, httpContent);
+                var response = await result.Content.ReadAsStringAsync();
+                responseMessage = result.StatusCode;
+                if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                    warning = result.ReasonPhrase;
+                else
+                    warning = response;
+                var isValid = JToken.Parse(response);
+                Item = JsonConvert.DeserializeObject<T>(response);
+                return Item;
+            }
+            catch (Exception)
+            {
+
+            }
+            return default(T);
+        }
+
         public async Task<List<T>> PostJsonList(string url, E dati)
         {
             List<T> Items = new List<T>();
@@ -265,5 +298,37 @@ namespace MCup.Service
                 return new List<T>();
             }
         }
+
+        public async Task<List<T>> PostJsonListSenzaBody(string url, List<Header> header)
+        {
+            List<T> Items = new List<T>();
+            HttpClient client = new HttpClient();
+            string ContentType = "application/json"; // or application/xml
+            var uri = new Uri(string.Format(url, String.Empty));
+            HttpContent httpContent = new StringContent("");
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+            for (int i = 0; i < header.Count; i++)
+            {
+                httpContent.Headers.Add(header[i].header, header[i].value);
+            }
+            try
+            {
+                var result = await client.PostAsync(url, httpContent);
+                var response = await result.Content.ReadAsStringAsync();
+                responseMessage = result.StatusCode;
+                if (responseMessage == HttpStatusCode.ServiceUnavailable)
+                    warning = result.ReasonPhrase;
+                else
+                    warning = response;
+                var isValid = JToken.Parse(response);
+                Items = JsonConvert.DeserializeObject<List<T>>(response);
+                return Items;
+            }
+            catch (Exception e)
+            {
+                return new List<T>();
+            }
+        }
+
     }
 }

@@ -99,5 +99,11 @@ namespace MCup.Views
         {
             await Navigation.PushPopupAsync(new PopUpTerminiServizio());
         }
+
+        private async void vaiPaginaReferti(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PaginaReferti());
+
+        }
     }
 }

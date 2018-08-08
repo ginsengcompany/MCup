@@ -187,7 +187,7 @@ namespace MCup.ModelView
                     Visibile = false;
                     VisibileLabel = true;
                     if (Appunt.Count != 0)
-                    {
+                    { 
                         Appunt.Clear();
                     }
                 }
@@ -301,12 +301,15 @@ namespace MCup.ModelView
                     dataEmissioneRicetta = Appuntamenti[i].dataEmissioneRicetta,
                     codiceFiscale = Appuntamenti[i].assistito.codice_fiscale,
                     contatto = Appuntamenti[i].assistito
+                    
                 };
                 for (int j = 0; j < Appuntamenti[i].appuntamenti.Count; j++)
                 {
                     grouped.Add(Appuntamenti[i].appuntamenti[j]);
                 }
                 grouped.Scaduto();
+                grouped.ControlloAccettazione();
+                grouped.ControlloCodiceMancante();
                 Appunt.Add(grouped);
             }
         }

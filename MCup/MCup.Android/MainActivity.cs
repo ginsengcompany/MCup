@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.DownloadManager;
 using Xfx;
 using static MCup.Droid.MainActivity;
 
@@ -17,8 +18,11 @@ namespace MCup.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
             base.OnCreate(bundle);
             XfxControls.Init();
+            (CrossDownloadManager.Current as DownloadManagerImplementation).IsVisibleInDownloadsUi = false;
+
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();

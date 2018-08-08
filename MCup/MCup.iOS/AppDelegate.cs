@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using Com.OneSignal;
 using Foundation;
+using Plugin.DownloadManager;
 using UIKit;
+using UserNotifications;
 using Xamarin.Forms.Platform.iOS;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xfx;
@@ -24,6 +26,12 @@ namespace MCup.iOS
         //
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
+
+
+        public override void HandleEventsForBackgroundUrl(UIApplication application, string sessionIdentifier, Action completionHandler)
+        {
+            CrossDownloadManager.BackgroundSessionCompletionHandler = completionHandler;
+        }
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Rg.Plugins.Popup.Popup.Init();
@@ -35,6 +43,22 @@ namespace MCup.iOS
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes {TextColor = UIColor.White});
             UIBarButtonItem.Appearance.TintColor = UIColor.LightTextColor;
             DatePickerRenderer.Appearance.TintColor= UIColor.Black;
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+            {
+                // Ask the user for permission to get notifications on iOS 10.0+
+                UNUserNotificationCenter.Current.RequestAuthorization(
+                    UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
+                    (approved, error) => { });
+            }
+            else if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                // Ask the user for permission to get notifications on iOS 8.0+
+                var settings = UIUserNotificationSettings.GetSettingsForTypes(
+                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound,
+                    new NSSet());
+
+                UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
+            }
             return base.FinishedLaunching(app, options);
         }
       

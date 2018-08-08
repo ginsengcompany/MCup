@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:costomControls="clr-namespace:MCup.CostomControls;assembly=MCup"
+             x:Class="MCup.Views.PaginaReferti">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label TextColor="#003964" Text="REFERTI" HorizontalOptions="CenterAndExpand" FontSize="30" FontAttributes="Bold"/>
+            <Picker TextColor="#6C94B2" 
+                    x:Name="pickerContatti"
+                    Title="Seleziona il nominativo " 
+                    HorizontalOptions="CenterAndExpand" 
+                    ItemsSource="{Binding Contatti}" 
+                    WidthRequest="300"
+                    ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" 
+                    VerticalOptions="Center" 
+                    SelectedIndexChanged="SelezionaContattoPicker" />
+            <Label 
+                Text="Nessun referto disponibile per l'assistito" 
+                IsVisible="{Binding VisibileLabel}" 
+                HorizontalOptions="Center" 
+                TextColor="Black" 
+                HorizontalTextAlignment="Center"
+                Margin="10,0,0,0"
+                FontSize="Medium" 
+                FontAttributes="Bold"/>
+            
+            <ListView ItemsSource="{Binding Referti}"  HasUnevenRows="True" ItemTapped="DownloadReferto" SeparatorColor="Black" SeparatorVisibility="Default">
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+                        <costomControls:ExtendedViewCell SelectedBackgroundColor="White">
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+
+
+                                    </Grid.RowDefinitions>
+                                    <Label Text="Data" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="Medium" TextColor="Black"></Label>
+                                    <Label Text="Descrizione" Grid.Column="0" Grid.Row="1" FontAttributes="Bold" FontSize="Medium" TextColor="Black"></Label>
+                                    <Label Text="Evento" Grid.Column="0" Grid.Row="2" FontAttributes="Bold" FontSize="Medium" TextColor="Black"></Label>
+                                    <Label Text="Autore" Grid.Column="0" Grid.Row="3" FontAttributes="Bold" FontSize="Medium" TextColor="Black"></Label>
+
+                                    <Label Text="{Binding metadati.dataDocumento}" Grid.Column="1" Grid.Row="0"></Label>
+                                    <Label Text="{Binding metadati.desDocumento}" Grid.Column="1" Grid.Row="1"></Label>
+                                    <Label Text="{Binding metadati.desEvento}" Grid.Column="1" Grid.Row="2"></Label>
+                                    <Label Text="{Binding metadati.autoreDocumento}" Grid.Column="1" Grid.Row="3"></Label>
+                                </Grid>
+                                <Image Source="download.png" HorizontalOptions="EndAndExpand" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"></Image>
+                            </StackLayout>
+                            
+                        </ViewCell.View>
+                            </costomControls:ExtendedViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

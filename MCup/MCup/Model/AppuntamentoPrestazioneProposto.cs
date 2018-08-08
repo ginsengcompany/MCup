@@ -18,7 +18,9 @@ namespace MCup.Model
         private Color colore= Color.FromHex("#0971B2");
         private Color coloreTesto = Color.White;
 
+        public string dataaccettazione { get; set; }
         public string dataAppuntamento { get; set; }
+        public string tipoprenotazione { get; set; }
         public string oraAppuntamento { get; set; }
         public string posizione { get; set; }
         public bool disponibile { get; set; }
@@ -32,6 +34,8 @@ namespace MCup.Model
         {
             dataAppuntamento = appuntamento.dataAppuntamento;
             oraAppuntamento = appuntamento.oraAppuntamento;
+            dataaccettazione = appuntamento.dataaccettazione;
+            tipoprenotazione = appuntamento.tipoprenotazione;
             posizione = appuntamento.posizione;
             disponibile = appuntamento.disponibile;
             esitoNote = appuntamento.esitoNote;
