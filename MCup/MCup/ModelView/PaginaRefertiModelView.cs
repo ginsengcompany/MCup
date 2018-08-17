@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -10,12 +12,17 @@ using MCup.Annotations;
 using MCup.Model;
 using MCup.Service;
 using MCup.Views;
+using PCLStorage;
 using Plugin.DownloadManager;
 using Plugin.DownloadManager.Abstractions;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+
 
 namespace MCup.ModelView
 {
+    
+
     public class PaginaRefertiModelView: INotifyPropertyChanged
     {
         private Assistito contatto;//Oggetto che astrae la classe assistito
@@ -29,6 +36,7 @@ namespace MCup.ModelView
         private string visi;//variabile  che setta la visibilità o meno di un elemento nello xaml
         private Boolean isbusyannulla;
         private string refertodata = "";
+        IDownloadFile s;
 
 
         #region Proprietà
@@ -221,13 +229,20 @@ namespace MCup.ModelView
             }
             else
             {
-                Device.OpenUri(new Uri(connessioneDownload.warning + refertoSelezionato.id));
+               await DownloadPdf(connessioneDownload.warning + refertoSelezionato.id);
+               
+
             }
-           /* var downloadManager = CrossDownloadManager.Current;
-              var file = downloadManager.CreateDownloadFile(connessioneDownload.warning + refertoSelezionato.id);
-              downloadManager.Start(file);*/
+            /*Device.OpenUri(new Uri(connessioneDownload.warning + refertoSelezionato.id)); */
         }
-       
+
+        public async Task DownloadPdf(string url)
+        {
+
+            Device.OpenUri(new Uri(url));
+
+        }
+
 
 
 

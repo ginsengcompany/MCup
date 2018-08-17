@@ -11,6 +11,7 @@ namespace MCup
         {
             InitializeComponent();
             MainPage = new NavigationPage(new Login());
+           // MainPage= new NavigationPage(new prova());
             //SingletonURL.Instance.prelevaRotte();
 
             //MainPage = new NavigationPage(new MenuPrincipale());

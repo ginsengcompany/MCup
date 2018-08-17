@@ -41,10 +41,8 @@
                                         <RowDefinition Height="*"></RowDefinition>
                                         <RowDefinition Height="*"></RowDefinition>
                                         <RowDefinition Height="*"></RowDefinition>
-                                        <RowDefinition Height="*"></RowDefinition>
-
-
-                                    </Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
                                     <Label Text="Data" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="Medium" TextColor="Black"></Label>
                                     <Label Text="Descrizione" Grid.Column="0" Grid.Row="1" FontAttributes="Bold" FontSize="Medium" TextColor="Black"></Label>
                                     <Label Text="Evento" Grid.Column="0" Grid.Row="2" FontAttributes="Bold" FontSize="Medium" TextColor="Black"></Label>

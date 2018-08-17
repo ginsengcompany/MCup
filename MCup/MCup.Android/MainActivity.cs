@@ -14,6 +14,7 @@ namespace MCup.Droid
     [Activity(Label = "ecupt Sant'Anna e San Sebastiano Caserta", Icon = "@drawable/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -21,8 +22,7 @@ namespace MCup.Droid
 
             base.OnCreate(bundle);
             XfxControls.Init();
-            (CrossDownloadManager.Current as DownloadManagerImplementation).IsVisibleInDownloadsUi = false;
-
+            (CrossDownloadManager.Current as DownloadManagerImplementation).IsVisibleInDownloadsUi = true;
             Rg.Plugins.Popup.Popup.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
