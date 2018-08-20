@@ -766,7 +766,7 @@ namespace MCup.ModelView
                 matchPass = regexPass.Match(password);
                 if (!matchPass.Success)
                 {
-                    NameErrorTextPassword = "la password deve contenere una lettera maiuscola, minuscola ed un numero";
+                    NameErrorTextPassword = "Inserire una lettera maiuscola, minuscola ed un numero";
                     control = false;
                 }
             }

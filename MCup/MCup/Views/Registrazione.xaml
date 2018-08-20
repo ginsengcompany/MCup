@@ -65,7 +65,7 @@
                            <xfx:XfxEntry 
                                Placeholder="Inserire password*" 
                                Text="{Binding password}" 
-                               ErrorText="{Binding NameErrorTextPassword}" 
+                               ErrorText="{Binding NameErrorTextPassword}"
                                ErrorDisplay="Underline" 
                                IsPassword="True" 
                                WidthRequest="250"/>
