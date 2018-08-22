@@ -230,7 +230,7 @@ namespace MCup.ModelView
             }
             else
             {
-                var actionSheet = await App.Current.MainPage.DisplayActionSheet("Attanzione", "Cancel", null, "Scarica", "Inoltra");
+                var actionSheet = await App.Current.MainPage.DisplayActionSheet("Attenzione", "Cancel", null, "Scarica", "Inoltra");
 
                 switch (actionSheet)
                 {

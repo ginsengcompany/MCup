@@ -97,7 +97,7 @@ namespace MCup.Views
 
         private async void termini_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushPopupAsync(new PopUpTerminiServizio());
+            await Navigation.PushAsync(new PaginaPrivacy());
         }
 
         private async void vaiPaginaReferti(object sender, EventArgs e)

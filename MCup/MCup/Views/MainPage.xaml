@@ -5,19 +5,20 @@
              Title="eCupt" >
     <ContentPage.ToolbarItems>
         
+   
+        <ToolbarItem
+            Name="terminiduso"
+            Text="Impostazioni privacy"
+            Order="Secondary"
+            Clicked="termini_Clicked"
+            Priority="1"
+            />
         <ToolbarItem 
             Name="logout" 
             Text="Logout"
             Order="Secondary"
             Clicked="logout_Clicked"
             Priority="0"/>
-        <ToolbarItem
-            Name="terminiduso"
-            Text="Termini d'uso"
-            Order="Secondary"
-            Clicked="termini_Clicked"
-            Priority="1"
-            />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout 
