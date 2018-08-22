@@ -15,7 +15,7 @@ namespace MCup.CustomPopUp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupInfoScan : PopupPage
     {
-
+        private string url,nome,cognome;
 
         public PopupInfoScan(string imgName)
         {
@@ -26,6 +26,22 @@ namespace MCup.CustomPopUp
             immaginedilogo.IsVisible = false;
             //FrameContainer.HeightRequest = -1;
            CloseWhenBackgroundIsClicked = true;
+        }
+
+        public PopupInfoScan(string urlPdf, string nome, string cognome )
+        {
+            InitializeComponent();
+            Content = FrameContainer;
+            imgInfo.IsVisible = false;
+            this.nome = nome;
+            this.cognome = cognome;
+            this.url = urlPdf;
+            btnInvio.IsVisible = false;
+            btnInoltra.IsVisible = true;
+            entryUsername.IsVisible = true;
+            immaginedilogo.IsVisible = true;
+            //FrameContainer.HeightRequest = -1;
+            CloseWhenBackgroundIsClicked = true;
         }
 
         public PopupInfoScan()
@@ -90,6 +106,21 @@ namespace MCup.CustomPopUp
                 connessioneModifica.PostJson(SingletonURL.Instance.getRotte().passwordSmarrita, user);
             await DisplayAlert("Attenzione", connessioneModifica.warning, "OK");
             closeAllPopup();
+        }
+        private async void InoltroEmail(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(entryUsername.Text))
+            {
+                List<Header> listaJHeaders = new List<Header>();
+                listaJHeaders.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+                listaJHeaders.Add(new Header("struttura", "150907"));
+                Email email = new Email(url, entryUsername.Text,nome,cognome);
+                REST<Email, string> connessioneEmail = new REST<Email, string>();
+                var response = await connessioneEmail.PostJson(SingletonURL.Instance.getRotte().inviaRefertoEmail,
+                    email, listaJHeaders);
+                await DisplayAlert("Attenzione", connessioneEmail.warning, "OK");
+                closeAllPopup();
+            }
         }
     }
 }

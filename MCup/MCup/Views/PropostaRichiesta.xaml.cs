@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using Xamarin.Forms;
 using MCup.Model;
+using MCup.CustomPopUp;
 using MCup.Service;
 using MCup.ModelView;
 using System.Threading.Tasks;
@@ -65,5 +66,10 @@ namespace MCup.Views
                 modelView.IsEnabled = true;
             }
         }
+
+       /* public async void PopUpEmail()
+        {
+            await Navigation.
+        }*/
     }
 }

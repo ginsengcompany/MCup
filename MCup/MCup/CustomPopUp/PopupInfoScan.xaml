@@ -24,6 +24,7 @@
                x:Name="entryUsername"
                IsVisible="False"/>
         <Button Text="Invia" BackgroundColor="#0971B2" TextColor="White" x:Name="btnInvio" Clicked="ModificaPassword"></Button>
+          <Button Text="Invia" BackgroundColor="#0971B2" TextColor="White" x:Name="btnInoltra" Clicked="InoltroEmail" IsVisible="False"></Button>
         </StackLayout>
       </Frame>
     </AbsoluteLayout>

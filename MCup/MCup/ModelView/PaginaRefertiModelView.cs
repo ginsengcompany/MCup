@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using MCup.Annotations;
+using Rg.Plugins.Popup.Extensions;
 using MCup.Model;
 using MCup.Service;
 using MCup.Views;
@@ -17,7 +18,7 @@ using Plugin.DownloadManager;
 using Plugin.DownloadManager.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
-
+using MCup.CustomPopUp;
 
 namespace MCup.ModelView
 {
@@ -229,7 +230,27 @@ namespace MCup.ModelView
             }
             else
             {
-               await DownloadPdf(connessioneDownload.warning + refertoSelezionato.id);
+                var actionSheet = await App.Current.MainPage.DisplayActionSheet("Attanzione", "Cancel", null, "Scarica", "Inoltra");
+
+                switch (actionSheet)
+                {
+                    
+
+                    case "Scarica":
+
+                        await DownloadPdf(connessioneDownload.warning + refertoSelezionato.id);
+
+                        break;
+
+                    case "Inoltra":
+                        await App.Current.MainPage.Navigation.PushPopupAsync(new PopupInfoScan(connessioneDownload.warning + refertoSelezionato.id,contatto.nome,contatto.cognome));
+                        break;
+
+                    case "Cancel":
+                       
+                        break;
+
+                }
                
 
             }

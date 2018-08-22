@@ -68,6 +68,7 @@
     <Compile Include="Model\Assistito.cs" />
     <Compile Include="Model\Comune.cs" />
     <Compile Include="Model\Downloader.cs" />
+    <Compile Include="Model\Email.cs" />
     <Compile Include="Model\Geolocalizzazione.cs" />
     <Compile Include="Model\GestioneRubrica.cs" />
     <Compile Include="Model\Impegnativa.cs" />

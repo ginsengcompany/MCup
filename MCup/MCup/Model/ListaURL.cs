@@ -17,6 +17,7 @@ namespace MCup.Model
         public string scaricaReferto { get; set; }
         public string StrutturaPreferita { get; set; }
         public string  RicercadisponibilitaReparti { get; set; }
+        public string inviaRefertoEmail { get; set; }
         public string PrimaDisponibilita { get; set; }
         public string InfoPersonali { get; set; }
         public string AggiungiNuovoContatto { get; set; }
