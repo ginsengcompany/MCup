@@ -1,21 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MCup.Views.PaginaPrivacy">
+             x:Class="MCup.Views.PaginaPrivacy"
+             Title="Impostazioni privacy">
     <ContentPage.Content>
         <StackLayout>
-            <Button 
-                Command="{Binding infoPrivacy}"  
-                Text="infoPrivacy"
+            <Grid HorizontalOptions="FillAndExpand" Padding="15" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Source="privacyImage.png" HeightRequest="60" WidthRequest="60" Grid.Column="0" Grid.Row="0"></Image>
+                <Image Source="emailImage.png" HeightRequest="60" WidthRequest="60" Grid.Column="0" Grid.Row="1"></Image>
+                <Image Source="bidone.png" HeightRequest="60" WidthRequest="60" Grid.Column="0" Grid.Row="2"></Image>
+                <Button 
+                    Margin="15"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    BackgroundColor="#003964"
+                    TextColor="White"
+                    Command="{Binding infoPrivacy}"  
+                    Text="Termini d'uso"
                 />
-            <Button 
-                Command="{Binding datiUtente}"  
-                Text="datiUtente"
+                <Button 
+                    Margin="15"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    BackgroundColor="#003964"
+                    TextColor="White"
+                    Command="{Binding datiUtente}"  
+                    Text="Dati utente"
                 />
-            <Button 
-                Command="{Binding eliminaUtente}"  
-                Text="elimina Account principale"
+                <Button 
+                    Margin="15"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    BackgroundColor="#003964"
+                    TextColor="White"
+                    Command="{Binding eliminaUtente}"  
+                    Text="Elimina account"
                 />
+            </Grid>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

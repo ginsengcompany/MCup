@@ -11,6 +11,7 @@ namespace MCup.Model
         public string TerminiServizio { get; set; }
         public string listaRefertiUtente { get; set; }
         public string Ricetta { get; set; }
+        public string infoPersonaliEmail { get; set; }
         public string StruttureErogatrici { get; set; }
         public string Registrazione { get; set; }
         public string Login { get; set; }
