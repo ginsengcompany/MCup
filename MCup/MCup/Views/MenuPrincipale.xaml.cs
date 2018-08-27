@@ -41,7 +41,8 @@ namespace MCup.Views
 	        listaHeader.Add(new Header("struttura", "150907"));
 	        REST<object, string> connessioneLogo = new REST<object, string>();
 	        var logo = await connessioneLogo.getString("http://ecuptservice.ak12srl.it/infostruttura/logoStruttura", listaHeader);
-	        Image.Source = Xamarin.Forms.ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(logo)));
+            //Image.Source = Xamarin.Forms.ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(logo)));
+            Image.Source = "logo.png";
         }
 
         public MenuPrincipale(string scelta)
@@ -52,6 +53,8 @@ namespace MCup.Views
                 Detail = new NavigationPage(new ListaContatti());
             if(scelta.Equals("Appuntamenti"))
                 Detail= new NavigationPage(new PaginaAppuntamenti());
+            if (scelta.Equals("Prenota"))
+                Detail = new NavigationPage(new FormPrenotazione(false));
             getLogo();
         }
         //Metodo che inizializza la MasterDetailPage e che inserisce in essa le pagine a cui è possibile accedere dal menu
@@ -63,8 +66,8 @@ namespace MCup.Views
               //  new Menu { MenuTitle = "Scegli Struttura Preferita", ImageIcon = "modify.png"},
                 new Menu { MenuTitle ="Contatti", ImageIcon = "contact.png"},
                 new Menu{MenuTitle ="Pagamento", ImageIcon = "soldi.png"},
-                new Menu{MenuTitle ="Prenota", ImageIcon = "soldi.png"},
-                new Menu{MenuTitle ="Appuntamenti", ImageIcon = "soldi.png"}
+                new Menu{MenuTitle ="Prenota", ImageIcon = "prenotaMenu.png"},
+                new Menu{MenuTitle ="Appuntamenti", ImageIcon = "appuntamentiMenu.png"}
 
 
             };
@@ -100,6 +103,16 @@ namespace MCup.Views
                 {
                     IsPresented = false;
                     Detail = new NavigationPage(new ListaContatti()); //Avvia la pagina per la scelta della struttura preferita
+                }
+                else if (menu.MenuTitle.Equals("Appuntamenti"))
+                {
+                    IsPresented = false;
+                    Detail = new NavigationPage(new PaginaAppuntamenti()); //Avvia la pagina per la scelta della struttura preferita
+                }
+                else if (menu.MenuTitle.Equals("Prenota"))
+                {
+                    IsPresented = false;
+                    Detail = new NavigationPage(new FormPrenotazione(false)); //Avvia la pagina per la scelta della struttura preferita
                 }
             }
         }

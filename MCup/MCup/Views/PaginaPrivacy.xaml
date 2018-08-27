@@ -16,10 +16,10 @@
               <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="1" Grid.Row="1" Text="Procedi con la richiesta di tutte le tue informazioni personali, in accordo all'Art. 20 del Regolamento UE 2016/679, GDPR relativo al Diritto alla portabilità dei dati."></Label>
-                <Label Text="Leggi i termini di servizio. Ti invitiamo a controllarli periodicamente per verificare eventuali cambiamenti."
-                       Grid.Column="1" Grid.Row="0"></Label>
-                <Label Grid.Column="1" Grid.Row="2" Text="Procedi con l'eliminazione definitiva di tutti i tuoi dati personali dai sistemi di gestione dell'app in accordo all'Art. 17 Regolamento UE 2016/679, GDPR - Diritto alla cancellazione - Diritto all'oblio "></Label>
+                <Label Grid.Column="1" Grid.Row="1" VerticalOptions="Center" Text="Procedi con la richiesta di tutte le tue informazioni personali, in accordo all'Art. 20 del Regolamento UE 2016/679, GDPR relativo al Diritto alla portabilità dei dati."></Label>
+                <Label FormattedText="Leggi i termini di servizio. Ti invitiamo a controllarli periodicamente per verificare eventuali cambiamenti."
+                       Grid.Column="1" Grid.Row="0" VerticalOptions="Center"></Label>
+                <Label Grid.Column="1" Grid.Row="2" VerticalOptions="Center" Text="Procedi con l'eliminazione definitiva di tutti i tuoi dati personali dai sistemi di gestione dell'app in accordo all'Art. 17 Regolamento UE 2016/679, GDPR - Diritto alla cancellazione - Diritto all'oblio "></Label>
               
             <Image Source="terminiServizio.png" HeightRequest="100" WidthRequest="100" Grid.Column="0" Grid.Row="0">
               <Image.GestureRecognizers>
