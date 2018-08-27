@@ -67,7 +67,9 @@ namespace MCup.Views
                 new Menu { MenuTitle ="Contatti", ImageIcon = "contact.png"},
                 new Menu{MenuTitle ="Pagamento", ImageIcon = "soldi.png"},
                 new Menu{MenuTitle ="Prenota", ImageIcon = "prenotaMenu.png"},
-                new Menu{MenuTitle ="Appuntamenti", ImageIcon = "appuntamentiMenu.png"}
+                new Menu{MenuTitle ="Appuntamenti", ImageIcon = "appuntamentiMenu.png"},
+                new Menu{MenuTitle ="Referti", ImageIcon = "refertiMenu.png"}
+
 
 
             };
@@ -113,6 +115,11 @@ namespace MCup.Views
                 {
                     IsPresented = false;
                     Detail = new NavigationPage(new FormPrenotazione(false)); //Avvia la pagina per la scelta della struttura preferita
+                }
+                else if (menu.MenuTitle.Equals("Referti"))
+                {
+                    IsPresented = false;
+                    Detail = new NavigationPage(new PaginaReferti()); //Avvia la pagina per la scelta della struttura preferita
                 }
             }
         }
