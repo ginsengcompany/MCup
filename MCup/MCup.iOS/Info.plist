@@ -25,7 +25,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.gesan.ecupt.sabcaserta</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.2</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -36,8 +36,6 @@
 	<string>Need location for geolocator plugin.</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Media.xcassets/Icone dell&apos;app.appiconset</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1</string>
 	<key>CFBundleName</key>
 	<string>MCup</string>
 	<key>UIBackgroundModes</key>
@@ -66,5 +64,13 @@
 	<string>Resources/Media.xcassets/LaunchImage.launchimage</string>
 	<key>NSCameraUsageDescription</key>
 	<string>New Entry</string>
+	<key>MinimumOSVersion</key>
+	<string>10.3</string>
+	<key>Custom Property</key>
+	<string></string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.2</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>$(PRODUCT_NAME) calendar events</string>
 </dict>
 </plist>
