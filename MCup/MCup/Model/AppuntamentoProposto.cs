@@ -15,5 +15,6 @@ namespace MCup.Model
         public string termid { get; set; }
         public string dataEmissioneRicetta { get; set; }
         public string classePriorita { get; set; }
+        
     }
 }

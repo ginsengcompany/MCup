@@ -16,18 +16,21 @@
                 </OnPlatform>
             </ContentPage.Icon>
 
-            <StackLayout>
-                <StackLayout 
-                    BackgroundColor="Transparent" 
+            <StackLayout >
+                <StackLayout BackgroundColor="#003964">
+                    <StackLayout 
+                    Padding="10" BackgroundColor="White"
+                        Margin="2"
                     HeightRequest="200" 
                     HorizontalOptions="FillAndExpand" 
                     VerticalOptions="Center">
-                    <Image 
+                        <Image 
                         x:Name="Image"  
-                        WidthRequest="240" 
                         HorizontalOptions="CenterAndExpand" 
                         VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
                 </StackLayout>
+              
                     <ListView
                         x:Name="ListaMenu" 
                         ItemSelected="ListaMenu_ItemSelected"

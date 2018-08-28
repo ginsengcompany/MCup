@@ -45,19 +45,19 @@ namespace MCup.Model
                 switch (this[i].tipoprenotazione)
                 {
                     case "A":
-                        LongName = "Prenotazione di tipo Ambulatoriale";
+                        LongName = "Prestazione Ambulatoriale";
                         break;
                     case "I":
-                        LongName = "Prenotazione di tipo Interna";
+                        LongName = "Prestazione Interna";
                         break;
                     case "L":
-                        LongName = "Prenotazione di tipo Alpi";
+                        LongName = "Prestazione di tipo Alpi";
                         break;
                     case "D":
-                        LongName = "Prenotazione di tipo Domiciliare";
+                        LongName = "Prestazione di tipo Domiciliare";
                         break;
                     case "P":
-                        LongName = "Prenotazione di tipo PACC";
+                        LongName = "Prestazione di tipo PACC";
                         break;
 
                 }

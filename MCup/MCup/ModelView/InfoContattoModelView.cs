@@ -28,6 +28,7 @@ namespace MCup.ModelView
         //Variabile che mostra il nome e il cognome dell'utente
         public string nomeCognome = "";
         private InfoContatto pagina;
+        private bool visibleDelete = true;
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
@@ -43,6 +44,16 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 utente.codice_fiscale = value;
+            }
+        }
+
+        public bool VisibileDelete
+        {
+            get { return visibleDelete; }
+            set
+            {
+                OnPropertyChanged();
+                visibleDelete = value;
             }
         }
         public string email //Proprietà relativa al campo codice fiscale
@@ -192,8 +203,10 @@ namespace MCup.ModelView
             listaheader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             if (info.AccountPrimario)
             {
+                Visibile = "true";
+                VisibileDelete = false;
 
-                Elimina = new Command(async () =>
+               /* Elimina = new Command(async () =>
                 {
                     REST<object, string> connessioneElimina = new REST<object, string>();
 
@@ -222,7 +235,7 @@ namespace MCup.ModelView
                     }
 
 
-                });
+                });*/
             }
             else
             {

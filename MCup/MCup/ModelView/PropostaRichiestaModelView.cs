@@ -165,7 +165,40 @@ namespace MCup.ModelView
                         IsEnabled = false;
                         IsBusyV = true;
                         IsBusyV = false;
-                        await info(appuntamentoProposto);
+                        bool appuntamentiCambiati = false;
+                        List<AppuntamentoPrestazioneProposto> temp = new List<AppuntamentoPrestazioneProposto>();
+                        for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
+                            // temp[i].copiaAppuntamentoPrestazioneProposto(appuntamentoProposto.appuntamenti[i]);
+                            temp.Add(appuntamentoProposto.appuntamenti[i]);
+                        for(int j =0; j<5;j++)
+                        {
+                            await info(appuntamentoProposto);
+                            foreach (var i in appuntamentoProposto.appuntamenti)
+                            {
+                                i.dataAppuntamento = i.dataAppuntamento.Trim(alfabeto);
+                            }
+                            for (int i = 0; i < temp.Count; i++)
+                            {
+                                if ((temp[i].oraAppuntamento != appuntamentoProposto.appuntamenti[i].oraAppuntamento) || (temp[i].dataAppuntamento != appuntamentoProposto.appuntamenti[i].dataAppuntamento))
+                                {
+                                    for (int k = 0; k < appuntamentoProposto.appuntamenti.Count; k++)
+                                    {
+
+                                        DateTime data_appuntamento = DateTime.ParseExact(appuntamentoProposto.appuntamenti[k].dataAppuntamento, "dd/MM/yyyy", null);
+
+                                        var culture = new System.Globalization.CultureInfo("it-IT");
+                                        var day = culture.DateTimeFormat.GetDayName(data_appuntamento.DayOfWeek);
+                                        appuntamentoProposto.appuntamenti[k].dataAppuntamento = day.ToString() + " " + appuntamentoProposto.appuntamenti[k].dataAppuntamento;
+
+                                    }
+                                    appuntamentiCambiati = true;
+                                    break;
+                                }
+                            }
+                            if (appuntamentiCambiati)
+                                break;
+                        }
+                        
                         Device.StartTimer(TimeSpan.FromSeconds(3), () =>
                         {
                             IsEnabled = true;
@@ -580,6 +613,7 @@ namespace MCup.ModelView
                         }
                         if (string.IsNullOrEmpty(appuntamentoProposto.appuntamenti[k].reparti[0].nomeMedico))
                             appuntamentoProposto.appuntamenti[k].reparti[0].nomeMedico = "N/D";
+                        
                         ListPrenotazioni = appuntamentoProposto.appuntamenti;
                         /*   if ((appuntamentoProposto.classePriorita == "B") || (appuntamentoProposto.classePriorita == "U"))
                            {

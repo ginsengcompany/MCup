@@ -50,12 +50,20 @@ namespace MCup.ModelView
             });
             datiUtente = new Command(async () =>
             {
+                var scelta = await App.Current.MainPage.DisplayAlert("Attenzione", "Gentile utente tutti i dati le saranno inoltrati tramite email, sei sicuro di voler procedere?", "SI", "NO");
+                if (scelta)
+                {
+                    REST<object, string> connessioneEmail = new REST<object, string>();
+                    var response = await connessioneEmail.getString(SingletonURL.Instance.getRotte().infoPersonaliEmail, listaheader);
+                    await MessaggioConnessione.displayAlert(connessioneEmail.warning, false);
+                }
+                
             });
             eliminaUtente = new Command(async () =>
             {
                 REST<object, string> connessioneElimina = new REST<object, string>();
 
-                var risposta = await App.Current.MainPage.DisplayAlert("Eliminazione", "sei sicuro di voler eliminare l'account? In accordo al rgpd agli articoli 17, 21 e 22 tutti i tuoi dati saranno rimossi v", "si", "no");
+                var risposta = await App.Current.MainPage.DisplayAlert("Eliminazione", "sei sicuro di voler eliminare l'account? In accordo al rgpd agli articoli 17, 21 e 22 tutti i tuoi dati saranno rimossi", "si", "no");
                 if (risposta)
                 {
                     try
