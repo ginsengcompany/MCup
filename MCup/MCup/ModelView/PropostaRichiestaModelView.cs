@@ -165,6 +165,7 @@ namespace MCup.ModelView
                         IsEnabled = false;
                         IsBusyV = true;
                         IsBusyV = false;
+                        bool appuntamentiCambiati = false;
                         List<AppuntamentoPrestazioneProposto> temp = new List<AppuntamentoPrestazioneProposto>();
                         for (int i = 0; i < appuntamentoProposto.appuntamenti.Count; i++)
                             // temp[i].copiaAppuntamentoPrestazioneProposto(appuntamentoProposto.appuntamenti[i]);
@@ -177,8 +178,9 @@ namespace MCup.ModelView
                                 i.dataAppuntamento = i.dataAppuntamento.Trim(alfabeto);
                             }
                             for (int i = 0; i < temp.Count; i++)
-                                if ((temp[i].oraAppuntamento!=appuntamentoProposto.appuntamenti[i].oraAppuntamento)||(temp[i].dataAppuntamento != appuntamentoProposto.appuntamenti[i].dataAppuntamento))
                             {
+                                if ((temp[i].oraAppuntamento != appuntamentoProposto.appuntamenti[i].oraAppuntamento) || (temp[i].dataAppuntamento != appuntamentoProposto.appuntamenti[i].dataAppuntamento))
+                                {
                                     for (int k = 0; k < appuntamentoProposto.appuntamenti.Count; k++)
                                     {
 
@@ -187,10 +189,14 @@ namespace MCup.ModelView
                                         var culture = new System.Globalization.CultureInfo("it-IT");
                                         var day = culture.DateTimeFormat.GetDayName(data_appuntamento.DayOfWeek);
                                         appuntamentoProposto.appuntamenti[k].dataAppuntamento = day.ToString() + " " + appuntamentoProposto.appuntamenti[k].dataAppuntamento;
-                                     
+
                                     }
+                                    appuntamentiCambiati = true;
                                     break;
+                                }
                             }
+                            if (appuntamentiCambiati)
+                                break;
                         }
                         
                         Device.StartTimer(TimeSpan.FromSeconds(3), () =>
