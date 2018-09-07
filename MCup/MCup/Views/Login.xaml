@@ -4,9 +4,9 @@
     xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
     x:Class="MCup.Views.Login"
     Title="Login"
-             BackgroundColor="#003964">
+    BackgroundColor="#003964">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Margin="10,0,10,0" Padding="0,0,0,20">
+        <StackLayout Orientation="Vertical" Margin="10,0,10,0" Padding="0,10,0,20">
             <StackLayout Orientation="Vertical" >
                 <Frame BackgroundColor="White"
                        Margin="20,0,20,0"

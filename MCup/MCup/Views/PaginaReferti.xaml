@@ -25,8 +25,8 @@
                 Margin="10,0,0,0"
                 FontSize="Medium" 
                 FontAttributes="Bold"/>
-            
-            <ListView ItemsSource="{Binding Referti}"  HasUnevenRows="True" ItemTapped="DownloadReferto" SeparatorColor="Black" SeparatorVisibility="Default">
+
+            <ListView ItemsSource="{Binding Referti}" Footer=""  HasUnevenRows="True" ItemTapped="DownloadReferto" SeparatorColor="Black" SeparatorVisibility="Default">
                 <ListView.ItemTemplate>
 
                     <DataTemplate>
