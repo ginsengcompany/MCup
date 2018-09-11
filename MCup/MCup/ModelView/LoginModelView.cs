@@ -282,24 +282,16 @@ namespace MCup.ModelView
 
                     else
                     {
-                        REST<Utente, ResponseLogin>
-                            rest =
-                                new REST<Utente, ResponseLogin
-                                >(); //Crea l'oggetto per eseguire la chiamata REST per la login
-                        ResponseLogin
-                            response = await rest.PostJson(SingletonURL.Instance.getRotte().Login,
-                                utente); //Chiamata POST per la richiesta di autenticazione delle informazioni inserite dall'utente (codice fiscale e password)
+                        REST<Utente, ResponseLogin> rest = new REST<Utente, ResponseLogin>(); //Crea l'oggetto per eseguire la chiamata REST per la login
+                        ResponseLogin response = await rest.PostJson(SingletonURL.Instance.getRotte().Login,utente); //Chiamata POST per la richiesta di autenticazione delle informazioni inserite dall'utente (codice fiscale e password)
                         if (rest.responseMessage != HttpStatusCode.OK)
                         {
-                            await App.Current.MainPage.DisplayAlert("Attenzione " + (int) rest.responseMessage,
-                                rest.warning, "OK");
+                            await App.Current.MainPage.DisplayAlert("Attenzione " + (int) rest.responseMessage,rest.warning, "OK");
                         }
                         else if (response.auth) //Le informazioni dell'utenza sono corrette
                         {
                             utente.cancellaEdAggiornaUsername(utente.username);
-                            App.Current.Properties["tokenLogin"] =
-                                response
-                                    .token; //Salva nel dictionary dell'app il token dell'utente per accedere alle sue informazioni private
+                            App.Current.Properties["tokenLogin"] = response.token; //Salva nel dictionary dell'app il token dell'utente per accedere alle sue informazioni private
                             OneSignal.Current.IdsAvailable(async (string userId, string token) =>
                             {
                                 TokenNotification tokNot = new TokenNotification();

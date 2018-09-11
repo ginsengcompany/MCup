@@ -64,6 +64,7 @@
 	<string>Resources/Media.xcassets/LaunchImage.launchimage</string>
 	<key>NSCameraUsageDescription</key>
 	<string>New Entry</string>
+
 	<key>MinimumOSVersion</key>
 	<string>10.3</string>
 	<key>Custom Property</key>
