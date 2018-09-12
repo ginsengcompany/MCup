@@ -3,43 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.PaginaPrivacy"
              Title="Impostazioni privacy">
-    <ContentPage.Content>
-        <StackLayout>
-          <Grid HorizontalOptions="FillAndExpand" Padding="15" ColumnSpacing="10">
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto"></RowDefinition>
-              <RowDefinition Height="Auto"></RowDefinition>
-              <RowDefinition Height="Auto"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto"></ColumnDefinition>
-              <ColumnDefinition Width="Auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+  <ContentPage.Content>
+    <StackLayout>
+      <Grid HorizontalOptions="FillAndExpand" Padding="15" ColumnSpacing="10">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"></RowDefinition>
+          <RowDefinition Height="Auto"></RowDefinition>
+          <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"></ColumnDefinition>
+          <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="1" Grid.Row="1" VerticalOptions="Center" Text="Procedi con la richiesta di tutte le tue informazioni personali, in accordo all'Art. 20 del Regolamento UE 2016/679, GDPR relativo al Diritto alla portabilità dei dati."></Label>
-                <Label FormattedText="Leggi i termini di servizio. Ti invitiamo a controllarli periodicamente per verificare eventuali cambiamenti."
-                       Grid.Column="1" Grid.Row="0" VerticalOptions="Center"></Label>
-                <Label Grid.Column="1" Grid.Row="2" VerticalOptions="Center" Text="Procedi con l'eliminazione definitiva di tutti i tuoi dati personali dai sistemi di gestione dell'app in accordo all'Art. 17 Regolamento UE 2016/679, GDPR - Diritto alla cancellazione - Diritto all'oblio "></Label>
-              
-            <Image Source="terminiServizio.png" HeightRequest="100" WidthRequest="100" Grid.Column="0" Grid.Row="0">
-              <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding infoPrivacy}"></TapGestureRecognizer>
-              </Image.GestureRecognizers>
-            </Image>
-            <Image Source="richiestaDati.png" HeightRequest="100" WidthRequest="100" Grid.Column="0" Grid.Row="1">
+        <Label Grid.Column="1" Grid.Row="1" VerticalOptions="Center" Text="Procedi con la richiesta di tutte le tue informazioni personali, in accordo all'Art. 20 del Regolamento UE 2016/679, GDPR relativo al Diritto alla portabilità dei dati."></Label>
+        <Label FormattedText="Leggi i termini di servizio. Ti invitiamo a controllarli periodicamente per verificare eventuali cambiamenti."
+               Grid.Column="1" Grid.Row="0" VerticalOptions="Center"></Label>
+        <Label Grid.Column="1" Grid.Row="2" VerticalOptions="Center" Text="Procedi con l'eliminazione definitiva di tutti i tuoi dati personali dai sistemi di gestione dell'app in accordo all'Art. 17 Regolamento UE 2016/679, GDPR - Diritto alla cancellazione - Diritto all'oblio "></Label>
 
-              <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding datiUtente}"></TapGestureRecognizer>
-              </Image.GestureRecognizers>
-            </Image>
-            <Image Source="eliminaDati.png" HeightRequest="100" WidthRequest="100" Grid.Column="0" Grid.Row="2">
-              <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding eliminaUtente}"></TapGestureRecognizer>
-              </Image.GestureRecognizers>
-            </Image>
-            
-            
-          </Grid>
-        </StackLayout>
-    </ContentPage.Content>
+        <Image Source="terminiServizio.png" HeightRequest="100" WidthRequest="100" Grid.Column="0" Grid.Row="0">
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding infoPrivacy}"></TapGestureRecognizer>
+          </Image.GestureRecognizers>
+        </Image>
+        <Image Source="richiestaDati.png" HeightRequest="100" WidthRequest="100" Grid.Column="0" Grid.Row="1">
+
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding datiUtente}"></TapGestureRecognizer>
+          </Image.GestureRecognizers>
+        </Image>
+        <Image Source="eliminaDati.png" HeightRequest="100" WidthRequest="100" Grid.Column="0" Grid.Row="2">
+          <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding eliminaUtente}"></TapGestureRecognizer>
+          </Image.GestureRecognizers>
+        </Image>
+      </Grid>
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>

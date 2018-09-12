@@ -18,12 +18,18 @@
           <Image x:Name="imgInfo"
                  HeightRequest="250"/>
           <Image x:Name="immaginedilogo" Source="logo.png" Margin="0,0,0,15" HorizontalOptions="Center" HeightRequest="200" WidthRequest="400"></Image>
+            <Label x:Name="lblconfPass" Text="Inserire la password per confermare" IsVisible="False" VerticalOptions="Center" FontAttributes="Bold"></Label>
         <xfx:XfxEntry 
           Placeholder="Inserisci e-mail" 
                 Keyboard="Email"
                x:Name="entryUsername"
                IsVisible="False"/>
+          <xfx:XfxEntry 
+              Placeholder ="Inserisci password"
+              IsPassword ="true"
+              x:Name="entryPassword"/>
         <Button Text="Invia" BackgroundColor="#0971B2" TextColor="White" x:Name="btnInvio" Clicked="ModificaPassword"></Button>
+            <Button Text="Invia" BackgroundColor="#0971B2" TextColor="White" x:Name="btnRecPass" Clicked="ConfermaPassword"></Button>
           <Button Text="Invia" BackgroundColor="#0971B2" TextColor="White" x:Name="btnInoltra" Clicked="InoltroEmail" IsVisible="False"></Button>
         </StackLayout>
       </Frame>

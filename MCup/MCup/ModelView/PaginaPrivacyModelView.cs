@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MCup.Annotations;
 using Xamarin.Forms;
 
 namespace MCup.ModelView
@@ -22,6 +23,8 @@ namespace MCup.ModelView
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
        
         #region Proprietà
+
+        public PaginaPrivacy pagina;
 
         public ICommand infoPrivacy { protected set; get; } 
         public ICommand datiUtente { protected set; get; }
@@ -38,8 +41,9 @@ namespace MCup.ModelView
         #endregion
         #region Costruttore
         //Costruttore che inizializza un utenza vuota e definisce il metodo a cui il Command registrati fa riferimento
-        public PaginaPrivacyModelView()
+        public PaginaPrivacyModelView(PaginaPrivacy pagina)
         {
+            this.pagina = pagina;
             List<Header> listaheader = new List<Header>();
             listaheader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
 
@@ -61,35 +65,14 @@ namespace MCup.ModelView
             });
             eliminaUtente = new Command(async () =>
             {
-                REST<object, string> connessioneElimina = new REST<object, string>();
-
-                var risposta = await App.Current.MainPage.DisplayAlert("Eliminazione", "sei sicuro di voler eliminare l'account? In accordo al rgpd agli articoli 17, 21 e 22 tutti i tuoi dati saranno rimossi", "si", "no");
-                if (risposta)
-                {
-                    try
-                    {
-                        var response = await connessioneElimina.getString(SingletonURL.Instance.getRotte().eliminaContattoPersonale, listaheader);
-                        if (connessioneElimina.responseMessage != HttpStatusCode.OK)
-                        {
-                            await MessaggioConnessione.displayAlert((int)connessioneElimina.responseMessage, connessioneElimina.warning);
-                        }
-                        else
-                        {
-                            await App.Current.MainPage.DisplayAlert("Complimenti", "l'account è stato eliminato con successo", "ok");
-                            App.Current.MainPage = new NavigationPage(new Login());
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        await App.Current.MainPage.DisplayAlert("Attenzione", connessioneElimina.warning, "ok");
-
-                    }
-
-                }
-
-
+                await PopUp();
             });
         }
         #endregion
+
+        public async Task PopUp()
+        {
+            await pagina.confermaEliminaAccount();
+        }
     }
 }
