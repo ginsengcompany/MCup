@@ -589,36 +589,9 @@ namespace MCup.ModelView
                     anno = utente.data_nascita.Substring(6);
                     utente.data_nascita = giorno + "/" + mese + "/" + anno;*/
                     utente.provincia = provinciaSelezionata.provincia;
-                    var risposta = await App.Current.MainPage.DisplayAlert("Registrazione",
-                        "Cliccando SI accetti i termini d'uso", "SI", "NO");
-                    if (!risposta)
-                        return;
-                    //Mostra il display alert contenente i termini di servizio recuperati dalla rest restTermini e salva la risposta dell'utente nella variabile accetaODeclina
-                    REST<Utente, ResponseRegistrazione> rest =new REST<Utente, ResponseRegistrazione>(); //Crea un oggetto rest per effettuare la registrazione da remoto
-                    utente.Maiuscolo();
-                    ResponseRegistrazione response =await rest.PostJson(SingletonURL.Instance.getRotte().Registrazione,utente); //Effettua una POST che restituisce nella variabile response se la registrazione ha avuto successo
-
-                    if (rest.responseMessage != HttpStatusCode.Created)
-                    {
-                        await MessaggioConnessione.displayAlert((int) rest.responseMessage,rest.warning);
-                    }
-                    else if (response.auth) //Controlla se response contiene un oggetto e che indica che la registrazione è avvenuta con successo
-                    {
-                        //Visualizza un display alert che indica all'utente che la registrazione è avvenuta con successo
-                        await App.Current.MainPage.DisplayAlert("Registrazione","Registrazione effettuata con successo", "OK");
-                        await App.Current.MainPage.Navigation.PopAsync(); //Ritorna alla pagina di login
-                    }
-                    else //Errore imprevisto durante la registrazione
-                        await App.Current.MainPage.DisplayAlert("Registrazione", "Registrazione fallita", "OK");
+                    await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpTerminiServizioRegistrazione(utente));
                 }
                 
-            });
-
-            terminiDiServizio = new Command(async () =>
-            {
-
-               await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpTerminiServizio());
-                TerminiAccettati = true;
             });
         }
 

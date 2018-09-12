@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations1="clr-namespace:MCup.Animations;assembly=MCup"
+             x:Class="MCup.CustomPopUp.PopUpTerminiServizioRegistrazione">
+    <pages:PopupPage.Animation>
+        <animations1:UserAnimation/>
+    </pages:PopupPage.Animation>
+    <AbsoluteLayout >
+        <Frame HorizontalOptions="Center"
+               Margin="5"
+               x:Name="FrameContainer"
+               BackgroundColor="White" VerticalOptions="Center">
+            <StackLayout IsClippedToBounds="True"
+                         Spacing="3">
+                <WebView WidthRequest="400" HeightRequest="500" Source="http://ecuptservice.ak12srl.it/terminiservizio/display"/>
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <Button x:Name = "btnDeclina" Text="Declina" FontAttributes="Bold" BackgroundColor="#0971B2" TextColor="White" Clicked="BtnDeclina_OnClicked" HorizontalOptions="StartAndExpand"></Button>
+                    <Button x:Name= "btnAccetta" Text="Accetta" FontAttributes="Bold" BackgroundColor="#0971B2" TextColor="White" Clicked="BtnAccetta_OnClicked" HorizontalOptions="EndAndExpand"></Button>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </AbsoluteLayout>
+</pages:PopupPage>

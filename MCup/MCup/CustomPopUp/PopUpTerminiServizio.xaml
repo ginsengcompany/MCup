@@ -17,7 +17,6 @@
                      Spacing="3">
                 <WebView WidthRequest="400" HeightRequest="500" Source="http://ecuptservice.ak12srl.it/terminiservizio/display"/>
             </StackLayout>
-            
         </Frame>
     </AbsoluteLayout>
 </pages:PopupPage>

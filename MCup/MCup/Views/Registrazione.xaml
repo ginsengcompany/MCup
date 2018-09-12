@@ -429,8 +429,7 @@
                             <Label Text="INDIETRO" VerticalOptions="End"/>
                         </StackLayout>
                     <StackLayout Orientation="Horizontal"  VerticalOptions="EndAndExpand"  HorizontalOptions="EndAndExpand">
-                            <Button Text="Termini d'utilizzo" Command="{Binding terminiDiServizio}" VerticalOptions="End" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White"></Button>
-                            <Button Text="Registrati" Command="{Binding registrati}" VerticalOptions="End" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White" IsEnabled="{Binding TerminiAccettati}"/>
+                        <Button Text="Registrati" Command="{Binding registrati}" VerticalOptions="End" BackgroundColor="#0971B2" BorderColor="#0971B2" TextColor="White"/>
                         </StackLayout>
            
                 </StackLayout>
