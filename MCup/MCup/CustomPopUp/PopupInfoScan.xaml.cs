@@ -26,6 +26,7 @@ namespace MCup.CustomPopUp
             Content = FrameContainer;
             btnInvio.IsVisible = false;
             btnRecPass.IsVisible = false;
+            entryPassword.IsVisible = false;
             immaginedilogo.IsVisible = false;
             //FrameContainer.HeightRequest = -1;
            CloseWhenBackgroundIsClicked = true;
@@ -43,6 +44,7 @@ namespace MCup.CustomPopUp
             btnRecPass.IsVisible = false;
             btnInoltra.IsVisible = true;
             entryUsername.IsVisible = true;
+            entryPassword.IsVisible = false;
             immaginedilogo.IsVisible = true;
             //FrameContainer.HeightRequest = -1;
             CloseWhenBackgroundIsClicked = true;
@@ -53,6 +55,7 @@ namespace MCup.CustomPopUp
             InitializeComponent();
             imgInfo.IsVisible = false;
             entryUsername.IsVisible = true;
+            entryPassword.IsVisible = false;
             btnRecPass.IsVisible = false;
             btnInvio.IsVisible = true;
             immaginedilogo.IsVisible = true;
