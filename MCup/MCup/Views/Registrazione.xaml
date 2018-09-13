@@ -34,7 +34,7 @@
                             Text="{Binding Username}" 
                             WidthRequest="250"/>
                         <Label 
-                            Text="Attenzione, campo obbligatorio" 
+                            Text="Il nome utente deve contenere da 3 a 16 caratteri" 
                             IsVisible="{Binding NameErrorUsername}" 
                             TextColor="Red" 
                             FontSize="Small"/>
@@ -402,12 +402,14 @@
 
                         <StackLayout Grid.Column="0" Grid.Row="4" VerticalOptions="Start">
                             <Label Text="Inserisci la tua E-mail" FontAttributes="Bold" TextColor="Black" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                            <Entry Placeholder="Inserire email" Text="{Binding Email}" WidthRequest="250"/>
+                            <Entry Placeholder="Inserire email" Text="{Binding Email}" Keyboard="Email"  WidthRequest="250"/>
+                            <Label Text="{Binding NameErrorTextEmail}" IsVisible="{Binding NameErrorEmail}" TextColor="Red" FontSize="Small"/>
                         </StackLayout>
 
                         <StackLayout Grid.Column="0" Grid.Row="5" VerticalOptions="Start">
-                            <Label Text="StatoCivile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
+                            <Label Text="Stato Civile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                             <Picker x:Name="PickerUnione" Title="Seleziona lo stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"/>
+                            <Label Text="Attenzione, campo obbligatorio" IsVisible= "{Binding NameErrorStatoCivile}" TextColor="Red" FontSize="Small"> </Label>
                         </StackLayout>
 
                     </Grid>

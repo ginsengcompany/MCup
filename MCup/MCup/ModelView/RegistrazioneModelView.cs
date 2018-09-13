@@ -42,7 +42,14 @@ namespace MCup.ModelView
         private List<Comune> listacomuniresidenza = new List<Comune>();
         private List<StatoCivile> listaStatoCivile = new List<StatoCivile>();
         private Regex regexPass = new Regex(@"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])");
+        private Regex regexMail = new Regex(@"^(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
+                                            + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
+				                            [0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
+                                            + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?
+				                            [0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                                            + @"([a-zA-Z0-9]+[\w-]+\.)+[a-zA-Z]{1}[a-zA-Z0-9-]{1,23})$");
         private Utente utente; //Oggetto che astrae l'utenza del cliente
+
         private string confermaPassword,
             nameErrorTextUsername,
             nameErrorTextNome,
@@ -55,7 +62,10 @@ namespace MCup.ModelView
             nameErrorTextProvincia,
             nameErrorTextComuneResidenza,
             nameErrorTextIndirizzo,
-            nameErrorTextNumeroTelefono;
+            nameErrorTextNumeroTelefono,
+            nameErrorTextEmail,
+            nameErrorTextStatoCivile;
+            
 
         #endregion
 
@@ -75,7 +85,8 @@ namespace MCup.ModelView
             nameErrorIndirizzo = false,
             nameErrorSesso = false,
             nameErrorCodFiscale = false,
-            nameErrorUsername=false;
+            nameErrorUsername=false,
+            nameErrorEmail= false;
 
         //variabili publiche per Binding
         public Boolean NameErrorNome //proprietà per il NameErrorNome
@@ -187,6 +198,26 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 nameErrorCodFiscale = value;
+            }
+        }
+
+        public Boolean NameErrorEmail
+        {
+            get { return nameErrorEmail; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorEmail = value;
+            }
+        }
+
+        public Boolean NameErrorStatoCivile
+        {
+            get { return nameErrorStatoCivile; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorStatoCivile = value;
             }
         }
         #endregion
@@ -438,6 +469,16 @@ namespace MCup.ModelView
             }
         }
 
+        public string statoCivle
+        {
+            get { return utente.statocivile; }
+            set
+            {
+                OnPropertyChanged();
+                utente.statocivile = value;
+            }
+        }
+
         public string ConfermaPassword //Proprietà relativa al campo password
         {
             get { return confermaPassword; }
@@ -456,6 +497,16 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 nameErrorTextPassword = value;
+            }
+        }
+
+        public string NameErrorTextEmail
+        {
+            get { return nameErrorTextEmail; }
+            set
+            {
+                OnPropertyChanged();
+                nameErrorTextEmail = value;
             }
         }
         public string NameErrorTextConfermaPassword
@@ -508,6 +559,7 @@ namespace MCup.ModelView
 
                 NameErrorTextPassword = String.Empty;
                 NameErrorTextConfermaPassword = String.Empty;
+                Match matchMail;
 
                 /*
                  * variabile locale utilizzata per verificare se l'utente ha inserito i campi obbligatori per effettuare il tentativo di registrazione.
@@ -522,7 +574,9 @@ namespace MCup.ModelView
                     NameErrorComuneResidenza =
                         NameErrorTelefono =
                             NameErrorSesso =
-                                NameErrorIndirizzo = false;
+                                NameErrorIndirizzo =
+                                    NameErrorStatoCivile = 
+                                    NameErrorEmail = false;
 
                 /*
                 * variabile locale utilizzata per verificare se l'utente ha inserito i campi obbligatori per effettuare il tentativo di registrazione.
@@ -578,6 +632,28 @@ namespace MCup.ModelView
                     controllPass = false;
                 }
 
+                if (string.IsNullOrWhiteSpace(Email.Trim()))
+                {
+                    NameErrorTextEmail = "Attenzione, campo obbligatorio";
+                    controllPass = false;
+                    NameErrorEmail = true;
+                }
+                else 
+                {
+                    matchMail = regexMail.Match(Email);
+                    if (!matchMail.Success)
+                    {
+                        NameErrorTextEmail = "La mail non è valida";
+                        controllPass = false;
+                        NameErrorEmail = true;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(statoCivle))
+                {
+                    NameErrorStatoCivile = true;
+                    controllPass = false;
+                }
                 #endregion
 
                 if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
@@ -591,6 +667,7 @@ namespace MCup.ModelView
                     utente.provincia = provinciaSelezionata.provincia;
                     await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpTerminiServizioRegistrazione(utente));
                 }
+
                 
             });
         }
@@ -719,7 +796,7 @@ namespace MCup.ModelView
             NameErrorTextConfermaPassword = "";
             Match matchPass;
             bool control = true;
-            if (string.IsNullOrEmpty(Username))
+            if (string.IsNullOrEmpty(Username) || !(Username.Length >= 3 && Username.Length <=16))
             {
                 NameErrorUsername = true;
                 control = false;
