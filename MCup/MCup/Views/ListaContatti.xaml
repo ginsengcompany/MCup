@@ -7,7 +7,7 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout  VerticalOptions="Start"  HorizontalOptions="FillAndExpand">
                 <SearchBar SearchCommand="{Binding searchContacts}" TextColor="Black" Text="{Binding TextSearch}" Placeholder="Cerca" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
             </StackLayout>
             <StackLayout BackgroundColor="#6C94B2" Orientation="Vertical">
@@ -28,7 +28,7 @@
                           ItemsSource="{Binding CollectionView}" 
                           IsGroupingEnabled="True" GroupShortNameBinding="{Binding ShortName}"  
                           GroupDisplayBinding="{Binding LongName}"   
-                          ItemTapped="ListView_ItemTapped" 
+                          ItemTapped="ListView_ItemTapped"
                           Footer=""
                           SeparatorColor="Black" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
                     <ListView.ItemTemplate>
