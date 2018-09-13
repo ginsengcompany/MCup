@@ -58,7 +58,6 @@
     <Compile Include="ModelView\InfoContattoModelView.cs" />
     <Compile Include="ModelView\ListaContattiModelView.cs" />
     <Compile Include="ModelView\ModificaContattoModelView.cs" />
-    <Compile Include="ModelView\NuovoContattoModelView.cs" />
     <Compile Include="ModelView\PaginaAppuntamentiModelView.cs" />
     <Compile Include="ModelView\PaginaPrivacyModelView.cs" />
     <Compile Include="ModelView\PaginaRefertiModelView.cs" />
@@ -121,9 +120,6 @@
     </Compile>
     <Compile Include="Views\ModificaContatto.xaml.cs">
       <DependentUpon>ModificaContatto.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NuovoContatto.xaml.cs">
-      <DependentUpon>NuovoContatto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pagamento.xaml.cs">
       <DependentUpon>Pagamento.xaml</DependentUpon>
@@ -320,12 +316,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ListaContatti.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\NuovoContatto.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -284,13 +284,17 @@ namespace MCup.ModelView
             }
         }
 
-        public string Data_nascitaNuovoContatto //Proprietà relativa al campo data di nascita
+        public DateTime Data_nascitaNuovoContatto //Proprietà relativa al campo data di nascita
         {
-            get { return contatto.data_nascita; }
+            get {
+                if (string.IsNullOrWhiteSpace(contatto.data_nascita))
+                    return DateTime.Today;
+                return DateTime.ParseExact(contatto.data_nascita, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            }
             set
             {
                 OnPropertyChanged();
-                contatto.data_nascita = value;
+                contatto.data_nascita = value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             }
         }
 
@@ -737,7 +741,8 @@ namespace MCup.ModelView
             else
                 giorno = giornoint.ToString();
 
-            Data_nascitaNuovoContatto = giorno + "/" + mese + "/" + anno;
+            //Data_nascitaNuovoContatto = giorno + "/" + mese + "/" + anno;
+            Data_nascitaNuovoContatto = DateTime.ParseExact(giorno + "/" + mese + "/" + anno,"dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             sceltaSesso = sesso;
             string sezCodFiscale = CodiceFiscaleNuovoContatto.Substring(11, 4);
             controlloComuneNascita = await ComuneNascita(sezCodFiscale);

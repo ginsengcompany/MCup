@@ -49,7 +49,7 @@
                     
                     <StackLayout IsVisible="{Binding VisibleCdf}">
                         <Label Text="Data di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                        <Entry Placeholder="Data Nascita" Text="{Binding Data_nascitaNuovoContatto}" IsEnabled="False" />
+                        <DatePicker Date="{Binding Data_nascitaNuovoContatto}" IsEnabled="True" />
                         <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorDataNascita}" TextColor="Red" FontSize="Small"/>
 
                         <Label Text="Stato estero" FontAttributes="Bold" TextColor="Black" FontSize="Medium"  IsVisible="{Binding NationalVisibilityForeign}"></Label>
@@ -87,7 +87,7 @@
                         <Entry Placeholder="Inserire indirizzo" Text="{Binding Indirizzo}" WidthRequest="250"/>
 
                         <Label Text="Email/pec" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                        <Entry Placeholder="Inserire email" Text="{Binding Email}" WidthRequest="250"/>
+                        <Entry Placeholder="Inserire email" Text="{Binding Email}" Keyboard="Email" WidthRequest="250"/>
 
                         <Label Text="StatoCivile" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
                         <Picker Title="Seleziona lo stato civile" ItemsSource="{Binding ListaStatoCivile}" SelectedIndexChanged="Picker_OnSelectedIndexChangedSceltaUnione" ItemDisplayBinding="{Binding descrizione}"/>
