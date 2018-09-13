@@ -35,17 +35,17 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Button Grid.Column="0" Grid.Row="0" Text="Modifica" Command="{Binding Modifica}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontAttributes="Bold" 
-                        FontSize="Large" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="True" TextColor="White"  Margin="5" IsVisible="{Binding Visibile}"/>
-                <Button Grid.Column="1" Grid.Row="0" Text="Prenota" Command="{Binding Prenotazione}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontAttributes="Bold" 
-                        FontSize="Large" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="True" TextColor="White"  Margin="5" IsVisible="{Binding Visibile}"/>
-                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalOptions="Center"  Text="Elimina" Command="{Binding Elimina}"  VerticalOptions="CenterAndExpand" FontAttributes="Bold" 
-                        FontSize="Large" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="True" TextColor="White"  Margin="5" IsVisible="{Binding VisibileDelete}"/>
+                <Button Grid.Column="0" Grid.Row="0" Text="Prenota" Command="{Binding Prenotazione}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontAttributes="Bold" 
+                        FontSize="Medium" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="True" TextColor="White" Margin="5" IsVisible="{Binding Visibile}"/>
+                <Button Grid.Column="1" Grid.Row="0" Text="Modifica" Command="{Binding Modifica}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontAttributes="Bold" 
+                        FontSize="Medium" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="True" TextColor="White" Margin="5" IsVisible="{Binding Visibile}"/>
+                <Button Grid.Column="2" Grid.Row="0" HorizontalOptions="Center"  Text="Elimina" Command="{Binding Elimina}"  VerticalOptions="CenterAndExpand" FontAttributes="Bold" 
+                        FontSize="Medium" BackgroundColor="#003964" BorderColor="#003964" IsEnabled="True" TextColor="White" Margin="5" IsVisible="{Binding VisibileDelete}"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
