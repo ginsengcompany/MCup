@@ -480,6 +480,7 @@ namespace MCup.ModelView
                     List<Header> listaHeader = new List<Header>();
                     listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
                     contatto.provincia = provinciaSelezionata.provincia;
+                    contatto.codIstatProvinciaResidenza = provinciaSelezionata.codIstat;
                     REST<Assistito, ResponseRegistrazione> connessioneNuovoContatto = new REST<Assistito, ResponseRegistrazione>();
                     try
                     {

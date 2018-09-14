@@ -20,10 +20,9 @@ namespace MCup.Views
         public ModificaContatto (Assistito info)
 		{
             InitializeComponent();
-            PickerComuneResidenza.IsEnabled = false;
+            PickerComuneResidenza.IsEnabled = true;
             model = new ModificaContattoModelView(info);
             riempiPicker(info);
-
             BindingContext = model;
         }
 
@@ -34,15 +33,11 @@ namespace MCup.Views
             statoCivile.descrizione = info.statocivile;
             PickerStatoCivile.SelectedItem = statoCivile;
             PickerStatoCivile.Title = statoCivile.descrizione;
-
             PickerProvinciaResisdenza.Title = info.provincia;
             PickerComuneResidenza.Title = info.comune_residenza;
-
-
         }
         private void Picker_SelectedIndexChangedProvinciaNascita(object sender, EventArgs e)
         {
-            
             var a = sender as Picker;
             var b = a.SelectedItem as Provincia;
             model.LeggiComuniNascita(b);

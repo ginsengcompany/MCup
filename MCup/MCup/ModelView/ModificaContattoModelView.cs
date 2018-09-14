@@ -32,6 +32,8 @@ namespace MCup.ModelView
 
         private List<Provincia> province;//Lista province
 
+        private Provincia provincia = new Provincia();
+
 
         #endregion
 
@@ -315,14 +317,12 @@ namespace MCup.ModelView
             sceltaSesso = contatto.sesso;
             Email = contatto.email;
             IndirizzoRes = contatto.indirizzores;
-            
             var token = App.Current.Properties["tokenLogin"].ToString();
             LeggiProvince();
             LeggiStatoCivile();
             AnnullaModificheContatto = new Command(() =>
             {
                 App.Current.MainPage = new MenuPrincipale("Contatti");
-
             });
             ModificaContatto = new Command(async () =>
             {
@@ -381,6 +381,8 @@ namespace MCup.ModelView
                 {
                     List<Header> listaHeader = new List<Header>();
                     listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+                    contatto.provincia = provincia.provincia;
+                    contatto.codIstatProvinciaResidenza = provincia.codIstat;
                     REST<Assistito, ResponseRegistrazione> connessioneModificaContatto = new REST<Assistito, ResponseRegistrazione>();
                     try
                     {
@@ -419,19 +421,25 @@ namespace MCup.ModelView
             {
                 await MessaggioConnessione.displayAlert((int)connessioneProvince.responseMessage, connessioneProvince.warning);
             }
+            else
+            {
+                REST<Provincia, Comune> connComuni = new REST<Provincia, Comune>();
+                provincia.provincia = contatto.provincia;
+                provincia.codIstat = contatto.codIstatProvinciaResidenza;
+                ListaComuniResidenza = await connComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provincia);
+                if(connComuni.responseMessage != HttpStatusCode.OK)
+                    await MessaggioConnessione.displayAlert((int)connComuni.responseMessage, connComuni.warning);
+            }
         }
 
         //Metodo che restituisce, dopo aver selezionato la provincia, la lista dei comuni
         public async void LeggiComuniResidenza(Provincia provincia)
         {
-            Provincia provinciaSelezionata = new Provincia();
-            provinciaSelezionata = provincia;
+            this.provincia = provincia;
             REST<Provincia, Comune> connessioneComuni = new REST<Provincia, Comune>();
-            ListaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provinciaSelezionata);
+            ListaComuniResidenza = await connessioneComuni.PostJsonList(SingletonURL.Instance.getRotte().ListaComuni, provincia);
             if (connessioneComuni.responseMessage != HttpStatusCode.OK)
-            {
                 await MessaggioConnessione.displayAlert((int)connessioneComuni.responseMessage, connessioneComuni.warning);
-            }
         }
 
         public async void LeggiComuniNascita(Provincia provincia)
@@ -474,8 +482,6 @@ namespace MCup.ModelView
             contatto.codStatoCivile = stato.id;
             contatto.statocivile = stato.descrizione;
         }
-
-
 
         #endregion
     }

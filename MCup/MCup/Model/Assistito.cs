@@ -23,6 +23,7 @@ namespace MCup.Model
         public string statocivile { get; set; }
         public string indirizzores { get; set; }
         public string provincia { get; set; }
+        public string codIstatProvinciaResidenza { get; set; }
         public string email { get; set; }
         public string nomeCompletoConCodiceFiscale { get; set; }
         public bool AccountPrimario { get; set; } = false;
@@ -47,7 +48,9 @@ namespace MCup.Model
             this.email = "";
             this.indirizzores = "";
             this.imgSesso = "";
-       
+            this.codIstatProvinciaResidenza = "";
+
+
         }
 
         public void Maiuscolo()
