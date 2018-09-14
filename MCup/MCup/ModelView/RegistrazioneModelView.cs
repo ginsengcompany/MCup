@@ -872,6 +872,7 @@ namespace MCup.ModelView
 
         public void provinciaDiResidenzaSelezionato(Provincia provincia)
         {
+            utente.codIstatProvinciaResidenza = provincia.codIstat;
             LeggiComuniResidenza(provincia);
         }
 
