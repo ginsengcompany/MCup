@@ -53,7 +53,7 @@
                                             <Label
                                                 Text="{Binding MenuTitle}"
                                                 Margin="10,0,0,0" 
-                                                TextColor="Black" 
+                                                TextColor="#003964" 
                                                 HorizontalTextAlignment="Center" 
                                                 VerticalTextAlignment="Center"
                                                 FontAttributes="Bold"/>

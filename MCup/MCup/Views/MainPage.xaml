@@ -4,8 +4,8 @@
              x:Class="MCup.Views.MainPage" 
              Title="e-CUPT" >
     <ContentPage.ToolbarItems>
-        
-   
+
+
         <ToolbarItem
             Name="terminiduso"
             Text="Impostazioni privacy"
@@ -33,96 +33,96 @@
                     Source="logo.png" />
             </StackLayout>
             <ScrollView>
-            <Grid Padding="10,0,0,0" 
+                <Grid Padding="10,0,0,0" 
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand" RowSpacing="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
 
                     </Grid.ColumnDefinitions>
                     <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center">
-                    <Image 
+                        <Image 
                         x:Name="tapIconaPrenotazioni" 
                         Source="prenota.png" 
                         WidthRequest="100"
                         HeightRequest="100"
                         HorizontalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
                                 Tapped="TapGestureRecognizer_Tapped"
                                 NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                 
-                </StackLayout>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </StackLayout>
 
                     <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="1" HorizontalOptions="Center">
-                   <Image 
+                        <Image 
                        x:Name="tapIconaAppuntamenti" 
                        Source="appuntamenti.png" 
                        WidthRequest="100"
                        HeightRequest="100"
                        HorizontalOptions="Center">
-                       <Image.GestureRecognizers>
-                           <TapGestureRecognizer
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
                                Tapped="TapGestureRecognizer_Tapped_1"
                                NumberOfTapsRequired="1"/>
-                       </Image.GestureRecognizers>
-                   </Image>
-                  
-                </StackLayout>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </StackLayout>
 
                     <StackLayout  Grid.Row="1" Grid.Column="0"  HorizontalOptions="Center" >
-                    <Image 
+                        <Image 
                         x:Name="tapIconaContatti" 
                         Source="contatti.png" 
                         WidthRequest="100"
                         HeightRequest="100"
                         HorizontalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
                                 Tapped="TapGestureRecognizer_Tapped_2"
                                 NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                    
-                </StackLayout>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </StackLayout>
                     <StackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="Center">
-                    <Image 
+                        <Image 
                         x:Name="tapIconaPagamenti" 
                         Source="pagamenti.png" 
                         WidthRequest="100"
                         HeightRequest="100"
                         HorizontalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
                                 Tapped="vaiPaginaManutenzione"
                                 NumberOfTapsRequired="1"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                 
-                </StackLayout>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </StackLayout>
 
                     <StackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="Center">
-                    <Image 
+                        <Image 
                         Source="referti.png" 
                         WidthRequest="100"
                         HeightRequest="100"
                         HorizontalOptions="Center">
-                        <Image.GestureRecognizers>
+                            <Image.GestureRecognizers>
                                 <TapGestureRecognizer  
                                     Tapped="vaiPaginaReferti"
                                     NumberOfTapsRequired="1"/>
                             </Image.GestureRecognizers>
-                    </Image>
-                    
-                </StackLayout>
+                        </Image>
+
+                    </StackLayout>
                 </Grid>
             </ScrollView>
         </StackLayout>

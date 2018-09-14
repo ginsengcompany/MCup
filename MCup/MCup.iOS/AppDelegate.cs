@@ -42,9 +42,8 @@ namespace MCup.iOS
             UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(0, 57, 100);
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes {TextColor = UIColor.White});
             UIBarButtonItem.Appearance.TintColor = UIColor.LightTextColor;
-            DatePickerRenderer.Appearance.TintColor= UIColor.Black;
+            DatePickerRenderer.Appearance.TintColor= UIColor.LightGray;
             if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
-
             {
                 // Ask the user for permission to get notifications on iOS 10.0+
                 UNUserNotificationCenter.Current.RequestAuthorization(
