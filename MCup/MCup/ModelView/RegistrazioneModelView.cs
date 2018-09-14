@@ -448,14 +448,18 @@ namespace MCup.ModelView
             }
         }
 
-        public string data_nascita //Proprietà relativa al campo data di nascita
+        public DateTime data_nascita //Proprietà relativa al campo data di nascita
         {
-            get { return utente.data_nascita; }
+            get
+            {
+                if (string.IsNullOrWhiteSpace(utente.data_nascita))
+                    return DateTime.Today;
+                return DateTime.ParseExact(utente.data_nascita,"dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            }
             set
             {
                 OnPropertyChanged();
-
-                utente.data_nascita = value;
+                utente.data_nascita = value.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             }
         }
 
@@ -658,7 +662,7 @@ namespace MCup.ModelView
 
                 if (controllPass) //Controlla se l'utente ha riempito tutti i campi obbligatori
                 {
-                    utente.data_nascita = utente.data_nascita.Substring(0, 10);
+                    //utente.data_nascita = utente.data_nascita.Substring(0, 10);
                    /* string giorno, mese, anno;
                     giorno = utente.data_nascita.Substring(3, 2);
                     mese = utente.data_nascita.Substring(0, 2);
@@ -667,7 +671,6 @@ namespace MCup.ModelView
                     utente.provincia = provinciaSelezionata.provincia;
                     await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpTerminiServizioRegistrazione(utente));
                 }
-
                 
             });
         }
@@ -680,7 +683,6 @@ namespace MCup.ModelView
         {
             if (statoEstero)
             {
-                
                 NationalVisibilityForeign = true;
                 NationalVisibility = false;
                 utente.luogo_nascita = String.Empty;
@@ -698,13 +700,9 @@ namespace MCup.ModelView
             REST<object, Nazione> connessioneNazioni = new REST<object, Nazione>();
             ListaNazioni = await connessioneNazioni.GetListJson(SingletonURL.Instance.getRotte().listaNazioni);
             if (connessioneNazioni.responseMessage != HttpStatusCode.OK)
-            {
                 await MessaggioConnessione.displayAlert((int)connessioneNazioni.responseMessage, connessioneNazioni.warning);
-            }
             else
-            {
                 ListaNazioni= listanazioni.OrderBy(o => o.descrizione).ToList();
-            }
         }
 
         public async void LeggiStatoCivile()
@@ -730,13 +728,10 @@ namespace MCup.ModelView
             utente.istatComuneNascita = nation.codiceCatastale;
         }
 
-
-
         protected virtual void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-
 
         public async Task<bool> AvantiSecondaPagina()
         {
@@ -757,7 +752,7 @@ namespace MCup.ModelView
                 NameErrorCognome = true;
                 control = false;
             }
-            if (string.IsNullOrEmpty(data_nascita))
+            if (string.IsNullOrEmpty(data_nascita.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)))
             {
                 NameErrorDataNascita = true;
                 control = false;
@@ -785,8 +780,6 @@ namespace MCup.ModelView
             }
             return control;
         }
-
-
 
         public async Task<bool> VaiAvanti()
         {
@@ -1034,7 +1027,7 @@ namespace MCup.ModelView
             else
                 giorno = giornoint.ToString();
 
-            data_nascita = giorno + "/" + mese + "/" + anno;
+            data_nascita = DateTime.ParseExact(giorno + "/" + mese + "/" + anno, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             sceltaSesso = sesso;
             string sezCodFiscale = codiceFiscale.Substring(11, 4);
             controlloComuneNascita = await ComuneNascita(sezCodFiscale);
