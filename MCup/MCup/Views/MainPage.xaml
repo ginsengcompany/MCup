@@ -8,17 +8,23 @@
 
         <ToolbarItem
             Name="terminiduso"
-            Text="Impostazioni privacy"
+            Text="Privacy"
             Order="Secondary"
             Clicked="termini_Clicked"
             Priority="0"
             />
+        <ToolbarItem
+            Name ="infoecontatti"
+            Text ="Contattaci"
+            Order="Secondary"
+            Clicked="contatti_Clicked"
+            Priority="1"/>
         <ToolbarItem 
             Name="logout" 
             Text="Logout"
             Order="Secondary"
             Clicked="logout_Clicked"
-            Priority="1"/>
+            Priority="2"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout 

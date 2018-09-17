@@ -7,68 +7,70 @@
     BackgroundColor="#003964">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Margin="10,0,10,0" Padding="0,10,0,20">
-            <StackLayout Orientation="Vertical" >
-                <Frame BackgroundColor="White"
+            <ScrollView>
+                <StackLayout Orientation="Vertical">
+                    <Frame BackgroundColor="White"
                        Margin="20,0,20,0"
                        CornerRadius="10">
-                    <Image Source="{Binding LogoStruttura}"       
+                        <Image Source="{Binding LogoStruttura}"       
                            HorizontalOptions="FillAndExpand"
                            VerticalOptions="FillAndExpand"/>
-                </Frame>
-                <Grid HorizontalOptions="Center" Margin="0,40,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                        <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
+                    </Frame>
+                    <Grid HorizontalOptions="Center" Margin="0,40,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
 
-                    <Image Source="user_login.png" VerticalOptions="Center" Grid.Column="0" Grid.Row="0" HeightRequest="50"/>
-                    
-                    <xfx:XfxEntry x:Name="entryCodFis" Grid.Column="1" Grid.Row="0" Placeholder="Inserire Username" PlaceholderColor="White" Text="{Binding Username}" 
+                        <Image Source="user_login.png" VerticalOptions="Center" Grid.Column="0" Grid.Row="0" HeightRequest="50"/>
+
+                        <xfx:XfxEntry x:Name="entryCodFis" Grid.Column="1" Grid.Row="0" Placeholder="Inserire Username" PlaceholderColor="White" Text="{Binding Username}" 
                                   ErrorText="{Binding NameErrorText}" ErrorDisplay="Underline" TextColor="White" WidthRequest="250" VerticalOptions="Center"/>
 
-                    <Image Source="pass_login.png" VerticalOptions="Center" Grid.Column="0" Grid.Row="1" HeightRequest="50"/>
-                    
-                    <xfx:XfxEntry Text="{Binding passWord}" Placeholder="Inserire Password" Grid.Column="1" Grid.Row="1" PlaceholderColor="White" TextColor="White"
+                        <Image Source="pass_login.png" VerticalOptions="Center" Grid.Column="0" Grid.Row="1" HeightRequest="50"/>
+
+                        <xfx:XfxEntry Text="{Binding passWord}" Placeholder="Inserire Password" Grid.Column="1" Grid.Row="1" PlaceholderColor="White" TextColor="White"
                                   ErrorText="{Binding NameErrorTextPassword}" ErrorDisplay="Underline" IsPassword="{Binding ShowPassword}" VerticalOptions="Center" WidthRequest="250">
-                    </xfx:XfxEntry>
-                    
-                    <Image Source="{Binding ShowPasswordImage}" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="2" Grid.Row="1">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding showPass}"></TapGestureRecognizer>
-                        </Image.GestureRecognizers>
-                    </Image>
-                    
-                    <Button Text="LOGIN" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding LoginIsVisible}" Grid.Row="2" Grid.Column="0"
+                        </xfx:XfxEntry>
+
+                        <Image Source="{Binding ShowPasswordImage}" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="2" Grid.Row="1">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding showPass}"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Button Text="LOGIN" IsEnabled="{Binding IsEnabled}" IsVisible="{Binding LoginIsVisible}" Grid.Row="2" Grid.Column="0"
                             HorizontalOptions="Center" VerticalOptions="Center" Grid.ColumnSpan="3" TextColor="White" FontSize="Medium"
                             WidthRequest="150" FontAttributes="Bold" BackgroundColor="#0971B2" Command="{Binding effettuaLogin}"/>
-                    
-                    <Label Text="Registrati" IsVisible="{Binding SignupIsVisible}" IsEnabled="{Binding ErrorePrelievoRotte}" TextColor="White" FontSize="Medium" Grid.Row="3" Grid.Column="0"
+
+                        <Label Text="Registrati" IsVisible="{Binding SignupIsVisible}" IsEnabled="{Binding ErrorePrelievoRotte}" TextColor="White" FontSize="Medium" Grid.Row="3" Grid.Column="0"
                            Grid.ColumnSpan="3" FontAttributes="Bold" HorizontalOptions="Center" Margin="10" VerticalOptions="Center">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    
-                    <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="Ho dimenticato la password" IsVisible="{Binding SignupIsVisible}" 
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="vaiRegistrazione" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="Ho dimenticato la password" IsVisible="{Binding SignupIsVisible}" 
                            TextColor="White" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" Margin="10" VerticalOptions="Center"
                            Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="richiestaDimenticaPassw" NumberOfTapsRequired="1"></TapGestureRecognizer>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <ActivityIndicator  HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy}" 
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="richiestaDimenticaPassw" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <ActivityIndicator  HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding IsBusy}" 
                                        IsVisible="{Binding IsVisible}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" />
-                </Grid>
-            </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
