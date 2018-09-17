@@ -49,7 +49,7 @@
                     
                     <StackLayout IsVisible="{Binding VisibleCdf}">
                         <Label Text="Data di nascita" FontAttributes="Bold" TextColor="Black" FontSize="Medium"/>
-                        <DatePicker Date="{Binding Data_nascitaNuovoContatto}" IsEnabled="True" />
+                        <DatePicker Date="{Binding Data_nascitaNuovoContatto}" IsEnabled="True" Format="dd/MM/yyyy" />
                         <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorDataNascita}" TextColor="Red" FontSize="Small"/>
 
                         <Label Text="Stato estero" FontAttributes="Bold" TextColor="Black" FontSize="Medium"  IsVisible="{Binding NationalVisibilityForeign}"></Label>

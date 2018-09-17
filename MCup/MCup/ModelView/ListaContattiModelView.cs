@@ -192,7 +192,7 @@ namespace MCup.ModelView
                     temp.Add(contacts[i]);
                 }
                 PrimoNome = temp[0].nome + " " + temp[0].cognome;
-                contattoPrimo.nome = temp[0].nome;
+                /*contattoPrimo.nome = temp[0].nome;
                 contattoPrimo.cognome = temp[0].cognome;
                 contattoPrimo.codice_fiscale = temp[0].codice_fiscale;
                 contattoPrimo.data_nascita = temp[0].data_nascita;
@@ -204,7 +204,8 @@ namespace MCup.ModelView
                 contattoPrimo.statocivile = temp[0].statocivile;
                 contattoPrimo.codStatoCivile = temp[0].codStatoCivile;
                 contattoPrimo.indirizzores = temp[0].indirizzores;
-                contattoPrimo.email = temp[0].email;
+                contattoPrimo.email = temp[0].email;*/
+                contattoPrimo = temp[0];
                 temp.Remove(temp[0]);
                 Contatti = temp;
                 ImplementaRubrica();
