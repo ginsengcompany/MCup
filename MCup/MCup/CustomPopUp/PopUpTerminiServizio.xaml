@@ -10,7 +10,7 @@
     </pages:PopupPage.Animation>
     <AbsoluteLayout >
         <Frame HorizontalOptions="Center"
-             Margin="5"
+             Margin="20"
              x:Name="FrameContainer"
              BackgroundColor="White" VerticalOptions="Center">
             <StackLayout IsClippedToBounds="True"
