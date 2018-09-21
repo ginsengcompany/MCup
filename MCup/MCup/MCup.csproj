@@ -51,6 +51,24 @@
     <Compile Include="CustomPopUp\PopUpTerminiServizioRegistrazione.xaml.cs">
       <DependentUpon>PopUpTerminiServizioRegistrazione.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomPopUp\PopUpVideoPlayer.xaml.cs">
+      <DependentUpon>PopUpVideoPlayer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormsVideoLibrary\FileVideoSource.cs" />
+    <Compile Include="FormsVideoLibrary\IVideoPicker.cs" />
+    <Compile Include="FormsVideoLibrary\IVideoPlayerController.cs" />
+    <Compile Include="FormsVideoLibrary\PositionSlider.cs" />
+    <Compile Include="FormsVideoLibrary\ResourceVideoSource.cs" />
+    <Compile Include="FormsVideoLibrary\UriVideoSource.cs" />
+    <Compile Include="FormsVideoLibrary\VideoInfo.cs" />
+    <Compile Include="FormsVideoLibrary\VideoPlayer.cs" />
+    <Compile Include="FormsVideoLibrary\VideoSource.cs" />
+    <Compile Include="FormsVideoLibrary\VideoSourceConverter.cs" />
+    <Compile Include="FormsVideoLibrary\VideoStatus.cs" />
+    <Compile Include="Model\Video.cs" />
+    <Compile Include="Views\Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ModelView\AutoCompilazioneModelView.cs" />
     <Compile Include="ModelView\FormPrenotazioneAslModelView.cs" />
     <Compile Include="ModelView\FormPrenotazioneModelView.cs" />
@@ -153,6 +171,9 @@
     </Compile>
     <Compile Include="Views\VerificaRicettaAsl.xaml.cs">
       <DependentUpon>VerificaRicettaAsl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoPlayer.xaml.cs">
+      <DependentUpon>VideoPlayer.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -385,6 +406,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CustomPopUp\PopUpTerminiServizioRegistrazione.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\VideoPlayer.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Help.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CustomPopUp\PopUpVideoPlayer.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

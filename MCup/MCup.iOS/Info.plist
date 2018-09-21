@@ -56,8 +56,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>XSLaunchImageAssets</key>
-	<string>Resources/Media.xcassets/Immagini di avvio.launchimage</string>
 	<key>NSCameraUsageDescription</key>
 	<string>New Entry</string>
 	<key>MinimumOSVersion</key>

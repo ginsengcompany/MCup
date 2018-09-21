@@ -6,7 +6,8 @@
       "minimum-system-version": "9.0",
       "scale": "1x",
       "size": "1920x1080",
-      "idiom": "tv"
+      "idiom": "tv",
+      "filename": "1920x1080.png"
     },
     {
       "orientation": "portrait",
@@ -15,7 +16,8 @@
       "subtype": "736h",
       "scale": "3x",
       "size": "1242x2208",
-      "idiom": "iphone"
+      "idiom": "iphone",
+      "filename": "1242x2208.png"
     },
     {
       "orientation": "portrait",
@@ -24,7 +26,8 @@
       "subtype": "667h",
       "scale": "2x",
       "size": "750x1334",
-      "idiom": "iphone"
+      "idiom": "iphone",
+      "filename": "750x1334.png"
     },
     {
       "orientation": "landscape",
@@ -33,7 +36,8 @@
       "subtype": "736h",
       "scale": "3x",
       "size": "2208x1242",
-      "idiom": "iphone"
+      "idiom": "iphone",
+      "filename": "2208x1242.png"
     },
     {
       "orientation": "portrait",
@@ -87,7 +91,8 @@
       "minimum-system-version": "7.0",
       "scale": "1x",
       "size": "1024x768",
-      "idiom": "ipad"
+      "idiom": "ipad",
+      "filename": "1024x7682.png"
     },
     {
       "orientation": "landscape",
@@ -95,21 +100,24 @@
       "minimum-system-version": "7.0",
       "scale": "2x",
       "size": "2048x1536",
-      "idiom": "ipad"
+      "idiom": "ipad",
+      "filename": "2048x15361.png"
     },
     {
       "orientation": "portrait",
       "extent": "full-screen",
       "scale": "1x",
       "size": "320x480",
-      "idiom": "iphone"
+      "idiom": "iphone",
+      "filename": "320x480.png"
     },
     {
       "orientation": "portrait",
       "extent": "full-screen",
       "scale": "2x",
       "size": "640x960",
-      "idiom": "iphone"
+      "idiom": "iphone",
+      "filename": "640x9601.png"
     },
     {
       "orientation": "portrait",
@@ -117,63 +125,72 @@
       "subtype": "retina4",
       "scale": "2x",
       "size": "640x1136",
-      "idiom": "iphone"
+      "idiom": "iphone",
+      "filename": "640x11361.png"
     },
     {
       "orientation": "portrait",
       "extent": "to-status-bar",
       "scale": "1x",
       "size": "768x1004",
-      "idiom": "ipad"
+      "idiom": "ipad",
+      "filename": "768x1004.png"
     },
     {
       "orientation": "portrait",
       "extent": "to-status-bar",
       "scale": "2x",
       "size": "1536x2008",
-      "idiom": "ipad"
+      "idiom": "ipad",
+      "filename": "1536x2008.png"
     },
     {
       "orientation": "portrait",
       "extent": "full-screen",
       "scale": "1x",
       "size": "768x1024",
-      "idiom": "ipad"
+      "idiom": "ipad",
+      "filename": "768x10241.png"
     },
     {
       "orientation": "portrait",
       "extent": "full-screen",
       "scale": "2x",
       "size": "1536x2048",
-      "idiom": "ipad"
+      "idiom": "ipad",
+      "filename": "1536x20481.png"
     },
     {
       "orientation": "landscape",
       "extent": "to-status-bar",
       "scale": "1x",
       "size": "1024x768",
-      "idiom": "ipad"
+      "idiom": "ipad",
+      "filename": "1024x7681.png"
     },
     {
       "orientation": "landscape",
       "extent": "to-status-bar",
       "scale": "2x",
       "size": "2048x1496",
-      "idiom": "ipad"
+      "idiom": "ipad",
+      "filename": "2048x1496.png"
     },
     {
       "orientation": "landscape",
       "extent": "full-screen",
       "scale": "1x",
       "size": "1024x768",
-      "idiom": "ipad"
+      "idiom": "ipad",
+      "filename": "1024x768.png"
     },
     {
       "orientation": "landscape",
       "extent": "full-screen",
       "scale": "2x",
       "size": "2048x1536",
-      "idiom": "ipad"
+      "idiom": "ipad",
+      "filename": "2048x1536.png"
     }
   ],
   "properties": {},

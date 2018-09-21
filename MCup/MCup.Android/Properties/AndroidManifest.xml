@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.0.8" package="com.gesan.ecupt.sabcaserta" android:installLocation="auto" android:versionCode="12">
-	<uses-sdk android:minSdkVersion="23" />
+	<uses-sdk android:minSdkVersion="22" />
 	<permission android:name="com.ak12.MCup.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

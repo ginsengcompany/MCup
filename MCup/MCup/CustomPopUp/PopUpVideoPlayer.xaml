@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:MCup.Animations;assembly=MCup"
+             xmlns:formsVideoLibrary="clr-namespace:MCup.FormsVideoLibrary;assembly=MCup"
+             x:Class="MCup.CustomPopUp.PopUpVideoPlayer">
+    <pages:PopupPage.Animation>
+        <animations:UserAnimation/>
+    </pages:PopupPage.Animation>
+    <AbsoluteLayout >
+        <Frame HorizontalOptions="Center"
+           Margin="5"
+           x:Name="FrameContainer"
+           BackgroundColor="White" VerticalOptions="Center">
+            <StackLayout IsClippedToBounds="True"
+                     Spacing="3">
+                <formsVideoLibrary:VideoPlayer HeightRequest="400" WidthRequest="400" x:Name="videoPlayer"/>
+            </StackLayout>
+        </Frame>
+    </AbsoluteLayout>
+</pages:PopupPage>

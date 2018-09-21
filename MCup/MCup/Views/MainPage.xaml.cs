@@ -110,5 +110,10 @@ namespace MCup.Views
         {
             Device.OpenUri(new Uri($"mailto:{"ecuptservice.mail@gmail.com"}"));
         }
+
+        private async void faq_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Help());
+        }
     }
 }

@@ -13,18 +13,24 @@
             Clicked="termini_Clicked"
             Priority="0"
             />
-        <ToolbarItem
+        <!--<ToolbarItem
             Name ="infoecontatti"
             Text ="Contattaci"
             Order="Secondary"
             Clicked="contatti_Clicked"
-            Priority="1"/>
+            Priority="1"/>-->
+        <ToolbarItem
+            Name ="aiuto"
+            Text ="Faq"
+            Clicked="faq_Clicked"
+            Priority="2"
+            Order="Secondary"/>
         <ToolbarItem 
             Name="logout" 
             Text="Logout"
             Order="Secondary"
             Clicked="logout_Clicked"
-            Priority="2"/>
+            Priority="3"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout 
