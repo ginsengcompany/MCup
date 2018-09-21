@@ -66,5 +66,7 @@
 	<string>1.0.2</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>$(PRODUCT_NAME) calendar events</string>
+	<key>XSLaunchImageAssets</key>
+	<string>Resources/Media.xcassets/Immagini di avvio.launchimage</string>
 </dict>
 </plist>
