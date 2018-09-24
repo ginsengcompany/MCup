@@ -23,7 +23,7 @@ namespace MCup.CustomPopUp
             videoPlayer.Source = VideoSource.FromUri(linkVideo);
         }
 
-        protected async override Task OnDisappearingAnimationBegin()
+        protected async override void OnDisappearingAnimationBegin()
         {
             var taskSource = new TaskCompletionSource<bool>();
             var currentHeight = FrameContainer.Height;

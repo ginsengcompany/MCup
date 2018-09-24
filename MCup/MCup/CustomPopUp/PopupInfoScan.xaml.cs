@@ -78,7 +78,7 @@ namespace MCup.CustomPopUp
             CloseWhenBackgroundIsClicked = true;
         }
 
-        protected async override Task OnDisappearingAnimationBegin()
+        protected async override void OnDisappearingAnimationBegin()
         {
             var taskSource = new TaskCompletionSource<bool>();
             var currentHeight = FrameContainer.Height;
