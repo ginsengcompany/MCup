@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Javax.Security.Auth;
 using MCup.Model;
 using MCup.Service;
 using MCup.Views;
