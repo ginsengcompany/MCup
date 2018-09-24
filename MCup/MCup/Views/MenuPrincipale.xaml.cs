@@ -63,11 +63,11 @@ namespace MCup.Views
             List<Menu> menuPrincipale = new List<Menu> //Lista contenente le pagine a cui si può accedere dalla MasterDetailPage
             {
                 new Menu { MenuTitle = "Home", ImageIcon = "home.png"},
-              //  new Menu { MenuTitle = "Scegli Struttura Preferita", ImageIcon = "modify.png"},
-                new Menu { MenuTitle ="Contatti", ImageIcon = "contact.png"},
-                new Menu{MenuTitle ="Pagamento", ImageIcon = "soldi.png"},
+                //  new Menu { MenuTitle = "Scegli Struttura Preferita", ImageIcon = "modify.png"},
                 new Menu{MenuTitle ="Prenota", ImageIcon = "prenotaMenu.png"},
                 new Menu{MenuTitle ="Appuntamenti", ImageIcon = "appuntamentiMenu.png"},
+                new Menu { MenuTitle ="Contatti", ImageIcon = "contact.png"},
+                new Menu{MenuTitle ="Pagamento", ImageIcon = "soldi.png"},
                 new Menu{MenuTitle ="Referti", ImageIcon = "refertiMenu.png"}
 
 

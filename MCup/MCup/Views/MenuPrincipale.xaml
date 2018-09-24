@@ -35,6 +35,7 @@
                         x:Name="ListaMenu" 
                         ItemSelected="ListaMenu_ItemSelected"
                         Footer=""
+                        SeparatorVisibility="None"
                         VerticalOptions="Center">
                         <ListView.ItemTemplate>
                             <DataTemplate>
