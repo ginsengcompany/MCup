@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MCup.Views.MainPage" 
              Title="e-CUPT" >
-    <ContentPage.ToolbarItems>
+   <!-- <ContentPage.ToolbarItems>
 
 
         <ToolbarItem
@@ -13,12 +13,12 @@
             Clicked="termini_Clicked"
             Priority="0"
             />
-        <!--<ToolbarItem
+        <ToolbarItem
             Name ="infoecontatti"
             Text ="Contattaci"
             Order="Secondary"
             Clicked="contatti_Clicked"
-            Priority="1"/>-->
+            Priority="1"/>
         <ToolbarItem
             Name ="aiuto"
             Text ="Faq"
@@ -31,7 +31,7 @@
             Order="Secondary"
             Clicked="logout_Clicked"
             Priority="3"/>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     <ContentPage.Content>
         <StackLayout 
             Padding="0, 40, 0, 0" >

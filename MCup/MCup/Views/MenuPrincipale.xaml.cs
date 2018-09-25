@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
-using System.Net.Http;
+using System.Net;
 using MCup;
 using MCup.Service;
 
@@ -68,8 +68,10 @@ namespace MCup.Views
                 new Menu{MenuTitle ="Appuntamenti", ImageIcon = "appuntamentiMenu.png"},
                 new Menu { MenuTitle ="Contatti", ImageIcon = "contact.png"},
                 new Menu{MenuTitle ="Pagamento", ImageIcon = "soldi.png"},
-                new Menu{MenuTitle ="Referti", ImageIcon = "refertiMenu.png"}
-
+                new Menu{MenuTitle ="Referti", ImageIcon = "refertiMenu.png"},
+                new Menu{MenuTitle = "Privacy", ImageIcon = "lock.png"},
+                //new Menu{MenuTitle = "Faq", ImageIcon = ""},
+                new Menu{MenuTitle = "Logout", ImageIcon = "logout.png"}
 
 
             };
@@ -78,7 +80,7 @@ namespace MCup.Views
         }
 
         //Metodo utilizzato come event handler per il tap sul menu da parte dell'utente
-        private void ListaMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void ListaMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var menu = e.SelectedItem as Menu; //La variabile menu contiene l'elemento selezionato
             if (menu != null) //Controlla se l'elemento non è null
@@ -121,7 +123,35 @@ namespace MCup.Views
                     IsPresented = false;
                     Detail = new NavigationPage(new PaginaReferti()); //Avvia la pagina per la scelta della struttura preferita
                 }
+                else if (menu.MenuTitle.Equals("Privacy"))
+                {
+                    IsPresented = false;
+                    Detail = new NavigationPage(new PaginaPrivacy());
+                }
+                else if(menu.MenuTitle.Equals("Logout"))
+                {
+                    var risposta = await DisplayAlert("Logout", "Sei sicuro di voler effettuare il logout?", "SI", "NO");
+                    if (!risposta)
+                        return;
+                    List<Header> listaHeader = new List<Header>();
+                    listaHeader.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
+                    TokenNotification tokNot = new TokenNotification();
+                    tokNot.tokenNotification = "";
+                    REST<TokenNotification, bool> connessione = new REST<TokenNotification, bool>();
+                    bool res = await connessione.PostJson(SingletonURL.Instance.getRotte().updateTokenNotifiche, tokNot, listaHeader);
+                    if (connessione.responseMessage != HttpStatusCode.OK)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Attenzione " + (int)connessione.responseMessage, connessione.warning, "OK");
+                    }
+                    Application.Current.Properties["flagRimaniLoggato"] = "False";
+                    Application.Current.MainPage = new NavigationPage(new Login());
+                }
             }
+        }
+
+        private class TokenNotification
+        {
+            public string tokenNotification;
         }
 
         public class Menu

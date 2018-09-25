@@ -53,7 +53,7 @@ namespace MCup.Views
             disableMultiTouch();
             Navigation.PushAsync(new PaginaAppuntamenti());
         }
-
+/*
         private async void logout_Clicked(object sender, EventArgs e)
         {
             var risposta = await DisplayAlert("Logout","Sei sicuro di voler effettuare il logout?","SI","NO");
@@ -73,7 +73,7 @@ namespace MCup.Views
             Application.Current.MainPage=new NavigationPage(new Login());
         
         }
-
+*/
         private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
             disableMultiTouch();
@@ -94,12 +94,12 @@ namespace MCup.Views
         {
            await Navigation.PushAsync(new  PaginaLavoriInCorso());
         }
-
+/*
         private async void termini_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PaginaPrivacy());
         }
-
+*/
         private async void vaiPaginaReferti(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PaginaReferti());
@@ -110,10 +110,11 @@ namespace MCup.Views
         {
             Device.OpenUri(new Uri($"mailto:{"ecuptservice.mail@gmail.com"}"));
         }
-
+/*
         private async void faq_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Help());
         }
+        */
     }
 }
