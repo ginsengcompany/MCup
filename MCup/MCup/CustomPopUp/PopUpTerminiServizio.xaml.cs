@@ -20,6 +20,7 @@ namespace MCup.CustomPopUp
             Content = FrameContainer;
             CloseWhenBackgroundIsClicked = true;
         }
+        /*
         protected async override void OnDisappearingAnimationBegin()
         {
             var taskSource = new TaskCompletionSource<bool>();
@@ -35,9 +36,9 @@ namespace MCup.CustomPopUp
                     await Task.Delay(300);
                     taskSource.TrySetResult(true);
                 });
-
+                
             await taskSource.Task;
-        }
+        }*/
 
         protected override bool OnBackgroundClicked()
         {

@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:animations1="clr-namespace:MCup.Animations;assembly=MCup"
-                 xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              x:Class="MCup.CustomPopUp.PopUpTerminiServizio">
-    <pages:PopupPage.Animation>
+  <!--  <pages:PopupPage.Animation>
         <animations1:UserAnimation/>
-    </pages:PopupPage.Animation>
+    </pages:PopupPage.Animation>-->
     <AbsoluteLayout >
         <Frame HorizontalOptions="Center"
              Margin="20"

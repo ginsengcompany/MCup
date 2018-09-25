@@ -49,8 +49,7 @@ namespace MCup.ModelView
 
             infoPrivacy = new Command(async () =>
             {
-                await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpTerminiServizio());
-
+                await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpTerminiServizio(),false);
             });
             datiUtente = new Command(async () =>
             {
