@@ -56,7 +56,7 @@
                         Text="{Binding codiceUno, Mode=TwoWay}" 
                         ErrorText="{Binding NameTextErrorCodUno}" 
                         ErrorDisplay="Underline"
-                        WidthRequest="250"
+                        WidthRequest="200"
                         TextColor="#6C94B2"
                         HorizontalOptions="Center" 
                         VerticalOptions="Center"/>
@@ -82,7 +82,7 @@
                         Text="{Binding codiceDue}" 
                         ErrorText="{Binding NameTextErrorCodDue}" 
                         ErrorDisplay="Underline"
-                        WidthRequest="250"
+                        WidthRequest="200"
                         HorizontalOptions="Center" 
                         TextColor="#6C94B2"
                         VerticalOptions="Center"/>
