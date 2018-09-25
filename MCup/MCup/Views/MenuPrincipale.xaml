@@ -16,17 +16,17 @@
                 </OnPlatform>
             </ContentPage.Icon>
 
-            <StackLayout >
-                <StackLayout BackgroundColor="White" Margin="2" HeightRequest="200" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                        <Image x:Name="Image" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                    </StackLayout>
-
-                    <ListView
+            <StackLayout BackgroundColor="White" >
+                <StackLayout BackgroundColor="White" Margin="2" HeightRequest="100" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                    <Image x:Name="Image" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <ListView
                         x:Name="ListaMenu" 
                         ItemSelected="ListaMenu_ItemSelected"
                         Footer=""
                         SeparatorVisibility="None"
-                        VerticalOptions="Center">
+                        VerticalOptions="Center"
+                        BackgroundColor="White">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <costomControls:ExtendedViewCell SelectedBackgroundColor="#0971B2">
