@@ -17,41 +17,31 @@
             </ContentPage.Icon>
 
             <StackLayout >
-                <StackLayout BackgroundColor="#003964">
-                    <StackLayout 
-                    Padding="10" BackgroundColor="White"
-                        Margin="2"
-                    HeightRequest="200" 
-                    HorizontalOptions="FillAndExpand" 
-                    VerticalOptions="Center">
-                        <Image 
-                        x:Name="Image"  
-                        HorizontalOptions="CenterAndExpand" 
-                        VerticalOptions="CenterAndExpand"/>
+                <StackLayout BackgroundColor="White" Margin="2" HeightRequest="200" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Image x:Name="Image" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                     </StackLayout>
-                </StackLayout>
-              
+
                     <ListView
                         x:Name="ListaMenu" 
                         ItemSelected="ListaMenu_ItemSelected"
                         Footer=""
                         SeparatorVisibility="None"
                         VerticalOptions="Center">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
                             <costomControls:ExtendedViewCell SelectedBackgroundColor="#0971B2">
-                            <ViewCell.View>
+                                <ViewCell.View>
                                     <StackLayout  
                                         VerticalOptions="Center" 
                                         Orientation="Horizontal" 
                                         Spacing="10" 
                                         HorizontalOptions="Start">
-                                            <Image 
+                                        <Image 
                                                 Source="{Binding ImageIcon}" 
                                                 WidthRequest="30"
                                                 HeightRequest="30" 
                                                 VerticalOptions="Center"/>
-                                            <Label
+                                        <Label
                                                 Text="{Binding MenuTitle}"
                                                 Margin="10,0,0,0" 
                                                 TextColor="#003964" 
@@ -60,12 +50,12 @@
                                                 FontAttributes="Bold"/>
                                     </StackLayout>
                                 </ViewCell.View>
-                               </costomControls:ExtendedViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+                            </costomControls:ExtendedViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
-   
+
 </MasterDetailPage>
