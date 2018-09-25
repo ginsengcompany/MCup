@@ -25,7 +25,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.gesan.ecupt.sabcaserta</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app needs access location when open and in the background.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -63,7 +63,7 @@
 	<key>Custom Property</key>
 	<string></string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>$(PRODUCT_NAME) calendar events</string>
 	<key>XSLaunchImageAssets</key>
