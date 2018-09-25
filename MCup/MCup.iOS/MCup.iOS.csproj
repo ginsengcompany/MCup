@@ -457,83 +457,19 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\send.png" />
-    <BundleResource Include="Resources\scan.png" />
     <BundleResource Include="Resources\info.png" />
-    <BundleResource Include="Resources\log.png" />
-    <BundleResource Include="Resources\iconaAppuntamenti.png" />
-    <BundleResource Include="Resources\iconaPrenotazioni.png" />
-    <BundleResource Include="Resources\iconaAppuntamenti-20x20%402x.png" />
-    <BundleResource Include="Resources\iconaAppuntamenti-20x20%403x.png" />
-    <BundleResource Include="Resources\iconaAppuntamenti-29x29%401x.png" />
-    <BundleResource Include="Resources\iconaAppuntamenti-29x29%402x.png" />
-    <BundleResource Include="Resources\iconaAppuntamenti-40x40%402x.png" />
-    <BundleResource Include="Resources\iconaAppuntamenti-40x40%403x.png" />
-    <BundleResource Include="Resources\iconaAppuntamenti-60x60%402x.png" />
-    <BundleResource Include="Resources\iconaAppuntamenti-60x60%403x.png" />
-    <BundleResource Include="Resources\iconaAppuntamenti-marketing-1024x1024.png" />
-    <BundleResource Include="Resources\iconaPrenotazioni-20x20%403x.png" />
-    <BundleResource Include="Resources\iconaPrenotazioni-29x29%401x.png" />
-    <BundleResource Include="Resources\iconaPrenotazioni-29x29%402x.png" />
-    <BundleResource Include="Resources\iconaPrenotazioni-40x40%402x.png" />
-    <BundleResource Include="Resources\iconaPrenotazioni-40x40%403x.png" />
-    <BundleResource Include="Resources\iconaPrenotazioni-60x60%402x.png" />
-    <BundleResource Include="Resources\iconaPrenotazioni-60x60%403x.png" />
-    <BundleResource Include="Resources\iconaPrenotazioni-marketing-1024x1024.png" />
-    <BundleResource Include="Resources\iconaPrenotazioni-20x20%402x.png" />
-    <BundleResource Include="Resources\sfondoAppIOS.png" />
-    <BundleResource Include="Resources\sfondoIOS.png" />
-    <BundleResource Include="Resources\registrati.png" />
-    <BundleResource Include="Resources\sfondo.png" />
     <BundleResource Include="Resources\coduno.png" />
     <BundleResource Include="Resources\coddue.png" />
     <BundleResource Include="Resources\codtre.png" />
-    <BundleResource Include="Resources\ico.png" />
     <BundleResource Include="Resources\menu20x20.png" />
     <BundleResource Include="Resources\menu30x30.png" />
     <BundleResource Include="Resources\menu40x40.png" />
     <BundleResource Include="Resources\menu50x50.png" />
     <BundleResource Include="Resources\menu150x150.png" />
     <BundleResource Include="Resources\menu.png" />
-    <BundleResource Include="Resources\contact.png" />
-    <BundleResource Include="Resources\contact57x57.png" />
-    <BundleResource Include="Resources\contact20x20.png" />
-    <BundleResource Include="Resources\contact29x29.png" />
-    <BundleResource Include="Resources\contact40x40.png" />
-    <BundleResource Include="Resources\ic_contatti copia-marketing-1024x1024.png" />
-    <BundleResource Include="Resources\ic_contatti-20x20%402x.png" />
-    <BundleResource Include="Resources\ic_contatti-20x20%403x.png" />
-    <BundleResource Include="Resources\ic_contatti-29x29%401x.png" />
-    <BundleResource Include="Resources\ic_contatti-29x29%402x.png" />
-    <BundleResource Include="Resources\ic_contatti-40x40%402x.png" />
-    <BundleResource Include="Resources\ic_contatti-40x40%403x.png" />
-    <BundleResource Include="Resources\ic_contatti-60x60%402x.png" />
-    <BundleResource Include="Resources\ic_contatti-60x60%403x.png" />
-    <BundleResource Include="Resources\ic_contatti.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\profilo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\profilo%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\profilo%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\password.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\password2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\password3x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\iconaScan.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\close_circle_button.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\utente.png" />
@@ -555,15 +491,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\home_3x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\rubrica.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\rubrica_2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\rubrica_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\rightArrow.png" />
@@ -590,19 +517,10 @@
     <BundleResource Include="Resources\eye_hide.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\iconaPagamenti.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\soldi.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\poweredby2.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\luogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaReferto.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\downArrow.png" />
@@ -635,27 +553,6 @@
     <BundleResource Include="Resources\pass_login.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\passwor.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\user.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\pass_login_curv.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\user_login_curv.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\EyePasswordWhite.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\EyePasswordWhite2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\EyePasswordWhite3x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\lavoriIncorso.png" />
   </ItemGroup>
   <ItemGroup>
@@ -668,12 +565,6 @@
     <BundleResource Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\iconaPrenotazioneVeloce.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\femalesolid.png" />
   </ItemGroup>
   <ItemGroup>
@@ -681,12 +572,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="onesignal_default_sound.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\unlocked.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\locked.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\download.png" />

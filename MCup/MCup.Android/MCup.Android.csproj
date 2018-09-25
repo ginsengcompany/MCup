@@ -303,42 +303,7 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable\accept.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\accept.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\accept.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\accept.png" />
-    <AndroidResource Include="Resources\drawable\decline.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\decline.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\decline.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\decline.png" />
-    <AndroidResource Include="Resources\drawable\ricetta.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ricetta.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ricetta.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ricetta.png" />
-    <AndroidResource Include="Resources\drawable\send.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\send.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\send.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\send.png" />
-    <AndroidResource Include="Resources\drawable\scan.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\scan.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\scan.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\scan.png" />
     <AndroidResource Include="Resources\drawable\info.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\iconaPrenotazioni.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\iconaPrenotazioni.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\iconaPrenotazioni.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\iconaAppuntamenti.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\iconaAppuntamenti.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\iconaAppuntamenti.png" />
-    <AndroidResource Include="Resources\drawable\log.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\log.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\log.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\log.png" />
-    <AndroidResource Include="Resources\drawable\sfondo.png" />
     <AndroidResource Include="Resources\drawable-hdpi\utente.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\utente.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\utente.png" />
@@ -376,43 +341,7 @@
     <AndroidResource Include="Resources\drawable\eCUPT.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\iconaAppuntamenti.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\iconaPrenotazioni.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\profilo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\profilo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\profilo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\password.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\password.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\password.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\iconaScan.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\sfondo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\sfondo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\sfondo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\close_circle_button.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\coddue.png" />
@@ -428,15 +357,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ico.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\showPass.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\showPassHide.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\eye.png" />
@@ -472,18 +392,6 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\modify.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\rubrica.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\rubrica.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\rubrica.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\rubrica.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\modify.png" />
   </ItemGroup>
   <ItemGroup>
@@ -494,18 +402,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxhdpi\rightArrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_contatti.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_contatti.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_contatti.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_contatti.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\frecciadx.png" />
@@ -532,9 +428,6 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\eye_hide.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\poweredby2.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\soldi.png" />
   </ItemGroup>
   <ItemGroup>
@@ -544,28 +437,10 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\soldi.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\iconaPagamenti.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ricettaSAR.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\luogo.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\luogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\iconaReferto.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\iconaReferto.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\iconaReferto.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\iconaReferto.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\downArrow.png" />
@@ -613,34 +488,10 @@
     <AndroidResource Include="Resources\drawable\pass_login.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\passwor.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\user.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\user_login.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\pass_login_curv.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\user_login_curv.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\EyePasswordWhite.png.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\EyePasswordWhite.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\EyePasswordWhite.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\lavoriIncorso.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\iconaPrenotazioneVeloce.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\femalesolid.png" />
@@ -667,25 +518,7 @@
     <AndroidResource Include="Resources\raw\onesignal_default_sound.wav" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\unlocked.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\locked.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\download.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\emailImage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\deleteImage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\privacyImage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bidone.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\terminiServizio.png" />
