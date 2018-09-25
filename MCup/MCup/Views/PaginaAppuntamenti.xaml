@@ -50,11 +50,11 @@
                                         Text="Impegnativa:"
                                         FontAttributes="Italic"
                                         TextColor="White"
-                                        FontSize="Medium"/>
+                                        FontSize="Small"/>
                                     <Label Text="{Binding LongName}"
                                           FontAttributes="Bold"
                                           TextColor="White"
-                                          FontSize="Medium"/>
+                                          FontSize="Small"/>
                                 </StackLayout>
                                 <StackLayout 
                                     Orientation="Horizontal" 
