@@ -34,6 +34,7 @@
     <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
     <CodesignExtraArgs />
     <CodesignResourceRules />
+    <MtouchSdkVersion>12.0</MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
