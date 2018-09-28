@@ -66,6 +66,7 @@
     <Compile Include="FormsVideoLibrary\VideoSourceConverter.cs" />
     <Compile Include="FormsVideoLibrary\VideoStatus.cs" />
     <Compile Include="Model\Video.cs" />
+    <Compile Include="Model\VideoHelp.cs" />
     <Compile Include="Views\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
     </Compile>

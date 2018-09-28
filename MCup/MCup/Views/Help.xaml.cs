@@ -9,6 +9,7 @@ using MCup.Model;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MCup.Service;
 
 namespace MCup
 {
@@ -28,6 +29,13 @@ namespace MCup
         {
             var videoTap = e.Item as Video;
             await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpVideoPlayer(videoTap.link));
+        }
+
+        private async void introPagina()
+        {
+            List<Video> listaTemp;
+            REST<object, VideoHelp> connessione = new REST<object, VideoHelp>();
+
         }
     }
 }
