@@ -45,13 +45,13 @@ namespace MCup.Views
                 DisableAutofocus = false
                 //PossibleFormats = new List < BarcodeFormat >(){ BarcodeFormat.CODE_39 }
             };
-            var overlay = new ZXingDefaultOverlay
+            /*var overlay = new ZXingDefaultOverlay
             {
                 ShowFlashButton = false,
 
             };
-            overlay.BindingContext = overlay;
-            var scanPage = new ZXingScannerPage(options, overlay);
+            overlay.BindingContext = overlay;*/
+            var scanPage = new ZXingScannerPage(options /*overlay*/);
             scanPage.OnScanResult += (result) =>
             {
                 scanPage.IsScanning = false;
