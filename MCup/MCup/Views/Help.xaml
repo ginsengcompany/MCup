@@ -1,12 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MCup.Help">
+             xmlns:costomControls="clr-namespace:MCup.CostomControls;assembly=MCup"
+             x:Class="MCup.Help"
+             BackgroundColor="White">
     <ContentPage.Content>
         <ListView x:Name="lstVideo" ItemTapped="LstVideo_OnItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ImageCell Text="{Binding nome}" Detail="{Binding descrizione}" ImageSource="{Binding immagine}"/>
+                    <costomControls:ExtendedViewCell SelectedBackgroundColor="#0971B2">
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding immagine}" />
+                                <Label Text="{Binding nome}" TextColor="Black" />
+                                <Label Text="{Binding descrizione}" TextColor="Black" />
+                            </StackLayout>
+                           <!-- <ImageCell Text="{Binding nome}" Detail="{Binding descrizione}" ImageSource="{Binding immagine}"/> -->
+                        </ViewCell.View>
+                    </costomControls:ExtendedViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

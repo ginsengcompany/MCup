@@ -49,5 +49,6 @@ namespace MCup.Model
         public string listaNazioni { get; set; }
         public string comunebycodicecatastale { get; set; }
         public string connessioneConfermaPass { get; set; }
+        public string listaVideo { get; set; }
     }
 }

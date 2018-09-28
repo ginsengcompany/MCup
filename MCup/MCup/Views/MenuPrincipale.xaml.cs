@@ -63,17 +63,14 @@ namespace MCup.Views
             List<Menu> menuPrincipale = new List<Menu> //Lista contenente le pagine a cui si può accedere dalla MasterDetailPage
             {
                 new Menu { MenuTitle = "Home", ImageIcon = "home.png"},
-                //  new Menu { MenuTitle = "Scegli Struttura Preferita", ImageIcon = "modify.png"},
                 new Menu{MenuTitle ="Prenota", ImageIcon = "prenotaMenu.png"},
                 new Menu{MenuTitle ="Appuntamenti", ImageIcon = "appuntamentiMenu.png"},
-                new Menu { MenuTitle ="Contatti", ImageIcon = "contact.png"},
+                new Menu{ MenuTitle ="Contatti", ImageIcon = "contact.png"},
                 new Menu{MenuTitle ="Pagamento", ImageIcon = "soldi.png"},
                 new Menu{MenuTitle ="Referti", ImageIcon = "refertiMenu.png"},
                 new Menu{MenuTitle = "Privacy", ImageIcon = "lock.png"},
-                //new Menu{MenuTitle = "Faq", ImageIcon = ""},
+                new Menu{MenuTitle = "Aiuto", ImageIcon = "help.png"},
                 new Menu{MenuTitle = "Logout", ImageIcon = "logout.png"}
-
-
             };
             ListaMenu.ItemsSource = menuPrincipale; //Assegna all'oggetto ListaMenu dello xaml della pagina la lista precedentemente inizializzata
             Detail = new NavigationPage(new MainPage()); //Avvia la pagina principale
@@ -98,11 +95,11 @@ namespace MCup.Views
                     IsPresented = false;
                    Detail = new NavigationPage(new PaginaLavoriInCorso()); //Avvia la pagina principale
                 }
-                /*  else if (menu.MenuTitle.Equals("Scegli Struttura Preferita"))
-                  {
+                else if (menu.MenuTitle.Equals("Aiuto"))
+                {
                       IsPresented = false;
-                      Detail = new NavigationPage(new ListaStrutture("Menu")); //Avvia la pagina per la scelta della struttura preferita
-                  }*/
+                      Detail = new NavigationPage(new Help()); //Avvia la pagina per la scelta della struttura preferita
+                }
                 else if (menu.MenuTitle.Equals("Contatti"))
                 {
                     IsPresented = false;

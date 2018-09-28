@@ -22,20 +22,27 @@ namespace MCup
             InitializeComponent();
             video = new ObservableCollection<Video>();
             lstVideo.ItemsSource = video;
-            video.Add (new Video() { nome = "Registrazione", descrizione = "Il video mostra come registrarsi", immagine = "eCUPT.png", link = "http://192.168.125.24:3001/helpApp/Registrazione.mp4" });
+            introPagina();
         }
 
         private async void LstVideo_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             var videoTap = e.Item as Video;
-            await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpVideoPlayer(videoTap.link));
+            await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpVideoPlayer(videoTap.link), false);
         }
 
         private async void introPagina()
         {
             List<Video> listaTemp;
-            REST<object, VideoHelp> connessione = new REST<object, VideoHelp>();
-
+            REST<object, Video> connessione = new REST<object, Video>();
+            List<Header> headers = new List<Header>();
+            headers.Add(new Header { header = "struttura", value = "150907" });
+            listaTemp = await connessione.GetListJson(SingletonURL.Instance.getRotte().listaVideo, headers);
+            if (connessione.responseMessage != System.Net.HttpStatusCode.OK)
+                await DisplayAlert("Errore",connessione.warning,"OK");
+            else
+                for(int i=0;i<listaTemp.Count;i++)
+                    video.Add(listaTemp[i]);
         }
     }
 }
