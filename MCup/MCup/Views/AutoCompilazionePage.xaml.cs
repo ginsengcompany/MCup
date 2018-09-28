@@ -79,18 +79,5 @@ namespace MCup.Views
         {
             model.sceltaNazione(e.Value);
         }
-
-        private void btnAutoCompila_Clicked(object sender, EventArgs e)
-        {
-            if (entryCodiceFiscale.Text.Length == 16)
-            {
-                model.autocompila();
-                btnAutoCompila.IsVisible = false;
-            }
-            else
-            {
-                btnAutoCompila.IsVisible = true;
-            }
-        }
     }
 }
