@@ -123,7 +123,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Entry x:Name="entryCodiceFiscale" HorizontalOptions="StartAndExpand" Placeholder="Inserire codice fiscale" Text="{Binding codiceFiscale}"  WidthRequest="600" Grid.Row="0"/>
+                            <Entry x:Name="entryCodiceFiscale" HorizontalOptions="StartAndExpand" Placeholder="Inserire codice fiscale" Text="{Binding codiceFiscale,Mode=TwoWay}"  WidthRequest="600" Grid.Row="0"/>
                             <Image Source="iconaScan.png" WidthRequest="30" HorizontalOptions="End" Grid.Row="0" Grid.Column="0" Margin="5">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="Button_Clicked" NumberOfTapsRequired="1" />
@@ -131,7 +131,6 @@
                             </Image>
                         </Grid>
                         <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCodFiscale}" TextColor="Red" FontSize="Small"/>
-                        <Button BackgroundColor="#003964" TextColor="White" Text="Autocompila" HorizontalOptions="Center" x:Name="btnAutoCompila" Clicked="btnAutoCompila_Clicked"/>
                     </StackLayout>
                     
                     <StackLayout IsVisible="{Binding VisibleCdf}" Grid.Row="3" Grid.Column="0" Grid.RowSpan="5">

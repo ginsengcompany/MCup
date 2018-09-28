@@ -24,6 +24,7 @@ namespace MCup.Model
         public string AggiungiNuovoContatto { get; set; }
         public string EliminaContatto { get; set; }
         public string ListaComuni { get; set; }
+        public string converticodicefiscale { get; set; }
         public string ListaProvince { get; set; }
         public string ListaStatoCivile { get; set; }
         public string ConfermaPrenotazione { get; set; }

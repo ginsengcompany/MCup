@@ -45,13 +45,13 @@ namespace MCup.Views
                 DisableAutofocus = false
                 //PossibleFormats = new List < BarcodeFormat >(){ BarcodeFormat.CODE_39 }
             };
-            var overlay = new ZXingDefaultOverlay
+            /*var overlay = new ZXingDefaultOverlay
             {
                 ShowFlashButton = false,
 
             };
-            overlay.BindingContext = overlay;
-            var scanPage = new ZXingScannerPage(options, overlay);
+            overlay.BindingContext = overlay;*/
+            var scanPage = new ZXingScannerPage(options /*overlay*/);
             scanPage.OnScanResult += (result) =>
             {
                 scanPage.IsScanning = false;
@@ -171,17 +171,6 @@ namespace MCup.Views
                 modelView.NazioneSelezionata(b);
             }
         }
-        private void btnAutoCompila_Clicked(object sender, EventArgs e)
-        {
-            if (entryCodiceFiscale.Text.Length == 16)
-            {
-                modelView.autocompila();
-                btnAutoCompila.IsVisible = false;
-            }
-            else
-            {
-                btnAutoCompila.IsVisible = true;
-            }
-        }
+
     }
 }

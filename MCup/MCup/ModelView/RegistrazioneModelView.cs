@@ -337,6 +337,14 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 utente.codice_fiscale = value;
+                if (utente.codice_fiscale.Length == 16)
+                {
+                    AutoCompilazioneConnessione();
+                }
+                else
+                {
+                    visibleCdf = false;
+                }
             }
         }
 
@@ -1064,6 +1072,62 @@ namespace MCup.ModelView
                     }
                 }
             }
+        }
+        public async void AutoCompilazioneConnessione()
+        {
+
+            REST<object, AutoCompilazione> connessione = new REST<object, AutoCompilazione>();
+            List<Header> header = new List<Header>();
+            header.Add(new Header("codfisc", codiceFiscale.ToUpper()));
+            if (codiceFiscale.Length == 16)
+            {
+                var response = await connessione.GetSingleJson(SingletonURL.Instance.getRotte().converticodicefiscale, header);
+                if (connessione.responseMessage != HttpStatusCode.OK)
+                {
+                    await App.Current.MainPage.DisplayAlert("Attenzione", connessione.warning, "ok");
+                }
+                else
+                {
+                    VisibleCdf = true;
+                    Comuni controlloComuneNascita = new Comuni();
+                    sceltaSesso = response.sesso[0];
+                    controlloComuneNascita = await ComuneNascita(response.codcatastale);
+                    data_nascita = DateTime.ParseExact(response.datanascita, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    Boolean flagNaziolanità = false;
+                    if (controlloComuneNascita.codice != null)
+                    {
+
+                        NationalVisibility = true;
+                        NationalVisibilityForeign = false;
+                        Provincia_nascitaNuovoContatto = controlloComuneNascita.provincia;
+                        provinciaSelezionata.provincia = controlloComuneNascita.provincia;
+                        provinciaSelezionata.codIstat = controlloComuneNascita.codIstat;
+                        Comune temp = new Comune();
+                        Luogo_nascitaNuovoContatto = controlloComuneNascita.nome;
+                        temp.codice = controlloComuneNascita.codice;
+                        temp.nome = controlloComuneNascita.nome;
+                        comuneNascitaSelezionato(temp);
+                        flagNaziolanità = true;
+                    }
+                    if (!flagNaziolanità)
+                    {
+                        foreach (var i in ListaNazioni)
+                        {
+                            if (i.codiceCatastale == response.codcatastale)
+                            {
+
+                                NationalVisibility = false;
+                                NationalVisibilityForeign = true;
+                                Luogo_nascitaNuovoContatto = i.descrizione;
+                                utente.luogo_nascita = i.descrizione;
+                                utente.istatComuneNascita = i.codiceCatastale;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
         }
         public async Task<Comuni> ComuneNascita(string temp2)
         {

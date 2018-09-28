@@ -80,18 +80,23 @@ namespace MCup.Views
                 UseFrontCameraIfAvailable = false,
                 TryHarder = true,
                 AutoRotate = false,
-                DisableAutofocus = false
+                TryInverted = true,
+                DelayBetweenContinuousScans = 2000,
                 //PossibleFormats = new List < BarcodeFormat >(){ BarcodeFormat.CODE_39 }
             };
-            var overlay = new ZXingDefaultOverlay
-            {
+            /*var overlay = new ZXingDefaultOverlay
+            { 
                 ShowFlashButton = false
             };
-            overlay.BindingContext = overlay;
-            var scanPage = new ZXingScannerPage(options, overlay);
+            overlay.BindingContext = overlay;*/
+            var scanPage = new ZXingScannerPage(options /*overlay*/);
             scanPage.OnScanResult += (result) =>
             {
                 scanPage.IsScanning = false;
+                if (scanPage.IsScanning)
+                {
+                    scanPage.AutoFocus();
+                }
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     Navigation.PopAsync();
@@ -109,7 +114,8 @@ namespace MCup.Views
                 UseFrontCameraIfAvailable = false,
                 TryHarder = true,
                 AutoRotate = false,
-                DisableAutofocus = false
+                DisableAutofocus = false,
+                TryInverted = true
                 //PossibleFormats = new List < BarcodeFormat >(){ BarcodeFormat.CODE_39 }
             };
             var overlay = new ZXingDefaultOverlay
