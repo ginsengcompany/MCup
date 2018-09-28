@@ -201,6 +201,14 @@ namespace MCup.ModelView
             {
                 OnPropertyChanged();
                 contatto.codice_fiscale = value;
+                if (contatto.codice_fiscale.Length == 16)
+                {
+                    AutoCompilazioneConnessione();
+                }
+                else
+                {
+                    visibleCdf = false;
+                }
             }
         }
 
@@ -601,186 +609,7 @@ namespace MCup.ModelView
 
         #endregion
         
-        public async void autocompila()
-        {
-            Comuni controlloComuneNascita = new Comuni();
-            VisibleCdf = true;
-            int y = 6;
-            //anno
-            CodiceFiscaleNuovoContatto = CodiceFiscaleNuovoContatto.ToUpper();
-            char[] prova = new char[CodiceFiscaleNuovoContatto.Length];
-            prova = CodiceFiscaleNuovoContatto.ToCharArray();
-
-            while (y != 0)
-            {
-                switch (prova[y])
-                {
-                    case 'L':
-                        prova[y] = '0';
-                        break;
-                    case 'M':
-                        prova[y] = '1';
-                        break;
-                    case 'N':
-                        prova[y] = '2';
-                        break;
-                    case 'P':
-                        prova[y] = '3';
-                        break;
-                    case 'Q':
-                        prova[y] = '4';
-                        break;
-                    case 'R':
-                        prova[y] = '5';
-                        break;
-                    case 'S':
-                        prova[y] = '6';
-                        break;
-                    case 'T':
-                        prova[y] = '7';
-                        break;
-                    case 'U':
-                        prova[y] = '8';
-                        break;
-                    case 'V':
-                        prova[y] = '9';
-                        break;
-                    default:
-                        break;
-                }
-                //controllo posizione e fine while
-                if (y == 6)
-                    y = 7;
-                else if (y == 7)
-                    y = 9;
-                else if (y == 9)
-                    y = 10;
-                else if (y == 10)
-                    y = 12;
-                else if (y == 12)
-                    y = 13;
-                else if (y == 13)
-                    y = 14;
-                else if (y == 14)
-                    y = 0;
-            }
-            y = 1;
-            CodiceFiscaleNuovoContatto = prova[0].ToString();
-            while (y != prova.Length)
-            {
-                CodiceFiscaleNuovoContatto = CodiceFiscaleNuovoContatto + prova[y].ToString();
-                y++;
-            }
-
-            int annoint = 2000 + Convert.ToInt16(CodiceFiscaleNuovoContatto.Substring(6, 2));
-            string anno;
-            int annoCorrente = DateTime.Now.Year;
-            if (annoint > annoCorrente)
-                anno = "19" + CodiceFiscaleNuovoContatto.Substring(6, 2);
-            else
-                anno = "20" + CodiceFiscaleNuovoContatto.Substring(6, 2);
-
-            string mese = CodiceFiscaleNuovoContatto.Substring(8, 1);
-            switch (mese)
-        {
-            case "A":
-                mese = "01";
-                break;
-            case "B":
-                mese = "02";
-                break;
-            case "C":
-                mese = "03";
-                break;
-            case "D":
-                mese = "04";
-                break;
-            case "E":
-                mese = "05";
-                break;
-            case "H":
-                mese = "06";
-                break;
-            case "L":
-                mese = "07";
-                break;
-            case "M":
-                mese = "08";
-                break;
-            case "P":
-                mese = "09";
-                break;
-            case "R":
-                mese = "10";
-                break;
-            case "S":
-                mese = "11";
-                break;
-            case "T":
-                mese = "12";
-                break;
-            default:
-                break;
-
-        };
-            char sesso;
-            string giorno;
-            int giornoint = Convert.ToInt16(CodiceFiscaleNuovoContatto.Substring(9, 2));
-            if (giornoint > 40)
-            {
-                sesso = 'F';
-                giornoint = giornoint - 40;
-            }
-            else
-            {
-                sesso = 'M';
-            }
-            if (giornoint < 10)
-            {
-                giorno = "0" + giornoint.ToString();
-            }
-            else
-                giorno = giornoint.ToString();
-
-            //Data_nascitaNuovoContatto = giorno + "/" + mese + "/" + anno;
-            Data_nascitaNuovoContatto = DateTime.ParseExact(giorno + "/" + mese + "/" + anno,"dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            sceltaSesso = sesso;
-            string sezCodFiscale = CodiceFiscaleNuovoContatto.Substring(11, 4);
-            controlloComuneNascita = await ComuneNascita(sezCodFiscale);
-            Boolean flagNaziolanità = false;
-
-            if (controlloComuneNascita.codice != null)
-            {
-
-                NationalVisibility = true;
-                NationalVisibilityForeign = false;
-                Provincia_nascitaNuovoContatto = controlloComuneNascita.provincia;
-                provinciaSelezionata.provincia = controlloComuneNascita.provincia;
-                provinciaSelezionata.codIstat = controlloComuneNascita.codIstat;
-                Comune temp = new Comune();
-                Luogo_nascitaNuovoContatto = controlloComuneNascita.nome;
-                temp.codice = controlloComuneNascita.codice;
-                temp.nome = controlloComuneNascita.nome;
-                comuneNascitaSelezionato(temp); 
-                flagNaziolanità = true;
-            }
-            if (!flagNaziolanità)
-            {
-                foreach (var i in ListaNazioni)
-                {
-                    if (i.codiceCatastale == sezCodFiscale)
-                    {
-
-                        NationalVisibility = false;
-                        NationalVisibilityForeign = true;
-                        Luogo_nascitaNuovoContatto = i.descrizione;
-                        contatto.luogo_nascita = i.descrizione;
-                        contatto.istatComuneNascita = i.codiceCatastale;
-                        break;
-                    }
-                }
-            }
-        }
+     
 
         public async Task<Comuni> ComuneNascita(string temp2)
         {
@@ -794,6 +623,64 @@ namespace MCup.ModelView
             }
             else
                 return temp;
+        }
+
+
+        public async void AutoCompilazioneConnessione()
+        {
+            
+            REST<object,AutoCompilazione> connessione = new REST<object, AutoCompilazione>();
+            List<Header> header = new List<Header>();
+            header.Add(new Header("codfisc",CodiceFiscaleNuovoContatto.ToUpper()));
+            if (CodiceFiscaleNuovoContatto.Length ==16 )
+            {
+                var response = await connessione.GetSingleJson(SingletonURL.Instance.getRotte().converticodicefiscale, header);
+                if (connessione.responseMessage != HttpStatusCode.OK)
+                {
+                    await App.Current.MainPage.DisplayAlert("Attenzione", connessione.warning, "ok");
+                }
+                else
+                {
+                    VisibleCdf = true;
+                    Comuni controlloComuneNascita = new Comuni();
+                    sceltaSesso = response.sesso[0];
+                    controlloComuneNascita = await ComuneNascita(response.codcatastale);
+                    Data_nascitaNuovoContatto = DateTime.ParseExact(response.datanascita, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    Boolean flagNaziolanità = false;
+                    if (controlloComuneNascita.codice != null)
+                    {
+
+                        NationalVisibility = true;
+                        NationalVisibilityForeign = false;
+                        Provincia_nascitaNuovoContatto = controlloComuneNascita.provincia;
+                        provinciaSelezionata.provincia = controlloComuneNascita.provincia;
+                        provinciaSelezionata.codIstat = controlloComuneNascita.codIstat;
+                        Comune temp = new Comune();
+                        Luogo_nascitaNuovoContatto = controlloComuneNascita.nome;
+                        temp.codice = controlloComuneNascita.codice;
+                        temp.nome = controlloComuneNascita.nome;
+                        comuneNascitaSelezionato(temp);
+                        flagNaziolanità = true;
+                    }
+                    if (!flagNaziolanità)
+                    {
+                        foreach (var i in ListaNazioni)
+                        {
+                            if (i.codiceCatastale == response.codcatastale)
+                            {
+
+                                NationalVisibility = false;
+                                NationalVisibilityForeign = true;
+                                Luogo_nascitaNuovoContatto = i.descrizione;
+                                contatto.luogo_nascita = i.descrizione;
+                                contatto.istatComuneNascita = i.codiceCatastale;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+         
         }
     }
 

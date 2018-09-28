@@ -171,17 +171,6 @@ namespace MCup.Views
                 modelView.NazioneSelezionata(b);
             }
         }
-        private void btnAutoCompila_Clicked(object sender, EventArgs e)
-        {
-            if (entryCodiceFiscale.Text.Length == 16)
-            {
-                modelView.autocompila();
-                btnAutoCompila.IsVisible = false;
-            }
-            else
-            {
-                btnAutoCompila.IsVisible = true;
-            }
-        }
+
     }
 }

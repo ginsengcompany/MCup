@@ -65,6 +65,7 @@
     <Compile Include="FormsVideoLibrary\VideoSource.cs" />
     <Compile Include="FormsVideoLibrary\VideoSourceConverter.cs" />
     <Compile Include="FormsVideoLibrary\VideoStatus.cs" />
+    <Compile Include="Model\AutoCompilazione.cs" />
     <Compile Include="Model\Video.cs" />
     <Compile Include="Views\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
@@ -196,10 +197,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Com.OneSignal, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Com.OneSignal.3.2.0\lib\netstandard1.0\Com.OneSignal.dll</HintPath>
+      <HintPath>..\..\packages\Com.OneSignal.3.2.1\lib\netstandard1.0\Com.OneSignal.dll</HintPath>
     </Reference>
     <Reference Include="Com.OneSignal.Abstractions, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Com.OneSignal.3.2.0\lib\netstandard1.0\Com.OneSignal.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Com.OneSignal.3.2.1\lib\netstandard1.0\Com.OneSignal.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="ExifLib, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ExifLib.PCL.1.0.2-pre01\lib\netstandard1.0\ExifLib.dll</HintPath>
