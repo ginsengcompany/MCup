@@ -206,6 +206,7 @@ namespace MCup.ModelView
                 contattoPrimo.indirizzores = temp[0].indirizzores;
                 contattoPrimo.email = temp[0].email;*/
                 contattoPrimo = temp[0];
+                contattoPrimo.AccountPrimario = true;
                 temp.Remove(temp[0]);
                 Contatti = temp;
                 ImplementaRubrica();

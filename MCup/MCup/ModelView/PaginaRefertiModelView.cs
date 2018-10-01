@@ -218,41 +218,30 @@ namespace MCup.ModelView
 
         public async Task Download(ListaReferti refertoSelezionato)
         {
+            IsBusy = true;
             List<Header> listaJHeaders = new List<Header>();
             listaJHeaders.Add(new Header("x-access-token", App.Current.Properties["tokenLogin"].ToString()));
             listaJHeaders.Add(new Header("struttura", "150907"));
             listaJHeaders.Add(new Header("id", refertoSelezionato.id));
             REST<object, string> connessioneDownload = new REST<object, string>();
             var response = await connessioneDownload.PostJson(SingletonURL.Instance.getRotte().scaricaReferto, listaJHeaders);
+            IsBusy = false;
             if (connessioneDownload.responseMessage != HttpStatusCode.OK)
-            {
                 await MessaggioConnessione.displayAlert((int)connessioneDownload.responseMessage, connessioneDownload.warning);
-            }
             else
             {
                 var actionSheet = await App.Current.MainPage.DisplayActionSheet("Attenzione", "Cancel", null, "Scarica", "Inoltra");
-
                 switch (actionSheet)
                 {
-                    
-
                     case "Scarica":
-
                         await DownloadPdf(connessioneDownload.warning + refertoSelezionato.id);
-
                         break;
-
                     case "Inoltra":
                         await App.Current.MainPage.Navigation.PushPopupAsync(new PopupInfoScan(connessioneDownload.warning + refertoSelezionato.id,contatto.nome,contatto.cognome));
                         break;
-
                     case "Cancel":
-                       
                         break;
-
                 }
-               
-
             }
             /*Device.OpenUri(new Uri(connessioneDownload.warning + refertoSelezionato.id)); */
         }

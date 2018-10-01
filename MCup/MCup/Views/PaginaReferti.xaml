@@ -16,6 +16,7 @@
                     ItemDisplayBinding="{Binding nomeCompletoConCodiceFiscale}" 
                     VerticalOptions="Center" 
                     SelectedIndexChanged="SelezionaContattoPicker" />
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
             <Label 
                 Text="Nessun referto disponibile per l'assistito" 
                 IsVisible="{Binding VisibileLabel}" 
@@ -26,7 +27,7 @@
                 FontSize="Medium" 
                 FontAttributes="Bold"/>
 
-            <ListView ItemsSource="{Binding Referti}" Footer=""  HasUnevenRows="True" ItemTapped="DownloadReferto" SeparatorColor="Black" SeparatorVisibility="Default">
+            <ListView ItemsSource="{Binding Referti}" Footer="" HasUnevenRows="True" ItemTapped="DownloadReferto" SeparatorColor="Black" SeparatorVisibility="Default">
                 <ListView.ItemTemplate>
 
                     <DataTemplate>
@@ -54,8 +55,8 @@
                                     <Label Text="{Binding metadati.desEvento}" Grid.Column="1" Grid.Row="2"></Label>
                                     <Label Text="{Binding metadati.autoreDocumento}" Grid.Column="1" Grid.Row="3"></Label>
                                 </Grid>
-                                <Image Source="download.png" HorizontalOptions="EndAndExpand" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"></Image>
-                            </StackLayout>
+                                    <Image Source="download.png" HorizontalOptions="EndAndExpand" VerticalOptions="Center" HeightRequest="50" WidthRequest="50"/>
+                                </StackLayout>
                             
                         </ViewCell.View>
                             </costomControls:ExtendedViewCell>

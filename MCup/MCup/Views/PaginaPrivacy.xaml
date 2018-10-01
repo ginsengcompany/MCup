@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <xfx:XfxCardView CornerRadius="3" Elevation="3" WidthRequest="100" HeightRequest="110">
+                <xfx:XfxCardView CornerRadius="3" Elevation="3" WidthRequest="100" HeightRequest="110" IsEnabled="{Binding IsEnabled}">
                     <xfx:XfxCardView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding infoPrivacy}"/>
                     </xfx:XfxCardView.GestureRecognizers>
@@ -16,7 +16,7 @@
                         <Label FormattedText="Leggi i termini di servizio. Ti invitiamo a controllarli periodicamente per verificare eventuali cambiamenti." VerticalOptions="Center"/>
                     </StackLayout>
                 </xfx:XfxCardView>
-                <xfx:XfxCardView CornerRadius="3" Elevation="3" WidthRequest="100" HeightRequest="110">
+                <xfx:XfxCardView CornerRadius="3" Elevation="3" WidthRequest="100" HeightRequest="110" IsEnabled="{Binding IsEnabled}">
                     <xfx:XfxCardView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding datiUtente}"/>
                     </xfx:XfxCardView.GestureRecognizers>
@@ -25,7 +25,7 @@
                         <Label VerticalOptions="Center" Text="Procedi con la richiesta di tutte le tue informazioni personali, in accordo all'Art. 20 del Regolamento UE 2016/679, GDPR relativo al Diritto alla portabilità dei dati."/>
                     </StackLayout>
                 </xfx:XfxCardView>
-                <xfx:XfxCardView CornerRadius="3" Elevation="3" WidthRequest="100" HeightRequest="110">
+                <xfx:XfxCardView CornerRadius="3" Elevation="3" WidthRequest="100" HeightRequest="110" IsEnabled="{Binding IsEnabled}">
                     <xfx:XfxCardView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding eliminaUtente}"/>
                     </xfx:XfxCardView.GestureRecognizers>
@@ -34,6 +34,7 @@
                         <Label VerticalOptions="Center" Text="Procedi con l'eliminazione definitiva di tutti i tuoi dati personali dai sistemi di gestione dell'app in accordo all'Art. 17 Regolamento UE 2016/679, GDPR - Diritto alla cancellazione - Diritto all'oblio "/>
                     </StackLayout>
                 </xfx:XfxCardView>
+                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -32,13 +32,9 @@ namespace MCup.Views
         public async Task confermaEliminaAccount()
         {
             if (SingletonURL.Instance.error)
-            {
                 await DisplayAlert("Attenzione", "server momentaneamente non disponibile", "OK");
-            }
             else
-            {
                 await Navigation.PushPopupAsync(new PopupInfoScan(true));
-            }
         }
     }
 }

@@ -21,6 +21,8 @@ namespace MCup.ModelView
     {
 
         public event PropertyChangedEventHandler PropertyChanged; //evento che implementa l'interfaccia INotifyPropertyChanged
+        private bool isBusy = false;
+        private bool isEnabled = true;
        
         #region Proprietà
 
@@ -29,6 +31,24 @@ namespace MCup.ModelView
         public ICommand infoPrivacy { protected set; get; } 
         public ICommand datiUtente { protected set; get; }
         public ICommand eliminaUtente { protected set; get; }
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                OnPropertyChanged();
+                isBusy = value;
+            }
+        }
+        public bool IsEnabled
+        {
+            get { return isEnabled; }
+            set
+            {
+                OnPropertyChanged();
+                isEnabled = value;
+            }
+        }
 
         #endregion
         #region OnPropertyChange
@@ -49,22 +69,31 @@ namespace MCup.ModelView
 
             infoPrivacy = new Command(async () =>
             {
+                IsEnabled = false;
+                IsBusy = true;
                 await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpTerminiServizio(),false);
+                IsEnabled = true;
+                IsBusy = false;
             });
             datiUtente = new Command(async () =>
             {
                 var scelta = await App.Current.MainPage.DisplayAlert("Attenzione", "Gentile utente tutti i dati le saranno inoltrati tramite email, sei sicuro di voler procedere?", "SI", "NO");
                 if (scelta)
                 {
+                    IsEnabled = false;
+                    IsBusy = false;
                     REST<object, string> connessioneEmail = new REST<object, string>();
                     var response = await connessioneEmail.getString(SingletonURL.Instance.getRotte().infoPersonaliEmail, listaheader);
                     await MessaggioConnessione.displayAlert(connessioneEmail.warning, false);
+                    IsBusy = false;
+                    IsEnabled = true;
                 }
-                
             });
             eliminaUtente = new Command(async () =>
             {
+                IsEnabled = false;
                 await PopUp();
+                IsEnabled = true;
             });
         }
         #endregion

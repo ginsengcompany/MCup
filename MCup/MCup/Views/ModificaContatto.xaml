@@ -19,6 +19,10 @@
             <ScrollView >
                 <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="20">
 
+                    <Label Text="Codice Fiscale" FontAttributes="Bold" TextColor="Black" FontSize="Medium" IsEnabled="False"/>
+                    <Entry Placeholder="Inserire nome" Text="{Binding CodiceFiscaleContatto}" WidthRequest="250" IsEnabled="False"/>
+                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCodFiscale}" TextColor="Red" FontSize="Small"/>
+                    
                     <Label Text="Nome" FontAttributes="Bold" TextColor="Black" FontSize="Medium" IsEnabled="False"/>
                     <Entry Placeholder="Inserire nome" Text="{Binding NomeContatto}" WidthRequest="250" IsEnabled="False"/>
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorNome}" TextColor="Red" FontSize="Small"/>
@@ -68,10 +72,6 @@
                     <Label Text="Indirizzo di Residenza" FontAttributes="Bold" TextColor="Black" FontSize="Medium" IsEnabled="False"/>
                     <Entry  Text="{Binding IndirizzoRes }" WidthRequest="250" />
                     <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorSesso}" TextColor="Red" FontSize="Small"/>
-
-                    <Label Text="Codice Fiscale" FontAttributes="Bold" TextColor="Black" FontSize="Medium" IsEnabled="False"/>
-                    <Entry Placeholder="Inserire nome" Text="{Binding CodiceFiscaleContatto}" WidthRequest="250" IsEnabled="False"/>
-                    <Label Text="Attenzione, campo obbligatorio" IsVisible="{Binding NameErrorCodFiscale}" TextColor="Red" FontSize="Small"/>
 
                 </StackLayout>
             </ScrollView>

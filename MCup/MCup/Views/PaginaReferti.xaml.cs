@@ -43,8 +43,7 @@ namespace MCup.Views
         private async void DownloadReferto(object sender, ItemTappedEventArgs e)
         {
             ListaReferti b = e.Item as ListaReferti;
-           await form.Download(b);
-
+            await form.Download(b);
         }
     }
 }
