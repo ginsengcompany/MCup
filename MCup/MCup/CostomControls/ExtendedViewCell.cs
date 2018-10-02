@@ -22,6 +22,6 @@ namespace MCup.CostomControls
             {
                 get { return (Color)GetValue(SelectedBackgroundColorProperty); }
                 set { SetValue(SelectedBackgroundColorProperty, value); }
-        }
+            }
     }
 }

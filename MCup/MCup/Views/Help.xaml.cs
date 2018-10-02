@@ -29,6 +29,7 @@ namespace MCup
         {
             var videoTap = e.Item as Video;
             await App.Current.MainPage.Navigation.PushPopupAsync(new PopUpVideoPlayer(videoTap.link), false);
+            lstVideo.SelectedItem = null;
         }
 
         private async void introPagina()

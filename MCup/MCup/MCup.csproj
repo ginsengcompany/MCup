@@ -40,6 +40,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CostomControls\CustomImageCellListRenderer.cs" />
     <Compile Include="CostomControls\CustomPickerForms.cs" />
     <Compile Include="CostomControls\XfxEntry.cs" />
     <Compile Include="CustomPopUp\PopupInfoScan.xaml.cs">
