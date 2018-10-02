@@ -67,8 +67,8 @@ namespace MCup.Views
                 new Menu{MenuTitle ="Lista appuntamenti", ImageIcon = "appuntamentiMenu.png"},
                 new Menu{ MenuTitle ="Rubrica", ImageIcon = "rubrica.png"},
                 new Menu{MenuTitle ="Pagamento", ImageIcon = "soldi.png"},
-                new Menu{MenuTitle ="Lista Referti", ImageIcon = "refertiMenu.png"},
-                new Menu{MenuTitle = "Gestione Account", ImageIcon = "contact.png"},
+                new Menu{MenuTitle ="Lista referti", ImageIcon = "refertiMenu.png"},
+                new Menu{MenuTitle = "Gestione account", ImageIcon = "contact.png"},
                 new Menu{MenuTitle = "Video tutorial", ImageIcon = "videotutorial.png"},
                 new Menu{MenuTitle = "Info e contatti", ImageIcon = "help.png"},
                 new Menu{MenuTitle = "Logout", ImageIcon = "logout.png"}
@@ -116,12 +116,12 @@ namespace MCup.Views
                     IsPresented = false;
                     Detail = new NavigationPage(new FormPrenotazione(false)); //Avvia la pagina per la scelta della struttura preferita
                 }
-                else if (menu.MenuTitle.Equals("Lista Referti"))
+                else if (menu.MenuTitle.Equals("Lista referti"))
                 {
                     IsPresented = false;
                     Detail = new NavigationPage(new PaginaReferti()); //Avvia la pagina per la scelta della struttura preferita
                 }
-                else if (menu.MenuTitle.Equals("Gestione Account"))
+                else if (menu.MenuTitle.Equals("Gestione account"))
                 {
                     IsPresented = false;
                     Detail = new NavigationPage(new PaginaPrivacy());

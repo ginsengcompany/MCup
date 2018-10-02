@@ -4,7 +4,7 @@
              xmlns:costomControls="clr-namespace:MCup.CostomControls;assembly=MCup"
              xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
              x:Class="MCup.Views.PaginaAppuntamenti"
-             Title="Appuntamenti">
+             Title="Lista appuntamenti">
     <ContentPage.Content>
         <StackLayout>
             <Label TextColor="#003964" Text="APPUNTAMENTI" HorizontalOptions="CenterAndExpand" FontSize="30" FontAttributes="Bold"/>

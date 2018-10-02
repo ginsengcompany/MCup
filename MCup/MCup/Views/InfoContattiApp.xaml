@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
-             x:Class="MCup.Views.InfoContattiApp">
+             x:Class="MCup.Views.InfoContattiApp"
+             Title="Info e contatti">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -20,7 +21,7 @@
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_TappedContattaciEmail"/>
                     </xfx:XfxCardView.GestureRecognizers>
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-                        <Image Source="richiestaDati.png" HeightRequest="100" WidthRequest="100"/>
+                        <Image Source="contattaci.png" HeightRequest="100" WidthRequest="100"/>
                         <Label VerticalOptions="Center">
                             <Label.FormattedText>
                                 <FormattedString>

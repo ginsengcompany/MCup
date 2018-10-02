@@ -5,7 +5,7 @@
     xmlns:local="clr-namespace:MCup"
     xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
     BackgroundColor="White"
-    Title="Richiesta proposta"
+    Title="Proposte"
     NavigationPage.HasNavigationBar="{Binding Visible}">
     <ContentPage.ToolbarItems>
         <ToolbarItem 

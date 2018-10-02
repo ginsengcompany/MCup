@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:costomControls="clr-namespace:MCup.CostomControls;assembly=MCup"
              x:Class="MCup.Views.PaginaReferti"
-             Title="Referti">
+             Title="Lista Referti">
     <ContentPage.Content>
         <StackLayout>
             <Label TextColor="#003964" Text="REFERTI" HorizontalOptions="CenterAndExpand" FontSize="30" FontAttributes="Bold"/>

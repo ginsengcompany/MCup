@@ -5,7 +5,7 @@
              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
              x:Class="MCup.Views.FormPrenotazione"
-    Title="Invio richiesta prenotazione">
+    Title="Prenota">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical" Padding="20,20,20,0" >

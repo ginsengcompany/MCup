@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              NavigationPage.HasNavigationBar="False"
-             x:Class="MCup.Views.AutoCompilazionePage">
+             x:Class="MCup.Views.AutoCompilazionePage"
+             Title="Nuovo contatto">
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness"
                     iOS="0,30,0,0"/>

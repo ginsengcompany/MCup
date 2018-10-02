@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:costomControls="clr-namespace:MCup.CostomControls;assembly=MCup"
              x:Class="MCup.Views.ListaContatti"
-             Title="Rubrica Contatti"
+             Title="Rubrica"
              BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>

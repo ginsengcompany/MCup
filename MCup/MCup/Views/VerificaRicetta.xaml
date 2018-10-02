@@ -4,10 +4,10 @@
              x:Class="MCup.Views.VerificaRicetta"
              xmlns:local="clr-namespace:MCup"
              xmlns:customControls="clr-namespace:MCup.CostomControls;assembly=MCup"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              BackgroundColor="White"
-             Title="Verifica Contenuto Impegnativa"
+             Title="Contenuto impegnativa"
              NavigationPage.HasBackButton="False">
+    <!--   xmlns:sys="clr-namespace:System;assembly=mscorlib" -->
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             Name="AnnullaPrenotazione"
