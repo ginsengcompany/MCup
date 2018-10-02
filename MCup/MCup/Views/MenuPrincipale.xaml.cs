@@ -64,12 +64,13 @@ namespace MCup.Views
             {
                 new Menu { MenuTitle = "Home", ImageIcon = "home.png"},
                 new Menu{MenuTitle ="Prenota", ImageIcon = "prenotaMenu.png"},
-                new Menu{MenuTitle ="Appuntamenti", ImageIcon = "appuntamentiMenu.png"},
-                new Menu{ MenuTitle ="Contatti", ImageIcon = "contact.png"},
+                new Menu{MenuTitle ="Lista appuntamenti", ImageIcon = "appuntamentiMenu.png"},
+                new Menu{ MenuTitle ="Rubrica", ImageIcon = "rubrica.png"},
                 new Menu{MenuTitle ="Pagamento", ImageIcon = "soldi.png"},
-                new Menu{MenuTitle ="Referti", ImageIcon = "refertiMenu.png"},
-                new Menu{MenuTitle = "Privacy", ImageIcon = "lock.png"},
-                new Menu{MenuTitle = "Aiuto", ImageIcon = "help.png"},
+                new Menu{MenuTitle ="Lista Referti", ImageIcon = "refertiMenu.png"},
+                new Menu{MenuTitle = "Gestione Account", ImageIcon = "contact.png"},
+                new Menu{MenuTitle = "Video tutorial", ImageIcon = "videotutorial.png"},
+                new Menu{MenuTitle = "Info e contatti", ImageIcon = "help.png"},
                 new Menu{MenuTitle = "Logout", ImageIcon = "logout.png"}
             };
             ListaMenu.ItemsSource = menuPrincipale; //Assegna all'oggetto ListaMenu dello xaml della pagina la lista precedentemente inizializzata
@@ -95,17 +96,17 @@ namespace MCup.Views
                     IsPresented = false;
                    Detail = new NavigationPage(new PaginaLavoriInCorso()); //Avvia la pagina principale
                 }
-                else if (menu.MenuTitle.Equals("Aiuto"))
+                else if (menu.MenuTitle.Equals("Video tutorial"))
                 {
                       IsPresented = false;
                       Detail = new NavigationPage(new Help()); //Avvia la pagina per la scelta della struttura preferita
                 }
-                else if (menu.MenuTitle.Equals("Contatti"))
+                else if (menu.MenuTitle.Equals("Rubrica"))
                 {
                     IsPresented = false;
                     Detail = new NavigationPage(new ListaContatti()); //Avvia la pagina per la scelta della struttura preferita
                 }
-                else if (menu.MenuTitle.Equals("Appuntamenti"))
+                else if (menu.MenuTitle.Equals("Lista appuntamenti"))
                 {
                     IsPresented = false;
                     Detail = new NavigationPage(new PaginaAppuntamenti()); //Avvia la pagina per la scelta della struttura preferita
@@ -115,15 +116,20 @@ namespace MCup.Views
                     IsPresented = false;
                     Detail = new NavigationPage(new FormPrenotazione(false)); //Avvia la pagina per la scelta della struttura preferita
                 }
-                else if (menu.MenuTitle.Equals("Referti"))
+                else if (menu.MenuTitle.Equals("Lista Referti"))
                 {
                     IsPresented = false;
                     Detail = new NavigationPage(new PaginaReferti()); //Avvia la pagina per la scelta della struttura preferita
                 }
-                else if (menu.MenuTitle.Equals("Privacy"))
+                else if (menu.MenuTitle.Equals("Gestione Account"))
                 {
                     IsPresented = false;
                     Detail = new NavigationPage(new PaginaPrivacy());
+                }
+                else if (menu.MenuTitle.Equals("Info e contatti"))
+                {
+                    IsPresented = false;
+                    Detail = new NavigationPage(new InfoContattiApp());
                 }
                 else if(menu.MenuTitle.Equals("Logout"))
                 {

@@ -105,11 +105,6 @@ namespace MCup.Views
             await Navigation.PushAsync(new PaginaReferti());
 
         }
-
-        private void contatti_Clicked(object sender, EventArgs e)
-        {
-            Device.OpenUri(new Uri($"mailto:{"ecuptservice.mail@gmail.com"}"));
-        }
 /*
         private async void faq_Clicked(object sender, EventArgs e)
         {

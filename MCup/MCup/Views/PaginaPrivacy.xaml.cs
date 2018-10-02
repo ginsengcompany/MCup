@@ -24,11 +24,6 @@ namespace MCup.Views
             BindingContext = model;
         }
 
-        public async Task popupTermini()
-        {
-            await Navigation.PushPopupAsync(new PopUpTerminiServizioRegistrazione(null));
-        }
-
         public async Task confermaEliminaAccount()
         {
             if (SingletonURL.Instance.error)

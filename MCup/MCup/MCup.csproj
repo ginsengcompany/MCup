@@ -125,6 +125,9 @@
     <Compile Include="Views\GestioneAppuntamenti.xaml.cs">
       <DependentUpon>GestioneAppuntamenti.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\InfoContattiApp.xaml.cs">
+      <DependentUpon>InfoContattiApp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InfoContatto.xaml.cs">
       <DependentUpon>InfoContatto.xaml</DependentUpon>
     </Compile>
@@ -426,6 +429,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CustomPopUp\PopUpVideoPlayer.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\InfoContattiApp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
